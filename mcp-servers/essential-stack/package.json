@@ -36,7 +36,7 @@
     "facebook-nodejs-business-sdk": "^21.0.2",
     "node-fetch": "^3.3.2",
     "dotenv": "^16.4.7",
-    "zod": "^3.24.1"
+    "zod": "^4.1.11"
   },
   "devDependencies": {
     "@types/node": "^22.10.2",
