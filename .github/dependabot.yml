@@ -1,0 +1,251 @@
+# Dependabot Configuration for Multi-Technology Stack
+# Automatically updates dependencies for Node.js, Python, PHP, Docker, and GitHub Actions
+
+version: 2
+
+updates:
+  # ============================================================================
+  # GITHUB ACTIONS UPDATES
+  # ============================================================================
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "github-actions"
+    commit-message:
+      prefix: "chore(deps):"
+      include: "scope"
+
+  # ============================================================================
+  # NODE.JS / NPM UPDATES
+  # ============================================================================
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "tuesday"
+      time: "09:00"
+    open-pull-requests-limit: 10
+    labels:
+      - "dependencies"
+      - "javascript"
+    commit-message:
+      prefix: "chore(deps):"
+      include: "scope"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+
+  - package-ecosystem: "npm"
+    directory: "/mcp-servers/essential-stack"
+    schedule:
+      interval: "weekly"
+      day: "tuesday"
+      time: "10:00"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "mcp-essential"
+    commit-message:
+      prefix: "chore(deps-essential):"
+      include: "scope"
+
+  - package-ecosystem: "npm"
+    directory: "/mcp-servers/web-stack"
+    schedule:
+      interval: "weekly"
+      day: "tuesday"
+      time: "11:00"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "mcp-web"
+    commit-message:
+      prefix: "chore(deps-web):"
+      include: "scope"
+
+  - package-ecosystem: "npm"
+    directory: "/mcp-servers/web-stack/servers/wordpress"
+    schedule:
+      interval: "weekly"
+      day: "wednesday"
+      time: "09:00"
+    open-pull-requests-limit: 3
+    labels:
+      - "dependencies"
+      - "wordpress"
+    commit-message:
+      prefix: "chore(deps-wordpress):"
+
+  - package-ecosystem: "npm"
+    directory: "/mcp-servers/web-stack/servers/laravel"
+    schedule:
+      interval: "weekly"
+      day: "wednesday"
+      time: "10:00"
+    open-pull-requests-limit: 3
+    labels:
+      - "dependencies"
+      - "laravel"
+    commit-message:
+      prefix: "chore(deps-laravel):"
+
+  - package-ecosystem: "npm"
+    directory: "/mcp-servers/web-stack/servers/plesk-openapi"
+    schedule:
+      interval: "weekly"
+      day: "wednesday"
+      time: "11:00"
+    open-pull-requests-limit: 3
+    labels:
+      - "dependencies"
+      - "plesk"
+    commit-message:
+      prefix: "chore(deps-plesk):"
+
+  - package-ecosystem: "npm"
+    directory: "/mcp-bridge"
+    schedule:
+      interval: "weekly"
+      day: "thursday"
+      time: "09:00"
+    open-pull-requests-limit: 3
+    labels:
+      - "dependencies"
+      - "mcp-bridge"
+    commit-message:
+      prefix: "chore(deps-bridge):"
+
+  - package-ecosystem: "npm"
+    directory: "/mcp-search"
+    schedule:
+      interval: "weekly"
+      day: "thursday"
+      time: "10:00"
+    open-pull-requests-limit: 3
+    labels:
+      - "dependencies"
+      - "search"
+    commit-message:
+      prefix: "chore(deps-search):"
+
+  # ============================================================================
+  # PYTHON UPDATES (PIP)
+  # ============================================================================
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "friday"
+      time: "09:00"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "python"
+    commit-message:
+      prefix: "chore(deps-python):"
+      include: "scope"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+
+  - package-ecosystem: "pip"
+    directory: "/mcp-search"
+    schedule:
+      interval: "weekly"
+      day: "friday"
+      time: "10:00"
+    open-pull-requests-limit: 3
+    labels:
+      - "dependencies"
+      - "python"
+      - "search"
+    commit-message:
+      prefix: "chore(deps-python-search):"
+
+  - package-ecosystem: "pip"
+    directory: "/servers"
+    schedule:
+      interval: "weekly"
+      day: "friday"
+      time: "11:00"
+    open-pull-requests-limit: 3
+    labels:
+      - "dependencies"
+      - "python"
+      - "mcp-servers"
+    commit-message:
+      prefix: "chore(deps-python-servers):"
+
+  # ============================================================================
+  # PHP COMPOSER UPDATES
+  # ============================================================================
+  - package-ecosystem: "composer"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "saturday"
+      time: "09:00"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "php"
+    commit-message:
+      prefix: "chore(deps-php):"
+      include: "scope"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+
+  # WordPress Monorepo PHP Updates (if composer.json exists)
+  - package-ecosystem: "composer"
+    directory: "/menschlichkeit-oesterreich-monorepo/httpdocs"
+    schedule:
+      interval: "monthly"
+      time: "10:00"
+    open-pull-requests-limit: 3
+    labels:
+      - "dependencies"
+      - "php"
+      - "wordpress"
+    commit-message:
+      prefix: "chore(deps-wordpress-php):"
+    ignore:
+      # Ignore WordPress core updates - should be handled manually
+      - dependency-name: "wordpress/wordpress"
+      - dependency-name: "johnpbloch/wordpress"
+      - dependency-name: "roots/wordpress"
+
+  # ============================================================================
+  # DOCKER UPDATES
+  # ============================================================================
+  - package-ecosystem: "docker"
+    directory: "/mcp-servers/essential-stack"
+    schedule:
+      interval: "monthly"
+      time: "09:00"
+    open-pull-requests-limit: 2
+    labels:
+      - "dependencies"
+      - "docker"
+      - "mcp-essential"
+    commit-message:
+      prefix: "chore(deps-docker-essential):"
+
+  - package-ecosystem: "docker"
+    directory: "/mcp-servers/web-stack"
+    schedule:
+      interval: "monthly"
+      time: "10:00"
+    open-pull-requests-limit: 2
+    labels:
+      - "dependencies"
+      - "docker"
+      - "mcp-web"
+    commit-message:
+      prefix: "chore(deps-docker-web):"
