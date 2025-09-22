@@ -55,7 +55,7 @@ jobs:
       
       - name: 📊 Upload Coverage Reports
         if: success()
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v5
         with:
           directory: ${{ matrix.project }}
           flags: typescript-${{ matrix.project }}
@@ -116,7 +116,7 @@ jobs:
       
       - name: 📊 Upload Python Coverage
         if: success()
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v5
         with:
           directory: ${{ matrix.project }}
           flags: python-${{ matrix.project }}
@@ -173,7 +173,7 @@ jobs:
       
       - name: 📊 Upload PHP Coverage
         if: success()
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v5
         with:
           file: ./coverage.xml
           flags: php
