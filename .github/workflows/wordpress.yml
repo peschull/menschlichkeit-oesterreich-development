@@ -52,7 +52,7 @@ jobs:
           cache-dependency-path: 'menschlichkeit-oesterreich-monorepo/httpdocs/wp-content/themes/*/package.json'
       
       - name: 🗂️ Cache Composer Dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.composer/cache
           key: ${{ runner.os }}-composer-wp-${{ hashFiles('**/composer.lock') }}
