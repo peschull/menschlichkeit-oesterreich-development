@@ -24,7 +24,7 @@
   "devDependencies": {
     "concurrently": "^8.2.2",
     "typescript": "^5.4.2",
-    "@types/node": "^20.11.24"
+    "@types/node": "^24.5.2"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.1"
