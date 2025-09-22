@@ -1,0 +1,358 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build:essential-stack",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "build"],
+      "group": "build",
+      "options": {
+        "cwd": "${workspaceFolder}/mcp-servers/essential-stack"
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "silent",
+        "panel": "shared",
+        "group": "building"
+      },
+      "problemMatcher": ["$tsc"]
+    },
+    {
+      "label": "build:web-stack",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "build"],
+      "group": "build",
+      "options": {
+        "cwd": "${workspaceFolder}/mcp-servers/web-stack"
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "silent",
+        "panel": "shared",
+        "group": "building"
+      },
+      "problemMatcher": ["$tsc"]
+    },
+    {
+      "label": "build:core-servers",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "build"],
+      "group": "build",
+      "options": {
+        "cwd": "${workspaceFolder}/servers"
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "silent",
+        "panel": "shared",
+        "group": "building"
+      },
+      "problemMatcher": ["$tsc"]
+    },
+    {
+      "label": "build:mcp-bridge",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "build"],
+      "group": "build",
+      "options": {
+        "cwd": "${workspaceFolder}/mcp-bridge"
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "silent",
+        "panel": "shared",
+        "group": "building"
+      }
+    },
+    {
+      "label": "🏗️ Build: All MCP Servers",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "build:essential-stack",
+        "build:web-stack",
+        "build:core-servers",
+        "build:mcp-bridge"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "panel": "shared",
+        "group": "building"
+      }
+    },
+    {
+      "label": "🧹 Lint: All",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "lint:typescript",
+        "lint:javascript", 
+        "lint:python",
+        "lint:markdown"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "panel": "shared",
+        "group": "linting"
+      }
+    },
+    {
+      "label": "lint:typescript",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "lint:js"],
+      "group": "build",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "silent",
+        "panel": "shared",
+        "group": "linting"
+      },
+      "problemMatcher": ["$eslint-stylish"]
+    },
+    {
+      "label": "lint:javascript", 
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "lint:js"],
+      "group": "build",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "silent",
+        "panel": "shared",
+        "group": "linting"
+      },
+      "problemMatcher": ["$eslint-stylish"]
+    },
+    {
+      "label": "lint:python",
+      "type": "shell",
+      "command": "python",
+      "args": ["-m", "flake8", "servers/", "mcp-search/"],
+      "group": "build",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "silent",
+        "panel": "shared",
+        "group": "linting"
+      },
+      "problemMatcher": {
+        "owner": "flake8",
+        "fileLocation": ["relative", "${workspaceFolder}"],
+        "pattern": {
+          "regexp": "^(.*):(\\d+):(\\d+):\\s+(\\w+\\d+)\\s+(.*)$",
+          "file": 1,
+          "line": 2,
+          "column": 3,
+          "code": 4,
+          "message": 5
+        }
+      }
+    },
+    {
+      "label": "lint:markdown",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "lint:md"],
+      "group": "build",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "silent",
+        "panel": "shared",
+        "group": "linting"
+      }
+    },
+    {
+      "label": "🎨 Format: All",
+      "dependsOrder": "sequence", 
+      "dependsOn": [
+        "format:typescript",
+        "format:python"
+      ],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "panel": "shared",
+        "group": "formatting"
+      }
+    },
+    {
+      "label": "format:typescript",
+      "type": "shell", 
+      "command": "npm",
+      "args": ["run", "format"],
+      "group": "build",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "silent",
+        "panel": "shared",
+        "group": "formatting"
+      }
+    },
+    {
+      "label": "format:python",
+      "type": "shell",
+      "command": "python",
+      "args": ["-m", "black", "servers/", "mcp-search/"],
+      "group": "build",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "silent",
+        "panel": "shared",
+        "group": "formatting"
+      }
+    },
+    {
+      "label": "🧪 Test: All Servers",
+      "dependsOrder": "parallel",
+      "dependsOn": [
+        "test:essential-stack",
+        "test:web-stack"
+      ],
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "panel": "shared",
+        "group": "testing"
+      }
+    },
+    {
+      "label": "test:essential-stack",
+      "type": "shell",
+      "command": "npm",
+      "args": ["test"],
+      "group": "test",
+      "options": {
+        "cwd": "${workspaceFolder}/mcp-servers/essential-stack"
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "silent",
+        "panel": "shared",
+        "group": "testing"
+      }
+    },
+    {
+      "label": "test:web-stack",
+      "type": "shell",
+      "command": "npm",
+      "args": ["test"],
+      "group": "test",
+      "options": {
+        "cwd": "${workspaceFolder}/mcp-servers/web-stack"
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "silent", 
+        "panel": "shared",
+        "group": "testing"
+      }
+    },
+    {
+      "label": "🚀 Start: Essential Stack (Stripe)",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "dev:stripe"],
+      "group": "build",
+      "options": {
+        "cwd": "${workspaceFolder}/mcp-servers/essential-stack"
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "panel": "dedicated",
+        "group": "servers"
+      },
+      "isBackground": true,
+      "runOptions": {
+        "runOn": "folderOpen"
+      }
+    },
+    {
+      "label": "🌐 Start: Web Stack (WordPress)",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "start:wordpress"],
+      "group": "build",
+      "options": {
+        "cwd": "${workspaceFolder}/mcp-servers/web-stack"
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "panel": "dedicated",
+        "group": "servers"
+      },
+      "isBackground": true
+    },
+    {
+      "label": "🔧 Start: Filesystem Server",
+      "type": "shell",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "${workspaceFolder}"],
+      "group": "build",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "panel": "dedicated",
+        "group": "servers"
+      },
+      "isBackground": true
+    },
+    {
+      "label": "🌉 Start: MCP Bridge",
+      "type": "shell",
+      "command": "npm",
+      "args": ["start"],
+      "group": "build",
+      "options": {
+        "cwd": "${workspaceFolder}/mcp-bridge"
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "panel": "dedicated",
+        "group": "servers"
+      },
+      "isBackground": true
+    }
+  ]
+}

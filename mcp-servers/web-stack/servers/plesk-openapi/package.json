@@ -1,0 +1,35 @@
+{
+  "name": "@mcp-servers/plesk-openapi",
+  "version": "1.0.0",
+  "description": "MCP Server for Plesk API automation via OpenAPI specification",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsx src/index.ts",
+    "watch": "tsx watch src/index.ts"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.1",
+    "axios": "^1.6.8",
+    "js-yaml": "^4.1.0",
+    "swagger-parser": "^10.0.3",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^20.11.24",
+    "tsx": "^4.7.1",
+    "typescript": "^5.4.2"
+  },
+  "keywords": [
+    "mcp",
+    "plesk",
+    "openapi",
+    "hosting",
+    "automation",
+    "domains",
+    "mail"
+  ]
+}

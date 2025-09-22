@@ -1,0 +1,25 @@
+{
+  "name": "mcp-bridge",
+  "version": "1.0.0",
+  "description": "Bridge component for MCP server communication",
+  "main": "bridge.js",
+  "type": "module",
+  "scripts": {
+    "start": "node bridge.js",
+    "build": "echo 'No build step required - using JavaScript'",
+    "dev": "node bridge.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mcp",
+    "bridge",
+    "server"
+  ],
+  "author": "Menschlichkeit Österreich",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/server-filesystem": "^2025.8.21",
+    "supergateway": "^3.4.0",
+    "ws": "^8.18.3"
+  }
+}
