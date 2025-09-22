@@ -1,0 +1,4 @@
+[submodule "mcp-servers-official"]
+	path = mcp-servers-official
+	url = https://github.com/modelcontextprotocol/servers.git
+	branch = main
