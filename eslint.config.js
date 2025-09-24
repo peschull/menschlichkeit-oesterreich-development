@@ -1,5 +1,7 @@
 import js from "@eslint/js";
 import globals from "globals";
+import tseslint from "@typescript-eslint/eslint-plugin";
+import parser from "@typescript-eslint/parser";
 
 export default [
   js.configs.recommended,
@@ -10,10 +12,7 @@ export default [
       "**/dist/**", 
       "**/build/**",
       "**/*.min.js",
-      "**/*.d.ts",
-      // Ignore TypeScript files until @typescript-eslint is configured
-      "**/*.ts",
-      "**/*.tsx"
+      "**/*.d.ts"
     ],
     languageOptions: {
       ecmaVersion: "latest",
@@ -22,6 +21,32 @@ export default [
     },
     rules: {
       "no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
+      "no-console": "off",
+    },
+  },
+  {
+    files: ["**/*.{ts,tsx}"],
+    ignores: [
+      "node_modules/**",
+      "**/dist/**", 
+      "**/build/**",
+      "**/*.d.ts"
+    ],
+    languageOptions: {
+      parser: parser,
+      parserOptions: {
+        ecmaVersion: "latest",
+        sourceType: "module",
+      },
+      globals: { ...globals.browser, ...globals.node },
+    },
+    plugins: {
+      "@typescript-eslint": tseslint,
+    },
+    rules: {
+      ...tseslint.configs.recommended.rules,
+      "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
+      "@typescript-eslint/no-explicit-any": "warn",
       "no-console": "off",
     },
   },
