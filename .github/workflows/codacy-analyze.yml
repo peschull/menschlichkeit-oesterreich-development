@@ -1,0 +1,40 @@
+name: Codacy analyze edited files
+
+on:
+  push:
+    paths:
+      - "docs/CODEX-EDITOR-USAGE.md"
+      - "scripts/check-openai-config.ps1"
+  pull_request:
+    paths:
+      - "docs/CODEX-EDITOR-USAGE.md"
+      - "scripts/check-openai-config.ps1"
+
+jobs:
+  codacy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    env:
+      # Erforderlich: in den Repo-Settings als Secret anlegen
+      CODACY_TOKEN: ${{ secrets.CODACY_TOKEN }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Variante A: Offizielles CLI v2 per Installer-Skript
+      - name: Install Codacy CLI v2
+        run: |
+          bash <(curl -Ls https://raw.githubusercontent.com/codacy/codacy-cli-v2/main/codacy-cli.sh)
+          echo "$HOME/.local/bin" >> $GITHUB_PATH || true
+
+      # Optional: Version anzeigen (Debug)
+      - name: Codacy CLI version
+        run: codacy-cli --version || true
+
+      # Analyse der gezielten Dateien
+      - name: Analyze docs/CODEX-EDITOR-USAGE.md
+        run: codacy-cli analyze --rootPath "${GITHUB_WORKSPACE}" --file "docs/CODEX-EDITOR-USAGE.md"
+
+      - name: Analyze scripts/check-openai-config.ps1
+        run: codacy-cli analyze --rootPath "${GITHUB_WORKSPACE}" --file "scripts/check-openai-config.ps1"
