@@ -1,0 +1,31 @@
+name: Code Quality
+
+on:
+  pull_request:
+
+jobs:
+  eslint:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run ESLint (SARIF)
+        run: |
+          npx eslint . -f sarif -o eslint-results.sarif || true
+          test -s eslint-results.sarif && echo "HAS_SARIF=1" >> $GITHUB_ENV || echo "HAS_SARIF=0" >> $GITHUB_ENV
+
+      - name: Upload SARIF (conditional)
+        if: env.HAS_SARIF == '1'
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: eslint-results.sarif
+
+      - name: Note (no SARIF produced)
+        if: env.HAS_SARIF != '1'
+        run: echo "No SARIF produced; upload skipped."
