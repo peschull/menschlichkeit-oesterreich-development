@@ -1,62 +1,50 @@
-name: Codacy analyze edited files
-
+name: Codacy Analyze (optional)
 on:
+  workflow_dispatch:
   push:
-    paths:
-      - "docs/CODEX-EDITOR-USAGE.md"
-      - "scripts/check-openai-config.ps1"
+    branches: [main]
   pull_request:
-    paths:
-      - "docs/CODEX-EDITOR-USAGE.md"
-      - "scripts/check-openai-config.ps1"
+    branches: [main]
+
+permissions:
+  contents: read
 
 jobs:
-  codacy:
+  analyze:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-    env:
-      # Erforderlich: in den Repo-Settings als Secret anlegen
-      CODACY_TOKEN: ${{ secrets.CODACY_TOKEN }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      # Fail fast, wenn das Secret fehlt (verhindert irreführende Läufe)
-      - name: Verify CODACY_TOKEN is set
+      - name: Guard — CODACY_TOKEN prüfen
+        id: guard
         run: |
-          if [ -z "${CODACY_TOKEN:-}" ]; then
-            echo "ERROR: Repository secret CODACY_TOKEN ist nicht gesetzt."
-            echo "Bitte unter Settings → Secrets and variables → Actions anlegen."
-            exit 1
+          if [[ -z "${{ secrets.CODACY_TOKEN }}" ]]; then
+            echo "has_token=false" >> "$GITHUB_OUTPUT"
+            echo "CODACY_TOKEN nicht gesetzt — Codacy-Analyse wird übersprungen."
+          else
+            echo "has_token=true" >> "$GITHUB_OUTPUT"
+            echo "CODACY_TOKEN vorhanden — Codacy-Analyse wird ausgeführt."
           fi
 
-      # Codacy CLI v2 installieren
-      - name: Install Codacy CLI v2
-        shell: bash
+      - name: Skip — kein Token vorhanden
+        if: steps.guard.outputs.has_token != 'true'
+        run: echo "CODACY_TOKEN nicht gesetzt — Workflow übersprungen."
+
+      - name: Codacy Analysis
+        if: steps.guard.outputs.has_token == 'true'
+        uses: codacy/codacy-analysis-cli-action@v5
+        with:
+          api-token: "${{ secrets.CODACY_TOKEN }}"
+          tool: eslint
+          directory: .
+          format: sarif
+          output: codacy.sarif
+
+      - name: Codacy Zusammenfassung
+        if: steps.guard.outputs.has_token == 'true'
         run: |
-          set -euo pipefail
-          bash <(curl -Ls https://raw.githubusercontent.com/codacy/codacy-cli-v2/main/codacy-cli.sh)
-          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
-
-      # Diagnose & Ausgabe des tatsächlich installierten Pfades
-      - name: Locate codacy-cli
-        shell: bash
-        id: codacy
-        run: |
-          set -euo pipefail
-          which codacy-cli || true
-          ls -la "$HOME/.local/bin" || true
-          BIN="$(command -v codacy-cli || echo "$HOME/.local/bin/codacy-cli")"
-          echo "bin=$BIN" >> "$GITHUB_OUTPUT"
-          test -x "$BIN" || (echo "codacy-cli nicht gefunden/ausführbar." && exit 127)
-
-      - name: Codacy CLI version (debug)
-        run: ${{ steps.codacy.outputs.bin }} --version
-
-      # Analyse der gezielten Dateien
-      - name: Analyze docs/CODEX-EDITOR-USAGE.md
-        run: ${{ steps.codacy.outputs.bin }} analyze --rootPath "${GITHUB_WORKSPACE}" --file "docs/CODEX-EDITOR-USAGE.md"
-
-      - name: Analyze scripts/check-openai-config.ps1
-        run: ${{ steps.codacy.outputs.bin }} analyze --rootPath "${GITHUB_WORKSPACE}" --file "scripts/check-openai-config.ps1"
+          if [[ -f codacy.sarif ]]; then
+            echo "Codacy SARIF erzeugt: $(wc -c < codacy.sarif) bytes"
+          else
+            echo "Keine SARIF-Datei von Codacy erzeugt."
+          fi

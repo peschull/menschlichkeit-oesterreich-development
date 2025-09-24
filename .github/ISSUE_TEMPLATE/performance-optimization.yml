@@ -18,7 +18,7 @@ body:
       description: Analyse der MCP Server-Leistung
       options:
         - label: "Essential Stack (Stripe, Mailchimp, Google) Response Times"
-        - label: "Web Stack (WordPress, Laravel, Plesk) Throughput Analysis"
+        - label: "Web Experience (Drupal Frontend, Portal) Throughput Analysis"
         - label: "MCP Bridge WebSocket Performance"
         - label: "MCP Search Engine Query Performance"
         - label: "Inter-Server Communication Latency"
@@ -41,8 +41,8 @@ body:
         - label: "Python Memory Management (GC Analysis)"
         - label: "Async/Await Performance Patterns"
         - label: "uv Package Manager Performance vs pip"
-        - label: "**PHP Performance (WordPress):**"
-        - label: "WordPress Plugin Performance Impact"
+        - label: "**PHP Performance (Drupal/CiviCRM):**"
+        - label: "Drupal Module Performance Impact"
         - label: "PHP-FPM Configuration Optimization"
         - label: "Database Query Performance (MySQL)"
         - label: "PHP OpCache Configuration"
@@ -66,11 +66,11 @@ body:
       label: 🗄️ Database & Storage Performance
       description: Datenbank- und Speicher-Performance
       options:
-        - label: "WordPress MySQL Query Optimization"
+        - label: "Drupal MySQL Query Optimization"
         - label: "Database Indexing Analysis"
         - label: "Connection Pool Configuration"
         - label: "Caching Strategy (Redis/Memcached)"
-        - label: "File System Performance (WordPress uploads)"
+        - label: "File System Performance (Drupal media uploads)"
 
   - type: checkboxes
     id: monitoring-setup
@@ -92,7 +92,7 @@ body:
       placeholder: |
         **Critical Issues:**
         - MCP Essential Stack: Stripe API calls taking >2s
-        - WordPress site loading time >3s on mobile
+        - CRM portal loading time >3s on mobile
         
         **Notable Issues:**
         - Python MCP Search: High memory usage during bulk operations
@@ -110,14 +110,14 @@ body:
       placeholder: |
         **Current Benchmarks:**
         - MCP Server Response Time: ~500ms average
-        - WordPress Page Load: 2.8s (desktop), 4.2s (mobile)
-        - Docker Build Time: Essential Stack 3m, Web Stack 4m
+        - CRM Portal Page Load: 2.8s (desktop), 4.2s (mobile)
+        - Docker Build Time: Essential Stack 3m, Frontend Stack 4m
         - Bundle Sizes: Essential 2.1MB, Web 3.4MB
         - Memory Usage: Node.js 150MB, Python 80MB average
         
         **Target Benchmarks:**
         - MCP Response: <200ms
-        - Page Load: <2s (desktop), <3s (mobile)
+        - CRM Page Load: <2s (desktop), <3s (mobile)
         - Build Time: <2m per service
         - Bundle Size: <1.5MB per stack
 
@@ -177,7 +177,7 @@ body:
       description: Definition of Done für Performance-Optimierung
       options:
         - label: "MCP Server Response Times <200ms (95th percentile)"
-        - label: "WordPress Page Load <2s desktop, <3s mobile"
+        - label: "CRM Portal Page Load <2s desktop, <3s mobile"
         - label: "Docker Build Times <2 minutes per service"
         - label: "Memory Usage reduced by 25%"
         - label: "Performance monitoring dashboard active"

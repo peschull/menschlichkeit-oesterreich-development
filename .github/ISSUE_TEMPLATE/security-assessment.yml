@@ -9,7 +9,7 @@ body:
       value: |
         ## 🛡️ Comprehensive Security Assessment
         
-        Systematischer Security Audit für das Multi-Technology Development Environment mit Focus auf API-Keys, Environment Variables, Docker-Security und WordPress-Vulnerabilities.
+        Systematischer Security Audit für das Multi-Technology Development Environment mit Focus auf API-Keys, Environment Variables, Docker-Security und Drupal/CiviCRM Vulnerabilities.
 
   - type: checkboxes
     id: api-security
@@ -20,7 +20,7 @@ body:
         - label: "Stripe API Keys Security Audit"
         - label: "Mailchimp API Token Rotation"
         - label: "Google Services Credentials Review"
-        - label: "WordPress API Key Management"
+        - label: "Drupal/CiviCRM API Key Management"
         - label: "Plesk OpenAPI Authentication Check"
         - label: ".env Files auf Commit-History prüfen"
         - label: "GitHub Secrets Konfiguration optimieren"
@@ -51,18 +51,18 @@ body:
         - label: "Docker Secrets vs Environment Variables"
 
   - type: checkboxes
-    id: wordpress-security
+    id: drupal-security
     attributes:
-      label: 🌐 WordPress Security Audit
-      description: WordPress-spezifische Sicherheitsanalyse
+      label: 🌐 Drupal/CiviCRM Security Audit
+      description: Drupal/CiviCRM-spezifische Sicherheitsanalyse
       options:
-        - label: "Plugin Vulnerability Scanning (WPScan)"
-        - label: "Theme Security Review"
-        - label: "WordPress Core Version Audit"
+        - label: "Module Vulnerability Scanning (drupal.org advisories)"
+        - label: "Theme Security Review (Drupal Starterkit)"
+        - label: "Drupal Core Version Audit"
         - label: "Database Security Configuration"
         - label: "File Permissions Check"
         - label: "Admin User Security Review"
-        - label: "wp-config.php Security Hardening"
+        - label: "settings.php / civicrm.settings.php Hardening"
 
   - type: checkboxes
     id: dependency-security
@@ -100,7 +100,7 @@ body:
         - form-data@2.3.3 contains security issues
         
         **Medium Priority:**
-        - WordPress plugins need updates
+        - Drupal modules need updates
         - Docker base images have minor vulnerabilities
         
         **Low Priority:**
@@ -118,7 +118,7 @@ body:
            
         2. **Short Term (1 week):**
            - Implement GitHub Secrets
-           - Update WordPress plugins
+           - Update Drupal modules & extensions
            
         3. **Long Term (1 month):**
            - Security monitoring setup

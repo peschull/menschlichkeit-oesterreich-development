@@ -1,63 +1,11 @@
 {
   "recommendations": [
-    // Essential Extensions for Multi-Language Development
-    "dbaeumer.vscode-eslint",
-    "esbenp.prettier-vscode",
-    "streetsidesoftware.code-spell-checker",
-    "EditorConfig.EditorConfig",
-    
-    // TypeScript/JavaScript
-    "ms-vscode.js-debug",
-    "christian-kohler.npm-intellisense",
-    "wix.vscode-import-cost",
-    
-    // PHP Development
     "bmewburn.vscode-intelephense-client",
-    "zobo.php-intellisense", 
     "xdebug.php-debug",
-    "DEVSENSE.phptools-vscode",
-    
-    // Python Development
+    "dbaeumer.vscode-eslint",
+    "ms-azuretools.vscode-docker",
     "ms-python.python",
-    "ms-python.vscode-pylance",
-    "ms-python.debugpy",
-    "ms-python.isort",
-    
-    // Markdown & Documentation
-    "yzhang.markdown-all-in-one",
-    "DavidAnson.vscode-markdownlint",
-    "shd101wyy.markdown-preview-enhanced",
-    
-    // WordPress Development
-    "johnbillion.vscode-wordpress-hooks",
-    "yogensia.searchwpdocs",
-    "WordPressPlayground.wordpress-playground",
-    
-    // Git & Version Control
-    "eamodio.gitlens",
-    "GitHub.vscode-pull-request-github",
-    "github.vscode-github-actions",
-    
-    // General Productivity
-    "PKief.material-icon-theme",
-    "vscode-icons-team.vscode-icons",
-    "Gruntfuggly.todo-tree",
-    "usernamehw.errorlens",
-    "ms-vsliveshare.vsliveshare",
-    
-    // MCP Development
-    "AutomataLabs.copilot-mcp",
-    "GitHub.copilot",
-    "GitHub.copilot-chat",
-    
-    // Database & SQL
-    "ms-mssql.mssql",
-    "mtxr.sqltools",
-    "mtxr.sqltools-driver-mysql",
-    
-    // Container & Remote Development
-    "ms-azuretools.vscode-containers",
-    "ms-vscode-remote.remote-containers",
-    "ms-vscode-remote.remote-ssh"
+    "esbenp.prettier-vscode",
+    "eamodio.gitlens"
   ]
 }

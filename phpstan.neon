@@ -8,21 +8,9 @@ parameters:
         - */storage/*
         - */bootstrap/cache/*
         - */node_modules/*
-        - */wp-content/*
-        - */wp-includes/*
-        - */wp-admin/*
     checkMissingIterableValueType: false
     checkGenericClassInNonGenericObjectType: false
-    ignoreErrors:
-        - '#Function wp_[a-zA-Z_]+ not found#'
-        - '#Constant [A-Z_]+ not found#'
-        # WordPress specific
-        - '#Variable \$wpdb might not be defined#'
-        - '#Variable \$wp_query might not be defined#'
-        - '#Function add_action not found#'
-        - '#Function add_filter not found#'
-        - '#Function get_option not found#'
-        - '#Function update_option not found#'
+    ignoreErrors: []
     symfony:
         console:
             application_loader: menschlichkeit-oesterreich-monorepo/api.menschlichkeit-oesterreich.at/bootstrap/app.php

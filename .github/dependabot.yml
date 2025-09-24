@@ -70,19 +70,6 @@ updates:
       include: "scope"
 
   - package-ecosystem: "npm"
-    directory: "/mcp-servers/web-stack/servers/wordpress"
-    schedule:
-      interval: "weekly"
-      day: "wednesday"
-      time: "09:00"
-    open-pull-requests-limit: 3
-    labels:
-      - "dependencies"
-      - "wordpress"
-    commit-message:
-      prefix: "chore(deps-wordpress):"
-
-  - package-ecosystem: "npm"
     directory: "/mcp-servers/web-stack/servers/laravel"
     schedule:
       interval: "weekly"
@@ -202,25 +189,6 @@ updates:
       - dependency-name: "*"
         update-types: ["version-update:semver-major"]
 
-  # WordPress Monorepo PHP Updates (if composer.json exists)
-  - package-ecosystem: "composer"
-    directory: "/menschlichkeit-oesterreich-monorepo/httpdocs"
-    schedule:
-      interval: "monthly"
-      time: "10:00"
-    open-pull-requests-limit: 3
-    labels:
-      - "dependencies"
-      - "php"
-      - "wordpress"
-    commit-message:
-      prefix: "chore(deps-wordpress-php):"
-    ignore:
-      # Ignore WordPress core updates - should be handled manually
-      - dependency-name: "wordpress/wordpress"
-      - dependency-name: "johnpbloch/wordpress"
-      - dependency-name: "roots/wordpress"
-
   # ============================================================================
   # DOCKER UPDATES
   # ============================================================================
@@ -237,15 +205,3 @@ updates:
     commit-message:
       prefix: "chore(deps-docker-essential):"
 
-  - package-ecosystem: "docker"
-    directory: "/mcp-servers/web-stack"
-    schedule:
-      interval: "monthly"
-      time: "10:00"
-    open-pull-requests-limit: 2
-    labels:
-      - "dependencies"
-      - "docker"
-      - "mcp-web"
-    commit-message:
-      prefix: "chore(deps-docker-web):"

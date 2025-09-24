@@ -2,110 +2,16 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "🚀 Debug MCP Server (Essential Stack - Stripe)",
-      "type": "node",
+      "name": "PHP: Xdebug Listen (9003)",
+      "type": "php",
       "request": "launch",
-      "program": "${workspaceFolder}/mcp-servers/essential-stack/dist/stripe/index.js",
-      "cwd": "${workspaceFolder}/mcp-servers/essential-stack",
-      "env": {
-        "NODE_ENV": "development"
-      },
-      "console": "integratedTerminal",
-      "sourceMaps": true,
-      "preLaunchTask": "build:essential-stack"
+      "port": 9003
     },
     {
-      "name": "🌐 Debug MCP Server (Web Stack - WordPress)",
-      "type": "node",
-      "request": "launch",
-      "program": "${workspaceFolder}/mcp-servers/web-stack/servers/wordpress/dist/index.js",
-      "cwd": "${workspaceFolder}/mcp-servers/web-stack/servers/wordpress",
-      "env": {
-        "NODE_ENV": "development"
-      },
-      "console": "integratedTerminal",
-      "sourceMaps": true,
-      "preLaunchTask": "build:web-stack"
-    },
-    {
-      "name": "🔧 Debug MCP Server (Filesystem)",
-      "type": "node",
-      "request": "launch",
-      "program": "${workspaceFolder}/servers/src/filesystem/dist/index.js",
-      "args": ["${workspaceFolder}"],
-      "cwd": "${workspaceFolder}/servers/src/filesystem",
-      "env": {
-        "NODE_ENV": "development"
-      },
-      "console": "integratedTerminal",
-      "sourceMaps": true,
-      "preLaunchTask": "build:core-servers"
-    },
-    {
-      "name": "🐍 Debug Python MCP Server",
-      "type": "debugpy",
-      "request": "launch",
-      "program": "${workspaceFolder}/servers/src/time/time.py",
-      "cwd": "${workspaceFolder}/servers/src/time",
-      "console": "integratedTerminal",
-      "justMyCode": false
-    },
-    {
-      "name": "🔍 Debug MCP Search Server",
-      "type": "debugpy", 
-      "request": "launch",
-      "program": "${workspaceFolder}/mcp-search/server.py",
-      "cwd": "${workspaceFolder}/mcp-search",
-      "console": "integratedTerminal",
-      "env": {
-        "PYTHONPATH": "${workspaceFolder}/mcp-search"
-      }
-    },
-    {
-      "name": "🌉 Debug MCP Bridge",
-      "type": "node",
-      "request": "launch",
-      "program": "${workspaceFolder}/mcp-bridge/bridge.js",
-      "cwd": "${workspaceFolder}/mcp-bridge",
-      "console": "integratedTerminal"
-    },
-    {
-      "name": "🧪 Debug Jest Tests",
-      "type": "node",
-      "request": "launch",
-      "program": "${workspaceFolder}/servers/node_modules/.bin/jest",
-      "args": ["--runInBand"],
-      "cwd": "${workspaceFolder}/servers",
-      "console": "integratedTerminal",
-      "internalConsoleOptions": "neverOpen"
-    },
-    {
-      "name": "🔄 Debug TypeScript Build",
-      "type": "node",
-      "request": "launch",
-      "program": "${workspaceFolder}/node_modules/.bin/tsc",
-      "args": ["--build"],
-      "cwd": "${workspaceFolder}",
-      "console": "integratedTerminal"
-    },
-    {
-      "name": "📋 Debug ESLint",
-      "type": "node",
-      "request": "launch",
-      "program": "${workspaceFolder}/node_modules/.bin/eslint",
-      "args": ["--debug", "**/*.ts"],
-      "cwd": "${workspaceFolder}",
-      "console": "integratedTerminal"
-    }
-  ],
-  "compounds": [
-    {
-      "name": "🚀 Debug All MCP Servers",
-      "configurations": [
-        "🚀 Debug MCP Server (Essential Stack - Stripe)",
-        "🌐 Debug MCP Server (Web Stack - WordPress)",
-        "🔧 Debug MCP Server (Filesystem)"
-      ]
+      "name": "Node: Attach (9229)",
+      "type": "pwa-node",
+      "request": "attach",
+      "port": 9229
     }
   ]
 }

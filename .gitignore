@@ -8,6 +8,57 @@
 .github\instructions\codacy.instructions.md
 
 # ========================================
+# SECURITY & SECRETS - CRITICAL
+# ========================================
+
+# Environment Variables & Secrets (P0 SECURITY)
+.env
+.env.local
+.env.development
+.env.staging  
+.env.production
+.env.*.local
+.env.*.decrypted
+*.env.*
+
+# SOPS decrypted files
+*.decrypted
+secrets/**/*.decrypted
+temp/*.decrypted
+
+# Private keys & certificates
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.cer
+*.der
+
+# Database dumps & backups
+*.sql
+*.dump
+*.backup
+*.bak
+
+# Configuration with secrets
+config/local.json
+config/production.json
+config/secrets.json
+config/database.json
+config/smtp.json
+
+# IDE secrets
+.vscode/settings.local.json
+.vscode/secrets.json
+
+# API Keys & Tokens
+api-keys.txt
+tokens.txt
+credentials.json
+service-account*.json
+
+# ========================================
 # Node.js / NPM
 # ========================================
 node_modules/
@@ -140,27 +191,6 @@ storage/framework/views/
 bootstrap/cache/
 
 # ========================================
-# WordPress
-# ========================================
-# WordPress Core
-wp-config.php
-wp-content/uploads/
-wp-content/upgrade/
-wp-content/backup-db/
-wp-content/backups/
-wp-content/blogs.dir/
-wp-content/cache/
-wp-content/themes/twenty*/
-wp-content/plugins/akismet/
-wp-content/plugins/hello.php
-
-# WordPress specific
-.htaccess
-sitemap.xml
-*.sql
-*.tar.gz
-
-# ========================================
 # Docker
 # ========================================
 docker-compose.override.yml
@@ -260,3 +290,39 @@ servers/src/*/dist/
 # Development databases
 *.sqlite
 *.db
+# Sensible Daten - NIEMALS in Git committen!
+.env
+config/.env
+config/.env.local
+config/.env.production
+
+# Backup-Dateien mit potentiell sensiblen Daten
+*.backup
+*.sql
+backup/
+backups/
+dumps/
+
+# Temporäre Config-Dateien
+config/temp*
+config/local*
+*.local.conf
+
+# Logs mit potentiell sensiblen Daten
+logs/
+*.log
+error.log
+access.log
+
+# Deployment-spezifische Dateien
+deploy.conf
+sftp.conf
+.sftp-config.json
+
+# IDE und Editor-spezifische Dateien
+.vscode/settings.json
+.idea/
+
+# OS-spezifische Dateien
+Thumbs.db
+.DS_Store
