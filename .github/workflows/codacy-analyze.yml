@@ -22,41 +22,41 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Variante A: Offizielles CLI v2 per Installer-Skript
+      # Fail fast, wenn das Secret fehlt (verhindert irreführende Läufe)
+      - name: Verify CODACY_TOKEN is set
+        run: |
+          if [ -z "${CODACY_TOKEN:-}" ]; then
+            echo "ERROR: Repository secret CODACY_TOKEN ist nicht gesetzt."
+            echo "Bitte unter Settings → Secrets and variables → Actions anlegen."
+            exit 1
+          fi
+
+      # Codacy CLI v2 installieren
       - name: Install Codacy CLI v2
+        shell: bash
         run: |
-          set -e
+          set -euo pipefail
           bash <(curl -Ls https://raw.githubusercontent.com/codacy/codacy-cli-v2/main/codacy-cli.sh)
-          echo "$HOME/.local/bin" >> $GITHUB_PATH || true
-          ls -la $HOME/.local/bin || true
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
 
-      - name: Prepare codacy-cli binary
+      # Diagnose & Ausgabe des tatsächlich installierten Pfades
+      - name: Locate codacy-cli
+        shell: bash
+        id: codacy
         run: |
-          if command -v codacy-cli >/dev/null 2>&1; then
-            echo "codacy-cli in PATH"
-            which codacy-cli
-          elif [ -x "$HOME/.local/bin/codacy-cli" ]; then
-            echo "codacy-cli installed to $HOME/.local/bin"
-            export PATH="$HOME/.local/bin:$PATH"
-            which codacy-cli || true
-          else
-            echo "codacy-cli not found after install" >&2
-            ls -la $HOME/.local || true
-            exit 2
-          fi
-
-      - name: Verify CODACY_TOKEN
-        run: |
-          if [ -z "${CODACY_TOKEN}" ]; then
-            echo "ERROR: CODACY_TOKEN is empty. Set repository secret 'CODACY_TOKEN' in Settings -> Secrets and variables -> Actions." >&2
-            exit 3
-          fi
+          set -euo pipefail
+          which codacy-cli || true
+          ls -la "$HOME/.local/bin" || true
+          BIN="$(command -v codacy-cli || echo "$HOME/.local/bin/codacy-cli")"
+          echo "bin=$BIN" >> "$GITHUB_OUTPUT"
+          test -x "$BIN" || (echo "codacy-cli nicht gefunden/ausführbar." && exit 127)
 
       - name: Codacy CLI version (debug)
-        run: codacy-cli --version || $HOME/.local/bin/codacy-cli --version || true
+        run: ${{ steps.codacy.outputs.bin }} --version
 
+      # Analyse der gezielten Dateien
       - name: Analyze docs/CODEX-EDITOR-USAGE.md
-        run: codacy-cli analyze --rootPath "${GITHUB_WORKSPACE}" --file "docs/CODEX-EDITOR-USAGE.md" || $HOME/.local/bin/codacy-cli analyze --rootPath "${GITHUB_WORKSPACE}" --file "docs/CODEX-EDITOR-US.md"
+        run: ${{ steps.codacy.outputs.bin }} analyze --rootPath "${GITHUB_WORKSPACE}" --file "docs/CODEX-EDITOR-USAGE.md"
 
       - name: Analyze scripts/check-openai-config.ps1
-        run: codacy-cli analyze --rootPath "${GITHUB_WORKSPACE}" --file "scripts/check-openai-config.ps1" || $HOME/.local/bin/codacy-cli analyze --rootPath "${GITHUB_WORKSPACE}" --file "scripts/check-openai-config.ps1"
+        run: ${{ steps.codacy.outputs.bin }} analyze --rootPath "${GITHUB_WORKSPACE}" --file "scripts/check-openai-config.ps1"
