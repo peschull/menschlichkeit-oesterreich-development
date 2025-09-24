@@ -93,6 +93,28 @@ jobs:
             *) npm ci --no-audit --no-fund ;;
           esac
 
+      - name: Versionen & PM protokollieren
+        if: github.event_name == 'workflow_dispatch' || steps.changes.outputs.js != '[]'
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "Node: $(node -v || true)"
+          echo "npm: $(npm -v || true)"
+          echo "yarn: $(yarn -v || true)"
+          echo "pnpm: $(pnpm -v || true)"
+
+      - name: (Pseudo-)Cache-Status
+        if: github.event_name == 'workflow_dispatch' || steps.changes.outputs.js != '[]'
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -d node_modules ]]; then
+            echo "node_modules existiert (möglicher Cache-Treffer nach Install)."
+            ls -1 node_modules | wc -l | xargs echo "Pakete (Top-Level):"
+          else
+            echo "node_modules fehlt (kein Cache oder frischer Install)."
+          fi
+
       - name: ESLint-Konfiguration prüfen
         id: detect
         if: github.event_name == 'workflow_dispatch' || steps.changes.outputs.js != '[]'
