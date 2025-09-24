@@ -3,16 +3,6 @@ name: Code Quality
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
-  workflow_dispatch:
-
-permissions:
-  contents: read
-  security-events: write
-  actions: read
-
-concurrency:
   name: Code Quality
 
   on:
@@ -21,172 +11,164 @@ concurrency:
     pull_request:
       branches: [ main ]
     workflow_dispatch:
-name: Code Quality
 
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-  workflow_dispatch:
+  permissions:
+    contents: read
+    security-events: write
+    actions: read
 
-permissions:
-  contents: read
-  security-events: write
-  actions: read
+  concurrency:
+    group: quality-${{ github.ref }}
+    cancel-in-progress: true
 
-concurrency:
-  group: quality-${{ github.ref }}
-  cancel-in-progress: true
+  jobs:
+    eslint:
+      name: ESLint (SARIF)
+      runs-on: ubuntu-latest
+      timeout-minutes: 15
 
-jobs:
-  eslint:
-    name: ESLint (SARIF)
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v4
+          with:
+            fetch-depth: 2
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 2
+        - name: Geänderte Dateien erkennen
+          id: changes
+          uses: dorny/paths-filter@v3
+          with:
+            list-files: json
+            filters: |
+              js:
+                - '**/*.js'
+                - '**/*.mjs'
+                - '**/*.cjs'
+                - '**/*.ts'
+                - '**/*.tsx'
+                - 'package.json'
+                - 'package-lock.json'
+                - 'pnpm-lock.yaml'
+                - 'yarn.lock'
+                - 'eslint.config.*'
+                - '.eslintrc*'
 
-      - name: Geänderte Dateien erkennen
-        id: changes
-        uses: dorny/paths-filter@v3
-        with:
-          list-files: json
-          filters: |
-            js:
-              - '**/*.js'
-              - '**/*.mjs'
-              - '**/*.cjs'
-              - '**/*.ts'
-              - '**/*.tsx'
-              - 'package.json'
-              - 'package-lock.json'
-              - 'pnpm-lock.yaml'
-              - 'yarn.lock'
-              - 'eslint.config.*'
-              - '.eslintrc*'
+        - name: Skip wenn nichts Relevantes geändert (außer Dispatch)
+          if: github.event_name != 'workflow_dispatch' && steps.changes.outputs.js == '[]'
+          run: echo "Keine relevanten Änderungen — übersprungen."
 
-      - name: Skip wenn nichts Relevantes geändert (außer Dispatch)
-        if: github.event_name != 'workflow_dispatch' && steps.changes.outputs.js == '[]'
-        run: echo "Keine relevanten Änderungen — übersprungen."
+        - name: Projekt prüfen (JS vorhanden?)
+          id: proj
+          if: github.event_name == 'workflow_dispatch' || steps.changes.outputs.js != '[]'
+          shell: bash
+          run: |
+            set -euo pipefail
+            HAS_PKG=false
+            [[ -f package.json ]] && HAS_PKG=true
+            echo "has_pkg=$HAS_PKG" >> "$GITHUB_OUTPUT"
+            echo "has_pkg=$HAS_PKG"
 
-      - name: Projekt prüfen (JS vorhanden?)
-        id: proj
-        if: github.event_name == 'workflow_dispatch' || steps.changes.outputs.js != '[]'
-        shell: bash
-        run: |
-          set -euo pipefail
-          HAS_PKG=false
-          [[ -f package.json ]] && HAS_PKG=true
-          echo "has_pkg=$HAS_PKG" >> "$GITHUB_OUTPUT"
-          echo "has_pkg=$HAS_PKG"
-
-      - name: Package-Manager erkennen
-        id: pm
-        if: (github.event_name == 'workflow_dispatch' || steps.changes.outputs.js != '[]') && steps.proj.outputs.has_pkg == 'true'
-        shell: bash
-        run: |
-          set -euo pipefail
-          PM="npm"; LOCK=""
-          if [[ -f package.json ]]; then
-            if node -e "try{console.log((require('./package.json').packageManager||'').split('@')[0])}catch(e){process.exit(1)}" >/dev/null 2>&1; then
-              PM=$(node -e "try{console.log((require('./package.json').packageManager||'').split('@')[0])}catch(e){console.log('npm')}")
+        - name: Package-Manager erkennen
+          id: pm
+          if: (github.event_name == 'workflow_dispatch' || steps.changes.outputs.js != '[]') && steps.proj.outputs.has_pkg == 'true'
+          shell: bash
+          run: |
+            set -euo pipefail
+            PM="npm"; LOCK=""
+            if [[ -f package.json ]]; then
+              if node -e "try{console.log((require('./package.json').packageManager||'').split('@')[0])}catch(e){process.exit(1)}" >/dev/null 2>&1; then
+                PM=$(node -e "try{console.log((require('./package.json').packageManager||'').split('@')[0])}catch(e){console.log('npm')}")
+              fi
             fi
-          fi
-          [[ -f pnpm-lock.yaml ]] && PM="pnpm" && LOCK="pnpm-lock.yaml"
-          [[ -f yarn.lock      ]] && PM="yarn" && LOCK="yarn.lock"
-          [[ -f package-lock.json ]] && LOCK="package-lock.json"
-          echo "pm=$PM"   >> "$GITHUB_OUTPUT"
-          echo "lock=$LOCK" >> "$GITHUB_OUTPUT"
-          echo "PM=$PM, Lock=${LOCK:-none}"
+            [[ -f pnpm-lock.yaml ]] && PM="pnpm" && LOCK="pnpm-lock.yaml"
+            [[ -f yarn.lock      ]] && PM="yarn" && LOCK="yarn.lock"
+            [[ -f package-lock.json ]] && LOCK="package-lock.json"
+            echo "pm=$PM"   >> "$GITHUB_OUTPUT"
+            echo "lock=$LOCK" >> "$GITHUB_OUTPUT"
+            echo "PM=$PM, Lock=${LOCK:-none}"
 
-      - name: Node einrichten (mit Cache)
-        if: (github.event_name == 'workflow_dispatch' || steps.changes.outputs.js != '[]') && steps.proj.outputs.has_pkg == 'true'
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: ${{ steps.pm.outputs.pm }}
-          cache-dependency-path: ${{ steps.pm.outputs.lock }}
+        - name: Node einrichten (mit Cache)
+          if: (github.event_name == 'workflow_dispatch' || steps.changes.outputs.js != '[]') && steps.proj.outputs.has_pkg == 'true'
+          uses: actions/setup-node@v4
+          with:
+            node-version: '20'
+            cache: ${{ steps.pm.outputs.pm }}
+            cache-dependency-path: ${{ steps.pm.outputs.lock }}
 
-      - name: Corepack aktivieren (yarn/pnpm)
-        if: (github.event_name == 'workflow_dispatch' || steps.changes.outputs.js != '[]') && steps.proj.outputs.has_pkg == 'true' && (steps.pm.outputs.pm == 'yarn' || steps.pm.outputs.pm == 'pnpm')
-        run: corepack enable
+        - name: Corepack aktivieren (yarn/pnpm)
+          if: (github.event_name == 'workflow_dispatch' || steps.changes.outputs.js != '[]') && steps.proj.outputs.has_pkg == 'true' && (steps.pm.outputs.pm == 'yarn' || steps.pm.outputs.pm == 'pnpm')
+          run: corepack enable
 
-      - name: Abhängigkeiten installieren (robust)
-        if: (github.event_name == 'workflow_dispatch' || steps.changes.outputs.js != '[]') && steps.proj.outputs.has_pkg == 'true'
-        shell: bash
-        run: |
-          set -euo pipefail
-          case "${{ steps.pm.outputs.pm }}" in
-            pnpm)
-              if [[ -f pnpm-lock.yaml ]]; then pnpm install --frozen-lockfile; else pnpm install; fi
-              ;;
-            yarn)
-              if [[ -f yarn.lock ]]; then yarn install --frozen-lockfile; else yarn install --check-files; fi
-              ;;
-            *)
-              if [[ -f package-lock.json ]]; then npm ci --no-audit --no-fund; else npm i --no-audit --no-fund; fi
-              ;;
-          esac
+        - name: Abhängigkeiten installieren (robust)
+          if: (github.event_name == 'workflow_dispatch' || steps.changes.outputs.js != '[]') && steps.proj.outputs.has_pkg == 'true'
+          shell: bash
+          run: |
+            set -euo pipefail
+            case "${{ steps.pm.outputs.pm }}" in
+              pnpm)
+                if [[ -f pnpm-lock.yaml ]]; then pnpm install --frozen-lockfile; else pnpm install; fi
+                ;;
+              yarn)
+                if [[ -f yarn.lock ]]; then yarn install --frozen-lockfile; else yarn install --check-files; fi
+                ;;
+              *)
+                if [[ -f package-lock.json ]]; then npm ci --no-audit --no-fund; else npm i --no-audit --no-fund; fi
+                ;;
+            esac
 
-      - name: Versionen protokollieren
-        if: (github.event_name == 'workflow_dispatch' || steps.changes.outputs.js != '[]') && steps.proj.outputs.has_pkg == 'true'
-        shell: bash
-        run: |
-          node -v || true
-          npm -v || true
-          echo "PM=${{ steps.pm.outputs.pm }}"
-          echo "Lock=${{ steps.pm.outputs.lock }}"
+        - name: Versionen protokollieren
+          if: (github.event_name == 'workflow_dispatch' || steps.changes.outputs.js != '[]') && steps.proj.outputs.has_pkg == 'true'
+          shell: bash
+          run: |
+            node -v || true
+            npm -v || true
+            echo "PM=${{ steps.pm.outputs.pm }}"
+            echo "Lock=${{ steps.pm.outputs.lock }}"
 
-      - name: ESLint-Konfiguration prüfen
-        id: detect
-        if: github.event_name == 'workflow_dispatch' || steps.changes.outputs.js != '[]'
-        shell: bash
-        run: |
-          set -euo pipefail
-          HAS=false
-          for f in eslint.config.js eslint.config.cjs .eslintrc .eslintrc.js .eslintrc.cjs .eslintrc.json .eslintrc.yaml .eslintrc.yml; do
-            [[ -f "$f" ]] && HAS=true
-          done
-          echo "has_eslint=$HAS" >> "$GITHUB_OUTPUT"
-          echo "ESLint config vorhanden: $HAS"
+        - name: ESLint-Konfiguration prüfen
+          id: detect
+          if: github.event_name == 'workflow_dispatch' || steps.changes.outputs.js != '[]'
+          shell: bash
+          run: |
+            set -euo pipefail
+            HAS=false
+            for f in eslint.config.js eslint.config.cjs .eslintrc .eslintrc.js .eslintrc.cjs .eslintrc.json .eslintrc.yaml .eslintrc.yml; do
+              [[ -f "$f" ]] && HAS=true
+            done
+            echo "has_eslint=$HAS" >> "$GITHUB_OUTPUT"
+            echo "ESLint config vorhanden: $HAS"
 
-      - name: ESLint (SARIF erzeugen)
-        if: (github.event_name == 'workflow_dispatch' || steps.changes.outputs.js != '[]') && steps.proj.outputs.has_pkg == 'true' && steps.detect.outputs.has_eslint == 'true'
-        continue-on-error: true
-        run: npm run -s lint:sarif
+        - name: ESLint (SARIF erzeugen)
+          if: (github.event_name == 'workflow_dispatch' || steps.changes.outputs.js != '[]') && steps.proj.outputs.has_pkg == 'true' && steps.detect.outputs.has_eslint == 'true'
+          continue-on-error: true
+          run: npm run -s lint:sarif
 
-      - name: SARIF vorhanden?
-        id: sarif
-        if: github.event_name == 'workflow_dispatch' || steps.changes.outputs.js != '[]'
-        shell: bash
-        run: echo "exists=$( [ -f eslint.sarif ] && echo true || echo false )" >> "$GITHUB_OUTPUT"
+        - name: SARIF vorhanden?
+          id: sarif
+          if: github.event_name == 'workflow_dispatch' || steps.changes.outputs.js != '[]'
+          shell: bash
+          run: echo "exists=$( [ -f eslint.sarif ] && echo true || echo false )" >> "$GITHUB_OUTPUT"
 
-      - name: SARIF zu Code Scanning hochladen
-        if: |
-          (github.event_name == 'workflow_dispatch' || steps.changes.outputs.js != '[]') &&
-          steps.proj.outputs.has_pkg == 'true' &&
-          steps.detect.outputs.has_eslint == 'true' &&
-          steps.sarif.outputs.exists == 'true' &&
-          (github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false)
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: eslint.sarif
+        - name: SARIF zu Code Scanning hochladen
+          if: |
+            (github.event_name == 'workflow_dispatch' || steps.changes.outputs.js != '[]') &&
+            steps.proj.outputs.has_pkg == 'true' &&
+            steps.detect.outputs.has_eslint == 'true' &&
+            steps.sarif.outputs.exists == 'true' &&
+            (github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false)
+          uses: github/codeql-action/upload-sarif@v3
+          with:
+            sarif_file: eslint.sarif
 
-      - name: Zusammenfassung
-        if: github.event_name == 'workflow_dispatch' || steps.changes.outputs.js != '[]'
-        shell: bash
-        run: |
-          {
-            echo "## Code Quality Ergebnis"
-            echo ""
-            echo "- JS-Projekt gefunden (package.json): **${{ steps.proj.outputs.has_pkg }}**"
-            echo "- Package-Manager: **${{ steps.pm.outputs.pm }}**"
-            echo "- ESLint-Konfig gefunden: **${{ steps.detect.outputs.has_eslint }}**"
-            echo "- SARIF-Datei vorhanden: **${{ steps.sarif.outputs.exists }}**"
-          } >> "$GITHUB_STEP_SUMMARY"
-              - 'yarn.lock'
+        - name: Zusammenfassung
+          if: github.event_name == 'workflow_dispatch' || steps.changes.outputs.js != '[]'
+          shell: bash
+          run: |
+            {
+              echo "## Code Quality Ergebnis"
+              echo ""
+              echo "- JS-Projekt gefunden (package.json): **${{ steps.proj.outputs.has_pkg }}**"
+              echo "- Package-Manager: **${{ steps.pm.outputs.pm }}**"
+              echo "- ESLint-Konfig gefunden: **${{ steps.detect.outputs.has_eslint }}**"
+              echo "- SARIF-Datei vorhanden: **${{ steps.sarif.outputs.exists }}**"
+            } >> "$GITHUB_STEP_SUMMARY"
+              echo "- SARIF-Datei vorhanden: **${{ steps.sarif.outputs.exists }}**"
