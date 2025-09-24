@@ -154,8 +154,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          echo "Starte ESLint (SARIF) ..."
-          npm run lint:sarif || true
+          echo "Starte ESLint (SARIF) via npm script..."
+          npm run -s lint:sarif || true
 
       - name: SARIF vorhanden?
         id: sarif
