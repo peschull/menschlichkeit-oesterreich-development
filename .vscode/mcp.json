@@ -1,79 +1,19 @@
 {
   "servers": {
-    "github": {
-      "url": "https://api.githubcopilot.com/mcp/",
-      "type": "http"
-    },
-    "playwright": {
-      "type": "stdio",
-      "command": "npx",
-      "args": [
-        "@playwright/mcp@latest"
-      ]
-    },
-    "deepwiki": {
-      "type": "http",
-      "url": "https://mcp.deepwiki.com/sse"
-    },
-    "figma": {
-      "type": "http",
-      "url": "http://127.0.0.1:3845/mcp"
-    },
-    "sequentialthinking-global": {
-      "type": "stdio",
-      "command": "npx",
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-sequential-thinking@latest"
-      ]
-    },
-    "plesk-openapi": {
+    "codacy": {
       "type": "stdio",
       "command": "node",
-      "args": ["./mcp-servers/web-stack/servers/plesk-openapi/dist/index.js"],
-      "env": {
-        "NODE_ENV": "production"
-      }
+      "args": ["${workspaceFolder}/servers/src/mcp-stub.js", "codacy"]
     },
-    "wordpress-rest": {
-      "type": "stdio",
-      "command": "node", 
-      "args": ["./mcp-servers/web-stack/servers/wordpress/dist/index.js"],
-      "env": {
-        "NODE_ENV": "production"
-      }
-    },
-    "laravel-integration": {
+    "microsoft-docs": {
       "type": "stdio",
       "command": "node",
-      "args": ["./mcp-servers/web-stack/servers/laravel/dist/index.js"],
-      "env": {
-        "NODE_ENV": "production"
-      }
+      "args": ["${workspaceFolder}/servers/src/mcp-stub.js", "microsoft-docs"]
     },
-    "filesystem": {
+    "mssql": {
       "type": "stdio",
       "command": "node",
-      "args": ["./servers/src/filesystem/dist/index.js"],
-      "env": {
-        "NODE_ENV": "production"
-      }
-    },
-    "memory": {
-      "type": "stdio",
-      "command": "node",
-      "args": ["./servers/src/memory/dist/index.js"],
-      "env": {
-        "NODE_ENV": "production"
-      }
-    },
-    "sequential-thinking-local": {
-      "type": "stdio",
-      "command": "node",
-      "args": ["./servers/src/sequentialthinking/dist/index.js"],
-      "env": {
-        "NODE_ENV": "production"
-      }
+      "args": ["${workspaceFolder}/servers/src/mcp-stub.js", "mssql"]
     }
   },
   "inputs": []
