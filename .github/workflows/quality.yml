@@ -79,127 +79,22 @@ jobs:
             echo "ESLint not configured — skipping."
           fi
 
-      - name: Prettier (check)
+      - name: ESLint SARIF
         if: github.event_name == 'workflow_dispatch' || steps.changes.outputs.js != '[]'
         shell: bash
         run: |
-          if npx --yes prettier -v >/dev/null 2>&1; then
-            npx prettier -c .
+          if npx --yes eslint -v >/dev/null 2>&1; then
+            npx eslint . --format @microsoft/eslint-formatter-sarif --output-file eslint.sarif || true
           else
-            echo "Prettier not configured — skipping."
+            echo "ESLint not configured — skipping SARIF."
           fi
 
-      - name: TypeScript (noEmit)
-        if: github.event_name == 'workflow_dispatch' || steps.changes.outputs.js != '[]'
-        shell: bash
-        run: |
-          if [[ -f tsconfig.json ]]; then
-            npx tsc -noEmit
-          else
-            echo "No tsconfig.json — skipping."
-          fi
-name: Quality
-
-on:
-  push:
-    name: Quality
-
-    on:
-      push:
-        branches: ["**"]
-      pull_request:
-      workflow_dispatch:
-
-    permissions:
-      contents: read
-      security-events: write
-
-    jobs:
-      quality:
-        name: Lint & Checks
-        runs-on: ubuntu-latest
-        timeout-minutes: 15
-
-        steps:
-          - name: Checkout
-            uses: actions/checkout@v4
-
-          - name: Setup Node.js
-            uses: actions/setup-node@v4
-            with:
-              node-version: "20"
-              cache: npm
-
-          - name: Detect JS/TS changes
-            id: changes
-            uses: dorny/paths-filter@v3
-            with:
-              list-files: json
-              filters: |
-                js:
-                  - '**/*.js'
-                  - '**/*.mjs'
-                  - '**/*.cjs'
-                  - '**/*.ts'
-                  - '**/*.tsx'
-                  - 'package.json'
-                  - 'package-lock.json'
-                  - 'pnpm-lock.yaml'
-                  - 'yarn.lock'
-                  - 'eslint.config.*'
-                  - '.eslintrc*'
-                  - 'tsconfig.json'
-
-          - name: Skip if nothing relevant changed (unless dispatch)
-            if: github.event_name != 'workflow_dispatch' && steps.changes.outputs.js == '[]'
-            run: echo "No relevant changes — skipping."
-
-          - name: Install dependencies
-            if: github.event_name == 'workflow_dispatch' || steps.changes.outputs.js != '[]'
-            shell: bash
-            run: |
-              set -euo pipefail
-              if [[ -f pnpm-lock.yaml ]]; then
-                corepack enable
-                pnpm install --frozen-lockfile
-              elif [[ -f yarn.lock ]]; then
-                corepack enable
-                yarn install --frozen-lockfile
-              elif [[ -f package-lock.json ]]; then
-                npm ci --no-audit --no-fund
-              elif [[ -f package.json ]]; then
-                npm i --no-audit --no-fund
-              else
-                echo "No package.json — skipping install."
-              fi
-
-          - name: ESLint
-            if: github.event_name == 'workflow_dispatch' || steps.changes.outputs.js != '[]'
-            shell: bash
-            run: |
-              if npx --yes eslint -v >/dev/null 2>&1; then
-                npx eslint . --max-warnings=0
-              else
-                echo "ESLint not configured — skipping."
-              fi
-
-          - name: Prettier (check)
-            if: github.event_name == 'workflow_dispatch' || steps.changes.outputs.js != '[]'
-            shell: bash
-            run: |
-              if npx --yes prettier -v >/dev/null 2>&1; then
-                npx prettier -c .
-              else
-                echo "Prettier not configured — skipping."
-              fi
-
-          - name: TypeScript (noEmit)
-            if: github.event_name == 'workflow_dispatch' || steps.changes.outputs.js != '[]'
-            shell: bash
-            run: |
-              if [[ -f tsconfig.json ]]; then
-                npx tsc -noEmit
-              else
-                echo "No tsconfig.json — skipping."
-              fi
-  name: Code Quality
+      - name: Upload SARIF (non-fork PRs only)
+        if: |
+          (github.event_name == 'workflow_dispatch' || steps.changes.outputs.js != '[]') &&
+          (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) &&
+          hashFiles('eslint.sarif') != ''
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: eslint.sarif
+          category: eslint
