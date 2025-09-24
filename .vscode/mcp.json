@@ -14,6 +14,21 @@
       "type": "stdio",
       "command": "node",
       "args": ["${workspaceFolder}/servers/src/mcp-stub.js", "mssql"]
+    },
+    "markitdown": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["${workspaceFolder}/servers/src/mcp-stub.js", "markitdown"]
+    },
+    "figma": {
+      "type": "stdio", 
+      "command": "node",
+      "args": ["${workspaceFolder}/servers/src/mcp-stub.js", "figma"]
+    },
+    "github": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["${workspaceFolder}/servers/src/mcp-stub.js", "github"]
     }
   },
   "inputs": []
