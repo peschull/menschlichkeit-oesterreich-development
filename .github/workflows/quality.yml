@@ -78,6 +78,26 @@ jobs:
           cache: ${{ steps.pm.outputs.pm }}
           cache-dependency-path: ${{ steps.pm.outputs.lock }}
 
+      - name: Versionen & PM protokollieren
+        if: github.event_name == 'workflow_dispatch' || steps.changes.outputs.js != '[]'
+        shell: bash
+        run: |
+          echo "PM=${{ steps.pm.outputs.pm }}, LOCK=${{ steps.pm.outputs.lock }}"
+          node -v
+          npm -v || true
+          npx -v || true
+
+      - name: Abhängigkeiten installieren (erzwungen)
+        if: github.event_name == 'workflow_dispatch' || steps.changes.outputs.js != '[]'
+        shell: bash
+        run: |
+          set -euo pipefail
+          case "${{ steps.pm.outputs.pm }}" in
+            pnpm) pnpm install --frozen-lockfile ;;
+            yarn) yarn install --frozen-lockfile ;;
+            *) npm ci --no-audit --no-fund ;;
+          esac
+
       - name: Corepack aktivieren (yarn/pnpm)
         if: (github.event_name == 'workflow_dispatch' || steps.changes.outputs.js != '[]') && (steps.pm.outputs.pm == 'yarn' || steps.pm.outputs.pm == 'pnpm')
         run: corepack enable
