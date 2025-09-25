@@ -22,7 +22,16 @@ if ! gh auth status &> /dev/null; then
     exit 1
 fi
 
-echo "✅ GitHub CLI ist bereit"
+# Repository-Lösch-Berechtigung prüfen
+echo "🔐 Überprüfe Repository-Lösch-Berechtigungen..."
+if ! gh auth status | grep -q "delete_repo"; then
+    echo "❌ Fehlende delete_repo Berechtigung."
+    echo "   Führen Sie aus: gh auth refresh -h github.com -s delete_repo"
+    echo "   Dann starten Sie das Script erneut."
+    exit 1
+fi
+
+echo "✅ GitHub CLI ist bereit mit delete_repo Berechtigung"
 echo
 
 # Alle Repositories des Users anzeigen
@@ -55,8 +64,12 @@ echo "3. Bestätigen Sie jede Löschung einzeln"
 echo
 echo "⚠️  WARNUNG: Repository-Löschung ist UNWIDERRUFLICH!"
 echo
-echo "🗑️ LÖSCH-BEFEHLE (der Reihe nach ausführen):"
-echo "============================================="
+echo "� SCHRITT 1: Berechtigung aktivieren"
+echo "====================================="
+echo "gh auth refresh -h github.com -s delete_repo"
+echo
+echo "�🗑️ SCHRITT 2: LÖSCH-BEFEHLE (nach Berechtigung ausführen):"
+echo "=========================================================="
 echo
 echo "# 1. Monorepo-Duplikat löschen"
 echo "gh repo delete peschull/menschlichkeit-oesterreich-monorepo --yes"

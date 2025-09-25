@@ -6,6 +6,17 @@
 echo "🗑️ GitHub Repository Cleanup - Direkte Ausführung"
 echo "================================================="
 echo
+
+# Berechtigung prüfen
+if ! gh auth status | grep -q "delete_repo"; then
+    echo "❌ Fehlende delete_repo Berechtigung."
+    echo "   Führen Sie zuerst aus: gh auth refresh -h github.com -s delete_repo"
+    echo "   Dann starten Sie das Script erneut."
+    exit 1
+fi
+
+echo "✅ Repository-Lösch-Berechtigung bestätigt"
+echo
 echo "Basierend auf 'gh repo list' werden folgende Repositories gelöscht:"
 echo
 
