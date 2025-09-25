@@ -57,7 +57,7 @@
 }
 
 .loading::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
@@ -96,7 +96,7 @@ img[src] {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  
+
   .animate-fade-in,
   .animate-slide-up,
   .animate-scale-in {
@@ -113,13 +113,13 @@ img[src] {
     --color-text-primary: #000000;
     --color-background: #ffffff;
   }
-  
+
   .dark {
     --color-border: #ffffff;
     --color-text-primary: #ffffff;
     --color-background: #000000;
   }
-  
+
   .btn {
     border-width: 2px;
   }
@@ -134,7 +134,7 @@ img[src] {
     opacity: 1 !important;
     transform: none !important;
   }
-  
+
   .btn {
     box-shadow: none !important;
     background: transparent !important;

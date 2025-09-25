@@ -1,0 +1,50 @@
+{
+  "optimization_test": {
+    "description": "VS Code/Copilot Optimierung für github.copilot.chat.virtualTools.threshold",
+    "current_environment": {
+      "extensions": 99,
+      "mcp_servers": 14,
+      "copilot_features": [
+        "nextEditSuggestions.enabled",
+        "chat.codesearch.enabled", 
+        "chat.agent.thinkingTool",
+        "chat.alternateGptPrompt.enabled",
+        "chat.editor.temporalContext.enabled",
+        "chat.edits.temporalContext.enabled",
+        "chat.generateTests.codeLens",
+        "chat.languageContext.typescript.enabled",
+        "chat.newWorkspace.useContext7",
+        "chat.notebook.enhancedNextEditSuggestions.enabled",
+        "chat.useResponsesApi"
+      ]
+    },
+    "threshold_values_to_test": [
+      {
+        "value": 0,
+        "description": "Alle Tools sofort verfügbar - kann zu Überlastung führen"
+      },
+      {
+        "value": 32,
+        "description": "Sehr niedrige Schwelle - schneller Zugriff, höhere Latenz"
+      },
+      {
+        "value": 64,
+        "description": "Niedrige Schwelle - ausgewogener Zugriff"
+      },
+      {
+        "value": 128,
+        "description": "Mittlere Schwelle - Standard für komplexe Umgebungen"
+      },
+      {
+        "value": 256,
+        "description": "Hohe Schwelle - nur bei Bedarf laden, bessere Performance"
+      }
+    ],
+    "optimization_strategy": {
+      "step1": "Baseline ohne threshold messen",
+      "step2": "Verschiedene Werte testen",
+      "step3": "Performance und Usability bewerten",
+      "step4": "Optimalen Wert ermitteln"
+    }
+  }
+}

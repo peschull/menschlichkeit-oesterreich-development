@@ -30,7 +30,12 @@ body {
 }
 
 /* Typography */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 0 0 var(--space-4) 0;
   font-family: var(--font-primary);
   font-weight: var(--font-semibold);
@@ -87,7 +92,8 @@ a:focus {
 }
 
 /* Lists */
-ul, ol {
+ul,
+ol {
   margin: 0 0 var(--space-4) 0;
   padding-left: var(--space-6);
 }
@@ -110,7 +116,8 @@ table {
   margin-bottom: var(--space-6);
 }
 
-th, td {
+th,
+td {
   padding: var(--space-3) var(--space-4);
   text-align: left;
   border-bottom: 1px solid var(--color-border);
@@ -122,7 +129,10 @@ th {
 }
 
 /* Form elements base */
-input, textarea, select, button {
+input,
+textarea,
+select,
+button {
   font-family: inherit;
   font-size: var(--text-base);
   line-height: var(--leading-normal);

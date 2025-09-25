@@ -9,10 +9,10 @@ export default [
     files: ["**/*.{js,mjs,cjs}"],
     ignores: [
       "node_modules/**",
-      "**/dist/**", 
+      "**/dist/**",
       "**/build/**",
       "**/*.min.js",
-      "**/*.d.ts"
+      "**/*.d.ts",
     ],
     languageOptions: {
       ecmaVersion: "latest",
@@ -26,12 +26,7 @@ export default [
   },
   {
     files: ["**/*.{ts,tsx}"],
-    ignores: [
-      "node_modules/**",
-      "**/dist/**", 
-      "**/build/**",
-      "**/*.d.ts"
-    ],
+    ignores: ["node_modules/**", "**/dist/**", "**/build/**", "**/*.d.ts"],
     languageOptions: {
       parser: parser,
       parserOptions: {
@@ -45,7 +40,10 @@ export default [
     },
     rules: {
       ...tseslint.configs.recommended.rules,
-      "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        { argsIgnorePattern: "^_" },
+      ],
       "@typescript-eslint/no-explicit-any": "warn",
       "no-console": "off",
     },

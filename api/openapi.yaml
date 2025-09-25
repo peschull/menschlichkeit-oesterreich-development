@@ -1,0 +1,168 @@
+openapi: 3.0.3
+info:
+  title: Menschlichkeit Österreich - Automations API
+  version: 1.0.0
+  contact:
+    email: admin@menschlichkeit-oesterreich.at
+servers:
+  - url: https://api.menschlichkeit-oesterreich.at/v1
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    ContactCreate:
+      type: object
+      required: [email, first_name, last_name]
+      properties:
+        email:
+          type: string
+          format: email
+        first_name:
+          type: string
+        last_name:
+          type: string
+        phone:
+          type: string
+        address:
+          type: object
+          properties:
+            street: { type: string }
+            city: { type: string }
+            postal_code: { type: string }
+            country: { type: string }
+    MembershipCreate:
+      type: object
+      required: [contact_id, membership_type, start_date]
+      properties:
+        contact_id: { type: integer }
+        membership_type: { type: string }
+        start_date: { type: string, format: date }
+        auto_renew: { type: boolean }
+    ContributionCreate:
+      type: object
+      required: [contact_id, amount, currency]
+      properties:
+        contact_id: { type: integer }
+        amount: { type: number }
+        currency: { type: string, example: EUR }
+        payment_instrument: { type: string, enum: [SEPA, CC] }
+        mandate_id: { type: string }
+security:
+  - bearerAuth: []
+paths:
+  /contacts.create:
+    post:
+      summary: Create contact
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ContactCreate"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: { type: integer }
+        "4XX":
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /memberships.create:
+    post:
+      summary: Create membership
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MembershipCreate"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  membership_id: { type: integer }
+        "4XX":
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /contributions.create:
+    post:
+      summary: Create contribution
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ContributionCreate"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  contribution_id: { type: integer }
+        "4XX":
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /sepa.mandates.create:
+    post:
+      summary: Create SEPA mandate (store only)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [contact_id, iban, bic]
+              properties:
+                contact_id: { type: integer }
+                iban: { type: string }
+                bic: { type: string }
+                mandate_type: { type: string, enum: [FRST, RCUR, OOFF] }
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  mandate_id: { type: string }
+        "4XX":
+          description: Client error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+x-rate-limit:
+  global: 60
+  per_key_per_minute: 10

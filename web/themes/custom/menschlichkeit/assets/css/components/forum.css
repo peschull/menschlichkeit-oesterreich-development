@@ -472,13 +472,13 @@
     gap: var(--space-2);
     align-items: flex-start;
   }
-  
+
   .thread-card__badges,
   .post__actions {
     width: 100%;
     justify-content: flex-start;
   }
-  
+
   .board-card__header {
     flex-direction: column;
     gap: var(--space-2);

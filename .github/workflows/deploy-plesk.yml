@@ -1,0 +1,73 @@
+name: Deploy to Plesk
+
+on:
+  workflow_dispatch:
+    inputs:
+      run_composer:
+        description: "Auf Server composer install ausführen?"
+        required: true
+        type: boolean
+        default: true
+      run_drush:
+        description: "Auf Server drush updb/cr ausführen?"
+        required: true
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      SSH_HOST: ${{ secrets.PLESK_HOST }}
+      SSH_PORT: ${{ secrets.PLESK_SSH_PORT || '22' }}
+      SSH_USER: ${{ secrets.PLESK_USER }}
+      REMOTE_PATH: ${{ secrets.PLESK_REMOTE_PATH }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Start ssh-agent
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.PLESK_SSH_KEY }}
+
+      - name: Trust host key
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -p "${{ env.SSH_PORT }}" -H "${{ env.SSH_HOST }}" >> ~/.ssh/known_hosts
+
+      - name: Rsync code to Plesk
+        run: |
+          RSYNC_EXCLUDES=(
+            ".git" ".github" ".DS_Store"
+            "node_modules" "vendor"
+            "web/sites/*/files"
+            "tmp" "cache" "logs"
+          )
+          ARGS=()
+          for item in "${RSYNC_EXCLUDES[@]}"; do
+            ARGS+=(--exclude="$item")
+          done
+          rsync -az --delete --partial --info=progress2 \
+            "${ARGS[@]}" \
+            -e "ssh -p ${{ env.SSH_PORT }}" \
+            ./ "${{ env.SSH_USER }}@${{ env.SSH_HOST }}:${{ env.REMOTE_PATH }}"
+
+      - name: Remote composer install (prod)
+        if: ${{ inputs.run_composer }}
+        run: |
+          ssh -p "${{ env.SSH_PORT }}" "${{ env.SSH_USER }}@${{ env.SSH_HOST }}" \
+            "cd '${{ env.REMOTE_PATH }}' && composer install --no-dev --prefer-dist -o"
+
+      - name: Remote drush updates
+        if: ${{ inputs.run_drush }}
+        run: |
+          ssh -p "${{ env.SSH_PORT }}" "${{ env.SSH_USER }}@${{ env.SSH_HOST }}" \
+            "cd '${{ env.REMOTE_PATH }}' && vendor/bin/drush updb -y && vendor/bin/drush cr"

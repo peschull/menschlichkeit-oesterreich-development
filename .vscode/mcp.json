@@ -15,17 +15,16 @@
       "command": "node",
       "args": ["${workspaceFolder}/servers/src/mcp-stub.js", "mssql"]
     },
-    "markitdown": {
+    "microsoft/markitdown": {
       "type": "stdio",
       "command": "node",
       "args": ["${workspaceFolder}/servers/src/mcp-stub.js", "markitdown"]
     },
-    "figma": {
-      "type": "stdio", 
-      "command": "node",
-      "args": ["${workspaceFolder}/servers/src/mcp-stub.js", "figma"]
+    "figma/dev-mode-mcp-server": {
+      "type": "http",
+      "url": "http://127.0.0.1:3441/mcp"
     },
-    "github": {
+    "github/github-mcp-server": {
       "type": "stdio",
       "command": "node",
       "args": ["${workspaceFolder}/servers/src/mcp-stub.js", "github"]

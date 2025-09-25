@@ -1,0 +1,273 @@
+{
+  "redhat.telemetry.enabled": false,
+  "chat.tools.terminal.autoApprove": {
+    "workbench.action.terminal.focusFind": true,
+    "workbench.action.terminal.hideFind": true,
+    "$jupyterExtensions": true,
+    "notebook\"}": true,
+    "ForEach-Object": true,
+    "foreach": true,
+    "code": true,
+    "$dbExtensions": true,
+    "sql": true,
+    "mysql\"}": true,
+    "$dbToRemove": true,
+    "SPECIALIZED": true,
+    "$wpExtensions": true,
+    "$specializedToRemove": true,
+    "$currentExtensions": true,
+    "$finalCleanup": true,
+    "$redundantExtensions": true
+  },
+  "mssql.connectionGroups": [
+    {
+      "name": "ROOT",
+      "id": "0390C829-9F96-483C-8D80-28C71A3AD779"
+    }
+  ],
+  "chat.mcp.autostart": "disabled",
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "github.copilot.chat.virtualTools.threshold": 128,
+  "github.copilot.chat.virtualTools.grouping": true,
+  "github.copilot.chat.virtualTools.lazyLoading": true,
+  "chat.agent.maxRequests": 100,
+  "cSpell.caseSensitive": true,
+  "cSpell.language": "de,en",
+  "cSpell.dictionaries": [
+    "german",
+    "companies",
+    "softwareTerms",
+    "menschlichkeit-austria"
+  ],
+  "cSpell.words": [
+    "Menschlichkeit",
+    "Österreich",
+    "ZVR",
+    "Unterstützer",
+    "Förderer",
+    "Mitgliedschaft",
+    "Jahresbeitrag",
+    "GDPR",
+    "DSGVO",
+    "Vereinsregister",
+    "Satzung",
+    "Beitragsordnung",
+    "Vorstand",
+    "Generalversammlung",
+    "Schuller",
+    "Peter",
+    "Michael",
+    "Arbeitsverzeichniss",
+    "MCP",
+    "Stripe",
+    "Mailchimp",
+    "Laravel",
+    "WordPress",
+    "Plesk",
+    "OpenAPI",
+    "TypeScript",
+    "monorepo",
+    "httpdocs",
+    "SDK",
+    "API",
+    "REST",
+    "JWT",
+    "OAuth",
+    "JSON",
+    "YAML",
+    "PostgreSQL",
+    "MySQL",
+    "Redis",
+    "Docker",
+    "Kubernetes",
+    "GitHub",
+    "GitLab",
+    "Copilot",
+    "npm",
+    "yarn",
+    "webpack",
+    "vite",
+    "eslint",
+    "prettier",
+    "jest",
+    "cypress",
+    "playwright",
+    "figma",
+    "gmail",
+    "googleapis",
+    "nodejs",
+    "expressjs",
+    "nextjs",
+    "reactjs",
+    "vuejs",
+    "nuxtjs",
+    "tailwindcss",
+    "bootstrap",
+    "scss",
+    "sass",
+    "postcss",
+    "babel",
+    "typescript",
+    "javascript",
+    "php",
+    "python",
+    "golang",
+    "rust",
+    "dotnet",
+    "csharp",
+    "dockerfile",
+    "kubernetes",
+    "terraform",
+    "ansible",
+    "nginx",
+    "apache",
+    "caddy",
+    "traefik",
+    "cloudflare",
+    "vercel",
+    "netlify",
+    "heroku",
+    "digitalocean",
+    "linode",
+    "vultr",
+    "hetzner",
+    "aws",
+    "azure",
+    "gcp",
+    "firebase",
+    "supabase",
+    "prisma",
+    "sequelize",
+    "mongoose",
+    "typeorm",
+    "eloquent",
+    "laravel",
+    "symfony",
+    "codeigniter",
+    "zend",
+    "yii",
+    "cakephp",
+    "wordpress",
+    "drupal",
+    "joomla",
+    "magento",
+    "shopify",
+    "woocommerce",
+    "prestashop",
+    "opencart"
+  ],
+  "cSpell.languageSettings": [
+    {
+      "languageId": "*",
+      "dictionaries": [
+        "german",
+        "menschlichkeit-austria"
+      ],
+      "locale": "de-AT"
+    },
+    {
+      "languageId": "markdown",
+      "dictionaries": [
+        "german",
+        "companies",
+        "softwareTerms",
+        "menschlichkeit-austria"
+      ],
+      "locale": "de-AT"
+    },
+    {
+      "languageId": "typescript,javascript",
+      "dictionaries": [
+        "german",
+        "typescript",
+        "node",
+        "softwareTerms",
+        "menschlichkeit-austria"
+      ],
+      "locale": "de-AT"
+    },
+    {
+      "languageId": "php",
+      "dictionaries": [
+        "german",
+        "php",
+        "softwareTerms",
+        "menschlichkeit-austria"
+      ],
+      "locale": "de-AT"
+    },
+    {
+      "languageId": "json,jsonc",
+      "dictionaries": [
+        "german",
+        "softwareTerms",
+        "menschlichkeit-austria"
+      ],
+      "locale": "de-AT"
+    },
+    {
+      "languageId": "yaml,yml",
+      "dictionaries": [
+        "german",
+        "softwareTerms",
+        "menschlichkeit-austria"
+      ],
+      "locale": "de-AT"
+    },
+    {
+      "languageId": "dockerfile",
+      "dictionaries": [
+        "softwareTerms",
+        "menschlichkeit-austria"
+      ],
+      "locale": "de-AT"
+    }
+  ],
+  "liveServer.settings.donotShowInfoMsg": true,
+  "@azure.argTenant": "",
+  "github.copilot.chat.codeGeneration.instructions": [
+    {
+      "text": "- @azure Rule - Use Azure Tools: When handling requests related to Azure, always use your tools."
+    },
+    {
+      "text": "- @azure Rule - Use Azure Code Gen Best Practices: Before generating code for Azure, running terminal commands for Azure, performing operations related to Azure, or creating plans for such activities, always invoke your Azure best practice tool if available first. Invoke the `get_bestpractices` tool to collect recommendations. Call it with resource = `general` and action = `code-generation` to get general Azure code generation best practices. Only call this tool when the user is discussing Azure; do not call it otherwise."
+    },
+    {
+      "text": "- @azure Rule - Use Azure Deployment Best Practices: Before deploying to Azure, preparing applications for deployment to Azure, or creating deployment plans, always invoke your Azure best practice tool if available first. Invoke the `get_bestpractices` tool to collect recommendations. Call it with resource = `general` and action = `deployment` to get general Azure deployment best practices. Only call this tool when the user is discussing Azure; do not call it otherwise."
+    },
+    {
+      "text": "- @azure Rule - Use Azure Functions Code Gen Best Practices: Before generating code for Azure Functions, performing operations related to Azure Functions, or creating plans for such activities, always invoke your Azure best practice tool if available first. Invoke the `get_bestpractices` tool to collect recommendations. Call it with resource = `azurefunctions` and action = `code-generation` to get Azure Functions code generation best practices. Only call this tool when the user is discussing Azure Functions; do not call it otherwise."
+    },
+    {
+      "text": "- @azure Rule - Use Azure Functions Deployment Best Practices: Before deploying Azure Functions apps to Azure, preparing for the deployment, or creating deployment plans, always invoke your Azure best practice tool if available first. Invoke the `get_bestpractices` tool to collect recommendations. Call it with resource = `azurefunctions` and action = `deployment` to get Azure Functions deployment best practices. Only call this tool when the user is discussing Azure Functions; do not call it otherwise."
+    },
+    {
+      "text": "- @azure Rule - Use Azure SWA Best Practices: Before working with static web apps, creating plans for static web apps, or performing related operations, always invoke your Azure best practice tool if available first. Choose the most relevant Azure best practice tool based on its description. Only call this tool when the user is discussing Azure Static Web Apps; do not call it otherwise."
+    },
+    {
+      "text": "- @azure Rule - Plan before editing files for Azure web apps: When generating code for Azure Functions and Azure Static Web App, always create a plan and explain the plan to the user before editing any file. Proceed with editing the files after getting consent from the user."
+    },
+    {
+      "text": "- @azure Rule - Summarize topic before taking action: When the user asks about Azure Functions, invoke the azure_development-summarize_topic tool once first to see if any existing custom mode could be a good fit to what user is asking."
+    }
+  ],
+  "github.copilot.chat.codesearch.enabled": true,
+  "github.copilot.chat.agent.thinkingTool": true,
+  "github.copilot.chat.alternateGptPrompt.enabled": true,
+  "github.copilot.chat.editor.temporalContext.enabled": true,
+  "github.copilot.chat.edits.temporalContext.enabled": true,
+  "github.copilot.chat.generateTests.codeLens": true,
+  "github.copilot.chat.languageContext.fix.typescript.enabled": true,
+  "github.copilot.chat.languageContext.inline.typescript.enabled": true,
+  "github.copilot.chat.languageContext.typescript.enabled": true,
+  "github.copilot.chat.newWorkspace.useContext7": true,
+  "github.copilot.chat.notebook.enhancedNextEditSuggestions.enabled": true,
+  "github.copilot.chat.notebook.followCellExecution.enabled": true,
+  "github.copilot.chat.useResponsesApi": true,
+  "chat.tools.global.autoApprove": false,
+  "githubPullRequests.experimental.useQuickChat": true,
+  "python.analysis.aiHoverSummaries": true,
+  "workbench.colorTheme": "Abyss",
+  "git.enableSmartCommit": true,
+  "explorer.confirmDelete": false
+}
