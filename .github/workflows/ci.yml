@@ -23,8 +23,8 @@ jobs:
       fail-fast: false
       matrix:
         project:
-          - "mcp-servers/essential-stack"
-          - "mcp-bridge"
+          - "frontend"
+          - "website"
 
     steps:
       - name: 📥 Checkout Repository
@@ -87,8 +87,9 @@ jobs:
       fail-fast: false
       matrix:
         python-version: ["3.11", "3.12"]
+        matrix:
         project:
-          - "mcp-search"
+          - "api.menschlichkeit-oesterreich.at"
           - "servers"
 
     steps:

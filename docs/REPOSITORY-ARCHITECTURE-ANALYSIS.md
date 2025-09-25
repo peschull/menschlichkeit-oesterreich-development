@@ -8,70 +8,80 @@ Die Repository-Struktur zeigt eine **durchdachte, moderne Microservices-Architek
 
 ---
 
-## 📊 Repository-Dependency-Graph
+## 📊 Konsolidierte Repository-Architektur (WordPress-frei)
+
+**UPDATE: Alle Repositories erfolgreich in Haupt-Repo konsolidiert für Plesk-Deployment**
 
 ```mermaid
 graph TB
-    subgraph "🏗️ Haupt-Mono-Repo"
-        A[menschlichkeit-oesterreich-development<br/>GitHub - Koordination]
+    subgraph "🏗️ Konsolidiertes Haupt-Repository"
+        A[menschlichkeit-oesterreich-development<br/>Einheitliches Mono-Repo]
     end
-
-    subgraph "🎨 Design Layer"
-        B[figma-design-system<br/>Design Tokens & Specs]
+    
+    subgraph "🔧 CMS Layer (Plesk-Ready)"
+        F[crm.menschlichkeit-oesterreich.at/<br/>Drupal 10 + CiviCRM]
+        T[web/themes/custom/menschlichkeit/<br/>Design System Theme]
     end
-
+    
+    subgraph "🚀 API Layer"
+        E[api.menschlichkeit-oesterreich.at/<br/>FastAPI Backend]
+    end
+    
     subgraph "💻 Frontend Layer"
-        C[frontend<br/>React + TypeScript]
-        D[website<br/>Legacy HTML]
+        C[frontend/<br/>React + TypeScript (Future)]
+        D[website/<br/>Static HTML (Migration Bridge)]
     end
-
-    subgraph "🔧 Backend Layer"
-        E[api.menschlichkeit-oesterreich.at<br/>FastAPI REST]
-        F[crm.menschlichkeit-oesterreich.at<br/>Drupal + CiviCRM]
+    
+    subgraph "🎨 Design System (Integrated)"
+        B[figma-design-system/<br/>600+ Components]
+        S[assets/css/design-tokens.css<br/>CSS Custom Properties]
     end
-
-    subgraph "⚙️ DevOps Layer"
-        G[deployment-scripts<br/>Plesk Automation]
-        H[.github/workflows<br/>CI/CD Pipeline]
-        I[servers<br/>MCP Dev Tools]
+    
+    subgraph "⚙️ Plesk DevOps"
+        G[deployment-scripts/<br/>Plesk Automation]
+        H[.github/workflows/<br/>CI/CD Pipeline]
     end
-
-    subgraph "🔐 Security Layer"
-        J[secrets/<br/>SOPS Encryption]
-        K[.vscode/<br/>Dev Environment]
+    
+    subgraph "🔐 Security (SOPS)"
+        J[secrets/<br/>Encrypted Configs]
     end
-
-    subgraph "📚 Documentation Layer"
+    
+    subgraph "📚 Documentation"
         L[docs/<br/>Technical Docs]
-        M[analysis/<br/>Project Analysis]
+        M[analysis/<br/>Forensic Analysis]
     end
 
-    %% Dependencies
-    A --> B
+    %% Unified Dependencies
+    A --> F
+    A --> E
     A --> C
     A --> D
-    A --> E
-    A --> F
+    A --> B
     A --> G
     A --> H
+    A --> J
     A --> L
     A --> M
-
-    B --> C
-    B --> F
-
+    
+    B --> S
+    S --> T
+    S --> C
+    
     C --> E
     D --> E
-
     E --> F
-
+    
     H --> G
-    H --> J
-
-    I --> K
+    G --> J
+    
+    F --> T
 ```
 
----
+### 🎯 **Konsolidierungs-Vorteile**:
+- ✅ **Atomic Deployments**: Alles in einem Commit
+- ✅ **Vereinfachtes Dependency-Management**: Einheitliche Versions
+- ✅ **Plesk-Optimiert**: Direkte Hosting-Integration
+- ✅ **WordPress-Eliminiert**: Moderne, wartbare Architektur---
 
 ## ✅ **Stärken der Architektur**
 
