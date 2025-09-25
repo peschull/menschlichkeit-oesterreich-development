@@ -26,23 +26,48 @@ echo "✅ GitHub CLI ist bereit"
 echo
 
 # Alle Repositories des Users anzeigen
-echo "📋 Ihre GitHub Repositories:"
+echo "📋 Alle GitHub Repositories:"
 echo "----------------------------"
-gh repo list --limit 50 | grep -E "(menschlichkeit|crm|api|frontend|design|drupal)" || echo "Keine relevanten Repositories gefunden"
+gh repo list --limit 50
 
+echo
+echo "🎯 IDENTIFIZIERTE REPOSITORIES ZUM LÖSCHEN:"
+echo "============================================"
+echo
+echo "✅ BEHALTEN (Haupt-Repository):"
+echo "   - peschull/menschlichkeit-oesterreich-development"
+echo
+echo "❌ ZU LÖSCHEN (konsolidiert in Haupt-Repository):"
+echo "   - peschull/menschlichkeit-oesterreich-monorepo"
+echo "   - peschull/menschlichkeit-oesterreich" 
+echo "   - peschull/crm.menschlichkeit-oesterreich"
+echo "   - peschull/api.menschlichkeit-oesterreich"
+echo
+echo "❓ PRÜFEN (nicht projekt-relevant):"
+echo "   - peschull/webgames (anderes Projekt)"
 echo
 echo "🎯 Empfohlene Aktionen:"
 echo "======================"
 echo
-echo "1. Überprüfen Sie die obige Liste auf alte Repositories"
-echo "2. Für jedes Repository, das jetzt konsolidiert ist:"
-echo "   gh repo delete OWNER/REPOSITORY --yes"
+echo "1. Führen Sie die unten stehenden Befehle aus:"
+echo "2. Jeder Befehl löscht ein konsolidiertes Repository"
+echo "3. Bestätigen Sie jede Löschung einzeln"
 echo
 echo "⚠️  WARNUNG: Repository-Löschung ist UNWIDERRUFLICH!"
 echo
-echo "Beispiel-Befehle (falls Repositories existieren):"
-echo "gh repo delete peschull/menschlichkeit-frontend --yes"
-echo "gh repo delete peschull/menschlichkeit-api --yes" 
-echo "gh repo delete peschull/crm-system --yes"
+echo "🗑️ LÖSCH-BEFEHLE (der Reihe nach ausführen):"
+echo "============================================="
+echo
+echo "# 1. Monorepo-Duplikat löschen"
+echo "gh repo delete peschull/menschlichkeit-oesterreich-monorepo --yes"
+echo
+echo "# 2. Ursprüngliches Haupt-Repository löschen (jetzt konsolidiert)"  
+echo "gh repo delete peschull/menschlichkeit-oesterreich --yes"
+echo
+echo "# 3. Separates CRM-Repository löschen"
+echo "gh repo delete peschull/crm.menschlichkeit-oesterreich --yes"
+echo
+echo "# 4. Separates API-Repository löschen"
+echo "gh repo delete peschull/api.menschlichkeit-oesterreich --yes"
 echo
 echo "✅ Behalten Sie nur: menschlichkeit-oesterreich-development"
