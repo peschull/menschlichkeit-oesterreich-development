@@ -49,7 +49,11 @@
     "lint": "eslint .",
     "lint:sarif": "eslint . -f sarif -o eslint.sarif || true",
     "lint:all": "npm run lint:js && npm run lint:php && npm run lint:md",
-    "format:all": "npm run format && npm run format:php"
+    "format:all": "npm run format && npm run format:php",
+    "figma:sync": "node scripts/figma-token-sync.cjs",
+    "figma:sync:watch": "nodemon --watch figma-design-system scripts/figma-token-sync.cjs",
+    "design:tokens": "npm run figma:sync && npm run build:frontend",
+    "design:docs": "storybook build && npm run figma:sync"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
@@ -58,7 +62,7 @@
     "@typescript-eslint/parser": "^8.44.1",
     "@vitest/ui": "^3.2.4",
     "concurrently": "^9.2.1",
-    "eslint": "^9.18.0",
+    "eslint": "^9.36.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-node": "^11.1.0",

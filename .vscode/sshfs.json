@@ -1,0 +1,15 @@
+{
+  "configurations": [
+    {
+      "name": "Plesk Production Server",
+      "root": "/home/dmpl20230054",
+      "host": "5.183.217.146",
+      "port": 22,
+      "username": "dmpl20230054",
+      "password": false,
+      "privateKeyPath": "~/.ssh/id_rsa",
+      "agent": "pageant",
+      "putty": false
+    }
+  ]
+}

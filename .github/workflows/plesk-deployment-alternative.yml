@@ -1,0 +1,33 @@
+# 🚀 GitHub Actions Deployment (SSH/SFTP Alternative)
+
+name: Deploy to Plesk
+on:
+    push:
+        branches: [main]
+    workflow_dispatch:
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: "18"
+
+            - name: Build Frontend
+              run: |
+                  cd frontend
+                  npm ci
+                  npm run build
+
+            - name: Deploy via FTP
+              uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+              with:
+                  server: digimagical.com
+                  username: dmpl20230054
+                  password: ${{ secrets.PLESK_PASSWORD }}
+                  local-dir: ./
+                  server-dir: /var/www/vhosts/menschlichkeit-oesterreich.at/

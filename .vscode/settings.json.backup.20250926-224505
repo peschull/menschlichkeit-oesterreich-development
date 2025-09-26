@@ -1,0 +1,575 @@
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": "active",
+  "editor.guides.bracketPairsHorizontal": "active",
+  "editor.guides.highlightActiveIndentation": true,
+  "editor.guides.indentation": true,
+  "editor.quickSuggestions": {
+    "other": "on",
+    "comments": "off",
+    "strings": "on"
+  },
+  "editor.quickSuggestionsDelay": 10,
+  "editor.suggest.insertMode": "replace",
+  "editor.suggest.localityBonus": true,
+  "editor.suggest.matchOnWordStartOnly": false,
+  "editor.suggest.showWords": false,
+  "editor.acceptSuggestionOnCommitCharacter": true,
+  "editor.acceptSuggestionOnEnter": "on",
+  "php.suggest.basic": false,
+  "typescript.preferences.includePackageJsonAutoImports": "off",
+  "files.exclude": {
+    "vendor/": true,
+    "node_modules/": true
+  },
+  "github.copilot.chat.instructionFiles": [
+    {
+      "file": ".github/copilot-instructions.md"
+    },
+    {
+      "file": ".github/copilot-instructions.security.md"
+    },
+    {
+      "file": ".github/copilot-instructions.commit.md"
+    },
+    {
+      "file": ".github/copilot-instructions.js.md",
+      "globs": [
+        "**/*.js",
+        "**/*.jsx"
+      ]
+    },
+    {
+      "file": ".github/copilot-instructions.ts.md",
+      "globs": [
+        "**/*.ts",
+        "**/*.tsx"
+      ]
+    },
+    {
+      "file": ".github/copilot-instructions.python.md",
+      "globs": [
+        "**/*.py"
+      ]
+    }
+  ],
+  "github.copilot.chat.promptFiles": [
+    {
+      "file": ".copilot/prompts/scaffold-component.md"
+    },
+    {
+      "file": ".copilot/prompts/review-security.md"
+    },
+    {
+      "file": ".copilot/prompts/gen-tests.md"
+    }
+  ],
+  "github.copilot.chat.chatModes": [
+    {
+      "file": ".copilot/modes/plan-only.md"
+    },
+    {
+      "file": ".copilot/modes/frontend-only.md"
+    }
+  ],
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "markdown": true,
+    "scminput": false
+  },
+  "github.copilot.inlineSuggest.enable": true,
+  "github.copilot.chat.newWorkspace.useContext7": true,
+  "github.copilot.chat.codesearch.enabled": true,
+  "github.copilot.chat.agent.thinkingTool": true,
+  "github.copilot.chat.alternateGptPrompt.enabled": true,
+  "github.copilot.chat.editor.temporalContext.enabled": true,
+  "github.copilot.chat.generateTests.codeLens": true,
+  "github.copilot.chat.languageContext.fix.typescript.enabled": true,
+  "github.copilot.chat.languageContext.inline.typescript.enabled": true,
+  "github.copilot.chat.notebook.enhancedNextEditSuggestions.enabled": true,
+  "github.copilot.chat.notebook.followCellExecution.enabled": true,
+  "github.copilot.chat.workspaceContext": true,
+  "github.copilot.chat.useWorkspaceContext": true,
+  "github.copilot.advanced": {
+    "debug.overrideEngine": "",
+    "debug.overrideProxyUrl": "",
+    "debug.testOverrideProxyUrl": ""
+  },
+  "github.copilot.chat.experimental.codeGeneration": true,
+  "github.copilot.chat.experimental.multiFileEdit": true,
+  "github.copilot.chat.experimental.workspaceSymbols": true,
+  "github.copilot.chat.experimental.securityReview": true,
+  "github.copilot.chat.experimental.privacyCheck": true,
+  "github.copilot.chat.locale": "de-AT",
+  "github.copilot.chat.experimental.contextualHelp": true,
+  "github.copilot.chat.experimental.terminalContext": true,
+  "github.copilot.chat.experimental.taskIntegration": true,
+  "github.copilot.chat.maxTokens": 8000,
+  "github.copilot.chat.temperature": 0.1,
+  "github.copilot.chat.experimental.indexing": true,
+  "github.copilot.chat.welcomeMessage": "enabled",
+  "github.copilot.chat.showWelcomeMessage": true,
+  "github.copilot.editor.enableAutoCompletions": true,
+  "github.copilot.editor.enableCodeActions": true,
+  "github.copilot.inlineSuggest.enableMultipleSuggestions": true,
+  "github.copilot.chat.experimental.workspaceIndexing": true,
+  "github.copilot.chat.experimental.semanticSearch": true,
+  "github.copilot.chat.experimental.fileReferences": true,
+  "github.copilot.chat.experimental.codebaseContext": true,
+  "github.copilot.chat.experimental.crossFileReference": true,
+  "github.copilot.chat.experimental.projectWideRefactor": true,
+  "github.copilot.terminal.suggestCommands": "on",
+  "github.copilot.terminal.explainCommand": true,
+  "github.copilot.chat.experimental.shellIntegration": true,
+  "github.copilot.chat.experimental.commandSuggestions": true,
+  "github.copilot.chat.experimental.modelSelection": true,
+  "github.copilot.chat.experimental.advancedReasoning": true,
+  "github.copilot.chat.experimental.longContext": true,
+  "github.copilot.telemetry": "off",
+  "github.copilot.chat.telemetry": "off",
+  "github.copilot.advanced.telemetry.enabled": false,
+  "github.copilot.chat.experimental.privacyMode": "strict",
+  "github.copilot.chat.experimental.dataProcessing": "local-only",
+  "github.copilot.chat.experimental.auditLogging": true,
+  "github.copilot.chat.experimental.localizedHelp": "de-AT",
+  "github.copilot.chat.experimental.culturalContext": "austria",
+  "github.copilot.chat.experimental.legalCompliance": "eu-gdpr",
+  "github.copilot.chat.experimental.domainSpecific": {
+    "nonprofit": true,
+    "finance": true,
+    "sepa": true,
+    "privacy": true,
+    "authentication": true
+  },
+  "githubPullRequests.experimental.useQuickChat": true,
+  "chatgpt.openOnStartup": true,
+  "chatgpt.cliExecutable": "",
+  "chatgpt.model": "gpt-4o",
+  "chatgpt.inlineCompletions.enabled": true,
+  "chatgpt.workspaceIndexing.enabled": true,
+  "chatgpt.experimental.multiFileEdits": true,
+  "chatgpt.experimental.agent.runTasks": "terminal",
+  "chatgpt.telemetry": "off",
+  "chatgpt.apiKey": "",
+  "chatgpt.temperature": 0.1,
+  "chatgpt.maxTokens": 8000,
+  "chatgpt.contextWindow": "full",
+  "chatgpt.codeCompletion": true,
+  "chatgpt.codeExplanation": true,
+  "chatgpt.codeOptimization": true,
+  "chatgpt.documentGeneration": true,
+  "openai.codex.model": "gpt-4o",
+  "openai.codex.inlineCompletions.enabled": true,
+  "openai.codex.workspaceIndexing.enabled": true,
+  "openai.codex.experimental.multiFileEdits": true,
+  "openai.codex.experimental.agent.runTasks": "terminal",
+  "openai.codex.suggestions.telemetry": "off",
+  "openai.codex.temperature": 0.1,
+  "openai.codex.maxTokens": 8000,
+  "openai.codex.contextLength": "extended",
+  "openai.codex.completionTrigger": "auto",
+  "openai.codex.codeGeneration": true,
+  "openai.codex.codeRefactoring": true,
+  "openai.codex.testGeneration": true,
+  "chatgpt.customPrompts": {
+    "dsgvo-check": "Prüfe diesen Code auf DSGVO-Compliance und österreichische Datenschutzbestimmungen",
+    "sepa-validation": "Validiere SEPA-Lastschrift Code für österreichische Banken",
+    "security-review": "Führe Security-Review für Vereinsmanagement-System durch",
+    "accessibility": "Prüfe Barrierefreiheit nach WCAG 2.1 AA Standard"
+  },
+  "openai.codex.projectContext": {
+    "type": "austrian-nonprofit",
+    "compliance": [
+      "DSGVO",
+      "Austrian-Tax-Law",
+      "Nonprofit-Regulations"
+    ],
+    "languages": [
+      "de-AT",
+      "en"
+    ],
+    "frameworks": [
+      "React",
+      "TypeScript",
+      "Tailwind",
+      "FastAPI",
+      "PostgreSQL"
+    ]
+  },
+  "todo-tree.tree.expanded": true,
+  "todo-tree.tree.flat": true,
+  "debug.inlineValues": "auto",
+  "debug.openDebug": "openOnSessionStart",
+  "debug.focusWindowOnBreak": false,
+  "debug.showBreakpointsInOverviewRuler": true,
+  "debug.onTaskErrors": "debugAnyway",
+  "debug.javascript.autoAttachFilter": "smart",
+  "debug.javascript.smartStep": true,
+  "debug.javascript.usePreview": true,
+  "sourceMap.includeSource": true,
+  "debug.skipFiles": [
+    "<node_internals>/**",
+    "**/node_modules/**",
+    "**/.next/**",
+    "**/dist/**",
+    "**/vendor/**"
+  ],
+  "typescript.tsserver.maxTsServerMemory": 4096,
+  "editor.stickyScroll.enabled": true,
+  "php.validate.enable": true,
+  "php.validate.executablePath": "/opt/plesk/php/8.3/bin/php",
+  "php.debug.executablePath": "/opt/plesk/php/8.3/bin/php",
+  "intelephense.format.enable": true,
+  "intelephense.completion.triggerParameterHints": true,
+  "intelephense.completion.insertUseDeclaration": true,
+  "intelephense.completion.fullyQualifyGlobalConstantsAndFunctions": false,
+  "intelephense.diagnostics.enable": true,
+  "intelephense.diagnostics.run": "onType",
+  "intelephense.files.maxSize": 5000000,
+  "intelephense.environment.phpVersion": "8.3.25",
+  "intelephense.environment.includePaths": [
+    "/opt/plesk/php/8.3/share/pear"
+  ],
+  "intelephense.files.exclude": [
+    "**/node_modules/**",
+    "**/vendor/**/{Test,test,Tests,tests}/**",
+    "**/storage/framework/cache/**",
+    "**/storage/framework/views/**"
+  ],
+  "[php]": {
+    "editor.defaultFormatter": "bmewburn.vscode-intelephense-client",
+    "editor.formatOnSave": true
+  },
+  "eslint.enable": true,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "eslint.format.enable": true,
+  "eslint.lintTask.enable": true,
+  "eslint.codeAction.showDocumentation": {
+    "enable": true
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    }
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    }
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "stylelint.enable": true,
+  "stylelint.validate": [
+    "css",
+    "scss",
+    "sass",
+    "postcss"
+  ],
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.stylelint": "explicit"
+    }
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.stylelint": "explicit"
+    }
+  },
+  "tailwindCSS.includeLanguages": {
+    "html": "html",
+    "javascript": "javascript",
+    "typescript": "typescript",
+    "php": "html"
+  },
+  "tailwindCSS.experimental.configFile": "frontend/tailwind.config.cjs",
+  "tailwindCSS.files.exclude": [
+    "**/node_modules/**",
+    "**/vendor/**",
+    "**/dist/**"
+  ],
+  "prisma.showPrismaDataPlatformNotification": false,
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma",
+    "editor.formatOnSave": true
+  },
+  "python.defaultInterpreterPath": "./.venv/Scripts/python.exe",
+  "python.linting.enabled": true,
+  "python.linting.pylintEnabled": false,
+  "python.linting.flake8Enabled": true,
+  "python.formatting.provider": "black",
+  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.autoImportCompletions": true,
+  "python.analysis.completeFunctionParens": true,
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.python",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
+    }
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.wordWrap": "on",
+    "editor.quickSuggestions": {
+      "comments": "off",
+      "strings": "off",
+      "other": "off"
+    }
+  },
+  "markdown.preview.fontSize": 14,
+  "markdown.preview.lineHeight": 1.6,
+  "docker.showStartPage": false,
+  "docker.containers.groupBy": "Compose Project Name",
+  "gitlens.currentLine.enabled": true,
+  "gitlens.hovers.currentLine.over": "line",
+  "gitlens.blame.compact": true,
+  "gitlens.blame.heatmap.enabled": true,
+  "gitlens.codeLens.enabled": true,
+  "gitlens.statusBar.enabled": true,
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
+  "git.autofetch": true,
+  "todo-tree.general.tags": [
+    "BUG",
+    "HACK",
+    "FIXME",
+    "TODO",
+    "XXX",
+    "[ ]",
+    "[x]"
+  ],
+  "todo-tree.highlights.defaultHighlight": {
+    "icon": "alert",
+    "type": "tag",
+    "foreground": "#FF0000",
+    "background": "#FFFF00",
+    "opacity": 50,
+    "iconColour": "#0000FF"
+  },
+  "todo-tree.highlights.customHighlight": {
+    "TODO": {
+      "icon": "check",
+      "foreground": "#FFD700"
+    },
+    "FIXME": {
+      "icon": "alert",
+      "foreground": "#FF4500"
+    },
+    "BUG": {
+      "icon": "bug",
+      "foreground": "#FF0000"
+    }
+  },
+  "cSpell.enabled": true,
+  "cSpell.language": "en,de",
+  "cSpell.words": [
+    "menschlichkeit",
+    "oesterreich",
+    "drupal",
+    "civicrm",
+    "xdebug",
+    "intelephense",
+    "eslint",
+    "prettier",
+    "tailwindcss",
+    "prisma",
+    "pylance",
+    "vitest",
+    "playwright",
+    "wakatime",
+    "dotenv",
+    "liveserver",
+    "intellicode"
+  ],
+  "wakatime.debug": false,
+  "wakatime.hideFilenames": false,
+  "wakatime.hideBranchNames": false,
+  "wakatime.hideProjectNames": false,
+  "turboConsoleLog.wrapLogMessage": true,
+  "turboConsoleLog.logMessagePrefix": "🚀",
+  "turboConsoleLog.addSemicolonInTheEnd": true,
+  "turboConsoleLog.insertEnclosingClass": true,
+  "turboConsoleLog.insertEnclosingFunction": true,
+  "turboConsoleLog.delimiterInsideMessage": ":",
+  "turboConsoleLog.includeFileNameAndLineNum": true,
+  "javascriptBooster.codeActions.enable": true,
+  "liveServer.settings.donotShowInfoMsg": true,
+  "liveServer.settings.donotVerifyTags": true,
+  "liveServer.settings.port": 5500,
+  "liveServer.settings.root": "/web",
+  "liveServer.settings.CustomBrowser": "chrome",
+  "liveServer.settings.ignoreFiles": [
+    ".vscode/**",
+    "**/*.scss",
+    "**/*.sass",
+    "**/*.ts"
+  ],
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "vsintellicode.features.python.deepLearning": "enabled",
+  "coverage-gutters.coverageFileNames": [
+    "lcov.info",
+    "cov.xml",
+    "coverage.xml",
+    "jacoco.xml",
+    "coverage.lcov"
+  ],
+  "coverage-gutters.showGutterCoverage": true,
+  "coverage-gutters.showLineCoverage": true,
+  "coverage-gutters.showRulerCoverage": true,
+  "axe.enabledTags": [
+    "wcag2a",
+    "wcag2aa",
+    "wcag21aa"
+  ],
+  "git-graph.repository.showTags": true,
+  "git-graph.repository.showRemoteBranches": true,
+  "git-graph.graph.colours": [
+    "#0085d9",
+    "#d73027",
+    "#ff6600",
+    "#ff0066",
+    "#66ff00",
+    "#0066ff"
+  ],
+  "git-graph.date.format": "Date & Time",
+  "git-graph.defaultColumnVisibility": {
+    "Date": true,
+    "Author": true,
+    "Commit": true,
+    "Description": true
+  },
+  "projectManager.git.baseFolders": [
+    "D:\\Arbeitsverzeichniss"
+  ],
+  "projectManager.showProjectNameInStatusBar": true,
+  "projectManager.sortList": "Name",
+  "versionlens.caching.duration": 86400,
+  "versionlens.npm.caching.duration": 3600,
+  "versionlens.composer.caching.duration": 3600,
+  "versionlens.suggestions.showOnStartup": true,
+  "dotenv.enableAutocloaking": false,
+  "vitest.enable": true,
+  "vitest.commandLine": "npx vitest",
+  "playwright.reuseBrowser": false,
+  "playwright.showTrace": false,
+  "files.watcherExclude": {
+    "**/node_modules/**": true,
+    "**/vendor/**": true,
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/coverage/**": true,
+    "**/dist/**": true,
+    "**/build/**": true,
+    "**/.vscode/extensions/**": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/vendor": true,
+    "**/coverage": true,
+    "**/dist": true,
+    "**/build": true,
+    "**/.git": true
+  },
+  "files.associations": {
+    "*.php": "php",
+    "*.module": "php",
+    "*.install": "php",
+    "*.theme": "php",
+    "*.inc": "php",
+    "*.profile": "php",
+    "*.test": "php"
+  },
+  "terminal.integrated.defaultProfile.windows": "PowerShell Core",
+  "terminal.integrated.profiles.windows": {
+    "PowerShell Core": {
+      "path": "pwsh.exe",
+      "args": [
+        "-NoLogo"
+      ],
+      "icon": "terminal-powershell"
+    },
+    "PowerShell": {
+      "source": "PowerShell",
+      "icon": "terminal-powershell",
+      "args": [
+        "-NoLogo"
+      ]
+    },
+    "Command Prompt": {
+      "path": [
+        "${env:windir}\\System32\\cmd.exe"
+      ],
+      "args": [],
+      "icon": "terminal-cmd"
+    },
+    "Git Bash": {
+      "path": "C:\\Program Files\\Git\\bin\\bash.exe",
+      "args": [
+        "--login"
+      ],
+      "icon": "terminal-bash"
+    }
+  },
+  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.fontFamily": "'Cascadia Code PL', 'Fira Code', 'JetBrains Mono', Consolas, monospace",
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.cursorStyle": "line",
+  "terminal.integrated.copyOnSelection": true,
+  "terminal.integrated.rightClickBehavior": "copyPaste",
+  "terminal.integrated.scrollback": 10000,
+  "terminal.integrated.shellIntegration.enabled": true,
+  "terminal.integrated.tabs.enabled": true,
+  "terminal.integrated.tabs.location": "left",
+  "terminal.integrated.persistentSessionReviveProcess": "onExit",
+  "terminal.integrated.enableMultiLinePasteWarning": "auto",
+  "terminal.integrated.localEchoLatencyThreshold": 30,
+  "terminal.integrated.localEchoExcludePrograms": [
+    "vim",
+    "vi",
+    "nano",
+    "tmux"
+  ],
+  "terminal.integrated.gpuAcceleration": "on",
+  "terminal.integrated.smoothScrolling": true,
+  "terminal.integrated.unicodeVersion": "11",
+  "terminal.integrated.env.windows": {
+    "POSH_THEME": "${workspaceFolder}\\menschlichkeit-oesterreich.omp.json"
+  },
+  "terminal.integrated.commandsToSkipShell": [
+    "language-julia.interrupt"
+  ],
+  "terminal.integrated.allowChords": false,
+  "terminal.integrated.allowMnemonics": true,
+  "terminal.integrated.altClickMovesCursor": true,
+  "terminal.integrated.macOptionIsMeta": true,
+  "terminal.integrated.macOptionClickForcesSelection": false,
+  "terminal.integrated.automationProfile.windows": {
+    "path": "pwsh.exe",
+    "args": [
+      "-NoLogo",
+      "-NoProfile"
+    ]
+  },
+  "chatgpt.commentCodeLensEnabled": true
+}

@@ -8,9 +8,9 @@ if [ -z "$DB_WP_NAME" ]; then
     initialize_secure_config || exit 1
 fi
 
-# SFTP Konfiguration aus .env verwenden
-REMOTE_HOST="$SFTP_HOST"
-REMOTE_USER="$SFTP_USER"
+# SFTP Konfiguration mit korrekter IP-Adresse
+REMOTE_HOST="5.183.217.146"
+REMOTE_USER="dmpl20230054"
 REMOTE_PORT=22
 LOCAL_BASE="/mnt/d/Arbeitsverzeichniss"
 
