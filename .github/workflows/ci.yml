@@ -8,9 +8,9 @@ on:
   workflow_dispatch:
 
 env:
-  NODE_VERSION: "18"
-  PYTHON_VERSION: "3.11"
-  PHP_VERSION: "8.1"
+  NODE_VERSION: '18'
+  PYTHON_VERSION: '3.11'
+  PHP_VERSION: '8.1'
 
 jobs:
   # ============================================================================
@@ -23,8 +23,8 @@ jobs:
       fail-fast: false
       matrix:
         project:
-          - "frontend"
-          - "website"
+          - 'frontend'
+          - 'website'
 
     steps:
       - name: 📥 Checkout Repository
@@ -46,8 +46,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: "npm"
-          cache-dependency-path: "${{ matrix.project }}/package-lock.json"
+          cache: 'npm'
+          cache-dependency-path: '${{ matrix.project }}/package-lock.json'
 
       - name: 🔧 Install Dependencies
         if: ${{ steps.check-project.outputs.project_exists == '1' }}
@@ -86,11 +86,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.11", "3.12"]
-        matrix:
+        python-version: ['3.11', '3.12']
         project:
-          - "api.menschlichkeit-oesterreich.at"
-          - "servers"
+          - 'api.menschlichkeit-oesterreich.at'
+          - 'servers'
 
     steps:
       - name: 📥 Checkout Repository
@@ -155,7 +154,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-version: ["8.1", "8.2"]
+        php-version: ['8.1', '8.2']
 
     steps:
       - name: 📥 Checkout Repository
@@ -225,9 +224,9 @@ jobs:
     strategy:
       matrix:
         service:
-          - name: "mcp-essential"
-            path: "./mcp-servers/essential-stack"
-            dockerfile: "Dockerfile"
+          - name: 'mcp-essential'
+            path: './mcp-servers/essential-stack'
+            dockerfile: 'Dockerfile'
       fail-fast: false
 
     steps:
@@ -284,7 +283,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: "npm"
+          cache: 'npm'
 
       - name: 🔍 npm Security Audit
         run: |
@@ -327,7 +326,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: "npm"
+          cache: 'npm'
 
       - name: 🔧 Install Dependencies (root workspaces)
         run: npm ci

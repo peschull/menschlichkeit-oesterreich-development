@@ -1,9 +1,6 @@
 {
   "version": "0.2.0",
   "configurations": [
-    // ================================
-    // 1. PHP/Drupal Debug (Port 9003)
-    // ================================
     {
       "name": "PHP: Xdebug Listen (9003)",
       "type": "php",
@@ -20,9 +17,6 @@
       }
     },
 
-    // ================================
-    // 2. Node.js/JavaScript Debug (Port 9229)
-    // ================================
     {
       "name": "Node: Attach (9229)",
       "type": "node",
@@ -31,8 +25,6 @@
       "restart": true,
       "skipFiles": ["<node_internals>/**", "**/node_modules/**"]
     },
-
-    // API Backend Debug (falls separate Node-API)
     {
       "name": "API Backend (Node Launch)",
       "type": "node",
@@ -46,9 +38,6 @@
       "skipFiles": ["<node_internals>/**", "**/node_modules/**"]
     },
 
-    // ================================
-    // 3. Browser Debug (Chrome)
-    // ================================
     {
       "name": "Chrome: Democracy Games @ localhost:3000",
       "type": "chrome",
@@ -68,9 +57,6 @@
       "sourceMaps": true
     },
 
-    // ================================
-    // 4. Frontend Development (React/Next.js falls hinzugefügt)
-    // ================================
     {
       "name": "Next.js: Server (Attach 9229)",
       "type": "node",
@@ -90,9 +76,6 @@
       "skipFiles": ["**/node_modules/**"]
     },
 
-    // ================================
-    // 5. Testing & Quality
-    // ================================
     {
       "name": "Vitest: Unit Tests (Debug)",
       "type": "node",
@@ -114,9 +97,6 @@
       "console": "integratedTerminal"
     },
 
-    // ================================
-    // 6. Docker Attach
-    // ================================
     {
       "name": "Docker: Node Attach",
       "type": "node",
@@ -130,9 +110,6 @@
     }
   ],
 
-  // ================================
-  // Compound Configurations
-  // ================================
   "compounds": [
     {
       "name": "🚀 Full-Stack: Drupal + Games + API",

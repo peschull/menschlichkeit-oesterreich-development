@@ -1,12 +1,53 @@
 {
   "version": "2.0.0",
   "tasks": [
+    // ================================
+    // PHP/Drupal Stack Tasks
+    // ================================
     {
       "label": "Composer: install",
       "type": "shell",
       "command": "composer install",
-      "group": "build"
+      "group": "build",
+      "options": {
+        "cwd": "${workspaceFolder}/crm.menschlichkeit-oesterreich.at"
+      }
     },
+    {
+      "label": "Drush: Cache Rebuild",
+      "type": "shell",
+      "command": "vendor/bin/drush cr",
+      "group": "test",
+      "options": {
+        "cwd": "${workspaceFolder}/crm.menschlichkeit-oesterreich.at"
+      }
+    },
+    {
+      "label": "PHP: Start Server (Debug Mode)",
+      "type": "shell",
+      "command": "php -S localhost:8000 -t httpdocs",
+      "group": "build",
+      "isBackground": true,
+      "options": {
+        "cwd": "${workspaceFolder}/crm.menschlichkeit-oesterreich.at",
+        "env": {
+          "XDEBUG_MODE": "debug",
+          "XDEBUG_CONFIG": "client_host=127.0.0.1 client_port=9003"
+        }
+      },
+      "problemMatcher": {
+        "pattern": {
+          "regexp": "^(.*):(\\d+):\\s+(.*)",
+          "file": 1,
+          "line": 2,
+          "message": 3
+        }
+      }
+    },
+
+    // ================================
+    // Node.js/JavaScript Stack Tasks
+    // ================================
     {
       "label": "Node: install (lock)",
       "type": "shell",
@@ -14,51 +55,173 @@
       "group": "build"
     },
     {
-      "label": "Lint: ESLint",
+      "label": "Node: Start with Debug",
       "type": "shell",
+      "command": "NODE_OPTIONS='--inspect' npm run dev",
+      "group": "build",
+      "isBackground": true,
+      "problemMatcher": ["$tsc-watch"]
+    },
+    {
+      "label": "Games: Serve Local (Port 3000)",
+      "type": "shell",
+      "command": "python -m http.server 3000",
+      "group": "build", 
+      "isBackground": true,
+      "options": {
+        "cwd": "${workspaceFolder}/web"
+      },
+      "problemMatcher": []
+    },
+
+    // ================================
+    // Frontend Stack Tasks (Next.js)
+    // ================================
+    {
+      "label": "Next.js: Dev (Debug Mode)",
+      "type": "shell",
+      "command": "NODE_OPTIONS='--inspect' npm run dev",
+      "group": "build",
+      "isBackground": true,
+      "options": {
+        "cwd": "${workspaceFolder}/frontend"
+      },
+      "problemMatcher": ["$tsc-watch"]
+    },
+    {
+      "label": "Next.js: Build",
+      "type": "shell",
+      "command": "npm run build",
+      "group": "build",
+      "options": {
+        "cwd": "${workspaceFolder}/frontend"
+      },
+      "problemMatcher": ["$tsc"]
+    },
+
+    // ================================
+    // API Backend Tasks
+    // ================================
+    {
+      "label": "API: Start FastAPI (Debug)",
+      "type": "shell",
+      "command": "python -m uvicorn app.main:app --host 0.0.0.0 --port 8001 --reload",
+      "group": "build",
+      "isBackground": true,
+      "options": {
+        "cwd": "${workspaceFolder}/api.menschlichkeit-oesterreich.at"
+      },
+      "problemMatcher": []
+    },
+
+    // ================================
+    // Quality & Testing Tasks
+    // ================================
+    {
+      "label": "Lint: ESLint",
+      "type": "shell", 
       "command": "npm run lint",
+      "group": "test",
+      "problemMatcher": ["$eslint-stylish"]
+    },
+    {
+      "label": "Format: Prettier",
+      "type": "shell",
+      "command": "npx prettier --write .",
       "group": "test"
     },
     {
-      "label": "Drush: Cache Rebuild",
+      "label": "Test: Vitest Run",
       "type": "shell",
-      "command": "vendor/bin/drush cr",
-      "group": "test"
+      "command": "npx vitest --run",
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "Test: Playwright E2E",
+      "type": "shell",
+      "command": "npx playwright test",
+      "group": "test",
+      "problemMatcher": []
+    },
+
+    // ================================
+    // Database Tasks
+    // ================================
+    {
+      "label": "Prisma: Generate",
+      "type": "shell",
+      "command": "npx prisma generate",
+      "group": "build"
+    },
+    {
+      "label": "DB: Migrate Dev",
+      "type": "shell",
+      "command": "npx prisma migrate dev",
+      "group": "build"
     },
     {
       "label": "DB: Pull (remote→local)",
       "type": "shell",
       "command": "scripts/db-pull.sh",
+      "group": "build",
       "problemMatcher": []
     },
     {
       "label": "DB: Push (local→remote, Vorsicht)",
       "type": "shell",
       "command": "scripts/db-push.sh --apply",
+      "group": "build",
       "problemMatcher": []
     },
+
+    // ================================
+    // Deployment Tasks
+    // ================================
     {
       "label": "Plesk: Pull (Dry-Run)",
       "type": "shell",
       "command": "scripts/plesk-sync.sh pull",
+      "group": "build",
       "problemMatcher": []
     },
     {
       "label": "Plesk: Pull (Apply)",
       "type": "shell",
       "command": "scripts/plesk-sync.sh pull --apply",
+      "group": "build",
       "problemMatcher": []
     },
     {
       "label": "Plesk: Push (Dry-Run)",
       "type": "shell",
       "command": "scripts/plesk-sync.sh push",
+      "group": "build", 
       "problemMatcher": []
     },
     {
       "label": "Plesk: Push (Apply)",
       "type": "shell",
       "command": "scripts/plesk-sync.sh push --apply",
+      "group": "build",
+      "problemMatcher": []
+    },
+
+    // ================================
+    // Docker Tasks
+    // ================================
+    {
+      "label": "Docker: Up (Development)",
+      "type": "shell",
+      "command": "docker-compose -f docker-compose.dev.yml up -d",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Docker: Down",
+      "type": "shell", 
+      "command": "docker-compose down",
+      "group": "build",
       "problemMatcher": []
     }
   ]

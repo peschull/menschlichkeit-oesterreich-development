@@ -53,10 +53,7 @@
       "size": "S",
       "owner_roles": ["Frontend Developer", "Backend Developer"],
       "dor": ["Aktuelles API-Schema verifiziert"],
-      "dod": [
-        "Login funktioniert gegen Dev-API",
-        "Fehlerbotschaften nutzerfreundlich"
-      ],
+      "dod": ["Login funktioniert gegen Dev-API", "Fehlerbotschaften nutzerfreundlich"],
       "dependencies": ["T-001"],
       "status": "done"
     },
@@ -78,10 +75,7 @@
       "size": "M",
       "owner_roles": ["DevOps", "Security"],
       "dor": ["Plesk-Zugriff vorhanden"],
-      "dod": [
-        "Header aktiv auf Prod & Staging",
-        "CSP Violations 0 in Report-Only"
-      ],
+      "dod": ["Header aktiv auf Prod & Staging", "CSP Violations 0 in Report-Only"],
       "dependencies": [],
       "status": "todo"
     },
@@ -106,9 +100,7 @@
       "id": "T-005",
       "title": "Bildoptimierung Website (WebP/AVIF + LazyLoad)",
       "description": "Alle Bilder in moderne Formate, responsive srcset/sizes, lazy-loading; Größenlimits einhalten.",
-      "references": [
-        { "path": "website/index.html:120", "note": "Hero/Icons exemplarisch" }
-      ],
+      "references": [{ "path": "website/index.html:120", "note": "Hero/Icons exemplarisch" }],
       "priority_moscow": "Should",
       "impact": "High",
       "effort": "M",
@@ -452,9 +444,7 @@
       "id": "T-020",
       "title": "DSGVO/PII-Review (Logs & Telemetrie)",
       "description": "Logging/Monitoring/Analytics auf PII prüfen; Data Retention/Consent implementieren.",
-      "references": [
-        { "path": "website/assets/js/main.js:1", "note": "Vitals → Analytics" }
-      ],
+      "references": [{ "path": "website/assets/js/main.js:1", "note": "Vitals → Analytics" }],
       "priority_moscow": "Should",
       "impact": "High",
       "effort": "M",
