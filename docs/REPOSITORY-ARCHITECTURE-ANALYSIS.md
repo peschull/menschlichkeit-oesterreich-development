@@ -10,7 +10,7 @@ Die Repository-Struktur zeigt eine **durchdachte, moderne Microservices-Architek
 
 ## 📊 Konsolidierte Repository-Architektur (WordPress-frei)
 
-**UPDATE: Alle Repositories erfolgreich in Haupt-Repo konsolidiert für Plesk-Deployment**
+## UPDATE: Alle Repositories erfolgreich in Haupt-Repo konsolidiert für Plesk-Deployment
 
 ```mermaid
 graph TB
@@ -77,7 +77,8 @@ graph TB
     F --> T
 ```
 
-### 🎯 **Konsolidierungs-Vorteile**:
+### 🎯 Konsolidierungs-Vorteile
+
 - ✅ **Atomic Deployments**: Alles in einem Commit
 - ✅ **Vereinfachtes Dependency-Management**: Einheitliche Versions
 - ✅ **Plesk-Optimiert**: Direkte Hosting-Integration
@@ -93,7 +94,7 @@ graph TB
 
 ### 2. **Klare Domain-Separation** ⭐⭐⭐⭐⭐
 
-```
+```text
 🎨 Design        → figma-design-system
 💻 Presentation  → frontend, website
 🔧 Business      → api (FastAPI)
@@ -120,7 +121,7 @@ graph TB
 
 ### **Design-to-Code Flow**
 
-```
+```text
 figma-design-system → frontend (React Components)
 figma-design-system → crm (Drupal Theme)
 ```
@@ -129,7 +130,7 @@ figma-design-system → crm (Drupal Theme)
 
 ### **API-Integration Flow**
 
-```
+```text
 frontend → api.menschlichkeit-oesterreich.at (REST calls)
 website → api.menschlichkeit-oesterreich.at (AJAX calls)
 api → crm (CiviCRM data integration)
@@ -139,7 +140,7 @@ api → crm (CiviCRM data integration)
 
 ### **Deployment Flow**
 
-```
+```text
 .github/workflows → deployment-scripts → Plesk hosting
 secrets/ → deployment-scripts (encrypted config)
 ```
@@ -148,7 +149,7 @@ secrets/ → deployment-scripts (encrypted config)
 
 ### **Documentation Flow**
 
-```
+```text
 analysis/ → Projektmanagement insights
 docs/ → Technical documentation
 quality-reports/ → Code quality metrics
@@ -183,7 +184,7 @@ quality-reports/ → Code quality metrics
 
 **Verbesserung**: Separate Infrastructure-as-Code Repository
 
-```
+```text
 NEW: infrastructure/ → Terraform/Ansible für Cloud-Resources
 ```
 
@@ -194,7 +195,7 @@ NEW: infrastructure/ → Terraform/Ansible für Cloud-Resources
 **Aktuell**: Tests vermutlich in jeweiligen Service-Repos  
 **Verbesserung**: Zentrales E2E-Testing-Repository
 
-```
+```text
 NEW: e2e-tests/ → Cypress/Playwright für Cross-Service-Tests
 ```
 
@@ -202,7 +203,7 @@ NEW: e2e-tests/ → Cypress/Playwright für Cross-Service-Tests
 
 ## 🏆 **Architektur-Score: 8.5/10**
 
-### **Scoring-Details**:
+### Scoring-Details
 
 - **Separation of Concerns**: 9/10 ⭐⭐⭐⭐⭐
 - **Scalability**: 8/10 ⭐⭐⭐⭐
@@ -211,7 +212,7 @@ NEW: e2e-tests/ → Cypress/Playwright für Cross-Service-Tests
 - **Developer Experience**: 8/10 ⭐⭐⭐⭐
 - **Documentation**: 9/10 ⭐⭐⭐⭐⭐
 
-### **Gesamtbewertung**:
+### Gesamtbewertung
 
 🎯 **EXCELLENT ARCHITECTURE** - Diese Repository-Struktur ist **sehr sinnvoll** und folgt **modernen Enterprise-Best-Practices**.
 

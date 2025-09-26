@@ -58,7 +58,7 @@ Vollständige Dokumentation aller Repositories des **Menschlichkeit Österreich 
 
 Das Projekt verwendet eine **Mono-Repo-Architektur** mit NPM Workspaces:
 
-```
+```text
 menschlichkeit-oesterreich-development/
 ├── frontend/                    # React-Frontend-Workspace
 ├── website/                     # Legacy-Website-Workspace

@@ -11,8 +11,9 @@ Da alle Inhalte jetzt in das konsolidierte Repository `menschlichkeit-oesterreic
 Besuchen Sie Ihren GitHub Account und suchen Sie nach Repositories, die möglicherweise separate Teile des Projekts enthielten:
 
 **Mögliche Repository-Namen zu prüfen:**
+
 - `menschlichkeit-frontend`
-- `menschlichkeit-api` 
+- `menschlichkeit-api`
 - `menschlichkeit-cms`
 - `menschlichkeit-design-system`
 - `crm-system`
@@ -26,6 +27,7 @@ Besuchen Sie Ihren GitHub Account und suchen Sie nach Repositories, die möglich
 ### 2. **Backup-Verifikation**
 
 **Vor dem Löschen sicherstellen:**
+
 ```bash
 # Überprüfen Sie, dass alle Inhalte im Haupt-Repository sind:
 git log --oneline | head -10
@@ -34,6 +36,7 @@ ls -la
 ```
 
 **Alle wichtigen Komponenten sollten vorhanden sein:**
+
 - ✅ `crm.menschlichkeit-oesterreich.at/` - Drupal CMS
 - ✅ `api.menschlichkeit-oesterreich.at/` - FastAPI Backend  
 - ✅ `frontend/` - React Frontend
@@ -58,6 +61,7 @@ ls -la
 ### 4. **Empfohlene Lösch-Reihenfolge**
 
 **Zuerst prüfen und löschen (falls vorhanden):**
+
 1. Test/Experimental Repositories
 2. Feature-Branch Repositories  
 3. Backup/Archive Repositories
