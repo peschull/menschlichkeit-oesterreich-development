@@ -22,20 +22,20 @@ class GameUI {
       start: document.getElementById('start-screen'),
       game: document.getElementById('game-screen'),
       result: document.getElementById('result-screen'),
-      final: document.getElementById('final-screen')
+      final: document.getElementById('final-screen'),
     };
-    
+
     this.elements = {
       progress: {
         bar: document.querySelector('.progress-fill'),
-        text: document.getElementById('current-scenario')
+        text: document.getElementById('current-scenario'),
       },
       scenario: {
         category: document.getElementById('scenario-category'),
         title: document.getElementById('scenario-title'),
         description: document.getElementById('scenario-description'),
         image: document.getElementById('scenario-image'),
-        options: document.getElementById('decision-options')
+        options: document.getElementById('decision-options'),
       },
       result: {
         title: document.getElementById('result-title'),
@@ -45,33 +45,36 @@ class GameUI {
           empathy: document.getElementById('empathy-score'),
           rights: document.getElementById('rights-score'),
           participation: document.getElementById('participation-score'),
-          courage: document.getElementById('courage-score')
-        }
+          courage: document.getElementById('courage-score'),
+        },
       },
       final: {
-        profile: document.getElementById('democracy-profile')
+        profile: document.getElementById('democracy-profile'),
       },
       loading: document.getElementById('loading-screen'),
-      submitBtn: document.getElementById('submit-decision-btn')
+      submitBtn: document.getElementById('submit-decision-btn'),
     };
   }
 
   setupAnimations() {
     // Add morphing background
     document.body.classList.add('morphing-background');
-    
+
     // Setup intersection observer for stagger animations
     this.setupScrollAnimations();
   }
 
   setupScrollAnimations() {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('fade-in');
-        }
-      });
-    }, { threshold: 0.1 });
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('fade-in');
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
 
     // Observe all glass cards
     document.querySelectorAll('.glass-card').forEach(card => {
@@ -87,57 +90,67 @@ class GameUI {
     if (this.currentScreen && this.currentScreen !== newScreen) {
       this.currentScreen.classList.remove('active');
       this.currentScreen.classList.add('scale-out');
-      
+
       setTimeout(() => {
         this.currentScreen.classList.remove('scale-out');
       }, 300);
     }
 
     // Show new screen with animation
-    setTimeout(() => {
-      newScreen.classList.add('active');
-      newScreen.classList.add('scale-in');
-      
-      setTimeout(() => {
-        newScreen.classList.remove('scale-in');
-      }, 300);
-      
-      this.currentScreen = newScreen;
-      
-      // Focus management
-      this.manageFocus(screenName);
-      
-    }, this.currentScreen === newScreen ? 0 : 150);
+    setTimeout(
+      () => {
+        newScreen.classList.add('active');
+        newScreen.classList.add('scale-in');
+
+        setTimeout(() => {
+          newScreen.classList.remove('scale-in');
+        }, 300);
+
+        this.currentScreen = newScreen;
+
+        // Focus management
+        this.manageFocus(screenName);
+      },
+      this.currentScreen === newScreen ? 0 : 150
+    );
   }
 
   manageFocus(screenName) {
     switch (screenName) {
       case 'start':
-        const startBtn = document.getElementById('start-game-btn');
-        if (startBtn) startBtn.focus();
+        {
+          const startBtn = document.getElementById('start-game-btn');
+          if (startBtn) startBtn.focus();
+        }
         break;
       case 'game':
-        const firstDecision = document.querySelector('.decision-option');
-        if (firstDecision) firstDecision.focus();
+        {
+          const firstDecision = document.querySelector('.decision-option');
+          if (firstDecision) firstDecision.focus();
+        }
         break;
       case 'result':
-        const continueBtn = document.getElementById('continue-btn');
-        if (continueBtn) continueBtn.focus();
+        {
+          const continueBtn = document.getElementById('continue-btn');
+          if (continueBtn) continueBtn.focus();
+        }
         break;
       case 'final':
-        const restartBtn = document.getElementById('restart-btn');
-        if (restartBtn) restartBtn.focus();
+        {
+          const restartBtn = document.getElementById('restart-btn');
+          if (restartBtn) restartBtn.focus();
+        }
         break;
     }
   }
 
   updateProgress(current, total) {
     const percentage = (current / total) * 100;
-    
+
     if (this.elements.progress.bar) {
       this.elements.progress.bar.style.width = `${percentage}%`;
     }
-    
+
     if (this.elements.progress.text) {
       this.elements.progress.text.textContent = current;
     }
@@ -155,11 +168,11 @@ class GameUI {
     if (this.elements.scenario.category) {
       this.elements.scenario.category.textContent = scenario.category;
     }
-    
+
     if (this.elements.scenario.title) {
       this.elements.scenario.title.textContent = scenario.title;
     }
-    
+
     if (this.elements.scenario.description) {
       this.elements.scenario.description.textContent = scenario.description;
     }
@@ -171,7 +184,7 @@ class GameUI {
 
     // Render decision options
     this.renderDecisionOptions(scenario.decisions);
-    
+
     // Add stagger animation to decision options
     setTimeout(() => {
       const options = document.querySelectorAll('.decision-option');
@@ -185,7 +198,9 @@ class GameUI {
   renderDecisionOptions(decisions) {
     if (!this.elements.scenario.options) return;
 
-    const optionsHTML = decisions.map(decision => `
+    const optionsHTML = decisions
+      .map(
+        decision => `
       <button 
         class="decision-option" 
         data-decision-id="${decision.id}"
@@ -195,10 +210,12 @@ class GameUI {
         tabindex="0">
         <p class="decision-option-text">${decision.text}</p>
       </button>
-    `).join('');
+    `
+      )
+      .join('');
 
     this.elements.scenario.options.innerHTML = optionsHTML;
-    
+
     // Update radiogroup attributes
     this.elements.scenario.options.setAttribute('aria-label', 'Wähle deine Entscheidung');
   }
@@ -215,7 +232,7 @@ class GameUI {
     if (selectedOption) {
       selectedOption.classList.add('selected');
       selectedOption.setAttribute('aria-checked', 'true');
-      
+
       // Add selection animation
       selectedOption.classList.add('bounce');
       setTimeout(() => {
@@ -227,7 +244,7 @@ class GameUI {
   updateSubmitButton(enabled) {
     if (this.elements.submitBtn) {
       this.elements.submitBtn.disabled = !enabled;
-      
+
       if (enabled) {
         this.elements.submitBtn.classList.add('glow');
       } else {
@@ -244,7 +261,7 @@ class GameUI {
 
     // Render perspectives
     this.renderPerspectives(scenario.perspectives);
-    
+
     // Update score bars with animation
     this.animateScores(currentScores, maxPossibleScore);
   }
@@ -252,7 +269,9 @@ class GameUI {
   renderPerspectives(perspectives) {
     if (!this.elements.result.perspectives) return;
 
-    const perspectivesHTML = perspectives.map((perspective, index) => `
+    const perspectivesHTML = perspectives
+      .map(
+        (perspective, index) => `
       <div class="perspective-item stagger-item" style="animation-delay: ${index * 0.2}s">
         <div class="perspective-icon">${perspective.icon}</div>
         <div class="perspective-content">
@@ -260,19 +279,21 @@ class GameUI {
           <p class="perspective-text">${perspective.text}</p>
         </div>
       </div>
-    `).join('');
+    `
+      )
+      .join('');
 
     this.elements.result.perspectives.innerHTML = perspectivesHTML;
   }
 
   animateScores(scores, maxPossibleScore) {
     const maxScore = maxPossibleScore / 4; // Max per category
-    
+
     Object.keys(scores).forEach((scoreType, index) => {
       const scoreElement = this.elements.result.scores[scoreType];
       if (scoreElement) {
         const percentage = (scores[scoreType] / maxScore) * 100;
-        
+
         // Animate with delay
         setTimeout(() => {
           scoreElement.style.width = `${Math.min(percentage, 100)}%`;
@@ -333,14 +354,14 @@ class GameUI {
     if (!container) return;
 
     container.classList.add('particle-container');
-    
+
     for (let i = 0; i < 5; i++) {
       const particle = document.createElement('div');
       particle.className = 'particle';
       particle.style.left = `${20 + i * 15}%`;
       particle.style.animationDelay = `${i * 0.5}s`;
       container.appendChild(particle);
-      
+
       // Remove after animation
       setTimeout(() => {
         if (particle.parentNode) {
@@ -357,15 +378,15 @@ class GameUI {
     if (show) {
       loadingScreen.classList.add('active');
       loadingScreen.setAttribute('aria-hidden', 'false');
-      
+
       // Update loading text randomly
       const loadingTexts = [
         'Szenario wird geladen...',
         'Perspektiven werden vorbereitet...',
         'Demokratische Werte werden analysiert...',
-        'Nächste Herausforderung kommt...'
+        'Nächste Herausforderung kommt...',
       ];
-      
+
       const loadingText = loadingScreen.querySelector('.loading-text');
       if (loadingText) {
         loadingText.textContent = loadingTexts[Math.floor(Math.random() * loadingTexts.length)];
@@ -378,9 +399,9 @@ class GameUI {
 
   // Utility methods for animations
   addAnimation(element, animationClass, duration = 300) {
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       element.classList.add(animationClass);
-      
+
       setTimeout(() => {
         element.classList.remove(animationClass);
         resolve();
@@ -416,7 +437,7 @@ class GameUI {
     // Check if user prefers reduced motion
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       document.body.classList.add('reduced-motion');
-      
+
       // Disable problematic animations
       document.querySelectorAll('.morphing-background').forEach(el => {
         el.classList.remove('morphing-background');
@@ -433,9 +454,9 @@ class GameUI {
       <strong>Fehler:</strong> ${message}
       <button type="button" onclick="this.parentElement.remove()">✕</button>
     `;
-    
+
     document.body.appendChild(errorDiv);
-    
+
     // Auto-remove after 5 seconds
     setTimeout(() => {
       if (errorDiv.parentElement) {
@@ -448,7 +469,7 @@ class GameUI {
   optimizePerformance() {
     // Use passive event listeners for scroll
     document.addEventListener('scroll', this.onScroll.bind(this), { passive: true });
-    
+
     // Debounce resize events
     let resizeTimeout;
     window.addEventListener('resize', () => {
@@ -461,7 +482,7 @@ class GameUI {
     // Handle scroll-based animations
     const scrollY = window.scrollY;
     const parallaxElements = document.querySelectorAll('.parallax');
-    
+
     parallaxElements.forEach(element => {
       const speed = element.dataset.speed || 0.5;
       element.style.transform = `translateY(${scrollY * speed}px)`;

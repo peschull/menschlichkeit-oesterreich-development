@@ -3,10 +3,13 @@
    100-Level Campaign System with Enhanced Game Mechanics
    ========================================================================== */
 
+/* global DemocracyWorldMap, SkillTreeSystem, MinigamePool, BossSystem,
+          SKILL_DEFINITIONS, BOSS_DEFINITIONS, BossBattle, MultiplayerConnection */
+
 // Enhanced Game State Management for 100+ Levels
 class DemocracyMetaverse {
   constructor() {
-    this.version = "2.0.0-metaverse";
+    this.version = '2.0.0-metaverse';
     this.totalLevels = 110; // 100 campaign + 10 endgame
     this.currentLevel = 1;
     this.gameState = this.initializeMetaverseState();
@@ -15,7 +18,7 @@ class DemocracyMetaverse {
     this.minigamePool = new MinigamePool();
     this.bossSystem = new BossSystem();
     this.multiplayerMode = false;
-    
+
     this.init();
   }
 
@@ -24,15 +27,15 @@ class DemocracyMetaverse {
       player: {
         profile: {
           name: null,
-          avatar: "bridge_builder",
-          democraticTitle: "Demokratie-Lernende*r",
-          playTimeMinutes: 0
+          avatar: 'bridge_builder',
+          democraticTitle: 'Demokratie-Lernende*r',
+          playTimeMinutes: 0,
         },
         stats: {
           E: 0, // Empathie
-          R: 0, // Menschenrechte  
+          R: 0, // Menschenrechte
           P: 0, // Partizipation
-          Z: 0  // Zivilcourage
+          Z: 0, // Zivilcourage
         },
         skills: [],
         inventory: [],
@@ -43,169 +46,169 @@ class DemocracyMetaverse {
           chaptersCompleted: 0,
           bossesDefeated: 0,
           hiddenAreasFound: [],
-          endingUnlocked: null
-        }
+          endingUnlocked: null,
+        },
       },
       world: {
         regions: this.initializeRegions(),
         globalCrisisLevel: 1,
         planetaryBridgeHealth: 100,
         bridgeNetwork: new Map(),
-        timeline: []
+        timeline: [],
       },
       session: {
         startTime: new Date(),
         decisionsToday: 0,
         reflectionsCompleted: 0,
         multiplayerSessionId: null,
-        cooperationScore: 0
+        cooperationScore: 0,
       },
       analytics: {
         levelCompletionTimes: new Map(),
         decisionPatterns: [],
         reflectionQuality: [],
-        skillUsageStats: new Map()
-      }
+        skillUsageStats: new Map(),
+      },
     };
   }
 
   initializeRegions() {
     return [
       {
-        id: "neighborhood",
-        name: "Nachbarschaft",
+        id: 'neighborhood',
+        name: 'Nachbarschaft',
         chapterNumber: 1,
-        state: "neutral", // neutral|thriving|fragile|crisis
+        state: 'neutral', // neutral|thriving|fragile|crisis
         bridgeIntegrity: 100,
-        levels: this.generateChapterLevels(1, "neighborhood"),
-        specialFeatures: ["community_center", "playground"],
-        hiddenAreas: ["mediation_garden"],
-        bossDefeated: false
+        levels: this.generateChapterLevels(1, 'neighborhood'),
+        specialFeatures: ['community_center', 'playground'],
+        hiddenAreas: ['mediation_garden'],
+        bossDefeated: false,
       },
       {
-        id: "education_work", 
-        name: "Schule & Arbeit",
+        id: 'education_work',
+        name: 'Schule & Arbeit',
         chapterNumber: 2,
-        state: "neutral",
+        state: 'neutral',
         bridgeIntegrity: 100,
-        levels: this.generateChapterLevels(2, "education_work"),
-        specialFeatures: ["school", "workplace", "union_hall"],
-        hiddenAreas: ["equity_archive"],
-        bossDefeated: false
+        levels: this.generateChapterLevels(2, 'education_work'),
+        specialFeatures: ['school', 'workplace', 'union_hall'],
+        hiddenAreas: ['equity_archive'],
+        bossDefeated: false,
       },
       {
-        id: "digital",
-        name: "Digitale Demokratie", 
+        id: 'digital',
+        name: 'Digitale Demokratie',
         chapterNumber: 3,
-        state: "neutral",
+        state: 'neutral',
         bridgeIntegrity: 100,
-        levels: this.generateChapterLevels(3, "digital"),
-        specialFeatures: ["data_center", "media_hub"],
-        hiddenAreas: ["truth_sanctuary"],
-        bossDefeated: false
+        levels: this.generateChapterLevels(3, 'digital'),
+        specialFeatures: ['data_center', 'media_hub'],
+        hiddenAreas: ['truth_sanctuary'],
+        bossDefeated: false,
       },
       {
-        id: "diversity",
-        name: "Gesellschaft & Vielfalt",
-        chapterNumber: 4, 
-        state: "neutral",
+        id: 'diversity',
+        name: 'Gesellschaft & Vielfalt',
+        chapterNumber: 4,
+        state: 'neutral',
         bridgeIntegrity: 100,
-        levels: this.generateChapterLevels(4, "diversity"),
-        specialFeatures: ["cultural_center", "integration_office"],
-        hiddenAreas: ["harmony_plaza"],
-        bossDefeated: false
+        levels: this.generateChapterLevels(4, 'diversity'),
+        specialFeatures: ['cultural_center', 'integration_office'],
+        hiddenAreas: ['harmony_plaza'],
+        bossDefeated: false,
       },
       {
-        id: "local_politics",
-        name: "Politik vor Ort",
+        id: 'local_politics',
+        name: 'Politik vor Ort',
         chapterNumber: 5,
-        state: "neutral", 
+        state: 'neutral',
         bridgeIntegrity: 100,
-        levels: this.generateChapterLevels(5, "local_politics"),
-        specialFeatures: ["town_hall", "civic_square"],
-        hiddenAreas: ["participation_tower"],
-        bossDefeated: false
+        levels: this.generateChapterLevels(5, 'local_politics'),
+        specialFeatures: ['town_hall', 'civic_square'],
+        hiddenAreas: ['participation_tower'],
+        bossDefeated: false,
       },
       {
-        id: "crisis",
-        name: "Krise & Konflikt",
+        id: 'crisis',
+        name: 'Krise & Konflikt',
         chapterNumber: 6,
-        state: "neutral",
-        bridgeIntegrity: 100, 
-        levels: this.generateChapterLevels(6, "crisis"),
-        specialFeatures: ["emergency_center", "solidarity_network"],
-        hiddenAreas: ["resilience_vault"],
-        bossDefeated: false
+        state: 'neutral',
+        bridgeIntegrity: 100,
+        levels: this.generateChapterLevels(6, 'crisis'),
+        specialFeatures: ['emergency_center', 'solidarity_network'],
+        hiddenAreas: ['resilience_vault'],
+        bossDefeated: false,
       },
       {
-        id: "climate",
-        name: "Klimapolitik & Generationen", 
+        id: 'climate',
+        name: 'Klimapolitik & Generationen',
         chapterNumber: 7,
-        state: "neutral",
+        state: 'neutral',
         bridgeIntegrity: 100,
-        levels: this.generateChapterLevels(7, "climate"),
-        specialFeatures: ["renewable_park", "future_lab"],
-        hiddenAreas: ["sustainability_dome"],
-        bossDefeated: false
+        levels: this.generateChapterLevels(7, 'climate'),
+        specialFeatures: ['renewable_park', 'future_lab'],
+        hiddenAreas: ['sustainability_dome'],
+        bossDefeated: false,
       },
       {
-        id: "global",
-        name: "Globale Demokratie",
+        id: 'global',
+        name: 'Globale Demokratie',
         chapterNumber: 8,
-        state: "neutral",
+        state: 'neutral',
         bridgeIntegrity: 100,
-        levels: this.generateChapterLevels(8, "global"), 
-        specialFeatures: ["un_headquarters", "embassy_row"],
-        hiddenAreas: ["world_council"],
-        bossDefeated: false
+        levels: this.generateChapterLevels(8, 'global'),
+        specialFeatures: ['un_headquarters', 'embassy_row'],
+        hiddenAreas: ['world_council'],
+        bossDefeated: false,
       },
       {
-        id: "under_pressure", 
-        name: "Demokratie unter Druck",
+        id: 'under_pressure',
+        name: 'Demokratie unter Druck',
         chapterNumber: 9,
-        state: "neutral",
+        state: 'neutral',
         bridgeIntegrity: 100,
-        levels: this.generateChapterLevels(9, "under_pressure"),
-        specialFeatures: ["free_press", "civil_rights_monument"],
-        hiddenAreas: ["resistance_archive"],
-        bossDefeated: false
+        levels: this.generateChapterLevels(9, 'under_pressure'),
+        specialFeatures: ['free_press', 'civil_rights_monument'],
+        hiddenAreas: ['resistance_archive'],
+        bossDefeated: false,
       },
       {
-        id: "future_2050",
-        name: "Demokratie 2050", 
+        id: 'future_2050',
+        name: 'Demokratie 2050',
         chapterNumber: 10,
-        state: "neutral",
+        state: 'neutral',
         bridgeIntegrity: 100,
-        levels: this.generateChapterLevels(10, "future_2050"),
-        specialFeatures: ["ai_ethics_lab", "virtual_agora"],
-        hiddenAreas: ["consciousness_nexus"],
-        bossDefeated: false
+        levels: this.generateChapterLevels(10, 'future_2050'),
+        specialFeatures: ['ai_ethics_lab', 'virtual_agora'],
+        hiddenAreas: ['consciousness_nexus'],
+        bossDefeated: false,
       },
       {
-        id: "planetary_endgame",
-        name: "Planetare Demokratie",
+        id: 'planetary_endgame',
+        name: 'Planetare Demokratie',
         chapterNumber: 11,
-        state: "locked",
+        state: 'locked',
         bridgeIntegrity: 0,
         levels: this.generateEndgameLevels(),
-        specialFeatures: ["earth_council", "species_parliament"],
-        hiddenAreas: ["cosmic_bridge"],
-        bossDefeated: false
-      }
+        specialFeatures: ['earth_council', 'species_parliament'],
+        hiddenAreas: ['cosmic_bridge'],
+        bossDefeated: false,
+      },
     ];
   }
 
   generateChapterLevels(chapterNum, regionId) {
     const baseLevel = (chapterNum - 1) * 10;
     const levels = [];
-    
+
     for (let i = 1; i <= 10; i++) {
       const levelNum = baseLevel + i;
-      let levelType = "scenario";
-      
-      if (i === 9) levelType = "special";
-      if (i === 10) levelType = "boss";
-      
+      let levelType = 'scenario';
+
+      if (i === 9) levelType = 'special';
+      if (i === 10) levelType = 'boss';
+
       levels.push({
         id: `${chapterNum}.${i}`,
         globalId: levelNum,
@@ -215,29 +218,36 @@ class DemocracyMetaverse {
         unlocked: levelNum === 1,
         completed: false,
         perfectScore: false,
-        requirements: levelNum > 1 ? [`${chapterNum}.${i-1}`] : [],
+        requirements: levelNum > 1 ? [`${chapterNum}.${i - 1}`] : [],
         rewards: this.calculateLevelRewards(chapterNum, i, levelType),
         minigame: this.assignMinigame(levelType),
         characters: this.assignCharacters(regionId, i),
         learningObjectives: this.getLearningObjectives(chapterNum, i),
         metadata: {
-          estimatedDuration: levelType === "boss" ? 15 : levelType === "special" ? 12 : 8,
-          accessibility: "WCAG_AAA",
+          estimatedDuration: levelType === 'boss' ? 15 : levelType === 'special' ? 12 : 8,
+          accessibility: 'WCAG_AAA',
           contentWarnings: this.getContentWarnings(chapterNum, i),
-          cooperativeModeAvailable: true
-        }
+          cooperativeModeAvailable: true,
+        },
       });
     }
-    
+
     return levels;
   }
 
   generateEndgameLevels() {
     const endgameLevels = [];
     const endgameScenarios = [
-      "Klimaflucht", "Ressourcenkriege", "KI-Despot", "Weltwirtschaftskollaps",
-      "Planetare Demokratie", "Globale Abstimmung", "Zukunftspakt", 
-      "Internationale Solidarität", "Letzte Brücke", "Die Brücke der Zukunft"
+      'Klimaflucht',
+      'Ressourcenkriege',
+      'KI-Despot',
+      'Weltwirtschaftskollaps',
+      'Planetare Demokratie',
+      'Globale Abstimmung',
+      'Zukunftspakt',
+      'Internationale Solidarität',
+      'Letzte Brücke',
+      'Die Brücke der Zukunft',
     ];
 
     endgameScenarios.forEach((title, index) => {
@@ -245,31 +255,34 @@ class DemocracyMetaverse {
         id: `endgame.${index + 1}`,
         globalId: 101 + index,
         title: title,
-        type: index === 9 ? "final_boss" : "endgame_scenario",
+        type: index === 9 ? 'final_boss' : 'endgame_scenario',
         difficulty: 5,
         unlocked: false,
         completed: false,
         perfectScore: false,
-        requirements: index === 0 ? ["10.10"] : [`endgame.${index}`],
+        requirements: index === 0 ? ['10.10'] : [`endgame.${index}`],
         rewards: {
-          E: 3, R: 3, P: 3, Z: 3,
-          skills: ["planetary_consciousness"],
-          achievements: ["endgame_survivor"],
-          unlocks: index === 9 ? ["cosmic_ending"] : []
+          E: 3,
+          R: 3,
+          P: 3,
+          Z: 3,
+          skills: ['planetary_consciousness'],
+          achievements: ['endgame_survivor'],
+          unlocks: index === 9 ? ['cosmic_ending'] : [],
         },
-        characters: ["world_leaders", "future_generations", "ai_entities"],
+        characters: ['world_leaders', 'future_generations', 'ai_entities'],
         learningObjectives: [
-          "Globale Interdependenzen verstehen",
-          "Planetare Verantwortung übernehmen", 
-          "Zukunftsvisionen entwickeln"
+          'Globale Interdependenzen verstehen',
+          'Planetare Verantwortung übernehmen',
+          'Zukunftsvisionen entwickeln',
         ],
         metadata: {
           estimatedDuration: 20,
-          accessibility: "WCAG_AAA",
-          contentWarnings: ["complex_scenarios", "future_uncertainty"],
+          accessibility: 'WCAG_AAA',
+          contentWarnings: ['complex_scenarios', 'future_uncertainty'],
           cooperativeModeAvailable: true,
-          multiplayerRecommended: true
-        }
+          multiplayerRecommended: true,
+        },
       });
     });
 
@@ -293,7 +306,7 @@ class DemocracyMetaverse {
       this.updateWorldState(level);
       return true;
     }
-    
+
     return false;
   }
 
@@ -307,24 +320,24 @@ class DemocracyMetaverse {
       decisions: decisions,
       performance: performance,
       duration: performance.duration,
-      perfectScore: performance.score >= 0.9
+      perfectScore: performance.score >= 0.9,
     };
 
     // Apply rewards
     this.applyLevelRewards(level.rewards, performance);
-    
+
     // Update world state
     this.updateRegionState(level, decisions);
-    
+
     // Update bridge network
     this.updateBridgeNetwork(level, decisions);
-    
+
     // Check for achievements
     this.checkAchievements(level, performance);
-    
+
     // Unlock next level(s)
     this.unlockSubsequentLevels(level);
-    
+
     // Track analytics
     this.trackLevelCompletion(level, performance);
 
@@ -336,28 +349,26 @@ class DemocracyMetaverse {
     if (!region) return;
 
     // Calculate decision impact on region
-    const positiveDecisions = decisions.filter(d => 
-      d.effect.E > 0 || d.effect.R > 0 || d.effect.P > 0 || d.effect.Z > 0
+    const positiveDecisions = decisions.filter(
+      d => d.effect.E > 0 || d.effect.R > 0 || d.effect.P > 0 || d.effect.Z > 0
     ).length;
-    
+
     const totalDecisions = decisions.length;
     const positiveRatio = positiveDecisions / totalDecisions;
 
     // Update bridge integrity
     const integrityChange = Math.floor((positiveRatio - 0.5) * 20);
-    region.bridgeIntegrity = Math.max(0, Math.min(100, 
-      region.bridgeIntegrity + integrityChange
-    ));
+    region.bridgeIntegrity = Math.max(0, Math.min(100, region.bridgeIntegrity + integrityChange));
 
     // Update region state based on bridge integrity
     if (region.bridgeIntegrity >= 80) {
-      region.state = "thriving";
+      region.state = 'thriving';
     } else if (region.bridgeIntegrity >= 60) {
-      region.state = "stable";
+      region.state = 'stable';
     } else if (region.bridgeIntegrity >= 40) {
-      region.state = "fragile";
+      region.state = 'fragile';
     } else {
-      region.state = "crisis";
+      region.state = 'crisis';
     }
 
     // Update global crisis level
@@ -366,17 +377,18 @@ class DemocracyMetaverse {
 
   updateGlobalCrisis() {
     const regions = this.gameState.world.regions;
-    const crisisRegions = regions.filter(r => r.state === "crisis").length;
-    const fragileRegions = regions.filter(r => r.state === "fragile").length;
-    
+    const crisisRegions = regions.filter(r => r.state === 'crisis').length;
+    const fragileRegions = regions.filter(r => r.state === 'fragile').length;
+
     // Calculate global crisis level (1-10)
-    this.gameState.world.globalCrisisLevel = Math.max(1, 
+    this.gameState.world.globalCrisisLevel = Math.max(
+      1,
       Math.min(10, crisisRegions * 2 + fragileRegions)
     );
 
     // Update planetary bridge health
-    const averageIntegrity = regions.reduce((sum, r) => 
-      sum + r.bridgeIntegrity, 0) / regions.length;
+    const averageIntegrity =
+      regions.reduce((sum, r) => sum + r.bridgeIntegrity, 0) / regions.length;
     this.gameState.world.planetaryBridgeHealth = Math.floor(averageIntegrity);
   }
 
@@ -386,24 +398,26 @@ class DemocracyMetaverse {
     if (!skill) return false;
 
     // Check requirements
-    const hasRequiredStats = Object.entries(skill.requirements.stats || {})
-      .every(([stat, min]) => this.gameState.player.stats[stat] >= min);
-    
-    const hasRequiredSkills = (skill.requirements.skills || [])
-      .every(reqSkill => this.gameState.player.skills.includes(reqSkill));
+    const hasRequiredStats = Object.entries(skill.requirements.stats || {}).every(
+      ([stat, min]) => this.gameState.player.stats[stat] >= min
+    );
+
+    const hasRequiredSkills = (skill.requirements.skills || []).every(reqSkill =>
+      this.gameState.player.skills.includes(reqSkill)
+    );
 
     if (hasRequiredStats && hasRequiredSkills) {
       this.gameState.player.skills.push(skillId);
       this.gameState.player.inventory.push(`skill_${skillId}`);
-      
+
       // Apply passive effects
       if (skill.passiveEffects) {
         this.applyPassiveEffects(skill.passiveEffects);
       }
-      
+
       return true;
     }
-    
+
     return false;
   }
 
@@ -419,8 +433,8 @@ class DemocracyMetaverse {
       playerSkills: this.gameState.player.skills,
       worldState: this.gameState.world,
       difficulty: level.difficulty,
-      onVictory: (results) => this.handleBossVictory(bossId, results),
-      onDefeat: (results) => this.handleBossDefeat(bossId, results)
+      onVictory: results => this.handleBossVictory(bossId, results),
+      onDefeat: results => this.handleBossDefeat(bossId, results),
     });
   }
 
@@ -429,17 +443,17 @@ class DemocracyMetaverse {
     this.multiplayerMode = true;
     this.gameState.session.multiplayerSessionId = sessionConfig.sessionId;
     this.gameState.session.cooperationScore = 0;
-    
+
     // Initialize WebRTC connection for real-time cooperation
     this.multiplayerConnection = new MultiplayerConnection(sessionConfig);
-    
+
     // Set up event listeners for cooperative decisions
     this.multiplayerConnection.on('decision_proposal', this.handleCooperativeDecision.bind(this));
     this.multiplayerConnection.on('consensus_reached', this.handleConsensus.bind(this));
     this.multiplayerConnection.on('cooperation_bonus', this.handleCooperationBonus.bind(this));
   }
 
-  handleCooperativeDecision(proposal) {
+  handleCooperativeDecision(_proposal) {
     // Present decision to all players
     // Implement voting/consensus mechanism
     // Apply group decision effects
@@ -458,7 +472,7 @@ class DemocracyMetaverse {
       emotionalImpact: reflectionData.emotionalImpact,
       learningInsights: reflectionData.learningInsights,
       wordCount: this.calculateWordCount(reflectionData),
-      qualityScore: this.assessReflectionQuality(reflectionData)
+      qualityScore: this.assessReflectionQuality(reflectionData),
     };
 
     // Store reflection
@@ -486,18 +500,18 @@ class DemocracyMetaverse {
       growthAreas: this.identifyGrowthAreas(),
       recommendedPaths: this.generateRecommendations(),
       transferPotential: this.assessTransferPotential(),
-      timestamp: new Date()
+      timestamp: new Date(),
     };
   }
 
   calculateDemocraticProfile() {
     const stats = this.gameState.player.stats;
     const total = stats.E + stats.R + stats.P + stats.Z;
-    
-    if (total >= 80) return "Demokratie-Champion";
-    if (total >= 60) return "Brücken-Bauer*in"; 
-    if (total >= 40) return "Demokratie-Lernende*r";
-    return "Demokratie-Einsteiger*in";
+
+    if (total >= 80) return 'Demokratie-Champion';
+    if (total >= 60) return 'Brücken-Bauer*in';
+    if (total >= 40) return 'Demokratie-Lernende*r';
+    return 'Demokratie-Einsteiger*in';
   }
 
   // Accessibility enhancements for inclusive gameplay
@@ -505,19 +519,19 @@ class DemocracyMetaverse {
     if (settings.reducedMotion) {
       document.body.classList.add('reduced-motion');
     }
-    
+
     if (settings.highContrast) {
       document.body.classList.add('high-contrast');
     }
-    
+
     if (settings.dyslexiaSupport) {
       document.body.classList.add('dyslexia-friendly');
     }
-    
+
     if (settings.screenReaderMode) {
       this.enableScreenReaderEnhancements();
     }
-    
+
     if (settings.simplifiedLanguage) {
       this.enableSimplifiedLanguage();
     }
@@ -533,7 +547,7 @@ class DemocracyMetaverse {
       reflections: this.collectAllReflections(),
       democraticProfile: this.generateLearningProfile(),
       timeline: this.generatePlayTimeline(),
-      transferRecommendations: this.generateTransferRecommendations()
+      transferRecommendations: this.generateTransferRecommendations(),
     };
 
     switch (format) {
@@ -556,7 +570,7 @@ class DemocracyMetaverse {
       memoryUsage: performance.memory ? performance.memory.usedJSHeapSize : null,
       activeConnections: this.multiplayerMode ? 1 : 0,
       cacheEfficiency: this.calculateCacheHitRate(),
-      accessibilityCompliance: this.validateAccessibility()
+      accessibilityCompliance: this.validateAccessibility(),
     };
   }
 
@@ -570,9 +584,7 @@ class DemocracyMetaverse {
   }
 
   findRegionByLevel(level) {
-    return this.gameState.world.regions.find(region => 
-      region.levels.some(l => l.id === level.id)
-    );
+    return this.gameState.world.regions.find(region => region.levels.some(l => l.id === level.id));
   }
 
   // Initialize the enhanced democracy metaverse
@@ -580,19 +592,19 @@ class DemocracyMetaverse {
     console.log('🌉 Democracy Metaverse v2.0 initialized');
     console.log(`📊 ${this.totalLevels} levels loaded`);
     console.log('🎮 Enhanced game systems active');
-    
+
     // Load saved state if available
     this.loadGameState();
-    
+
     // Initialize UI systems
     this.initializeUI();
-    
+
     // Setup accessibility
     this.setupAccessibility();
-    
+
     // Enable analytics (opt-in)
     this.setupAnalytics();
-    
+
     // Ready to play!
     this.emit('game_ready');
   }
@@ -601,11 +613,11 @@ class DemocracyMetaverse {
 // Initialize the Democracy Metaverse
 document.addEventListener('DOMContentLoaded', () => {
   window.democracyMetaverse = new DemocracyMetaverse();
-  
+
   // Development helpers
   if (process.env.NODE_ENV === 'development') {
     window.debugMetaverse = () => window.democracyMetaverse.gameState;
-    window.jumpToLevel = (levelId) => window.democracyMetaverse.unlockLevel(levelId);
+    window.jumpToLevel = levelId => window.democracyMetaverse.unlockLevel(levelId);
     window.exportProfile = () => window.democracyMetaverse.exportGameData('json');
     console.log('🔧 Debug tools available: debugMetaverse(), jumpToLevel(), exportProfile()');
   }

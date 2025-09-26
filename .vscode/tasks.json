@@ -57,16 +57,21 @@
     {
       "label": "Node: Start with Debug",
       "type": "shell",
-      "command": "NODE_OPTIONS='--inspect' npm run dev",
+      "command": "npm run dev",
       "group": "build",
       "isBackground": true,
-      "problemMatcher": ["$tsc-watch"]
+      "problemMatcher": ["$tsc-watch"],
+      "options": {
+        "env": {
+          "NODE_OPTIONS": "--inspect"
+        }
+      }
     },
     {
       "label": "Games: Serve Local (Port 3000)",
       "type": "shell",
       "command": "python -m http.server 3000",
-      "group": "build", 
+      "group": "build",
       "isBackground": true,
       "options": {
         "cwd": "${workspaceFolder}/web"
@@ -80,11 +85,14 @@
     {
       "label": "Next.js: Dev (Debug Mode)",
       "type": "shell",
-      "command": "NODE_OPTIONS='--inspect' npm run dev",
+      "command": "npm run dev",
       "group": "build",
       "isBackground": true,
       "options": {
-        "cwd": "${workspaceFolder}/frontend"
+        "cwd": "${workspaceFolder}/frontend",
+        "env": {
+          "NODE_OPTIONS": "--inspect"
+        }
       },
       "problemMatcher": ["$tsc-watch"]
     },
@@ -119,7 +127,7 @@
     // ================================
     {
       "label": "Lint: ESLint",
-      "type": "shell", 
+      "type": "shell",
       "command": "npm run lint",
       "group": "test",
       "problemMatcher": ["$eslint-stylish"]
@@ -129,6 +137,13 @@
       "type": "shell",
       "command": "npx prettier --write .",
       "group": "test"
+    },
+    {
+      "label": "Stylelint: Check CSS",
+      "type": "shell",
+      "command": "npx stylelint \"web/**/*.css\" \"frontend/src/**/*.{css,pcss}\"",
+      "group": "test",
+      "problemMatcher": []
     },
     {
       "label": "Test: Vitest Run",
@@ -196,7 +211,7 @@
       "label": "Plesk: Push (Dry-Run)",
       "type": "shell",
       "command": "scripts/plesk-sync.sh push",
-      "group": "build", 
+      "group": "build",
       "problemMatcher": []
     },
     {
@@ -219,7 +234,7 @@
     },
     {
       "label": "Docker: Down",
-      "type": "shell", 
+      "type": "shell",
       "command": "docker-compose down",
       "group": "build",
       "problemMatcher": []

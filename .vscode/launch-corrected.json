@@ -26,16 +26,22 @@
       "skipFiles": ["<node_internals>/**", "**/node_modules/**"]
     },
     {
-      "name": "API Backend (Node Launch)",
-      "type": "node",
+      "name": "Python: FastAPI (uvicorn)",
+      "type": "python",
       "request": "launch",
-      "program": "${workspaceFolder}/api.menschlichkeit-oesterreich.at/app/main.py",
-      "runtimeExecutable": "node",
-      "runtimeArgs": ["--inspect"],
+      "module": "uvicorn",
+      "args": [
+        "app.main:app",
+        "--host",
+        "0.0.0.0",
+        "--port",
+        "8001",
+        "--reload"
+      ],
       "cwd": "${workspaceFolder}/api.menschlichkeit-oesterreich.at",
-      "envFile": "${workspaceFolder}/.env",
-      "console": "integratedTerminal",
-      "skipFiles": ["<node_internals>/**", "**/node_modules/**"]
+      "envFile": "${workspaceFolder}/api.menschlichkeit-oesterreich.at/.env",
+      "jinja": true,
+      "console": "integratedTerminal"
     },
 
     {

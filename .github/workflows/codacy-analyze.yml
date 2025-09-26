@@ -17,10 +17,8 @@ jobs:
 
       - name: Guard — CODACY_TOKEN prüfen
         id: guard
-        env:
-          CODACY_TOKEN: ${{ secrets.CODACY_TOKEN }}
         run: |
-          if [[ -z "$CODACY_TOKEN" ]]; then
+          if [[ -z "${{ secrets.CODACY_TOKEN }}" ]]; then
             echo "has_token=false" >> "$GITHUB_OUTPUT"
             echo "CODACY_TOKEN nicht gesetzt — Codacy-Analyse wird übersprungen."
           else

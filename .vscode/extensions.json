@@ -27,6 +27,14 @@
     "gruntfuggly.todo-tree",
 
     // Game Development
-    "ms-vscode.hexeditor"
+    "ms-vscode.hexeditor",
+
+    // Dokumentation & Qualität
+    "yzhang.markdown-all-in-one",
+    "streetsidesoftware.code-spell-checker",
+    "stylelint.vscode-stylelint",
+
+    // Python Support
+    "ms-python.vscode-pylance"
   ]
 }

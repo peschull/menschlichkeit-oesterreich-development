@@ -1,7 +1,9 @@
-/* ==========================================================================
+/* ========================================================================== 
    Brücken Bauen - Main Game Logic
    Interactive Democracy Game Controller
    ========================================================================== */
+
+/* global SCENARIOS, GameUI, getDemocracyProfile, gtag */
 
 class DemocracyGame {
   constructor() {
@@ -12,12 +14,12 @@ class DemocracyGame {
         empathy: 0,
         rights: 0,
         participation: 0,
-        courage: 0
+        courage: 0,
       },
       decisions: [],
       startTime: null,
       totalScore: 0,
-      profile: null
+      profile: null,
     };
 
     this.maxPossibleScore = SCENARIOS.length * 12; // 4 categories × 3 max points
@@ -32,7 +34,7 @@ class DemocracyGame {
     this.setupDebugTools();
     this.debugEmit('game_init', {
       maxPossibleScore: this.maxPossibleScore,
-      scenarios: SCENARIOS.length
+      scenarios: SCENARIOS.length,
     });
     console.log('🌉 Brücken Bauen - Democracy Game initialized');
     this.setupEventListeners();
@@ -76,8 +78,8 @@ class DemocracyGame {
     }
 
     // Keyboard navigation
-    document.addEventListener('keydown', (e) => this.handleKeyboard(e));
-    
+    document.addEventListener('keydown', e => this.handleKeyboard(e));
+
     // Decision option clicks
     this.setupDecisionHandlers();
   }
@@ -85,13 +87,13 @@ class DemocracyGame {
   setupDecisionHandlers() {
     const decisionContainer = document.getElementById('decision-options');
     if (decisionContainer) {
-      decisionContainer.addEventListener('click', (e) => {
+      decisionContainer.addEventListener('click', e => {
         if (e.target.classList.contains('decision-option')) {
           this.selectDecision(e.target.dataset.decisionId);
         }
       });
 
-      decisionContainer.addEventListener('keydown', (e) => {
+      decisionContainer.addEventListener('keydown', e => {
         if (e.key === 'Enter' || e.key === ' ') {
           if (e.target.classList.contains('decision-option')) {
             e.preventDefault();
@@ -129,7 +131,7 @@ class DemocracyGame {
       empathy: 0,
       rights: 0,
       participation: 0,
-      courage: 0
+      courage: 0,
     };
     this.gameState.decisions = [];
     this.gameState.totalScore = 0;
@@ -155,7 +157,7 @@ class DemocracyGame {
     this.debugEmit('scenario_loaded', {
       index: this.currentScenario + 1,
       scenarioId: scenario.id,
-      title: scenario.title
+      title: scenario.title,
     });
   }
 
@@ -174,7 +176,7 @@ class DemocracyGame {
     this.announce(`Entscheidung ausgewählt: ${decision.text}`);
     this.debugEmit('decision_selected', {
       scenarioId: scenario.id,
-      decisionId: decision.id
+      decisionId: decision.id,
     });
   }
 
@@ -191,7 +193,7 @@ class DemocracyGame {
       scenarioId: scenario.id,
       decisionId: this.selectedDecision.id,
       decision: this.selectedDecision,
-      timestamp: new Date()
+      timestamp: new Date(),
     });
 
     // Show result
@@ -202,7 +204,7 @@ class DemocracyGame {
     this.debugEmit('decision_submitted', {
       scenarioId: scenario.id,
       decisionId: this.selectedDecision.id,
-      scores: { ...this.selectedDecision.scores }
+      scores: { ...this.selectedDecision.scores },
     });
   }
 
@@ -212,11 +214,13 @@ class DemocracyGame {
     this.gameState.scores.participation += newScores.participation;
     this.gameState.scores.courage += newScores.courage;
 
-    this.gameState.totalScore = Object.values(this.gameState.scores)
-      .reduce((sum, score) => sum + score, 0);
+    this.gameState.totalScore = Object.values(this.gameState.scores).reduce(
+      (sum, score) => sum + score,
+      0
+    );
     this.debugEmit('scores_updated', {
       totalScore: this.gameState.totalScore,
-      scores: { ...this.gameState.scores }
+      scores: { ...this.gameState.scores },
     });
   }
 
@@ -225,7 +229,7 @@ class DemocracyGame {
     this.ui.renderResult(scenario, decision, this.gameState.scores, this.maxPossibleScore);
 
     this.announce(`Ergebnis: ${decision.feedback}`);
-    
+
     // Update continue button text
     const continueBtn = document.getElementById('continue-btn');
     if (continueBtn) {
@@ -244,7 +248,7 @@ class DemocracyGame {
     this.debugEmit('result_shown', {
       scenarioId: scenario.id,
       decisionId: decision.id,
-      totalScore: this.gameState.totalScore
+      totalScore: this.gameState.totalScore,
     });
   }
 
@@ -256,7 +260,7 @@ class DemocracyGame {
       this.endGame();
     } else {
       this.ui.showLoadingScreen(true);
-      
+
       setTimeout(() => {
         this.ui.showLoadingScreen(false);
         this.loadScenario();
@@ -266,17 +270,14 @@ class DemocracyGame {
 
     this.debugEmit('scenario_advance', {
       from: previousScenario + 1,
-      to: this.currentScenario + 1
+      to: this.currentScenario + 1,
     });
   }
 
   endGame() {
     // Calculate final profile
-    this.gameState.profile = getDemocracyProfile(
-      this.gameState.totalScore,
-      this.maxPossibleScore
-    );
-    
+    this.gameState.profile = getDemocracyProfile(this.gameState.totalScore, this.maxPossibleScore);
+
     this.ui.showScreen('final');
     this.ui.renderFinalResult(this.gameState);
 
@@ -287,7 +288,7 @@ class DemocracyGame {
     this.debugEmit('game_complete', {
       totalScore: this.gameState.totalScore,
       profile: this.gameState.profile?.title,
-      decisions: this.gameState.decisions.length
+      decisions: this.gameState.decisions.length,
     });
   }
 
@@ -304,7 +305,7 @@ class DemocracyGame {
       navigator.share({
         title: 'Brücken Bauen - Democracy Game',
         text: `Ich habe das Demokratie-Lernspiel gespielt und bin ein ${this.gameState.profile.title}! 🌉`,
-        url: window.location.href
+        url: window.location.href,
       });
     } else {
       // Fallback for browsers without native sharing
@@ -335,7 +336,7 @@ class DemocracyGame {
       if (!host) return false;
       if (host === 'localhost' || host === '127.0.0.1') return true;
       return window.location.search.includes('debug=1');
-    } catch (error) {
+    } catch {
       return false;
     }
   }
@@ -380,7 +381,10 @@ class DemocracyGame {
 
     desiredIndex = Math.max(0, Math.min(desiredIndex, SCENARIOS.length - 1));
 
-    if (this.currentScenario === desiredIndex && document.querySelector('.screen.active')?.id === 'game-screen') {
+    if (
+      this.currentScenario === desiredIndex &&
+      document.querySelector('.screen.active')?.id === 'game-screen'
+    ) {
       this.loadScenario();
       return true;
     }
@@ -400,7 +404,7 @@ class DemocracyGame {
     const scenario = SCENARIOS[this.currentScenario];
     if (!scenario) return false;
 
-    const decision = scenario.decisions.find((entry) => entry.id === decisionId);
+    const decision = scenario.decisions.find(entry => entry.id === decisionId);
     if (!decision) return false;
 
     this.selectedDecision = decision;
@@ -410,7 +414,7 @@ class DemocracyGame {
     this.debugEmit('debug_decision_prefill', {
       scenarioId: scenario.id,
       decisionId: decision.id,
-      submit
+      submit,
     });
 
     if (submit) {
@@ -426,13 +430,11 @@ class DemocracyGame {
       return false;
     }
 
-    const sorted = [...scenario.decisions].sort((a, b) => 
-      this.calculateDecisionScore(b) - this.calculateDecisionScore(a)
+    const sorted = [...scenario.decisions].sort(
+      (a, b) => this.calculateDecisionScore(b) - this.calculateDecisionScore(a)
     );
 
-    const decision = preference === 'worst'
-      ? sorted[sorted.length - 1]
-      : sorted[0];
+    const decision = preference === 'worst' ? sorted[sorted.length - 1] : sorted[0];
 
     if (!decision) {
       return false;
@@ -454,13 +456,13 @@ class DemocracyGame {
         this.showStartScreen();
       }
     }
-    
+
     // Arrow keys for decision navigation
     if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
       this.navigateDecisions(e.key === 'ArrowUp' ? -1 : 1);
       e.preventDefault();
     }
-    
+
     // Enter key for quick actions
     if (e.key === 'Enter') {
       const activeScreen = document.querySelector('.screen.active');
@@ -476,22 +478,20 @@ class DemocracyGame {
   navigateDecisions(direction) {
     const options = document.querySelectorAll('.decision-option');
     if (options.length === 0) return;
-    
-    const currentIndex = Array.from(options).findIndex(option => 
-      document.activeElement === option
-    );
-    
+
+    const currentIndex = Array.from(options).findIndex(option => document.activeElement === option);
+
     let nextIndex = currentIndex + direction;
     if (nextIndex < 0) nextIndex = options.length - 1;
     if (nextIndex >= options.length) nextIndex = 0;
-    
+
     options[nextIndex].focus();
   }
 
   announce(message) {
     if (this.announcements) {
       this.announcements.textContent = message;
-      
+
       // Clear after 3 seconds
       setTimeout(() => {
         this.announcements.textContent = '';
@@ -503,8 +503,8 @@ class DemocracyGame {
   trackGameStart() {
     if (typeof gtag === 'function') {
       gtag('event', 'game_start', {
-        'event_category': 'democracy_game',
-        'event_label': 'bruecken_bauen'
+        event_category: 'democracy_game',
+        event_label: 'bruecken_bauen',
       });
     }
   }
@@ -512,8 +512,8 @@ class DemocracyGame {
   trackScenarioStart(scenarioNumber) {
     if (typeof gtag === 'function') {
       gtag('event', 'scenario_start', {
-        'event_category': 'democracy_game',
-        'event_label': `scenario_${scenarioNumber}`
+        event_category: 'democracy_game',
+        event_label: `scenario_${scenarioNumber}`,
       });
     }
   }
@@ -521,8 +521,8 @@ class DemocracyGame {
   trackDecision(scenarioId, decisionId) {
     if (typeof gtag === 'function') {
       gtag('event', 'decision_made', {
-        'event_category': 'democracy_game',
-        'event_label': `scenario_${scenarioId}_decision_${decisionId}`
+        event_category: 'democracy_game',
+        event_label: `scenario_${scenarioId}_decision_${decisionId}`,
       });
     }
   }
@@ -530,13 +530,13 @@ class DemocracyGame {
   trackGameComplete() {
     const playTime = new Date() - this.gameState.startTime;
     const minutes = Math.round(playTime / 60000);
-    
+
     if (typeof gtag === 'function') {
       gtag('event', 'game_complete', {
-        'event_category': 'democracy_game',
-        'event_label': this.gameState.profile.title,
-        'value': this.gameState.totalScore,
-        'custom_parameter_1': minutes // play time in minutes
+        event_category: 'democracy_game',
+        event_label: this.gameState.profile.title,
+        value: this.gameState.totalScore,
+        custom_parameter_1: minutes, // play time in minutes
       });
     }
   }
@@ -544,7 +544,7 @@ class DemocracyGame {
   trackGameRestart() {
     if (typeof gtag === 'function') {
       gtag('event', 'game_restart', {
-        'event_category': 'democracy_game'
+        event_category: 'democracy_game',
       });
     }
   }
@@ -552,8 +552,8 @@ class DemocracyGame {
   trackShare() {
     if (typeof gtag === 'function') {
       gtag('event', 'share', {
-        'event_category': 'democracy_game',
-        'event_label': 'game_result'
+        event_category: 'democracy_game',
+        event_label: 'game_result',
       });
     }
   }
@@ -564,7 +564,7 @@ class DemocracyGame {
     console.log('🎯 Current Scenario:', this.currentScenario);
     console.log('📊 Scores:', this.gameState.scores);
     console.log('🏆 Total Score:', this.gameState.totalScore, '/', this.maxPossibleScore);
-    
+
     if (this.gameState.profile) {
       console.log('👤 Profile:', this.gameState.profile.title);
     }
@@ -582,10 +582,9 @@ class DemocracyGame {
       decisions: this.gameState.decisions.map(d => ({
         scenarioId: d.scenarioId,
         decisionId: d.decisionId,
-        scores: d.decision.scores
+        scores: d.decision.scores,
       })),
-      playTime: this.gameState.startTime ? 
-        new Date() - this.gameState.startTime : null
+      playTime: this.gameState.startTime ? new Date() - this.gameState.startTime : null,
     };
 
     return exportData;
@@ -894,16 +893,18 @@ class GameDebugTools {
       logging: this.panel.querySelector('[data-field="logging"]'),
       jumpTarget: this.panel.querySelector('[data-field="jumpTarget"]'),
       events: this.panel.querySelector('[data-field="events"]'),
-      status: this.panel.querySelector('[data-field="status"]')
+      status: this.panel.querySelector('[data-field="status"]'),
     };
   }
 
   bindEvents() {
     this.toggleButton.addEventListener('click', () => this.togglePanel());
-    this.panel.querySelector('[data-action="close"]').addEventListener('click', () => this.togglePanel(false));
+    this.panel
+      .querySelector('[data-action="close"]')
+      .addEventListener('click', () => this.togglePanel(false));
 
-    this.panel.querySelectorAll('.debug-action').forEach((button) => {
-      button.addEventListener('click', (event) => {
+    this.panel.querySelectorAll('.debug-action').forEach(button => {
+      button.addEventListener('click', event => {
         const action = event.currentTarget.getAttribute('data-action');
         this.handleAction(action);
       });
@@ -1053,17 +1054,21 @@ class GameDebugTools {
 
   copyStateToClipboard() {
     try {
-      const snapshot = typeof this.game.exportGameData === 'function'
-        ? this.game.exportGameData()
-        : this.game.gameState;
+      const snapshot =
+        typeof this.game.exportGameData === 'function'
+          ? this.game.exportGameData()
+          : this.game.gameState;
       const formatted = JSON.stringify(snapshot, null, 2);
 
       if (navigator.clipboard?.writeText) {
-        navigator.clipboard.writeText(formatted).then(() => {
-          this.setStatus('Spielstand in Zwischenablage kopiert.', 'success');
-        }).catch(() => {
-          this.fallbackCopy(formatted);
-        });
+        navigator.clipboard
+          .writeText(formatted)
+          .then(() => {
+            this.setStatus('Spielstand in Zwischenablage kopiert.', 'success');
+          })
+          .catch(() => {
+            this.fallbackCopy(formatted);
+          });
       } else {
         this.fallbackCopy(formatted);
       }
@@ -1106,7 +1111,7 @@ class GameDebugTools {
   updateEventList() {
     if (!this.fields.events) return;
     this.fields.events.innerHTML = this.events
-      .map((entry) => `<li>[${entry.timestamp}] ${this.escapeHtml(entry.description)}</li>`)
+      .map(entry => `<li>[${entry.timestamp}] ${this.escapeHtml(entry.description)}</li>`)
       .join('');
   }
 
@@ -1157,7 +1162,11 @@ class GameDebugTools {
     if (!this.fields.status) return;
 
     this.fields.status.textContent = message;
-    this.fields.status.classList.remove('debug-status--warn', 'debug-status--error', 'debug-status--success');
+    this.fields.status.classList.remove(
+      'debug-status--warn',
+      'debug-status--error',
+      'debug-status--success'
+    );
 
     if (tone === 'warn') {
       this.fields.status.classList.add('debug-status--warn');
@@ -1173,7 +1182,11 @@ class GameDebugTools {
 
     this.statusTimeout = setTimeout(() => {
       this.fields.status.textContent = 'Bereit';
-      this.fields.status.classList.remove('debug-status--warn', 'debug-status--error', 'debug-status--success');
+      this.fields.status.classList.remove(
+        'debug-status--warn',
+        'debug-status--error',
+        'debug-status--success'
+      );
     }, 4000);
   }
 
@@ -1190,7 +1203,7 @@ class GameDebugTools {
 // Auto-initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
   window.democracyGame = new DemocracyGame();
-  
+
   // Expose debug methods in development
   const debugEnabled = window.democracyGame.isDebugMode();
   if (debugEnabled) {

@@ -3,42 +3,45 @@
    Progressive Web App functionality including Service Worker registration
    ========================================================================== */
 
+/* global SCENARIOS, DEMOCRACY_PROFILES, gtag */
+
 class PWAController {
   constructor() {
     this.deferredPrompt = null;
     this.isInstalled = false;
     this.isOnline = navigator.onLine;
-    
+
     this.init();
   }
 
   async init() {
     console.log('📱 PWA Controller initialized');
-    
+
     // Check if already running as installed app
     this.checkInstallationStatus();
-    
+
     // Register service worker
     await this.registerServiceWorker();
-    
+
     // Setup installation prompt
     this.setupInstallPrompt();
-    
+
     // Setup offline/online detection
     this.setupNetworkDetection();
-    
+
     // Setup app update notifications
     this.setupUpdateNotifications();
-    
+
     // Initialize offline functionality
     this.initializeOfflineFunctionality();
   }
 
   checkInstallationStatus() {
     // Check if running in standalone mode (installed)
-    this.isInstalled = window.matchMedia('(display-mode: standalone)').matches ||
-                     window.navigator.standalone === true;
-    
+    this.isInstalled =
+      window.matchMedia('(display-mode: standalone)').matches ||
+      window.navigator.standalone === true;
+
     if (this.isInstalled) {
       console.log('✅ App is running in installed mode');
       document.body.classList.add('pwa-installed');
@@ -50,7 +53,7 @@ class PWAController {
       try {
         const registration = await navigator.serviceWorker.register('./sw.js');
         console.log('✅ Service Worker registered:', registration);
-        
+
         // Handle updates
         registration.addEventListener('updatefound', () => {
           const newWorker = registration.installing;
@@ -62,7 +65,7 @@ class PWAController {
             });
           }
         });
-        
+
         return registration;
       } catch (error) {
         console.error('❌ Service Worker registration failed:', error);
@@ -74,7 +77,7 @@ class PWAController {
 
   setupInstallPrompt() {
     // Listen for beforeinstallprompt event
-    window.addEventListener('beforeinstallprompt', (e) => {
+    window.addEventListener('beforeinstallprompt', e => {
       console.log('📥 Install prompt available');
       e.preventDefault();
       this.deferredPrompt = e;
@@ -94,7 +97,7 @@ class PWAController {
   showInstallButton() {
     // Create install button if it doesn't exist
     let installButton = document.getElementById('pwa-install-btn');
-    
+
     if (!installButton) {
       installButton = document.createElement('button');
       installButton.id = 'pwa-install-btn';
@@ -106,7 +109,7 @@ class PWAController {
         App installieren
       `;
       installButton.setAttribute('aria-label', 'Installiere Brücken Bauen als App');
-      
+
       // Add to appropriate locations
       const welcomeCard = document.querySelector('.welcome-card');
       if (welcomeCard) {
@@ -134,16 +137,15 @@ class PWAController {
     try {
       this.deferredPrompt.prompt();
       const { outcome } = await this.deferredPrompt.userChoice;
-      
+
       if (outcome === 'accepted') {
         console.log('✅ User accepted install prompt');
       } else {
         console.log('❌ User dismissed install prompt');
       }
-      
+
       this.deferredPrompt = null;
       this.hideInstallButton();
-      
     } catch (error) {
       console.error('❌ Error during install prompt:', error);
     }
@@ -170,16 +172,16 @@ class PWAController {
   handleOnline() {
     console.log('🌐 Back online');
     document.body.classList.remove('offline');
-    
+
     // Remove offline notification
     const offlineNotification = document.getElementById('offline-notification');
     if (offlineNotification) {
       offlineNotification.remove();
     }
-    
+
     // Show online notification briefly
     this.showNotification('Verbindung wiederhergestellt', 'success', 3000);
-    
+
     // Sync any pending data
     this.syncPendingData();
   }
@@ -187,7 +189,7 @@ class PWAController {
   handleOffline() {
     console.log('📴 Gone offline');
     document.body.classList.add('offline');
-    
+
     // Show persistent offline notification
     this.showOfflineNotification();
   }
@@ -213,7 +215,7 @@ class PWAController {
         </div>
       </div>
     `;
-    
+
     document.body.appendChild(notification);
   }
 
@@ -235,18 +237,18 @@ class PWAController {
 
   showUpdateAvailable() {
     this.showNotification(
-      'Eine neue Version ist verfügbar', 
-      'info', 
+      'Eine neue Version ist verfügbar',
+      'info',
       0, // Persistent
       [
         {
           text: 'Aktualisieren',
-          action: () => this.applyUpdate()
+          action: () => this.applyUpdate(),
         },
         {
           text: 'Später',
-          action: () => this.dismissUpdate()
-        }
+          action: () => this.dismissUpdate(),
+        },
       ]
     );
   }
@@ -269,7 +271,7 @@ class PWAController {
   initializeOfflineFunctionality() {
     // Save game data to localStorage for offline play
     this.setupOfflineStorage();
-    
+
     // Load offline content
     this.loadOfflineContent();
   }
@@ -289,7 +291,7 @@ class PWAController {
       try {
         const savedScenarios = localStorage.getItem('democracy_game_scenarios');
         const savedProfiles = localStorage.getItem('democracy_game_profiles');
-        
+
         if (savedScenarios && savedProfiles) {
           window.SCENARIOS = JSON.parse(savedScenarios);
           window.DEMOCRACY_PROFILES = JSON.parse(savedProfiles);
@@ -306,9 +308,9 @@ class PWAController {
       const progressData = {
         ...gameData,
         timestamp: new Date().toISOString(),
-        version: '1.0'
+        version: '1.0',
       };
-      
+
       localStorage.setItem('democracy_game_progress', JSON.stringify(progressData));
       console.log('💾 Game progress saved');
     } catch (error) {
@@ -345,14 +347,14 @@ class PWAController {
       const pendingData = localStorage.getItem('democracy_game_pending_sync');
       if (pendingData) {
         const data = JSON.parse(pendingData);
-        
+
         // Send analytics data if online
         if (typeof gtag === 'function' && data.analytics) {
           data.analytics.forEach(event => {
             gtag('event', event.name, event.parameters);
           });
         }
-        
+
         // Clear pending data
         localStorage.removeItem('democracy_game_pending_sync');
         console.log('📤 Pending data synced');
@@ -368,25 +370,28 @@ class PWAController {
     notification.className = `notification notification-${type}`;
     notification.setAttribute('data-type', type);
     notification.setAttribute('role', 'alert');
-    
+
     const iconMap = {
       success: '✅',
       error: '❌',
       warning: '⚠️',
-      info: 'ℹ️'
+      info: 'ℹ️',
     };
-    
+
     let actionsHTML = '';
     if (actions.length > 0) {
       actionsHTML = `
         <div class="notification-actions">
-          ${actions.map(action => 
-            `<button type="button" class="notification-btn" data-action="${action.text}">${action.text}</button>`
-          ).join('')}
+          ${actions
+            .map(
+              action =>
+                `<button type="button" class="notification-btn" data-action="${action.text}">${action.text}</button>`
+            )
+            .join('')}
         </div>
       `;
     }
-    
+
     notification.innerHTML = `
       <div class="notification-content">
         <span class="notification-icon" aria-hidden="true">${iconMap[type] || iconMap.info}</span>
@@ -394,7 +399,7 @@ class PWAController {
       </div>
       ${actionsHTML}
     `;
-    
+
     // Add event listeners for actions
     actions.forEach(action => {
       const button = notification.querySelector(`[data-action="${action.text}"]`);
@@ -405,9 +410,9 @@ class PWAController {
         });
       }
     });
-    
+
     document.body.appendChild(notification);
-    
+
     // Auto-remove if duration is set
     if (duration > 0) {
       setTimeout(() => {
@@ -416,7 +421,7 @@ class PWAController {
         }
       }, duration);
     }
-    
+
     return notification;
   }
 
@@ -424,8 +429,8 @@ class PWAController {
   trackPWAInstall() {
     if (typeof gtag === 'function') {
       gtag('event', 'pwa_install', {
-        'event_category': 'pwa',
-        'event_label': 'democracy_game'
+        event_category: 'pwa',
+        event_label: 'democracy_game',
       });
     }
   }
@@ -436,16 +441,18 @@ class PWAController {
       const analyticsEvent = {
         name: 'offline_usage',
         parameters: {
-          'event_category': 'pwa',
-          'event_label': 'democracy_game'
-        }
+          event_category: 'pwa',
+          event_label: 'democracy_game',
+        },
       };
-      
+
       if (this.isOnline) {
         gtag('event', analyticsEvent.name, analyticsEvent.parameters);
       } else {
         // Store for later sync
-        const pending = JSON.parse(localStorage.getItem('democracy_game_pending_sync') || '{"analytics":[]}');
+        const pending = JSON.parse(
+          localStorage.getItem('democracy_game_pending_sync') || '{"analytics":[]}'
+        );
         pending.analytics.push(analyticsEvent);
         localStorage.setItem('democracy_game_pending_sync', JSON.stringify(pending));
       }
@@ -462,7 +469,7 @@ class PWAController {
       share: 'share' in navigator,
       clipboard: 'clipboard' in navigator,
       localStorage: 'localStorage' in window,
-      indexedDB: 'indexedDB' in window
+      indexedDB: 'indexedDB' in window,
     };
   }
 
@@ -473,7 +480,7 @@ class PWAController {
       isOnline: this.isOnline,
       deferredPrompt: !!this.deferredPrompt,
       capabilities: this.getCapabilities(),
-      storageUsage: this.getStorageUsage()
+      storageUsage: this.getStorageUsage(),
     };
   }
 
@@ -481,19 +488,19 @@ class PWAController {
     try {
       let total = 0;
       for (let key in localStorage) {
-        if (localStorage.hasOwnProperty(key)) {
+        if (Object.prototype.hasOwnProperty.call(localStorage, key)) {
           total += localStorage[key].length;
         }
       }
       return `${Math.round(total / 1024)} KB`;
-    } catch (error) {
+    } catch {
       return 'Unknown';
     }
   }
 }
 
 // Service Worker messaging
-navigator.serviceWorker?.addEventListener('message', (event) => {
+navigator.serviceWorker?.addEventListener('message', event => {
   if (event.data && event.data.type === 'UPDATE_AVAILABLE') {
     // Handle update available message from service worker
     const pwa = window.pwaController;
@@ -506,7 +513,7 @@ navigator.serviceWorker?.addEventListener('message', (event) => {
 // Initialize PWA functionality
 document.addEventListener('DOMContentLoaded', () => {
   window.pwaController = new PWAController();
-  
+
   // Expose debug info in development
   if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
     window.getPWAInfo = () => window.pwaController.getPWAInfo();

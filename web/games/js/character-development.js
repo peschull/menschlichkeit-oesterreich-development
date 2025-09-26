@@ -324,11 +324,6 @@ class CharacterDevelopmentSystem {
    * Interaktion mit Charakter verarbeiten
    */
   processInteraction(characterId, interactionType, playerChoice, context) {
-    const character = this.characters.get(characterId);
-    const relationship = this.relationships.get(characterId);
-    const emotionalState = this.emotionalStates.get(characterId);
-    const developmentTrack = this.developmentTracks.get(characterId);
-
     // Analysiere Spieler-Entscheidung
     const interactionAnalysis = this.analyzePlayerChoice(playerChoice, context);
 
@@ -432,7 +427,7 @@ class CharacterDevelopmentSystem {
     return respectMarkers.some(marker => text.toLowerCase().includes(marker));
   }
 
-  detectUnderstanding(text, context) {
+  detectUnderstanding(text, _context) {
     const understandingMarkers = ['verstehe', 'nachvollziehen', 'sehe ein', 'kann mir vorstellen'];
     return understandingMarkers.some(marker => text.toLowerCase().includes(marker));
   }
@@ -458,27 +453,27 @@ class CharacterDevelopmentSystem {
     return impact;
   }
 
-  determineResponseStyle(character, relationship, emotionalState) {
+  determineResponseStyle(_character, _relationship, _emotionalState) {
     // Komplex logic basierend auf Charakter-Persönlichkeit, Beziehungsstand und aktueller Emotion
     return 'adaptive'; // Placeholder
   }
 
-  generateDialogue(characterId, responseStyle, analysis) {
+  generateDialogue(_characterId, _responseStyle, _analysis) {
     // Generiere kontextuell angepassten Dialog
     return 'Adaptiver Dialog basierend auf Entwicklung'; // Placeholder
   }
 
-  generateEmotionalReaction(emotionalState, analysis) {
+  generateEmotionalReaction(_emotionalState, _analysis) {
     // Generiere emotionale Reaktion
     return 'Emotionale Reaktion'; // Placeholder
   }
 
-  predictBehaviorChanges(developmentTrack, analysis) {
+  predictBehaviorChanges(_developmentTrack, _analysis) {
     // Vorhersage zukünftiger Verhaltensänderungen
     return []; // Placeholder
   }
 
-  generateRelationshipFeedback(relationship) {
+  generateRelationshipFeedback(_relationship) {
     // Feedback über Beziehungsstand
     return 'Beziehungs-Feedback'; // Placeholder
   }
@@ -498,11 +493,8 @@ class CharacterDevelopmentSystem {
     }
   }
 
-  checkDevelopmentPathTriggers(characterId, analysis) {
+  checkDevelopmentPathTriggers(_characterId, _analysis) {
     // Prüfe ob Entwicklungspfad-Trigger aktiviert wurden
-    const character = this.characters.get(characterId);
-    const developmentTrack = this.developmentTracks.get(characterId);
-
     // Implementierung der Trigger-Logik
     // Placeholder für komplexe Entwicklungspfad-Logik
   }

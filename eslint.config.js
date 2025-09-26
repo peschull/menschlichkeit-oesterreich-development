@@ -1,51 +1,64 @@
-import js from "@eslint/js";
-import globals from "globals";
-import tseslint from "@typescript-eslint/eslint-plugin";
-import parser from "@typescript-eslint/parser";
+import js from '@eslint/js';
+import globals from 'globals';
+import tseslint from '@typescript-eslint/eslint-plugin';
+import parser from '@typescript-eslint/parser';
 
 export default [
   js.configs.recommended,
   {
-    files: ["**/*.{js,mjs,cjs}"],
+    files: ['**/*.{js,mjs,cjs}'],
     ignores: [
-      "node_modules/**",
-      "**/dist/**",
-      "**/build/**",
-      "**/*.min.js",
-      "**/*.d.ts",
+      'node_modules/**',
+      '**/dist/**',
+      '**/build/**',
+      '**/*.min.js',
+      '**/*.d.ts',
+      'frontend/dist/**',
+      'frontend/.next/**',
+      'api.menschlichkeit-oesterreich.at/dist/**',
+      '**/.venv/**',
+      '**/__pycache__/**',
+      '**/coverage/**',
+      '**/test-results/**',
+      '**/vendor/**',
     ],
     languageOptions: {
-      ecmaVersion: "latest",
-      sourceType: "module",
+      ecmaVersion: 'latest',
+      sourceType: 'module',
       globals: { ...globals.browser, ...globals.node },
     },
     rules: {
-      "no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
-      "no-console": "off",
+      'no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+      'no-console': 'off',
     },
   },
   {
-    files: ["**/*.{ts,tsx}"],
-    ignores: ["node_modules/**", "**/dist/**", "**/build/**", "**/*.d.ts"],
+    files: ['**/*.{ts,tsx}'],
+    ignores: [
+      'node_modules/**',
+      '**/dist/**',
+      '**/build/**',
+      '**/*.d.ts',
+      'frontend/dist/**',
+      'frontend/.next/**',
+      'api.menschlichkeit-oesterreich.at/dist/**',
+    ],
     languageOptions: {
       parser: parser,
       parserOptions: {
-        ecmaVersion: "latest",
-        sourceType: "module",
+        ecmaVersion: 'latest',
+        sourceType: 'module',
       },
       globals: { ...globals.browser, ...globals.node },
     },
     plugins: {
-      "@typescript-eslint": tseslint,
+      '@typescript-eslint': tseslint,
     },
     rules: {
       ...tseslint.configs.recommended.rules,
-      "@typescript-eslint/no-unused-vars": [
-        "warn",
-        { argsIgnorePattern: "^_" },
-      ],
-      "@typescript-eslint/no-explicit-any": "warn",
-      "no-console": "off",
+      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+      '@typescript-eslint/no-explicit-any': 'warn',
+      'no-console': 'off',
     },
   },
 ];

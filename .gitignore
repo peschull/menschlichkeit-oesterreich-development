@@ -326,3 +326,38 @@ sftp.conf
 # OS-spezifische Dateien
 Thumbs.db
 .DS_Store
+
+# ========================================
+# ENHANCED DEVELOPMENT TOOLS
+# ========================================
+
+# WakaTime time tracking
+.wakatime.cfg
+.wakatime.log
+
+# Live Server
+.vscode/live-server/
+
+# Coverage Gutters
+coverage/
+lcov-report/
+.nyc_output/
+cov.xml
+jacoco.xml
+coverage.lcov
+
+# JavaScript Booster cache
+.jsbooster/
+
+# IntelliCode
+.vscode/ipch/
+
+# Code spell checker
+.cspell/
+cspell.json.backup
+
+# Version Lens cache
+.versionlens/
+
+# Turbo Console Log
+.turbo-console-log/
