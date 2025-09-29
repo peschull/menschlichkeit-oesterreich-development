@@ -13,13 +13,15 @@ sudo apt-get upgrade -y
 
 # PHP Extensions für CiviCRM
 echo "🔧 PHP Extensions für CiviCRM..."
-sudo apt-get install -y php8.1-mysql php8.1-xml php8.1-mbstring php8.1-curl php8.1-zip php8.1-intl php8.1-gd
+sudo apt-get install -y php8.2-mysql php8.2-xml php8.2-mbstring php8.2-curl php8.2-zip php8.2-intl php8.2-gd
 
 # MariaDB für lokale Development
 echo "🗄️ MariaDB Setup..."
 sudo apt-get install -y mariadb-server mariadb-client
 sudo systemctl start mariadb
-sudo mysql_secure_installation --use-default
+sudo systemctl enable mariadb
+# Skip interactive secure installation in Codespace
+echo "✅ MariaDB installiert und gestartet"
 
 # Create development databases
 echo "📊 Creating development databases..."

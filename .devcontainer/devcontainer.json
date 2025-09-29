@@ -1,5 +1,4 @@
 {
-  // GitHub Codespace Konfiguration - Menschlichkeit Österreich
   "name": "Austrian NGO Multi-Service Development",
   "image": "mcr.microsoft.com/devcontainers/universal:2-focal",
 
@@ -8,17 +7,13 @@
       "version": "18"
     },
     "ghcr.io/devcontainers/features/php:1": {
-      "version": "8.4"
+      "version": "8.2"
     },
     "ghcr.io/devcontainers/features/python:1": {
       "version": "3.11"
     },
-    "ghcr.io/devcontainers/features/docker-in-docker:2": {
-      "version": "latest"
-    },
-    "ghcr.io/devcontainers/features/git:1": {
-      "version": "latest"
-    }
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/devcontainers/features/git:1": {}
   },
 
   "forwardPorts": [
@@ -57,19 +52,11 @@
     }
   },
 
-  "onCreateCommand": [
-    "bash .devcontainer/setup.sh"
-  ],
+  "onCreateCommand": "bash .devcontainer/setup.sh",
 
-  "postCreateCommand": [
-    "npm install",
-    "composer install --ignore-platform-reqs",
-    "pip install -r requirements.txt"
-  ],
+  "postCreateCommand": "npm install && composer install --ignore-platform-reqs",
 
-  "postStartCommand": [
-    "bash .devcontainer/post-start.sh"
-  ],
+  "postStartCommand": "bash .devcontainer/post-start.sh",
 
   "customizations": {
     "vscode": {
