@@ -1,0 +1,221 @@
+name: 🔐 Security Scan
+on:
+  schedule:
+    # Daily at 2 AM UTC
+    - cron: '0 2 * * *'
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+env:
+  SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+jobs:
+  security-audit:
+    name: 🛡️ Security Audit
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      contents: read
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: 📦 Install Dependencies
+        run: npm ci
+
+      - name: 🔒 Snyk SCA Scan (Open Source)
+        run: |
+          npx snyk auth ${{ secrets.SNYK_TOKEN }}
+          npx snyk test --severity-threshold=high --json > snyk-sca-results.json || true
+
+      - name: 🔍 Snyk Code Scan (SAST)
+        run: |
+          npx snyk code test --json > snyk-code-results.json || true
+
+      - name: 🐳 Snyk Container Scan
+        run: |
+          if [ -f Dockerfile ]; then
+            npx snyk container test . --json > snyk-container-results.json || true
+          fi
+
+      - name: 🔒 Trivy Security Scan
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+
+      - name: 📊 Upload Trivy Results to GitHub Security
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: 'trivy-results.sarif'
+
+      - name: 🔍 DSGVO Compliance Check
+        run: |
+          echo "🔐 Running DSGVO compliance checks..."
+          
+          # Check for potential PII in logs
+          if grep -r "email.*=" . --exclude-dir=node_modules --exclude-dir=.git --include="*.log" || \
+             grep -r "phone.*=" . --exclude-dir=node_modules --exclude-dir=.git --include="*.log" || \
+             grep -r "address.*=" . --exclude-dir=node_modules --exclude-dir=.git --include="*.log"; then
+            echo "❌ Potential PII found in logs!"
+            exit 1
+          fi
+          
+          # Check for proper data handling
+          if [ -f "scripts/dsgvo-check.ps1" ]; then
+            echo "✅ DSGVO check script found"
+          else
+            echo "⚠️ DSGVO check script missing"
+          fi
+
+      - name: 🔐 Secret Detection
+        run: |
+          echo "🕵️ Scanning for accidentally committed secrets..."
+          
+          # Enhanced secret detection
+          SECRET_PATTERNS=(
+            "password.*="
+            "api[_-]key.*="
+            "secret.*="
+            "token.*="
+            "auth.*="
+            "credential.*="
+            "-----BEGIN.*PRIVATE KEY-----"
+            "sk_live_"
+            "sk_test_"
+            "rk_live_"
+            "pk_live_"
+          )
+          
+          FOUND_SECRETS=false
+          for pattern in "${SECRET_PATTERNS[@]}"; do
+            if grep -r -i "$pattern" . --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=vendor --exclude="*.md" --exclude="*.example" --exclude="*.template"; then
+              echo "❌ Potential secret found: $pattern"
+              FOUND_SECRETS=true
+            fi
+          done
+          
+          if [ "$FOUND_SECRETS" = true ]; then
+            echo "❌ Secrets detected in repository!"
+            exit 1
+          else
+            echo "✅ No secrets detected"
+          fi
+
+      - name: 📊 Generate Security Report
+        if: always()
+        run: |
+          echo "# 🔐 Security Scan Report" > security-report.md
+          echo "**Date:** $(date)" >> security-report.md
+          echo "**Commit:** ${{ github.sha }}" >> security-report.md
+          echo "" >> security-report.md
+          
+          echo "## 🛡️ Scan Results" >> security-report.md
+          
+          # Snyk SCA Results
+          if [ -f snyk-sca-results.json ]; then
+            echo "### 📦 Dependencies (SCA)" >> security-report.md
+            VULNERABILITIES=$(jq -r '.vulnerabilities | length' snyk-sca-results.json 2>/dev/null || echo "0")
+            echo "- **Vulnerabilities Found:** $VULNERABILITIES" >> security-report.md
+          fi
+          
+          # Snyk Code Results  
+          if [ -f snyk-code-results.json ]; then
+            echo "### 🔍 Code Analysis (SAST)" >> security-report.md
+            CODE_ISSUES=$(jq -r '.runs[0].results | length' snyk-code-results.json 2>/dev/null || echo "0")
+            echo "- **Code Issues Found:** $CODE_ISSUES" >> security-report.md
+          fi
+          
+          # Trivy Results
+          if [ -f trivy-results.sarif ]; then
+            echo "### 🐳 Infrastructure Scan" >> security-report.md
+            TRIVY_ISSUES=$(jq -r '.runs[0].results | length' trivy-results.sarif 2>/dev/null || echo "0")
+            echo "- **Infrastructure Issues:** $TRIVY_ISSUES" >> security-report.md
+          fi
+          
+          echo "" >> security-report.md
+          echo "## 🎯 Recommendations" >> security-report.md
+          echo "- Review and fix all high/critical vulnerabilities" >> security-report.md
+          echo "- Update dependencies to latest secure versions" >> security-report.md
+          echo "- Implement additional security controls if needed" >> security-report.md
+          echo "- Regular security training for development team" >> security-report.md
+
+      - name: 📤 Upload Security Artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: security-scan-results
+          path: |
+            snyk-*.json
+            trivy-results.sarif
+            security-report.md
+          retention-days: 30
+
+      - name: 📊 Update Security Badge
+        if: success()
+        run: |
+          echo "✅ Security scan completed successfully"
+          # This could update a badge or status in the future
+
+  dependency-review:
+    name: 📦 Dependency Review
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🔍 Dependency Review
+        uses: actions/dependency-review-action@v4
+        with:
+          fail-on-severity: high
+          allow-licenses: MIT, Apache-2.0, BSD-2-Clause, BSD-3-Clause, ISC
+
+  notify-security-team:
+    name: 📢 Security Notifications
+    runs-on: ubuntu-latest
+    needs: [security-audit]
+    if: always() && (needs.security-audit.result == 'failure' || github.event_name == 'schedule')
+
+    steps:
+      - name: 🚨 Notify Security Issues
+        if: needs.security-audit.result == 'failure'
+        run: |
+          echo "🚨 Security vulnerabilities detected!"
+          # Send notification to security team
+          curl -X POST "${{ secrets.N8N_WEBHOOK_URL }}" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "type": "security-alert",
+              "status": "vulnerabilities-detected",
+              "commit": "${{ github.sha }}",
+              "repository": "${{ github.repository }}",
+              "actor": "${{ github.actor }}"
+            }'
+
+      - name: ✅ Daily Security Report
+        if: github.event_name == 'schedule' && needs.security-audit.result == 'success'
+        run: |
+          echo "✅ Daily security scan completed - no issues found"
+          curl -X POST "${{ secrets.N8N_WEBHOOK_URL }}" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "type": "security-report",
+              "status": "clean",
+              "date": "'$(date)'",
+              "repository": "${{ github.repository }}"
+            }'

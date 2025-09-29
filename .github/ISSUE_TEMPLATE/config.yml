@@ -1,0 +1,21 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 🔐 Security Vulnerability
+    url: mailto:security@menschlichkeit-oesterreich.at
+    about: Bitte melden Sie Sicherheitslücken direkt per E-Mail (NICHT über GitHub Issues)
+  
+  - name: 💬 Community Discussions  
+    url: https://github.com/peschull/menschlichkeit-oesterreich-development/discussions
+    about: Allgemeine Fragen, Ideen und Community-Diskussionen
+
+  - name: 📚 Dokumentation
+    url: https://github.com/peschull/menschlichkeit-oesterreich-development/wiki
+    about: Vollständige Dokumentation und Tutorials
+
+  - name: 🤝 Partnership Anfragen
+    url: mailto:partnerships@menschlichkeit-oesterreich.at
+    about: Anfragen für NGO Partnerschaften und Kooperationen
+
+  - name: 📰 Medien Anfragen
+    url: mailto:media@menschlichkeit-oesterreich.at
+    about: Presse und Medien Anfragen

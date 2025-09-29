@@ -47,7 +47,40 @@ Name: CIVICRM_DB_PASS
 Value: SECURE_CIVICRM_2025
 ```
 
-#### 🔐 Security & API Secrets
+#### � E-Mail Configuration Secrets
+```
+Name: MAIL_LOGGING_EMAIL
+Value: logging@menschlichkeit-oesterreich.at
+
+Name: MAIL_LOGGING_PASSWORD
+Value: wa3&3M59m
+
+Name: MAIL_INFO_EMAIL
+Value: info@menschlichkeit-oesterreich.at
+
+Name: MAIL_INFO_PASSWORD
+Value: 4%4if15Ao
+
+Name: MAIL_ADMIN_EMAIL
+Value: peter.schuller@menschlichkeit-oesterreich.at
+
+Name: MAIL_ADMIN_PASSWORD
+Value: 17d3lT8?h
+
+Name: MAIL_CIVIMAIL_EMAIL
+Value: civimail@menschlichkeit-oesterreich.at
+
+Name: MAIL_CIVIMAIL_PASSWORD
+Value: 69nTdv$16
+
+Name: MAIL_BOUNCE_EMAIL
+Value: bounce@menschlichkeit-oesterreich.at
+
+Name: MAIL_BOUNCE_PASSWORD
+Value: 1w8S%8a9k
+```
+
+#### �🔐 Security & API Secrets
 ```
 Name: JWT_SECRET
 Value: r0OgnrFIaxjhfdoLpGX7tF1f7Ctf7yEm
@@ -151,11 +184,12 @@ ssh -i $SSH_PRIVATE_KEY dmpl20230054@5.183.217.146
 - `.gitignore` konfiguriert (`.env` ausgeschlossen)
 
 ### ⏳ AUSSTEHEND
-- [ ] GitHub Secrets Konfiguration
+- [ ] GitHub Secrets Konfiguration (E-Mail Secrets bereit!)
 - [ ] Codacy API Token holen
 - [ ] Snyk Token holen  
 - [ ] CiviCRM Keys generieren
 - [ ] GitHub Actions Test
+- [ ] E-Mail Integration testen
 
 ### 🚫 SICHERHEIT
 - ✅ `.env` ist in `.gitignore` - wird NIEMALS committed

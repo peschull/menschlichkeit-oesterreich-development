@@ -1,0 +1,229 @@
+name: 🤝 Support Request
+description: Frage eine Unterstützung bei der Nutzung von Menschlichkeit Österreich an
+title: '[SUPPORT] '
+labels: ['support', 'needs-triage']
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 👋 Willkommen beim Menschlichkeit Österreich Support!
+        
+        Danke, dass Sie sich an uns wenden! Bitte füllen Sie das folgende Formular aus, damit wir Ihnen bestmöglich helfen können.
+        
+        **🔐 Wichtiger Hinweis**: Teilen Sie niemals Passwörter, API-Keys oder andere sensible Daten in GitHub Issues!
+
+  - type: dropdown
+    id: support-type
+    attributes:
+      label: 🎯 Art der Unterstützung
+      description: Welche Art von Unterstützung benötigen Sie?
+      options:
+        - 🚀 Setup/Installation Hilfe
+        - 🔧 Konfiguration Problem
+        - 💻 Development Unterstützung  
+        - 🐛 Unklares Verhalten (kein Bug)
+        - 📚 Dokumentation Verständnis
+        - 🔐 Security/DSGVO Fragen
+        - 💳 Payment/SEPA Integration
+        - 👥 CiviCRM/Mitgliederverwaltung
+        - 🎮 Educational Games Fragen
+        - 🤖 n8n Automation Hilfe
+        - 🌐 Website/Frontend Fragen
+        - 📱 Mobile Nutzung
+        - ♿ Barrierefreiheit
+        - 🌍 Mehrsprachigkeit
+        - 🏛️ NGO Partnership
+        - 📞 Sonstiges
+    validations:
+      required: true
+
+  - type: dropdown
+    id: user-type
+    attributes:
+      label: 👤 Benutzertyp
+      description: Wie beschreiben Sie sich am besten?
+      options:
+        - 🆕 Neuer Benutzer/Interessent
+        - 🤝 Vereinsmitglied
+        - 👨‍💻 Entwickler (neu im Projekt)
+        - 👩‍💻 Entwickler (erfahren)
+        - 👨‍🏫 Pädagoge/Lehrer
+        - 👨‍💼 Administrator/Moderator
+        - 🏛️ NGO Partner
+        - 📰 Journalist/Medien
+        - 🎓 Student/Researcher
+        - 👥 Sonstiges
+    validations:
+      required: true
+
+  - type: textarea
+    id: question
+    attributes:
+      label: ❓ Ihre Frage/Problem
+      description: Beschreiben Sie detailliert wobei Sie Unterstützung benötigen.
+      placeholder: Je detaillierter Ihre Beschreibung, desto besser können wir helfen...
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: 🔍 Kontext
+      description: |
+        Geben Sie zusätzlichen Kontext:
+        - Was versuchen Sie zu erreichen?
+        - Welche Schritte haben Sie bereits unternommen?
+        - Welche Ressourcen haben Sie bereits konsultiert?
+      placeholder: |
+        Beispiel:
+        - Ziel: Neuen Verein mit CiviCRM integrieren
+        - Versucht: Installation nach README
+        - Konsultiert: Offizielle Dokumentation
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: affected-areas
+    attributes:
+      label: 🏗️ Betroffene Bereiche
+      description: Welche Teile der Anwendung sind relevant?
+      options:
+        - label: 🌐 Website (menschlichkeit-oesterreich.at)
+        - label: ⚡ Frontend (React App)
+        - label: 🔧 API (FastAPI Backend)
+        - label: 👥 CRM (CiviCRM/Drupal)
+        - label: 🎮 Games (Educational Platform)
+        - label: 🤖 Automation (n8n Workflows)
+        - label: 📱 Mobile Experience
+        - label: 🔐 Authentication/Login
+        - label: 💳 Payment/SEPA System
+        - label: 📧 Email/Newsletter
+        - label: 🗄️ Database/Data
+        - label: 🚀 Deployment/Hosting
+
+  - type: dropdown
+    id: urgency
+    attributes:
+      label: ⏰ Dringlichkeit
+      description: Wie dringend ist Ihr Anliegen?
+      options:
+        - 🔥 Urgent - Blockt wichtige Aktivitäten
+        - ⚠️ High - Beeinträchtigt tägliche Nutzung
+        - 📋 Medium - Wichtig aber nicht blockierend
+        - 📝 Low - Kann warten, nice-to-know
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: 🖥️ Ihre Umgebung
+      description: |
+        Technische Details (falls relevant):
+      placeholder: |
+        - Betriebssystem: Windows 11 / macOS 14 / Ubuntu 22.04
+        - Browser: Chrome 118, Firefox 119, Safari 17
+        - Gerät: Desktop / Tablet / Smartphone
+        - Node.js Version: 18.17.0
+        - PHP Version: 8.4.11
+        - Besonderheiten: Hinter Firewall, VPN, etc.
+
+  - type: textarea
+    id: attempted-solutions
+    attributes:
+      label: 🔧 Bereits versucht
+      description: Was haben Sie bereits versucht?
+      placeholder: |
+        - Dokumentation gelesen: [Link]
+        - Stack Overflow gesucht
+        - Community Forum durchsucht
+        - Mit Kollegen/Team besprochen
+        - Andere Tools/Methoden ausprobiert
+
+  - type: checkboxes
+    id: documentation-checked
+    attributes:
+      label: 📚 Dokumentation überprüft
+      description: Haben Sie bereits unsere Dokumentation konsultiert?
+      options:
+        - label: README.md des Projekts gelesen
+        - label: GitHub Wiki durchsucht
+        - label: API Dokumentation konsultiert
+        - label: Setup/Installation Guide befolgt
+        - label: FAQ/Troubleshooting Guide geprüft
+        - label: Community Discussions durchsucht
+
+  - type: dropdown
+    id: language-preference
+    attributes:
+      label: 🌍 Sprach-Präferenz
+      description: In welcher Sprache möchten Sie Unterstützung erhalten?
+      options:
+        - 🇩🇪 Deutsch (bevorzugt)
+        - 🇬🇧 English
+        - 🌐 Beide Sprachen OK
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: contact-preference
+    attributes:
+      label: 📞 Kontakt-Präferenz
+      description: Wie möchten Sie kontaktiert werden?
+      options:
+        - label: 💬 GitHub Comment/Discussion (öffentlich)
+        - label: 📧 E-Mail (privat)
+        - label: 📱 Community Chat/Discord
+        - label: 📞 Telefon/Video Call (bei komplexen Themen)
+        - label: 🤝 In-Person Meeting (Wien/Österreich)
+
+  - type: textarea
+    id: additional-info
+    attributes: 
+      label: 📋 Zusätzliche Informationen
+      description: |
+        Weitere hilfreiche Details:
+        - Screenshots/Videos
+        - Error Messages (anonymisiert)
+        - Relevant Links
+        - Deadline/Timeline
+      placeholder: |
+        Jede zusätzliche Information hilft uns dabei, Ihnen besser zu helfen!
+
+  - type: checkboxes
+    id: data-privacy
+    attributes:
+      label: 🔐 Datenschutz & Privacy
+      description: Bestätigen Sie bitte folgende Punkte
+      options:
+        - label: Ich habe keine sensiblen Daten (Passwörter, API Keys, etc.) geteilt
+        - label: Ich bin einverstanden, dass meine Anfrage öffentlich sichtbar ist
+        - label: Ich habe die Privacy Policy von Menschlichkeit Österreich gelesen
+        - label: Bei sensiblen Daten werde ich security@menschlichkeit-oesterreich.at kontaktieren
+      validations:
+        required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        
+        ## 🚀 Nächste Schritte
+        
+        Nach dem Absenden Ihrer Support-Anfrage:
+        
+        1. **🏷️ Labeling** - Wir werden Ihr Issue entsprechend kategorisieren
+        2. **📋 Triage** - Priorität und Zuständigkeit werden bestimmt  
+        3. **💬 Antwort** - Wir melden uns innerhalb von 24-48 Stunden
+        4. **🔄 Follow-up** - Bei Bedarf weitere Fragen oder Klarstellungen
+        5. **✅ Lösung** - Wir arbeiten gemeinsam an einer Lösung
+        
+        ## 📞 Alternative Kontakt-Möglichkeiten
+        
+        - **📧 Direct E-Mail**: support@menschlichkeit-oesterreich.at
+        - **🔐 Security Issues**: security@menschlichkeit-oesterreich.at  
+        - **🤝 Partnerships**: partnerships@menschlichkeit-oesterreich.at
+        - **📰 Media Inquiries**: media@menschlichkeit-oesterreich.at
+        
+        **Danke für Ihr Vertrauen in Menschlichkeit Österreich! 🇦🇹**
