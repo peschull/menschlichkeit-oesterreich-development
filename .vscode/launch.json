@@ -1,161 +1,171 @@
 {
   "version": "0.2.0",
   "configurations": [
-    // ================================
-    // 1. PHP/Drupal Debug (Port 9003)
-    // ================================
     {
-      "name": "PHP: Xdebug Listen (9003)",
-      "type": "php",
-      "request": "launch",
-      "port": 9003,
-      "log": false,
-      "xdebugSettings": {
-        "max_children": 256,
-        "max_data": 512,
-        "max_depth": 5
-      },
-      "pathMappings": {
-        "/home/dmpl20230054/httpdocs": "${workspaceFolder}",
-        "/home/dmpl20230054/subdomains/api/httpdocs": "${workspaceFolder}/api.menschlichkeit-oesterreich.at",
-        "/home/dmpl20230054/subdomains/crm/httpdocs": "${workspaceFolder}/crm.menschlichkeit-oesterreich.at",
-        "/home/dmpl20230054/subdomains/games/httpdocs": "${workspaceFolder}/web"
-      },
-      "hostname": "5.183.217.146"
-    },
-
-    // ================================
-    // 2. Node.js/JavaScript Debug (Port 9229)
-    // ================================
-    {
-      "name": "Node: Attach (9229)",
+      "name": "🚀 Debug: Frontend (Vite)",
       "type": "node",
-      "request": "attach",
-      "port": 9229,
-      "restart": true,
-      "skipFiles": ["<node_internals>/**", "**/node_modules/**"]
-    },
-
-    // API Backend Debug (FastAPI via uvicorn)
-    {
-      "name": "Python: FastAPI (uvicorn)",
-      "type": "python",
       "request": "launch",
+      "program": "${workspaceFolder}/frontend/node_modules/.bin/vite",
+      "args": [
+        "--mode",
+        "development"
+      ],
+      "cwd": "${workspaceFolder}/frontend",
+      "console": "integratedTerminal",
+      "env": {
+        "NODE_ENV": "development",
+        "VITE_API_BASE_URL": "http://localhost:8001"
+      },
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "presentation": {
+        "group": "frontend",
+        "order": 1
+      }
+    },
+    {
+      "name": "🐍 Debug: API (FastAPI)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/api.menschlichkeit-oesterreich.at/app/main.py",
       "module": "uvicorn",
-      "args": ["app.main:app", "--host", "0.0.0.0", "--port", "8001", "--reload"],
+      "args": [
+        "app.main:app",
+        "--host",
+        "0.0.0.0",
+        "--port",
+        "8001",
+        "--reload"
+      ],
       "cwd": "${workspaceFolder}/api.menschlichkeit-oesterreich.at",
-      "envFile": "${workspaceFolder}/api.menschlichkeit-oesterreich.at/.env",
-      "jinja": true,
-      "console": "integratedTerminal"
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/api.menschlichkeit-oesterreich.at",
+        "DATABASE_URL": "postgresql://localhost/moe_development",
+        "ENVIRONMENT": "development"
+      },
+      "console": "integratedTerminal",
+      "justMyCode": false,
+      "presentation": {
+        "group": "backend",
+        "order": 1
+      }
     },
-
-    // ================================
-    // 3. Browser Debug (Chrome)
-    // ================================
     {
-      "name": "Chrome: Democracy Games @ localhost:3000",
-      "type": "chrome",
-      "request": "launch",
-      "url": "http://localhost:3000/games/",
-      "webRoot": "${workspaceFolder}/web/games",
-      "sourceMaps": true,
-      "skipFiles": ["**/node_modules/**"]
-    },
-
-    {
-      "name": "Chrome: CRM Drupal @ localhost:8000",
-      "type": "chrome",
-      "request": "launch",
-      "url": "http://localhost:8000",
-      "webRoot": "${workspaceFolder}/crm.menschlichkeit-oesterreich.at/httpdocs",
-      "sourceMaps": true
-    },
-
-    // ================================
-    // 4. Frontend Development (React/Next.js falls hinzugefügt)
-    // ================================
-    {
-      "name": "Next.js: Server (Attach 9229)",
-      "type": "node",
-      "request": "attach",
-      "port": 9229,
-      "restart": true,
-      "skipFiles": ["<node_internals>/**", "**/node_modules/**", "**/.next/**"]
-    },
-
-    {
-      "name": "Next.js: Browser @ localhost:3000",
-      "type": "chrome",
-      "request": "launch",
-      "url": "http://localhost:3000",
-      "webRoot": "${workspaceFolder}/frontend",
-      "sourceMaps": true,
-      "skipFiles": ["**/node_modules/**"]
-    },
-
-    // ================================
-    // 5. Testing & Quality
-    // ================================
-    {
-      "name": "Vitest: Unit Tests (Debug)",
+      "name": "🏗️ Debug: Build Pipeline",
       "type": "node",
       "request": "launch",
-      "runtimeExecutable": "npx",
-      "runtimeArgs": ["vitest", "--inspect-brk", "--threads=false", "--run"],
+      "program": "${workspaceFolder}/build-pipeline.sh",
+      "args": [
+        "development",
+        "--verbose"
+      ],
       "cwd": "${workspaceFolder}",
       "console": "integratedTerminal",
-      "autoAttachChildProcesses": true
+      "env": {
+        "DEBUG": "true",
+        "VERBOSE": "true"
+      },
+      "presentation": {
+        "group": "tools",
+        "order": 1
+      }
     },
-
     {
-      "name": "Playwright: E2E Tests (Debug)",
+      "name": "🔄 Debug: n8n Workflow",
       "type": "node",
       "request": "launch",
-      "runtimeExecutable": "npx",
-      "runtimeArgs": ["playwright", "test", "--headed", "--debug"],
-      "cwd": "${workspaceFolder}",
-      "console": "integratedTerminal"
+      "program": "${workspaceFolder}/automation/n8n/webhook-client.js",
+      "args": [
+        "development"
+      ],
+      "cwd": "${workspaceFolder}/automation/n8n",
+      "console": "integratedTerminal",
+      "env": {
+        "N8N_HOST": "localhost",
+        "N8N_PORT": "5678",
+        "DEBUG": "n8n:*"
+      },
+      "presentation": {
+        "group": "automation",
+        "order": 1
+      }
     },
-
-    // ================================
-    // 6. Docker Attach
-    // ================================
     {
-      "name": "Docker: Node Attach",
+      "name": "🧪 Debug: Playwright Tests",
       "type": "node",
-      "request": "attach",
-      "address": "localhost",
-      "port": 9229,
-      "localRoot": "${workspaceFolder}",
-      "remoteRoot": "/usr/src/app",
-      "restart": true,
-      "skipFiles": ["<node_internals>/**", "**/node_modules/**"]
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/.bin/playwright",
+      "args": [
+        "test",
+        "--debug",
+        "--headed"
+      ],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "env": {
+        "PLAYWRIGHT_BROWSERS_PATH": "${workspaceFolder}/.playwright",
+        "DEBUG": "pw:*"
+      },
+      "presentation": {
+        "group": "testing",
+        "order": 1
+      }
+    },
+    {
+      "name": "🔍 Debug: Quality Gates",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/scripts/generate-quality-report.js",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "env": {
+        "DEBUG": "true",
+        "NODE_ENV": "development"
+      },
+      "presentation": {
+        "group": "quality",
+        "order": 1
+      }
     }
   ],
-
-  // ================================
-  // Compound Configurations
-  // ================================
   "compounds": [
     {
-      "name": "🚀 Full-Stack: Drupal + Games + API",
-      "configurations": ["PHP: Xdebug Listen (9003)", "Chrome: Democracy Games @ localhost:3000", "Node: Attach (9229)"]
+      "name": "🚀 Debug: Full Stack (Frontend + API)",
+      "configurations": [
+        "🚀 Debug: Frontend (Vite)",
+        "🐍 Debug: API (FastAPI)"
+      ],
+      "stopAll": true,
+      "presentation": {
+        "group": "compound",
+        "order": 1
+      }
     },
     {
-      "name": "🎮 Game Development: Browser + Node",
-      "configurations": ["Chrome: Democracy Games @ localhost:3000", "Node: Attach (9229)"]
+      "name": "🔧 Debug: Development Environment",
+      "configurations": [
+        "🚀 Debug: Frontend (Vite)",
+        "🐍 Debug: API (FastAPI)",
+        "🔄 Debug: n8n Workflow"
+      ],
+      "stopAll": true,
+      "presentation": {
+        "group": "compound",
+        "order": 2
+      }
     },
     {
-      "name": "🏛️ CMS Development: Drupal + Browser",
-      "configurations": ["PHP: Xdebug Listen (9003)", "Chrome: CRM Drupal @ localhost:8000"]
-    },
-    {
-      "name": "⚛️ Frontend (Next.js): Server + Browser",
-      "configurations": ["Next.js: Server (Attach 9229)", "Next.js: Browser @ localhost:3000"]
-    },
-    {
-      "name": "🧪 Testing Suite: Unit + E2E",
-      "configurations": ["Vitest: Unit Tests (Debug)", "Playwright: E2E Tests (Debug)"]
+      "name": "🧪 Debug: Testing Suite",
+      "configurations": [
+        "🧪 Debug: Playwright Tests",
+        "🔍 Debug: Quality Gates"
+      ],
+      "stopAll": true,
+      "presentation": {
+        "group": "compound",
+        "order": 3
+      }
     }
   ]
 }

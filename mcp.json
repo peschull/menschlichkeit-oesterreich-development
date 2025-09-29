@@ -1,0 +1,77 @@
+{
+  "version": "1",
+  "servers": {
+    "filesystem": {
+      "command": "filesystem",
+      "args": {
+        "root": "${workspaceFolder}"
+      }
+    },
+    "git": {
+      "command": "git",
+      "args": {}
+    },
+    "docker": {
+      "command": "docker",
+      "args": {}
+    },
+    "codacy-cli": {
+      "command": "codacy-analysis-cli",
+      "args": {
+        "project-directory": "${workspaceFolder}",
+        "format": "sarif",
+        "output": "quality-reports/codacy-analysis.sarif"
+      }
+    },
+    "prisma": {
+      "command": "prisma",
+      "args": {
+        "schema": "schema.prisma",
+        "generate": true
+      }
+    },
+    "lighthouse": {
+      "command": "lighthouse-ci",
+      "args": {
+        "config": "lighthouse.config.cjs",
+        "budgets-path": "frontend/lighthouse-budgets.json"
+      }
+    },
+    "trivy-security": {
+      "command": "trivy",
+      "args": {
+        "config": "trivy.yaml",
+        "format": "sarif",
+        "output": "quality-reports/security-findings.sarif"
+      }
+    },
+    "n8n-webhook": {
+      "command": "node",
+      "args": {
+        "script": "automation/n8n/webhook-client.js",
+        "environment": "development"
+      }
+    },
+    "build-pipeline": {
+      "command": "bash",
+      "args": {
+        "script": "./build-pipeline.sh",
+        "dry-run": true
+      }
+    },
+    "plesk-deploy": {
+      "command": "bash",
+      "args": {
+        "script": "./scripts/safe-deploy.sh",
+        "mode": "dry-run"
+      }
+    },
+    "quality-reporter": {
+      "command": "node",
+      "args": {
+        "script": "scripts/generate-quality-report.js",
+        "output-dir": "quality-reports"
+      }
+    }
+  }
+}

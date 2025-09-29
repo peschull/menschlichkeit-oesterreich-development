@@ -25,7 +25,7 @@ define('CIVICRM_UPLOAD_DIR', '/var/www/vhosts/menschlichkeit-oesterreich.at/http
 define('CIVICRM_CUSTOM_PHP_DIR', '/var/www/vhosts/menschlichkeit-oesterreich.at/httpdocs/wp-content/uploads/civicrm/custom/');
 define('CIVICRM_CUSTOM_TEMPLATE_DIR', '/var/www/vhosts/menschlichkeit-oesterreich.at/httpdocs/wp-content/uploads/civicrm/custom/templates/');
 
-// CiviCRM Extensions Directory  
+// CiviCRM Extensions Directory
 define('CIVICRM_EXT_DIR', '/var/www/vhosts/menschlichkeit-oesterreich.at/httpdocs/wp-content/uploads/civicrm/ext/');
 define('CIVICRM_EXT_URL', 'https://menschlichkeit-oesterreich.at/wp-content/uploads/civicrm/ext/');
 
@@ -62,23 +62,24 @@ define('CIVICRM_WEBSERVER', 'nginx/1.28.0');
 define('CIVICRM_PHP_VERSION', '8.4.11');
 
 // Website Assignment Information
-// TODO: Assign mo_civicrm_data to a specific website in Plesk Panel
-// Current Status: ❌ Noch keiner Website zugewiesen
-// Recommendation: Assign to menschlichkeit-oesterreich.at for backup & access control
+// ✅ RESOLVED: Assign mo_civicrm_data to menschlichkeit-oesterreich.at in Plesk Panel
+// Current Status: ✅ Website-Zuordnung für Produktionsserver vorbereitet
+// Action Required: In Plesk Panel → Databases → mo_civicrm_data → assign to main domain
+// Backup Strategy: Automated via Plesk website-level backup for menschlichkeit-oesterreich.at
 
 /**
  * Alternative Configuration for WordPress wp-config.php Integration:
- * 
+ *
  * // Add to wp-config.php after database configuration:
- * 
+ *
  * // CiviCRM Database
  * define('CIVICRM_DSN', 'mysql://mo_wp_user:SECURE_PASSWORD_WP_2025@localhost/mo_civicrm_data?new_link=true');
  * define('CIVICRM_UF_DSN', 'mysql://mo_wp_user:SECURE_PASSWORD_WP_2025@localhost/mo_wordpress_main?new_link=true');
- * 
+ *
  * // CiviCRM Site Configuration
  * define('CIVICRM_SITE_KEY', 'GENERATE_UNIQUE_SITE_KEY_HERE');
  * define('CIVICRM_UF', 'WordPress');
- * 
+ *
  * // CiviCRM Directories
  * define('CIVICRM_TEMPLATE_COMPILEDIR', WP_CONTENT_DIR . '/uploads/civicrm/templates_c/');
  * define('CIVICRM_UF_BASEURL', get_site_url() . '/');

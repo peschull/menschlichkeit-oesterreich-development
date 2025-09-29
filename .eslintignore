@@ -1,0 +1,56 @@
+# ESLint Ignore File für Menschlichkeit Österreich
+
+# Build outputs und Dist-Verzeichnisse
+dist/
+build/
+out/
+**/dist/**
+**/build/**
+frontend/dist/**
+.next/
+
+# Node modules
+node_modules/
+**/node_modules/**
+
+# Generated files
+*.min.js
+*.bundle.js
+coverage/
+
+# Third-party libraries
+vendor/
+**/vendor/**
+
+# Service Workers (oft generated)
+sw.js
+service-worker.js
+
+# Compiled CSS
+*.css
+
+# Temporary files
+.tmp/
+temp/
+*.tmp
+
+# Package manager files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Environment files
+.env*
+
+# Quality reports (oft generated JSON/SARIF)
+quality-reports/
+playwright-results/
+test-results/
+
+# MCP generated files
+.mcp/
+
+# Cache directories
+.cache/
+.trunk/
+.trivycache/

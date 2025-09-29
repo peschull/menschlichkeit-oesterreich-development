@@ -10,6 +10,15 @@ ENVIRONMENT="${1:-development}"
 SKIP_TESTS=false
 FORCE=false
 
+# n8n Webhook Integration
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+if [ -f "$SCRIPT_DIR/automation/n8n/webhook-client.js" ]; then
+    N8N_WEBHOOK_CLIENT="$SCRIPT_DIR/automation/n8n/webhook-client.js"
+    N8N_AVAILABLE=true
+else
+    N8N_AVAILABLE=false
+fi
+
 # Parse arguments
 while [[ $# -gt 0 ]]; do
     case $1 in
@@ -40,6 +49,13 @@ print_success() {
 
 print_error() {
     echo -e "\e[31m❌ ERROR: $1\e[0m"
+
+    # n8n Build Failure Notification
+    if [ "$N8N_AVAILABLE" = true ]; then
+        echo -e "\e[34m📡 Sending build failure notification...\e[0m"
+        node "$N8N_WEBHOOK_CLIENT" build "failed" "$ENVIRONMENT" "$1" || echo -e "\e[33m⚠️ n8n failure notification failed\e[0m"
+    fi
+
     exit 1
 }
 
@@ -52,6 +68,12 @@ print_info() {
 }
 
 echo -e "\e[32m🚀 Starting Build Pipeline for Environment: $ENVIRONMENT\e[0m"
+
+# n8n Build Started Notification
+if [ "$N8N_AVAILABLE" = true ]; then
+    echo -e "\e[34m📡 Sending build started notification...\e[0m"
+    node "$N8N_WEBHOOK_CLIENT" build "started" "$ENVIRONMENT" || echo -e "\e[33m⚠️ n8n notification failed (continuing)\e[0m"
+fi
 
 # 1. Environment Checks
 print_info "🔧 Checking environment dependencies..."
@@ -150,7 +172,7 @@ print_success "Build completed successfully"
 # 5. Run Tests (unless skipped)
 if [[ "$SKIP_TESTS" == "false" ]]; then
     print_info "🧪 Running tests..."
-    
+
     # Unit Tests
     echo "Running unit tests..."
     if ! npm run test:unit &> /dev/null; then
@@ -159,7 +181,7 @@ if [[ "$SKIP_TESTS" == "false" ]]; then
         fi
         print_warning "Unit test failures detected but continuing due to --force flag"
     fi
-    
+
     # E2E Tests (only in CI or if explicitly requested)
     if [[ "$ENVIRONMENT" == "ci" || "$FORCE" == "true" ]]; then
         echo "Running E2E tests..."
@@ -170,7 +192,7 @@ if [[ "$SKIP_TESTS" == "false" ]]; then
             print_warning "E2E test failures detected but continuing due to --force flag"
         fi
     fi
-    
+
     print_success "All tests completed"
 fi
 
@@ -206,6 +228,13 @@ echo "$BUILD_REPORT" > build-report.json
 echo ""
 print_success "Build Pipeline completed successfully!"
 echo -e "\e[36m📊 Build report saved to: build-report.json\e[0m"
+
+# n8n Build Success Notification
+if [ "$N8N_AVAILABLE" = true ]; then
+    echo -e "\e[34m📡 Sending build success notification...\e[0m"
+    node "$N8N_WEBHOOK_CLIENT" build "success" "$ENVIRONMENT" || echo -e "\e[33m⚠️ n8n success notification failed\e[0m"
+fi
+
 echo ""
 
 # Return success exit code

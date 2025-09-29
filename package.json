@@ -10,7 +10,8 @@
     "mcp-servers/*",
     "servers",
     "mcp-bridge",
-    "mcp-search"
+    "mcp-search",
+    "automation/n8n"
   ],
   "scripts": {
     "install:all": "npm install --workspaces",
@@ -50,10 +51,23 @@
     "lint:sarif": "eslint . -f sarif -o eslint.sarif || true",
     "lint:all": "npm run lint:js && npm run lint:php && npm run lint:md",
     "format:all": "npm run format && npm run format:php",
+    "quality:codacy": "codacy-analysis-cli analyze --project-directory . --format sarif --output quality-reports/codacy-analysis.sarif || true",
+    "security:trivy": "trivy fs --format sarif --output quality-reports/trivy-security.sarif . || true",
+    "security:scan": "npm run security:trivy && gitleaks detect --report-path quality-reports/secrets-scan.json --report-format json || true",
+    "performance:lighthouse": "npm run lh:ci --workspace=frontend",
+    "compliance:dsgvo": "pwsh scripts/dsgvo-check.ps1",
+    "quality:reports": "node scripts/generate-quality-report.js",
+    "quality:gates": "npm run quality:codacy && npm run security:scan && npm run performance:lighthouse && npm run compliance:dsgvo && npm run quality:reports",
     "figma:sync": "node scripts/figma-token-sync.cjs",
     "figma:sync:watch": "nodemon --watch figma-design-system scripts/figma-token-sync.cjs",
     "design:tokens": "npm run figma:sync && npm run build:frontend",
-    "design:docs": "storybook build && npm run figma:sync"
+    "design:docs": "storybook build && npm run figma:sync",
+    "n8n:start": "cd automation/n8n && docker-compose up -d",
+    "n8n:stop": "cd automation/n8n && docker-compose down",
+    "n8n:logs": "cd automation/n8n && docker-compose logs -f n8n",
+    "n8n:restart": "npm run n8n:stop && npm run n8n:start",
+    "n8n:webhook": "node automation/n8n/webhook-client.js",
+    "n8n:setup": "cd automation/n8n && cp .env.example .env && echo 'Please configure automation/n8n/.env with your settings'"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",

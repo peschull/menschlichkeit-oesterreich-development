@@ -14,12 +14,26 @@ fi
 # SFTP Funktionen laden
 source "$SCRIPT_DIR/sftp-sync.sh"
 
+# n8n Webhook Integration laden (falls verfügbar)
+if [ -f "$SCRIPT_DIR/../automation/n8n/webhook-client.js" ]; then
+    N8N_WEBHOOK_CLIENT="$SCRIPT_DIR/../automation/n8n/webhook-client.js"
+    N8N_AVAILABLE=true
+else
+    N8N_AVAILABLE=false
+fi
+
 # Farben
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m'
+
+# n8n Deployment Started Notification
+if [ "$N8N_AVAILABLE" = true ]; then
+    echo -e "${BLUE}📡 Sending deployment started notification...${NC}"
+    node "$N8N_WEBHOOK_CLIENT" deploy "website" "started" || echo -e "${YELLOW}⚠️ n8n notification failed (continuing)${NC}"
+fi
 
 echo -e "${BLUE}🔒 Safe Deployment für Menschlichkeit Österreich${NC}"
 echo "=================================================="
@@ -45,7 +59,7 @@ echo -e "${YELLOW}🔍 Code-Qualitätsprüfung...${NC}"
 if command -v java &> /dev/null; then
     if [ -f "$HOME/.codacy/codacy-analysis-cli-assembly.jar" ]; then
         java -jar "$HOME/.codacy/codacy-analysis-cli-assembly.jar" analyze --directory "$LOCAL_BASE/website" --format text
-        
+
         if [ $? -ne 0 ]; then
             echo -e "${YELLOW}⚠️  Code-Qualität Warnungen gefunden. Fortfahren? (j/N)${NC}"
             read -r response
@@ -78,18 +92,32 @@ read -r response
 
 if [[ "$response" =~ ^[Jj]$ ]]; then
     echo -e "\n${GREEN}🚀 Starte Deployment...${NC}"
-    
+
     # Original SFTP Script ausführen
     bash "$SCRIPT_DIR/sftp-sync.sh"
-    
+
     if [ $? -eq 0 ]; then
         echo -e "\n${GREEN}✅ Deployment erfolgreich abgeschlossen!${NC}"
+
+        # n8n Success Notification
+        if [ "$N8N_AVAILABLE" = true ]; then
+            echo -e "${BLUE}📡 Sending deployment success notification...${NC}"
+            node "$N8N_WEBHOOK_CLIENT" deploy "website" "success" || echo -e "${YELLOW}⚠️ n8n success notification failed${NC}"
+        fi
+
         echo -e "${BLUE}📝 Post-Deployment Checks:${NC}"
         echo "1. Website testen: https://menschlichkeit-oesterreich.at"
         echo "2. SSL-Zertifikate prüfen"
         echo "3. API-Endpoints validieren (falls vorhanden)"
     else
         echo -e "\n${RED}❌ Deployment fehlgeschlagen!${NC}"
+
+        # n8n Failure Notification
+        if [ "$N8N_AVAILABLE" = true ]; then
+            echo -e "${BLUE}📡 Sending deployment failure notification...${NC}"
+            node "$N8N_WEBHOOK_CLIENT" deploy "website" "failed" || echo -e "${YELLOW}⚠️ n8n failure notification failed${NC}"
+        fi
+
         echo "Bitte Logs überprüfen und bei Bedarf Backup wiederherstellen."
         exit 1
     fi

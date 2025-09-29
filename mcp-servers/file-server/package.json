@@ -1,0 +1,13 @@
+{
+  "name": "@menschlichkeit/mcp-file-server",
+  "version": "1.0.0",
+  "description": "MCP Server für Multi-Service File Access",
+  "main": "index.js",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --inspect index.js"
+  }
+}

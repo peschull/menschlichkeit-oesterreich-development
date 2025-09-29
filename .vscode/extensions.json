@@ -1,40 +1,63 @@
 {
+  // VS Code Extensions für Menschlichkeit Österreich Enterprise Development
   "recommendations": [
-    // PHP/Drupal Stack
+    // AI & Development Core (Essential)
+    "github.copilot",
+    "github.copilot-chat",
+    
+    // Multi-Language Support (Critical for Monorepo)
     "bmewburn.vscode-intelephense-client",
-    "xdebug.php-debug",
-    "xdebug.php-pack",
-
-    // JavaScript/TypeScript Stack
-    "dbaeumer.vscode-eslint",
-    "esbenp.prettier-vscode",
-    "bradlc.vscode-tailwindcss",
-    "ms-vscode.vscode-js-profile-table",
-
-    // Database & API
-    "Prisma.prisma",
-
-    // Testing & Quality
-    "ms-playwright.playwright",
-    "vitest.explorer",
-
-    // DevOps & Docker
-    "ms-azuretools.vscode-docker",
     "ms-python.python",
-
-    // Git & Productivity
-    "eamodio.gitlens",
-    "gruntfuggly.todo-tree",
-
-    // Game Development
-    "ms-vscode.hexeditor",
-
-    // Dokumentation & Qualität
-    "yzhang.markdown-all-in-one",
-    "streetsidesoftware.code-spell-checker",
-    "stylelint.vscode-stylelint",
-
-    // Python Support
-    "ms-python.vscode-pylance"
+    "ms-python.vscode-pylance",
+    "ms-python.debugpy",
+    
+    // Quality & Security (Enterprise Gates - MANDATORY)
+    "codacy-app.codacy",
+    "sonarsource.sonarlint-vscode", 
+    "trunk.io",
+    "snyk-security.snyk-vulnerability-scanner",
+    
+    // Testing & Performance
+    "ms-playwright.playwright",
+    "deque-systems.vscode-axe-linter",
+    
+    // Infrastructure & DevOps
+    "ms-azuretools.vscode-containers",
+    "docker.docker",
+    "redhat.vscode-yaml",
+    
+    // Development Utilities
+    "formulahendry.code-runner",
+    "pflannery.vscode-versionlens",
+    "ms-vscode.powershell"
+  ],
+  
+  "unwantedRecommendations": [
+    // Prettier conflicts with Trunk.io universal formatter
+    "esbenp.prettier-vscode",
+    
+    // ESLint conflicts with Trunk.io linting
+    "dbaeumer.vscode-eslint",
+    
+    // Duplicate/conflicting PHP extensions 
+    "devsense.phptools-vscode",
+    "zobo.php-intellisense",
+    "devsense.composer-php-vscode",
+    
+    // Heavy extensions that slow down multi-service workspace
+    "ms-vscode.vscode-typescript-next",
+    "bradlc.vscode-tailwindcss",
+    "ritwickdey.liveserver",
+    
+    // Python linting conflicts (handled by Trunk.io)
+    "ms-python.isort",
+    "ms-python.flake8", 
+    "ms-python.pylint",
+    "ms-python.black-formatter",
+    
+    // Unnecessary with current setup
+    "formulahendry.auto-rename-tag",
+    "ms-vscode.vscode-json",
+    "christian-kohler.path-intellisense"
   ]
 }

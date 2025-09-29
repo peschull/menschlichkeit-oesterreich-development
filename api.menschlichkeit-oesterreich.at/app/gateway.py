@@ -9,14 +9,19 @@ Verbindet CRM, Frontend, Games und MCP Services
 
 import asyncio
 import os
+import logging
 from datetime import datetime
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, List
 
 import httpx
-from fastapi import Depends, FastAPI, HTTPException, Request
+from fastapi import FastAPI, HTTPException, Request
+from fastapi.concurrency import run_in_threadpool
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
 from pydantic import BaseModel
+from sqlalchemy import Column, DateTime, Integer, String, create_engine, select
+from sqlalchemy.exc import SQLAlchemyError
+from sqlalchemy.orm import declarative_base, sessionmaker
 
 app = FastAPI(
     title="Menschlichkeit Österreich API Gateway",
@@ -48,6 +53,39 @@ class Config:
 
 config = Config()
 
+logger = logging.getLogger(__name__)
+
+if config.DATABASE_URL.startswith("sqlite"):
+    engine = create_engine(
+        config.DATABASE_URL,
+        connect_args={"check_same_thread": False},
+        future=True,
+    )
+else:
+    engine = create_engine(config.DATABASE_URL, future=True)
+
+SessionLocal = sessionmaker(
+    bind=engine,
+    autocommit=False,
+    autoflush=False,
+    expire_on_commit=False,
+)
+
+Base = declarative_base()
+
+
+class GameScoreModel(Base):
+    __tablename__ = "game_scores"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, nullable=False, index=True)
+    game_id = Column(String(100), nullable=False, index=True)
+    score = Column(Integer, nullable=False)
+    timestamp = Column(DateTime, nullable=False, index=True)
+
+
+Base.metadata.create_all(bind=engine)
+
 # Data Models
 class User(BaseModel):
     id: int
@@ -68,6 +106,69 @@ class APIResponse(BaseModel):
     data: Optional[Any] = None
     message: Optional[str] = None
     timestamp: datetime
+
+
+def serialize_game_score(record: "GameScoreModel") -> Dict[str, Any]:
+    return {
+        "id": record.id,
+        "user_id": record.user_id,
+        "game_id": record.game_id,
+        "score": record.score,
+        "timestamp": record.timestamp.isoformat(),
+    }
+
+
+def fetch_user_scores(user_id: int) -> List[Dict[str, Any]]:
+    try:
+        with SessionLocal() as session:
+            stmt = (
+                select(GameScoreModel)
+                .where(GameScoreModel.user_id == user_id)
+                .order_by(GameScoreModel.timestamp.desc())
+            )
+            records = session.execute(stmt).scalars().all()
+            return [serialize_game_score(record) for record in records]
+    except SQLAlchemyError:
+        logger.exception("Failed to fetch scores for user %s", user_id)
+        raise
+
+
+def persist_game_score(score: "GameScore") -> Dict[str, Any]:
+    with SessionLocal() as session:
+        try:
+            model = GameScoreModel(
+                user_id=score.user_id,
+                game_id=score.game_id,
+                score=score.score,
+                timestamp=score.timestamp,
+            )
+            session.add(model)
+            session.commit()
+            session.refresh(model)
+            return serialize_game_score(model)
+        except SQLAlchemyError:
+            session.rollback()
+            logger.exception("Failed to persist game score for user %s", score.user_id)
+            raise
+
+
+def fetch_leaderboard(game_id: str, limit: int) -> List[Dict[str, Any]]:
+    try:
+        with SessionLocal() as session:
+            stmt = (
+                select(GameScoreModel)
+                .where(GameScoreModel.game_id == game_id)
+                .order_by(
+                    GameScoreModel.score.desc(),
+                    GameScoreModel.timestamp.asc(),
+                )
+                .limit(limit)
+            )
+            records = session.execute(stmt).scalars().all()
+            return [serialize_game_score(record) for record in records]
+    except SQLAlchemyError:
+        logger.exception("Failed to fetch leaderboard for game %s", game_id)
+        raise
 
 # Utility Functions
 async def proxy_request(url: str, method: str = "GET", **kwargs):
@@ -157,30 +258,48 @@ async def proxy_crm_post(path: str, request: Request):
 @app.get("/api/games/scores/{user_id}")
 async def get_user_game_scores(user_id: int):
     """Get all game scores for a user"""
-    # TODO: Implement database query
+    try:
+        scores = await run_in_threadpool(fetch_user_scores, user_id)
+    except SQLAlchemyError:
+        raise HTTPException(status_code=500, detail="Could not load game scores")
+
     return create_response(
         success=True,
-        data={"user_id": user_id, "scores": {}},
+        data={"user_id": user_id, "scores": scores},
         message="Game scores retrieved"
     )
 
 @app.post("/api/games/score")
 async def save_game_score(score: GameScore):
     """Save a new game score"""
-    # TODO: Implement database save
+    if score.score < 0:
+        raise HTTPException(status_code=400, detail="Score must be non-negative")
+
+    try:
+        persisted = await run_in_threadpool(persist_game_score, score)
+    except SQLAlchemyError:
+        raise HTTPException(status_code=500, detail="Could not save game score")
+
     return create_response(
         success=True,
-        data=score.dict(),
+        data=persisted,
         message="Game score saved successfully"
     )
 
 @app.get("/api/games/leaderboard/{game_id}")
 async def get_game_leaderboard(game_id: str, limit: int = 10):
     """Get leaderboard for a specific game"""
-    # TODO: Implement database query for top scores
+    if limit < 1 or limit > 100:
+        raise HTTPException(status_code=400, detail="Limit must be between 1 and 100")
+
+    try:
+        leaderboard = await run_in_threadpool(fetch_leaderboard, game_id, limit)
+    except SQLAlchemyError:
+        raise HTTPException(status_code=500, detail="Could not load leaderboard")
+
     return create_response(
         success=True,
-        data={"game_id": game_id, "leaderboard": []},
+        data={"game_id": game_id, "leaderboard": leaderboard},
         message="Leaderboard retrieved"
     )
 

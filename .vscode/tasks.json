@@ -1,242 +1,194 @@
 {
   "version": "2.0.0",
   "tasks": [
-    // ================================
-    // PHP/Drupal Stack Tasks
-    // ================================
     {
-      "label": "Composer: install",
+      "label": "🚀 Dev: Start All Services",
       "type": "shell",
-      "command": "composer install",
-      "group": "build",
-      "options": {
-        "cwd": "${workspaceFolder}/crm.menschlichkeit-oesterreich.at"
+      "command": "npm",
+      "args": [
+        "run",
+        "dev:all"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "group": "development"
+      },
+      "problemMatcher": [],
+      "runOptions": {
+        "runOn": "folderOpen"
       }
     },
     {
-      "label": "Drush: Cache Rebuild",
+      "label": "🔍 Quality: Run All Gates",
       "type": "shell",
-      "command": "vendor/bin/drush cr",
+      "command": "npm",
+      "args": [
+        "run",
+        "quality:gates"
+      ],
       "group": "test",
-      "options": {
-        "cwd": "${workspaceFolder}/crm.menschlichkeit-oesterreich.at"
-      }
-    },
-    {
-      "label": "PHP: Start Server (Debug Mode)",
-      "type": "shell",
-      "command": "php -S localhost:8000 -t httpdocs",
-      "group": "build",
-      "isBackground": true,
-      "options": {
-        "cwd": "${workspaceFolder}/crm.menschlichkeit-oesterreich.at",
-        "env": {
-          "XDEBUG_MODE": "debug",
-          "XDEBUG_CONFIG": "client_host=127.0.0.1 client_port=9003"
-        }
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "group": "quality"
       },
-      "problemMatcher": {
-        "pattern": {
-          "regexp": "^(.*):(\\d+):\\s+(.*)",
-          "file": 1,
-          "line": 2,
-          "message": 3
-        }
-      }
-    },
-
-    // ================================
-    // Node.js/JavaScript Stack Tasks
-    // ================================
-    {
-      "label": "Node: install (lock)",
-      "type": "shell",
-      "command": "npm ci",
-      "group": "build"
+      "problemMatcher": [
+        "$eslint-stylish"
+      ]
     },
     {
-      "label": "Node: Start with Debug",
+      "label": "🛡️ Security: Full Scan",
       "type": "shell",
-      "command": "npm run dev",
-      "group": "build",
-      "isBackground": true,
-      "problemMatcher": ["$tsc-watch"],
-      "options": {
-        "env": {
-          "NODE_OPTIONS": "--inspect"
-        }
-      }
-    },
-    {
-      "label": "Games: Serve Local (Port 3000)",
-      "type": "shell",
-      "command": "python -m http.server 3000",
-      "group": "build",
-      "isBackground": true,
-      "options": {
-        "cwd": "${workspaceFolder}/web"
+      "command": "npm",
+      "args": [
+        "run",
+        "security:scan"
+      ],
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "group": "security"
       },
       "problemMatcher": []
     },
-
-    // ================================
-    // Frontend Stack Tasks (Next.js)
-    // ================================
     {
-      "label": "Next.js: Dev (Debug Mode)",
+      "label": "🏗️ Build: Production Pipeline",
       "type": "shell",
-      "command": "npm run dev",
+      "command": "./build-pipeline.sh",
+      "args": [
+        "production"
+      ],
       "group": "build",
-      "isBackground": true,
-      "options": {
-        "cwd": "${workspaceFolder}/frontend",
-        "env": {
-          "NODE_OPTIONS": "--inspect"
-        }
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "group": "build"
       },
-      "problemMatcher": ["$tsc-watch"]
+      "problemMatcher": [
+        "$eslint-stylish",
+        "$tsc"
+      ]
     },
     {
-      "label": "Next.js: Build",
+      "label": "🧪 Test: E2E Playwright",
       "type": "shell",
-      "command": "npm run build",
-      "group": "build",
-      "options": {
-        "cwd": "${workspaceFolder}/frontend"
-      },
-      "problemMatcher": ["$tsc"]
-    },
-
-    // ================================
-    // API Backend Tasks
-    // ================================
-    {
-      "label": "API: Start FastAPI (Debug)",
-      "type": "shell",
-      "command": "python -m uvicorn app.main:app --host 0.0.0.0 --port 8001 --reload",
-      "group": "build",
-      "isBackground": true,
-      "options": {
-        "cwd": "${workspaceFolder}/api.menschlichkeit-oesterreich.at"
+      "command": "npm",
+      "args": [
+        "run",
+        "test:e2e"
+      ],
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "group": "testing"
       },
       "problemMatcher": []
     },
-
-    // ================================
-    // Quality & Testing Tasks
-    // ================================
     {
-      "label": "Lint: ESLint",
+      "label": "📊 Performance: Lighthouse Audit",
       "type": "shell",
-      "command": "npm run lint",
+      "command": "npm",
+      "args": [
+        "run",
+        "performance:lighthouse"
+      ],
       "group": "test",
-      "problemMatcher": ["$eslint-stylish"]
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "group": "performance"
+      },
+      "problemMatcher": []
     },
     {
-      "label": "Format: Prettier",
+      "label": "🔄 n8n: Start Automation",
       "type": "shell",
-      "command": "npx prettier --write .",
-      "group": "test"
+      "command": "npm",
+      "args": [
+        "run",
+        "n8n:start"
+      ],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "group": "automation"
+      },
+      "problemMatcher": [],
+      "isBackground": true
     },
     {
-      "label": "Stylelint: Check CSS",
+      "label": "🗄️ Database: Prisma Generate",
       "type": "shell",
-      "command": "npx stylelint \"web/**/*.css\" \"frontend/src/**/*.{css,pcss}\"",
+      "command": "npx",
+      "args": [
+        "prisma",
+        "generate"
+      ],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "group": "database"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "🚢 Deploy: Dry Run",
+      "type": "shell",
+      "command": "./scripts/safe-deploy.sh",
+      "args": [
+        "--dry-run"
+      ],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "group": "deployment"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "📋 Reports: Generate Quality Reports",
+      "type": "shell",
+      "command": "npm",
+      "args": [
+        "run",
+        "quality:reports"
+      ],
       "group": "test",
-      "problemMatcher": []
-    },
-    {
-      "label": "Test: Vitest Run",
-      "type": "shell",
-      "command": "npx vitest --run",
-      "group": "test",
-      "problemMatcher": []
-    },
-    {
-      "label": "Test: Playwright E2E",
-      "type": "shell",
-      "command": "npx playwright test",
-      "group": "test",
-      "problemMatcher": []
-    },
-
-    // ================================
-    // Database Tasks
-    // ================================
-    {
-      "label": "Prisma: Generate",
-      "type": "shell",
-      "command": "npx prisma generate",
-      "group": "build"
-    },
-    {
-      "label": "DB: Migrate Dev",
-      "type": "shell",
-      "command": "npx prisma migrate dev",
-      "group": "build"
-    },
-    {
-      "label": "DB: Pull (remote→local)",
-      "type": "shell",
-      "command": "scripts/db-pull.sh",
-      "group": "build",
-      "problemMatcher": []
-    },
-    {
-      "label": "DB: Push (local→remote, Vorsicht)",
-      "type": "shell",
-      "command": "scripts/db-push.sh --apply",
-      "group": "build",
-      "problemMatcher": []
-    },
-
-    // ================================
-    // Deployment Tasks
-    // ================================
-    {
-      "label": "Plesk: Pull (Dry-Run)",
-      "type": "shell",
-      "command": "scripts/plesk-sync.sh pull",
-      "group": "build",
-      "problemMatcher": []
-    },
-    {
-      "label": "Plesk: Pull (Apply)",
-      "type": "shell",
-      "command": "scripts/plesk-sync.sh pull --apply",
-      "group": "build",
-      "problemMatcher": []
-    },
-    {
-      "label": "Plesk: Push (Dry-Run)",
-      "type": "shell",
-      "command": "scripts/plesk-sync.sh push",
-      "group": "build",
-      "problemMatcher": []
-    },
-    {
-      "label": "Plesk: Push (Apply)",
-      "type": "shell",
-      "command": "scripts/plesk-sync.sh push --apply",
-      "group": "build",
-      "problemMatcher": []
-    },
-
-    // ================================
-    // Docker Tasks
-    // ================================
-    {
-      "label": "Docker: Up (Development)",
-      "type": "shell",
-      "command": "docker-compose -f docker-compose.dev.yml up -d",
-      "group": "build",
-      "problemMatcher": []
-    },
-    {
-      "label": "Docker: Down",
-      "type": "shell",
-      "command": "docker-compose down",
-      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "group": "reports"
+      },
       "problemMatcher": []
     }
   ]
