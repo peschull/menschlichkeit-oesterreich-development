@@ -1,0 +1,132 @@
+{
+  // GitHub Codespace Konfiguration - Menschlichkeit Österreich
+  "name": "Austrian NGO Multi-Service Development",
+  "image": "mcr.microsoft.com/devcontainers/universal:2-focal",
+
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "18"
+    },
+    "ghcr.io/devcontainers/features/php:1": {
+      "version": "8.4"
+    },
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.11"
+    },
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/git:1": {
+      "version": "latest"
+    }
+  },
+
+  "forwardPorts": [
+    3000,
+    3001,
+    5678,
+    8000,
+    8001,
+    8080
+  ],
+
+  "portsAttributes": {
+    "3000": {
+      "label": "Frontend (React)",
+      "protocol": "https"
+    },
+    "3001": {
+      "label": "Games Platform",
+      "protocol": "https"
+    },
+    "5678": {
+      "label": "n8n Automation",
+      "protocol": "https"
+    },
+    "8000": {
+      "label": "CRM (CiviCRM/Drupal)",
+      "protocol": "https"
+    },
+    "8001": {
+      "label": "API (FastAPI)",
+      "protocol": "https"
+    },
+    "8080": {
+      "label": "Website",
+      "protocol": "https"
+    }
+  },
+
+  "onCreateCommand": [
+    "bash .devcontainer/setup.sh"
+  ],
+
+  "postCreateCommand": [
+    "npm install",
+    "composer install --ignore-platform-reqs",
+    "pip install -r requirements.txt"
+  ],
+
+  "postStartCommand": [
+    "bash .devcontainer/post-start.sh"
+  ],
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.vscode-typescript-next",
+        "bradlc.vscode-tailwindcss",
+        "ms-python.python",
+        "bmewburn.vscode-intelephense-client",
+        "esbenp.prettier-vscode",
+        "ms-vscode.vscode-eslint",
+        "GitHubCopilot.github-copilot",
+        "ms-vscode-remote.remote-containers",
+        "ms-azuretools.vscode-docker"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "php.validate.executablePath": "/usr/bin/php",
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": "explicit"
+        }
+      }
+    }
+  },
+
+  "secrets": {
+    "PLESK_HOST": {
+      "description": "Plesk server access for deployment"
+    },
+    "SSH_PRIVATE_KEY": {
+      "description": "SSH private key for Plesk server access"
+    },
+    "LARAVEL_DB_PASS": {
+      "description": "Laravel database password"
+    },
+    "CIVICRM_DB_PASS": {
+      "description": "CiviCRM database password"
+    },
+    "MAIL_INFO_PASSWORD": {
+      "description": "Info email password"
+    },
+    "CODACY_API_TOKEN": {
+      "description": "Codacy API token for quality analysis"
+    },
+    "SNYK_TOKEN": {
+      "description": "Snyk token for security scanning"
+    }
+  },
+
+  "containerEnv": {
+    "NODE_ENV": "development",
+    "DEBUG": "true",
+    "CODESPACE_SETUP": "true"
+  },
+
+  "mounts": [
+    "source=codespace-menschlichkeit-node-modules,target=${containerWorkspaceFolder}/node_modules,type=volume"
+  ]
+}
