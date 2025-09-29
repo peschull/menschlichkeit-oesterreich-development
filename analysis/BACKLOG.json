@@ -25,17 +25,9 @@
       "eisenhower": "Do",
       "critical_path": true,
       "size": "S",
-      "owner_roles": [
-        "Frontend Developer"
-      ],
-      "dor": [
-        "Zugriff auf website/",
-        "Reviewkriterien definiert"
-      ],
-      "dod": [
-        "HTML W3C valid",
-        "Lighthouse DOM errors = 0"
-      ],
+      "owner_roles": ["Frontend Developer"],
+      "dor": ["Zugriff auf website/", "Reviewkriterien definiert"],
+      "dod": ["HTML W3C valid", "Lighthouse DOM errors = 0"],
       "dependencies": [],
       "status": "done"
     },
@@ -59,20 +51,10 @@
       "eisenhower": "Do",
       "critical_path": true,
       "size": "S",
-      "owner_roles": [
-        "Frontend Developer",
-        "Backend Developer"
-      ],
-      "dor": [
-        "Aktuelles API-Schema verifiziert"
-      ],
-      "dod": [
-        "Login funktioniert gegen Dev-API",
-        "Fehlerbotschaften nutzerfreundlich"
-      ],
-      "dependencies": [
-        "T-001"
-      ],
+      "owner_roles": ["Frontend Developer", "Backend Developer"],
+      "dor": ["Aktuelles API-Schema verifiziert"],
+      "dod": ["Login funktioniert gegen Dev-API", "Fehlerbotschaften nutzerfreundlich"],
+      "dependencies": ["T-001"],
       "status": "done"
     },
     {
@@ -91,23 +73,13 @@
       "eisenhower": "Do",
       "critical_path": true,
       "size": "M",
-      "owner_roles": [
-        "DevOps",
-        "Security"
-      ],
-      "dor": [
-        "Plesk-Zugriff vorhanden"
-      ],
-      "dod": [
-        "Header aktiv auf Prod & Staging",
-        "CSP Violations 0 in Report-Only"
-      ],
+      "owner_roles": ["DevOps", "Security"],
+      "dor": ["Plesk-Zugriff vorhanden"],
+      "dod": ["Header aktiv auf Prod & Staging", "CSP Violations 0 in Report-Only"],
       "dependencies": [],
       "status": "done",
       "completed_at": "2025-09-28",
-      "notes": [
-        "Abgeschlossen nach Umsetzung der Sicherheits-/CORS-Konfiguration (2025-09-28)."
-      ]
+      "notes": ["Abgeschlossen nach Umsetzung der Sicherheits-/CORS-Konfiguration (2025-09-28)."]
     },
     {
       "id": "T-004",
@@ -125,20 +97,10 @@
       "eisenhower": "Plan",
       "critical_path": false,
       "size": "M",
-      "owner_roles": [
-        "Frontend Developer",
-        "DevOps"
-      ],
-      "dor": [
-        "Auswahl: SRI vs Self-Host"
-      ],
-      "dod": [
-        "Keine externen Fonts ohne SRI",
-        "Layout stabil"
-      ],
-      "dependencies": [
-        "T-003"
-      ],
+      "owner_roles": ["Frontend Developer", "DevOps"],
+      "dor": ["Auswahl: SRI vs Self-Host"],
+      "dod": ["Keine externen Fonts ohne SRI", "Layout stabil"],
+      "dependencies": ["T-003"],
       "status": "todo",
       "notes": [
         "Nächster Schritt: CDN-Ressourcen in website/index.html inventarisieren und Entscheidung SRI vs. Self-Hosting dokumentieren (2025-09-28)."
@@ -160,16 +122,9 @@
       "eisenhower": "Plan",
       "critical_path": false,
       "size": "M",
-      "owner_roles": [
-        "Frontend Developer",
-        "Designer"
-      ],
-      "dor": [
-        "Bildquellen verfügbar"
-      ],
-      "dod": [
-        "Lighthouse Performance ≥ 0.9"
-      ],
+      "owner_roles": ["Frontend Developer", "Designer"],
+      "dor": ["Bildquellen verfügbar"],
+      "dod": ["Lighthouse Performance ≥ 0.9"],
       "dependencies": [],
       "status": "todo",
       "notes": [
@@ -196,15 +151,9 @@
       "eisenhower": "Do",
       "critical_path": false,
       "size": "S",
-      "owner_roles": [
-        "DevOps"
-      ],
-      "dor": [
-        "Node im CI"
-      ],
-      "dod": [
-        "CI-Job grün bei Score ≥ Grenzwerten"
-      ],
+      "owner_roles": ["DevOps"],
+      "dor": ["Node im CI"],
+      "dod": ["CI-Job grün bei Score ≥ Grenzwerten"],
       "dependencies": [],
       "status": "todo",
       "notes": [
@@ -231,17 +180,9 @@
       "eisenhower": "Plan",
       "critical_path": true,
       "size": "L",
-      "owner_roles": [
-        "Backend Developer"
-      ],
-      "dor": [
-        "CiviCRM APIv4 Mapping definiert",
-        "Auth-Strategie festgelegt"
-      ],
-      "dod": [
-        "Endpoints dokumentiert",
-        "Tests grün"
-      ],
+      "owner_roles": ["Backend Developer"],
+      "dor": ["CiviCRM APIv4 Mapping definiert", "Auth-Strategie festgelegt"],
+      "dod": ["Endpoints dokumentiert", "Tests grün"],
       "dependencies": [],
       "status": "todo",
       "notes": [
@@ -264,23 +205,13 @@
       "eisenhower": "Do",
       "critical_path": false,
       "size": "S",
-      "owner_roles": [
-        "Backend Developer",
-        "Security"
-      ],
-      "dor": [
-        "Origin-Liste bekannt"
-      ],
-      "dod": [
-        "Nur erlaubte Origins",
-        "Preflight OK"
-      ],
+      "owner_roles": ["Backend Developer", "Security"],
+      "dor": ["Origin-Liste bekannt"],
+      "dod": ["Nur erlaubte Origins", "Preflight OK"],
       "dependencies": [],
       "status": "done",
       "completed_at": "2025-09-28",
-      "notes": [
-        "Abgeschlossen nach Umsetzung der Sicherheits-/CORS-Konfiguration (2025-09-28)."
-      ]
+      "notes": ["Abgeschlossen nach Umsetzung der Sicherheits-/CORS-Konfiguration (2025-09-28)."]
     },
     {
       "id": "T-009",
@@ -298,21 +229,13 @@
       "eisenhower": "Do",
       "critical_path": false,
       "size": "S",
-      "owner_roles": [
-        "Backend Developer"
-      ],
-      "dor": [
-        "ENV Namen final"
-      ],
-      "dod": [
-        "Start bricht mit klarer Meldung bei fehlenden Variablen ab"
-      ],
+      "owner_roles": ["Backend Developer"],
+      "dor": ["ENV Namen final"],
+      "dod": ["Start bricht mit klarer Meldung bei fehlenden Variablen ab"],
       "dependencies": [],
       "status": "done",
       "completed_at": "2025-09-28",
-      "notes": [
-        "Abgeschlossen nach Umsetzung der Sicherheits-/CORS-Konfiguration (2025-09-28)."
-      ]
+      "notes": ["Abgeschlossen nach Umsetzung der Sicherheits-/CORS-Konfiguration (2025-09-28)."]
     },
     {
       "id": "T-010",
@@ -334,16 +257,9 @@
       "eisenhower": "Plan",
       "critical_path": false,
       "size": "S",
-      "owner_roles": [
-        "Backend Developer"
-      ],
-      "dor": [
-        "Ziel-Laufzeit definiert"
-      ],
-      "dod": [
-        "Ein Source of Truth",
-        "Lock/Hashes optional"
-      ],
+      "owner_roles": ["Backend Developer"],
+      "dor": ["Ziel-Laufzeit definiert"],
+      "dod": ["Ein Source of Truth", "Lock/Hashes optional"],
       "dependencies": [],
       "status": "todo",
       "notes": [
@@ -370,17 +286,9 @@
       "eisenhower": "Plan",
       "critical_path": false,
       "size": "M",
-      "owner_roles": [
-        "PHP Developer",
-        "Security"
-      ],
-      "dor": [
-        "Composer/Drush verfügbar"
-      ],
-      "dod": [
-        "composer audit clean",
-        "Security advisories 0"
-      ],
+      "owner_roles": ["PHP Developer", "Security"],
+      "dor": ["Composer/Drush verfügbar"],
+      "dod": ["composer audit clean", "Security advisories 0"],
       "dependencies": [],
       "status": "todo",
       "notes": [
@@ -403,18 +311,10 @@
       "eisenhower": "Plan",
       "critical_path": true,
       "size": "M",
-      "owner_roles": [
-        "DevOps"
-      ],
-      "dor": [
-        "CI Runner Kapazität"
-      ],
-      "dod": [
-        "Pipelines grün, Gates aktiv"
-      ],
-      "dependencies": [
-        "T-006"
-      ],
+      "owner_roles": ["DevOps"],
+      "dor": ["CI Runner Kapazität"],
+      "dod": ["Pipelines grün, Gates aktiv"],
+      "dependencies": ["T-006"],
       "status": "todo",
       "notes": [
         "Nächster Schritt: Pipeline-Entwurf für frontend + website (Build/Lint/Test) in .github/workflows anlegen; Abhängigkeit zu T-006 beachten (2025-09-28)."
@@ -436,18 +336,10 @@
       "eisenhower": "Plan",
       "critical_path": false,
       "size": "S",
-      "owner_roles": [
-        "DevOps"
-      ],
-      "dor": [
-        "Plesk Zugriff"
-      ],
-      "dod": [
-        "Header live verifiziert"
-      ],
-      "dependencies": [
-        "T-003"
-      ],
+      "owner_roles": ["DevOps"],
+      "dor": ["Plesk Zugriff"],
+      "dod": ["Header live verifiziert"],
+      "dependencies": ["T-003"],
       "status": "todo",
       "notes": [
         "Nächster Schritt: Nach CSP-Rollout Header-Template für Asset-Caching in Plesk vorbereiten (2025-09-28)."
@@ -473,19 +365,10 @@
       "eisenhower": "Plan",
       "critical_path": false,
       "size": "M",
-      "owner_roles": [
-        "Frontend Developer"
-      ],
-      "dor": [
-        "API-Endpoints final (T-007)"
-      ],
-      "dod": [
-        "Funktional identisch zur Website",
-        "Lighthouse ≥90"
-      ],
-      "dependencies": [
-        "T-007"
-      ],
+      "owner_roles": ["Frontend Developer"],
+      "dor": ["API-Endpoints final (T-007)"],
+      "dod": ["Funktional identisch zur Website", "Lighthouse ≥90"],
+      "dependencies": ["T-007"],
       "status": "todo",
       "notes": [
         "Nächster Schritt: Auth-Flow-Anforderungen mit Backend (T-007) abstimmen und React-Komponentenplanung erstellen (2025-09-28)."
@@ -511,16 +394,9 @@
       "eisenhower": "Plan",
       "critical_path": false,
       "size": "S",
-      "owner_roles": [
-        "Frontend Developer",
-        "Security"
-      ],
-      "dor": [
-        "Auth Strategie beschlossen"
-      ],
-      "dod": [
-        "Keine Tokens im LocalStorage auf Prod"
-      ],
+      "owner_roles": ["Frontend Developer", "Security"],
+      "dor": ["Auth Strategie beschlossen"],
+      "dod": ["Keine Tokens im LocalStorage auf Prod"],
       "dependencies": [],
       "status": "todo",
       "notes": [
@@ -543,19 +419,10 @@
       "eisenhower": "Do",
       "critical_path": false,
       "size": "S",
-      "owner_roles": [
-        "Security",
-        "DevOps"
-      ],
-      "dor": [
-        "Toolauswahl"
-      ],
-      "dod": [
-        "CI bricht bei Leaks"
-      ],
-      "dependencies": [
-        "T-012"
-      ],
+      "owner_roles": ["Security", "DevOps"],
+      "dor": ["Toolauswahl"],
+      "dod": ["CI bricht bei Leaks"],
+      "dependencies": ["T-012"],
       "status": "todo",
       "notes": [
         "Nächster Schritt: Toolauswahl (gitleaks/trufflehog) finalisieren und CI-Integration nach T-012 planen (2025-09-28)."
@@ -577,15 +444,9 @@
       "eisenhower": "Plan",
       "critical_path": false,
       "size": "M",
-      "owner_roles": [
-        "DevOps"
-      ],
-      "dor": [
-        "Tooling gewählt"
-      ],
-      "dod": [
-        "Alerts eingerichtet"
-      ],
+      "owner_roles": ["DevOps"],
+      "dor": ["Tooling gewählt"],
+      "dod": ["Alerts eingerichtet"],
       "dependencies": [],
       "status": "todo",
       "notes": [
@@ -608,18 +469,10 @@
       "eisenhower": "Do",
       "critical_path": false,
       "size": "S",
-      "owner_roles": [
-        "DevOps"
-      ],
-      "dor": [
-        "Stakeholder-Entscheid zu WP"
-      ],
-      "dod": [
-        "CI ohne falsche Fehlalarme"
-      ],
-      "dependencies": [
-        "T-012"
-      ],
+      "owner_roles": ["DevOps"],
+      "dor": ["Stakeholder-Entscheid zu WP"],
+      "dod": ["CI ohne falsche Fehlalarme"],
+      "dependencies": ["T-012"],
       "status": "todo",
       "notes": [
         "Nächster Schritt: Bestehende .github/workflows prüfen und nicht genutzte WP-Jobs kennzeichnen (2025-09-28)."
@@ -645,17 +498,9 @@
       "eisenhower": "Plan",
       "critical_path": false,
       "size": "S",
-      "owner_roles": [
-        "Legal",
-        "DevOps"
-      ],
-      "dor": [
-        "Policy verfügbar"
-      ],
-      "dod": [
-        "Notice-Datei vorhanden",
-        "Lizenzen dokumentiert"
-      ],
+      "owner_roles": ["Legal", "DevOps"],
+      "dor": ["Policy verfügbar"],
+      "dod": ["Notice-Datei vorhanden", "Lizenzen dokumentiert"],
       "dependencies": [],
       "status": "todo",
       "notes": [
@@ -678,17 +523,9 @@
       "eisenhower": "Plan",
       "critical_path": false,
       "size": "M",
-      "owner_roles": [
-        "Security",
-        "Legal"
-      ],
-      "dor": [
-        "Prozess definiert"
-      ],
-      "dod": [
-        "Datenminimierung nachgewiesen",
-        "Consent Flow beschrieben"
-      ],
+      "owner_roles": ["Security", "Legal"],
+      "dor": ["Prozess definiert"],
+      "dod": ["Datenminimierung nachgewiesen", "Consent Flow beschrieben"],
       "dependencies": [],
       "status": "todo",
       "notes": [

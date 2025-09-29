@@ -22,12 +22,7 @@
     "size_bytes": 1344,
     "hash": "1d3ca30276bbc8cc1587586f768751f98cae3398daa2c020c4087665c4a0f84f"
   },
-  "colors": [
-    "url(#settingsGrad)",
-    "#334155",
-    "white",
-    "rgba(0,0,0,0.2)"
-  ],
+  "colors": ["url(#settingsGrad)", "#334155", "white", "rgba(0,0,0,0.2)"],
   "accessibility": {
     "alt_text_provided": true,
     "high_contrast": true,
@@ -36,11 +31,7 @@
   "usage": {
     "category": "ui_buttons",
     "subcategory": "settings",
-    "recommended_contexts": [
-      "Game controls",
-      "Interface elements",
-      "Navigation"
-    ]
+    "recommended_contexts": ["Game controls", "Interface elements", "Navigation"]
   },
   "metadata": {
     "created_at": "2025-09-26T04:10:36.447540",

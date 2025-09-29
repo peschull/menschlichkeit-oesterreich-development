@@ -23,7 +23,7 @@ const report = {
     environment: process.env.NODE_ENV || 'development',
     repository: 'menschlichkeit-oesterreich-development',
     branch: process.env.GITHUB_REF_NAME || 'development',
-    commit: process.env.GITHUB_SHA?.substring(0, 7) || 'unknown'
+    commit: process.env.GITHUB_SHA?.substring(0, 7) || 'unknown',
   },
   summary: {
     overall_status: 'unknown',
@@ -33,22 +33,22 @@ const report = {
     performance_score: 0,
     total_issues: 0,
     critical_issues: 0,
-    recommendations: []
+    recommendations: [],
   },
   reports: {
     codacy: null,
     security: null,
     dsgvo: null,
     lighthouse: null,
-    eslint: null
+    eslint: null,
   },
   quality_gates: {
     security_gate: { passed: false, details: 'CVE count unknown' },
     maintainability_gate: { passed: false, details: 'Score unknown' },
     performance_gate: { passed: false, details: 'Lighthouse score unknown' },
     accessibility_gate: { passed: false, details: 'A11y score unknown' },
-    compliance_gate: { passed: false, details: 'DSGVO status unknown' }
-  }
+    compliance_gate: { passed: false, details: 'DSGVO status unknown' },
+  },
 };
 
 // Helper function to safely read JSON files
@@ -74,17 +74,17 @@ if (codacyReport && codacyReport.runs) {
   report.reports.codacy = {
     total_issues: results.length,
     critical_issues: results.filter(r => r.level === 'error').length,
-    categories: {}
+    categories: {},
   };
 
   // Calculate quality score from Codacy
   const criticalCount = report.reports.codacy.critical_issues;
-  report.summary.quality_score = Math.max(0, 100 - (criticalCount * 10));
+  report.summary.quality_score = Math.max(0, 100 - criticalCount * 10);
 
   if (criticalCount === 0) {
     report.quality_gates.maintainability_gate = {
       passed: true,
-      details: `No critical issues found. Total issues: ${results.length}`
+      details: `No critical issues found. Total issues: ${results.length}`,
     };
   }
 }
@@ -97,21 +97,22 @@ if (securityReport && securityReport.runs) {
 
   report.reports.security = {
     total_vulnerabilities: cveCount,
-    critical_vulnerabilities: results.filter(r => r.properties?.security_severity === 'CRITICAL').length,
-    high_vulnerabilities: results.filter(r => r.properties?.security_severity === 'HIGH').length
+    critical_vulnerabilities: results.filter(r => r.properties?.security_severity === 'CRITICAL')
+      .length,
+    high_vulnerabilities: results.filter(r => r.properties?.security_severity === 'HIGH').length,
   };
 
-  report.summary.security_score = Math.max(0, 100 - (cveCount * 5));
+  report.summary.security_score = Math.max(0, 100 - cveCount * 5);
 
   if (cveCount === 0) {
     report.quality_gates.security_gate = {
       passed: true,
-      details: 'No CVE vulnerabilities detected'
+      details: 'No CVE vulnerabilities detected',
     };
   } else {
     report.quality_gates.security_gate = {
       passed: false,
-      details: `${cveCount} vulnerabilities found (${report.reports.security.critical_vulnerabilities} critical)`
+      details: `${cveCount} vulnerabilities found (${report.reports.security.critical_vulnerabilities} critical)`,
     };
   }
 }
@@ -124,7 +125,7 @@ if (dsgvoReport) {
     compliance_score: dsgvoReport.summary?.compliance_score || 0,
     passed_checks: dsgvoReport.summary?.passed || 0,
     failed_checks: dsgvoReport.summary?.failed || 0,
-    warnings: dsgvoReport.summary?.warnings || 0
+    warnings: dsgvoReport.summary?.warnings || 0,
   };
 
   report.summary.compliance_score = dsgvoReport.summary?.compliance_score || 0;
@@ -132,12 +133,12 @@ if (dsgvoReport) {
   if (dsgvoReport.overall_status === 'compliant') {
     report.quality_gates.compliance_gate = {
       passed: true,
-      details: `DSGVO compliant (${report.reports.dsgvo.compliance_score}% score)`
+      details: `DSGVO compliant (${report.reports.dsgvo.compliance_score}% score)`,
     };
   } else {
     report.quality_gates.compliance_gate = {
       passed: false,
-      details: `DSGVO ${dsgvoReport.overall_status} (${report.reports.dsgvo.failed_checks} failed checks)`
+      details: `DSGVO ${dsgvoReport.overall_status} (${report.reports.dsgvo.failed_checks} failed checks)`,
     };
   }
 }
@@ -150,7 +151,7 @@ if (eslintReport && eslintReport.runs) {
 
   report.reports.eslint = {
     total_issues: totalResults,
-    files_with_issues: results.length
+    files_with_issues: results.length,
   };
 }
 
@@ -192,7 +193,9 @@ if (!report.quality_gates.compliance_gate.passed) {
 }
 
 if (report.summary.recommendations.length === 0) {
-  report.summary.recommendations.push('✅ All quality gates passed! Consider continuous monitoring');
+  report.summary.recommendations.push(
+    '✅ All quality gates passed! Consider continuous monitoring'
+  );
 }
 
 // Add RACI matrix for Enterprise requirements
@@ -201,20 +204,20 @@ report.raci_matrix = {
     responsible: 'DevOps Team',
     accountable: 'Security Officer',
     consulted: 'Development Team',
-    informed: 'Management'
+    informed: 'Management',
   },
   compliance_issues: {
     responsible: 'Compliance Officer',
     accountable: 'Legal Team',
     consulted: 'Development Team',
-    informed: 'Management'
+    informed: 'Management',
   },
   performance_issues: {
     responsible: 'Frontend Team',
     accountable: 'Technical Lead',
     consulted: 'UX Team',
-    informed: 'Product Owner'
-  }
+    informed: 'Product Owner',
+  },
 };
 
 // Save comprehensive report

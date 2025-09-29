@@ -37,6 +37,7 @@
 ## Critical Development Workflows
 
 ### Local Development
+
 ```bash
 # Multi-service development start
 npm run dev:all  # Starts CRM (8000), API (8001), Frontend (3000), Games (3000)
@@ -54,6 +55,7 @@ npm run dev:web      # Web MCP stack
 ```
 
 ### Build & Deploy Pipeline
+
 ```bash
 # Quality checks (required before deploy)
 npm run lint:all && npm run format:all
@@ -70,6 +72,7 @@ npm run lint:all && npm run format:all
 ```
 
 ### Database & Sync Operations
+
 ```bash
 # Plesk server synchronization (dry-run first!)
 ./scripts/plesk-sync.sh pull          # Preview remote→local
@@ -118,21 +121,21 @@ npm run lint:all && npm run format:all
 
 - Test results stored in `test-results/` with timestamped reports# Plesk deployment (production-ready scripts)
 
-./scripts/safe-deploy.sh              # Safe deployment with pre-checks
+./scripts/safe-deploy.sh # Safe deployment with pre-checks
 
-### Deployment Patterns./deployment-scripts/deploy-crm-plesk.sh   # CRM-specific deployment
+### Deployment Patterns./deployment-scripts/deploy-crm-plesk.sh # CRM-specific deployment
 
-- Ansible-based deployment via `deployment-scripts/ansible/`./deployment-scripts/deploy-api-plesk.sh   # API-specific deployment
+- Ansible-based deployment via `deployment-scripts/ansible/`./deployment-scripts/deploy-api-plesk.sh # API-specific deployment
 
 - Nginx reverse proxy configuration
 
 - Multi-subdomain Plesk hosting setup documented in root analysis files# Automated builds with n8n integration (sends webhook notifications)
 
-./build-pipeline.sh staging --skip-tests   # Fast staging build
+./build-pipeline.sh staging --skip-tests # Fast staging build
 
-## Integration Points./build-pipeline.sh production --force     # Override lint/test failures
+## Integration Points./build-pipeline.sh production --force # Override lint/test failures
 
-```
+````
 
 ### External Dependencies
 
@@ -277,3 +280,4 @@ When working with this codebase:
 6. Document integration patterns in `contracts/` directory
 7. **Stop immediately** on Security/GDPR/License/Integration gate violations
 8. Generate timestamped reports with risk assessments and action plans
+````

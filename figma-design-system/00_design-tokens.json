@@ -87,21 +87,9 @@
     },
     "typography": {
       "fontFamily": {
-        "primary": [
-          "Inter",
-          "system-ui",
-          "sans-serif"
-        ],
-        "secondary": [
-          "Merriweather",
-          "Georgia",
-          "serif"
-        ],
-        "mono": [
-          "JetBrains Mono",
-          "Monaco",
-          "monospace"
-        ]
+        "primary": ["Inter", "system-ui", "sans-serif"],
+        "secondary": ["Merriweather", "Georgia", "serif"],
+        "mono": ["JetBrains Mono", "Monaco", "monospace"]
       },
       "fontSize": {
         "xs": "0.75rem",

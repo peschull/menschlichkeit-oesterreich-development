@@ -154,9 +154,7 @@
           "background": "transparent",
           "type": "status",
           "style": "plain",
-          "foreground_templates": [
-            "{{ if gt .Code 0 }}#ff0000{{ end }}"
-          ]
+          "foreground_templates": ["{{ if gt .Code 0 }}#ff0000{{ end }}"]
         }
       ],
       "newline": true
@@ -169,10 +167,7 @@
       "background": "transparent",
       "type": "docker",
       "style": "plain",
-      "tips": [
-        "docker",
-        "docker-compose"
-      ]
+      "tips": ["docker", "docker-compose"]
     }
   ],
   "version": 3,

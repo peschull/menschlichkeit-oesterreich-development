@@ -6,19 +6,14 @@
       "type": "node",
       "request": "launch",
       "program": "${workspaceFolder}/frontend/node_modules/.bin/vite",
-      "args": [
-        "--mode",
-        "development"
-      ],
+      "args": ["--mode", "development"],
       "cwd": "${workspaceFolder}/frontend",
       "console": "integratedTerminal",
       "env": {
         "NODE_ENV": "development",
         "VITE_API_BASE_URL": "http://localhost:8001"
       },
-      "skipFiles": [
-        "<node_internals>/**"
-      ],
+      "skipFiles": ["<node_internals>/**"],
       "presentation": {
         "group": "frontend",
         "order": 1
@@ -30,14 +25,7 @@
       "request": "launch",
       "program": "${workspaceFolder}/api.menschlichkeit-oesterreich.at/app/main.py",
       "module": "uvicorn",
-      "args": [
-        "app.main:app",
-        "--host",
-        "0.0.0.0",
-        "--port",
-        "8001",
-        "--reload"
-      ],
+      "args": ["app.main:app", "--host", "0.0.0.0", "--port", "8001", "--reload"],
       "cwd": "${workspaceFolder}/api.menschlichkeit-oesterreich.at",
       "env": {
         "PYTHONPATH": "${workspaceFolder}/api.menschlichkeit-oesterreich.at",
@@ -56,10 +44,7 @@
       "type": "node",
       "request": "launch",
       "program": "${workspaceFolder}/build-pipeline.sh",
-      "args": [
-        "development",
-        "--verbose"
-      ],
+      "args": ["development", "--verbose"],
       "cwd": "${workspaceFolder}",
       "console": "integratedTerminal",
       "env": {
@@ -76,9 +61,7 @@
       "type": "node",
       "request": "launch",
       "program": "${workspaceFolder}/automation/n8n/webhook-client.js",
-      "args": [
-        "development"
-      ],
+      "args": ["development"],
       "cwd": "${workspaceFolder}/automation/n8n",
       "console": "integratedTerminal",
       "env": {
@@ -96,11 +79,7 @@
       "type": "node",
       "request": "launch",
       "program": "${workspaceFolder}/node_modules/.bin/playwright",
-      "args": [
-        "test",
-        "--debug",
-        "--headed"
-      ],
+      "args": ["test", "--debug", "--headed"],
       "cwd": "${workspaceFolder}",
       "console": "integratedTerminal",
       "env": {
@@ -132,10 +111,7 @@
   "compounds": [
     {
       "name": "🚀 Debug: Full Stack (Frontend + API)",
-      "configurations": [
-        "🚀 Debug: Frontend (Vite)",
-        "🐍 Debug: API (FastAPI)"
-      ],
+      "configurations": ["🚀 Debug: Frontend (Vite)", "🐍 Debug: API (FastAPI)"],
       "stopAll": true,
       "presentation": {
         "group": "compound",
@@ -144,11 +120,7 @@
     },
     {
       "name": "🔧 Debug: Development Environment",
-      "configurations": [
-        "🚀 Debug: Frontend (Vite)",
-        "🐍 Debug: API (FastAPI)",
-        "🔄 Debug: n8n Workflow"
-      ],
+      "configurations": ["🚀 Debug: Frontend (Vite)", "🐍 Debug: API (FastAPI)", "🔄 Debug: n8n Workflow"],
       "stopAll": true,
       "presentation": {
         "group": "compound",
@@ -157,10 +129,7 @@
     },
     {
       "name": "🧪 Debug: Testing Suite",
-      "configurations": [
-        "🧪 Debug: Playwright Tests",
-        "🔍 Debug: Quality Gates"
-      ],
+      "configurations": ["🧪 Debug: Playwright Tests", "🔍 Debug: Quality Gates"],
       "stopAll": true,
       "presentation": {
         "group": "compound",

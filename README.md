@@ -7,6 +7,7 @@ This is an **Enterprise-grade multi-service development workspace** for Menschli
 ## 🏗️ Architecture
 
 ### Service Boundaries
+
 - **Main Website**: `website/` → menschlichkeit-oesterreich.at (WordPress/HTML)
 - **API Service**: `api.menschlichkeit-oesterreich.at/` → FastAPI/Python backend
 - **CRM System**: `crm.menschlichkeit-oesterreich.at/` → Drupal 10 + CiviCRM
@@ -15,6 +16,7 @@ This is an **Enterprise-grade multi-service development workspace** for Menschli
 - **Automation**: `automation/n8n/` → Docker-based workflow automation
 
 ### Quality Gates (PR-Blocking)
+
 - ✅ **Security**: 0 open CVE issues (Trivy, Snyk, Codacy)
 - ✅ **Maintainability**: ≥85 score; ≤2% duplication per service
 - ✅ **Performance**: Lighthouse P≥90, A11y≥90, BP≥95, SEO≥90
@@ -24,6 +26,7 @@ This is an **Enterprise-grade multi-service development workspace** for Menschli
 ## 🚀 Quick Start
 
 ### Prerequisites
+
 - Node.js ≥18.0.0
 - Python ≥3.9
 - PHP ≥8.1
@@ -31,6 +34,7 @@ This is an **Enterprise-grade multi-service development workspace** for Menschli
 - Git
 
 ### Setup
+
 ```powershell
 # Clone and setup workspace
 git clone <repository-url>
@@ -91,6 +95,7 @@ The 15-step enterprise pipeline ensures production readiness:
 ## 🔌 VS Code Integration
 
 ### Recommended Extensions
+
 - **GitHub Copilot** + **Copilot Chat** - AI development assistance
 - **Codacy** - Real-time code quality
 - **SonarLint** - Security & quality linting
@@ -101,6 +106,7 @@ The 15-step enterprise pipeline ensures production readiness:
 - **Docker** - Container management
 
 ### Quality Gates in IDE
+
 - **Real-time linting** with Trunk.io integration
 - **Security scanning** with Snyk & SonarLint
 - **Accessibility checking** with axe DevTools
@@ -109,12 +115,14 @@ The 15-step enterprise pipeline ensures production readiness:
 ## 🔄 CiviCRM & n8n Integration
 
 ### Critical Integration Metrics
+
 - **Success Rate**: ≥99% (7-day rolling)
 - **Median Latency**: <60s
 - **Event Backlog**: <100 items
 - **Double Opt-In**: Enforced for DSGVO compliance
 
 ### Webhook Security
+
 - **HMAC Signatures** for n8n webhooks
 - **IP Allowlisting** with rate limiting
 - **JWT Validation** for API bridge
@@ -123,6 +131,7 @@ The 15-step enterprise pipeline ensures production readiness:
 ## 🏢 Plesk Deployment
 
 ### Safe Deployment Process
+
 ```powershell
 # 1. Dry-run deployment simulation
 ./scripts/safe-deploy.sh --dry-run
@@ -136,6 +145,7 @@ The 15-step enterprise pipeline ensures production readiness:
 ```
 
 ### Multi-Subdomain Architecture
+
 - `menschlichkeit-oesterreich.at` - Main website
 - `api.menschlichkeit-oesterreich.at` - FastAPI backend
 - `crm.menschlichkeit-oesterreich.at` - CiviCRM system
@@ -143,12 +153,14 @@ The 15-step enterprise pipeline ensures production readiness:
 ## 📋 Compliance & Governance
 
 ### DSGVO Requirements
+
 - ✅ **Data Minimization**: Prisma models use minimal required fields
 - ✅ **Consent Management**: CiviCRM handles newsletter subscriptions
 - ✅ **Right to Deletion**: Cascade delete patterns implemented
 - ✅ **Audit Logging**: PII scrubbing and retention policies
 
 ### Security Standards
+
 - ✅ **Zero CVE Policy**: No unpatched vulnerabilities
 - ✅ **Secret Management**: No secrets in repository
 - ✅ **Transport Security**: TLS ≥1.2, HSTS headers
@@ -159,6 +171,7 @@ The 15-step enterprise pipeline ensures production readiness:
 ### Common Issues
 
 **Build Pipeline Fails**
+
 ```powershell
 # Check individual quality gates
 npm run quality:codacy
@@ -167,6 +180,7 @@ npm run compliance:dsgvo
 ```
 
 **CiviCRM Integration Issues**
+
 ```powershell
 # Test n8n webhook
 npm run n8n:webhook
@@ -176,6 +190,7 @@ npm run n8n:webhook
 ```
 
 **Performance Issues**
+
 ```powershell
 # Run Lighthouse audit
 npm run performance:lighthouse

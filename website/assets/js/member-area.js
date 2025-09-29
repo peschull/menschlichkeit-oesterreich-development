@@ -15,13 +15,13 @@
   function initSidebarNavigation() {
     const navLinks = document.querySelectorAll('[data-section]');
     const sections = document.querySelectorAll('.content-section');
-    navLinks.forEach((link) => {
+    navLinks.forEach(link => {
       link.addEventListener('click', function (e) {
         e.preventDefault();
         const target = this.getAttribute('data-section');
-        navLinks.forEach((n) => n.classList.remove('active'));
+        navLinks.forEach(n => n.classList.remove('active'));
         this.classList.add('active');
-        sections.forEach((s) => s.classList.add('d-none'));
+        sections.forEach(s => s.classList.add('d-none'));
         const el = document.getElementById(`${target}-section`);
         if (el) el.classList.remove('d-none');
         if (window.innerWidth < 992) {
@@ -55,7 +55,8 @@
       const submitBtn = form.querySelector('button[type="submit"]');
       const original = submitBtn?.innerHTML;
       if (submitBtn) {
-        submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Speichert...';
+        submitBtn.innerHTML =
+          '<span class="spinner-border spinner-border-sm me-2"></span>Speichert...';
         submitBtn.disabled = true;
       }
       const data = Object.fromEntries(new FormData(form));
@@ -91,7 +92,7 @@
 
   function updateUserInterface(user) {
     const ids = ['userName', 'sidebarUserName', 'welcomeUserName'];
-    ids.forEach((id) => {
+    ids.forEach(id => {
       const el = document.getElementById(id);
       if (el) el.textContent = user.first_name || 'Mitglied';
     });
@@ -128,4 +129,3 @@
     }
   });
 })();
-

@@ -146,7 +146,5 @@
   },
   "overall_score": 100.0,
   "production_ready": true,
-  "recommendations": [
-    "✅ Alle Systeme sind production-ready!"
-  ]
+  "recommendations": ["✅ Alle Systeme sind production-ready!"]
 }

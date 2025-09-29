@@ -239,7 +239,6 @@ function initAnimations() {
         lazyImageObserver.observe(img);
     });
 }
-}
 
 // Accessibility improvements
 function initAccessibility() {

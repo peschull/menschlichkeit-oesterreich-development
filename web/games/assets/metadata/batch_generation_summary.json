@@ -39,11 +39,7 @@
         "usage": {
           "category": "icons_values",
           "subcategory": "equality",
-          "recommended_contexts": [
-            "Democracy learning modules",
-            "Value-based exercises",
-            "Concept explanation"
-          ]
+          "recommended_contexts": ["Democracy learning modules", "Value-based exercises", "Concept explanation"]
         },
         "metadata": {
           "created_at": "2025-09-26T04:10:36.427429",
@@ -85,9 +81,7 @@
           "size_bytes": 829,
           "hash": "3a193440a8e017cdebd0999f8b1785a531ec1e06750d82c5d3e235e60c446b76"
         },
-        "colors": [
-          "#22c55e"
-        ],
+        "colors": ["#22c55e"],
         "accessibility": {
           "alt_text_provided": true,
           "high_contrast": true,
@@ -96,11 +90,7 @@
         "usage": {
           "category": "icons_values",
           "subcategory": "freedom",
-          "recommended_contexts": [
-            "Democracy learning modules",
-            "Value-based exercises",
-            "Concept explanation"
-          ]
+          "recommended_contexts": ["Democracy learning modules", "Value-based exercises", "Concept explanation"]
         },
         "metadata": {
           "created_at": "2025-09-26T04:10:36.428147",
@@ -151,11 +141,7 @@
         "usage": {
           "category": "icons_values",
           "subcategory": "solidarity",
-          "recommended_contexts": [
-            "Democracy learning modules",
-            "Value-based exercises",
-            "Concept explanation"
-          ]
+          "recommended_contexts": ["Democracy learning modules", "Value-based exercises", "Concept explanation"]
         },
         "metadata": {
           "created_at": "2025-09-26T04:10:36.428771",
@@ -197,9 +183,7 @@
           "size_bytes": 981,
           "hash": "292bdc6d351c9da0a612d19dc5701bacccb28c5288d680390e5473dd5c67cd88"
         },
-        "colors": [
-          "#64748b"
-        ],
+        "colors": ["#64748b"],
         "accessibility": {
           "alt_text_provided": true,
           "high_contrast": true,
@@ -208,11 +192,7 @@
         "usage": {
           "category": "icons_values",
           "subcategory": "justice",
-          "recommended_contexts": [
-            "Democracy learning modules",
-            "Value-based exercises",
-            "Concept explanation"
-          ]
+          "recommended_contexts": ["Democracy learning modules", "Value-based exercises", "Concept explanation"]
         },
         "metadata": {
           "created_at": "2025-09-26T04:10:36.429362",
@@ -256,10 +236,7 @@
           "size_bytes": 989,
           "hash": "45a536b80c3490b5c533d40bd0beb03211ac2d730ab8e967fd657ffb0f72d5e4"
         },
-        "colors": [
-          "url(#austriaGrad)",
-          "#0ea5e9"
-        ],
+        "colors": ["url(#austriaGrad)", "#0ea5e9"],
         "accessibility": {
           "alt_text_provided": true,
           "high_contrast": true,
@@ -268,11 +245,7 @@
         "usage": {
           "category": "map_regions",
           "subcategory": "austria",
-          "recommended_contexts": [
-            "Geography games",
-            "Regional quizzes",
-            "Austria exploration"
-          ]
+          "recommended_contexts": ["Geography games", "Regional quizzes", "Austria exploration"]
         },
         "metadata": {
           "created_at": "2025-09-26T04:10:36.430174",
@@ -315,10 +288,7 @@
           "size_bytes": 986,
           "hash": "3acdba69a5f33c7524256b7b73468b9ef282fec054072dce7dec6fe74f5342d9"
         },
-        "colors": [
-          "#22c55e",
-          "url(#viennaGrad)"
-        ],
+        "colors": ["#22c55e", "url(#viennaGrad)"],
         "accessibility": {
           "alt_text_provided": true,
           "high_contrast": true,
@@ -327,11 +297,7 @@
         "usage": {
           "category": "map_regions",
           "subcategory": "vienna",
-          "recommended_contexts": [
-            "Geography games",
-            "Regional quizzes",
-            "Austria exploration"
-          ]
+          "recommended_contexts": ["Geography games", "Regional quizzes", "Austria exploration"]
         },
         "metadata": {
           "created_at": "2025-09-26T04:10:36.431178",
@@ -374,10 +340,7 @@
           "size_bytes": 980,
           "hash": "f1304eebbc1c394f7ee063cc997a24c4b0f0d22d1e4d30c5d346f90a8dacdffa"
         },
-        "colors": [
-          "url(#grazGrad)",
-          "#f59e0b"
-        ],
+        "colors": ["url(#grazGrad)", "#f59e0b"],
         "accessibility": {
           "alt_text_provided": true,
           "high_contrast": true,
@@ -386,11 +349,7 @@
         "usage": {
           "category": "map_regions",
           "subcategory": "graz",
-          "recommended_contexts": [
-            "Geography games",
-            "Regional quizzes",
-            "Austria exploration"
-          ]
+          "recommended_contexts": ["Geography games", "Regional quizzes", "Austria exploration"]
         },
         "metadata": {
           "created_at": "2025-09-26T04:10:36.431922",
@@ -433,10 +392,7 @@
           "size_bytes": 980,
           "hash": "ea176f4ca81a6c983b340ac626eb8029697707a739cd2d05445e8755d00ccac9"
         },
-        "colors": [
-          "#ef4444",
-          "url(#linzGrad)"
-        ],
+        "colors": ["#ef4444", "url(#linzGrad)"],
         "accessibility": {
           "alt_text_provided": true,
           "high_contrast": true,
@@ -445,11 +401,7 @@
         "usage": {
           "category": "map_regions",
           "subcategory": "linz",
-          "recommended_contexts": [
-            "Geography games",
-            "Regional quizzes",
-            "Austria exploration"
-          ]
+          "recommended_contexts": ["Geography games", "Regional quizzes", "Austria exploration"]
         },
         "metadata": {
           "created_at": "2025-09-26T04:10:36.432650",
@@ -492,10 +444,7 @@
           "size_bytes": 992,
           "hash": "ee0e5b9ae24065de83656868fa6aff379a9a292df993c21f586c485b10c3e92d"
         },
-        "colors": [
-          "#8b5cf6",
-          "url(#salzburgGrad)"
-        ],
+        "colors": ["#8b5cf6", "url(#salzburgGrad)"],
         "accessibility": {
           "alt_text_provided": true,
           "high_contrast": true,
@@ -504,11 +453,7 @@
         "usage": {
           "category": "map_regions",
           "subcategory": "salzburg",
-          "recommended_contexts": [
-            "Geography games",
-            "Regional quizzes",
-            "Austria exploration"
-          ]
+          "recommended_contexts": ["Geography games", "Regional quizzes", "Austria exploration"]
         },
         "metadata": {
           "created_at": "2025-09-26T04:10:36.435352",
@@ -551,10 +496,7 @@
           "size_bytes": 995,
           "hash": "66abeec30550457d191cfec4c6891009ab2ced8863be68742f1c1f6eb575b035"
         },
-        "colors": [
-          "url(#innsbruckGrad)",
-          "#06b6d4"
-        ],
+        "colors": ["url(#innsbruckGrad)", "#06b6d4"],
         "accessibility": {
           "alt_text_provided": true,
           "high_contrast": true,
@@ -563,11 +505,7 @@
         "usage": {
           "category": "map_regions",
           "subcategory": "innsbruck",
-          "recommended_contexts": [
-            "Geography games",
-            "Regional quizzes",
-            "Austria exploration"
-          ]
+          "recommended_contexts": ["Geography games", "Regional quizzes", "Austria exploration"]
         },
         "metadata": {
           "created_at": "2025-09-26T04:10:36.436039",
@@ -610,10 +548,7 @@
           "size_bytes": 998,
           "hash": "14fb2cd9163480cb85120f4edb708aeed08f959e7e5cd04e97040a42e2fc228f"
         },
-        "colors": [
-          "#f97316",
-          "url(#klagenfurtGrad)"
-        ],
+        "colors": ["#f97316", "url(#klagenfurtGrad)"],
         "accessibility": {
           "alt_text_provided": true,
           "high_contrast": true,
@@ -622,11 +557,7 @@
         "usage": {
           "category": "map_regions",
           "subcategory": "klagenfurt",
-          "recommended_contexts": [
-            "Geography games",
-            "Regional quizzes",
-            "Austria exploration"
-          ]
+          "recommended_contexts": ["Geography games", "Regional quizzes", "Austria exploration"]
         },
         "metadata": {
           "created_at": "2025-09-26T04:10:36.436663",
@@ -669,10 +600,7 @@
           "size_bytes": 989,
           "hash": "9050a2738dc82a600780517c096e241003bbf3a3abb9fc941ef59c37688312ab"
         },
-        "colors": [
-          "url(#bregenzGrad)",
-          "#84cc16"
-        ],
+        "colors": ["url(#bregenzGrad)", "#84cc16"],
         "accessibility": {
           "alt_text_provided": true,
           "high_contrast": true,
@@ -681,11 +609,7 @@
         "usage": {
           "category": "map_regions",
           "subcategory": "bregenz",
-          "recommended_contexts": [
-            "Geography games",
-            "Regional quizzes",
-            "Austria exploration"
-          ]
+          "recommended_contexts": ["Geography games", "Regional quizzes", "Austria exploration"]
         },
         "metadata": {
           "created_at": "2025-09-26T04:10:36.437292",
@@ -728,10 +652,7 @@
           "size_bytes": 998,
           "hash": "7711911b053a76342d462011cab469f6d7992df2302a9b49b56c51aad544358f"
         },
-        "colors": [
-          "#ec4899",
-          "url(#eisenstadtGrad)"
-        ],
+        "colors": ["#ec4899", "url(#eisenstadtGrad)"],
         "accessibility": {
           "alt_text_provided": true,
           "high_contrast": true,
@@ -740,11 +661,7 @@
         "usage": {
           "category": "map_regions",
           "subcategory": "eisenstadt",
-          "recommended_contexts": [
-            "Geography games",
-            "Regional quizzes",
-            "Austria exploration"
-          ]
+          "recommended_contexts": ["Geography games", "Regional quizzes", "Austria exploration"]
         },
         "metadata": {
           "created_at": "2025-09-26T04:10:36.438046",
@@ -787,10 +704,7 @@
           "size_bytes": 998,
           "hash": "758c2c187ebf2fe30b1b791bfbd56e481fe4455b7beb16624ce3dfd5d3709a6e"
         },
-        "colors": [
-          "#6366f1",
-          "url(#st_poeltenGrad)"
-        ],
+        "colors": ["#6366f1", "url(#st_poeltenGrad)"],
         "accessibility": {
           "alt_text_provided": true,
           "high_contrast": true,
@@ -799,11 +713,7 @@
         "usage": {
           "category": "map_regions",
           "subcategory": "st_poelten",
-          "recommended_contexts": [
-            "Geography games",
-            "Regional quizzes",
-            "Austria exploration"
-          ]
+          "recommended_contexts": ["Geography games", "Regional quizzes", "Austria exploration"]
         },
         "metadata": {
           "created_at": "2025-09-26T04:10:36.438711",
@@ -857,11 +767,7 @@
         "usage": {
           "category": "minigames_bridge_puzzle",
           "subcategory": "bridge_start",
-          "recommended_contexts": [
-            "Bridge building game",
-            "Logic puzzles",
-            "Problem solving"
-          ]
+          "recommended_contexts": ["Bridge building game", "Logic puzzles", "Problem solving"]
         },
         "metadata": {
           "created_at": "2025-09-26T04:10:36.439762",
@@ -913,11 +819,7 @@
         "usage": {
           "category": "minigames_bridge_puzzle",
           "subcategory": "bridge_middle",
-          "recommended_contexts": [
-            "Bridge building game",
-            "Logic puzzles",
-            "Problem solving"
-          ]
+          "recommended_contexts": ["Bridge building game", "Logic puzzles", "Problem solving"]
         },
         "metadata": {
           "created_at": "2025-09-26T04:10:36.440577",
@@ -969,11 +871,7 @@
         "usage": {
           "category": "minigames_bridge_puzzle",
           "subcategory": "bridge_end",
-          "recommended_contexts": [
-            "Bridge building game",
-            "Logic puzzles",
-            "Problem solving"
-          ]
+          "recommended_contexts": ["Bridge building game", "Logic puzzles", "Problem solving"]
         },
         "metadata": {
           "created_at": "2025-09-26T04:10:36.441297",
@@ -1016,10 +914,7 @@
           "size_bytes": 723,
           "hash": "02c33768e15c4cea3ed8576a5c575e2703801a47064e1761701be3c3c32cb62c"
         },
-        "colors": [
-          "#60a5fa",
-          "url(#waterGrad)"
-        ],
+        "colors": ["#60a5fa", "url(#waterGrad)"],
         "accessibility": {
           "alt_text_provided": true,
           "high_contrast": true,
@@ -1028,11 +923,7 @@
         "usage": {
           "category": "minigames_bridge_puzzle",
           "subcategory": "water",
-          "recommended_contexts": [
-            "Bridge building game",
-            "Logic puzzles",
-            "Problem solving"
-          ]
+          "recommended_contexts": ["Bridge building game", "Logic puzzles", "Problem solving"]
         },
         "metadata": {
           "created_at": "2025-09-26T04:10:36.441988",
@@ -1075,9 +966,7 @@
           "size_bytes": 1054,
           "hash": "da56250fbf34076ff3ef15eb6de41a14b73065e5d4501881965ce0ba9821f916"
         },
-        "colors": [
-          "#1f2937"
-        ],
+        "colors": ["#1f2937"],
         "accessibility": {
           "alt_text_provided": true,
           "high_contrast": true,
@@ -1086,11 +975,7 @@
         "usage": {
           "category": "minigames_bridge_puzzle",
           "subcategory": "character_left",
-          "recommended_contexts": [
-            "Bridge building game",
-            "Logic puzzles",
-            "Problem solving"
-          ]
+          "recommended_contexts": ["Bridge building game", "Logic puzzles", "Problem solving"]
         },
         "metadata": {
           "created_at": "2025-09-26T04:10:36.442731",
@@ -1133,9 +1018,7 @@
           "size_bytes": 1054,
           "hash": "ca6c6903ba2aebb259790eff3a4956b996af9acd1a3f3db6d0a0449b08c87e70"
         },
-        "colors": [
-          "#1f2937"
-        ],
+        "colors": ["#1f2937"],
         "accessibility": {
           "alt_text_provided": true,
           "high_contrast": true,
@@ -1144,11 +1027,7 @@
         "usage": {
           "category": "minigames_bridge_puzzle",
           "subcategory": "character_right",
-          "recommended_contexts": [
-            "Bridge building game",
-            "Logic puzzles",
-            "Problem solving"
-          ]
+          "recommended_contexts": ["Bridge building game", "Logic puzzles", "Problem solving"]
         },
         "metadata": {
           "created_at": "2025-09-26T04:10:36.443591",
@@ -1191,9 +1070,7 @@
           "size_bytes": 663,
           "hash": "307f3330cde4d6ccec4e52be0dc6889d53bad172459669b7a457cb258c75d91c"
         },
-        "colors": [
-          "#451a03"
-        ],
+        "colors": ["#451a03"],
         "accessibility": {
           "alt_text_provided": true,
           "high_contrast": true,
@@ -1202,11 +1079,7 @@
         "usage": {
           "category": "minigames_bridge_puzzle",
           "subcategory": "plank_horizontal",
-          "recommended_contexts": [
-            "Bridge building game",
-            "Logic puzzles",
-            "Problem solving"
-          ]
+          "recommended_contexts": ["Bridge building game", "Logic puzzles", "Problem solving"]
         },
         "metadata": {
           "created_at": "2025-09-26T04:10:36.444492",
@@ -1249,9 +1122,7 @@
           "size_bytes": 662,
           "hash": "e856f9d9f93d48d1d264f78f5664388d25f2b62fdd8bf8a2308bcf3e0c26bbf5"
         },
-        "colors": [
-          "#451a03"
-        ],
+        "colors": ["#451a03"],
         "accessibility": {
           "alt_text_provided": true,
           "high_contrast": true,
@@ -1260,11 +1131,7 @@
         "usage": {
           "category": "minigames_bridge_puzzle",
           "subcategory": "plank_vertical",
-          "recommended_contexts": [
-            "Bridge building game",
-            "Logic puzzles",
-            "Problem solving"
-          ]
+          "recommended_contexts": ["Bridge building game", "Logic puzzles", "Problem solving"]
         },
         "metadata": {
           "created_at": "2025-09-26T04:10:36.445237",
@@ -1308,12 +1175,7 @@
           "size_bytes": 647,
           "hash": "ba4b7214fc93f20350daf357a44d2a57eb50d5aa6a84582641ceb2c0f8b7947d"
         },
-        "colors": [
-          "url(#playGrad)",
-          "#15803d",
-          "white",
-          "rgba(0,0,0,0.2)"
-        ],
+        "colors": ["url(#playGrad)", "#15803d", "white", "rgba(0,0,0,0.2)"],
         "accessibility": {
           "alt_text_provided": true,
           "high_contrast": true,
@@ -1322,11 +1184,7 @@
         "usage": {
           "category": "ui_buttons",
           "subcategory": "play",
-          "recommended_contexts": [
-            "Game controls",
-            "Interface elements",
-            "Navigation"
-          ]
+          "recommended_contexts": ["Game controls", "Interface elements", "Navigation"]
         },
         "metadata": {
           "created_at": "2025-09-26T04:10:36.446147",
@@ -1368,12 +1226,7 @@
           "size_bytes": 719,
           "hash": "516faab38ebbdb1513107640b3ccd0f3fe75e98cab509e2a75b3a0c7f0be5015"
         },
-        "colors": [
-          "rgba(0,0,0,0.2)",
-          "#b45309",
-          "white",
-          "url(#pauseGrad)"
-        ],
+        "colors": ["rgba(0,0,0,0.2)", "#b45309", "white", "url(#pauseGrad)"],
         "accessibility": {
           "alt_text_provided": true,
           "high_contrast": true,
@@ -1382,11 +1235,7 @@
         "usage": {
           "category": "ui_buttons",
           "subcategory": "pause",
-          "recommended_contexts": [
-            "Game controls",
-            "Interface elements",
-            "Navigation"
-          ]
+          "recommended_contexts": ["Game controls", "Interface elements", "Navigation"]
         },
         "metadata": {
           "created_at": "2025-09-26T04:10:36.446847",
@@ -1428,12 +1277,7 @@
           "size_bytes": 1344,
           "hash": "1d3ca30276bbc8cc1587586f768751f98cae3398daa2c020c4087665c4a0f84f"
         },
-        "colors": [
-          "url(#settingsGrad)",
-          "#334155",
-          "white",
-          "rgba(0,0,0,0.2)"
-        ],
+        "colors": ["url(#settingsGrad)", "#334155", "white", "rgba(0,0,0,0.2)"],
         "accessibility": {
           "alt_text_provided": true,
           "high_contrast": true,
@@ -1442,11 +1286,7 @@
         "usage": {
           "category": "ui_buttons",
           "subcategory": "settings",
-          "recommended_contexts": [
-            "Game controls",
-            "Interface elements",
-            "Navigation"
-          ]
+          "recommended_contexts": ["Game controls", "Interface elements", "Navigation"]
         },
         "metadata": {
           "created_at": "2025-09-26T04:10:36.447540",
@@ -1491,11 +1331,7 @@
           "size_bytes": 1644,
           "hash": "4adb17db94789d11172be64571dccb5c8c7dbd13845c2082768d0bd099418d39"
         },
-        "colors": [
-          "#1f2937",
-          "#dc2626",
-          "white"
-        ],
+        "colors": ["#1f2937", "#dc2626", "white"],
         "accessibility": {
           "alt_text_provided": true,
           "high_contrast": true,
@@ -1504,11 +1340,7 @@
         "usage": {
           "category": "characters",
           "subcategory": "teacher",
-          "recommended_contexts": [
-            "Role-playing scenarios",
-            "Character selection",
-            "Storytelling"
-          ]
+          "recommended_contexts": ["Role-playing scenarios", "Character selection", "Storytelling"]
         },
         "metadata": {
           "created_at": "2025-09-26T04:10:36.448653",
@@ -1551,11 +1383,7 @@
           "size_bytes": 1371,
           "hash": "19c3b58d08477792f28b9a3d106ecac5592816ce5c4a71d3a4da0690113f33da"
         },
-        "colors": [
-          "#1f2937",
-          "white",
-          "#1e40af"
-        ],
+        "colors": ["#1f2937", "white", "#1e40af"],
         "accessibility": {
           "alt_text_provided": true,
           "high_contrast": true,
@@ -1564,11 +1392,7 @@
         "usage": {
           "category": "characters",
           "subcategory": "student_male",
-          "recommended_contexts": [
-            "Role-playing scenarios",
-            "Character selection",
-            "Storytelling"
-          ]
+          "recommended_contexts": ["Role-playing scenarios", "Character selection", "Storytelling"]
         },
         "metadata": {
           "created_at": "2025-09-26T04:10:36.449923",
@@ -1611,11 +1435,7 @@
           "size_bytes": 1725,
           "hash": "e1ddc59b95ded14d73896f188e04872566f69833652600ce03ca8f2aaf189cbb"
         },
-        "colors": [
-          "#1f2937",
-          "#dc2626",
-          "white"
-        ],
+        "colors": ["#1f2937", "#dc2626", "white"],
         "accessibility": {
           "alt_text_provided": true,
           "high_contrast": true,
@@ -1624,11 +1444,7 @@
         "usage": {
           "category": "characters",
           "subcategory": "student_female",
-          "recommended_contexts": [
-            "Role-playing scenarios",
-            "Character selection",
-            "Storytelling"
-          ]
+          "recommended_contexts": ["Role-playing scenarios", "Character selection", "Storytelling"]
         },
         "metadata": {
           "created_at": "2025-09-26T04:10:36.450705",

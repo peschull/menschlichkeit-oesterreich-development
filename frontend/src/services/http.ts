@@ -24,7 +24,7 @@ export async function request<T = unknown>(path: string, opts: RequestOptions = 
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), opts.timeoutMs ?? config.requestTimeoutMs);
   const headers: Record<string, string> = {
-    'Accept': 'application/json',
+    Accept: 'application/json',
     ...opts.headers,
   };
   if (opts.body !== undefined) headers['Content-Type'] = 'application/json';
@@ -52,10 +52,14 @@ export async function request<T = unknown>(path: string, opts: RequestOptions = 
 }
 
 export const http = {
-  get: <T = unknown>(path: string, opts: RequestOptions = {}) => request<T>(path, { ...opts, method: 'GET' }),
-  post: <T = unknown>(path: string, body?: unknown, opts: RequestOptions = {}) => request<T>(path, { ...opts, method: 'POST', body }),
-  put: <T = unknown>(path: string, body?: unknown, opts: RequestOptions = {}) => request<T>(path, { ...opts, method: 'PUT', body }),
-  patch: <T = unknown>(path: string, body?: unknown, opts: RequestOptions = {}) => request<T>(path, { ...opts, method: 'PATCH', body }),
-  delete: <T = unknown>(path: string, opts: RequestOptions = {}) => request<T>(path, { ...opts, method: 'DELETE' }),
+  get: <T = unknown>(path: string, opts: RequestOptions = {}) =>
+    request<T>(path, { ...opts, method: 'GET' }),
+  post: <T = unknown>(path: string, body?: unknown, opts: RequestOptions = {}) =>
+    request<T>(path, { ...opts, method: 'POST', body }),
+  put: <T = unknown>(path: string, body?: unknown, opts: RequestOptions = {}) =>
+    request<T>(path, { ...opts, method: 'PUT', body }),
+  patch: <T = unknown>(path: string, body?: unknown, opts: RequestOptions = {}) =>
+    request<T>(path, { ...opts, method: 'PATCH', body }),
+  delete: <T = unknown>(path: string, opts: RequestOptions = {}) =>
+    request<T>(path, { ...opts, method: 'DELETE' }),
 };
-

@@ -3,6 +3,7 @@
 ## 🔍 Problem-Diagnose
 
 ### Identifizierte Probleme:
+
 1. **MCP-Server-Konfiguration geleert**: `.vscode/mcp.json` ist leer
 2. **Viele MCP-Server-Dateien gelöscht**: `custom-mcp-servers/` Verzeichnis entfernt
 3. **Copilot möglicherweise durch fehlende MCP-Konnektivität beeinträchtigt**
@@ -25,19 +26,22 @@ git show HEAD~5:.vscode/mcp.json > .vscode/mcp.json.candidate
 ## 2. VS Code Extension Diagnose
 
 ### Befehlspalette (`Ctrl+Shift+P`):
+
 1. **"Developer: Show Running Extensions"** - Status prüfen
 2. **"GitHub Copilot: Sign in"** - Auth Status
 3. **"MCP: Restart All Servers"** - MCP-Server neu starten
 4. **"Developer: Toggle Developer Tools"** - Console Errors
 
 ### Output Panel (`View → Output`):
+
 - **GitHub Copilot** - Auth/API Errors
-- **GitHub Copilot Chat** - Chat-spezifische Probleme  
+- **GitHub Copilot Chat** - Chat-spezifische Probleme
 - **MCP** - Server-Connection Issues
 
 ## 3. Systematische Fehlerbehebung
 
 ### A) Extensions deaktivieren/testen:
+
 ```bash
 # VS Code ohne Extensions starten
 code --disable-extensions
@@ -47,11 +51,12 @@ code --enable-extension GitHub.copilot
 ```
 
 ### B) Konfigurationsdateien prüfen:
+
 ```powershell
 # User Settings
 $env:APPDATA\Code\User\settings.json
 
-# Workspace Settings  
+# Workspace Settings
 .vscode/settings.json
 
 # Suche nach verdächtigen Einstellungen:
@@ -61,6 +66,7 @@ $env:APPDATA\Code\User\settings.json
 ```
 
 ### C) Netzwerk/Proxy Issues:
+
 ```json
 {
   "http.proxyStrictSSL": false,
@@ -73,6 +79,7 @@ $env:APPDATA\Code\User\settings.json
 ## 4. MCP-Server Neukonfiguration
 
 ### Minimale funktionsfähige MCP-Konfiguration:
+
 ```json
 {
   "servers": {
@@ -82,13 +89,13 @@ $env:APPDATA\Code\User\settings.json
       "cwd": "./servers/src/filesystem"
     },
     "memory": {
-      "command": "node", 
+      "command": "node",
       "args": ["./servers/src/memory/dist/index.js"],
       "cwd": "./servers/src/memory"
     },
     "sequential-thinking": {
       "command": "node",
-      "args": ["./servers/src/sequentialthinking/dist/index.js"], 
+      "args": ["./servers/src/sequentialthinking/dist/index.js"],
       "cwd": "./servers/src/sequentialthinking"
     }
   },
@@ -105,6 +112,7 @@ $env:APPDATA\Code\User\settings.json
 ### 1. Audit aktueller .env-Dateien
 
 #### Finde alle .env-Dateien:
+
 ```powershell
 # Alle .env-Dateien im Projekt finden
 Get-ChildItem -Recurse -Force -Name "*.env*" | Where-Object { $_ -notlike "*node_modules*" }
@@ -113,15 +121,16 @@ Get-ChildItem -Recurse -Force -Name "*.env*" | Where-Object { $_ -notlike "*node
 git ls-files | Select-String "\.env"
 
 # Inhalt auf sensitive Daten prüfen
-Get-ChildItem -Recurse -Force -Name "*.env*" | ForEach-Object { 
-    Write-Host "=== $_ ===" 
-    Get-Content $_ | Select-String -Pattern "(API_KEY|SECRET|PASSWORD|TOKEN|DATABASE_URL)" 
+Get-ChildItem -Recurse -Force -Name "*.env*" | ForEach-Object {
+    Write-Host "=== $_ ==="
+    Get-Content $_ | Select-String -Pattern "(API_KEY|SECRET|PASSWORD|TOKEN|DATABASE_URL)"
 }
 ```
 
 ### 2. SOPS Implementation für sichere Secrets
 
 #### SOPS Installation und Setup:
+
 ```powershell
 # SOPS via Chocolatey installieren
 choco install sops
@@ -135,6 +144,7 @@ $env:PATH += ";C:\tools"
 ```
 
 #### GPG-Schlüssel für SOPS generieren:
+
 ```powershell
 # GPG installieren (falls nicht vorhanden)
 choco install gpg4win
@@ -145,7 +155,7 @@ gpg --batch --generate-key --quiet <<EOF
 Key-Type: RSA
 Key-Length: 4096
 Subkey-Type: RSA
-Subkey-Length: 4096  
+Subkey-Length: 4096
 Name-Real: Menschlichkeit Österreich Secrets
 Name-Email: secrets@menschlichkeit-oesterreich.at
 Expire-Date: 2y
@@ -161,6 +171,7 @@ gpg --list-secret-keys --keyid-format LONG
 ### 3. SOPS Konfigurationsdatei erstellen
 
 #### `.sops.yaml` Konfiguration:
+
 ```yaml
 # SOPS-Konfiguration für verschiedene Umgebungen
 creation_rules:
@@ -168,17 +179,17 @@ creation_rules:
   - path_regex: secrets/production/.*\.yaml$
     pgp: 'YOUR_PRODUCTION_GPG_FINGERPRINT'
     encrypted_regex: '^(data|stringData|.*(password|secret|key|token|url|host|user))$'
-  
-  # Staging-Secrets  
+
+  # Staging-Secrets
   - path_regex: secrets/staging/.*\.yaml$
     pgp: 'YOUR_STAGING_GPG_FINGERPRINT'
     encrypted_regex: '^(data|stringData|.*(password|secret|key|token|url|host|user))$'
-    
+
   # Development-Secrets (lokale Entwicklung)
   - path_regex: secrets/development/.*\.yaml$
     pgp: 'YOUR_DEV_GPG_FINGERPRINT'
     encrypted_regex: '^(data|stringData|.*(password|secret|key|token|url|host|user))$'
-    
+
   # Environment-spezifische .env-Dateien
   - path_regex: \.env\..*$
     pgp: 'YOUR_GPG_FINGERPRINT'
@@ -187,6 +198,7 @@ creation_rules:
 ### 4. Secrets-Struktur implementieren
 
 #### Verzeichnisstruktur für Secrets:
+
 ```
 secrets/
 ├── production/
@@ -206,41 +218,43 @@ secrets/
 ```
 
 #### Beispiel Secrets-Template:
+
 ```yaml
 # secrets/production/database.yaml
 # Encrypt mit: sops -e -i secrets/production/database.yaml
 database:
   primary:
-    host: "db.menschlichkeit-oesterreich.at"
+    host: 'db.menschlichkeit-oesterreich.at'
     port: 5432
-    name: "production_main"
-    username: "prod_user"
-    password: "ENCRYPTED_BY_SOPS"
-    ssl_mode: "require"
-  
+    name: 'production_main'
+    username: 'prod_user'
+    password: 'ENCRYPTED_BY_SOPS'
+    ssl_mode: 'require'
+
   readonly:
-    host: "db-readonly.menschlichkeit-oesterreich.at"
+    host: 'db-readonly.menschlichkeit-oesterreich.at'
     port: 5432
-    name: "production_main" 
-    username: "readonly_user"
-    password: "ENCRYPTED_BY_SOPS"
+    name: 'production_main'
+    username: 'readonly_user'
+    password: 'ENCRYPTED_BY_SOPS'
 
 redis:
-  host: "redis.menschlichkeit-oesterreich.at"
+  host: 'redis.menschlichkeit-oesterreich.at'
   port: 6379
-  password: "ENCRYPTED_BY_SOPS"
+  password: 'ENCRYPTED_BY_SOPS'
   database: 0
 ```
 
 ### 5. Environment Variable Injection Scripts
 
 #### PowerShell Secrets-Management:
+
 ```powershell
 # scripts/secrets-decrypt.ps1
 param(
     [Parameter(Mandatory=$true)]
     [string]$Environment = "development",
-    
+
     [Parameter(Mandatory=$false)]
     [switch]$ExportToEnv = $false
 )
@@ -266,17 +280,17 @@ if ($SecretFiles.Count -eq 0) {
 
 foreach ($SecretFile in $SecretFiles) {
     Write-Host "  Processing: $($SecretFile.Name)" -ForegroundColor Cyan
-    
+
     try {
         # SOPS entschlüsseln und YAML zu ENV konvertieren
         $DecryptedContent = & sops -d $SecretFile.FullName | ConvertFrom-Yaml
-        
+
         # Rekursiv durch YAML-Struktur und ENV-Variablen erstellen
         function ConvertTo-EnvVars($obj, $prefix = "") {
             foreach ($key in $obj.Keys) {
                 $envKey = if ($prefix) { "${prefix}_${key}".ToUpper() } else { $key.ToUpper() }
                 $value = $obj[$key]
-                
+
                 if ($value -is [hashtable] -or $value -is [PSCustomObject]) {
                     ConvertTo-EnvVars $value $envKey
                 } else {
@@ -284,9 +298,9 @@ foreach ($SecretFile in $SecretFiles) {
                 }
             }
         }
-        
+
         ConvertTo-EnvVars $DecryptedContent
-        
+
     } catch {
         Write-Error "Failed to decrypt $($SecretFile.Name): $($_.Exception.Message)"
         continue
@@ -298,7 +312,7 @@ Write-Host "✅ Secrets decrypted to: $TempEnvFile" -ForegroundColor Green
 # Optional: Environment Variables exportieren
 if ($ExportToEnv) {
     Write-Host "🌐 Exporting to environment variables..." -ForegroundColor Yellow
-    
+
     Get-Content $TempEnvFile | ForEach-Object {
         if ($_ -match '^([^#].+)=(.*)$') {
             $name = $matches[1]
@@ -325,6 +339,7 @@ Write-Host "⚠️ Temporary secrets file will be auto-deleted in 5 minutes" -Fo
 ### 6. .gitignore Security Update
 
 #### Erweiterte .gitignore für Secrets:
+
 ```gitignore
 # Environment Variables & Secrets
 .env
@@ -363,6 +378,7 @@ config/secrets.json
 ### 7. Docker Integration für sichere Deployments
 
 #### Dockerfile mit Secrets-Management:
+
 ```dockerfile
 # Multi-stage build für sicherere Production
 FROM node:18-alpine AS secrets-handler
@@ -408,6 +424,7 @@ CMD ["./docker-entrypoint.sh"]
 ### 8. Automated Security Checks
 
 #### GitHub Actions Integration:
+
 ```yaml
 # .github/workflows/secrets-security.yml
 name: 🔐 Secrets Security Audit
@@ -422,28 +439,28 @@ jobs:
   secrets-audit:
     name: Audit Secrets & Environment Variables
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Full history für Secret-Scanning
-      
+          fetch-depth: 0 # Full history für Secret-Scanning
+
       - name: Install Security Tools
         run: |
           # TruffleHog für Secret-Detection
           curl -sSfL https://raw.githubusercontent.com/trufflesecurity/trufflehog/main/scripts/install.sh | sh -s -- -b /usr/local/bin
-          
+
           # SOPS für Validation
           curl -LO https://github.com/mozilla/sops/releases/download/v3.8.1/sops-v3.8.1.linux.amd64
           chmod +x sops-v3.8.1.linux.amd64
           sudo mv sops-v3.8.1.linux.amd64 /usr/local/bin/sops
-      
+
       - name: Scan for Exposed Secrets
         run: |
           echo "🔍 Scanning repository for exposed secrets..."
           trufflehog git file://. --only-verified --no-update
-          
+
       - name: Validate .env Files Are Not Committed
         run: |
           echo "🚫 Checking for committed .env files..."
@@ -454,7 +471,7 @@ jobs:
           else
             echo "✅ No .env files found in repository"
           fi
-      
+
       - name: Validate SOPS Configuration
         run: |
           echo "🔧 Validating SOPS configuration..."
@@ -462,13 +479,13 @@ jobs:
             echo "❌ ERROR: .sops.yaml configuration file missing!"
             exit 1
           fi
-          
+
           # Validate SOPS encrypted files can be parsed
           if [ -d "secrets/" ]; then
             find secrets/ -name "*.yaml" -exec sops -d {} \; > /dev/null
             echo "✅ All SOPS encrypted files are valid"
           fi
-      
+
       - name: Security Report
         if: failure()
         run: |
@@ -480,19 +497,22 @@ jobs:
 ## 9. Implementation Checklist
 
 ### ✅ Phase 1: Immediate Security (P0)
+
 - [ ] Audit alle .env-Dateien im Repository
 - [ ] SOPS Installation und GPG-Setup
 - [ ] Erste verschlüsselte Secrets-Dateien erstellen
 - [ ] .gitignore für Secrets erweitern
 - [ ] Temporäre .env-Files aus Git-History entfernen
 
-### ✅ Phase 2: Automation (P1)  
+### ✅ Phase 2: Automation (P1)
+
 - [ ] PowerShell Decrypt/Encrypt Scripts
 - [ ] Docker Integration für sichere Deployments
 - [ ] GitHub Actions für Secrets-Scanning
 - [ ] Entwickler-Dokumentation und Training
 
 ### ✅ Phase 3: Monitoring (P2)
+
 - [ ] Secrets Rotation Automation
 - [ ] Access Logging für Secrets
 - [ ] Compliance Reporting
@@ -503,7 +523,7 @@ jobs:
 ## 🚨 Sofortige Aktionen erforderlich:
 
 1. **MCP-Server Konfiguration reparieren**
-2. **Secrets Audit durchführen**  
+2. **Secrets Audit durchführen**
 3. **SOPS Implementation starten**
 4. **VS Code Extensions neu konfigurieren**
 

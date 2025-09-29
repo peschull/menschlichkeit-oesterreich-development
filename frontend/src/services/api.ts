@@ -50,7 +50,10 @@ export const api = {
     create: (payload: CreateContactRequest, token: string) =>
       http.post<ApiResponse>(apiPaths.contacts.create, payload, { token }),
     search: (email: string | undefined, token: string) =>
-      http.get<ApiResponse>(`${apiPaths.contacts.search}${email ? `?email=${encodeURIComponent(email)}` : ''}`, { token }),
+      http.get<ApiResponse>(
+        `${apiPaths.contacts.search}${email ? `?email=${encodeURIComponent(email)}` : ''}`,
+        { token }
+      ),
   },
   memberships: {
     create: (payload: CreateMembershipRequest, token: string) =>

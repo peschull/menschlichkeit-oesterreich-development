@@ -1,32 +1,32 @@
 // SEPA Direct Debit Form Handler
 
 class SepaHandler {
-    constructor() {
-        this.form = null;
-        this.init();
-    }
+  constructor() {
+    this.form = null;
+    this.init();
+  }
 
-    init() {
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => this.bindEvents());
-        } else {
-            this.bindEvents();
-        }
+  init() {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => this.bindEvents());
+    } else {
+      this.bindEvents();
     }
+  }
 
-    bindEvents() {
-        // Create SEPA form modal
-        this.createSepaModal();
-        
-        // Bind to membership upgrade/payment buttons
-        this.bindPaymentButtons();
-        
-        // IBAN validation
-        this.bindIbanValidation();
-    }
+  bindEvents() {
+    // Create SEPA form modal
+    this.createSepaModal();
 
-    createSepaModal() {
-        const modalHtml = `
+    // Bind to membership upgrade/payment buttons
+    this.bindPaymentButtons();
+
+    // IBAN validation
+    this.bindIbanValidation();
+  }
+
+  createSepaModal() {
+    const modalHtml = `
             <div class="modal fade" id="sepaModal" tabindex="-1" aria-labelledby="sepaModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
@@ -207,373 +207,431 @@ class SepaHandler {
             </div>
         `;
 
-        // Add modal to document
-        document.body.insertAdjacentHTML('beforeend', modalHtml);
-        
-        // Get form reference
-        this.form = document.getElementById('sepaForm');
-        
-        // Bind form submit
-        if (this.form) {
-            this.form.addEventListener('submit', (e) => this.handleSepaSubmit(e));
+    // Add modal to document
+    document.body.insertAdjacentHTML('beforeend', modalHtml);
+
+    // Get form reference
+    this.form = document.getElementById('sepaForm');
+
+    // Bind form submit
+    if (this.form) {
+      this.form.addEventListener('submit', e => this.handleSepaSubmit(e));
+    }
+  }
+
+  bindPaymentButtons() {
+    // Membership upgrade buttons
+    const upgradeButtons = document.querySelectorAll('[data-membership-type]');
+    upgradeButtons.forEach(button => {
+      button.addEventListener('click', e => {
+        e.preventDefault();
+        const membershipType = button.getAttribute('data-membership-type');
+        this.openSepaModal(membershipType);
+      });
+    });
+
+    // Payment method change button
+    const changePaymentBtn = document.querySelector('[data-action="change-payment"]');
+    if (changePaymentBtn) {
+      changePaymentBtn.addEventListener('click', e => {
+        e.preventDefault();
+        this.openSepaModal('current');
+      });
+    }
+  }
+
+  bindIbanValidation() {
+    const ibanInput = document.getElementById('sepaIban');
+    if (!ibanInput) return;
+
+    ibanInput.addEventListener('input', e => {
+      let value = e.target.value.replace(/\s/g, '').toUpperCase();
+
+      // Format IBAN with spaces
+      value = value.replace(/(.{4})/g, '$1 ').trim();
+      e.target.value = value;
+
+      // Validate IBAN
+      this.validateIban(value.replace(/\s/g, ''));
+    });
+
+    ibanInput.addEventListener('blur', e => {
+      const iban = e.target.value.replace(/\s/g, '');
+      if (iban && this.isValidIban(iban)) {
+        this.lookupBic(iban);
+      }
+    });
+  }
+
+  openSepaModal(membershipType = 'standard') {
+    const modal = new bootstrap.Modal(document.getElementById('sepaModal'));
+
+    // Set amount based on membership type
+    const amounts = {
+      standard: { amount: '€36,00', monthly: '€3,00', interval: 'Jährlich' },
+      supporter: { amount: '€72,00', monthly: '€6,00', interval: 'Jährlich' },
+      current: { amount: '€36,00', monthly: '€3,00', interval: 'Jährlich' },
+    };
+
+    const membershipData = amounts[membershipType] || amounts.standard;
+
+    document.getElementById('sepaAmount').textContent = membershipData.amount;
+    document.getElementById('sepaInterval').textContent = membershipData.interval;
+
+    // Pre-fill user data if available
+    this.prefillUserData();
+
+    modal.show();
+  }
+
+  prefillUserData() {
+    const userData = window.crmApi?.getUserData();
+    if (!userData) return;
+
+    if (userData.first_name && userData.last_name) {
+      document.getElementById('sepaAccountHolder').value =
+        `${userData.first_name} ${userData.last_name}`;
+    }
+
+    if (userData.email) {
+      document.getElementById('sepaEmail').value = userData.email;
+    }
+
+    if (userData.address) {
+      document.getElementById('sepaAddress').value = userData.address;
+    }
+  }
+
+  async handleSepaSubmit(event) {
+    event.preventDefault();
+
+    if (!this.validateSepaForm()) {
+      return;
+    }
+
+    // Show loading state
+    this.setLoadingState(true);
+
+    try {
+      // Collect form data
+      const formData = this.getSepaFormData();
+
+      // API call to create SEPA mandate
+      const result = await window.crmApi.createSepaMandate(formData);
+
+      if (result.success) {
+        this.showSuccess('SEPA-Lastschriftmandat erfolgreich erstellt!');
+
+        // Close modal after 2 seconds
+        setTimeout(() => {
+          const modal = bootstrap.Modal.getInstance(document.getElementById('sepaModal'));
+          modal.hide();
+
+          // Refresh page to show updated payment info
+          setTimeout(() => {
+            window.location.reload();
+          }, 500);
+        }, 2000);
+      } else {
+        this.showError(result.error || 'Fehler beim Erstellen des SEPA-Mandats');
+      }
+    } catch (error) {
+      this.showError('Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut.');
+    } finally {
+      this.setLoadingState(false);
+    }
+  }
+
+  validateSepaForm() {
+    const requiredFields = [
+      'sepaAccountHolder',
+      'sepaEmail',
+      'sepaIban',
+      'sepaConsent',
+      'sepaDataConsent',
+    ];
+
+    let isValid = true;
+
+    // Clear previous errors
+    this.clearFormErrors();
+
+    // Validate required fields
+    requiredFields.forEach(fieldId => {
+      const field = document.getElementById(fieldId);
+      if (!field) return;
+
+      if (field.type === 'checkbox') {
+        if (!field.checked) {
+          this.showFieldError(fieldId, 'Dieses Feld ist erforderlich.');
+          isValid = false;
         }
+      } else if (!field.value.trim()) {
+        this.showFieldError(fieldId, 'Dieses Feld ist erforderlich.');
+        isValid = false;
+      }
+    });
+
+    // Validate email
+    const email = document.getElementById('sepaEmail').value.trim();
+    if (email && !this.validateEmail(email)) {
+      this.showFieldError('sepaEmail', 'Bitte geben Sie eine gültige E-Mail-Adresse ein.');
+      isValid = false;
     }
 
-    bindPaymentButtons() {
-        // Membership upgrade buttons
-        const upgradeButtons = document.querySelectorAll('[data-membership-type]');
-        upgradeButtons.forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.preventDefault();
-                const membershipType = button.getAttribute('data-membership-type');
-                this.openSepaModal(membershipType);
-            });
-        });
-
-        // Payment method change button
-        const changePaymentBtn = document.querySelector('[data-action="change-payment"]');
-        if (changePaymentBtn) {
-            changePaymentBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                this.openSepaModal('current');
-            });
-        }
+    // Validate IBAN
+    const iban = document.getElementById('sepaIban').value.replace(/\s/g, '');
+    if (iban && !this.isValidIban(iban)) {
+      this.showFieldError('sepaIban', 'Bitte geben Sie eine gültige IBAN ein.');
+      isValid = false;
     }
 
-    bindIbanValidation() {
-        const ibanInput = document.getElementById('sepaIban');
-        if (!ibanInput) return;
+    return isValid;
+  }
 
-        ibanInput.addEventListener('input', (e) => {
-            let value = e.target.value.replace(/\s/g, '').toUpperCase();
-            
-            // Format IBAN with spaces
-            value = value.replace(/(.{4})/g, '$1 ').trim();
-            e.target.value = value;
-            
-            // Validate IBAN
-            this.validateIban(value.replace(/\s/g, ''));
-        });
+  getSepaFormData() {
+    return {
+      account_holder: document.getElementById('sepaAccountHolder').value.trim(),
+      email: document.getElementById('sepaEmail').value.trim(),
+      iban: document.getElementById('sepaIban').value.replace(/\s/g, ''),
+      bic: document.getElementById('sepaBic').value.trim(),
+      address: document.getElementById('sepaAddress').value.trim(),
+      amount: document.getElementById('sepaAmount').textContent,
+      interval: document.getElementById('sepaInterval').textContent.toLowerCase(),
+      mandate_date: new Date().toISOString().split('T')[0],
+    };
+  }
 
-        ibanInput.addEventListener('blur', (e) => {
-            const iban = e.target.value.replace(/\s/g, '');
-            if (iban && this.isValidIban(iban)) {
-                this.lookupBic(iban);
-            }
-        });
+  validateIban(iban) {
+    const messageElement = document.getElementById('ibanValidationMessage');
+    if (!messageElement) return;
+
+    if (!iban) {
+      messageElement.textContent = '';
+      return;
     }
 
-    openSepaModal(membershipType = 'standard') {
-        const modal = new bootstrap.Modal(document.getElementById('sepaModal'));
-        
-        // Set amount based on membership type
-        const amounts = {
-            'standard': { amount: '€36,00', monthly: '€3,00', interval: 'Jährlich' },
-            'supporter': { amount: '€72,00', monthly: '€6,00', interval: 'Jährlich' },
-            'current': { amount: '€36,00', monthly: '€3,00', interval: 'Jährlich' }
-        };
+    if (this.isValidIban(iban)) {
+      messageElement.innerHTML = '<i class="bi bi-check-circle text-success me-1"></i>Gültige IBAN';
+      messageElement.className = 'text-success';
+    } else {
+      messageElement.innerHTML = '<i class="bi bi-x-circle text-danger me-1"></i>Ungültige IBAN';
+      messageElement.className = 'text-danger';
+    }
+  }
 
-        const membershipData = amounts[membershipType] || amounts.standard;
-        
-        document.getElementById('sepaAmount').textContent = membershipData.amount;
-        document.getElementById('sepaInterval').textContent = membershipData.interval;
-        
-        // Pre-fill user data if available
-        this.prefillUserData();
-        
-        modal.show();
+  isValidIban(iban) {
+    // Basic IBAN validation
+    if (!/^[A-Z]{2}[0-9]{2}[A-Z0-9]{4}[0-9]{7}([A-Z0-9]?){0,16}$/.test(iban)) {
+      return false;
     }
 
-    prefillUserData() {
-        const userData = window.crmApi?.getUserData();
-        if (!userData) return;
+    // IBAN length check for common countries
+    const lengths = {
+      AD: 24,
+      AE: 23,
+      AL: 28,
+      AT: 20,
+      AZ: 28,
+      BA: 20,
+      BE: 16,
+      BG: 22,
+      BH: 22,
+      BR: 29,
+      BY: 28,
+      CH: 21,
+      CR: 22,
+      CY: 28,
+      CZ: 24,
+      DE: 22,
+      DK: 18,
+      DO: 28,
+      EE: 20,
+      EG: 29,
+      ES: 24,
+      FI: 18,
+      FO: 18,
+      FR: 27,
+      GB: 22,
+      GE: 22,
+      GI: 23,
+      GL: 18,
+      GR: 27,
+      GT: 28,
+      HR: 21,
+      HU: 28,
+      IE: 22,
+      IL: 23,
+      IS: 26,
+      IT: 27,
+      JO: 30,
+      KW: 30,
+      KZ: 20,
+      LB: 28,
+      LC: 32,
+      LI: 21,
+      LT: 20,
+      LU: 20,
+      LV: 21,
+      MC: 27,
+      MD: 24,
+      ME: 22,
+      MK: 19,
+      MR: 27,
+      MT: 31,
+      MU: 30,
+      NL: 18,
+      NO: 15,
+      PK: 24,
+      PL: 28,
+      PS: 29,
+      PT: 25,
+      QA: 29,
+      RO: 24,
+      RS: 22,
+      SA: 24,
+      SE: 24,
+      SI: 19,
+      SK: 24,
+      SM: 27,
+      TN: 24,
+      TR: 26,
+      UA: 29,
+      VG: 24,
+      XK: 20,
+    };
 
-        if (userData.first_name && userData.last_name) {
-            document.getElementById('sepaAccountHolder').value = 
-                `${userData.first_name} ${userData.last_name}`;
-        }
-        
-        if (userData.email) {
-            document.getElementById('sepaEmail').value = userData.email;
-        }
-        
-        if (userData.address) {
-            document.getElementById('sepaAddress').value = userData.address;
-        }
+    const countryCode = iban.substr(0, 2);
+    const expectedLength = lengths[countryCode];
+
+    if (expectedLength && iban.length !== expectedLength) {
+      return false;
     }
 
-    async handleSepaSubmit(event) {
-        event.preventDefault();
+    // MOD-97 validation
+    const rearranged = iban.substr(4) + iban.substr(0, 4);
+    const numericString = rearranged.replace(/[A-Z]/g, match => {
+      return (match.charCodeAt(0) - 55).toString();
+    });
 
-        if (!this.validateSepaForm()) {
-            return;
-        }
-
-        // Show loading state
-        this.setLoadingState(true);
-
-        try {
-            // Collect form data
-            const formData = this.getSepaFormData();
-            
-            // API call to create SEPA mandate
-            const result = await window.crmApi.createSepaMandate(formData);
-
-            if (result.success) {
-                this.showSuccess('SEPA-Lastschriftmandat erfolgreich erstellt!');
-                
-                // Close modal after 2 seconds
-                setTimeout(() => {
-                    const modal = bootstrap.Modal.getInstance(document.getElementById('sepaModal'));
-                    modal.hide();
-                    
-                    // Refresh page to show updated payment info
-                    setTimeout(() => {
-                        window.location.reload();
-                    }, 500);
-                }, 2000);
-
-            } else {
-                this.showError(result.error || 'Fehler beim Erstellen des SEPA-Mandats');
-            }
-
-        } catch (error) {
-            this.showError('Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut.');
-        } finally {
-            this.setLoadingState(false);
-        }
+    // Calculate mod 97 for large numbers
+    let remainder = 0;
+    for (let i = 0; i < numericString.length; i++) {
+      remainder = (remainder * 10 + parseInt(numericString[i])) % 97;
     }
 
-    validateSepaForm() {
-        const requiredFields = [
-            'sepaAccountHolder',
-            'sepaEmail',
-            'sepaIban',
-            'sepaConsent',
-            'sepaDataConsent'
-        ];
+    return remainder === 1;
+  }
 
-        let isValid = true;
+  async lookupBic(iban) {
+    // Mock BIC lookup - in real implementation, call a BIC lookup service
+    const bicInput = document.getElementById('sepaBic');
+    if (!bicInput || bicInput.value.trim()) return;
 
-        // Clear previous errors
-        this.clearFormErrors();
+    // Austrian banks common BICs
+    const austrianBics = {
+      19043: 'BKAUATWW', // Bank Austria
+      20111: 'GIBAATWW', // Erste Bank
+      32000: 'RLNWATWW', // Raiffeisen
+      14000: 'OBKLAT2L', // Oberbank
+      12000: 'BAWAATWW', // Bawag PSK
+    };
 
-        // Validate required fields
-        requiredFields.forEach(fieldId => {
-            const field = document.getElementById(fieldId);
-            if (!field) return;
-
-            if (field.type === 'checkbox') {
-                if (!field.checked) {
-                    this.showFieldError(fieldId, 'Dieses Feld ist erforderlich.');
-                    isValid = false;
-                }
-            } else if (!field.value.trim()) {
-                this.showFieldError(fieldId, 'Dieses Feld ist erforderlich.');
-                isValid = false;
-            }
-        });
-
-        // Validate email
-        const email = document.getElementById('sepaEmail').value.trim();
-        if (email && !this.validateEmail(email)) {
-            this.showFieldError('sepaEmail', 'Bitte geben Sie eine gültige E-Mail-Adresse ein.');
-            isValid = false;
-        }
-
-        // Validate IBAN
-        const iban = document.getElementById('sepaIban').value.replace(/\s/g, '');
-        if (iban && !this.isValidIban(iban)) {
-            this.showFieldError('sepaIban', 'Bitte geben Sie eine gültige IBAN ein.');
-            isValid = false;
-        }
-
-        return isValid;
+    const bankCode = iban.substr(4, 5);
+    if (austrianBics[bankCode]) {
+      bicInput.value = austrianBics[bankCode];
+      this.showInfo('BIC automatisch ermittelt');
     }
+  }
 
-    getSepaFormData() {
-        return {
-            account_holder: document.getElementById('sepaAccountHolder').value.trim(),
-            email: document.getElementById('sepaEmail').value.trim(),
-            iban: document.getElementById('sepaIban').value.replace(/\s/g, ''),
-            bic: document.getElementById('sepaBic').value.trim(),
-            address: document.getElementById('sepaAddress').value.trim(),
-            amount: document.getElementById('sepaAmount').textContent,
-            interval: document.getElementById('sepaInterval').textContent.toLowerCase(),
-            mandate_date: new Date().toISOString().split('T')[0]
-        };
+  validateEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+
+  showFieldError(fieldId, message) {
+    const field = document.getElementById(fieldId);
+    if (!field) return;
+
+    field.classList.add('is-invalid');
+
+    const feedback = field.parentElement.querySelector('.invalid-feedback');
+    if (feedback) {
+      feedback.textContent = message;
     }
+  }
 
-    validateIban(iban) {
-        const messageElement = document.getElementById('ibanValidationMessage');
-        if (!messageElement) return;
+  clearFormErrors() {
+    const invalidFields = document.querySelectorAll('.is-invalid');
+    invalidFields.forEach(field => field.classList.remove('is-invalid'));
+  }
 
-        if (!iban) {
-            messageElement.textContent = '';
-            return;
-        }
+  setLoadingState(loading) {
+    const submitButton = this.form?.querySelector('button[type="submit"]');
+    if (!submitButton) return;
 
-        if (this.isValidIban(iban)) {
-            messageElement.innerHTML = '<i class="bi bi-check-circle text-success me-1"></i>Gültige IBAN';
-            messageElement.className = 'text-success';
-        } else {
-            messageElement.innerHTML = '<i class="bi bi-x-circle text-danger me-1"></i>Ungültige IBAN';
-            messageElement.className = 'text-danger';
-        }
+    const buttonText = submitButton.querySelector('.button-text');
+    const buttonLoading = submitButton.querySelector('.button-loading');
+
+    if (loading) {
+      submitButton.disabled = true;
+      buttonText?.classList.add('d-none');
+      buttonLoading?.classList.remove('d-none');
+    } else {
+      submitButton.disabled = false;
+      buttonText?.classList.remove('d-none');
+      buttonLoading?.classList.add('d-none');
     }
+  }
 
-    isValidIban(iban) {
-        // Basic IBAN validation
-        if (!/^[A-Z]{2}[0-9]{2}[A-Z0-9]{4}[0-9]{7}([A-Z0-9]?){0,16}$/.test(iban)) {
-            return false;
-        }
+  showSuccess(message) {
+    this.showAlert(message, 'success');
+  }
 
-        // IBAN length check for common countries
-        const lengths = {
-            'AD': 24, 'AE': 23, 'AL': 28, 'AT': 20, 'AZ': 28, 'BA': 20, 'BE': 16,
-            'BG': 22, 'BH': 22, 'BR': 29, 'BY': 28, 'CH': 21, 'CR': 22, 'CY': 28,
-            'CZ': 24, 'DE': 22, 'DK': 18, 'DO': 28, 'EE': 20, 'EG': 29, 'ES': 24,
-            'FI': 18, 'FO': 18, 'FR': 27, 'GB': 22, 'GE': 22, 'GI': 23, 'GL': 18,
-            'GR': 27, 'GT': 28, 'HR': 21, 'HU': 28, 'IE': 22, 'IL': 23, 'IS': 26,
-            'IT': 27, 'JO': 30, 'KW': 30, 'KZ': 20, 'LB': 28, 'LC': 32, 'LI': 21,
-            'LT': 20, 'LU': 20, 'LV': 21, 'MC': 27, 'MD': 24, 'ME': 22, 'MK': 19,
-            'MR': 27, 'MT': 31, 'MU': 30, 'NL': 18, 'NO': 15, 'PK': 24, 'PL': 28,
-            'PS': 29, 'PT': 25, 'QA': 29, 'RO': 24, 'RS': 22, 'SA': 24, 'SE': 24,
-            'SI': 19, 'SK': 24, 'SM': 27, 'TN': 24, 'TR': 26, 'UA': 29, 'VG': 24,
-            'XK': 20
-        };
+  showError(message) {
+    this.showAlert(message, 'danger');
+  }
 
-        const countryCode = iban.substr(0, 2);
-        const expectedLength = lengths[countryCode];
-        
-        if (expectedLength && iban.length !== expectedLength) {
-            return false;
-        }
+  showInfo(message) {
+    this.showAlert(message, 'info');
+  }
 
-        // MOD-97 validation
-        const rearranged = iban.substr(4) + iban.substr(0, 4);
-        const numericString = rearranged.replace(/[A-Z]/g, (match) => {
-            return (match.charCodeAt(0) - 55).toString();
-        });
+  showAlert(message, type = 'info') {
+    // Remove existing alerts in modal
+    const existingAlerts = document.querySelectorAll('.sepa-alert');
+    existingAlerts.forEach(alert => alert.remove());
 
-        // Calculate mod 97 for large numbers
-        let remainder = 0;
-        for (let i = 0; i < numericString.length; i++) {
-            remainder = (remainder * 10 + parseInt(numericString[i])) % 97;
-        }
+    // Create new alert
+    const alertDiv = document.createElement('div');
+    alertDiv.className = `alert alert-${type} alert-dismissible fade show sepa-alert`;
+    alertDiv.setAttribute('role', 'alert');
 
-        return remainder === 1;
-    }
-
-    async lookupBic(iban) {
-        // Mock BIC lookup - in real implementation, call a BIC lookup service
-        const bicInput = document.getElementById('sepaBic');
-        if (!bicInput || bicInput.value.trim()) return;
-
-        // Austrian banks common BICs
-        const austrianBics = {
-            '19043': 'BKAUATWW', // Bank Austria
-            '20111': 'GIBAATWW', // Erste Bank
-            '32000': 'RLNWATWW', // Raiffeisen
-            '14000': 'OBKLAT2L', // Oberbank
-            '12000': 'BAWAATWW'  // Bawag PSK
-        };
-
-        const bankCode = iban.substr(4, 5);
-        if (austrianBics[bankCode]) {
-            bicInput.value = austrianBics[bankCode];
-            this.showInfo('BIC automatisch ermittelt');
-        }
-    }
-
-    validateEmail(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    }
-
-    showFieldError(fieldId, message) {
-        const field = document.getElementById(fieldId);
-        if (!field) return;
-
-        field.classList.add('is-invalid');
-        
-        const feedback = field.parentElement.querySelector('.invalid-feedback');
-        if (feedback) {
-            feedback.textContent = message;
-        }
-    }
-
-    clearFormErrors() {
-        const invalidFields = document.querySelectorAll('.is-invalid');
-        invalidFields.forEach(field => field.classList.remove('is-invalid'));
-    }
-
-    setLoadingState(loading) {
-        const submitButton = this.form?.querySelector('button[type="submit"]');
-        if (!submitButton) return;
-
-        const buttonText = submitButton.querySelector('.button-text');
-        const buttonLoading = submitButton.querySelector('.button-loading');
-
-        if (loading) {
-            submitButton.disabled = true;
-            buttonText?.classList.add('d-none');
-            buttonLoading?.classList.remove('d-none');
-        } else {
-            submitButton.disabled = false;
-            buttonText?.classList.remove('d-none');
-            buttonLoading?.classList.add('d-none');
-        }
-    }
-
-    showSuccess(message) {
-        this.showAlert(message, 'success');
-    }
-
-    showError(message) {
-        this.showAlert(message, 'danger');
-    }
-
-    showInfo(message) {
-        this.showAlert(message, 'info');
-    }
-
-    showAlert(message, type = 'info') {
-        // Remove existing alerts in modal
-        const existingAlerts = document.querySelectorAll('.sepa-alert');
-        existingAlerts.forEach(alert => alert.remove());
-
-        // Create new alert
-        const alertDiv = document.createElement('div');
-        alertDiv.className = `alert alert-${type} alert-dismissible fade show sepa-alert`;
-        alertDiv.setAttribute('role', 'alert');
-        
-        alertDiv.innerHTML = `
+    alertDiv.innerHTML = `
             ${message}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         `;
 
-        // Insert at the top of modal body
-        const modalBody = document.querySelector('#sepaModal .modal-body');
-        if (modalBody) {
-            modalBody.insertBefore(alertDiv, modalBody.firstChild);
-        }
-
-        // Auto-dismiss info messages after 3 seconds
-        if (type === 'info') {
-            setTimeout(() => {
-                if (alertDiv.parentNode) {
-                    alertDiv.remove();
-                }
-            }, 3000);
-        }
-
-        // Scroll to alert
-        alertDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    // Insert at the top of modal body
+    const modalBody = document.querySelector('#sepaModal .modal-body');
+    if (modalBody) {
+      modalBody.insertBefore(alertDiv, modalBody.firstChild);
     }
+
+    // Auto-dismiss info messages after 3 seconds
+    if (type === 'info') {
+      setTimeout(() => {
+        if (alertDiv.parentNode) {
+          alertDiv.remove();
+        }
+      }, 3000);
+    }
+
+    // Scroll to alert
+    alertDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
 }
 
 // Initialize SEPA Handler
 document.addEventListener('DOMContentLoaded', () => {
-    new SepaHandler();
+  new SepaHandler();
 });
