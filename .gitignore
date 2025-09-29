@@ -21,6 +21,9 @@
 .env.*.decrypted
 *.env.*
 
+# Exception: Allow .env.example template
+!.env.example
+
 # SOPS decrypted files
 *.decrypted
 secrets/**/*.decrypted
