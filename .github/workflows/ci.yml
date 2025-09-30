@@ -47,9 +47,9 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
-          cache-dependency-path: '${{ matrix.project }}/package-lock.json'
 
       - name: 🔧 Fix Dependencies
+        if: ${{ steps.check-project.outputs.project_exists == '1' }}
         working-directory: ${{ matrix.project }}
         run: |
           npm install --package-lock-only
