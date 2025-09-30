@@ -1,7 +1,42 @@
 # 📋 ZUGANGSDATEN CHECKLISTE - Menschlichkeit Österreich
 
-**Stand:** 29. September 2025
+**Stand:** 30. September 2025
 **System:** Multi-Service Austrian NGO Platform
+
+## 🚀 QUICK START - Sofort loslegen
+
+### Schritt 1: Generiere Security Keys (2 Minuten)
+```bash
+# JWT Secret für API
+openssl rand -base64 32
+
+# n8n Encryption Key
+openssl rand -base64 32
+```
+
+### Schritt 2: Kopiere .env Templates
+```bash
+# API
+cp api.menschlichkeit-oesterreich.at/.env.example api.menschlichkeit-oesterreich.at/.env
+
+# CRM
+cp crm.menschlichkeit-oesterreich.at/.env.example crm.menschlichkeit-oesterreich.at/.env
+
+# n8n
+cp automation/n8n/.env.example automation/n8n/.env
+```
+
+### Schritt 3: Trage Secrets ein
+1. Öffne die `.env` Dateien
+2. Ersetze `DUMMY` Werte mit echten Credentials
+3. Verwende generierte Keys aus Schritt 1
+
+### Schritt 4: Starte Services
+```bash
+npm run dev:all
+```
+
+---
 
 ## ✅ VERFÜGBARE ZUGANGSDATEN
 
@@ -140,30 +175,87 @@
 
 ## 🎯 AKTIONSPLAN
 
-### Phase 1: Database & Security (Tag 1)
+### Phase 1: Database & Security (Tag 1) - 🔴 KRITISCH
 
-- [ ] Plesk Login → Database Passwörter abrufen
-- [ ] JWT Secret generieren: `openssl rand -base64 32`
-- [ ] n8n Admin Credentials definieren
-- [ ] Alle Secrets in `.env` eintragen
+- [ ] **Plesk Login** → Database Passwörter abrufen
+  - Anleitung: Plesk Panel → Datenbanken → Passwort anzeigen
+  - Benötigt für: Laravel API, CiviCRM
+  
+- [ ] **JWT Secret generieren**
+  ```bash
+  openssl rand -base64 32
+  ```
+  - Verwendung: API Authentication
+  - Speicherort: `.env` → `JWT_SECRET`
+  
+- [ ] **n8n Admin Credentials definieren**
+  - Username: `moe_admin` (empfohlen)
+  - Password: Starkes Passwort (16+ Zeichen)
+  - Speicherort: `automation/n8n/.env`
+  
+- [ ] **Alle Secrets in `.env` Dateien eintragen**
+  - `api.menschlichkeit-oesterreich.at/.env`
+  - `crm.menschlichkeit-oesterreich.at/.env`
+  - `automation/n8n/.env`
 
-### Phase 2: External Services (Tag 2-3)
+### Phase 2: External Services (Tag 2-3) - ⚠️ HOCH
 
-- [ ] Codacy Account erstellen → API Token holen
-- [ ] Snyk Account erstellen → API Token holen
-- [ ] CiviCRM installieren → API & Site Keys generieren
+- [ ] **Codacy Account erstellen** → API Token holen
+  1. https://app.codacy.com registrieren
+  2. Repository verbinden
+  3. Account → API Tokens → Create Token
+  4. In `.env` als `CODACY_PROJECT_TOKEN` speichern
+  
+- [ ] **Snyk Account erstellen** → API Token holen
+  1. https://app.snyk.io registrieren
+  2. Account Settings → API Token
+  3. In `.env` als `SNYK_TOKEN` speichern
+  
+- [ ] **CiviCRM installieren** → API & Site Keys generieren
+  1. CiviCRM über Drupal installieren
+  2. Admin → System Settings → API Keys generieren
+  3. Site Key in `civicrm.settings.php` finden
+  4. In `.env` speichern: `CIVI_API_KEY`, `CIVI_SITE_KEY`
 
-### Phase 3: GitHub Integration (Tag 4)
+### Phase 3: GitHub Integration (Tag 4) - ⚠️ HOCH
 
-- [ ] Alle 26 Secrets zu GitHub Secrets migrieren
-- [ ] GitHub Actions testen
-- [ ] CI/CD Pipeline validieren
+- [ ] **Alle Secrets zu GitHub Secrets migrieren**
+  - Repository → Settings → Secrets and variables → Actions
+  - Secrets hinzufügen:
+    - `JWT_SECRET`
+    - `LARAVEL_DB_PASSWORD`
+    - `CIVICRM_DB_PASSWORD`
+    - `CIVI_API_KEY`
+    - `CIVI_SITE_KEY`
+    - `N8N_ENCRYPTION_KEY`
+    - `CODACY_PROJECT_TOKEN`
+    - `SNYK_TOKEN`
+    
+- [ ] **GitHub Actions testen**
+  ```bash
+  git push origin main
+  # Überprüfe: Actions Tab → Workflow läuft durch
+  ```
+  
+- [ ] **CI/CD Pipeline validieren**
+  - Build erfolgreich
+  - Tests bestanden
+  - Deployment funktioniert
 
-### Phase 4: Payment Integration (Später)
+### Phase 4: Payment Integration (Später) - 🔵 NIEDRIG
 
-- [ ] SEPA Creditor ID beantragen
-- [ ] Bank Integration setup
-- [ ] Donation System konfigurieren
+- [ ] **SEPA Creditor ID beantragen**
+  - Österreichische Nationalbank kontaktieren
+  - Vereinsdokumente vorbereiten
+  - Bearbeitungszeit: 2-4 Wochen
+  
+- [ ] **Bank Integration setup**
+  - IBAN des Vereinskontos in `.env`
+  - BIC Code hinzufügen
+  
+- [ ] **Donation System konfigurieren**
+  - CiviCRM SEPA Extension installieren
+  - Test-Transaktion durchführen
 
 ---
 
@@ -202,6 +294,41 @@
 
 ---
 
-**Letzte Aktualisierung:** 29. September 2025
+## 🔧 TROUBLESHOOTING
+
+### Problem: "JWT_SECRET not set"
+**Lösung:**
+```bash
+openssl rand -base64 32 > jwt_secret.txt
+# Kopiere Inhalt in .env als JWT_SECRET=...
+```
+
+### Problem: "Database connection failed"
+**Lösung:**
+1. Überprüfe Plesk Database Credentials
+2. Teste Verbindung: `mysql -u laravel_user -p -h localhost mo_laravel_api`
+3. Aktualisiere `.env` mit korrekten Credentials
+
+### Problem: "CiviCRM API not responding"
+**Lösung:**
+1. Überprüfe `CIVI_BASE_URL` (https://crm.menschlichkeit-oesterreich.at)
+2. Teste API: `curl -X GET "https://crm.menschlichkeit-oesterreich.at/civicrm/api/v4"`
+3. Verifiziere `CIVI_API_KEY` und `CIVI_SITE_KEY`
+
+### Problem: "n8n won't start"
+**Lösung:**
+1. Überprüfe Docker: `docker ps`
+2. Logs ansehen: `docker logs n8n`
+3. Port 5678 frei? `lsof -i :5678`
+
+### Problem: "GitHub Actions failing"
+**Lösung:**
+1. Überprüfe GitHub Secrets: Repository → Settings → Secrets
+2. Alle 26 Secrets vorhanden?
+3. Logs prüfen: Actions Tab → Failed Run → Details
+
+---
+
+**Letzte Aktualisierung:** 30. September 2025
 **Nächste Review:** Bei System Changes
 **Verantwortlich:** Peter Schuller (peter.schuller@menschlichkeit-oesterreich.at)
