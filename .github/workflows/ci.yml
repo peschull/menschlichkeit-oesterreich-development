@@ -127,6 +127,10 @@ jobs:
         if: ${{ steps.check-project.outputs.project_exists == '1' }}
         run: pip install uv
 
+      - name: 🔧 Install Python Linting Tools
+        if: ${{ steps.check-project.outputs.project_exists == '1' }}
+        run: pip install flake8 black mypy pytest
+
       - name: 🔧 Install Dependencies
         if: ${{ steps.check-project.outputs.project_exists == '1' }}
         working-directory: ${{ matrix.project }}

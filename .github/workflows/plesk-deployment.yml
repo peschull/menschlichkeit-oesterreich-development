@@ -45,6 +45,8 @@ jobs:
             - name: 📦 Install Dependencies
               run: |
                   npm ci
+                  # Install Python linting tools
+                  pip install flake8 black mypy pytest
                   if [ -d "api.menschlichkeit-oesterreich.at" ] && [ -f "api.menschlichkeit-oesterreich.at/requirements.txt" ]; then
                     pip install -r api.menschlichkeit-oesterreich.at/requirements.txt
                   fi
@@ -102,7 +104,11 @@ jobs:
             - name: 🏗️ Build Frontend
               run: |
                   if [ -d "frontend" ] && [ -f "frontend/package.json" ]; then
-                    cd frontend && npm ci && npm run build
+                    cd frontend
+                    # Fix for Rollup optional dependencies issue
+                    rm -rf node_modules package-lock.json
+                    npm install
+                    npm run build
                   else
                     echo "Frontend directory not found, skipping build"
                   fi
