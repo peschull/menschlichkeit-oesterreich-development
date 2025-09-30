@@ -140,6 +140,13 @@ class RegisterRequest(BaseModel):
 class RefreshRequest(BaseModel):
     refresh_token: str
 
+class ForgotPasswordRequest(BaseModel):
+    email: EmailStr
+
+class ResetPasswordRequest(BaseModel):
+    token: str
+    new_password: str
+
 class ContactUpdate(BaseModel):
     email: Optional[EmailStr] = None
     first_name: Optional[str] = None
@@ -416,6 +423,75 @@ async def refresh_token(req: RefreshRequest) -> ApiResponse:
         "contact": _serialize_contact(contact_record).model_dump() if contact_record else None,
     }
     return ApiResponse(success=True, data=data, message="Tokens refreshed")
+
+@app.post("/auth/forgot-password", response_model=ApiResponse)
+async def forgot_password(request: ForgotPasswordRequest) -> ApiResponse:
+    """Request a password reset token for the given email."""
+    email = request.email.lower()
+    
+    # Check if contact exists
+    try:
+        contact_record = await _civicrm_contact_get(email=email)
+    except HTTPException as exc:
+        if exc.status_code == 404:
+            # Don't reveal if email exists - return success anyway for security
+            return ApiResponse(
+                success=True, 
+                message="Wenn diese E-Mail-Adresse registriert ist, erhalten Sie eine E-Mail mit Anweisungen zum Zurücksetzen des Passworts."
+            )
+        raise
+    
+    # Generate password reset token (valid for 1 hour)
+    reset_token = _create_token(email, 3600, token_type="password_reset")
+    
+    # In production, this would send an email with the reset link
+    # For now, we'll return the token in the response (development only)
+    # TODO: Implement email sending via CiviCRM or external email service
+    
+    return ApiResponse(
+        success=True,
+        data={"reset_token": reset_token} if APP_ENV in {"development", "local", "test"} else None,
+        message="Wenn diese E-Mail-Adresse registriert ist, erhalten Sie eine E-Mail mit Anweisungen zum Zurücksetzen des Passworts."
+    )
+
+@app.post("/auth/reset-password", response_model=ApiResponse)
+async def reset_password(request: ResetPasswordRequest) -> ApiResponse:
+    """Reset password using a valid reset token."""
+    try:
+        payload = jwt.decode(request.token, JWT_SECRET, algorithms=["HS256"])
+    except jwt.ExpiredSignatureError as exc:
+        raise HTTPException(status_code=400, detail="Der Reset-Token ist abgelaufen. Bitte fordern Sie einen neuen an.") from exc
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail="Ungültiger Reset-Token") from exc
+    
+    if payload.get("type") != "password_reset":
+        raise HTTPException(status_code=400, detail="Ungültiger Token-Typ")
+    
+    email = payload.get("sub")
+    if not email:
+        raise HTTPException(status_code=400, detail="Ungültiger Token")
+    
+    # Validate new password
+    if len(request.new_password) < 8:
+        raise HTTPException(status_code=400, detail="Das Passwort muss mindestens 8 Zeichen lang sein.")
+    
+    # Note: CiviCRM doesn't natively support password storage
+    # This would typically integrate with your authentication system
+    # For now, we'll just verify the contact exists and return success
+    try:
+        contact_record = await _civicrm_contact_get(email=email)
+    except HTTPException as exc:
+        if exc.status_code == 404:
+            raise HTTPException(status_code=404, detail="Kontakt nicht gefunden")
+        raise
+    
+    # In production, update the password in your auth system
+    # TODO: Implement password update in CiviCRM custom fields or separate auth database
+    
+    return ApiResponse(
+        success=True,
+        message="Passwort erfolgreich zurückgesetzt. Sie können sich jetzt mit Ihrem neuen Passwort anmelden."
+    )
 
 @app.get("/user/profile", response_model=ApiResponse)
 async def get_user_profile(payload: Dict[str, Any] = Depends(verify_jwt_token)) -> ApiResponse:

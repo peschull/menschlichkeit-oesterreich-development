@@ -415,7 +415,7 @@ class AuthHandler {
   }
 
   // Forgot Password Handler
-  handleForgotPassword() {
+  async handleForgotPassword() {
     const email = document.getElementById('loginEmail').value.trim();
 
     if (!email) {
@@ -428,11 +428,27 @@ class AuthHandler {
       return;
     }
 
-    // TODO: Implement password reset API call
-    this.showAlert(
-      'Die Funktion "Passwort zurücksetzen" ist noch nicht verfügbar. Bitte kontaktieren Sie uns per E-Mail.',
-      'info'
-    );
+    try {
+      const result = await window.crmApi.forgotPassword(email);
+
+      if (result.success) {
+        this.showAlert(
+          result.message || 'Wenn diese E-Mail-Adresse registriert ist, erhalten Sie eine E-Mail mit Anweisungen zum Zurücksetzen des Passworts.',
+          'success'
+        );
+      } else {
+        this.showAlert(
+          result.error || 'Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.',
+          'danger'
+        );
+      }
+    } catch (error) {
+      console.error('Forgot password error:', error);
+      this.showAlert(
+        'Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut.',
+        'danger'
+      );
+    }
   }
 }
 

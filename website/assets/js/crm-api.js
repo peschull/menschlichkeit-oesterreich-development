@@ -138,6 +138,44 @@ class CRMApi {
     }
   }
 
+  async forgotPassword(email) {
+    try {
+      const response = await this.apiRequest('/auth/forgot-password', {
+        method: 'POST',
+        body: JSON.stringify({ email }),
+      });
+      const data = await response.json().catch(() => ({}));
+      if (response.ok && data && data.success) {
+        return { success: true, data, message: data.message };
+      } else {
+        const msg = (data && (data.detail || data.message)) || 'Passwort-Zurücksetzen fehlgeschlagen';
+        return { success: false, error: msg };
+      }
+    } catch (error) {
+      console.error('Forgot password error:', error);
+      return { success: false, error: 'Verbindungsfehler' };
+    }
+  }
+
+  async resetPassword(token, newPassword) {
+    try {
+      const response = await this.apiRequest('/auth/reset-password', {
+        method: 'POST',
+        body: JSON.stringify({ token, new_password: newPassword }),
+      });
+      const data = await response.json().catch(() => ({}));
+      if (response.ok && data && data.success) {
+        return { success: true, message: data.message };
+      } else {
+        const msg = (data && (data.detail || data.message)) || 'Passwort konnte nicht zurückgesetzt werden';
+        return { success: false, error: msg };
+      }
+    } catch (error) {
+      console.error('Reset password error:', error);
+      return { success: false, error: 'Verbindungsfehler' };
+    }
+  }
+
   logout() {
     this.token = null;
     try {
