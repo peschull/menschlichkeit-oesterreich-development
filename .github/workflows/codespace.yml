@@ -30,13 +30,13 @@ jobs:
       - name: 🔧 Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.4'
+          php-version: '8.2'
           extensions: mbstring, xml, ctype, iconv, intl, pdo, pdo_mysql, dom, filter, gd, json
 
       - name: 🐍 Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
+          python-version: '3.12'
 
       - name: 📊 Validate devcontainer.json
         run: |
@@ -54,7 +54,7 @@ jobs:
         run: |
           echo "🔍 Checking Codespace scripts..."
 
-          scripts=(".devcontainer/setup.sh" ".devcontainer/post-start.sh" ".devcontainer/quick-fix.sh")
+          scripts=(".devcontainer/codespace-optimized-setup.sh" ".devcontainer/codespace-post-create.sh")
 
           for script in "${scripts[@]}"; do
             if [ -f "$script" ]; then
