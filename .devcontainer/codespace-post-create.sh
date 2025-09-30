@@ -2,7 +2,9 @@
 # 🏗️ Post-Create Command for Austrian NGO Codespace
 # Handles dependency installation and service setup
 
-set -e
+# Use pipefail to catch errors in pipelines, but don't exit on first error
+set -o pipefail
+set +e
 echo "🚀 Starting post-create setup for Austrian NGO platform..."
 
 # Function to log with timestamps

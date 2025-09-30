@@ -2,7 +2,9 @@
 # 🚀 Optimized GitHub Codespace Setup for Austrian NGO Development
 # Designed for fast, reliable initialization
 
-set -e
+# Use pipefail to catch errors in pipelines, but don't exit on first error
+set -o pipefail
+set +e
 echo "🔧 Starting optimized Codespace setup..."
 
 # Environment setup
