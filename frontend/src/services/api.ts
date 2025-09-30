@@ -13,7 +13,9 @@ const baseApi = {
 };
 
 // Generic API response shape from backend
-export interface ApiResponse<T = unknown> {
+export interface ApiResponse<T = any> extends BaseApiResponse {
+  data: T;
+}
   success: boolean;
   data?: T;
   message?: string;

@@ -77,6 +77,18 @@
     "n8n:webhook": "node automation/n8n/webhook-client.js",
     "n8n:setup": "cd automation/n8n && cp .env.example .env && echo 'Please configure automation/n8n/.env with your settings'"
   },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.18.2",
+    "content-type": "^1.0.5",
+    "cors": "^2.8.5",
+    "eventsource": "^3.0.7",
+    "eventsource-parser": "^3.0.6",
+    "express": "^5.1.0",
+    "express-rate-limit": "^7.5.1",
+    "pkce-challenge": "^5.0.0",
+    "raw-body": "^3.0.1",
+    "zod-to-json-schema": "^3.24.6"
+  },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
     "@playwright/test": "^1.55.1",
@@ -97,8 +109,8 @@
     "vitest": "^3.2.4"
   },
   "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=8.0.0"
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
   },
   "keywords": [
     "mcp",

@@ -11,6 +11,15 @@
 # SECURITY & SECRETS - CRITICAL
 # ========================================
 
+# GitHub Token Files & Security Storage (ABSOLUTE CRITICAL)
+secrets/
+secrets/**
+*.token
+*.pat
+github-token.ps1
+github-token.txt
+api-token.*
+
 # Environment Variables & Secrets (P0 SECURITY)
 .env
 .env.local

@@ -25,7 +25,7 @@ Write-Host ""
 # Check devcontainer.json Codacy integration
 if (Test-Path ".devcontainer/devcontainer.json") {
     $config = Get-Content ".devcontainer/devcontainer.json" | ConvertFrom-Json
-    
+
     Write-Host "🐳 CONTAINER CONFIGURATION:" -ForegroundColor Blue
     Write-Host "  Base Image: $($config.image)"
     Write-Host "  Docker-in-Docker: $($config.features.'ghcr.io/devcontainers/features/docker-in-docker:2' -ne $null)"
@@ -37,7 +37,7 @@ if (Test-Path ".devcontainer/devcontainer.json") {
 if (Test-Path "package.json") {
     $pkg = Get-Content "package.json" | ConvertFrom-Json
     Write-Host "📦 QUALITY SCRIPTS VERFÜGBAR:" -ForegroundColor Green
-    
+
     $qualityScripts = $pkg.scripts.PSObject.Properties | Where-Object { $_.Name -match "quality|lint|format|security" }
     foreach ($script in $qualityScripts) {
         Write-Host "  ✅ npm run $($script.Name)"
@@ -60,7 +60,7 @@ Write-Host "  -v `"`$PWD`":/code \"
 Write-Host "  codacy/codacy-analysis-cli:latest analyze"
 Write-Host ""
 
-Write-Host "# 2. Spezifische Dateien analysieren"  
+Write-Host "# 2. Spezifische Dateien analysieren"
 Write-Host "docker run --rm -it \"
 Write-Host "  -e CODACY_PROJECT_TOKEN=`$CODACY_API_TOKEN \"
 Write-Host "  -v `"`$PWD`":/code \"
@@ -75,7 +75,7 @@ Write-Host ""
 Write-Host "📁 ANALYSIERTE DATEIEN IM CODESPACE:" -ForegroundColor Magenta
 $analyzeFiles = @(
     ".devcontainer/devcontainer.json",
-    ".devcontainer/setup.sh", 
+    ".devcontainer/setup.sh",
     ".devcontainer/post-start.sh",
     "package.json",
     "eslint.config.js",
@@ -95,7 +95,7 @@ Write-Host ""
 Write-Host "🎯 CODACY INTEGRATION STATUS:" -ForegroundColor Green
 Write-Host "============================" -ForegroundColor Green
 Write-Host "✅ Devcontainer: Codacy-ready"
-Write-Host "✅ Scripts: Quality gates configured"  
+Write-Host "✅ Scripts: Quality gates configured"
 Write-Host "✅ Docker: CLI integration ready"
 Write-Host "✅ Environment: Token management setup"
 Write-Host "✅ Multi-Language: Node.js, PHP, Python support"
@@ -106,6 +106,6 @@ Write-Host ""
 # Next steps
 Write-Host "📋 NÄCHSTE SCHRITTE:" -ForegroundColor Cyan
 Write-Host "1. GitHub Codespace erstellen"
-Write-Host "2. CODACY_API_TOKEN in GitHub Secrets hinzufügen" 
+Write-Host "2. CODACY_API_TOKEN in GitHub Secrets hinzufügen"
 Write-Host "3. Im Codespace: npm run quality:gates ausführen"
 Write-Host "4. Codacy Dashboard für Ergebnisse prüfen"

@@ -59,12 +59,12 @@ echo "==================================================="
 # Install missing essential tools
 if [ ${#MISSING_TOOLS[@]} -gt 0 ]; then
     echo "📦 Installing missing tools: ${MISSING_TOOLS[*]}"
-    
+
     # Try apt-get first
     if command_exists apt-get; then
         echo "🔄 Using apt-get for installations..."
         run_with_timeout 300 "sudo apt-get update -qq"
-        
+
         for tool in "${MISSING_TOOLS[@]}"; do
             case $tool in
                 "node")

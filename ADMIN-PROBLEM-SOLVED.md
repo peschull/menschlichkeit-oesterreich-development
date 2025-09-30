@@ -2,7 +2,7 @@
 
 ## 🔍 **ROOT CAUSE ANALYSIS**
 - **Issue:** "Die Eingabeaufforderung ist vom Administrator deaktiviert worden"
-- **Affects:** npm, ESLint, uvicorn, composer commands  
+- **Affects:** npm, ESLint, uvicorn, composer commands
 - **Solution:** Use direct Node.js/Python execution + PowerShell workarounds
 
 ## ⚡ **IMMEDIATE ADMIN FIXES**
@@ -41,11 +41,11 @@ php composer.phar install --no-interaction --prefer-dist
 node ./node_modules/eslint/bin/eslint.js . --ext .js,.ts --fix --ignore-pattern "**/dist/**"
 ```
 
-### **admin-safe-serve.ps1**  
+### **admin-safe-serve.ps1**
 ```powershell
 # Safe development server startup
 $env:JWT_SECRET="dev-secret"
-$env:CIVI_SITE_KEY="dev-key" 
+$env:CIVI_SITE_KEY="dev-key"
 $env:CIVI_API_KEY="dev-api"
 cd api.menschlichkeit-oesterreich.at
 python -c "import uvicorn; from app.main import app; uvicorn.run(app, host='127.0.0.1', port=8001)"
@@ -65,6 +65,6 @@ node -e "require('child_process').execSync('npm test', {stdio: 'inherit', shell:
 
 ---
 
-**Status:** 🟢 **ADMIN PROBLEM SOLVED**  
-**Method:** Direct executable calls bypass admin restrictions  
+**Status:** 🟢 **ADMIN PROBLEM SOLVED**
+**Method:** Direct executable calls bypass admin restrictions
 **Performance:** Same speed, no functionality loss

@@ -6,7 +6,7 @@ Write-Host ""
 # Repository Health Check
 $repoHealth = @{
     'OpenPRs' = 28
-    'FailedChecks' = 16  
+    'FailedChecks' = 16
     'SuccessfulChecks' = 9
     'SkippedChecks' = 12
     'AbortedChecks' = 1
@@ -45,14 +45,14 @@ foreach ($service in $services.GetEnumerator()) {
         'Critical' { 'Red' }
         default { 'Gray' }
     }
-    
+
     $statusIcon = switch ($service.Value.Status) {
         'Healthy' { '✅' }
         'Warning' { '⚠️' }
         'Critical' { '🔴' }
         default { '❓' }
     }
-    
+
     Write-Host "  $statusIcon $($service.Key):" -ForegroundColor $statusColor -NoNewline
     Write-Host " $($service.Value.Issues)" -ForegroundColor Gray
 }
@@ -76,7 +76,7 @@ Write-Host ""
 Write-Host "🔄 CI/CD PIPELINE DIAGNOSIS:" -ForegroundColor Red
 Write-Host "============================" -ForegroundColor Red
 Write-Host "  🔴 TypeScript Compilation: Multiple services failing"
-Write-Host "  🔴 Python Tests: FastAPI service issues"  
+Write-Host "  🔴 Python Tests: FastAPI service issues"
 Write-Host "  🔴 PHP Tests: Aborted on PHP 8.1"
 Write-Host "  🔴 Security Monitoring: Configuration issues"
 Write-Host "  ⚠️ Performance Tests: Skipped"
@@ -116,10 +116,10 @@ foreach ($pathCheck in $paths) {
         $status = "⚠️"
         $color = "Yellow"
     }
-    
+
     Write-Host "  $status $($pathCheck.Path): " -ForegroundColor $color -NoNewline
     Write-Host "$($pathCheck.Expected)" -ForegroundColor Gray
-    
+
     $aclChecks += @{
         Path = $pathCheck.Path
         Status = $hasAccess
@@ -131,7 +131,7 @@ foreach ($pathCheck in $paths) {
 Write-Host ""
 
 # Service Autostart Check
-Write-Host "🔄 SERVICE AUTOSTART ANALYSIS:" -ForegroundColor Blue  
+Write-Host "🔄 SERVICE AUTOSTART ANALYSIS:" -ForegroundColor Blue
 Write-Host "==============================" -ForegroundColor Blue
 
 $autostartServices = @(
@@ -150,14 +150,14 @@ foreach ($service in $autostartServices) {
         'Manual' { 'Yellow' }
         default { 'Gray' }
     }
-    
+
     $statusIcon = switch ($service.Status) {
         'Auto' { '🟢' }
         'Docker' { '🐳' }
         'Manual' { '🔶' }
         default { '❓' }
     }
-    
+
     Write-Host "  $statusIcon $($service.Service): " -ForegroundColor $statusColor -NoNewline
     Write-Host "$($service.Status) (Port: $($service.Port))" -ForegroundColor Gray
 }
@@ -183,7 +183,7 @@ foreach ($drive in $disk) {
     $freeSpaceGB = [math]::Round($drive.FreeSpace / 1GB, 2)
     $totalSpaceGB = [math]::Round($drive.Size / 1GB, 2)
     $usedPercentage = [math]::Round(((($drive.Size - $drive.FreeSpace) / $drive.Size) * 100), 1)
-    
+
     $diskColor = if($usedPercentage -gt 90){'Red'}elseif($usedPercentage -gt 80){'Yellow'}else{'Green'}
     Write-Host "  💿 Drive $($drive.DeviceID) $freeSpaceGB GB free / $totalSpaceGB GB total ($usedPercentage% used)" -ForegroundColor $diskColor
 }
@@ -209,10 +209,10 @@ foreach ($logPath in $logPaths) {
         $info = "$($files.Count) files"
     } else {
         $status = "❌"
-        $color = "Red" 
+        $color = "Red"
         $info = "Missing"
     }
-    
+
     Write-Host "  $status $($logPath.Type): " -ForegroundColor $color -NoNewline
     Write-Host "$info" -ForegroundColor Gray
 }
@@ -245,7 +245,7 @@ $criticalACLs = ($aclChecks | Where-Object { $_.Critical -eq $true -and $_.Statu
 $totalCriticalACLs = ($aclChecks | Where-Object { $_.Critical -eq $true }).Count
 
 Write-Host "📈 CURRENT SUCCESS METRICS:" -ForegroundColor Magenta
-Write-Host "===========================" -ForegroundColor Magenta  
+Write-Host "===========================" -ForegroundColor Magenta
 Write-Host "  CI/CD Success Rate: $successRate%" -ForegroundColor $(if($successRate -lt 50){'Red'}elseif($successRate -lt 80){'Yellow'}else{'Green'})
 Write-Host "  Service Health: $serviceHealth% ($healthyServices/$totalServices healthy)" -ForegroundColor $(if($serviceHealth -lt 50){'Red'}elseif($serviceHealth -lt 80){'Yellow'}else{'Green'})
 Write-Host "  Critical ACL Issues: $criticalACLs/$totalCriticalACLs" -ForegroundColor $(if($criticalACLs -gt 0){'Red'}else{'Green'})
@@ -263,7 +263,7 @@ Write-Host "🏆 OVERALL SYSTEM HEALTH: $overallScore%" -ForegroundColor Magenta
 if ($overallScore -ge 80) {
     Write-Host "✅ GOOD: System performing within acceptable parameters" -ForegroundColor Green -BackgroundColor Black
 } elseif ($overallScore -ge 60) {
-    Write-Host "⚠️ WARNING: Significant improvements needed" -ForegroundColor Yellow -BackgroundColor Black  
+    Write-Host "⚠️ WARNING: Significant improvements needed" -ForegroundColor Yellow -BackgroundColor Black
 } else {
     Write-Host "🚨 CRITICAL: Immediate intervention required!" -ForegroundColor Red -BackgroundColor Black
 }

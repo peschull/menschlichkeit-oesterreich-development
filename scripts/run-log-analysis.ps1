@@ -7,13 +7,39 @@ Import-Module .\scripts\Download-GitHubWorkflowLogs.psm1 -Force
 # Configuration
 $repoOwner = "peschull"
 $repoName = "menschlichkeit-oesterreich-development"
-$githubToken = $env:GITHUB_TOKEN  # Setze via: $env:GITHUB_TOKEN = "dein_token_hier"
+
+# Token Management - Sichere Eingabe
+$githubToken = $env:GITHUB_TOKEN
 
 if (-not $githubToken) {
-    Write-Host "❌ GITHUB_TOKEN environment variable required!" -ForegroundColor Red
-    Write-Host "Set it with: `$env:GITHUB_TOKEN = 'your_github_token_here'" -ForegroundColor Yellow
-    Write-Host "Create token at: https://github.com/settings/tokens" -ForegroundColor Gray
-    exit 1
+    Write-Host "🔐 GitHub Token Setup" -ForegroundColor Cyan
+    Write-Host "============================================" -ForegroundColor Gray
+    Write-Host "1️⃣ Erstelle Token: https://github.com/settings/tokens" -ForegroundColor Yellow
+    Write-Host "2️⃣ Berechtigungen: repo + workflow" -ForegroundColor Yellow
+    Write-Host "3️⃣ Token hier eingeben (wird nicht angezeigt)" -ForegroundColor Yellow
+    Write-Host ""
+    
+    # Sichere Token-Eingabe ohne Anzeige
+    $secureToken = Read-Host "GitHub Token eingeben" -AsSecureString
+    $githubToken = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto([System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($secureToken))
+    
+    if (-not $githubToken -or $githubToken.Length -lt 10) {
+        Write-Host "❌ Ungültiger Token!" -ForegroundColor Red
+        Write-Host "Token muss mindestens 10 Zeichen haben und mit 'ghp_' beginnen" -ForegroundColor Yellow
+        exit 1
+    }
+    
+    # Validation: GitHub Token Format
+    if (-not $githubToken.StartsWith("ghp_") -and -not $githubToken.StartsWith("github_pat_")) {
+        Write-Host "⚠️ Token Format Warning: Erwartet 'ghp_' oder 'github_pat_' Prefix" -ForegroundColor Yellow
+        $continue = Read-Host "Trotzdem fortfahren? (y/n)"
+        if ($continue -ne 'y' -and $continue -ne 'yes') {
+            exit 1
+        }
+    }
+    
+    Write-Host "✅ Token akzeptiert!" -ForegroundColor Green
+    Write-Host ""
 }
 
 Write-Host "🎯 menschlichkeit-oesterreich GitHub Actions Log Analyzer" -ForegroundColor Cyan
@@ -68,6 +94,22 @@ switch ($choice) {
 
 Write-Host "`n✅ Operation completed! Check the GitHubLogs folder in your user directory." -ForegroundColor Green
 Write-Host "📁 Full path: $env:USERPROFILE\GitHubLogs\menschlichkeit-oesterreich" -ForegroundColor Gray
+
+# Token-Sicherheit: Aus Speicher löschen
+if ($githubToken) {
+    $githubToken = $null
+    Write-Host "🔒 Token aus Speicher gelöscht (Sicherheit)" -ForegroundColor Gray
+}
+
+# Optional: Token für Session speichern
+if (-not $env:GITHUB_TOKEN) {
+    $saveToken = Read-Host "`nToken für diese PowerShell-Session speichern? (y/n)"
+    if ($saveToken -eq 'y' -or $saveToken -eq 'yes') {
+        # Token nur für aktuelle Session setzen (nicht persistent)
+        $env:GITHUB_TOKEN = $githubToken
+        Write-Host "✅ Token für Session gespeichert. Nächste Ausführung wird Token automatisch finden." -ForegroundColor Green
+    }
+}
 
 # Optional: Open output folder
 $openFolder = Read-Host "`nOpen output folder? (y/n)"

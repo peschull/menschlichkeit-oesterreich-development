@@ -214,7 +214,7 @@ def verify_jwt_token(authorization: str = Header(...)):
         scheme, token = authorization.split()
         if scheme.lower() != "bearer":
             raise HTTPException(status_code=401, detail="Invalid authentication scheme")
-        
+
         payload = jwt.decode(token, JWT_SECRET, algorithms=["HS256"])
         return payload
     except Exception as e:
@@ -306,23 +306,23 @@ async def civicrm_api_call(entity: str, action: str, params: dict):
             "key": CIVI_SITE_KEY
         }
     }
-    
+
     url = f"{CIVI_BASE_URL}/civicrm/ajax/api4/{entity}/{action}"
-    
+
     async with httpx.AsyncClient(timeout=30) as client:
         response = await client.post(url, json=payload)
-        
+
     if response.status_code != 200:
         raise HTTPException(status_code=502, detail="CiviCRM API unavailable")
-    
+
     try:
         data = response.json()
     except Exception:
         raise HTTPException(status_code=502, detail="Invalid response from CiviCRM")
-    
+
     if isinstance(data, dict) and data.get("is_error"):
         raise HTTPException(status_code=400, detail=data.get("error_message", "CiviCRM error"))
-    
+
     return data
 
 # API Endpoints
@@ -512,11 +512,11 @@ async def create_membership(membership: MembershipCreate, _: Dict[str, Any] = De
 @app.get("/contacts/search")
 async def search_contacts(email: Optional[str] = None, _: dict = Depends(verify_jwt_token)):
     """Search for contacts in CiviCRM"""
-    
+
     params = {"limit": 25}
     if email:
         params["email"] = email
-    
+
     try:
         result = await civicrm_api_call("Contact", "get", params)
         return ApiResponse(

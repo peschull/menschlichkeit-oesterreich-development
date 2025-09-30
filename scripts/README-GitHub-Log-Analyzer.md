@@ -6,25 +6,59 @@ Vollständiges PowerShell-Modul zum automatisierten Download und Meta-Analyse al
 
 ## ⚡ **Quick Start**
 
-### **1. GitHub Token erstellen**
-1. Gehe zu https://github.com/settings/tokens
-2. Erstelle neues **Personal Access Token**
-3. Berechtigungen: `repo` und `actions` 
-4. Token kopieren
+### **1. GitHub Fine-Grained Token erstellen (Empfohlen)**
+1. Gehe zu **https://github.com/settings/personal-access-tokens/fine-grained**
+2. Klicke auf **"Generate new token"**
+3. **Repository access:** Wähle "Selected repositories" → `menschlichkeit-oesterreich-development`
+4. **Repository permissions:**
+   - ✅ **Actions: Read** (Workflow logs lesen)
+   - ✅ **Contents: Read** (Repository-Inhalte lesen)
+   - ✅ **Metadata: Read** (Repository-Metadaten)
+5. **Token sofort kopieren** – wird nur einmal angezeigt!
+6. Token beginnt mit `github_pat_...`
 
-### **2. Token setzen**
+### **2. PowerShell-Modul importieren**
 ```powershell
-$env:GITHUB_TOKEN = "your_github_token_here"
+# Modul aus dem scripts-Verzeichnis laden
+Import-Module "D:\Arbeitsverzeichniss\scripts\Download-GitHubWorkflowLogs.psm1"
 ```
 
-### **3. Script ausführen**
-```powershell
-# Einfacher Aufruf:
-.\scripts\run-log-analysis.ps1
+### **3. Sicheres Token-Management**
 
-# Oder direkt das Modul nutzen:
-Import-Module .\scripts\Download-GitHubWorkflowLogs.psm1
-Download-GitHubWorkflowLogs -GitHubToken "your_token"
+#### **Option A: Direkt als Parameter (Empfohlen)**
+```powershell
+Download-GitHubWorkflowLogs `
+  -GitHubToken "ghp_ABC123xyz456DEIN_TOKEN" `
+  -RepoOwner "peschull" `
+  -RepoName "menschlichkeit-oesterreich-development" `
+  -Branch "main"
+```
+
+#### **Option B: Sicherheitsdatei (Beste Praxis)**
+```powershell
+# 1. Token in separater Datei speichern (secrets/github-token.ps1)
+$env:GITHUB_TOKEN = "github_pat_ABC123..."
+
+# 2. Sicherheitsdatei laden
+. .\secrets\github-token.ps1
+
+# 3. Modul ohne Token-Parameter ausführen  
+Download-GitHubWorkflowLogs
+```
+
+#### **Option C: Umgebungsvariable (Session-basiert)**
+```powershell
+# Token in Umgebungsvariable speichern (nur für diese Session)
+$env:GITHUB_TOKEN = "github_pat_ABC123xyz456DEIN_TOKEN"
+
+# Modul ohne Token-Parameter ausführen
+Download-GitHubWorkflowLogs -RepoOwner "peschull" -RepoName "menschlichkeit-oesterreich-development"
+```
+
+#### **Option C: Benutzerfreundliches Interface**
+```powershell
+# Interaktives Script (fragt nach Token)
+.\scripts\run-log-analysis.ps1
 ```
 
 ---
@@ -39,7 +73,7 @@ Download-GitHubWorkflowLogs -GitHubToken "token" -ExtractLogs -MetaAnalysis
 ```
 
 **Parameter:**
-- `GitHubToken` (Required): Dein GitHub Personal Access Token
+- `GitHubToken` (Required*): Dein GitHub Personal Access Token (oder via $env:GITHUB_TOKEN)
 - `RepoOwner`: Repository Owner (Standard: "peschull")
 - `RepoName`: Repository Name (Standard: "menschlichkeit-oesterreich-development")
 - `Branch`: Branch (Standard: "main")
@@ -49,6 +83,8 @@ Download-GitHubWorkflowLogs -GitHubToken "token" -ExtractLogs -MetaAnalysis
 - `ExtractLogs`: ZIP-Dateien extrahieren
 - `MetaAnalysis`: Meta-Analyse durchführen
 - `CleanupZips`: ZIP-Dateien nach Extraktion löschen
+
+*Token kann als Parameter oder Umgebungsvariable übergeben werden
 
 ### **Invoke-MetaAnalysis**
 Erweiterte Analyse der extrahierten Log-Dateien.
@@ -163,11 +199,35 @@ Download-GitHubWorkflowLogs `
 
 ## 🔧 **Troubleshooting**
 
+### **🔐 Security Best Practices:**
+
+#### **Token-Sicherheit:**
+- ✅ **Fine-grained Tokens verwenden** (repository-spezifisch)
+- ✅ **Token in separater Sicherheitsdatei** (secrets/github-token.ps1)
+- ✅ **Sicherheitsdatei zu .gitignore hinzufügen**
+- ✅ **Minimale Berechtigungen** (nur Actions:Read, Contents:Read, Metadata:Read)
+- ✅ **Token regelmäßig erneuern** (alle 90 Tage)
+- ✅ **Niemals Token in Code committen**
+- ✅ **Token nach Nutzung aus Zwischenablage löschen**
+
+#### **Sichere Token-Verwendung:**
+```powershell
+# ✅ GUT: Token als Parameter
+Download-GitHubWorkflowLogs -GitHubToken "ghp_xxx"
+
+# ✅ BESSER: Umgebungsvariable (Session-basiert)
+$env:GITHUB_TOKEN = "ghp_xxx"
+Download-GitHubWorkflowLogs
+
+# ❌ SCHLECHT: Token in Script hardcoded
+# $token = "ghp_xxx" # Niemals so!
+```
+
 ### **Common Issues:**
 
 **❌ "401 Unauthorized"**
 - Token fehlt oder ungültig
-- Lösung: Neuen Token mit `repo` + `actions` Berechtigungen erstellen
+- Lösung: Neuen Token mit `repo` + `workflow` Berechtigungen erstellen
 
 **❌ "403 Rate Limited"**  
 - GitHub API Rate Limit erreicht

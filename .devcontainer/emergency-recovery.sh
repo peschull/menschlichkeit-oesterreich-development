@@ -20,7 +20,7 @@ echo ""
 # Check available tools
 echo "🛠️ TOOL AVAILABILITY CHECK:"
 echo "Node.js: $(node --version 2>/dev/null || echo 'Not available')"
-echo "Python: $(python3 --version 2>/dev/null || echo 'Not available')" 
+echo "Python: $(python3 --version 2>/dev/null || echo 'Not available')"
 echo "PHP: $(php --version 2>/dev/null | head -1 || echo 'Not available')"
 echo "Git: $(git --version 2>/dev/null || echo 'Not available')"
 echo "Docker: $(docker --version 2>/dev/null || echo 'Not available')"
@@ -30,7 +30,7 @@ echo ""
 # Fix permissions
 echo "🔐 FIXING PERMISSIONS:"
 chmod +x .devcontainer/*.sh 2>/dev/null || echo "⚠️ No .devcontainer scripts to fix"
-chmod +x scripts/*.sh 2>/dev/null || echo "⚠️ No scripts/*.sh to fix" 
+chmod +x scripts/*.sh 2>/dev/null || echo "⚠️ No scripts/*.sh to fix"
 chmod +x deployment-scripts/*.sh 2>/dev/null || echo "⚠️ No deployment scripts to fix"
 echo "✅ Permissions fixed"
 echo ""
@@ -63,14 +63,14 @@ fi
 if command -v composer >/dev/null 2>&1; then
     echo "Installing PHP dependencies..."
     composer install --ignore-platform-reqs --no-interaction || echo "⚠️ composer install failed"
-    
+
     if [ -d crm.menschlichkeit-oesterreich.at ]; then
         cd crm.menschlichkeit-oesterreich.at
         composer install --ignore-platform-reqs --no-interaction || echo "⚠️ CRM composer install failed"
         cd ..
     fi
 else
-    echo "⚠️ composer not available"  
+    echo "⚠️ composer not available"
 fi
 
 echo ""
@@ -82,13 +82,13 @@ services=("frontend" "api.menschlichkeit-oesterreich.at" "crm.menschlichkeit-oes
 for service in "${services[@]}"; do
     if [ -d "$service" ]; then
         echo "✅ $service: Directory exists"
-        
+
         # Check for config files
         config_files=0
         [ -f "$service/package.json" ] && ((config_files++))
         [ -f "$service/composer.json" ] && ((config_files++))
         [ -f "$service/requirements.txt" ] && ((config_files++))
-        
+
         echo "   📋 Config files: $config_files found"
     else
         echo "❌ $service: Directory missing"
@@ -143,7 +143,7 @@ for py_file in scripts/*.py; do
     fi
 done
 
-# JavaScript/TypeScript files  
+# JavaScript/TypeScript files
 if command -v node >/dev/null 2>&1; then
     for js_file in *.js scripts/*.js; do
         if [ -f "$js_file" ]; then
@@ -232,7 +232,7 @@ echo "✅ Emergency recovery script finished!"
     echo "=== CODESPACE RECOVERY DIAGNOSTIC ==="
     echo "Date: $(date)"
     echo "Codespace: ${CODESPACE_NAME:-'Unknown'}"
-    echo "User: ${USER:-'Unknown'}" 
+    echo "User: ${USER:-'Unknown'}"
     echo "Working Directory: $(pwd)"
     echo "Recovery Score: $recovery_score%"
     echo ""

@@ -118,8 +118,8 @@
   ],
 
   "waitFor": "postCreateCommand",
-  
+
   "shutdownAction": "none",
-  
+
   "init": true
 }

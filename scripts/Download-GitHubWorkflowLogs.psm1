@@ -11,7 +11,7 @@ function Download-GitHubWorkflowLogs {
         [Parameter(Mandatory=$false)]
         [string]$RepoName = "menschlichkeit-oesterreich-development",
 
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory=$false)]
         [string]$GitHubToken,
 
         [string]$Branch = "main",
@@ -23,10 +23,27 @@ function Download-GitHubWorkflowLogs {
         [switch]$CleanupZips
     )
 
-    Write-Host "🚀 GitHub Workflow Logs Downloader für menschlichkeit-oesterreich-development" -ForegroundColor Cyan
+    # Token Validation und Fallback
+    if (-not $GitHubToken) {
+        $GitHubToken = $env:GITHUB_TOKEN
+        if (-not $GitHubToken) {
+            throw "🔐 GitHub Token required! Provide via -GitHubToken parameter or set `$env:GITHUB_TOKEN"
+        }
+        Write-Host "🔐 Using token from environment variable" -ForegroundColor Gray
+    } else {
+        Write-Host "� Using token from parameter" -ForegroundColor Gray
+    }
+    
+    # Token Format Validation
+    if (-not ($GitHubToken.StartsWith("ghp_") -or $GitHubToken.StartsWith("github_pat_"))) {
+        Write-Host "⚠️ Warning: Token should start with 'ghp_' or 'github_pat_'" -ForegroundColor Yellow
+    }
+    
+    Write-Host "�🚀 GitHub Workflow Logs Downloader für menschlichkeit-oesterreich-development" -ForegroundColor Cyan
     Write-Host "Repository: $RepoOwner/$RepoName" -ForegroundColor Gray
     Write-Host "Branch: $Branch" -ForegroundColor Gray
     Write-Host "Output: $OutputPath" -ForegroundColor Gray
+    Write-Host "Token: $($GitHubToken.Substring(0, [Math]::Min(10, $GitHubToken.Length)))..." -ForegroundColor Gray
 
     # Create output directory structure
     $logsPath = Join-Path $OutputPath "logs"
@@ -375,6 +392,15 @@ function Get-WorkflowSummary {
         [string]$RepoName = "menschlichkeit-oesterreich-development", 
         [string]$GitHubToken
     )
+    
+    # Token Fallback
+    if (-not $GitHubToken) {
+        $GitHubToken = $env:GITHUB_TOKEN
+        if (-not $GitHubToken) {
+            Write-Host "❌ GitHub Token required for Get-WorkflowSummary" -ForegroundColor Red
+            return @()
+        }
+    }
     
     $headers = @{ Authorization = "Bearer $GitHubToken" }
     $workflowsUrl = "https://api.github.com/repos/$RepoOwner/$RepoName/actions/workflows"

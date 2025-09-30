@@ -1,7 +1,6 @@
 {
   "name": "EMERGENCY - Austrian NGO Minimal Boot",
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
-
   "features": {
     "ghcr.io/devcontainers/features/node:1": {
       "version": "18"
@@ -10,29 +9,23 @@
       "version": "3.11"
     }
   },
-
   "forwardPorts": [
     3000,
     8001
   ],
-
   "portsAttributes": {
     "3000": {
       "label": "Frontend (Emergency Mode)",
       "protocol": "https"
     },
     "8001": {
-      "label": "API (Emergency Mode)", 
+      "label": "API (Emergency Mode)",
       "protocol": "https"
     }
   },
-
   "onCreateCommand": "echo '🚨 EMERGENCY MODE - Minimal setup only' && sudo apt-get update && sudo apt-get install -y git curl",
-  
   "postCreateCommand": "echo '📦 Installing essential packages...' && npm install --no-audit --no-fund || echo '⚠️ npm install failed, continuing...'",
-  
   "postStartCommand": "echo '✅ EMERGENCY CODESPACE READY - Manual service startup available'",
-
   "customizations": {
     "vscode": {
       "extensions": [
@@ -46,12 +39,10 @@
       }
     }
   },
-
   "containerEnv": {
     "NODE_ENV": "development",
     "EMERGENCY_MODE": "true"
   },
-
   "waitFor": "postCreateCommand",
   "shutdownAction": "none",
   "init": true

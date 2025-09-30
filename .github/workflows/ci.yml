@@ -8,9 +8,9 @@ on:
   workflow_dispatch:
 
 env:
-  NODE_VERSION: '18'
-  PYTHON_VERSION: '3.11'
-  PHP_VERSION: '8.1'
+  NODE_VERSION: '20'
+  PYTHON_VERSION: '3.12'
+  PHP_VERSION: '8.2'
 
 jobs:
   # ============================================================================
@@ -48,6 +48,12 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
           cache-dependency-path: '${{ matrix.project }}/package-lock.json'
+
+      - name: 🔧 Fix Dependencies
+        working-directory: ${{ matrix.project }}
+        run: |
+          npm install --package-lock-only
+          npm audit fix --force || true
 
       - name: 🔧 Install Dependencies
         if: ${{ steps.check-project.outputs.project_exists == '1' }}
@@ -414,7 +420,7 @@ jobs:
           echo "🎉 All checks passed! Repository is ready for deployment."
           echo "📊 Summary:"
           echo "  ✅ TypeScript/JavaScript tests passed"
-          echo "  ✅ Python tests passed" 
+          echo "  ✅ Python tests passed"
           echo "  ✅ PHP tests passed"
           echo "  ✅ Docker builds successful"
           echo "  ✅ Security scans completed"

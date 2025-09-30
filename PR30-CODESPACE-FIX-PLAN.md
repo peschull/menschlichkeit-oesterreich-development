@@ -2,9 +2,9 @@
 
 ## **CRITICAL ISSUE ANALYSIS**
 
-**Problem:** "Warum läuft mein Codespace nicht?"  
-**Root Cause:** Multiple CI/CD failures blocking Codespace functionality  
-**Impact:** 34.6% CI/CD Success Rate, 2/6 services critical  
+**Problem:** "Warum läuft mein Codespace nicht?"
+**Root Cause:** Multiple CI/CD failures blocking Codespace functionality
+**Impact:** 34.6% CI/CD Success Rate, 2/6 services critical
 **Priority:** 🔴 **CRITICAL - Immediate Resolution Required**
 
 ---
@@ -13,14 +13,14 @@
 
 ### **📊 Current System Health: 47.2% (CRITICAL)**
 - ✅ **ACL Permissions:** All critical paths accessible
-- ✅ **System Resources:** 31.92GB RAM, 363GB+ free disk space  
+- ✅ **System Resources:** 31.92GB RAM, 363GB+ free disk space
 - ✅ **Quality Gates:** Codacy, CodeQL, Trivy, Snyk all active
 - 🔴 **CI/CD Pipeline:** 16 failed checks, 1 aborted, 12 skipped
 - 🔴 **Services:** 4/6 services in warning/critical state
 
 ### **🎯 Root Cause Identification:**
 1. **TypeScript Compilation Failures:** Frontend + Games services
-2. **Python CI/CD Issues:** FastAPI service failures  
+2. **Python CI/CD Issues:** FastAPI service failures
 3. **PHP 8.1 Test Aborts:** CRM service broken
 4. **28 Pending Dependabot PRs:** Blocking updates
 5. **Skipped Critical Tests:** Performance, E2E, DSGVO
@@ -38,10 +38,10 @@ npm ci
 npm run type-check
 npm run build
 
-# Fix Games TypeScript Issues  
+# Fix Games TypeScript Issues
 cd ../web/
 rm -rf node_modules package-lock.json
-npm ci  
+npm ci
 npx tsc --noEmit
 npm run build
 ```
@@ -78,10 +78,10 @@ gh pr merge --auto --squash --delete-branch
 # Update .github/workflows/ to enable skipped tests
 - name: Performance Tests
   run: npm run performance:lighthouse
-  
-- name: E2E Tests  
+
+- name: E2E Tests
   run: npm run test:e2e
-  
+
 - name: DSGVO Compliance
   run: npm run compliance:dsgvo
 ```
@@ -94,38 +94,38 @@ gh pr merge --auto --squash --delete-branch
 {
   "name": "Austrian NGO Multi-Service Development",
   "image": "mcr.microsoft.com/devcontainers/universal:2-focal",
-  
+
   "features": {
     "ghcr.io/devcontainers/features/node:1": { "version": "18" },
     "ghcr.io/devcontainers/features/php:1": { "version": "8.2" },
     "ghcr.io/devcontainers/features/python:1": { "version": "3.11" },
     "ghcr.io/devcontainers/features/docker-in-docker:2": {}
   },
-  
+
   "onCreateCommand": [
     "bash .devcontainer/setup.sh",
     "npm run dependencies:install-all",
     "npm run services:health-check"
   ],
-  
+
   "postCreateCommand": [
     "npm ci --workspaces",
     "composer install --working-dir=crm.menschlichkeit-oesterreich.at",
     "pip install -r api.menschlichkeit-oesterreich.at/requirements.txt"
   ],
-  
+
   "postStartCommand": [
-    "bash .devcontainer/post-start.sh", 
+    "bash .devcontainer/post-start.sh",
     "npm run codespace:validate"
   ],
-  
+
   "forwardPorts": [3000, 3001, 5678, 8000, 8001, 8080],
-  
+
   "customizations": {
     "vscode": {
       "extensions": [
         "ms-vscode.vscode-typescript-next",
-        "ms-python.python", 
+        "ms-python.python",
         "bmewburn.vscode-intelephense-client",
         "GitHubCopilot.github-copilot",
         "ms-azuretools.vscode-docker"
@@ -161,11 +161,11 @@ gh pr merge --auto --squash --delete-branch
 ### **Tag 1-2: Critical Service Recovery**
 - [x] ✅ System validation completed (47.2% health)
 - [ ] 🔧 Fix TypeScript compilation (Frontend + Games)
-- [ ] 🐍 Resolve Python CI/CD (FastAPI)  
+- [ ] 🐍 Resolve Python CI/CD (FastAPI)
 - [ ] 🔴 Fix PHP 8.1 tests (CRM)
 - **Target:** 70% system health
 
-### **Tag 3-4: Dependency Management**  
+### **Tag 3-4: Dependency Management**
 - [ ] 📦 Process 28 Dependabot PRs (batch merge)
 - [ ] 🔄 Update all package.json/composer.json/requirements.txt
 - [ ] 🧪 Enable skipped tests (Performance, E2E, DSGVO)
@@ -189,19 +189,19 @@ gh pr merge --auto --squash --delete-branch
 
 ### **Immediate (24h):**
 - ✅ TypeScript compilation: 0 errors
-- ✅ Python tests: All passing  
+- ✅ Python tests: All passing
 - ✅ PHP tests: No aborts
 - ✅ Codespace: Successfully starts and runs
 
 ### **Week 1 (7 days):**
 - ✅ CI/CD Success Rate: >95% (current: 34.6%)
-- ✅ Service Health: 6/6 healthy (current: 2/6)  
+- ✅ Service Health: 6/6 healthy (current: 2/6)
 - ✅ Open PRs: <5 (current: 28)
 - ✅ System Health: >90% (current: 47.2%)
 
 ### **Enterprise KPIs:**
 - ✅ **MTTR:** <1 hour for critical issues
-- ✅ **Deployment Frequency:** Daily to staging  
+- ✅ **Deployment Frequency:** Daily to staging
 - ✅ **Change Failure Rate:** <3%
 - ✅ **Lead Time:** <4 hours from commit to production
 
@@ -213,7 +213,7 @@ gh pr merge --auto --squash --delete-branch
 # Start systematic repair process
 git checkout -b fix/pr30-codespace-resolution
 npm run codespace:fix
-npm run ci:fix-typescript  
+npm run ci:fix-typescript
 npm run ci:fix-python
 npm run ci:fix-php
 git add . && git commit -m "fix: resolve PR #30 Codespace issues - systematic repair"
@@ -227,7 +227,7 @@ git push origin fix/pr30-codespace-resolution
 Das **PR #30 Codespace Problem** erfordert systematische Behebung auf **4 Ebenen**:
 
 1. 🔧 **TypeScript Compilation** (Frontend + Games)
-2. 🐍 **Python CI/CD** (FastAPI Service)  
+2. 🐍 **Python CI/CD** (FastAPI Service)
 3. 🔴 **PHP 8.1 Tests** (CRM Service)
 4. 📦 **Dependabot PRs** (28 Updates)
 
@@ -235,6 +235,6 @@ Das **PR #30 Codespace Problem** erfordert systematische Behebung auf **4 Ebenen
 
 ---
 
-**📅 Repair Plan Created:** 30.09.2025 03:00 CEST  
-**👨‍💻 Technical Lead:** menschlichkeit-oesterreich.at  
+**📅 Repair Plan Created:** 30.09.2025 03:00 CEST
+**👨‍💻 Technical Lead:** menschlichkeit-oesterreich.at
 **🔄 Target Completion:** 07.10.2025

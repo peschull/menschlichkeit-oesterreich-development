@@ -148,26 +148,28 @@ if (require.main === module) {
   const [, , action, ...args] = process.argv;
 
   switch (action) {
-    case 'build':
+    case 'build': {
       const buildStatus = args[0] || 'started';
       client
         .triggerBuild({ status: buildStatus, args: args.slice(1) })
         .then(result => console.log('Build webhook result:', result));
       break;
-
-    case 'deploy':
+    }
+    case 'deploy': {
       const [service, status] = args;
       client
         .triggerDeployment(service, status)
         .then(result => console.log('Deploy webhook result:', result));
       break;
+    }
 
-    case 'health':
+    case 'health': {
       const services = args.length ? args : ['api', 'crm', 'frontend', 'games'];
       client
         .triggerHealthCheck(services)
         .then(result => console.log('Health webhook result:', result));
       break;
+    }
 
     default:
       console.log('Usage: node webhook-client.js [build|deploy|health] [args...]');

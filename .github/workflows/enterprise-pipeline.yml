@@ -24,9 +24,9 @@ on:
         type: boolean
 
 env:
-  NODE_VERSION: '18'
-  PHP_VERSION: '8.4'
-  PYTHON_VERSION: '3.11'
+  NODE_VERSION: '20'
+  PHP_VERSION: '8.2'
+  PYTHON_VERSION: '3.12'
 
 jobs:
   # ===============================

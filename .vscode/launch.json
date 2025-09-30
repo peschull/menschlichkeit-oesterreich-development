@@ -189,7 +189,7 @@
       "name": "🐳 Debug: Complete Codespace",
       "configurations": [
         "🐳 Debug: Codespace Health",
-        "📊 Debug: Service Monitor", 
+        "📊 Debug: Service Monitor",
         "📝 Debug: Database Connections",
         "🚀 Debug: Frontend (Vite)",
         "🐍 Debug: API (FastAPI)"

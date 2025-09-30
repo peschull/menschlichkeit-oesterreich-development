@@ -2,8 +2,8 @@
 
 ## 📋 DEBUGGING CONFIGURATION ANALYSIS
 
-**Target:** GitHub Codespace Multi-Service Debugging  
-**Components:** Frontend, API, CRM, n8n, Tests, Quality Gates  
+**Target:** GitHub Codespace Multi-Service Debugging
+**Components:** Frontend, API, CRM, n8n, Tests, Quality Gates
 **Status:** 🔧 Debug Configuration Required
 
 ---
@@ -16,7 +16,7 @@
 {
   "configurations": [
     "🚀 Debug: Frontend (Vite)",     // React/TypeScript debugging
-    "🐍 Debug: API (FastAPI)",       // Python API debugging  
+    "🐍 Debug: API (FastAPI)",       // Python API debugging
     "🏗️ Debug: Build Pipeline",      // Shell script debugging
     "🔄 Debug: n8n Workflow",        // Automation debugging
     "🧪 Debug: Playwright Tests",    // E2E test debugging
@@ -28,7 +28,7 @@
 ### **🔧 Missing Codespace-Specific Debug Configurations:**
 
 1. **🐳 Container Debug Support**
-2. **🗄️ Database Connection Debugging** 
+2. **🗄️ Database Connection Debugging**
 3. **🔐 SSH/Plesk Server Debugging**
 4. **📱 CRM (CiviCRM/Drupal) Debugging**
 5. **🌐 Multi-Port Service Debugging**
@@ -56,7 +56,7 @@
 ```json
 {
   "name": "🗄️ Debug: Database Connections",
-  "type": "debugpy", 
+  "type": "debugpy",
   "request": "launch",
   "program": "${workspaceFolder}/scripts/debug-database-connections.py",
   "console": "integratedTerminal",
@@ -73,7 +73,7 @@
 {
   "name": "🏥 Debug: CRM (CiviCRM)",
   "type": "php",
-  "request": "launch", 
+  "request": "launch",
   "program": "${workspaceFolder}/crm.menschlichkeit-oesterreich.at/httpdocs/index.php",
   "cwd": "${workspaceFolder}/crm.menschlichkeit-oesterreich.at",
   "port": 9003,
@@ -155,12 +155,12 @@ def test_databases():
         print("✅ Laravel DB: Connected")
     except Exception as e:
         print(f"❌ Laravel DB: {e}")
-    
-    # CiviCRM Database  
+
+    # CiviCRM Database
     try:
         conn = mysql.connector.connect(
             host="localhost",
-            database="mo_civicrm_dev", 
+            database="mo_civicrm_dev",
             user="civicrm_dev",
             password=os.getenv("CIVICRM_DB_PASS")
         )
@@ -179,7 +179,7 @@ echo "=============================="
 
 echo "📍 Location Info:"
 echo "  CODESPACE_NAME: $CODESPACE_NAME"
-echo "  GITHUB_USER: $GITHUB_USER" 
+echo "  GITHUB_USER: $GITHUB_USER"
 echo "  WORKSPACE: $PWD"
 
 echo "🌐 Network Info:"
@@ -209,7 +209,7 @@ done
   "name": "🐳 Debug: Complete Codespace",
   "configurations": [
     "🐳 Debug: Codespace Container",
-    "🗄️ Debug: Database Connections", 
+    "🗄️ Debug: Database Connections",
     "🌐 Debug: Service Health Monitor",
     "🚀 Debug: Frontend (Vite)",
     "🐍 Debug: API (FastAPI)",
@@ -225,7 +225,7 @@ done
   "name": "🔧 Debug: Infrastructure",
   "configurations": [
     "🗄️ Debug: Database Connections",
-    "🔐 Debug: SSH/Plesk Connection", 
+    "🔐 Debug: SSH/Plesk Connection",
     "🌐 Debug: Service Health Monitor"
   ]
 }
@@ -245,7 +245,7 @@ npm run codespace:debug-setup
 ```bash
 # Debug individual services:
 npm run debug:frontend    # Port 3000
-npm run debug:api        # Port 8001  
+npm run debug:api        # Port 8001
 npm run debug:crm        # Port 8000
 npm run debug:n8n        # Port 5678
 ```
@@ -270,7 +270,7 @@ npm run debug:health-monitor
 ### **Real-time Service Status:**
 ```
 🟢 Frontend (3000): https://CODESPACE-3000-xxx.preview.app.github.dev
-🟢 API (8001):      https://CODESPACE-8001-xxx.preview.app.github.dev  
+🟢 API (8001):      https://CODESPACE-8001-xxx.preview.app.github.dev
 🟢 CRM (8000):      https://CODESPACE-8000-xxx.preview.app.github.dev
 🟢 n8n (5678):      https://CODESPACE-5678-xxx.preview.app.github.dev
 🟡 Database:        Local connections checking...
@@ -287,7 +287,7 @@ npm run debug:health-monitor
 - **Debug Console:** Multi-service log aggregation
 - **Terminal Integration:** Service-specific debugging
 
-### **B. Codespace Integration** 
+### **B. Codespace Integration**
 - **Port Forwarding:** Automatic HTTPS URLs
 - **GitHub Secrets:** Secure credential access
 - **Container Access:** Direct container debugging

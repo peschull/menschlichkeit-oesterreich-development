@@ -1,12 +1,11 @@
 import js from '@eslint/js';
-import globals from 'globals';
 import tseslint from '@typescript-eslint/eslint-plugin';
 import parser from '@typescript-eslint/parser';
+import globals from 'globals';
 
 export default [
-  js.configs.recommended,
+  // Global ignores - MUST be first
   {
-    files: ['**/*.{js,mjs,cjs}'],
     ignores: [
       'node_modules/**',
       '**/dist/**',
@@ -21,11 +20,16 @@ export default [
       '**/coverage/**',
       '**/test-results/**',
       '**/vendor/**',
+      '**/sw.js',
       'web/games/**/sw.js',
       'website/sw.js',
       'website/assets/js/**/*.js',
       'frontend/scripts/**',
     ],
+  },
+  js.configs.recommended,
+  {
+    files: ['**/*.{js,mjs,cjs}'],
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
@@ -36,17 +40,36 @@ export default [
       'no-console': 'off',
     },
   },
+  // Browser environment for frontend/website
+  {
+    files: ['frontend/**/*.{js,ts,tsx}', 'website/**/*.js'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: { 
+        ...globals.browser,
+        bootstrap: 'readonly',
+        gtag: 'readonly',
+        Drupal: 'readonly',
+        once: 'readonly'
+      },
+    },
+    rules: {
+      'no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+      'no-console': 'off',
+    },
+  },
+  // Service Worker specific
+  {
+    files: ['**/sw.js'],
+    languageOptions: {
+      globals: {
+        ...globals.serviceworker
+      },
+    },
+  },
   {
     files: ['**/*.{ts,tsx}'],
-    ignores: [
-      'node_modules/**',
-      '**/dist/**',
-      '**/build/**',
-      '**/*.d.ts',
-      'frontend/dist/**',
-      'frontend/.next/**',
-      'api.menschlichkeit-oesterreich.at/dist/**',
-    ],
     languageOptions: {
       parser: parser,
       parserOptions: {

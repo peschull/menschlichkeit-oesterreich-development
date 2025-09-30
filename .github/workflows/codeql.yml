@@ -37,7 +37,7 @@ jobs:
         exit 0
 
     # JavaScript/TypeScript syntax validation
-    - name: Validate JavaScript syntax  
+    - name: Validate JavaScript syntax
       if: matrix.language == 'javascript'
       run: |
         echo "📜 Validating JavaScript syntax..."
