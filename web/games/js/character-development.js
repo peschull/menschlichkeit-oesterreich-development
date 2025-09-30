@@ -453,29 +453,182 @@ class CharacterDevelopmentSystem {
     return impact;
   }
 
-  determineResponseStyle(_character, _relationship, _emotionalState) {
+  determineResponseStyle(character, relationship, emotionalState) {
     // Komplex logic basierend auf Charakter-Persönlichkeit, Beziehungsstand und aktueller Emotion
-    return 'adaptive'; // Placeholder
+    const trust = relationship?.trust || 0;
+    const stress = emotionalState?.stress_level || 5;
+    const happiness = emotionalState?.happiness || 5;
+
+    // Sehr gestresst und wenig Vertrauen -> abweisend
+    if (stress > 7 && trust < 3) {
+      return 'dismissive';
+    }
+
+    // Hoher Stress aber gutes Vertrauen -> ehrlich/verwundbar
+    if (stress > 7 && trust > 6) {
+      return 'vulnerable';
+    }
+
+    // Gutes Vertrauen und positiv -> freundlich
+    if (trust > 5 && happiness > 6) {
+      return 'friendly';
+    }
+
+    // Mittleres Vertrauen -> neutral/höflich
+    if (trust > 3 && trust <= 5) {
+      return 'polite';
+    }
+
+    // Standard adaptive Antwort basierend auf Persönlichkeit
+    return character?.personality?.baseline?.openness > 5 ? 'open' : 'guarded';
   }
 
-  generateDialogue(_characterId, _responseStyle, _analysis) {
+  generateDialogue(characterId, responseStyle, analysis) {
     // Generiere kontextuell angepassten Dialog
-    return 'Adaptiver Dialog basierend auf Entwicklung'; // Placeholder
+    const character = this.characters.get(characterId);
+    if (!character) return 'Dialog nicht verfügbar';
+
+    const dialogueTemplates = {
+      dismissive: [
+        'Ich habe keine Zeit für sowas.',
+        'Das geht Sie nichts an.',
+        'Lassen Sie mich in Ruhe.',
+      ],
+      vulnerable: [
+        'Ehrlich gesagt... es ist schwer für mich gerade.',
+        'Ich weiß nicht, wie ich damit umgehen soll.',
+        'Es tut gut, mit jemandem zu reden.',
+      ],
+      friendly: [
+        'Schön, dass wir darüber reden können!',
+        'Danke für Ihr Verständnis.',
+        'Das bedeutet mir wirklich viel.',
+      ],
+      polite: [
+        'Ich verstehe Ihren Punkt.',
+        'Das ist eine interessante Perspektive.',
+        'Lassen Sie mich darüber nachdenken.',
+      ],
+      open: [
+        'Ich bin offen für Ihre Ideen.',
+        'Erzählen Sie mir mehr darüber.',
+        'Das klingt spannend!',
+      ],
+      guarded: [
+        'Mal sehen...',
+        'Ich bin mir nicht sicher.',
+        'Das müssen wir erst klären.',
+      ],
+    };
+
+    const templates = dialogueTemplates[responseStyle] || dialogueTemplates.polite;
+    const randomIndex = Math.floor(Math.random() * templates.length);
+    return templates[randomIndex];
   }
 
-  generateEmotionalReaction(_emotionalState, _analysis) {
+  generateEmotionalReaction(emotionalState, analysis) {
     // Generiere emotionale Reaktion
-    return 'Emotionale Reaktion'; // Placeholder
+    if (!emotionalState) return 'neutral';
+
+    const { happiness = 5, stress_level = 5, energy = 5 } = emotionalState;
+
+    // Sehr glücklich
+    if (happiness > 8) return 'begeistert';
+
+    // Sehr gestresst
+    if (stress_level > 8) return 'überfordert';
+
+    // Erschöpft
+    if (energy < 2) return 'erschöpft';
+
+    // Positiv aber vorsichtig
+    if (happiness > 6 && analysis?.empathy_level > 0) return 'hoffnungsvoll';
+
+    // Neutral bis leicht positiv
+    if (happiness > 5) return 'zufrieden';
+
+    // Neutral bis leicht negativ
+    if (happiness < 5) return 'zurückhaltend';
+
+    return 'neutral';
   }
 
-  predictBehaviorChanges(_developmentTrack, _analysis) {
+  predictBehaviorChanges(developmentTrack, analysis) {
     // Vorhersage zukünftiger Verhaltensänderungen
-    return []; // Placeholder
+    const changes = [];
+
+    if (!developmentTrack) return changes;
+
+    // Prüfe auf Fortschritt in Entwicklungspfaden
+    if (analysis?.empathy_level > 2) {
+      changes.push({
+        type: 'openness_increase',
+        description: 'Wird offener für Gespräche',
+        likelihood: 0.7,
+      });
+    }
+
+    if (analysis?.help_offered) {
+      changes.push({
+        type: 'trust_increase',
+        description: 'Vertrauen wächst',
+        likelihood: 0.8,
+      });
+    }
+
+    if (analysis?.respect_shown) {
+      changes.push({
+        type: 'cooperation_increase',
+        description: 'Wird kooperativer',
+        likelihood: 0.6,
+      });
+    }
+
+    // Prüfe auf negative Entwicklungen
+    if (analysis?.empathy_level < -1) {
+      changes.push({
+        type: 'withdrawal',
+        description: 'Zieht sich zurück',
+        likelihood: 0.5,
+      });
+    }
+
+    return changes;
   }
 
-  generateRelationshipFeedback(_relationship) {
+  generateRelationshipFeedback(relationship) {
     // Feedback über Beziehungsstand
-    return 'Beziehungs-Feedback'; // Placeholder
+    if (!relationship) return 'Keine Beziehung vorhanden';
+
+    const { trust = 0, respect = 0, affection = 0, status = 'stranger' } = relationship;
+
+    const statusMessages = {
+      stranger: 'Ihr kennt euch kaum.',
+      acquaintance: 'Ihr kennt euch vom Sehen.',
+      friend: 'Ihr seid Freunde.',
+      close_friend: 'Ihr seid enge Freunde.',
+      ally: 'Ihr seid Verbündete.',
+      enemy: 'Ihr seid im Konflikt.',
+    };
+
+    let feedback = statusMessages[status] || 'Beziehungsstatus unklar.';
+
+    // Füge Details hinzu
+    if (trust > 7) {
+      feedback += ' Es herrscht großes Vertrauen.';
+    } else if (trust < 3) {
+      feedback += ' Das Vertrauen ist gering.';
+    }
+
+    if (respect > 7) {
+      feedback += ' Gegenseitiger Respekt ist stark.';
+    }
+
+    if (affection > 7) {
+      feedback += ' Die Sympathie ist hoch.';
+    }
+
+    return feedback;
   }
 
   updateEmotionalState(characterId, analysis) {
@@ -493,10 +646,65 @@ class CharacterDevelopmentSystem {
     }
   }
 
-  checkDevelopmentPathTriggers(_characterId, _analysis) {
+  checkDevelopmentPathTriggers(characterId, analysis) {
     // Prüfe ob Entwicklungspfad-Trigger aktiviert wurden
-    // Implementierung der Trigger-Logik
-    // Placeholder für komplexe Entwicklungspfad-Logik
+    const character = this.characters.get(characterId);
+    const relationship = this.relationships.get(characterId);
+    const developmentTrack = this.developmentTracks.get(characterId);
+
+    if (!character || !relationship || !developmentTrack) return;
+
+    const { transformation_arc } = character;
+    if (!transformation_arc) return;
+
+    // Prüfe Trigger für jede Phase
+    const currentPhase = developmentTrack.current_phase || 'phase_1';
+
+    // Gehe durch alle Phasen und prüfe Trigger
+    for (const [phaseName, phaseData] of Object.entries(transformation_arc)) {
+      if (!phaseData.triggers) continue;
+
+      const triggersActivated = phaseData.triggers.every(trigger => {
+        switch (trigger) {
+          case 'patience_shown':
+            return analysis.patience_shown === true;
+          case 'respect_given':
+            return analysis.respect_shown === true;
+          case 'genuine_care':
+            return analysis.empathy_level > 2 && analysis.help_offered === true;
+          case 'loneliness_acknowledged':
+            return analysis.understanding_shown === true;
+          case 'community_role_offered':
+            return analysis.participation_offered === true;
+          case 'value_recognized':
+            return relationship.respect > 6;
+          default:
+            return false;
+        }
+      });
+
+      if (triggersActivated && phaseName !== currentPhase) {
+        // Aktualisiere Entwicklungsphase
+        developmentTrack.current_phase = phaseName;
+        developmentTrack.phase_history.push({
+          phase: phaseName,
+          timestamp: Date.now(),
+          trigger_analysis: analysis,
+        });
+
+        // Update character openness based on new phase
+        if (phaseData.openness_level) {
+          const emotionalState = this.emotionalStates.get(characterId);
+          if (emotionalState) {
+            emotionalState.openness = phaseData.openness_level;
+          }
+        }
+
+        console.log(
+          `Character ${characterId} advanced to ${phaseName} (openness: ${phaseData.openness_level})`
+        );
+      }
+    }
   }
 }
 
