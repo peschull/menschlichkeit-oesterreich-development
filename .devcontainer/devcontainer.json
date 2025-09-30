@@ -52,11 +52,11 @@
     }
   },
 
-  "onCreateCommand": "bash -c 'set +e; echo \"🔧 Starting onCreateCommand...\"; if [ -f .devcontainer/setup.sh ]; then bash .devcontainer/setup.sh; else echo \"⚠️ setup.sh not found, creating minimal setup...\"; sudo apt-get update && sudo apt-get install -y curl git; fi; echo \"✅ onCreateCommand completed\"'",
+  "onCreateCommand": "bash -c 'set +e; echo \"🔧 Starting onCreateCommand with timeout protection...\"; timeout 300 bash -c \"if [ -f .devcontainer/setup.sh ]; then bash .devcontainer/setup.sh; else echo \\\"⚠️ setup.sh not found, creating minimal setup...\\\"; sudo apt-get update && sudo apt-get install -y curl git nodejs npm python3 python3-pip; fi\" || echo \"⚠️ Setup timeout - using emergency mode\"; echo \"✅ onCreateCommand completed\"'",
 
-  "postCreateCommand": "bash -c 'set +e; echo \"🚀 Starting postCreateCommand...\"; npm ci --prefer-offline --no-audit || npm install --no-audit; echo \"📦 Node.js dependencies installed\"; composer install --ignore-platform-reqs --no-interaction || echo \"⚠️ Composer install failed, continuing...\"; echo \"✅ postCreateCommand completed\"'",
+  "postCreateCommand": "bash -c 'set +e; echo \"🚀 Starting postCreateCommand with timeout protection...\"; timeout 180 bash -c \"npm ci --prefer-offline --no-audit || npm install --no-audit --no-fund\" || echo \"⚠️ npm timeout - continuing\"; echo \"📦 Node.js dependencies processed\"; timeout 120 bash -c \"composer install --ignore-platform-reqs --no-interaction\" || echo \"⚠️ Composer timeout - continuing\"; echo \"✅ postCreateCommand completed\"'",
 
-  "postStartCommand": "bash -c 'set +e; echo \"🚀 Starting postStartCommand...\"; if [ -f .devcontainer/post-start.sh ]; then bash .devcontainer/post-start.sh; else echo \"⚠️ post-start.sh not found, running health check...\"; node --version && python3 --version && php --version; fi; echo \"✅ Codespace ready for development\"'",
+  "postStartCommand": "bash -c 'set +e; echo \"🚀 Starting postStartCommand with timeout protection...\"; timeout 60 bash -c \"if [ -f .devcontainer/post-start.sh ]; then bash .devcontainer/post-start.sh; else echo \\\"⚠️ post-start.sh not found, running health check...\\\"; node --version && python3 --version && php --version 2>/dev/null || echo \\\"PHP not available\\\"; fi\" || echo \"⚠️ Post-start timeout - manual recovery available\"; echo \"✅ Codespace ready for development\"'",
 
   "customizations": {
     "vscode": {

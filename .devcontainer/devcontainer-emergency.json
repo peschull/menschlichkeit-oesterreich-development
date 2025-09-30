@@ -1,0 +1,58 @@
+{
+  "name": "EMERGENCY - Austrian NGO Minimal Boot",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "18"
+    },
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.11"
+    }
+  },
+
+  "forwardPorts": [
+    3000,
+    8001
+  ],
+
+  "portsAttributes": {
+    "3000": {
+      "label": "Frontend (Emergency Mode)",
+      "protocol": "https"
+    },
+    "8001": {
+      "label": "API (Emergency Mode)", 
+      "protocol": "https"
+    }
+  },
+
+  "onCreateCommand": "echo '🚨 EMERGENCY MODE - Minimal setup only' && sudo apt-get update && sudo apt-get install -y git curl",
+  
+  "postCreateCommand": "echo '📦 Installing essential packages...' && npm install --no-audit --no-fund || echo '⚠️ npm install failed, continuing...'",
+  
+  "postStartCommand": "echo '✅ EMERGENCY CODESPACE READY - Manual service startup available'",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.vscode-typescript-next",
+        "ms-python.python",
+        "esbenp.prettier-vscode",
+        "GitHubCopilot.github-copilot"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  },
+
+  "containerEnv": {
+    "NODE_ENV": "development",
+    "EMERGENCY_MODE": "true"
+  },
+
+  "waitFor": "postCreateCommand",
+  "shutdownAction": "none",
+  "init": true
+}
