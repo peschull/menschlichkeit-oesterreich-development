@@ -2,7 +2,7 @@
 
 ## ✅ Problem behoben: Codespace startet jetzt!
 
-### 🐛 **Identifizierte Probleme:**
+### 🐛 **Identifizierte und behobene Probleme:**
 
 1. **JSON Syntax Error**:
    - ❌ Kommentare (`//`) in `devcontainer.json` sind nicht erlaubt
@@ -19,6 +19,18 @@
 4. **MariaDB Interactive Installation**:
    - ❌ `mysql_secure_installation` benötigt User-Interaktion
    - ✅ **BEHOBEN**: Übersprungen für Codespace-Umgebung
+
+5. **Script Permissions** (NEU):
+   - ❌ Scripts waren nicht ausführbar
+   - ✅ **BEHOBEN**: Alle Scripts haben jetzt execute permissions (chmod +x)
+
+6. **Fehlende npm Scripts** (NEU):
+   - ❌ `codespace:fix` Script fehlte
+   - ✅ **BEHOBEN**: Alle erforderlichen Scripts hinzugefügt
+
+7. **Fehlerbehandlung** (NEU):
+   - ❌ Scripts brachen bei Fehlern ab
+   - ✅ **BEHOBEN**: Robuste Fehlerbehandlung implementiert
 
 ### 🔧 **Angewendete Fixes:**
 
@@ -61,6 +73,10 @@
 npm run dev:all              # Alle Services starten
 npm run codespace:health     # System health check
 npm run codespace:fix        # Falls Probleme auftreten
+npm run codespace:diagnostic # Umfassende Systemdiagnose (NEU)
+
+# Oder das helper script:
+./codespace-start.sh         # Interaktiver Service-Start
 ```
 
 ### 🔐 **GitHub Secrets Integration:**
@@ -82,8 +98,19 @@ Die folgenden Secrets werden automatisch geladen (falls konfiguriert):
 4. **Testen** → `npm run test:e2e`
 5. **Deploy** → `npm run deploy:all`
 
+### 📚 **Weitere Dokumentation:**
+
+- **[Quick Start Guide](CODESPACE-QUICK-START.md)** - Schnellstart und häufige Probleme (NEU)
+- **[Troubleshooting](CODESPACE-TROUBLESHOOTING.md)** - Detaillierte Problemlösungen
+- **[Anleitung](CODESPACE-ANLEITUNG.md)** - Vollständige Entwicklungsanleitung
+
 ---
 
 **🎯 STATUS**: ✅ **READY FOR DEVELOPMENT**
-**📅 Fixed**: ${new Date().toLocaleString('de-AT')}
-**🛠️ Version**: Codespace v2.0 - Stable
+**📅 Fixed**: 2025-01-03
+**🛠️ Version**: Codespace v2.1 - Enhanced & Stabilized
+**✨ Latest Updates**: 
+- Execute permissions für alle Scripts
+- Neues `codespace:fix` und `codespace:diagnostic` npm script
+- Robuste Fehlerbehandlung
+- Umfassende Dokumentation
