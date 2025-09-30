@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/appdb
+    username: app
+    password: secret
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+
+server:
+  port: 8080
+  error:
+    include-message: always
+
+app:
+  jwt:
+    secret: "change-me-very-strong-secret-key-minimum-32-chars"
