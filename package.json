@@ -18,6 +18,8 @@
     "build:workspaces": "npm run build --workspaces",
     "test:all": "npm run test --workspaces",
     "lint:js": "eslint **/*.{js,ts} --fix",
+    "lint:js-admin": "node ./node_modules/eslint/bin/eslint.js . --ext .js,.ts --fix --ignore-pattern '**/dist/**' --ignore-pattern '**/build/**' --ignore-pattern '**/*.min.js'",
+    "lint:check": "node ./node_modules/eslint/bin/eslint.js . --ext .js,.ts --ignore-pattern '**/dist/**' --ignore-pattern '**/build/**'",
     "lint:md": "markdownlint **/*.md --fix",
     "format": "prettier --write **/*.{js,ts,json,md}",
     "format:php": "composer exec php-cs-fixer fix",

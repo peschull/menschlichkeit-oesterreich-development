@@ -505,27 +505,10 @@ async def create_membership(membership: MembershipCreate, _: Dict[str, Any] = De
     )
 
 
-@app.get("/memberships/contact/{contact_id}", response_model=ApiResponse)
-async def get_memberships_for_contact(contact_id: int, _: Dict[str, Any] = Depends(verify_jwt_token)) -> ApiResponse:
-    memberships = [_serialize_membership(entry).model_dump() for entry in await _civicrm_memberships_get(contact_id)]
-    return ApiResponse(success=True, data={"memberships": memberships}, message="Memberships fetched")
+# Removed duplicate endpoint - see consolidated version below
 
 
-@app.put("/memberships/{membership_id}", response_model=ApiResponse)
-async def update_membership(membership_id: int, update: MembershipUpdate, _: Dict[str, Any] = Depends(verify_jwt_token)) -> ApiResponse:
-    if not any([update.membership_type_id is not None, update.start_date is not None, update.end_date is not None]):
-        raise HTTPException(status_code=400, detail="No update fields supplied")
-
-    payload: Dict[str, Any] = {}
-    if update.membership_type_id is not None:
-        payload["membership_type_id"] = update.membership_type_id
-    if update.start_date is not None:
-        payload["start_date"] = update.start_date
-    if update.end_date is not None:
-        payload["end_date"] = update.end_date
-
-    updated = await _civicrm_membership_update(membership_id, payload)
-    return ApiResponse(success=True, data=_serialize_membership(updated).model_dump(), message="Membership updated")
+# Removed duplicate endpoint - see consolidated version below
 @app.get("/contacts/search")
 async def search_contacts(email: Optional[str] = None, _: dict = Depends(verify_jwt_token)):
     """Search for contacts in CiviCRM"""

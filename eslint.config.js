@@ -21,6 +21,10 @@ export default [
       '**/coverage/**',
       '**/test-results/**',
       '**/vendor/**',
+      'web/games/**/sw.js',
+      'website/sw.js',
+      'website/assets/js/**/*.js',
+      'frontend/scripts/**',
     ],
     languageOptions: {
       ecmaVersion: 'latest',
@@ -48,8 +52,14 @@ export default [
       parserOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',
+        jsx: true,
       },
-      globals: { ...globals.browser, ...globals.node },
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+        React: 'readonly',
+        JSX: 'readonly',
+      },
     },
     plugins: {
       '@typescript-eslint': tseslint,
