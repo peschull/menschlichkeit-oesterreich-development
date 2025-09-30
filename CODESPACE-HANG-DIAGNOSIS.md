@@ -9,12 +9,15 @@
 ## ⚡ **IMMEDIATE FIXES**
 
 ### **1. Enhanced Timeout Protection**
+
 Current devcontainer commands have **no timeout limits** → can hang indefinitely
 
 ### **2. Resource Optimization**
+
 Current setup tries to install **all services simultaneously** → memory overload
 
 ### **3. Dependency Fallbacks**
+
 Missing fallback mechanisms for **network/registry failures**
 
 ---
@@ -22,6 +25,7 @@ Missing fallback mechanisms for **network/registry failures**
 ## 🛠️ **CODESPACE REPAIR STRATEGY**
 
 ### **Phase 1: Minimal Boot Configuration**
+
 ```json
 {
   "onCreateCommand": "timeout 300 bash .devcontainer/minimal-setup.sh || echo 'Setup timeout - using emergency mode'",
@@ -31,13 +35,17 @@ Missing fallback mechanisms for **network/registry failures**
 ```
 
 ### **Phase 2: Progressive Service Startup**
+
 Instead of starting all 6 services → **Start core services only**
+
 1. **Node.js + npm** (essential)
 2. **Python + FastAPI** (core API)
 3. **Optional:** PHP, Docker, etc. (background)
 
 ### **Phase 3: Emergency Debugging**
+
 Create **codespace-debug.json** for minimal startup:
+
 ```json
 {
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",

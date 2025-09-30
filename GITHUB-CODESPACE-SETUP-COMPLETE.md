@@ -5,9 +5,11 @@
 ## 🚀 Was wurde implementiert:
 
 ### 1. Complete Devcontainer Configuration
+
 ```json
 .devcontainer/devcontainer.json
 ```
+
 - **Multi-Service Support**: Node.js 18, PHP 8.4, Python 3.11
 - **Database Integration**: MariaDB with automated setup
 - **Port Forwarding**: 3000 (Frontend), 8000 (CRM), 8001 (API), 5678 (n8n)
@@ -15,6 +17,7 @@
 - **Extensions**: All required VS Code extensions auto-installed
 
 ### 2. Automated Setup Scripts
+
 ```bash
 .devcontainer/setup.sh         # Initial Codespace setup
 .devcontainer/post-start.sh    # Health checks and service status
@@ -22,20 +25,24 @@
 ```
 
 ### 3. SSH & Server Access
+
 - **SSH Key Integration**: Automatic setup from GitHub Secrets
 - **Plesk Server Access**: Direct connection to crm.menschlichkeit-oesterreich.at
 - **Secure Credentials**: All secrets managed via GitHub environment
 
 ### 4. Service Orchestration
+
 - **Frontend (React)**: Port 3000 → https://CODESPACE-3000.preview.app.github.dev
 - **API (FastAPI)**: Port 8001 → https://CODESPACE-8001.preview.app.github.dev
 - **CRM (CiviCRM)**: Port 8000 → https://CODESPACE-8000.preview.app.github.dev
 - **n8n Automation**: Port 5678 → https://CODESPACE-5678.preview.app.github.dev
 
 ### 5. Quality & Testing Integration
+
 ```yaml
-.github/workflows/codespace.yml  # Automated Codespace health testing
+.github/workflows/codespace.yml # Automated Codespace health testing
 ```
+
 - Validates devcontainer configuration
 - Tests all scripts and dependencies
 - Verifies port configurations
@@ -43,14 +50,14 @@
 
 ## 🔧 Problem-Solution Matrix:
 
-| **Previous Problem** | **Solution Implemented** |
-|---------------------|--------------------------|
-| Service startup failures | Automated setup.sh with dependency management |
-| Database connection issues | MariaDB auto-setup with dev databases |
-| SSH access problems | GitHub Secrets SSH key integration |
-| Port forwarding conflicts | Proper devcontainer.json port configuration |
-| Environment inconsistency | Complete runtime specification (Node/PHP/Python) |
-| Manual configuration overhead | Fully automated post-start.sh health checks |
+| **Previous Problem**          | **Solution Implemented**                         |
+| ----------------------------- | ------------------------------------------------ |
+| Service startup failures      | Automated setup.sh with dependency management    |
+| Database connection issues    | MariaDB auto-setup with dev databases            |
+| SSH access problems           | GitHub Secrets SSH key integration               |
+| Port forwarding conflicts     | Proper devcontainer.json port configuration      |
+| Environment inconsistency     | Complete runtime specification (Node/PHP/Python) |
+| Manual configuration overhead | Fully automated post-start.sh health checks      |
 
 ## 📋 NPM Commands Added:
 
@@ -62,6 +69,7 @@ npm run codespace:health     # Service health monitoring
 ```
 
 ## 🗄️ Database Setup:
+
 - **mo_laravel_api_dev**: Development database for FastAPI service
 - **mo_civicrm_dev**: Development database for CiviCRM/Drupal
 - **Automated Creation**: setup.sh creates both databases automatically
@@ -77,9 +85,11 @@ n8n:          https://CODESPACE-5678-{CODESPACE-NAME}.preview.app.github.dev
 ```
 
 ## 📚 Troubleshooting Guide:
+
 **Complete Documentation**: `.devcontainer/CODESPACE-TROUBLESHOOTING.md`
 
 ### Quick Fixes:
+
 ```bash
 # All problems → one command
 npm run codespace:fix
@@ -94,18 +104,21 @@ gh auth refresh --hostname github.com # Fix GitHub auth
 ## 🔐 Required GitHub Secrets:
 
 ### SSH & Server Access (4):
+
 - `SSH_PRIVATE_KEY`: SSH Schlüssel für Plesk Server
 - `SSH_HOST`: crm.menschlichkeit-oesterreich.at
 - `SSH_USERNAME`: SSH Benutzername
 - `PLESK_PASSWORD`: Plesk Panel Passwort
 
 ### Database Credentials (4):
+
 - `DB_HOST`: localhost (im Codespace)
 - `DB_USERNAME`: Datenbankbenutzer
 - `DB_PASSWORD`: Datenbankpasswort
 - `DB_NAME`: Datenbankname
 
 ### Email Configuration (10):
+
 - `SMTP_HOST`: mail.menschlichkeit-oesterreich.at
 - `SMTP_PORT`: 587
 - `SMTP_USERNAME`: info@menschlichkeit-oesterreich.at
@@ -117,11 +130,13 @@ gh auth refresh --hostname github.com # Fix GitHub auth
 ## 🧪 Testing & Validation:
 
 ### Automated Tests:
+
 - **GitHub Workflow**: `.github/workflows/codespace.yml` testet alle Komponenten
 - **Health Checks**: `post-start.sh` überprüft Service-Status
 - **Dependency Validation**: Alle Runtime-Abhängigkeiten werden getestet
 
 ### Manual Verification:
+
 ```bash
 # Nach Codespace-Start:
 npm run codespace:health     # Überprüfe alle Services

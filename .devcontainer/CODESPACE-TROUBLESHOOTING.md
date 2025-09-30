@@ -1,12 +1,15 @@
 # GitHub Codespace Troubleshooting Guide
+
 # Menschlichkeit Österreich Development
 
 ## 🚨 HÄUFIGE CODESPACE PROBLEME & LÖSUNGEN
 
 ### 1. SSH Zugang zu Plesk Server
+
 **Problem:** SSH Key nicht verfügbar oder SSH Verbindung fehlschlägt
 
 **Lösung:**
+
 ```bash
 # SSH Key aus GitHub Secret einrichten
 echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
@@ -20,9 +23,11 @@ ssh-keyscan -H 5.183.217.146 >> ~/.ssh/known_hosts
 ```
 
 ### 2. Environment Variables fehlen
+
 **Problem:** GitHub Secrets nicht in Codespace verfügbar
 
 **Lösung:**
+
 ```bash
 # Überprüfe verfügbare Secrets
 env | grep -E "(LARAVEL|CIVICRM|CODACY|SNYK)"
@@ -33,9 +38,11 @@ cp .env.example .env
 ```
 
 ### 3. Port Forwarding Probleme
+
 **Problem:** Services nicht über Codespace URLs erreichbar
 
 **Lösung:**
+
 ```bash
 # Ports checken
 netstat -tulpn | grep -E "(3000|8000|8001|5678)"
@@ -48,9 +55,11 @@ npm run dev:all
 ```
 
 ### 4. Database Connection Fehler
+
 **Problem:** MariaDB/MySQL nicht verfügbar
 
 **Lösung:**
+
 ```bash
 # MariaDB Status checken
 sudo systemctl status mariadb
@@ -64,9 +73,11 @@ sudo mysql -e "CREATE DATABASE IF NOT EXISTS mo_civicrm_dev;"
 ```
 
 ### 5. Node.js/PHP Version Konflikte
+
 **Problem:** Falsche Runtime Versionen
 
 **Lösung:**
+
 ```bash
 # Versionen checken
 node --version  # Should be 18.x
@@ -77,9 +88,11 @@ python3 --version  # Should be 3.11.x
 ```
 
 ### 6. Permission Denied Errors
+
 **Problem:** Scripts nicht ausführbar
 
 **Lösung:**
+
 ```bash
 # Scripts ausführbar machen
 chmod +x scripts/*.sh
@@ -91,9 +104,11 @@ bash -c "pwsh ./scripts/script-name.ps1"
 ```
 
 ### 7. Docker/n8n Probleme
+
 **Problem:** n8n Container startet nicht
 
 **Lösung:**
+
 ```bash
 # Docker Status
 docker --version
@@ -109,9 +124,11 @@ docker-compose logs -f
 ```
 
 ### 8. GitHub Actions in Codespace
+
 **Problem:** CI/CD Tests schlagen fehl
 
 **Lösung:**
+
 ```bash
 # Lokale Quality Gates
 npm run quality:gates
@@ -126,6 +143,7 @@ npm run lint -- --fix
 ## 🔧 QUICK FIXES
 
 ### Reset Codespace Environment
+
 ```bash
 # Full reset (in Terminal)
 sudo apt-get update -y
@@ -135,6 +153,7 @@ pip install -r requirements.txt
 ```
 
 ### Manual SSH Key Setup
+
 ```bash
 # In Codespace Terminal
 mkdir -p ~/.ssh
@@ -151,6 +170,7 @@ chmod 600 ~/.ssh/id_ed25519
 ```
 
 ### Development Environment Setup
+
 ```bash
 # .env für Development
 cat > .env << 'EOF'
@@ -176,6 +196,7 @@ EOF
 ```
 
 ### Service Restart Commands
+
 ```bash
 # All Services
 npm run dev:all
@@ -201,10 +222,12 @@ Replace `CODESPACE_NAME` with your actual codespace name:
 ## 📞 SUPPORT
 
 ### GitHub Codespaces Issues
+
 - GitHub Support: https://support.github.com
 - Codespaces Docs: https://docs.github.com/en/codespaces
 
 ### Project Specific
+
 - Repository Issues: Create Issue in GitHub
 - Email: support@menschlichkeit-oesterreich.at
 

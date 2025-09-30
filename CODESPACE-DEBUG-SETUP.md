@@ -11,17 +11,18 @@
 ## 🚀 **CODESPACE DEBUG ENHANCEMENT**
 
 ### **Current Debug Capabilities:**
+
 ```jsonc
 // .vscode/launch.json - 6 Individual + 3 Compound Configurations
 {
   "configurations": [
-    "🚀 Debug: Frontend (Vite)",     // React/TypeScript debugging
-    "🐍 Debug: API (FastAPI)",       // Python API debugging
-    "🏗️ Debug: Build Pipeline",      // Shell script debugging
-    "🔄 Debug: n8n Workflow",        // Automation debugging
-    "🧪 Debug: Playwright Tests",    // E2E test debugging
-    "🔍 Debug: Quality Gates"        // Quality analysis debugging
-  ]
+    "🚀 Debug: Frontend (Vite)", // React/TypeScript debugging
+    "🐍 Debug: API (FastAPI)", // Python API debugging
+    "🏗️ Debug: Build Pipeline", // Shell script debugging
+    "🔄 Debug: n8n Workflow", // Automation debugging
+    "🧪 Debug: Playwright Tests", // E2E test debugging
+    "🔍 Debug: Quality Gates", // Quality analysis debugging
+  ],
 }
 ```
 
@@ -38,6 +39,7 @@
 ## 🛠️ **ENHANCED DEBUG CONFIGURATIONS**
 
 ### **1. Codespace Container Debugging**
+
 ```json
 {
   "name": "🐳 Debug: Codespace Container",
@@ -53,6 +55,7 @@
 ```
 
 ### **2. Database Connection Debugging**
+
 ```json
 {
   "name": "🗄️ Debug: Database Connections",
@@ -69,6 +72,7 @@
 ```
 
 ### **3. CRM Debug Configuration**
+
 ```json
 {
   "name": "🏥 Debug: CRM (CiviCRM)",
@@ -85,6 +89,7 @@
 ```
 
 ### **4. SSH/Server Connection Debug**
+
 ```json
 {
   "name": "🔐 Debug: SSH/Plesk Connection",
@@ -100,6 +105,7 @@
 ```
 
 ### **5. Multi-Service Health Debug**
+
 ```json
 {
   "name": "🌐 Debug: Service Health Monitor",
@@ -118,13 +124,14 @@
 ## 🔍 **CODESPACE-SPECIFIC DEBUGGING TOOLS**
 
 ### **A. Service Discovery & Health**
+
 ```javascript
 // scripts/service-health-monitor.js
 const services = [
   { name: 'Frontend', port: 3000, path: '/' },
   { name: 'API', port: 8001, path: '/docs' },
   { name: 'CRM', port: 8000, path: '/' },
-  { name: 'n8n', port: 5678, path: '/healthz' }
+  { name: 'n8n', port: 5678, path: '/healthz' },
 ];
 
 async function debugServices() {
@@ -137,6 +144,7 @@ async function debugServices() {
 ```
 
 ### **B. Database Connection Tester**
+
 ```python
 # scripts/debug-database-connections.py
 import psycopg2
@@ -170,6 +178,7 @@ def test_databases():
 ```
 
 ### **C. Codespace Environment Inspector**
+
 ```bash
 #!/bin/bash
 # scripts/debug-codespace-env.sh
@@ -204,6 +213,7 @@ done
 ## 🧪 **DEBUG COMPOUND CONFIGURATIONS**
 
 ### **🚀 Complete Codespace Debug Suite**
+
 ```json
 {
   "name": "🐳 Debug: Complete Codespace",
@@ -220,6 +230,7 @@ done
 ```
 
 ### **🔧 Infrastructure Debug**
+
 ```json
 {
   "name": "🔧 Debug: Infrastructure",
@@ -236,12 +247,14 @@ done
 ## 🎯 **CODESPACE DEBUG WORKFLOW**
 
 ### **1. Environment Setup Debug**
+
 ```bash
 # In Codespace Terminal:
 npm run codespace:debug-setup
 ```
 
 ### **2. Service-by-Service Debug**
+
 ```bash
 # Debug individual services:
 npm run debug:frontend    # Port 3000
@@ -251,6 +264,7 @@ npm run debug:n8n        # Port 5678
 ```
 
 ### **3. Full Stack Debug Session**
+
 ```bash
 # VS Code Command Palette:
 > Debug: Select and Start Debugging
@@ -258,6 +272,7 @@ npm run debug:n8n        # Port 5678
 ```
 
 ### **4. Health Check Debug**
+
 ```bash
 # Monitor all services:
 npm run debug:health-monitor
@@ -268,6 +283,7 @@ npm run debug:health-monitor
 ## 📊 **DEBUG MONITORING DASHBOARD**
 
 ### **Real-time Service Status:**
+
 ```
 🟢 Frontend (3000): https://CODESPACE-3000-xxx.preview.app.github.dev
 🟢 API (8001):      https://CODESPACE-8001-xxx.preview.app.github.dev
@@ -282,18 +298,21 @@ npm run debug:health-monitor
 ## 🔗 **DEBUG INTEGRATION POINTS**
 
 ### **A. VS Code Integration**
+
 - **Breakpoints:** Multi-language support (JS/TS, Python, PHP)
 - **Watch Variables:** Environment variables, service states
 - **Debug Console:** Multi-service log aggregation
 - **Terminal Integration:** Service-specific debugging
 
 ### **B. Codespace Integration**
+
 - **Port Forwarding:** Automatic HTTPS URLs
 - **GitHub Secrets:** Secure credential access
 - **Container Access:** Direct container debugging
 - **Multi-Service:** Parallel debugging sessions
 
 ### **C. Quality Integration**
+
 - **Real-time Linting:** ESLint, PHPStan, Pylint
 - **Debug Logging:** Structured debug output
 - **Performance Monitoring:** Service response times

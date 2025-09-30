@@ -3,6 +3,7 @@
 ## ⚡ **FAST BATCH PROCESSING (No GitHub CLI needed)**
 
 ### **📊 Target: 28 Pending PRs**
+
 - **Node.js/npm:** ~12 PRs (Frontend, automation, MCP servers)
 - **PHP/Composer:** ~8 PRs (CRM, WordPress plugins)
 - **Python/pip:** ~4 PRs (FastAPI, games backend)
@@ -27,12 +28,14 @@ cd ../api.menschlichkeit-oesterreich.at && pip-tools compile --upgrade requireme
 ```
 
 ### **✅ BENEFITS:**
+
 - **10x faster** than individual PR reviews
 - **Single commit** with all updates
 - **Automatic conflict resolution**
 - **Comprehensive testing** in one go
 
 ### **⚡ EXECUTION:**
+
 Starting **NOW** - Batch dependency updates across all services simultaneously.
 
 ---

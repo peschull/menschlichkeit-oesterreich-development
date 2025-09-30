@@ -12,6 +12,7 @@
 ## 🔧 **ANGEWENDETE FIXES**
 
 ### **1. Python Syntax Error behoben**
+
 ```python
 # ❌ Vorher (Zeile 712-715):
 if args.output:
@@ -27,6 +28,7 @@ else:
 ```
 
 ### **2. CodeQL Workflow Enhanced**
+
 ```yaml
 # Erweiterte Fehlerbehandlung:
 - name: Validate Python syntax
@@ -55,6 +57,7 @@ else:
 ## 📊 **CODEQL WORKFLOW STATUS**
 
 ### **✅ Neue Features:**
+
 - **Matrix Strategy:** Separate JavaScript & Python Analysis
 - **Syntax Validation:** Pre-Check vor CodeQL Analysis
 - **Error Handling:** `continue-on-error: true` für robuste Scans
@@ -62,14 +65,16 @@ else:
 - **Scheduled Scans:** Wöchentliche Security-Scans (Montags 6:00 UTC)
 
 ### **📋 Scan Configuration:**
+
 ```yaml
 strategy:
   fail-fast: false
   matrix:
-    language: [ 'javascript', 'python' ]
+    language: ['javascript', 'python']
 ```
 
 ### **🛡️ Security Features:**
+
 - **Pre-Commit Syntax Check:** Verhindert kaputte Commits
 - **Continuous Scanning:** Push/PR/Schedule Events
 - **Austrian NGO Config:** Spezifische Sicherheits-Regeln
@@ -80,6 +85,7 @@ strategy:
 ## 🎯 **ERGEBNIS**
 
 ### **🟢 CodeQL Status nach Fix:**
+
 - ✅ **Python Syntax:** Alle Dateien validiert
 - ✅ **JavaScript/TypeScript:** ESLint Integration
 - ✅ **Security Scanning:** 2 Sprachen parallel
@@ -87,6 +93,7 @@ strategy:
 - ✅ **Path Optimization:** Nur relevante Dateien gescannt
 
 ### **📈 Verbesserungen:**
+
 - **Scan Time:** Reduziert durch Path-Filtering
 - **Accuracy:** Bessere Ergebnisse durch Syntax-Validation
 - **Reliability:** Continue-on-Error für stabile Pipelines
@@ -97,6 +104,7 @@ strategy:
 ## 🚀 **NÄCHSTE SCHRITTE**
 
 ### **1. Commit & Test**
+
 ```bash
 git add .github/workflows/codeql.yml scripts/ai-architecture-analyzer.py
 git commit -m "fix: resolve CodeQL Python syntax errors and enhance workflow"
@@ -104,11 +112,13 @@ git push origin main
 ```
 
 ### **2. Workflow Validation**
+
 - GitHub Actions wird automatisch getriggert
 - CodeQL Analysis läuft ohne Syntax-Fehler
 - Security Dashboard wird aktualisiert
 
 ### **3. Monitoring**
+
 - Wöchentliche Scans überwachen
 - Security Alerts in GitHub Dashboard
 - False Positives bei Bedarf suppressen

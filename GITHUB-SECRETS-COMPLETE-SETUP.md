@@ -11,6 +11,7 @@ Alle lokalen Secrets aus der `.env` Datei wurden extrahiert und sind bereit für
 ## 🎯 GITHUB REPOSITORY SETUP
 
 ### 1. Navigate zu GitHub Secrets
+
 ```
 GitHub Repository → Settings → Secrets and variables → Actions → New repository secret
 ```
@@ -18,6 +19,7 @@ GitHub Repository → Settings → Secrets and variables → Actions → New rep
 ### 2. ERFORDERLICHE SECRETS
 
 #### 🔧 Infrastructure Secrets
+
 ```
 Name: PLESK_HOST
 Value: dmpl20230054@5.183.217.146
@@ -27,6 +29,7 @@ Value: [SSH Private Key - siehe unten]
 ```
 
 #### 🗄️ Database Secrets
+
 ```
 Name: LARAVEL_DB_NAME
 Value: mo_laravel_api
@@ -48,6 +51,7 @@ Value: SECURE_CIVICRM_2025
 ```
 
 #### � E-Mail Configuration Secrets
+
 ```
 Name: MAIL_LOGGING_EMAIL
 Value: logging@menschlichkeit-oesterreich.at
@@ -81,6 +85,7 @@ Value: 1w8S%8a9k
 ```
 
 #### �🔐 Security & API Secrets
+
 ```
 Name: JWT_SECRET
 Value: r0OgnrFIaxjhfdoLpGX7tF1f7Ctf7yEm
@@ -96,6 +101,7 @@ Value: [Generiere sicheres Passwort]
 ```
 
 #### 🛡️ Quality & Security Tools
+
 ```
 Name: CODACY_API_TOKEN
 Value: [Hole von codacy.com → Account → API Tokens]
@@ -125,6 +131,7 @@ U6N6texSyKIDkeksBGl/AAAADGRtcGwyMDIzMDA1NAE=
 ## 🚀 SETUP SCHRITTE
 
 ### 1. GitHub Secrets Konfiguration
+
 1. **Gehe zu:** `https://github.com/peschull/menschlichkeit-oesterreich-development/settings/secrets/actions`
 2. **Für jeden Secret:** Klicke "New repository secret"
 3. **Name:** Exakt wie oben angegeben eingeben
@@ -134,21 +141,25 @@ U6N6texSyKIDkeksBGl/AAAADGRtcGwyMDIzMDA1NAE=
 ### 2. Fehlende API Tokens holen
 
 #### Codacy API Token:
+
 1. Gehe zu [codacy.com](https://app.codacy.com)
 2. Account → API Tokens → Create API Token
 3. Kopiere Token zu `CODACY_API_TOKEN`
 
 #### Snyk Token:
+
 1. Gehe zu [snyk.io](https://app.snyk.io)
 2. Account Settings → API Token → Generate token
 3. Kopiere Token zu `SNYK_TOKEN`
 
 #### CiviCRM Keys:
+
 1. CiviCRM Admin → Administer → System Settings → API Keys
 2. Generiere API Key → kopiere zu `CIVICRM_API_KEY`
 3. Generiere Site Key → kopiere zu `CIVICRM_SITE_KEY`
 
 ### 3. Zusätzliche Passwörter generieren
+
 ```bash
 # Für N8N_PASSWORD (24 Zeichen)
 openssl rand -base64 18
@@ -159,7 +170,9 @@ openssl rand -base64 18
 ## 🔍 VALIDIERUNG
 
 ### 1. GitHub Actions Test
+
 Nach dem Setup der Secrets:
+
 ```bash
 # Lokale Validierung
 .\scripts\setup-github-secrets.ps1 -ValidateSecrets
@@ -169,6 +182,7 @@ git push origin main
 ```
 
 ### 2. Plesk SSH Verbindung testen
+
 ```bash
 # In GitHub Codespace oder GitHub Actions
 ssh -i $SSH_PRIVATE_KEY dmpl20230054@5.183.217.146
@@ -177,6 +191,7 @@ ssh -i $SSH_PRIVATE_KEY dmpl20230054@5.183.217.146
 ## 📊 STATUS ÜBERSICHT
 
 ### ✅ BEREIT
+
 - SSH Private Key extrahiert und bereit
 - Database Credentials identifiziert
 - Security Keys generiert (JWT, N8N)
@@ -184,6 +199,7 @@ ssh -i $SSH_PRIVATE_KEY dmpl20230054@5.183.217.146
 - `.gitignore` konfiguriert (`.env` ausgeschlossen)
 
 ### ⏳ AUSSTEHEND
+
 - [ ] GitHub Secrets Konfiguration (E-Mail Secrets bereit!)
 - [ ] Codacy API Token holen
 - [ ] Snyk Token holen
@@ -192,6 +208,7 @@ ssh -i $SSH_PRIVATE_KEY dmpl20230054@5.183.217.146
 - [ ] E-Mail Integration testen
 
 ### 🚫 SICHERHEIT
+
 - ✅ `.env` ist in `.gitignore` - wird NIEMALS committed
 - ✅ Nur `.env.example` Template im Repository
 - ✅ Alle Production Secrets über GitHub Secrets
@@ -218,6 +235,7 @@ ssh -i $SSH_PRIVATE_KEY dmpl20230054@5.183.217.146
 Alle hier gezeigten Secrets sind für **GITHUB REPOSITORY SECRETS** bestimmt und sollten **NIEMALS** ins Git Repository committed werden. Die lokale `.env` Datei bleibt privat und wird automatisch von Git ignoriert.
 
 **🔐 SICHERHEITSGARANTIE:**
+
 - Keine Secrets im Repository Code
 - Sichere Übertragung über GitHub Secrets
 - Lokale `.env` für Development

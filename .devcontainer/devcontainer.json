@@ -1,29 +1,22 @@
 {
   "name": "Austrian NGO Multi-Service Development",
-  "image": "mcr.microsoft.com/devcontainers/universal:2-focal",
+  "image": "mcr.microsoft.com/devcontainers/universal:2-linux",
 
   "features": {
     "ghcr.io/devcontainers/features/node:1": {
-      "version": "18"
+      "version": "20"
     },
     "ghcr.io/devcontainers/features/php:1": {
       "version": "8.2"
     },
     "ghcr.io/devcontainers/features/python:1": {
-      "version": "3.11"
+      "version": "3.12"
     },
     "ghcr.io/devcontainers/features/docker-in-docker:2": {},
     "ghcr.io/devcontainers/features/git:1": {}
   },
 
-  "forwardPorts": [
-    3000,
-    3001,
-    5678,
-    8000,
-    8001,
-    8080
-  ],
+  "forwardPorts": [3000, 3001, 5678, 8000, 8001, 8080],
 
   "portsAttributes": {
     "3000": {
@@ -52,11 +45,11 @@
     }
   },
 
-  "onCreateCommand": "bash -c 'set +e; echo \"🔧 Starting onCreateCommand with timeout protection...\"; timeout 300 bash -c \"if [ -f .devcontainer/setup.sh ]; then bash .devcontainer/setup.sh; else echo \\\"⚠️ setup.sh not found, creating minimal setup...\\\"; sudo apt-get update && sudo apt-get install -y curl git nodejs npm python3 python3-pip; fi\" || echo \"⚠️ Setup timeout - using emergency mode\"; echo \"✅ onCreateCommand completed\"'",
+  "onCreateCommand": "bash .devcontainer/codespace-optimized-setup.sh",
 
-  "postCreateCommand": "bash -c 'set +e; echo \"🚀 Starting postCreateCommand with timeout protection...\"; timeout 180 bash -c \"npm ci --prefer-offline --no-audit || npm install --no-audit --no-fund\" || echo \"⚠️ npm timeout - continuing\"; echo \"📦 Node.js dependencies processed\"; timeout 120 bash -c \"composer install --ignore-platform-reqs --no-interaction\" || echo \"⚠️ Composer timeout - continuing\"; echo \"✅ postCreateCommand completed\"'",
+  "postCreateCommand": "bash .devcontainer/codespace-post-create.sh",
 
-  "postStartCommand": "bash -c 'set +e; echo \"🚀 Starting postStartCommand with timeout protection...\"; timeout 60 bash -c \"if [ -f .devcontainer/post-start.sh ]; then bash .devcontainer/post-start.sh; else echo \\\"⚠️ post-start.sh not found, running health check...\\\"; node --version && python3 --version && php --version 2>/dev/null || echo \\\"PHP not available\\\"; fi\" || echo \"⚠️ Post-start timeout - manual recovery available\"; echo \"✅ Codespace ready for development\"'",
+  "postStartCommand": "echo '🎉 Austrian NGO Codespace is ready! Run: ./codespace-start.sh to begin development'",
 
   "customizations": {
     "vscode": {

@@ -45,14 +45,14 @@
 
 ### 📋 **Services nach Start verfügbar:**
 
-| Service | Port | URL |
-|---------|------|-----|
+| Service          | Port | URL                                                    |
+| ---------------- | ---- | ------------------------------------------------------ |
 | Frontend (React) | 3000 | `https://CODESPACE-3000-{name}.preview.app.github.dev` |
-| Games Platform | 3001 | `https://CODESPACE-3001-{name}.preview.app.github.dev` |
-| API (FastAPI) | 8001 | `https://CODESPACE-8001-{name}.preview.app.github.dev` |
-| CRM (CiviCRM) | 8000 | `https://CODESPACE-8000-{name}.preview.app.github.dev` |
-| n8n Automation | 5678 | `https://CODESPACE-5678-{name}.preview.app.github.dev` |
-| Website | 8080 | `https://CODESPACE-8080-{name}.preview.app.github.dev` |
+| Games Platform   | 3001 | `https://CODESPACE-3001-{name}.preview.app.github.dev` |
+| API (FastAPI)    | 8001 | `https://CODESPACE-8001-{name}.preview.app.github.dev` |
+| CRM (CiviCRM)    | 8000 | `https://CODESPACE-8000-{name}.preview.app.github.dev` |
+| n8n Automation   | 5678 | `https://CODESPACE-5678-{name}.preview.app.github.dev` |
+| Website          | 8080 | `https://CODESPACE-8080-{name}.preview.app.github.dev` |
 
 ### ⚡ **Quick Start Commands:**
 
@@ -66,6 +66,7 @@ npm run codespace:fix        # Falls Probleme auftreten
 ### 🔐 **GitHub Secrets Integration:**
 
 Die folgenden Secrets werden automatisch geladen (falls konfiguriert):
+
 - `SSH_PRIVATE_KEY` - Plesk Server Zugang
 - `PLESK_HOST` - Server hostname
 - `LARAVEL_DB_PASS` - Database password

@@ -96,21 +96,25 @@ Die Projektverantwortlichen werden diese Richtlinien zur Durchsetzung der Gemein
 Als österreichische NGO stehen wir für besondere Werte:
 
 ### 🤲 Menschlichkeit
+
 - **Würde** jedes Menschen respektieren
 - **Empathie** und Verständnis zeigen
 - **Solidarität** mit Benachteiligten leben
 
 ### 🏛️ Demokratische Grundwerte
+
 - **Meinungsfreiheit** respektieren
 - **Pluralität** fördern
 - **Rechtsstaatlichkeit** unterstützen
 
 ### 🌍 Inklusion & Vielfalt
+
 - **Barrierefreiheit** in allen Bereichen
 - **Mehrsprachigkeit** fördern (Deutsch, Englisch, andere)
 - **Kulturelle Vielfalt** wertschätzen
 
 ### 📚 Bildung & Aufklärung
+
 - **Kritisches Denken** fördern
 - **Faktenbasierte Diskussionen** führen
 - **Lebenslanges Lernen** unterstützen
@@ -118,16 +122,19 @@ Als österreichische NGO stehen wir für besondere Werte:
 ## 📞 Kontakt & Unterstützung
 
 ### Vertrauenspersonen:
+
 - **Code of Conduct Team**: `conduct@menschlichkeit-oesterreich.at`
 - **Technical Leads**: `technical@menschlichkeit-oesterreich.at`
 - **Community Manager**: `community@menschlichkeit-oesterreich.at`
 
 ### Externe Unterstützung:
+
 - **Beratungsstellen** für Diskriminierung und Belästigung
 - **Psychosoziale Unterstützung** bei Bedarf
 - **Rechtliche Beratung** in schwerwiegenden Fällen
 
 ### Notfallkontakte:
+
 - **Polizei Notruf**: 133
 - **Allgemeiner Notruf**: 112
 - **Telefonseelsorge**: 142

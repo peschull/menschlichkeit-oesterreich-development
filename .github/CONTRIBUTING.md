@@ -68,9 +68,9 @@ menschlichkeit-oesterreich-development/
 
 - **main** - Production-ready Code
 - **develop** - Integration Branch
-- **feature/*** - Feature Branches
-- **fix/*** - Bug Fixes
-- **hotfix/*** - Critical Production Fixes
+- **feature/\*** - Feature Branches
+- **fix/\*** - Bug Fixes
+- **hotfix/\*** - Critical Production Fixes
 
 ### Workflow
 
@@ -88,6 +88,7 @@ menschlichkeit-oesterreich-development/
 Alle Änderungen müssen folgende Quality Gates bestehen:
 
 ### Automatische Checks
+
 - ✅ **ESLint** - Code Qualität
 - ✅ **Prettier** - Code Formatierung
 - ✅ **PHPStan** - PHP Static Analysis
@@ -124,6 +125,7 @@ Wir verwenden [Conventional Commits](https://conventionalcommits.org/):
 ```
 
 ### Types
+
 - `feat:` - Neue Features
 - `fix:` - Bug Fixes
 - `docs:` - Dokumentation
@@ -151,22 +153,26 @@ Jeder PR muss folgende Informationen enthalten:
 
 ```markdown
 ## 📋 Änderungen
+
 - [ ] Feature/Fix Beschreibung
 - [ ] Breaking Changes (wenn zutreffend)
 - [ ] Dokumentation Updates
 
 ## 🧪 Testing
+
 - [ ] Unit Tests hinzugefügt/aktualisiert
 - [ ] E2E Tests durchgeführt
 - [ ] Manual Testing abgeschlossen
 
 ## 📊 Quality Gates
+
 - [ ] ESLint/PHPStan passed
 - [ ] Codacy Analysis passed
 - [ ] Security Scan passed
 - [ ] Performance Audit passed
 
 ## 🔐 Security
+
 - [ ] Keine Secrets im Code
 - [ ] DSGVO Compliance geprüft
 - [ ] Security Review durchgeführt
