@@ -13,10 +13,10 @@ class CodespaceDebugger {
       { name: 'n8n Automation', port: 5678, path: '/healthz', type: 'service' },
       { name: 'Website', port: 8080, path: '/', type: 'web' }
     ];
-    
+
     this.secrets = [
       'SSH_PRIVATE_KEY',
-      'PLESK_HOST', 
+      'PLESK_HOST',
       'LARAVEL_DB_PASS',
       'CIVICRM_DB_PASS',
       'MAIL_INFO_PASSWORD',
@@ -29,30 +29,30 @@ class CodespaceDebugger {
     const timestamp = new Date().toISOString();
     const emoji = {
       'info': 'ℹ️',
-      'success': '✅', 
+      'success': '✅',
       'warning': '⚠️',
       'error': '❌',
       'debug': '🔍'
     }[level] || 'ℹ️';
-    
+
     console.log(`${timestamp} ${emoji} [${service}] ${message}`);
   }
 
   async checkService(service) {
-    const baseUrl = this.codespace 
+    const baseUrl = this.codespace
       ? `https://${this.codespace}-${service.port}.preview.app.github.dev`
       : `http://localhost:${service.port}`;
-    
+
     const url = `${baseUrl}${service.path}`;
-    
+
     return new Promise((resolve) => {
       const startTime = Date.now();
       const client = url.startsWith('https') ? https : http;
-      
+
       const req = client.get(url, { timeout: 5000 }, (res) => {
         const responseTime = Date.now() - startTime;
         const status = res.statusCode;
-        
+
         if (status >= 200 && status < 400) {
           this.log('success', service.name, `${status} - ${responseTime}ms - ${url}`);
           resolve({ success: true, status, responseTime, url });
@@ -77,10 +77,10 @@ class CodespaceDebugger {
 
   checkSecrets() {
     this.log('info', 'SECRETS', 'Checking GitHub Secrets availability...');
-    
+
     const available = [];
     const missing = [];
-    
+
     for (const secret of this.secrets) {
       if (process.env[secret]) {
         available.push(secret);
@@ -91,13 +91,13 @@ class CodespaceDebugger {
         this.log('error', 'SECRET', `${secret}: Missing`);
       }
     }
-    
+
     return { available, missing };
   }
 
   checkEnvironment() {
     this.log('info', 'ENVIRONMENT', 'Checking Codespace environment...');
-    
+
     const env = {
       codespace: this.codespace || 'Not in Codespace',
       user: process.env.GITHUB_USER || 'Unknown',
@@ -110,7 +110,7 @@ class CodespaceDebugger {
     for (const [key, value] of Object.entries(env)) {
       this.log('info', 'ENV', `${key}: ${value}`);
     }
-    
+
     return env;
   }
 
@@ -123,25 +123,25 @@ class CodespaceDebugger {
     const env = this.checkEnvironment();
     console.log();
 
-    // 2. Secrets Check  
+    // 2. Secrets Check
     const secrets = this.checkSecrets();
     console.log();
 
     // 3. Service Health Check
     this.log('info', 'SERVICES', 'Testing all service endpoints...');
     const results = [];
-    
+
     for (const service of this.services) {
       const result = await this.checkService(service);
       results.push({ ...service, ...result });
-      
+
       // Small delay between requests
       await new Promise(resolve => setTimeout(resolve, 500));
     }
 
     console.log();
     this.generateSummary(env, secrets, results);
-    
+
     return {
       environment: env,
       secrets: secrets,
@@ -171,7 +171,7 @@ class CodespaceDebugger {
     // Services Summary
     const healthy = services.filter(s => s.success).length;
     const total = services.length;
-    
+
     console.log('🚀 Services:');
     console.log(`  Healthy: ${healthy}/${total}`);
     console.log();
@@ -183,7 +183,7 @@ class CodespaceDebugger {
     });
 
     console.log();
-    
+
     // Overall Health
     const envScore = env.codespace !== 'Not in Codespace' ? 1 : 0;
     const secretsScore = secrets.available.length / this.secrets.length;
@@ -192,7 +192,7 @@ class CodespaceDebugger {
 
     let grade = 'D';
     let color = '🔴';
-    
+
     if (overallScore >= 90) {
       grade = 'A';
       color = '🟢';
@@ -203,9 +203,9 @@ class CodespaceDebugger {
       grade = 'C';
       color = '🟡';
     }
-    
+
     console.log(`${color} Overall Health: ${overallScore.toFixed(1)}% (Grade: ${grade})`);
-    
+
     if (overallScore >= 90) {
       console.log('🎊 Codespace is fully operational!');
     } else if (overallScore >= 70) {
