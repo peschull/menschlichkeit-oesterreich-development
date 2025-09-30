@@ -13,15 +13,20 @@ const baseApi = {
 };
 
 // Generic API response shape from backend
-export interface ApiResponse<T = any> extends BaseApiResponse {
-  data: T;
-}
+export interface BaseApiResponse {
   success: boolean;
-  data?: T;
   message?: string;
 }
 
-export interface LoginResponse extends ApiResponse<{ token: string; expires_in: number }> {}
+export interface ApiResponse<T = any> extends BaseApiResponse {
+  data: T;
+  success: boolean;
+  message?: string;
+}
+
+export interface LoginResponse extends ApiResponse<{ token: string; expires_in: number }> {
+  // Login-specific properties
+}
 
 export interface CreateContactRequest {
   email: string;
