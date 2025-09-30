@@ -33,12 +33,12 @@ function Download-GitHubWorkflowLogs {
     } else {
         Write-Host "� Using token from parameter" -ForegroundColor Gray
     }
-    
+
     # Token Format Validation
     if (-not ($GitHubToken.StartsWith("ghp_") -or $GitHubToken.StartsWith("github_pat_"))) {
         Write-Host "⚠️ Warning: Token should start with 'ghp_' or 'github_pat_'" -ForegroundColor Yellow
     }
-    
+
     Write-Host "�🚀 GitHub Workflow Logs Downloader für menschlichkeit-oesterreich-development" -ForegroundColor Cyan
     Write-Host "Repository: $RepoOwner/$RepoName" -ForegroundColor Gray
     Write-Host "Branch: $Branch" -ForegroundColor Gray
@@ -47,9 +47,9 @@ function Download-GitHubWorkflowLogs {
 
     # Create output directory structure
     $logsPath = Join-Path $OutputPath "logs"
-    $extractPath = Join-Path $OutputPath "extracted" 
+    $extractPath = Join-Path $OutputPath "extracted"
     $analysisPath = Join-Path $OutputPath "analysis"
-    
+
     @($OutputPath, $logsPath, $extractPath, $analysisPath) | ForEach-Object {
         if (!(Test-Path $_)) {
             New-Item -ItemType Directory -Path $_ -Force | Out-Null
@@ -58,7 +58,7 @@ function Download-GitHubWorkflowLogs {
     }
 
     # Setup headers for GitHub API
-    $headers = @{ 
+    $headers = @{
         Authorization = "Bearer $GitHubToken"
         Accept = "application/vnd.github.v3+json"
         'User-Agent' = 'PowerShell-MenschlichkeitOesterreich-LogDownloader'
@@ -66,24 +66,24 @@ function Download-GitHubWorkflowLogs {
 
     # Get workflow runs with pagination
     Write-Host "`n🔍 Fetching workflow runs..." -ForegroundColor Yellow
-    
+
     $allRuns = @()
     $page = 1
     $perPage = 100
-    
+
     do {
         try {
             $runsUrl = "https://api.github.com/repos/$RepoOwner/$RepoName/actions/runs?branch=$Branch&per_page=$perPage&page=$page"
             $response = Invoke-RestMethod -Uri $runsUrl -Headers $headers
-            
+
             $filteredRuns = $response.workflow_runs
             if ($WorkflowNames.Count -gt 0) {
                 $filteredRuns = $filteredRuns | Where-Object { $_.name -in $WorkflowNames }
             }
-            
+
             $allRuns += $filteredRuns
             Write-Host "  📄 Page $page : $($filteredRuns.Count) runs found" -ForegroundColor Gray
-            
+
             $page++
         }
         catch {
@@ -107,7 +107,7 @@ function Download-GitHubWorkflowLogs {
         $commit = if ($run.head_commit.id) { $run.head_commit.id.Substring(0,7) } else { "no-commit" }
         $timestamp = ([DateTime]$run.created_at).ToString('yyyy-MM-dd_HH-mm-ss')
         $status = $run.conclusion
-        
+
         # Create filename with all metadata
         $zipName = "$workflowName-$commit-$runId-$timestamp-$status.zip"
         $zipPath = Join-Path $logsPath $zipName
@@ -116,17 +116,17 @@ function Download-GitHubWorkflowLogs {
 
         try {
             $logUrl = "https://api.github.com/repos/$RepoOwner/$RepoName/actions/runs/$runId/logs"
-            
+
             # Download with progress
             $webClient = New-Object System.Net.WebClient
             $webClient.Headers.Add('Authorization', "Bearer $GitHubToken")
             $webClient.Headers.Add('User-Agent', 'PowerShell-MenschlichkeitOesterreich-LogDownloader')
-            
+
             $webClient.DownloadFile($logUrl, $zipPath)
-            
+
             $fileSize = [math]::Round((Get-Item $zipPath).Length / 1KB, 2)
             Write-Host "  ✅ Downloaded: $zipName ($fileSize KB)" -ForegroundColor Green
-            
+
             $downloadResult = @{
                 RunId = $runId
                 WorkflowName = $run.name
@@ -139,7 +139,7 @@ function Download-GitHubWorkflowLogs {
                 FileSizeKB = $fileSize
                 DownloadSuccess = $true
             }
-            
+
             # Extract logs if requested
             if ($ExtractLogs) {
                 $extractDir = Join-Path $extractPath "$workflowName-$commit-$runId"
@@ -156,7 +156,7 @@ function Download-GitHubWorkflowLogs {
                     }
                 }
             }
-            
+
         }
         catch {
             Write-Host "  ❌ Download failed: $($_.Exception.Message)" -ForegroundColor Red
@@ -168,9 +168,9 @@ function Download-GitHubWorkflowLogs {
                 Error = $_.Exception.Message
             }
         }
-        
+
         $downloadResults += $downloadResult
-        
+
         # Small delay to avoid rate limiting
         Start-Sleep -Milliseconds 250
     }
@@ -178,7 +178,7 @@ function Download-GitHubWorkflowLogs {
     # Generate summary report
     $timestamp = Get-Date -Format 'yyyy-MM-dd_HH-mm-ss'
     $summaryPath = Join-Path $OutputPath "download-summary-$timestamp.json"
-    
+
     $summary = @{
         Repository = "$RepoOwner/$RepoName"
         Branch = $Branch
@@ -191,7 +191,7 @@ function Download-GitHubWorkflowLogs {
         StatusBreakdown = $downloadResults | Group-Object Status | Select-Object Name, Count
         Results = $downloadResults
     }
-    
+
     $summary | ConvertTo-Json -Depth 10 | Out-File -FilePath $summaryPath -Encoding utf8
     Write-Host "`n📊 Summary saved: $summaryPath" -ForegroundColor Green
 
@@ -216,11 +216,11 @@ function Download-GitHubWorkflowLogs {
     Write-Host "📁 Logs saved to: $logsPath" -ForegroundColor Gray
     Write-Host "📊 Summary: $($summary.SuccessfulDownloads)/$($summary.TotalRuns) downloads successful" -ForegroundColor Gray
     Write-Host "💾 Total size: $([math]::Round($summary.TotalSizeKB / 1024, 2)) MB" -ForegroundColor Gray
-    
+
     if ($ExtractLogs) {
         Write-Host "📦 Extracted to: $extractPath" -ForegroundColor Gray
     }
-    
+
     return $summary
 }
 
@@ -229,9 +229,9 @@ function Invoke-MetaAnalysis {
         [array]$DownloadResults,
         [string]$OutputPath
     )
-    
+
     Write-Host "🔬 Starting meta-analysis of GitHub Actions logs..." -ForegroundColor Cyan
-    
+
     $metaAnalysis = @{
         AnalysisTime = (Get-Date).ToString('yyyy-MM-dd HH:mm:ss')
         TotalLogsAnalyzed = 0
@@ -242,25 +242,25 @@ function Invoke-MetaAnalysis {
         QualityMetrics = @{}
         WorkflowInsights = @{}
     }
-    
+
     foreach ($result in ($DownloadResults | Where-Object { $_.ExtractSuccess })) {
         Write-Host "  🔍 Analyzing: $($result.WorkflowName)" -ForegroundColor Gray
-        
+
         $logFiles = Get-ChildItem -Path $result.ExtractPath -Recurse -Filter "*.txt" -ErrorAction SilentlyContinue
         $metaAnalysis.TotalLogsAnalyzed += $logFiles.Count
-        
+
         foreach ($logFile in $logFiles) {
             $jobName = [System.IO.Path]::GetFileNameWithoutExtension($logFile.Name)
-            
+
             try {
                 $content = Get-Content -Path $logFile.FullName -Raw -ErrorAction SilentlyContinue
-                
+
                 # Error Pattern Analysis
                 $errorPatterns = @(
-                    'npm ERR!', 'Error:', 'Exception:', 'FAILED', 'fatal:', 'AssertionError', 
+                    'npm ERR!', 'Error:', 'Exception:', 'FAILED', 'fatal:', 'AssertionError',
                     'SyntaxError', 'TypeError', 'ModuleNotFoundError', 'ImportError'
                 )
-                
+
                 foreach ($pattern in $errorPatterns) {
                     $matches = Select-String -InputObject $content -Pattern $pattern -AllMatches
                     if ($matches.Matches.Count -gt 0) {
@@ -270,7 +270,7 @@ function Invoke-MetaAnalysis {
                         $metaAnalysis.ErrorPatterns[$pattern] += $matches.Matches.Count
                     }
                 }
-                
+
                 # Warning Pattern Analysis
                 $warningPatterns = @('WARNING', 'WARN', 'deprecated', 'vulnerability found')
                 foreach ($pattern in $warningPatterns) {
@@ -282,7 +282,7 @@ function Invoke-MetaAnalysis {
                         $metaAnalysis.WarningPatterns[$pattern] += $matches.Matches.Count
                     }
                 }
-                
+
                 # Performance Metrics
                 $timePattern = '(\d+\.?\d*)\s*(ms|sec|seconds|minutes)'
                 $timeMatches = Select-String -InputObject $content -Pattern $timePattern -AllMatches
@@ -292,7 +292,7 @@ function Invoke-MetaAnalysis {
                     }
                     $metaAnalysis.PerformanceMetrics[$jobName] += $timeMatches.Matches.Count
                 }
-                
+
                 # Security Findings
                 $securityPatterns = @('CVE-', 'vulnerability', 'security audit', 'high severity', 'critical severity')
                 foreach ($pattern in $securityPatterns) {
@@ -304,7 +304,7 @@ function Invoke-MetaAnalysis {
                         $metaAnalysis.SecurityFindings[$pattern] += $matches.Matches.Count
                     }
                 }
-                
+
                 # Quality Metrics (ESLint, PHPStan, pytest, etc.)
                 $qualityTools = @('eslint', 'phpstan', 'pytest', 'coverage', 'sonar', 'codacy')
                 foreach ($tool in $qualityTools) {
@@ -316,13 +316,13 @@ function Invoke-MetaAnalysis {
                         $metaAnalysis.QualityMetrics[$tool] += $matches.Matches.Count
                     }
                 }
-                
+
             }
             catch {
                 Write-Host "    ⚠️ Could not analyze $($logFile.Name): $($_.Exception.Message)" -ForegroundColor Yellow
             }
         }
-        
+
         # Workflow-specific insights
         $workflowKey = $result.WorkflowName
         if (-not $metaAnalysis.WorkflowInsights.ContainsKey($workflowKey)) {
@@ -333,7 +333,7 @@ function Invoke-MetaAnalysis {
                 AverageFileSizeKB = 0
             }
         }
-        
+
         $metaAnalysis.WorkflowInsights[$workflowKey].TotalRuns++
         if ($result.Status -eq 'success') {
             $metaAnalysis.WorkflowInsights[$workflowKey].SuccessfulRuns++
@@ -341,24 +341,24 @@ function Invoke-MetaAnalysis {
             $metaAnalysis.WorkflowInsights[$workflowKey].FailedRuns++
         }
     }
-    
+
     # Generate comprehensive report
     $timestamp = Get-Date -Format 'yyyy-MM-dd_HH-mm-ss'
     $reportPath = Join-Path $OutputPath "meta-analysis-$timestamp.json"
     $metaAnalysis | ConvertTo-Json -Depth 10 | Out-File -FilePath $reportPath -Encoding utf8
-    
+
     # Generate human-readable summary
     $readablePath = Join-Path $OutputPath "meta-analysis-summary-$timestamp.md"
     $readableContent = @"
 # GitHub Actions Meta-Analysis Report
-**Repository:** menschlichkeit-oesterreich-development  
-**Analysis Time:** $($metaAnalysis.AnalysisTime)  
+**Repository:** menschlichkeit-oesterreich-development
+**Analysis Time:** $($metaAnalysis.AnalysisTime)
 **Total Log Files Analyzed:** $($metaAnalysis.TotalLogsAnalyzed)
 
 ## 🚨 Top Error Patterns
 $($metaAnalysis.ErrorPatterns.GetEnumerator() | Sort-Object Value -Descending | Select-Object -First 10 | ForEach-Object { "- **$($_.Key)**: $($_.Value) occurrences" } | Out-String)
 
-## ⚠️ Warning Patterns  
+## ⚠️ Warning Patterns
 $($metaAnalysis.WarningPatterns.GetEnumerator() | Sort-Object Value -Descending | Select-Object -First 5 | ForEach-Object { "- **$($_.Key)**: $($_.Value) occurrences" } | Out-String)
 
 ## 🛡️ Security Findings
@@ -368,7 +368,7 @@ $($metaAnalysis.SecurityFindings.GetEnumerator() | Sort-Object Value -Descending
 $($metaAnalysis.QualityMetrics.GetEnumerator() | Sort-Object Value -Descending | ForEach-Object { "- **$($_.Key)**: $($_.Value) mentions" } | Out-String)
 
 ## 🔄 Workflow Performance
-$($metaAnalysis.WorkflowInsights.GetEnumerator() | ForEach-Object { 
+$($metaAnalysis.WorkflowInsights.GetEnumerator() | ForEach-Object {
     $successRate = if ($_.Value.TotalRuns -gt 0) { [math]::Round(($_.Value.SuccessfulRuns / $_.Value.TotalRuns) * 100, 1) } else { 0 }
     "- **$($_.Key)**: $($_.Value.TotalRuns) runs, $successRate% success rate"
 } | Out-String)
@@ -376,9 +376,9 @@ $($metaAnalysis.WorkflowInsights.GetEnumerator() | ForEach-Object {
 ---
 *Generated by menschlichkeit-oesterreich GitHub Actions Log Analyzer*
 "@
-    
+
     $readableContent | Out-File -FilePath $readablePath -Encoding utf8
-    
+
     return @{
         ReportPath = $reportPath
         SummaryPath = $readablePath
@@ -389,10 +389,10 @@ $($metaAnalysis.WorkflowInsights.GetEnumerator() | ForEach-Object {
 function Get-WorkflowSummary {
     param(
         [string]$RepoOwner = "peschull",
-        [string]$RepoName = "menschlichkeit-oesterreich-development", 
+        [string]$RepoName = "menschlichkeit-oesterreich-development",
         [string]$GitHubToken
     )
-    
+
     # Token Fallback
     if (-not $GitHubToken) {
         $GitHubToken = $env:GITHUB_TOKEN
@@ -401,18 +401,18 @@ function Get-WorkflowSummary {
             return @()
         }
     }
-    
+
     $headers = @{ Authorization = "Bearer $GitHubToken" }
     $workflowsUrl = "https://api.github.com/repos/$RepoOwner/$RepoName/actions/workflows"
-    
+
     try {
         $workflows = Invoke-RestMethod -Uri $workflowsUrl -Headers $headers
-        
+
         Write-Host "🔧 Available Workflows in $RepoOwner/$RepoName :" -ForegroundColor Cyan
         foreach ($workflow in $workflows.workflows) {
             Write-Host "  - $($workflow.name) (ID: $($workflow.id), State: $($workflow.state))" -ForegroundColor Gray
         }
-        
+
         return $workflows.workflows
     }
     catch {

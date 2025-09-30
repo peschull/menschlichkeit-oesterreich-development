@@ -18,17 +18,17 @@ if (-not $githubToken) {
     Write-Host "2️⃣ Berechtigungen: repo + workflow" -ForegroundColor Yellow
     Write-Host "3️⃣ Token hier eingeben (wird nicht angezeigt)" -ForegroundColor Yellow
     Write-Host ""
-    
+
     # Sichere Token-Eingabe ohne Anzeige
     $secureToken = Read-Host "GitHub Token eingeben" -AsSecureString
     $githubToken = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto([System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($secureToken))
-    
+
     if (-not $githubToken -or $githubToken.Length -lt 10) {
         Write-Host "❌ Ungültiger Token!" -ForegroundColor Red
         Write-Host "Token muss mindestens 10 Zeichen haben und mit 'ghp_' beginnen" -ForegroundColor Yellow
         exit 1
     }
-    
+
     # Validation: GitHub Token Format
     if (-not $githubToken.StartsWith("ghp_") -and -not $githubToken.StartsWith("github_pat_")) {
         Write-Host "⚠️ Token Format Warning: Erwartet 'ghp_' oder 'github_pat_' Prefix" -ForegroundColor Yellow
@@ -37,7 +37,7 @@ if (-not $githubToken) {
             exit 1
         }
     }
-    
+
     Write-Host "✅ Token akzeptiert!" -ForegroundColor Green
     Write-Host ""
 }
@@ -48,7 +48,7 @@ Write-Host "=====================================================" -ForegroundCo
 # Menu für verschiedene Optionen
 Write-Host "`n📋 Available Options:" -ForegroundColor Yellow
 Write-Host "1️⃣  Download all workflow logs (last 50 runs)" -ForegroundColor White
-Write-Host "2️⃣  Download + Extract + Meta-Analysis" -ForegroundColor White  
+Write-Host "2️⃣  Download + Extract + Meta-Analysis" -ForegroundColor White
 Write-Host "3️⃣  List available workflows" -ForegroundColor White
 Write-Host "4️⃣  Download specific workflow only" -ForegroundColor White
 Write-Host "5️⃣  Quick analysis (last 10 runs)" -ForegroundColor White
@@ -60,32 +60,32 @@ switch ($choice) {
         Write-Host "`n🚀 Downloading all workflow logs..." -ForegroundColor Green
         Download-GitHubWorkflowLogs -RepoOwner $repoOwner -RepoName $repoName -GitHubToken $githubToken -MaxRuns 50
     }
-    
+
     "2" {
         Write-Host "`n🧠 Full analysis with extraction and meta-analysis..." -ForegroundColor Green
         Download-GitHubWorkflowLogs -RepoOwner $repoOwner -RepoName $repoName -GitHubToken $githubToken -MaxRuns 30 -ExtractLogs -MetaAnalysis -CleanupZips
     }
-    
+
     "3" {
         Write-Host "`n📋 Fetching available workflows..." -ForegroundColor Green
         Get-WorkflowSummary -RepoOwner $repoOwner -RepoName $repoName -GitHubToken $githubToken
     }
-    
+
     "4" {
         Write-Host "`n🔍 Available workflows:" -ForegroundColor Yellow
         $workflows = Get-WorkflowSummary -RepoOwner $repoOwner -RepoName $repoName -GitHubToken $githubToken
-        
+
         if ($workflows.Count -gt 0) {
             $workflowName = Read-Host "`nEnter workflow name to download"
             Download-GitHubWorkflowLogs -RepoOwner $repoOwner -RepoName $repoName -GitHubToken $githubToken -WorkflowNames @($workflowName) -ExtractLogs
         }
     }
-    
+
     "5" {
         Write-Host "`n⚡ Quick analysis (last 10 runs)..." -ForegroundColor Green
         Download-GitHubWorkflowLogs -RepoOwner $repoOwner -RepoName $repoName -GitHubToken $githubToken -MaxRuns 10 -ExtractLogs -MetaAnalysis
     }
-    
+
     default {
         Write-Host "❌ Invalid selection. Please run the script again." -ForegroundColor Red
         exit 1

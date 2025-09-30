@@ -11,7 +11,7 @@ class CodespaceDebugger {
       { name: 'API (FastAPI)', port: 8001, path: '/docs', type: 'api' },
       { name: 'CRM (CiviCRM)', port: 8000, path: '/', type: 'web' },
       { name: 'n8n Automation', port: 5678, path: '/healthz', type: 'service' },
-      { name: 'Website', port: 8080, path: '/', type: 'web' }
+      { name: 'Website', port: 8080, path: '/', type: 'web' },
     ];
 
     this.secrets = [
@@ -21,19 +21,20 @@ class CodespaceDebugger {
       'CIVICRM_DB_PASS',
       'MAIL_INFO_PASSWORD',
       'CODACY_API_TOKEN',
-      'SNYK_TOKEN'
+      'SNYK_TOKEN',
     ];
   }
 
   log(level, service, message) {
     const timestamp = new Date().toISOString();
-    const emoji = {
-      'info': 'ℹ️',
-      'success': '✅',
-      'warning': '⚠️',
-      'error': '❌',
-      'debug': '🔍'
-    }[level] || 'ℹ️';
+    const emoji =
+      {
+        info: 'ℹ️',
+        success: '✅',
+        warning: '⚠️',
+        error: '❌',
+        debug: '🔍',
+      }[level] || 'ℹ️';
 
     console.log(`${timestamp} ${emoji} [${service}] ${message}`);
   }
@@ -45,11 +46,11 @@ class CodespaceDebugger {
 
     const url = `${baseUrl}${service.path}`;
 
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       const startTime = Date.now();
       const client = url.startsWith('https') ? https : http;
 
-      const req = client.get(url, { timeout: 5000 }, (res) => {
+      const req = client.get(url, { timeout: 5000 }, res => {
         const responseTime = Date.now() - startTime;
         const status = res.statusCode;
 
@@ -68,7 +69,7 @@ class CodespaceDebugger {
         resolve({ success: false, error: 'timeout', url });
       });
 
-      req.on('error', (err) => {
+      req.on('error', err => {
         this.log('error', service.name, `${err.message} - ${url}`);
         resolve({ success: false, error: err.message, url });
       });
@@ -104,7 +105,7 @@ class CodespaceDebugger {
       workspace: process.env.PWD || process.cwd(),
       nodeVersion: process.version,
       platform: process.platform,
-      arch: process.arch
+      arch: process.arch,
     };
 
     for (const [key, value] of Object.entries(env)) {
@@ -146,7 +147,7 @@ class CodespaceDebugger {
       environment: env,
       secrets: secrets,
       services: results,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
   }
 
@@ -157,7 +158,9 @@ class CodespaceDebugger {
 
     // Environment Summary
     console.log('🌐 Environment:');
-    console.log(`  Codespace: ${env.codespace !== 'Not in Codespace' ? '✅' : '❌'} ${env.codespace}`);
+    console.log(
+      `  Codespace: ${env.codespace !== 'Not in Codespace' ? '✅' : '❌'} ${env.codespace}`
+    );
     console.log(`  User: ${env.user}`);
     console.log(`  Node.js: ${env.nodeVersion}`);
     console.log();

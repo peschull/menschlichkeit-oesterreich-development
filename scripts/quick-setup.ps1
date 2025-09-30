@@ -51,24 +51,24 @@ if (-not $GitHubToken -and -not $env:GITHUB_TOKEN) {
     Write-Host "   ✅ Metadata: Read (Repository-Metadaten)" -ForegroundColor Green
     Write-Host "4️⃣ Token kopieren (beginnt mit github_pat_...)" -ForegroundColor White
     Write-Host ""
-    
+
     # Sichere Token-Eingabe
     do {
         $secureToken = Read-Host "GitHub Token eingeben (versteckte Eingabe)" -AsSecureString
         $GitHubToken = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto([System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($secureToken))
-        
+
         if (-not $GitHubToken -or $GitHubToken.Length -lt 10) {
             Write-Host "❌ Token zu kurz! Mindestens 10 Zeichen erforderlich." -ForegroundColor Red
         }
     } while (-not $GitHubToken -or $GitHubToken.Length -lt 10)
-    
+
     # Token Validierung
     if ($GitHubToken.StartsWith("ghp_") -or $GitHubToken.StartsWith("github_pat_")) {
         Write-Host "✅ Token Format korrekt" -ForegroundColor Green
     } else {
         Write-Host "⚠️ Unerwartetes Token Format (sollte mit 'ghp_' oder 'github_pat_' beginnen)" -ForegroundColor Yellow
     }
-    
+
     # Session Token setzen
     $env:GITHUB_TOKEN = $GitHubToken
     Write-Host "✅ Token für diese Session gesetzt" -ForegroundColor Green
@@ -84,7 +84,7 @@ if ($SetupOnly) {
     Write-Host "# Vollständige Analyse:" -ForegroundColor Cyan
     Write-Host "Download-GitHubWorkflowLogs -ExtractLogs -MetaAnalysis" -ForegroundColor White
     Write-Host ""
-    Write-Host "# Nur Download:" -ForegroundColor Cyan  
+    Write-Host "# Nur Download:" -ForegroundColor Cyan
     Write-Host "Download-GitHubWorkflowLogs" -ForegroundColor White
     Write-Host ""
     Write-Host "# Workflows auflisten:" -ForegroundColor Cyan
@@ -127,7 +127,7 @@ switch ($choice) {
             Write-Host "❌ Fehler beim Laden der Workflows: $($_.Exception.Message)" -ForegroundColor Red
         }
     }
-    
+
     "2" {
         Write-Host "`n⚡ Quick Analysis (5 Runs)..." -ForegroundColor Cyan
         try {
@@ -137,7 +137,7 @@ switch ($choice) {
             Write-Host "❌ Fehler bei Quick Analysis: $($_.Exception.Message)" -ForegroundColor Red
         }
     }
-    
+
     "3" {
         Write-Host "`n🧠 Vollständige Analyse (30 Runs)..." -ForegroundColor Cyan
         try {
@@ -147,7 +147,7 @@ switch ($choice) {
             Write-Host "❌ Fehler bei vollständiger Analyse: $($_.Exception.Message)" -ForegroundColor Red
         }
     }
-    
+
     "4" {
         Write-Host "`n📥 Nur Downloads (50 Runs)..." -ForegroundColor Cyan
         try {
@@ -157,7 +157,7 @@ switch ($choice) {
             Write-Host "❌ Fehler beim Download: $($_.Exception.Message)" -ForegroundColor Red
         }
     }
-    
+
     "5" {
         Write-Host "`n🔍 Verfügbare Workflows:" -ForegroundColor Yellow
         try {
@@ -171,32 +171,32 @@ switch ($choice) {
             Write-Host "❌ Fehler bei spezifischer Analyse: $($_.Exception.Message)" -ForegroundColor Red
         }
     }
-    
+
     "6" {
         Write-Host "`n🛠️ Custom Optionen:" -ForegroundColor Yellow
         $maxRuns = Read-Host "Max Runs (Standard: 20)"
         if (-not $maxRuns) { $maxRuns = 20 }
-        
+
         $extract = Read-Host "Logs extrahieren? (y/n)"
         $meta = Read-Host "Meta-Analyse durchführen? (y/n)"
         $cleanup = Read-Host "ZIPs nach Extraktion löschen? (y/n)"
-        
+
         try {
             $params = @{
                 MaxRuns = [int]$maxRuns
             }
-            
+
             if ($extract -eq 'y') { $params.ExtractLogs = $true }
             if ($meta -eq 'y') { $params.MetaAnalysis = $true }
             if ($cleanup -eq 'y') { $params.CleanupZips = $true }
-            
+
             Download-GitHubWorkflowLogs @params
         }
         catch {
             Write-Host "❌ Fehler bei Custom-Analyse: $($_.Exception.Message)" -ForegroundColor Red
         }
     }
-    
+
     default {
         Write-Host "❌ Ungültige Auswahl" -ForegroundColor Red
         exit 1

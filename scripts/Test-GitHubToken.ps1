@@ -7,16 +7,16 @@ param(
 
 function Test-GitHubTokenFormat {
     param([string]$Token)
-    
-    if ([string]::IsNullOrWhiteSpace($Token)) { 
+
+    if ([string]::IsNullOrWhiteSpace($Token)) {
         return @{ Valid = $false; Type = "Empty"; Secure = $false; Message = "Token ist leer" }
     }
-    
+
     # Prüfe fine-grained Token Format (github_pat_...)
     if ($Token.StartsWith("github_pat_")) {
         # Fine-grained Token: github_pat_[variable length]
         if ($Token.Length -ge 70 -and $Token -match "^github_pat_[A-Za-z0-9_-]+$") {
-            return @{ 
+            return @{
                 Valid = $true
                 Type = "Fine-Grained"
                 Secure = $true
@@ -32,7 +32,7 @@ function Test-GitHubTokenFormat {
             }
         }
     }
-    
+
     # Prüfe klassisches Token Format (ghp_...)
     elseif ($Token.StartsWith("ghp_")) {
         if ($Token.Length -eq 40 -and $Token -match "^ghp_[A-Za-z0-9]{36}$") {
@@ -52,7 +52,7 @@ function Test-GitHubTokenFormat {
             }
         }
     }
-    
+
     # Unbekanntes Format
     else {
         return @{
@@ -66,21 +66,21 @@ function Test-GitHubTokenFormat {
 
 function Show-TokenStatus {
     param([hashtable]$TokenInfo)
-    
+
     Write-Host "`n🔍 Token-Analyse:" -ForegroundColor Cyan
     Write-Host "=================" -ForegroundColor Gray
     Write-Host "Typ: $($TokenInfo.Type)" -ForegroundColor $(if ($TokenInfo.Secure) { "Green" } else { "Yellow" })
     Write-Host "Gültig: $(if ($TokenInfo.Valid) { "✅ Ja" } else { "❌ Nein" })" -ForegroundColor $(if ($TokenInfo.Valid) { "Green" } else { "Red" })
     Write-Host "Sicher: $(if ($TokenInfo.Secure) { "🔒 Ja" } else { "⚠️ Klassisch" })" -ForegroundColor $(if ($TokenInfo.Secure) { "Green" } else { "Yellow" })
     Write-Host "Status: $($TokenInfo.Message)" -ForegroundColor $(if ($TokenInfo.Valid) { "Green" } else { "Red" })
-    
+
     if ($TokenInfo.Permissions) {
         Write-Host "`nBerechtigungen:" -ForegroundColor Cyan
         foreach ($perm in $TokenInfo.Permissions) {
             Write-Host "  • $perm" -ForegroundColor White
         }
     }
-    
+
     if ($TokenInfo.Recommendation) {
         Write-Host "`n💡 Empfehlung: $($TokenInfo.Recommendation)" -ForegroundColor Yellow
     }
@@ -93,17 +93,17 @@ if ($TestToken) {
 } else {
     # Test mit Token aus Sicherheitsdatei
     $tokenFile = Join-Path $PSScriptRoot "..\secrets\github-token.ps1"
-    
+
     if (Test-Path $tokenFile) {
         Write-Host "🔍 Lade Token aus Sicherheitsdatei..." -ForegroundColor Cyan
-        
+
         try {
             . $tokenFile
-            
+
             if ($env:GITHUB_TOKEN) {
                 $result = Test-GitHubTokenFormat -Token $env:GITHUB_TOKEN
                 Show-TokenStatus -TokenInfo $result
-                
+
                 # Zeige Datei-Info
                 Write-Host "`n📄 Token-Datei: $tokenFile" -ForegroundColor Gray
                 Write-Host "🔒 Sicher gespeichert und von Git ausgeschlossen" -ForegroundColor Green

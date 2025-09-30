@@ -7,6 +7,7 @@ Vollständiges PowerShell-Modul zum automatisierten Download und Meta-Analyse al
 ## ⚡ **Quick Start**
 
 ### **1. GitHub Fine-Grained Token erstellen (Empfohlen)**
+
 1. Gehe zu **https://github.com/settings/personal-access-tokens/fine-grained**
 2. Klicke auf **"Generate new token"**
 3. **Repository access:** Wähle "Selected repositories" → `menschlichkeit-oesterreich-development`
@@ -18,6 +19,7 @@ Vollständiges PowerShell-Modul zum automatisierten Download und Meta-Analyse al
 6. Token beginnt mit `github_pat_...`
 
 ### **2. PowerShell-Modul importieren**
+
 ```powershell
 # Modul aus dem scripts-Verzeichnis laden
 Import-Module "D:\Arbeitsverzeichniss\scripts\Download-GitHubWorkflowLogs.psm1"
@@ -26,6 +28,7 @@ Import-Module "D:\Arbeitsverzeichniss\scripts\Download-GitHubWorkflowLogs.psm1"
 ### **3. Sicheres Token-Management**
 
 #### **Option A: Direkt als Parameter (Empfohlen)**
+
 ```powershell
 Download-GitHubWorkflowLogs `
   -GitHubToken "ghp_ABC123xyz456DEIN_TOKEN" `
@@ -35,6 +38,7 @@ Download-GitHubWorkflowLogs `
 ```
 
 #### **Option B: Sicherheitsdatei (Beste Praxis)**
+
 ```powershell
 # 1. Token in separater Datei speichern (secrets/github-token.ps1)
 $env:GITHUB_TOKEN = "github_pat_ABC123..."
@@ -42,11 +46,12 @@ $env:GITHUB_TOKEN = "github_pat_ABC123..."
 # 2. Sicherheitsdatei laden
 . .\secrets\github-token.ps1
 
-# 3. Modul ohne Token-Parameter ausführen  
+# 3. Modul ohne Token-Parameter ausführen
 Download-GitHubWorkflowLogs
 ```
 
 #### **Option C: Umgebungsvariable (Session-basiert)**
+
 ```powershell
 # Token in Umgebungsvariable speichern (nur für diese Session)
 $env:GITHUB_TOKEN = "github_pat_ABC123xyz456DEIN_TOKEN"
@@ -56,6 +61,7 @@ Download-GitHubWorkflowLogs -RepoOwner "peschull" -RepoName "menschlichkeit-oest
 ```
 
 #### **Option C: Benutzerfreundliches Interface**
+
 ```powershell
 # Interaktives Script (fragt nach Token)
 .\scripts\run-log-analysis.ps1
@@ -66,6 +72,7 @@ Download-GitHubWorkflowLogs -RepoOwner "peschull" -RepoName "menschlichkeit-oest
 ## 🛠️ **Funktionen**
 
 ### **Download-GitHubWorkflowLogs**
+
 Hauptfunktion zum Download aller Workflow-Logs mit erweiterten Features.
 
 ```powershell
@@ -73,7 +80,8 @@ Download-GitHubWorkflowLogs -GitHubToken "token" -ExtractLogs -MetaAnalysis
 ```
 
 **Parameter:**
-- `GitHubToken` (Required*): Dein GitHub Personal Access Token (oder via $env:GITHUB_TOKEN)
+
+- `GitHubToken` (Required\*): Dein GitHub Personal Access Token (oder via $env:GITHUB_TOKEN)
 - `RepoOwner`: Repository Owner (Standard: "peschull")
 - `RepoName`: Repository Name (Standard: "menschlichkeit-oesterreich-development")
 - `Branch`: Branch (Standard: "main")
@@ -84,19 +92,22 @@ Download-GitHubWorkflowLogs -GitHubToken "token" -ExtractLogs -MetaAnalysis
 - `MetaAnalysis`: Meta-Analyse durchführen
 - `CleanupZips`: ZIP-Dateien nach Extraktion löschen
 
-*Token kann als Parameter oder Umgebungsvariable übergeben werden
+\*Token kann als Parameter oder Umgebungsvariable übergeben werden
 
 ### **Invoke-MetaAnalysis**
+
 Erweiterte Analyse der extrahierten Log-Dateien.
 
 **Analysiert:**
+
 - 🚨 Error Patterns (npm ERR!, SyntaxError, etc.)
 - ⚠️ Warning Patterns (deprecated, vulnerabilities)
-- 🛡️ Security Findings (CVE-*, high severity)
+- 🛡️ Security Findings (CVE-\*, high severity)
 - 📊 Quality Tool Usage (ESLint, PHPStan, pytest)
 - 🔄 Workflow Performance & Success Rates
 
 ### **Get-WorkflowSummary**
+
 Zeigt alle verfügbaren Workflows im Repository.
 
 ```powershell
@@ -122,6 +133,7 @@ Get-WorkflowSummary -GitHubToken "token"
 ```
 
 **Datei-Naming-Convention:**
+
 ```
 {WorkflowName}-{Commit}-{RunID}-{Timestamp}-{Status}.zip
 ```
@@ -131,6 +143,7 @@ Get-WorkflowSummary -GitHubToken "token"
 ## 🎯 **Anwendungsbeispiele**
 
 ### **Scenario 1: Vollständige Analyse**
+
 ```powershell
 # Download + Extract + Meta-Analysis + Cleanup
 Download-GitHubWorkflowLogs `
@@ -142,6 +155,7 @@ Download-GitHubWorkflowLogs `
 ```
 
 ### **Scenario 2: Spezifischer Workflow**
+
 ```powershell
 # Nur CI/CD Pipeline Logs
 Download-GitHubWorkflowLogs `
@@ -151,6 +165,7 @@ Download-GitHubWorkflowLogs `
 ```
 
 ### **Scenario 3: Quick Check**
+
 ```powershell
 # Letzten 10 Runs für schnelle Analyse
 Download-GitHubWorkflowLogs `
@@ -160,6 +175,7 @@ Download-GitHubWorkflowLogs `
 ```
 
 ### **Scenario 4: Bulk Download ohne Analyse**
+
 ```powershell
 # Alle Logs der letzten 100 Runs nur downloaden
 Download-GitHubWorkflowLogs `
@@ -172,24 +188,28 @@ Download-GitHubWorkflowLogs `
 ## 📊 **Meta-Analyse Features**
 
 ### **Error Pattern Recognition**
+
 - **npm ERR!**: Node.js package installation failures
 - **SyntaxError**: Code syntax issues
-- **ModuleNotFoundError**: Python import issues  
+- **ModuleNotFoundError**: Python import issues
 - **FAILED**: General test/build failures
 
 ### **Security Scanning**
-- **CVE-*** pattern detection
+
+- **CVE-\*** pattern detection
 - **vulnerability** mentions
 - **high/critical severity** alerts
 - **security audit** results
 
 ### **Quality Metrics**
+
 - **ESLint** usage and results
 - **PHPStan** static analysis
 - **pytest** test coverage
 - **Codacy** quality reports
 
 ### **Performance Tracking**
+
 - Build times extraction
 - Test execution times
 - Workflow success rates
@@ -202,6 +222,7 @@ Download-GitHubWorkflowLogs `
 ### **🔐 Security Best Practices:**
 
 #### **Token-Sicherheit:**
+
 - ✅ **Fine-grained Tokens verwenden** (repository-spezifisch)
 - ✅ **Token in separater Sicherheitsdatei** (secrets/github-token.ps1)
 - ✅ **Sicherheitsdatei zu .gitignore hinzufügen**
@@ -211,6 +232,7 @@ Download-GitHubWorkflowLogs `
 - ✅ **Token nach Nutzung aus Zwischenablage löschen**
 
 #### **Sichere Token-Verwendung:**
+
 ```powershell
 # ✅ GUT: Token als Parameter
 Download-GitHubWorkflowLogs -GitHubToken "ghp_xxx"
@@ -226,22 +248,27 @@ Download-GitHubWorkflowLogs
 ### **Common Issues:**
 
 **❌ "401 Unauthorized"**
+
 - Token fehlt oder ungültig
 - Lösung: Neuen Token mit `repo` + `workflow` Berechtigungen erstellen
 
-**❌ "403 Rate Limited"**  
+**❌ "403 Rate Limited"**
+
 - GitHub API Rate Limit erreicht
 - Lösung: Warten oder `MaxRuns` reduzieren
 
 **❌ "Could not extract ZIP"**
+
 - Logs sind leer oder beschädigt
 - Lösung: `ExtractLogs` Skip und manuell prüfen
 
 **❌ "Access Denied auf Output Path"**
+
 - Keine Schreibberechtigung
 - Lösung: `OutputPath` auf writeable Verzeichnis setzen
 
 ### **Debug Mode:**
+
 ```powershell
 # Verbose Output für Debugging
 $VerbosePreference = "Continue"
@@ -253,6 +280,7 @@ Download-GitHubWorkflowLogs -GitHubToken $env:GITHUB_TOKEN -Verbose
 ## 🎊 **Advanced Usage**
 
 ### **Batch Processing für Multiple Repositories**
+
 ```powershell
 $repos = @("repo1", "repo2", "repo3")
 foreach ($repo in $repos) {
@@ -261,6 +289,7 @@ foreach ($repo in $repos) {
 ```
 
 ### **Scheduled Analysis mit Windows Task Scheduler**
+
 ```powershell
 # Täglich um 6:00 Uhr
 $action = New-ScheduledTaskAction -Execute "PowerShell.exe" -Argument "-File C:\Path\To\run-log-analysis.ps1"
@@ -269,6 +298,7 @@ Register-ScheduledTask -TaskName "GitHubLogAnalysis" -Action $action -Trigger $t
 ```
 
 ### **Integration mit CI/CD Pipeline**
+
 ```yaml
 # .github/workflows/log-analysis.yml
 - name: Download and Analyze Logs
@@ -283,18 +313,21 @@ Register-ScheduledTask -TaskName "GitHubLogAnalysis" -Action $action -Trigger $t
 ## 📈 **Nutzen für menschlichkeit-oesterreich-development**
 
 ### **Entwicklungsverbesserung:**
+
 - ✅ **Proaktive Fehlererkennung** durch Pattern Analysis
 - ✅ **Performance Monitoring** von Build-Zeiten
 - ✅ **Security Alert Tracking** für Dependencies
 - ✅ **Quality Trend Analysis** über Zeit
 
 ### **DevOps Optimierung:**
+
 - ✅ **CI/CD Pipeline Health** Monitoring
-- ✅ **Automated Error Categorization** 
+- ✅ **Automated Error Categorization**
 - ✅ **Resource Usage Analytics**
 - ✅ **Historical Comparison** für Improvements
 
 ### **Compliance & Governance:**
+
 - ✅ **Audit Trail** aller Build-Aktivitäten
 - ✅ **Security Compliance** Tracking
 - ✅ **Quality Gate** Enforcement
