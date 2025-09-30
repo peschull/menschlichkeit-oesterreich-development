@@ -47,33 +47,32 @@ jobs:
       - name: 🔍 Detect Changes
         id: detect-changes
         run: |
-          # Start with empty array and build it properly
-          SERVICES="[]"
+          # Build matrix array with proper JSON formatting
+          MATRIX_ITEMS=""
           
-          # Check for changes and build array dynamically
+          # Check for changes and build items
           if git diff --name-only HEAD~1 | grep -E "^frontend/|^figma-design-system/" || [ "${{ github.event_name }}" = "schedule" ]; then
-            SERVICES=$(echo $SERVICES | jq '. += [{"service":"frontend","path":"frontend/","port":"3000"}]')
+            MATRIX_ITEMS="$MATRIX_ITEMS{\"service\":\"frontend\",\"path\":\"frontend/\",\"port\":\"3000\"},"
           fi
           if git diff --name-only HEAD~1 | grep -E "^api\.|^requirements\.txt" || [ "${{ github.event_name }}" = "schedule" ]; then
-            SERVICES=$(echo $SERVICES | jq '. += [{"service":"api","path":"api.menschlichkeit-oesterreich.at/","port":"8001"}]')
+            MATRIX_ITEMS="$MATRIX_ITEMS{\"service\":\"api\",\"path\":\"api.menschlichkeit-oesterreich.at/\",\"port\":\"8001\"},"
           fi
           if git diff --name-only HEAD~1 | grep -E "^crm\.|^composer\.json" || [ "${{ github.event_name }}" = "schedule" ]; then
-            SERVICES=$(echo $SERVICES | jq '. += [{"service":"crm","path":"crm.menschlichkeit-oesterreich.at/","port":"8000"}]')
+            MATRIX_ITEMS="$MATRIX_ITEMS{\"service\":\"crm\",\"path\":\"crm.menschlichkeit-oesterreich.at/\",\"port\":\"8000\"},"
           fi
           if git diff --name-only HEAD~1 | grep -E "^web/games|^web/themes" || [ "${{ github.event_name }}" = "schedule" ]; then
-            SERVICES=$(echo $SERVICES | jq '. += [{"service":"games","path":"web/","port":"3001"}]')
+            MATRIX_ITEMS="$MATRIX_ITEMS{\"service\":\"games\",\"path\":\"web/\",\"port\":\"3001\"},"
           fi
           if git diff --name-only HEAD~1 | grep -E "^website/" || [ "${{ github.event_name }}" = "schedule" ]; then
-            SERVICES=$(echo $SERVICES | jq '. += [{"service":"website","path":"website/","port":"8080"}]')
+            MATRIX_ITEMS="$MATRIX_ITEMS{\"service\":\"website\",\"path\":\"website/\",\"port\":\"8080\"},"
           fi
           if git diff --name-only HEAD~1 | grep -E "^automation/n8n/" || [ "${{ github.event_name }}" = "schedule" ]; then
-            SERVICES=$(echo $SERVICES | jq '. += [{"service":"n8n","path":"automation/n8n/","port":"5678"}]')
+            MATRIX_ITEMS="$MATRIX_ITEMS{\"service\":\"n8n\",\"path\":\"automation/n8n/\",\"port\":\"5678\"},"
           fi
           
-          # Output properly formatted matrix
-          echo "matrix={\"include\":$SERVICES}" >> $GITHUB_OUTPUT
-
-  # ===============================
+          # Remove trailing comma and format JSON
+          MATRIX_ITEMS=$(echo "$MATRIX_ITEMS" | sed 's/,$//')
+          echo "matrix={\"include\":[$MATRIX_ITEMS]}" >> $GITHUB_OUTPUT  # ===============================
   # QUALITY GATES - STAGE 1
   # ===============================
   quality-gates:
