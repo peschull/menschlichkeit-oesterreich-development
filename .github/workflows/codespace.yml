@@ -2,7 +2,7 @@ name: 🚀 Codespace Health Check
 on:
   push:
     branches: [ main, develop ]
-    paths: 
+    paths:
       - '.devcontainer/**'
       - 'package.json'
       - '.env.example'
@@ -16,12 +16,12 @@ jobs:
   codespace-test:
     name: 📱 Test Codespace Configuration
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: 📥 Checkout Repository
         uses: actions/checkout@v4
 
-      - name: 🔧 Setup Node.js  
+      - name: 🔧 Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
@@ -53,9 +53,9 @@ jobs:
       - name: 🔍 Check Required Scripts
         run: |
           echo "🔍 Checking Codespace scripts..."
-          
+
           scripts=(".devcontainer/setup.sh" ".devcontainer/post-start.sh" ".devcontainer/quick-fix.sh")
-          
+
           for script in "${scripts[@]}"; do
             if [ -f "$script" ]; then
               echo "✅ $script exists"
@@ -70,15 +70,15 @@ jobs:
       - name: 📦 Test Dependencies Installation
         run: |
           echo "📦 Testing dependency installation..."
-          
+
           # NPM Dependencies
           npm install
           echo "✅ NPM install successful"
-          
+
           # Composer Dependencies (ignore platform for CI)
           composer install --ignore-platform-reqs --no-interaction
           echo "✅ Composer install successful"
-          
+
           # Python Dependencies
           if [ -f requirements.txt ]; then
             pip install -r requirements.txt
@@ -88,29 +88,29 @@ jobs:
       - name: 🗄️ Test Database Setup
         run: |
           echo "🗄️ Testing database setup simulation..."
-          
+
           # Simulate MariaDB setup (without actual DB)
           echo "CREATE DATABASE IF NOT EXISTS mo_laravel_api_dev;" > test_db_setup.sql
           echo "CREATE DATABASE IF NOT EXISTS mo_civicrm_dev;" >> test_db_setup.sql
           echo "CREATE USER IF NOT EXISTS 'laravel_dev'@'localhost';" >> test_db_setup.sql
-          
+
           echo "✅ Database setup script generated"
           cat test_db_setup.sql
 
-      - name: 🌐 Test Port Configuration  
+      - name: 🌐 Test Port Configuration
         run: |
           echo "🌐 Testing port configuration..."
-          
+
           # Check if ports are defined in devcontainer.json
           PORTS=$(jq -r '.forwardPorts[]?' .devcontainer/devcontainer.json 2>/dev/null || echo "")
-          
+
           if [ ! -z "$PORTS" ]; then
             echo "✅ Ports configured: $PORTS"
           else
             echo "❌ No ports configured"
             exit 1
           fi
-          
+
           # Validate port attributes
           jq -r '.portsAttributes | keys[]' .devcontainer/devcontainer.json | while read port; do
             echo "✅ Port $port configured with attributes"
@@ -119,31 +119,31 @@ jobs:
       - name: 🔐 Test SSH Key Handling
         run: |
           echo "🔐 Testing SSH key setup simulation..."
-          
+
           # Simulate SSH key setup (without real key)
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
-          
+
           # Test SSH config
           echo "Host plesk-server" > ~/.ssh/config
           echo "  HostName 5.183.217.146" >> ~/.ssh/config
           echo "  User dmpl20230054" >> ~/.ssh/config
           echo "  Port 22" >> ~/.ssh/config
           echo "  IdentityFile ~/.ssh/id_ed25519" >> ~/.ssh/config
-          
+
           echo "✅ SSH configuration test complete"
 
       - name: ⚙️ Test Environment Configuration
         run: |
           echo "⚙️ Testing environment configuration..."
-          
+
           # Test .env.example validity
           if [ -f .env.example ]; then
             echo "✅ .env.example exists"
-            
+
             # Check for required variables
             required_vars=("NODE_ENV" "DEBUG" "LARAVEL_DB_HOST" "CIVICRM_DB_HOST")
-            
+
             for var in "${required_vars[@]}"; do
               if grep -q "^$var=" .env.example || grep -q "^#.*$var=" .env.example; then
                 echo "✅ $var found in .env.example"
@@ -159,10 +159,10 @@ jobs:
       - name: 🚀 Test Service Start Commands
         run: |
           echo "🚀 Testing service start commands..."
-          
+
           # Check if package.json has required scripts
           scripts=("dev:all" "codespace:setup" "codespace:fix" "codespace:post-start")
-          
+
           for script in "${scripts[@]}"; do
             if jq -e ".scripts.\"$script\"" package.json > /dev/null; then
               echo "✅ Script '$script' defined in package.json"
@@ -178,7 +178,7 @@ jobs:
           echo "# 📋 Codespace Health Report" > codespace-health-report.md
           echo "**Generated:** $(date)" >> codespace-health-report.md
           echo "" >> codespace-health-report.md
-          
+
           echo "## ✅ Configuration Status" >> codespace-health-report.md
           echo "- devcontainer.json: Valid" >> codespace-health-report.md
           echo "- Setup scripts: Present" >> codespace-health-report.md
@@ -186,7 +186,7 @@ jobs:
           echo "- Port forwarding: Configured" >> codespace-health-report.md
           echo "- Environment: Templates ready" >> codespace-health-report.md
           echo "" >> codespace-health-report.md
-          
+
           echo "## 🌐 Service Ports" >> codespace-health-report.md
           echo "- Frontend (React): 3000" >> codespace-health-report.md
           echo "- API (FastAPI): 8001" >> codespace-health-report.md
@@ -195,7 +195,7 @@ jobs:
           echo "- n8n Automation: 5678" >> codespace-health-report.md
           echo "- Website: 8080" >> codespace-health-report.md
           echo "" >> codespace-health-report.md
-          
+
           echo "## 🔧 Quick Fix Commands" >> codespace-health-report.md
           echo '```bash' >> codespace-health-report.md
           echo "# Setup Codespace" >> codespace-health-report.md
@@ -212,7 +212,7 @@ jobs:
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: codespace-health-report  
+          name: codespace-health-report
           path: codespace-health-report.md
           retention-days: 30
 
@@ -229,7 +229,7 @@ jobs:
           echo "✅ Codespace configuration is healthy!"
           echo "🚀 Ready for GitHub Codespaces development"
 
-      - name: ❌ Failure Notification  
+      - name: ❌ Failure Notification
         if: needs.codespace-test.result == 'failure'
         run: |
           echo "❌ Codespace configuration has issues!"

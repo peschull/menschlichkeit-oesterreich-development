@@ -52,11 +52,11 @@
     }
   },
 
-  "onCreateCommand": "bash .devcontainer/setup.sh",
+  "onCreateCommand": "bash -c 'set +e; echo \"🔧 Starting onCreateCommand...\"; if [ -f .devcontainer/setup.sh ]; then bash .devcontainer/setup.sh; else echo \"⚠️ setup.sh not found, creating minimal setup...\"; sudo apt-get update && sudo apt-get install -y curl git; fi; echo \"✅ onCreateCommand completed\"'",
 
-  "postCreateCommand": "npm install && composer install --ignore-platform-reqs",
+  "postCreateCommand": "bash -c 'set +e; echo \"🚀 Starting postCreateCommand...\"; npm ci --prefer-offline --no-audit || npm install --no-audit; echo \"📦 Node.js dependencies installed\"; composer install --ignore-platform-reqs --no-interaction || echo \"⚠️ Composer install failed, continuing...\"; echo \"✅ postCreateCommand completed\"'",
 
-  "postStartCommand": "bash .devcontainer/post-start.sh",
+  "postStartCommand": "bash -c 'set +e; echo \"🚀 Starting postStartCommand...\"; if [ -f .devcontainer/post-start.sh ]; then bash .devcontainer/post-start.sh; else echo \"⚠️ post-start.sh not found, running health check...\"; node --version && python3 --version && php --version; fi; echo \"✅ Codespace ready for development\"'",
 
   "customizations": {
     "vscode": {
@@ -115,5 +115,11 @@
 
   "mounts": [
     "source=codespace-menschlichkeit-node-modules,target=${containerWorkspaceFolder}/node_modules,type=volume"
-  ]
+  ],
+
+  "waitFor": "postCreateCommand",
+  
+  "shutdownAction": "none",
+  
+  "init": true
 }

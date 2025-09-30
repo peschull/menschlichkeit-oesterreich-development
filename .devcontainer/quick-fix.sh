@@ -5,6 +5,10 @@
 
 echo "🔧 CODESPACE QUICK FIX"
 echo "====================="
+echo ""
+
+# Set error handling - continue on errors
+set +e
 
 # Detect current problems
 echo "🔍 Diagnosing issues..."

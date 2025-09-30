@@ -37,7 +37,7 @@ Falls zutreffend, füge Screenshots oder Videos hinzu um das Problem zu erkläre
 ## 🏗️ Service/Component
 Welcher Teil der Anwendung ist betroffen?
 - [ ] 🌐 Website (menschlichkeit-oesterreich.at)
-- [ ] ⚡ Frontend (React App)  
+- [ ] ⚡ Frontend (React App)
 - [ ] 🔧 API (FastAPI Backend)
 - [ ] 👥 CRM (CiviCRM/Drupal)
 - [ ] 🎮 Games (Educational Platform)
@@ -56,7 +56,7 @@ Welcher Teil der Anwendung ist betroffen?
 Paste any browser console errors here
 ```
 
-### Server Logs  
+### Server Logs
 ```
 Paste any relevant server logs here
 ```
@@ -72,7 +72,7 @@ Weitere Informationen die helfen könnten das Problem zu verstehen.
 ## 🎯 Priorität
 - [ ] 🔥 Critical - Anwendung nicht benutzbar
 - [ ] ⚠️ High - Wichtige Funktionalität betroffen
-- [ ] 📋 Medium - Kleinere Funktionalität betroffen  
+- [ ] 📋 Medium - Kleinere Funktionalität betroffen
 - [ ] 📝 Low - Kosmetisches Problem
 
 ## 🔐 Sicherheitsrelevant?

@@ -4,7 +4,7 @@
 
 ### 🐛 **Identifizierte Probleme:**
 
-1. **JSON Syntax Error**: 
+1. **JSON Syntax Error**:
    - ❌ Kommentare (`//`) in `devcontainer.json` sind nicht erlaubt
    - ✅ **BEHOBEN**: Alle Kommentare entfernt
 
@@ -40,7 +40,7 @@
 ### 🚀 **Codespace Start-Sequenz:**
 
 1. **onCreateCommand**: `setup.sh` - System setup, dependencies
-2. **postCreateCommand**: `npm install && composer install` - Package installation  
+2. **postCreateCommand**: `npm install && composer install` - Package installation
 3. **postStartCommand**: `post-start.sh` - Health checks, service startup
 
 ### 📋 **Services nach Start verfügbar:**
@@ -67,7 +67,7 @@ npm run codespace:fix        # Falls Probleme auftreten
 
 Die folgenden Secrets werden automatisch geladen (falls konfiguriert):
 - `SSH_PRIVATE_KEY` - Plesk Server Zugang
-- `PLESK_HOST` - Server hostname  
+- `PLESK_HOST` - Server hostname
 - `LARAVEL_DB_PASS` - Database password
 - `CIVICRM_DB_PASS` - CiviCRM database password
 - `CODACY_API_TOKEN` - Code quality analysis

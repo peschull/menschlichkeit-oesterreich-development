@@ -67,7 +67,7 @@ menschlichkeit-oesterreich-development/
 ### Branch Strategie
 
 - **main** - Production-ready Code
-- **develop** - Integration Branch  
+- **develop** - Integration Branch
 - **feature/*** - Feature Branches
 - **fix/*** - Bug Fixes
 - **hotfix/*** - Critical Production Fixes
@@ -89,7 +89,7 @@ Alle Änderungen müssen folgende Quality Gates bestehen:
 
 ### Automatische Checks
 - ✅ **ESLint** - Code Qualität
-- ✅ **Prettier** - Code Formatierung  
+- ✅ **Prettier** - Code Formatierung
 - ✅ **PHPStan** - PHP Static Analysis
 - ✅ **Codacy** - Maintainability ≥85%
 - ✅ **Trivy** - Security Vulnerabilities = 0
@@ -125,7 +125,7 @@ Wir verwenden [Conventional Commits](https://conventionalcommits.org/):
 
 ### Types
 - `feat:` - Neue Features
-- `fix:` - Bug Fixes  
+- `fix:` - Bug Fixes
 - `docs:` - Dokumentation
 - `style:` - Code Formatierung
 - `refactor:` - Code Refactoring
@@ -188,7 +188,7 @@ Jeder PR muss folgende Informationen enthalten:
 # Unit Tests
 npm run test:unit
 
-# Integration Tests  
+# Integration Tests
 npm run test:integration
 
 # E2E Tests (Playwright)
@@ -229,7 +229,7 @@ Sicherheitslücken bitte per E-Mail an: `security@menschlichkeit-oesterreich.at`
 ### Service Ports
 
 - **Frontend**: http://localhost:3000
-- **API**: http://localhost:8001  
+- **API**: http://localhost:8001
 - **CRM**: http://localhost:8000
 - **Games**: http://localhost:3000
 - **n8n**: http://localhost:5678
@@ -249,7 +249,7 @@ Sicherheitslücken bitte per E-Mail an: `security@menschlichkeit-oesterreich.at`
 ### Development Tools
 
 - **Codacy** - Code Quality Dashboard
-- **Lighthouse CI** - Performance Monitoring  
+- **Lighthouse CI** - Performance Monitoring
 - **Snyk** - Security Vulnerability Tracking
 - **n8n** - Workflow Automation
 
@@ -297,7 +297,7 @@ Sicherheitslücken bitte per E-Mail an: `security@menschlichkeit-oesterreich.at`
 Bedeutende Beiträge werden anerkannt durch:
 
 - **Contributors List** - README.md
-- **Release Notes** - Feature Attribution  
+- **Release Notes** - Feature Attribution
 - **Annual Report** - Community Highlights
 - **GitHub Achievements** - Badges & Recognition
 

@@ -1,7 +1,7 @@
 # 🔐 GITHUB SECRETS SETUP - KOMPLETTE ANLEITUNG
 
-**Datum:** 29. September 2025  
-**Repository:** menschlichkeit-oesterreich-development  
+**Datum:** 29. September 2025
+**Repository:** menschlichkeit-oesterreich-development
 **Status:** ✅ BEREIT FÜR GITHUB SECRETS MIGRATION
 
 ## 📋 ZUSAMMENFASSUNG
@@ -22,7 +22,7 @@ GitHub Repository → Settings → Secrets and variables → Actions → New rep
 Name: PLESK_HOST
 Value: dmpl20230054@5.183.217.146
 
-Name: SSH_PRIVATE_KEY  
+Name: SSH_PRIVATE_KEY
 Value: [SSH Private Key - siehe unten]
 ```
 
@@ -186,7 +186,7 @@ ssh -i $SSH_PRIVATE_KEY dmpl20230054@5.183.217.146
 ### ⏳ AUSSTEHEND
 - [ ] GitHub Secrets Konfiguration (E-Mail Secrets bereit!)
 - [ ] Codacy API Token holen
-- [ ] Snyk Token holen  
+- [ ] Snyk Token holen
 - [ ] CiviCRM Keys generieren
 - [ ] GitHub Actions Test
 - [ ] E-Mail Integration testen
@@ -214,10 +214,10 @@ ssh -i $SSH_PRIVATE_KEY dmpl20230054@5.183.217.146
 
 ---
 
-**⚠️ WICHTIGER HINWEIS:**  
+**⚠️ WICHTIGER HINWEIS:**
 Alle hier gezeigten Secrets sind für **GITHUB REPOSITORY SECRETS** bestimmt und sollten **NIEMALS** ins Git Repository committed werden. Die lokale `.env` Datei bleibt privat und wird automatisch von Git ignoriert.
 
-**🔐 SICHERHEITSGARANTIE:**  
+**🔐 SICHERHEITSGARANTIE:**
 - Keine Secrets im Repository Code
 - Sichere Übertragung über GitHub Secrets
 - Lokale `.env` für Development

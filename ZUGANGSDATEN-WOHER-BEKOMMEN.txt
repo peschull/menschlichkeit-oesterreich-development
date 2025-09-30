@@ -27,7 +27,7 @@ FEHLENDE ZUGANGSDATEN - WO BEKOMMEN:
    WO: Plesk Control Panel → Databases → mo_laravel_api → User laravel_user
    ODER: Neu setzen in Plesk → Database Users
 
-❌ CiviCRM Database Password  
+❌ CiviCRM Database Password
    WO: Plesk Control Panel → Databases → mo_civicrm_data → User civicrm_user
    ODER: Neu setzen in Plesk → Database Users
 
@@ -57,12 +57,12 @@ FEHLENDE ZUGANGSDATEN - WO BEKOMMEN:
 ---------------------------------------------
 ❌ Codacy API Token
    WO: https://app.codacy.com
-   SCHRITTE: 
+   SCHRITTE:
    1. Account erstellen (GitHub Login möglich)
    2. Repository hinzufügen
    3. Account → API Tokens → Create Token
 
-❌ Snyk Token  
+❌ Snyk Token
    WO: https://app.snyk.io
    SCHRITTE:
    1. Account erstellen (GitHub Login möglich)
@@ -86,9 +86,9 @@ SCHRITT 1 - PLESK DATABASE:
 ---------------------------
 1. Login: https://5.183.217.146:8443/
    User: dmpl20230054
-   
+
 2. Gehe zu: Websites & Domains → Databases
-   
+
 3. Finde Databases:
    - mo_laravel_api → User: laravel_user → Passwort anzeigen/setzen
    - mo_civicrm_data → User: civicrm_user → Passwort anzeigen/setzen
@@ -97,7 +97,7 @@ SCHRITT 2 - SECURITY KEYS GENERIEREN:
 -------------------------------------
 PowerShell/Terminal Commands:
 1. JWT Secret: openssl rand -base64 32
-2. n8n Key: openssl rand -base64 32  
+2. n8n Key: openssl rand -base64 32
 3. n8n Admin: Selbst definieren (z.B. "moe_admin")
 4. n8n Password: Starkes Passwort generieren
 
@@ -105,12 +105,12 @@ SCHRITT 3 - EXTERNAL SERVICES:
 ------------------------------
 Codacy Setup:
 1. Gehe zu: https://app.codacy.com
-2. "Sign up with GitHub" 
+2. "Sign up with GitHub"
 3. Repository "menschlichkeit-oesterreich-development" hinzufügen
 4. Account → API Tokens → "Create API Token"
 5. Token kopieren
 
-Snyk Setup:  
+Snyk Setup:
 1. Gehe zu: https://app.snyk.io
 2. "Sign up with GitHub"
 3. Account Settings → General → API Token
@@ -133,7 +133,7 @@ SCHRITT 5 - GITHUB SECRETS:
 QUICK REFERENCE - ALLE URLS:
 ============================
 • Plesk Login: https://5.183.217.146:8443/
-• Codacy: https://app.codacy.com  
+• Codacy: https://app.codacy.com
 • Snyk: https://app.snyk.io
 • GitHub Secrets: https://github.com/peschull/menschlichkeit-oesterreich-development/settings/secrets/actions
 
@@ -142,7 +142,7 @@ BEFEHLE ZUM KOPIEREN:
 # JWT Secret generieren:
 openssl rand -base64 32
 
-# n8n Encryption Key generieren:  
+# n8n Encryption Key generieren:
 openssl rand -base64 32
 
 # SSH Verbindung zu Plesk:
@@ -154,7 +154,7 @@ ssh dmpl20230054@5.183.217.146
 REIHENFOLGE DER ARBEITSSCHRITTE:
 ===============================
 1. Plesk Database Passwörter holen (15 Min)
-2. Security Keys generieren (5 Min)  
+2. Security Keys generieren (5 Min)
 3. Codacy Account + Token (10 Min)
 4. Snyk Account + Token (10 Min)
 5. n8n Admin Credentials definieren (2 Min)
@@ -168,7 +168,7 @@ GESCHÄTZTE GESAMTZEIT: 2-3 Stunden
 HILFE & SUPPORT:
 ===============
 • Plesk Issues: digimagical.com Support
-• CiviCRM: https://civicrm.org/support  
+• CiviCRM: https://civicrm.org/support
 • GitHub Actions: GitHub Documentation
 • Codacy: support@codacy.com
 • Snyk: support@snyk.io

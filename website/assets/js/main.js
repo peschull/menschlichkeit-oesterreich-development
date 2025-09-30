@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initPerformanceMonitoring();
     initAuthentication();
     initLazyImages();
-    
+
     // Initialize Cookie Manager
     window.cookieManager = new CookieManager();
 });
@@ -23,25 +23,25 @@ function initPerformanceMonitoring() {
     if ('web-vital' in window) {
         return; // Already loaded
     }
-    
+
     // Largest Contentful Paint (LCP)
     const lcpObserver = new PerformanceObserver((list) => {
         const entries = list.getEntries();
         const lastEntry = entries[entries.length - 1];
         // eslint-disable-next-line no-console
         console.log('LCP:', lastEntry.startTime);
-        
+
         // Send to analytics (replace with your analytics)
         sendVital('lcp', lastEntry.startTime);
     });
-    
+
     try {
         lcpObserver.observe({entryTypes: ['largest-contentful-paint']});
     } catch (error) {
         // eslint-disable-next-line no-console
         console.warn('LCP observation not supported:', error.message);
     }
-    
+
     // First Input Delay (FID) / Interaction to Next Paint (INP)
     const fidObserver = new PerformanceObserver((list) => {
         for (const entry of list.getEntries()) {
@@ -50,14 +50,14 @@ function initPerformanceMonitoring() {
             sendVital('fid', entry.processingStart - entry.startTime);
         }
     });
-    
+
     try {
         fidObserver.observe({entryTypes: ['first-input']});
     } catch (error) {
         // eslint-disable-next-line no-console
         console.warn('FID observation not supported:', error.message);
     }
-    
+
     // Cumulative Layout Shift (CLS)
     let clsValue = 0;
     const clsObserver = new PerformanceObserver((list) => {
@@ -70,7 +70,7 @@ function initPerformanceMonitoring() {
         console.log('CLS:', clsValue);
         sendVital('cls', clsValue);
     });
-    
+
     try {
         clsObserver.observe({entryTypes: ['layout-shift']});
     } catch (error) {
@@ -89,7 +89,7 @@ function sendVital(name, value) {
             'custom_parameter_1': 'core_web_vitals'
         });
     }
-    
+
     // Alternative: send to your own analytics endpoint
     /*
     fetch('/api/vitals', {
@@ -103,7 +103,7 @@ function sendVital(name, value) {
 // Navbar scroll effect
 function initNavbarScroll() {
     const navbar = document.querySelector('.navbar');
-    
+
     window.addEventListener('scroll', function() {
         if (window.scrollY > 50) {
             navbar.classList.add('navbar-scrolled');
@@ -118,13 +118,13 @@ function initSmoothScrolling() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
-            
+
             const targetId = this.getAttribute('href');
             const targetElement = document.querySelector(targetId);
-            
+
             if (targetElement) {
                 const offsetTop = targetElement.offsetTop - 80; // Account for fixed navbar
-                
+
                 window.scrollTo({
                     top: offsetTop,
                     behavior: 'smooth'
@@ -150,17 +150,17 @@ function initFormSubmissions() {
 function handleNewsletterSubmission(form) {
     const email = form.querySelector('input[type="email"]').value;
     const button = form.querySelector('button[type="submit"]');
-    
+
     // Show loading state
     const originalText = button.textContent;
     button.textContent = 'Wird angemeldet...';
     button.disabled = true;
-    
+
     // Simulate API call (replace with actual implementation)
     setTimeout(() => {
         // Show success message
         showNotification('Erfolgreich angemeldet! Du erhältst bald unseren Newsletter.', 'success');
-        
+
         // Reset form
         form.reset();
         button.textContent = originalText;
@@ -181,14 +181,14 @@ function showNotification(message, type = 'info') {
             <button type="button" class="btn-close" aria-label="Close"></button>
         </div>
     `;
-    
+
     document.body.appendChild(notification);
-    
+
     // Add close functionality
     notification.querySelector('.btn-close').addEventListener('click', () => {
         notification.remove();
     });
-    
+
     // Auto remove after 5 seconds
     setTimeout(() => {
         if (notification.parentNode) {
@@ -203,7 +203,7 @@ function initAnimations() {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
     };
-    
+
     // Animation Observer
     const animationObserver = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
@@ -212,7 +212,7 @@ function initAnimations() {
             }
         });
     }, observerOptions);
-    
+
     // Lazy Loading Observer für Images
     const lazyImageObserver = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
@@ -228,12 +228,12 @@ function initAnimations() {
     }, {
         rootMargin: '50px 0px'
     });
-    
+
     // Observe elements for animation
     document.querySelectorAll('.card, .action-card, .trust-card, .membership-card').forEach(el => {
         animationObserver.observe(el);
     });
-    
+
     // Observe images for lazy loading
     document.querySelectorAll('img[data-src]').forEach(img => {
         lazyImageObserver.observe(img);
@@ -245,7 +245,7 @@ function initAccessibility() {
     // Add keyboard navigation for cards
     document.querySelectorAll('.card, .action-card, .trust-card').forEach(card => {
         card.setAttribute('tabindex', '0');
-        
+
         card.addEventListener('keypress', function(e) {
             if (e.key === 'Enter' || e.key === ' ') {
                 const link = this.querySelector('a');
@@ -255,7 +255,7 @@ function initAccessibility() {
             }
         });
     });
-    
+
     // Improve button accessibility
     document.querySelectorAll('.btn').forEach(button => {
         if (!button.getAttribute('aria-label') && button.innerHTML.includes('<i class=')) {
@@ -286,7 +286,7 @@ window.addEventListener('resize', function() {
 function validateForm(form) {
     const inputs = form.querySelectorAll('input[required], textarea[required]');
     let isValid = true;
-    
+
     inputs.forEach(input => {
         if (!input.value.trim()) {
             input.classList.add('is-invalid');
@@ -294,7 +294,7 @@ function validateForm(form) {
         } else {
             input.classList.remove('is-invalid');
         }
-        
+
         // Email validation
         if (input.type === 'email' && input.value) {
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -304,7 +304,7 @@ function validateForm(form) {
             }
         }
     });
-    
+
     return isValid;
 }
 
@@ -407,14 +407,14 @@ class CookieManager {
     updateCheckboxes() {
         const analyticsCheckbox = document.getElementById('analytics-cookies');
         const marketingCheckbox = document.getElementById('marketing-cookies');
-        
+
         if (analyticsCheckbox) {
             analyticsCheckbox.checked = this.cookieSettings.analytics;
             analyticsCheckbox.addEventListener('change', (e) => {
                 this.cookieSettings.analytics = e.target.checked;
             });
         }
-        
+
         if (marketingCheckbox) {
             marketingCheckbox.checked = this.cookieSettings.marketing;
             marketingCheckbox.addEventListener('change', (e) => {
@@ -559,10 +559,10 @@ class AuthManager {
 
         // Password visibility toggles
         this.bindPasswordToggles();
-        
+
         // Form submissions
         this.bindFormSubmissions();
-        
+
         // Password strength checker
         this.bindPasswordStrength();
     }
@@ -570,7 +570,7 @@ class AuthManager {
     switchToRegister() {
         const loginForm = document.getElementById('login-form');
         const registerForm = document.getElementById('register-form');
-        
+
         loginForm.classList.add('d-none');
         registerForm.classList.remove('d-none');
     }
@@ -578,21 +578,21 @@ class AuthManager {
     switchToLogin() {
         const loginForm = document.getElementById('login-form');
         const registerForm = document.getElementById('register-form');
-        
+
         registerForm.classList.add('d-none');
         loginForm.classList.remove('d-none');
     }
 
     bindPasswordToggles() {
         const toggles = ['toggleLoginPassword', 'toggleRegisterPassword'];
-        
+
         toggles.forEach(toggleId => {
             const toggle = document.getElementById(toggleId);
             if (toggle) {
                 toggle.addEventListener('click', () => {
                     const passwordField = toggle.closest('.input-group').querySelector('input[type="password"], input[type="text"]');
                     const icon = toggle.querySelector('i');
-                    
+
                     if (passwordField.type === 'password') {
                         passwordField.type = 'text';
                         icon.className = 'bi bi-eye-slash';
@@ -632,7 +632,7 @@ class AuthManager {
             confirmField.addEventListener('input', () => {
                 this.validatePasswordMatch(passwordField.value, confirmField.value);
             });
-            
+
             passwordField.addEventListener('input', () => {
                 if (confirmField.value) {
                     this.validatePasswordMatch(passwordField.value, confirmField.value);
@@ -644,7 +644,7 @@ class AuthManager {
     checkPasswordStrength(password) {
         const strengthBar = document.getElementById('passwordStrengthBar');
         const strengthText = document.getElementById('strengthLevel');
-        
+
         if (!strengthBar || !strengthText) return;
 
         const score = this.calculatePasswordScore(password);
@@ -668,23 +668,23 @@ class AuthManager {
 
     calculatePasswordScore(password) {
         let score = 0;
-        
+
         // Length check
         if (password.length >= 8) score++;
         if (password.length >= 12) score++;
-        
+
         // Character variety
         if (/[a-z]/.test(password)) score++;
         if (/[A-Z]/.test(password)) score++;
         if (/\d/.test(password)) score++;
         if (/[^a-zA-Z\d]/.test(password)) score++;
-        
+
         return Math.min(score, 4);
     }
 
     validatePasswordMatch(password, confirmation) {
         const confirmField = document.getElementById('registerPasswordConfirm');
-        
+
         if (password === confirmation && password.length > 0) {
             confirmField.classList.remove('is-invalid');
             confirmField.classList.add('is-valid');
@@ -696,7 +696,7 @@ class AuthManager {
 
     async handleLogin(e) {
         e.preventDefault();
-        
+
         const form = e.target;
         const submitButton = form.querySelector('button[type="submit"]');
         const email = document.getElementById('loginEmail').value;
@@ -714,14 +714,14 @@ class AuthManager {
         try {
             // Simulate API call (replace with real authentication)
             await this.simulateLogin(email, password, rememberMe);
-            
+
             this.showNotification('Erfolgreich angemeldet!', 'success');
-            
+
             // Redirect to dashboard or previous page
             setTimeout(() => {
                 window.location.href = 'dashboard.html';
             }, 1000);
-            
+
         } catch (error) {
             this.showNotification(error.message || 'Anmeldung fehlgeschlagen', 'error');
         } finally {
@@ -731,7 +731,7 @@ class AuthManager {
 
     async handleRegister(e) {
         e.preventDefault();
-        
+
         const form = e.target;
         const submitButton = form.querySelector('button[type="submit"]');
 
@@ -754,15 +754,15 @@ class AuthManager {
 
             // Simulate API call (replace with real registration)
             await this.simulateRegister(userData);
-            
+
             this.showNotification('Registrierung erfolgreich! Bitte bestätigen Sie Ihre E-Mail.', 'success');
-            
+
             // Switch to login form
             setTimeout(() => {
                 this.switchToLogin();
                 document.getElementById('loginEmail').value = userData.email;
             }, 2000);
-            
+
         } catch (error) {
             this.showNotification(error.message || 'Registrierung fehlgeschlagen', 'error');
         } finally {
@@ -890,7 +890,7 @@ class AuthManager {
 
         // Check if user already exists
         const existingUsers = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
-        
+
         if (existingUsers.find(u => u.email === userData.email)) {
             throw new Error('E-Mail-Adresse bereits registriert');
         }
@@ -921,9 +921,9 @@ class AuthManager {
         this.currentUser = null;
         localStorage.removeItem('currentUser');
         sessionStorage.removeItem('userSession');
-        
+
         this.showNotification('Erfolgreich abgemeldet', 'info');
-        
+
         // Redirect to home
         setTimeout(() => {
             window.location.href = 'index.html';
@@ -973,15 +973,15 @@ function initContactForm(form) {
     // Character counter for message field
     const messageField = form.querySelector('#message');
     const messageCount = form.querySelector('#messageCount');
-    
+
     if (messageField && messageCount) {
         messageField.addEventListener('input', function() {
             messageCount.textContent = this.value.length;
-            
+
             // Visual feedback for character limit
             const maxLength = parseInt(this.getAttribute('maxlength')) || 1500;
             const percentage = (this.value.length / maxLength) * 100;
-            
+
             messageCount.className = '';
             if (percentage >= 90) {
                 messageCount.className = 'text-danger';
@@ -995,14 +995,14 @@ function initContactForm(form) {
 
     // Form submission
     form.addEventListener('submit', handleContactFormSubmission);
-    
+
     // Real-time validation
     const inputs = form.querySelectorAll('input[required], select[required], textarea[required]');
     inputs.forEach(input => {
         input.addEventListener('blur', function() {
             validateContactField(this);
         });
-        
+
         input.addEventListener('input', function() {
             // Clear validation state on input
             this.classList.remove('is-invalid', 'is-valid');
@@ -1013,28 +1013,28 @@ function initContactForm(form) {
 function validateContactField(field) {
     const value = field.value.trim();
     let isValid = true;
-    
+
     // Required field check
     if (field.hasAttribute('required') && !value) {
         isValid = false;
     }
-    
+
     // Email validation
     if (field.type === 'email' && value) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         isValid = emailRegex.test(value);
     }
-    
+
     // Message minimum length
     if (field.id === 'message' && value && value.length < 10) {
         isValid = false;
     }
-    
+
     // Checkbox validation
     if (field.type === 'checkbox' && field.hasAttribute('required')) {
         isValid = field.checked;
     }
-    
+
     // Apply validation classes
     if (isValid) {
         field.classList.remove('is-invalid');
@@ -1043,34 +1043,34 @@ function validateContactField(field) {
         field.classList.remove('is-valid');
         field.classList.add('is-invalid');
     }
-    
+
     return isValid;
 }
 
 async function handleContactFormSubmission(e) {
     e.preventDefault();
-    
+
     const form = e.target;
     const submitButton = form.querySelector('button[type="submit"]');
-    
+
     // Validate all fields
     const inputs = form.querySelectorAll('input[required], select[required], textarea[required]');
     let isFormValid = true;
-    
+
     inputs.forEach(input => {
         if (!validateContactField(input)) {
             isFormValid = false;
         }
     });
-    
+
     if (!isFormValid) {
         showNotification('Bitte überprüfen Sie Ihre Eingaben.', 'error');
         return;
     }
-    
+
     // Show loading state
     setButtonLoading(submitButton, true);
-    
+
     try {
         // Collect form data
         const formData = {
@@ -1085,28 +1085,28 @@ async function handleContactFormSubmission(e) {
             userAgent: navigator.userAgent,
             language: navigator.language
         };
-        
+
         // Simulate form submission (replace with real endpoint)
         await simulateContactFormSubmission(formData);
-        
+
         // Success feedback
         showNotification('Vielen Dank für Ihre Nachricht! Wir melden uns binnen 24-48 Stunden bei Ihnen.', 'success');
-        
+
         // Reset form
         form.reset();
-        
+
         // Clear validation classes
         inputs.forEach(input => {
             input.classList.remove('is-invalid', 'is-valid');
         });
-        
+
         // Reset character counter
         const messageCount = form.querySelector('#messageCount');
         if (messageCount) {
             messageCount.textContent = '0';
             messageCount.className = 'text-muted';
         }
-        
+
     } catch (error) {
         showNotification('Entschuldigung, es gab ein Problem beim Senden Ihrer Nachricht. Bitte versuchen Sie es später erneut.', 'error');
         console.error('Contact form submission error:', error);
@@ -1118,7 +1118,7 @@ async function handleContactFormSubmission(e) {
 async function simulateContactFormSubmission(formData) {
     // Simulate API delay
     await new Promise(resolve => setTimeout(resolve, 2000));
-    
+
     // Store in localStorage for demo purposes (replace with real API call)
     const submissions = JSON.parse(localStorage.getItem('contactSubmissions') || '[]');
     submissions.push({
@@ -1127,10 +1127,10 @@ async function simulateContactFormSubmission(formData) {
         status: 'pending'
     });
     localStorage.setItem('contactSubmissions', JSON.stringify(submissions));
-    
+
     // Log for development
     console.log('Contact form submitted:', formData);
-    
+
     // In a real application, this would be:
     // const response = await fetch('/api/contact', {
     //     method: 'POST',
@@ -1143,7 +1143,7 @@ async function simulateContactFormSubmission(formData) {
 function setButtonLoading(button, loading) {
     const buttonText = button.querySelector('.button-text');
     const buttonLoading = button.querySelector('.button-loading');
-    
+
     if (loading) {
         button.disabled = true;
         if (buttonText) buttonText.classList.add('d-none');

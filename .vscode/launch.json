@@ -1,6 +1,7 @@
 {
   "version": "0.2.0",
   "configurations": [
+
     {
       "name": "🚀 Debug: Frontend (Vite)",
       "type": "node",
@@ -106,6 +107,54 @@
         "group": "quality",
         "order": 1
       }
+    },
+    {
+      "name": "🐳 Debug: Codespace Health",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/scripts/codespace-debug.js",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "env": {
+        "DEBUG": "codespace:*",
+        "NODE_ENV": "development"
+      },
+      "presentation": {
+        "group": "codespace",
+        "order": 1
+      }
+    },
+    {
+      "name": "📊 Debug: Service Monitor",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/scripts/codespace-debug.js",
+      "args": ["--monitor", "--interval=30"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "env": {
+        "DEBUG": "service:*",
+        "MONITOR_MODE": "true"
+      },
+      "presentation": {
+        "group": "codespace",
+        "order": 2
+      }
+    },
+    {
+      "name": "📝 Debug: Database Connections",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/scripts/debug-database.py",
+      "console": "integratedTerminal",
+      "env": {
+        "DB_HOST": "localhost",
+        "DEBUG": "true"
+      },
+      "presentation": {
+        "group": "codespace",
+        "order": 3
+      }
     }
   ],
   "compounds": [
@@ -134,6 +183,21 @@
       "presentation": {
         "group": "compound",
         "order": 3
+      }
+    },
+    {
+      "name": "🐳 Debug: Complete Codespace",
+      "configurations": [
+        "🐳 Debug: Codespace Health",
+        "📊 Debug: Service Monitor", 
+        "📝 Debug: Database Connections",
+        "🚀 Debug: Frontend (Vite)",
+        "🐍 Debug: API (FastAPI)"
+      ],
+      "stopAll": true,
+      "presentation": {
+        "group": "compound",
+        "order": 4
       }
     }
   ]

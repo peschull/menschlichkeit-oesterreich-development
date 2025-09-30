@@ -30,7 +30,7 @@
     "clean:node-modules": "find . -name 'node_modules' -type d -exec rm -rf {} +",
     "dev:all": "concurrently \"npm run dev:crm\" \"npm run dev:api\" \"npm run dev:frontend\" \"npm run dev:games\"",
     "codespace:setup": "bash .devcontainer/setup.sh",
-    "codespace:fix": "bash .devcontainer/quick-fix.sh", 
+    "codespace:fix": "bash .devcontainer/quick-fix.sh",
     "codespace:post-start": "bash .devcontainer/post-start.sh",
     "dev:crm": "cd crm.menschlichkeit-oesterreich.at && php -S localhost:8000 -t httpdocs",
     "dev:api": "cd api.menschlichkeit-oesterreich.at && uvicorn app.main:app --host 0.0.0.0 --port 8001 --reload",
