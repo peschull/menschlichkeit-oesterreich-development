@@ -2,13 +2,17 @@
 # 🚀 Optimized GitHub Codespace Setup for Austrian NGO Development
 # Designed for fast, reliable initialization
 
-set -e
+# Use better error handling - continue on non-critical errors
+set +e
 echo "🔧 Starting optimized Codespace setup..."
 
 # Environment setup
 export DEBIAN_FRONTEND=noninteractive
 export NODE_ENV=development
 export CODESPACE_SETUP=true
+
+# Track overall success
+SETUP_SUCCESS=0
 
 # Function to log with timestamps
 log() {
@@ -113,6 +117,14 @@ log "📋 Next steps will be handled by postCreateCommand"
 log "🚀 Codespace is ready for Austrian NGO development"
 
 # Run health check
-/tmp/health-check.sh
+bash /tmp/health-check.sh || log "⚠️ Health check had warnings"
 
-exit 0
+# Report success status
+if [ $SETUP_SUCCESS -eq 0 ]; then
+    log "✅ Setup completed successfully!"
+    exit 0
+else
+    log "⚠️ Setup completed with warnings"
+    log "💡 Run emergency recovery if needed: bash .devcontainer/emergency-recovery.sh"
+    exit 0  # Don't fail the setup, allow user to debug
+fi

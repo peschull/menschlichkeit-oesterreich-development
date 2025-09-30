@@ -245,3 +245,6 @@ echo "✅ Emergency recovery script finished!"
     echo "=== PROCESS LIST ==="
     ps aux 2>/dev/null | head -20 || echo "ps command not available"
 } > /tmp/codespace-recovery.log 2>/dev/null || echo "⚠️ Could not save diagnostic log"
+
+# Always exit successfully to not block Codespace creation
+exit 0

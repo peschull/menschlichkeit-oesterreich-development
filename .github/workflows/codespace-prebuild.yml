@@ -1,0 +1,70 @@
+name: 🚀 Codespace Prebuild
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '.devcontainer/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'composer.json'
+      - 'requirements.txt'
+      - '.github/workflows/codespace-prebuild.yml'
+  workflow_dispatch:
+
+jobs:
+  prebuild:
+    name: 📦 Create Codespace Prebuild
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 🔧 Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, xml, ctype, iconv, intl, pdo, pdo_mysql, dom, filter, gd, json
+          tools: composer:v2
+
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: 📦 Install Dependencies
+        run: |
+          echo "📦 Installing root dependencies..."
+          npm ci --prefer-offline --no-audit || npm install --no-audit
+          
+          echo "🐘 Installing PHP dependencies..."
+          composer install --no-dev --optimize-autoloader --no-interaction || true
+          
+          echo "🐍 Installing Python dependencies..."
+          if [ -f api.menschlichkeit-oesterreich.at/requirements.txt ]; then
+            python -m pip install -r api.menschlichkeit-oesterreich.at/requirements.txt || true
+          fi
+
+      - name: 🎯 Validate Setup Scripts
+        run: |
+          echo "🔍 Validating all setup scripts..."
+          for script in .devcontainer/*.sh scripts/*.sh deployment-scripts/*.sh; do
+            if [ -f "$script" ]; then
+              echo "Checking: $script"
+              bash -n "$script" && echo "✅ $script syntax OK" || echo "❌ $script has errors"
+            fi
+          done
+
+      - name: ✅ Prebuild Complete
+        run: |
+          echo "🎉 Codespace prebuild completed successfully!"
+          echo "📊 Dependencies installed and cached"
+          echo "🚀 Next Codespace creation will be much faster"

@@ -1,0 +1,28 @@
+# Ensure shell scripts are always executable
+*.sh text eol=lf
+*.sh diff=bash
+
+# Mark shell scripts as executable in git
+.devcontainer/*.sh executable
+scripts/*.sh executable  
+deployment-scripts/*.sh executable
+
+# Line ending normalization
+* text=auto
+
+# Specific file types
+*.js text eol=lf
+*.ts text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.JPG binary

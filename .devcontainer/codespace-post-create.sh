@@ -2,8 +2,12 @@
 # 🏗️ Post-Create Command for Austrian NGO Codespace
 # Handles dependency installation and service setup
 
-set -e
+# Use better error handling - continue on non-critical errors
+set +e
 echo "🚀 Starting post-create setup for Austrian NGO platform..."
+
+# Track errors but don't exit on them
+ERROR_COUNT=0
 
 # Function to log with timestamps
 log() {
@@ -20,7 +24,8 @@ install_with_progress() {
         log "✅ $description completed"
         return 0
     else
-        log "❌ $description failed"
+        log "❌ $description failed (continuing...)"
+        ERROR_COUNT=$((ERROR_COUNT + 1))
         return 1
     fi
 }
@@ -28,7 +33,10 @@ install_with_progress() {
 # 1. Install root dependencies
 if [ -f package.json ]; then
     log "📦 Installing root npm dependencies..."
-    npm ci --prefer-offline --no-audit
+    npm ci --prefer-offline --no-audit || {
+        log "⚠️ npm ci failed, trying npm install..."
+        npm install --no-audit || ERROR_COUNT=$((ERROR_COUNT + 1))
+    }
 fi
 
 # 2. Install frontend dependencies
@@ -62,6 +70,13 @@ fi
 # 6. Create development configuration
 log "⚙️ Creating development configuration..."
 
+# Create root .env file if it doesn't exist
+if [ ! -f .env ] && [ -f .env.example ]; then
+    log "📄 Creating root .env from .env.example..."
+    cp .env.example .env
+    log "✅ Root .env created"
+fi
+
 # Create .env files if templates exist
 if [ -d config-templates ]; then
     log "📋 Setting up configuration templates..."
@@ -70,12 +85,20 @@ if [ -d config-templates ]; then
     if [ -f config-templates/api-env-development.env ] && [ ! -f api.menschlichkeit-oesterreich.at/.env ]; then
         cp config-templates/api-env-development.env api.menschlichkeit-oesterreich.at/.env
         log "✅ API .env configured"
+    elif [ ! -f api.menschlichkeit-oesterreich.at/.env ] && [ -f .env.example ]; then
+        # Fallback: use root .env.example
+        cp .env.example api.menschlichkeit-oesterreich.at/.env
+        log "✅ API .env configured from .env.example"
     fi
     
     # Frontend environment  
     if [ -f config-templates/frontend-env-development.env ] && [ ! -f frontend/.env ]; then
         cp config-templates/frontend-env-development.env frontend/.env
         log "✅ Frontend .env configured"
+    elif [ ! -f frontend/.env ] && [ -f .env.example ]; then
+        # Fallback: use root .env.example
+        cp .env.example frontend/.env
+        log "✅ Frontend .env configured from .env.example"
     fi
 fi
 
@@ -160,7 +183,7 @@ EOF
 chmod +x codespace-start.sh
 
 # 9. Create service health check
-cat > codespace-health.sh << 'EOF'
+cat > codespace-health-simple.sh << 'EOF'
 #!/bin/bash
 echo "🏥 Austrian NGO Platform Health Check"
 echo "====================================="
@@ -195,7 +218,7 @@ echo "🧠 Memory Usage:"
 free -h
 EOF
 
-chmod +x codespace-health.sh
+chmod +x codespace-health-simple.sh
 
 # 10. Final setup completion
 log "🎯 Creating startup message..."
@@ -222,7 +245,16 @@ Next Steps:
 Happy coding! 🚀
 EOF
 
-log "🎉 Post-create setup completed successfully!"
+log "🎉 Post-create setup completed!"
 log "📋 Run 'cat .codespace-ready' for quick start guide"
 
-exit 0
+# Report final status
+if [ $ERROR_COUNT -eq 0 ]; then
+    log "✅ All setup steps completed successfully!"
+    exit 0
+else
+    log "⚠️ Setup completed with $ERROR_COUNT warning(s)"
+    log "💡 Check logs above for details"
+    log "🔧 Run emergency recovery if needed: bash .devcontainer/emergency-recovery.sh"
+    exit 0  # Don't fail the setup
+fi
