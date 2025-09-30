@@ -47,27 +47,31 @@ jobs:
       - name: 🔍 Detect Changes
         id: detect-changes
         run: |
-          echo "matrix={\"include\":[" >> $GITHUB_OUTPUT
+          # Start with empty array and build it properly
+          SERVICES="[]"
+          
+          # Check for changes and build array dynamically
           if git diff --name-only HEAD~1 | grep -E "^frontend/|^figma-design-system/" || [ "${{ github.event_name }}" = "schedule" ]; then
-            echo "{\"service\":\"frontend\",\"path\":\"frontend/\",\"port\":\"3000\"}," >> $GITHUB_OUTPUT
+            SERVICES=$(echo $SERVICES | jq '. += [{"service":"frontend","path":"frontend/","port":"3000"}]')
           fi
           if git diff --name-only HEAD~1 | grep -E "^api\.|^requirements\.txt" || [ "${{ github.event_name }}" = "schedule" ]; then
-            echo "{\"service\":\"api\",\"path\":\"api.menschlichkeit-oesterreich.at/\",\"port\":\"8001\"}," >> $GITHUB_OUTPUT
+            SERVICES=$(echo $SERVICES | jq '. += [{"service":"api","path":"api.menschlichkeit-oesterreich.at/","port":"8001"}]')
           fi
           if git diff --name-only HEAD~1 | grep -E "^crm\.|^composer\.json" || [ "${{ github.event_name }}" = "schedule" ]; then
-            echo "{\"service\":\"crm\",\"path\":\"crm.menschlichkeit-oesterreich.at/\",\"port\":\"8000\"}," >> $GITHUB_OUTPUT
+            SERVICES=$(echo $SERVICES | jq '. += [{"service":"crm","path":"crm.menschlichkeit-oesterreich.at/","port":"8000"}]')
           fi
           if git diff --name-only HEAD~1 | grep -E "^web/games|^web/themes" || [ "${{ github.event_name }}" = "schedule" ]; then
-            echo "{\"service\":\"games\",\"path\":\"web/\",\"port\":\"3001\"}," >> $GITHUB_OUTPUT
+            SERVICES=$(echo $SERVICES | jq '. += [{"service":"games","path":"web/","port":"3001"}]')
           fi
           if git diff --name-only HEAD~1 | grep -E "^website/" || [ "${{ github.event_name }}" = "schedule" ]; then
-            echo "{\"service\":\"website\",\"path\":\"website/\",\"port\":\"8080\"}," >> $GITHUB_OUTPUT
+            SERVICES=$(echo $SERVICES | jq '. += [{"service":"website","path":"website/","port":"8080"}]')
           fi
           if git diff --name-only HEAD~1 | grep -E "^automation/n8n/" || [ "${{ github.event_name }}" = "schedule" ]; then
-            echo "{\"service\":\"n8n\",\"path\":\"automation/n8n/\",\"port\":\"5678\"}," >> $GITHUB_OUTPUT
+            SERVICES=$(echo $SERVICES | jq '. += [{"service":"n8n","path":"automation/n8n/","port":"5678"}]')
           fi
-          echo "]}" >> $GITHUB_OUTPUT
-          sed -i 's/,]/]/' $GITHUB_OUTPUT
+          
+          # Output properly formatted matrix
+          echo "matrix={\"include\":$SERVICES}" >> $GITHUB_OUTPUT
 
   # ===============================
   # QUALITY GATES - STAGE 1

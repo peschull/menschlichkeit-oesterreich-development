@@ -199,15 +199,19 @@ jobs:
         run: |
           echo "🚨 Security vulnerabilities detected!"
           # Send notification to security team
-          curl -X POST "${{ secrets.N8N_WEBHOOK_URL }}" \
-            -H "Content-Type: application/json" \
-            -d '{
-              "type": "security-alert",
-              "status": "vulnerabilities-detected",
-              "commit": "${{ github.sha }}",
-              "repository": "${{ github.repository }}",
-              "actor": "${{ github.actor }}"
-            }'
+          if [ -n "${{ secrets.N8N_WEBHOOK_URL }}" ]; then
+            curl -X POST "${{ secrets.N8N_WEBHOOK_URL }}" \
+              -H "Content-Type: application/json" \
+              -d '{
+                "type": "security-alert",
+                "status": "vulnerabilities-detected",
+                "commit": "${{ github.sha }}",
+                "repository": "${{ github.repository }}",
+                "actor": "${{ github.actor }}"
+              }'
+          else
+            echo "⚠️ N8N_WEBHOOK_URL not configured - skipping notification"
+          fi
 
       - name: ✅ Daily Security Report
         if: github.event_name == 'schedule' && needs.security-audit.result == 'success'
