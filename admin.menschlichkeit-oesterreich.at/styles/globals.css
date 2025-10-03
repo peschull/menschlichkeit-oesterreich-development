@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import Admin Portal Design Tokens */
+@import '../../figma-design-system/styles/admin-portal.css';
+
+/* Additional base styles */
+@layer base {
+  :root {
+    /* Austrian Brand Colors */
+    --brand-primary: #ed1c24;
+    --brand-secondary: #ffffff;
+    --brand-accent: #c5a572;
+  }
+
+  body {
+    @apply bg-gray-50 text-gray-900 antialiased;
+  }
+
+  * {
+    @apply border-gray-200;
+  }
+}
+
+@layer components {
+  /* Widget Card */
+  .widget-card {
+    @apply bg-white rounded-lg border border-gray-200 p-6 shadow-md hover:shadow-lg transition-shadow;
+  }
+
+  /* Admin Sidebar */
+  .admin-sidebar {
+    @apply bg-white border-r border-gray-200 h-screen;
+  }
+
+  .admin-sidebar-item {
+    @apply flex items-center gap-3 px-4 py-3 rounded-md hover:bg-primary-50 transition-colors;
+  }
+
+  .admin-sidebar-item.active {
+    @apply bg-primary-100 text-primary-700 font-medium;
+  }
+
+  /* Admin Topbar */
+  .admin-topbar {
+    @apply bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between;
+  }
+
+  /* Data Table */
+  .data-table-row {
+    @apply border-b border-gray-100 hover:bg-gray-50 transition-colors;
+  }
+
+  .data-table-header {
+    @apply bg-gray-100 font-semibold text-sm text-gray-700 uppercase tracking-wider;
+  }
+
+  /* Form Elements */
+  .admin-input {
+    @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all;
+  }
+
+  .admin-input:disabled {
+    @apply bg-gray-100 cursor-not-allowed;
+  }
+
+  /* Badges */
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium;
+  }
+
+  .badge-success {
+    @apply bg-green-100 text-green-800;
+  }
+
+  .badge-warning {
+    @apply bg-yellow-100 text-yellow-800;
+  }
+
+  .badge-error {
+    @apply bg-red-100 text-red-800;
+  }
+
+  .badge-info {
+    @apply bg-blue-100 text-blue-800;
+  }
+
+  /* Buttons */
+  .btn {
+    @apply px-4 py-2 rounded-lg font-medium transition-all focus:ring-2 focus:ring-offset-2;
+  }
+
+  .btn-primary {
+    @apply bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500;
+  }
+
+  .btn-secondary {
+    @apply bg-gray-600 text-white hover:bg-gray-700 focus:ring-gray-500;
+  }
+
+  .btn-danger {
+    @apply bg-red-600 text-white hover:bg-red-700 focus:ring-red-500;
+  }
+}
+
+/* Accessibility */
+@layer utilities {
+  *:focus-visible {
+    @apply outline-none ring-2 ring-primary-500 ring-offset-2;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}

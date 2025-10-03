@@ -75,15 +75,15 @@
 
 #### W1: Foundation & Design Integration
 
-- [ ] Next.js Admin Portal Skeleton (`admin.menschlichkeit-oesterreich.at`)
-- [ ] Design Token Integration (Tailwind Config aus `figma-design-system/admin-portal-tokens.json`)
+- [x] Next.js Admin Portal Skeleton (`admin.menschlichkeit-oesterreich.at`)
+- [x] Design Token Integration (Tailwind Config aus `figma-design-system/admin-portal-tokens.json`)
 - [ ] Keycloak OIDC Middleware (JWT Verify + RBAC)
-- [ ] Layout System (Sidebar + Topbar + Main)
+- [x] Layout System (Sidebar + Topbar + Main)
 - [ ] Multi-Org Branding Runtime (CSS Variables Injection)
 
 #### W2: Core Components (Figma MCP)
 
-- [ ] **Widget Cards** (CI Status, Forum Flags, Members, Dues, Newsletter)
+- [x] **Widget Cards** (CI Status, Forum Flags, Members, Dues, Newsletter)
 - [ ] **Data Table** (Paginiert, Sortierbar, RLS-Filter)
 - [ ] **Form System** (Input, Select, Checkbox, Radio, Textarea)
 - [ ] **Button Variants** (Primary, Secondary, Danger, Ghost)

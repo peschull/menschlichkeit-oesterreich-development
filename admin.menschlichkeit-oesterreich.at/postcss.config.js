@@ -1,0 +1,7 @@
+// PostCSS configuration (ES Module)
+export default {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+};
