@@ -31,3 +31,19 @@ Diese Kurz-Anleitung optimiert die Zusammenarbeit von Figma (Dev Mode) und VS Co
 - Extension zeigt nichts? In VS Code in der Figma‑Ansicht anmelden.
 - Komponente nicht verlinkt? Dev resources in Figma prüfen, Pfad muss im Repo existieren.
 - Tokens fehlen in Figma? `figma-design-system/exports/tokens-studio.json` erneut importieren.
+
+## 6) MCP Server: Figma Datei hinterlegen
+
+- File Key aus Figma‑URL extrahieren, z. B. aus:
+	- https://www.figma.com/make/mTlUSy9BQk4326cvwNa8zQ/Website?node-id=0-1
+	- ergibt `mTlUSy9BQk4326cvwNa8zQ`
+- In `.vscode/mcp.json` ist `metadata.fileKey` bereits eingetragen.
+- Optional: `.env.local` (auf Basis von `config-templates/figma.env`) mit:
+	- `FIGMA_FILE_KEY=mTlUSy9BQk4326cvwNa8zQ`
+	- `FIGMA_ACCESS_TOKEN=figd_...` (Personal Access Token)
+
+Hilfsmittel:
+```bash
+# File Key schnell aus URL extrahieren
+npm run figma:filekey -- https://www.figma.com/make/mTlUSy9BQk4326cvwNa8zQ/Website?node-id=0-1
+```

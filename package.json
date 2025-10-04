@@ -75,7 +75,8 @@
     "n8n:webhook": "node automation/n8n/webhook-client.js",
     "n8n:setup": "cd automation/n8n && cp .env.example .env && echo 'Please configure automation/n8n/.env with your settings'",
     "n8n:smoke": "python3 automation/n8n/smoke-test.py",
-    "docs:adr-index": "node scripts/docs/generate-adr-index.mjs"
+    "docs:adr-index": "node scripts/docs/generate-adr-index.mjs",
+    "figma:filekey": "node scripts/figma-extract-filekey.mjs"
   },
   "scriptsPhase0": {
     "verify": "bash analysis/phase-0/verification/verify-phase-0.sh"
