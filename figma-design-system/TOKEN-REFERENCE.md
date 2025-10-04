@@ -1,12 +1,10 @@
 
 # 🎨 Design Token Reference
-
-*Auto-generated on: 2025-10-03T15:14:11.858Z*
+*Auto-generated on: 2025-10-04T21:28:40.756Z*
 
 ## Color Palette
 
 ### Primary
-
 - **50**: `#f0f9ff`
 - **100**: `#e0f2fe`
 - **200**: `#bae6fd`
@@ -19,7 +17,6 @@
 - **900**: `#0c4a6e`
 
 ### Secondary
-
 - **50**: `#f8fafc`
 - **100**: `#f1f5f9`
 - **200**: `#e2e8f0`
@@ -32,7 +29,6 @@
 - **900**: `#0f172a`
 
 ### Accent
-
 - **50**: `#fef7ff`
 - **100**: `#fdeef9`
 - **200**: `#fde6f4`
@@ -45,7 +41,6 @@
 - **900**: `#9d174d`
 
 ### Success
-
 - **50**: `#f0fdf4`
 - **100**: `#dcfce7`
 - **200**: `#bbf7d0`
@@ -58,7 +53,6 @@
 - **900**: `#14532d`
 
 ### Warning
-
 - **50**: `#fffbeb`
 - **100**: `#fef3c7`
 - **200**: `#fde68a`
@@ -71,7 +65,6 @@
 - **900**: `#78350f`
 
 ### Error
-
 - **50**: `#fef2f2`
 - **100**: `#fee2e2`
 - **200**: `#fecaca`
@@ -84,7 +77,6 @@
 - **900**: `#7f1d1d`
 
 ### Semantic
-
 - **background**: `#ffffff`
 - **surface**: `#f8fafc`
 - **overlay**: `rgba(0, 0, 0, 0.5)`
@@ -94,6 +86,7 @@
 - **border**: `#e2e8f0`
 - **border-focus**: `#0ea5e9`
 - **disabled**: `#f1f5f9`
+
 
 ## Typography Scale  
 
@@ -108,6 +101,7 @@
 - **5xl**: `3rem`
 - **6xl**: `3.75rem`
 - **7xl**: `4.5rem`
+
 
 ## Spacing System
 
@@ -130,10 +124,10 @@
 - **56**: `14rem`
 - **64**: `16rem`
 
+
 ## Usage Examples
 
 ### CSS Variables
-
 ```css
 .primary-button {
   background-color: var(--color-primary-500);
@@ -144,7 +138,6 @@
 ```
 
 ### Tailwind Classes
-
 ```html
 <button class="bg-primary-500 text-white px-6 py-4 text-base">
   Primary Button
@@ -152,7 +145,6 @@
 ```
 
 ### React Components
-
 ```tsx
 import { Button } from '@/components/ui/button';
 
