@@ -67,6 +67,7 @@
     "figma:sync:watch": "nodemon --watch figma-design-system scripts/figma-token-sync.cjs",
     "design:tokens": "npm run figma:sync && npm run build:frontend",
     "design:docs": "storybook build && npm run figma:sync",
+  "design:export:tokensstudio": "node scripts/export-tokens-tokensstudio.mjs",
     "n8n:start": "cd automation/n8n && docker-compose up -d",
     "n8n:stop": "cd automation/n8n && docker-compose down",
     "n8n:logs": "cd automation/n8n && docker-compose logs -f n8n",

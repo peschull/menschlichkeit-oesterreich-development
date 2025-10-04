@@ -80,6 +80,7 @@ Option B: Unsere Scripts (MCP‑freundlich)
     - `tailwind.config.js`
     - `figma-design-system/TOKEN-REFERENCE.md`
 - Validierung: `npm run figma:validate` (prüft Struktur, Drift, CSS/TS‑Abgleich)
+ - Export für Tokens Studio: `npm run design:export:tokensstudio` (erzeugt `figma-design-system/exports/tokens-studio.json` für direkten Import im Tokens‑Studio‑Plugin)
 
 Links
 - Tokens Studio JSON View: https://docs.tokens.studio/manage-tokens/token-sets/json-view
