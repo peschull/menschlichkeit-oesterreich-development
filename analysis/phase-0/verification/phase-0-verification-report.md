@@ -1,5 +1,5 @@
 # Phase 0 – Re-Verification Report
-Generiert: 2025-10-04T21:01:02+02:00
+Generiert: 2025-10-04T21:22:58+02:00
 
 ## Artefakte – Existenzprüfung
 
@@ -42,6 +42,26 @@ Generiert: 2025-10-04T21:01:02+02:00
 - ✅ OIDC (id-token: write) konfiguriert
 - ✅ Cosign signing integriert
 - ✅ CycloneDX Validierung im Workflow
+
+## GitHub Workflow: Phase 0 Verification
+- ✅ Workflow vorhanden — `.github/workflows/phase-0-verify.yml`
+- ✅ Führt Verify-Skript aus
+- ✅ Trigger auf Releases (Audit-Trail)
+
+## GitHub Workflow: Branch Protection
+- ✅ Workflow vorhanden — `.github/workflows/branch-protection.yml`
+- ✅ Unterstützt Admin‑Token via Secrets
+
+## GitHub Workflow: Docs (Lint & ADR Index)
+- ✅ Workflow vorhanden — `.github/workflows/docs-lint-and-adr-index.yml`
+- ✅ Markdown‑Lint konfiguriert
+- ✅ ADR‑Index wird generiert
+- ✅ ADR‑Index als Artefakt
+
+## GitHub Workflow: API OpenAPI Export
+- ✅ Workflow vorhanden — `.github/workflows/api-openapi-export.yml`
+- ✅ Export‑Script referenziert
+- ✅ OpenAPI Artefakt Upload
 
 ## MCP Server Härtung – Implementationsnachweis
 - ✅ File Server vorhanden — `mcp-servers/file-server/index.js`

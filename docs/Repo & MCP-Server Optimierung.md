@@ -97,11 +97,13 @@ _Geschätzte Dauer: 3-4 Tage_
 
 ### 🏗️ Architecture Decision Records (ADRs)
 
-- [ ] **ADR-001**: Multi-Service Architektur & Plesk Deployment
+- [x] **ADR-001**: Multi-Service Architektur & Plesk Deployment
 - [ ] **ADR-002**: ELK Stack für DSGVO Logging
 - [ ] **ADR-003**: Drupal/CiviCRM Brücken-Architektur
-- [ ] **ADR-004**: MCP Server Sicherheitsmodell
+- [x] **ADR-004**: MCP Server Sicherheitsmodell
 - [ ] **ADR-005**: Frontend State & API Communication Patterns
+  
+Siehe `docs/architecture/ADRs/ADR-INDEX.md` (automatisch generierbar mit `npm run docs:adr-index`).
 
 ### 📖 Operational Playbooks
 
@@ -275,6 +277,10 @@ _Geschätzte Dauer: 3-4 Tage (iterativ)_
 - Seccomp Profil: `mcp-servers/policies/seccomp/node-min.json`
 - SBOM CI: `.github/workflows/sbom-generation.yml`
 - Seccomp Runner: `scripts/run-mcp-file-server-seccomp.sh`
+- Branch Checks Script: `scripts/github/require-status-checks.sh`
+- OPA in Devcontainer: `.devcontainer/setup.sh` installiert `opa` (optional)
+ - OPA in CI: `.github/workflows/phase-0-verify.yml` installiert `opa` vor der Verifikation
+ - Branch‑Protection Automatisierung: `.github/workflows/branch-protection.yml` läuft täglich (main + `release/*`)
 
 ---
 

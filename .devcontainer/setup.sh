@@ -79,3 +79,27 @@ echo "  Frontend: http://localhost:5173"
 echo "  API: http://localhost:8001"
 echo "  CRM: http://localhost:8000"
 echo "  Games: http://localhost:3000"
+
+# Optional: Install OPA CLI for policy enforcement if not present
+if ! command -v opa >/dev/null 2>&1; then
+  echo "🛡️ Installing OPA CLI (optional for MCP policy gates)..."
+  OPA_VERSION="v0.63.0"
+  ARCH=$(uname -m)
+  case "$ARCH" in
+    x86_64|amd64) OPA_ARCH="amd64";;
+    aarch64|arm64) OPA_ARCH="arm64";;
+    *) OPA_ARCH="amd64";;
+  esac
+  curl -fsSL -o /tmp/opa https://openpolicyagent.org/downloads/${OPA_VERSION}/opa_linux_${OPA_ARCH}
+  chmod +x /tmp/opa
+  if [ -w /usr/local/bin ]; then
+    mv /tmp/opa /usr/local/bin/opa
+  else
+    mkdir -p "$HOME/.local/bin"
+    mv /tmp/opa "$HOME/.local/bin/opa"
+    echo 'export PATH="$HOME/.local/bin:$PATH"' >> "$HOME/.bashrc"
+  fi
+  echo "✅ OPA installiert ($(opa version 2>/dev/null || echo installed))"
+else
+  echo "🛡️ OPA bereits vorhanden: $(opa version 2>/dev/null)"
+fi

@@ -176,6 +176,98 @@ else
   missing=$((missing+1))
 fi
 
+# Phase 0 Verification workflow presence
+append ""
+append "## GitHub Workflow: Phase 0 Verification"
+WFV=".github/workflows/phase-0-verify.yml"
+if [ -f "$ROOT_DIR/$WFV" ]; then
+  append "- ✅ Workflow vorhanden — \`$WFV\`"
+  if grep -Fq "verify-phase-0.sh" "$ROOT_DIR/$WFV"; then
+    append "- ✅ Führt Verify-Skript aus"
+  else
+    append "- ❌ Verify-Skript nicht referenziert"
+    missing=$((missing+1))
+  fi
+  if grep -Fq "release:" "$ROOT_DIR/$WFV"; then
+    append "- ✅ Trigger auf Releases (Audit-Trail)"
+  else
+    append "- ❌ Release-Trigger fehlt"
+    missing=$((missing+1))
+  fi
+else
+  append "- ❌ Workflow fehlt — \`$WFV\`"
+  missing=$((missing+1))
+fi
+
+# Branch Protection workflow presence
+append ""
+append "## GitHub Workflow: Branch Protection"
+WFBP=".github/workflows/branch-protection.yml"
+if [ -f "$ROOT_DIR/$WFBP" ]; then
+  append "- ✅ Workflow vorhanden — \`$WFBP\`"
+  if grep -Fq "GH_ADMIN_TOKEN" "$ROOT_DIR/$WFBP" || grep -Fq "ADMIN_GITHUB_TOKEN" "$ROOT_DIR/$WFBP" || grep -Fq "REPO_ADMIN_TOKEN" "$ROOT_DIR/$WFBP"; then
+    append "- ✅ Unterstützt Admin‑Token via Secrets"
+  else
+    append "- ❌ Admin‑Token Secret fehlt"
+    missing=$((missing+1))
+  fi
+else
+  append "- ❌ Workflow fehlt — \`$WFBP\`"
+  missing=$((missing+1))
+fi
+
+# Docs Lint & ADR Index workflow presence
+append ""
+append "## GitHub Workflow: Docs (Lint & ADR Index)"
+WF_DOCS=".github/workflows/docs-lint-and-adr-index.yml"
+if [ -f "$ROOT_DIR/$WF_DOCS" ]; then
+  append "- ✅ Workflow vorhanden — \`$WF_DOCS\`"
+  if grep -Fq "markdownlint-cli" "$ROOT_DIR/$WF_DOCS"; then
+    append "- ✅ Markdown‑Lint konfiguriert"
+  else
+    append "- ❌ Markdown‑Lint fehlt"
+    missing=$((missing+1))
+  fi
+  if grep -Fq "docs:adr-index" "$ROOT_DIR/$WF_DOCS"; then
+    append "- ✅ ADR‑Index wird generiert"
+  else
+    append "- ❌ ADR‑Index‑Generation fehlt"
+    missing=$((missing+1))
+  fi
+  if grep -Fq "upload-artifact" "$ROOT_DIR/$WF_DOCS"; then
+    append "- ✅ ADR‑Index als Artefakt"
+  else
+    append "- ❌ Artefakt‑Upload fehlt"
+    missing=$((missing+1))
+  fi
+else
+  append "- ❌ Workflow fehlt — \`$WF_DOCS\`"
+  missing=$((missing+1))
+fi
+
+# API OpenAPI Export workflow presence
+append ""
+append "## GitHub Workflow: API OpenAPI Export"
+WF_OPENAPI=".github/workflows/api-openapi-export.yml"
+if [ -f "$ROOT_DIR/$WF_OPENAPI" ]; then
+  append "- ✅ Workflow vorhanden — \`$WF_OPENAPI\`"
+  if grep -Fq "scripts/export-openapi.py" "$ROOT_DIR/$WF_OPENAPI"; then
+    append "- ✅ Export‑Script referenziert"
+  else
+    append "- ❌ Export‑Script nicht referenziert"
+    missing=$((missing+1))
+  fi
+  if grep -Fq "upload-artifact" "$ROOT_DIR/$WF_OPENAPI"; then
+    append "- ✅ OpenAPI Artefakt Upload"
+  else
+    append "- ❌ Artefakt‑Upload fehlt"
+    missing=$((missing+1))
+  fi
+else
+  append "- ❌ Workflow fehlt — \`$WF_OPENAPI\`"
+  missing=$((missing+1))
+fi
+
 # MCP Server hardening checks
 append ""
 append "## MCP Server Härtung – Implementationsnachweis"

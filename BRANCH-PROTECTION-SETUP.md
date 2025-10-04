@@ -18,7 +18,16 @@
 - ☑️ **"Require a pull request before merging"** (Optional - nur wenn Sie PRs möchten)
   - ☑️ "Require approvals" (0 oder 1)
   - ☐ "Dismiss stale pull request approvals when new commits are pushed"
-- ☑️ **"Require status checks to pass before merging"** (Optional - wenn Sie CI/CD haben)
+- ☑️ **"Require status checks to pass before merging"** (Empfohlen)
+  - Folgende Status Checks aktivieren:
+    - `Phase 0 Verification`
+    - `verify-phase-0`
+    - `Generate SBOMs`
+    - `sbom`
+    - `Docs Lint & ADR Index`
+    - `docs`
+    - `API OpenAPI Export`
+    - `export-openapi`
 - ☑️ **"Do not allow bypassing the above settings"** (Für strikte Durchsetzung)
 
 #### ✅ Schutz vor Datenverlust (WICHTIG)
@@ -50,7 +59,16 @@ Für `chore/figma-mcp-make` als Hauptarbeitsbranch:
 ✅ Allow force pushes: NEIN (deaktiviert)
 ✅ Allow deletions: NEIN (deaktiviert)
 ⚪ Require pull request reviews: Optional (Nein, wenn Sie alleine arbeiten)
-⚪ Require status checks: Optional (Ja, wenn CI/CD läuft)
+⚪ Require status checks: Ja (Phase 0 Verification, verify-phase-0, Generate SBOMs, sbom, Docs Lint & ADR Index, docs, API OpenAPI Export, export-openapi)
+
+## 🧰 Alternative: Per API setzen
+
+Mit GitHub REST API (erfordert `repo`‑Token):
+
+```
+OWNER=peschull REPO=menschlichkeit-oesterreich-development BRANCH=chore/figma-mcp-make \
+GITHUB_TOKEN=ghp_xxx ./scripts/github/require-status-checks.sh
+```
 ```
 
 ## 🚀 Schnelle Einstellung (für Solo-Entwickler)
@@ -84,6 +102,25 @@ Temporär Protection Rules deaktivieren:
 5. Deaktivieren Sie "Allow force pushes" wieder sofort
 
 **Besser:** Verwenden Sie `git revert` statt `git reset --hard`
+
+## 🤖 Automatisiert per Workflow (empfohlen)
+
+Workflow: `.github/workflows/branch-protection.yml`
+
+1) Repository Secret mit Admin‑Token anlegen (eine der Optionen):
+- `GH_ADMIN_TOKEN` oder `ADMIN_GITHUB_TOKEN` oder `REPO_ADMIN_TOKEN`
+
+2) Workflow manuell starten (Run workflow):
+- Eingabefeld „branches“: z. B. `main,chore/figma-mcp-make`
+
+Der Workflow setzt Required Status Checks:
+- `Phase 0 Verification`, `verify-phase-0`
+- `Generate SBOMs`, `sbom`
+- `Docs Lint & ADR Index`, `docs`
+- `API OpenAPI Export`, `export-openapi`
+
+Zeitgesteuert:
+- Der Workflow läuft täglich (03:17 UTC) und setzt die Checks automatisch für `main` und alle vorhandenen `release/*` Branches, sobald das Secret vorhanden ist.
 
 ## 📚 GitHub Dokumentation
 
