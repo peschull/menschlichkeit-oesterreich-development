@@ -46,4 +46,16 @@ Hilfsmittel:
 ```bash
 # File Key schnell aus URL extrahieren
 npm run figma:filekey -- https://www.figma.com/make/mTlUSy9BQk4326cvwNa8zQ/Website?node-id=0-1
+
+# Node-ID aus URL extrahieren (normalisiert 1-2 → 1:2)
+npm run figma:nodeid -- "https://www.figma.com/make/mTlUSy9BQk4326cvwNa8zQ/Website?node-id=1-2"
 ```
+
+Weitere Referenz:
+
+- `docs/design/FIGMA-MCP-TOOLS.md` – Kurzreferenz der Figma MCP Tools (Zweck, Lokal/Remote, Prompts, Hinweise)
+- Regeln für generierten Code: `instructions/figma-mcp/stack-rules.md`
+
+Remote-Hinweis:
+
+- Für `get_code`, `get_metadata`, `get_screenshot` im Remote-Server Kontext immer `fileKey` und `nodeId` mitgeben.
