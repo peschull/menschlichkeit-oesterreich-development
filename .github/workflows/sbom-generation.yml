@@ -1,3 +1,29 @@
+name: SBOM Generation
+
+on:
+  push:
+    branches: [ chore/**, main, release/** ]
+  workflow_dispatch: {}
+
+jobs:
+  sbom:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install CycloneDX CLI
+        run: |
+          npm install -g @cyclonedx/cyclonedx-npm
+      - name: Generate SBOM
+        run: |
+          cyclonedx-npm --output-file sbom.cdx.json --spec-version 1.5 || true
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: sbom
+          path: sbom.cdx.json
 name: Generate SBOMs
 
 on:

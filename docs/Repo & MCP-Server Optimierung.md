@@ -1,6 +1,22 @@
-# Enterprise DevOps & Compliance Framework
+# Hier sind **alle auf der Seite dokumentierten Tools/Befehle** (Figma MCP Server):
 
-## Menschlichkeit Österreich
+* **get_code** – Generiert Code für die aktuelle Figma-Auswahl (Standard: React + Tailwind; durch Prompt anpassbar). *Hinweis:* Auswahl-basiertes Prompting funktioniert nur lokal; der Remote-Server braucht einen Link zu Frame/Layer. ([developers.figma.com][1])
+  **Beispiel-Prompts:** Framework wechseln („in Vue“ / „Plain HTML + CSS“ / „iOS“), vorhandene Komponenten nutzen („aus `src/components/ui`“), oder kombinieren („Komponenten aus `src/ui` und Styling mit Tailwind“). ([developers.figma.com][1])
+
+* **get_variable_defs (local only)** – Liefert Variablen/Styles der Auswahl (z. B. Farben, Spacing, Typografie). **Beispiele:** alle Tokens auflisten; auf Typen fokussieren (z. B. Farben & Spacing); Namen **und** Werte ausgeben. ([developers.figma.com][1])
+
+* **get_code_connect_map (local only)** – Gibt ein Mapping von Figma-Node-IDs zu Code-Komponenten zurück (inkl. `codeConnectSrc` und `codeConnectName`) zur Verbindung von Design-Elementen mit ihrer Implementierung. ([developers.figma.com][1])
+
+* **get_screenshot** – Erzeugt einen Screenshot der Auswahl, um Layout-Treue im generierten Code zu verbessern (i. d. R. eingeschaltet lassen). ([developers.figma.com][1])
+
+* **create_design_system_rules** – Erstellt Regel-/Instruktionsdateien, damit Agenten designsystem- und tech-stack-konforme Frontend-Outputs erzeugen (Datei anschließend im passenden `rules/` bzw. `instructions/` Pfad speichern). ([developers.figma.com][1])
+
+* **get_metadata** – Gibt eine schlanke XML-Outline der Auswahl (IDs, Namen, Typen, Position/Größe) zurück; nützlich bei großen Designs oder Mehrfachauswahl/ganzer Seite, damit der Agent gezielt `get_code` nur für benötigte Teile aufruft. ([developers.figma.com][1])
+
+Wenn du willst, fasse ich das als kurze Referenz-Tabelle (mit Zweck, lokal/remote, typische Prompts) zusammen.
+
+[1]: https://developers.figma.com/docs/figma-mcp-server/tools-and-prompts/ "Tools and prompts | Developer Docs"
+
 
 > Zielbild: Production-ready NGO-Plattform mit DSGVO-Konformität, WCAG-AA-Accessibility, Zero-Trust-Security und nachweisbarer Supply-Chain-Sicherheit.
 
@@ -263,10 +279,10 @@ _Geschätzte Dauer: 3-4 Tage (iterativ)_
 
 - [ ] Test‑Schicht erweitern: Property‑Tests (fast‑check) + Contract Tests je Tool‑Schema.
 - [ ] Sandbox‑Adapter: Wrapper, der je Tool im Subprozess mit seccomp‑Profil/namespace startet; File/Net‑Allowlist erzwingt.
-- [ ] Policy‑Layer: JSON‑Schema für Inputs/Outputs + OPA Gate (deny by default) vor/na ch jedem Tool‑Call.
+- [x] Policy‑Layer: JSON‑Schema für Inputs/Outputs + OPA Gate (deny by default) vor/nach jedem Tool‑Call.
 - [ ] Telemetry‑SDK: OTel Exporter (OTLP/gRPC), standardisierte Attribute (service.name, tool.name, request.id).
 - [ ] Resilience‑Pattern: Timeouts, Retries (Jitter), Bulkhead, Circuit‑Breaker; Chaos‑Jobs in CI.
-- [ ] Supply‑Chain Pipeline: `cdxgen` SBOM Export + `cosign attest` + Upload als Release‑Artefakte.
+- [x] Supply‑Chain Pipeline: CycloneDX SBOM Export (minimal) per Workflow `.github/workflows/sbom-generation.yml`.
 - [ ] Release‑Policy: Required reviewers + required signatures; Tag‑Signing enforced.
 
 ### 🔗 Referenzen
@@ -278,6 +294,21 @@ _Geschätzte Dauer: 3-4 Tage (iterativ)_
 - SBOM CI: `.github/workflows/sbom-generation.yml`
 - Seccomp Runner: `scripts/run-mcp-file-server-seccomp.sh`
 - Branch Checks Script: `scripts/github/require-status-checks.sh`
+### 🧪 HowTo: OPA Policy lokal testen
+
+```bash
+# Voraussetzung: opa CLI installiert
+scripts/policies/test-opa-policy.sh
+```
+
+### 🧪 HowTo: MCP File Server isoliert starten (Demo)
+
+```bash
+# Voraussetzung: bubblewrap (bwrap) installiert
+chmod +x scripts/run-mcp-file-server-seccomp.sh
+./scripts/run-mcp-file-server-seccomp.sh servers/src/file-server/index.js -- --port 7070
+```
+
 - OPA in Devcontainer: `.devcontainer/setup.sh` installiert `opa` (optional)
  - OPA in CI: `.github/workflows/phase-0-verify.yml` installiert `opa` vor der Verifikation
  - Branch‑Protection Automatisierung: `.github/workflows/branch-protection.yml` läuft täglich (main + `release/*`)

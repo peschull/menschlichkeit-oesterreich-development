@@ -1,3 +1,15 @@
+# MCP Policies
+
+Diese Policies härten die MCP-Toolausführung:
+
+- OPA Policy (Input/Output Guards): `opa/tool-io.rego`
+- Seccomp Profil (Syscall-Minimum): `seccomp/node-min.json`
+- Testskript OPA: `scripts/policies/test-opa-policy.sh`
+- Runner (bwrap Isolation): `scripts/run-mcp-file-server-seccomp.sh`
+
+Hinweise:
+- OPA eval: `opa eval -b mcp-servers/policies/opa -i input.json 'data.mcp.policies.allow'`
+- Seccomp: Einsatz je nach Umgebung; Profil als Startpunkt verstehen und iterativ härten.
 MCP Server Security Policies
 
 Overview
