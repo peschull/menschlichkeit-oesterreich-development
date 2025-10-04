@@ -29,7 +29,10 @@
     // Development Utilities
     "formulahendry.code-runner",
     "pflannery.vscode-versionlens",
-    "ms-vscode.powershell"
+    "ms-vscode.powershell",
+
+    // Design & Figma Integration
+    "figma.figma-vscode-extension"
   ],
 
   "unwantedRecommendations": [
