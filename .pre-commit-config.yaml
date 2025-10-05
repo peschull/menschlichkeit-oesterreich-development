@@ -1,3 +1,14 @@
+exclude: |
+  ^vendor/|
+  ^node_modules/|
+  ^dist/|
+  ^build/|
+  ^coverage/|
+  ^playwright-results/|
+  ^frontend/dist/|
+  ^website/dist/|
+  ^web/games/assets/generated/|
+  ^generated/
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.6.0

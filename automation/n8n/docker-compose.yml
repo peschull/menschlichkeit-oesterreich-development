@@ -73,4 +73,5 @@ networks:
   moe-automation:
     driver: bridge
   moe-network:
-    external: true # Verbindung zum bestehenden CRM Docker Netzwerk
+    driver: bridge
+    name: moe-network
