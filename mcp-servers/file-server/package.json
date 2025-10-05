@@ -4,10 +4,13 @@
   "description": "MCP Server für Multi-Service File Access",
   "main": "index.js",
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.0.0"
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "ajv": "^8.12.0",
+    "@opentelemetry/api": "^1.9.0"
   },
   "scripts": {
     "start": "node index.js",
-    "dev": "node --inspect index.js"
+    "dev": "node --inspect index.js",
+    "test": "jest --config ./jest.config.cjs --runInBand --passWithNoTests"
   }
 }

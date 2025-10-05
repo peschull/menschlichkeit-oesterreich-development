@@ -7,16 +7,16 @@ redact = true
 [allowlist]
   description = "Global allowlist for known false positives and test fixtures"
   paths = [
-    "^quality-reports/private/", # reports folder
-    "^tests/fixtures/",          # test fixtures
-    "^vendor/",                  # vendor code
-    "^crm\.menschlichkeit-oesterreich\.at/vendor/",
+    '^quality-reports/private/', # reports folder
+    '^tests/fixtures/',          # test fixtures
+    '^vendor/',                  # vendor code
+    '^crm\.menschlichkeit-oesterreich\.at/vendor/',
   ]
   regexes = [
     # Hex strings used as placeholders in docs/demos
-    "(?i)\b(PLACEHOLDER|DUMMY|EXAMPLE|TEST)_?TOKEN\b",
+    '(?i)\b(PLACEHOLDER|DUMMY|EXAMPLE|TEST)_?TOKEN\b',
     # Mock UUIDs used in examples
-    "\b00000000-0000-0000-0000-000000000000\b"
+    '\b00000000-0000-0000-0000-000000000000\b'
   ]
 
 # Custom rules can be added here; keep default rules enabled by not redefining them.
