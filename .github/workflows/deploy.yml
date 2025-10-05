@@ -1,0 +1,66 @@
+name: Deploy via SSH (Plesk)
+
+on:
+  workflow_dispatch:
+    inputs:
+      direction:
+        description: "Sync-Richtung (push oder pull)"
+        required: true
+        default: "push"
+        type: choice
+        options: [push, pull]
+      apply:
+        description: "Änderungen anwenden (statt Dry-Run)?"
+        required: true
+        default: "false"
+        type: choice
+        options: ["false", "true"]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      # Map GitHub Secrets → Script ENV
+      PLESK_HOST: ${{ secrets.SSH_HOST }}
+      SSH_PORT: ${{ secrets.SSH_PORT }}
+      PLESK_REMOTE_PATH: ${{ secrets.SSH_TARGET_DIR }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install rsync and ssh
+        run: sudo apt-get update && sudo apt-get install -y rsync openssh-client
+
+      - name: Configure SSH key
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: |
+            ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Show sync plan (Dry-Run)
+        if: inputs.apply == 'false'
+        run: |
+          bash scripts/plesk-sync.sh ${{ inputs.direction }}
+
+      - name: Apply sync
+        if: inputs.apply == 'true'
+        run: |
+          bash scripts/plesk-sync.sh ${{ inputs.direction }} --apply
+
+      - name: Post Deploy - Health Check (optional)
+        if: inputs.direction == 'push' && inputs.apply == 'true'
+        env:
+          HEALTH_URL: ${{ vars.HEALTH_URL }}
+        run: |
+          if [ -n "${HEALTH_URL}" ]; then
+            echo "Checking ${HEALTH_URL}"
+            curl -fsSL "${HEALTH_URL}" -o /dev/null && echo "Health OK" || (echo "Health check failed" && exit 1)
+          else
+            echo "HEALTH_URL not set; skipping"
+          fi

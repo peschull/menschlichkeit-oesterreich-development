@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "lint": "eslint . --ext .js,.ts"
+  },
   "name": "@menschlichkeit/shared",
   "version": "0.1.0",
   "description": "Geteilte Utilities für das Menschlichkeit Österreich Monorepo",

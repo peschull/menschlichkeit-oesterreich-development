@@ -382,7 +382,7 @@ stopwords = [
 ]
 ```
 
-Refer to the default [gitleaks config](https://github.com/zricethezav/gitleaks/blob/master/config/gitleaks.toml) for examples or follow the [contributing guidelines](https://github.com/zricethezav/gitleaks/blob/master/README.md) if you would like to contribute to the default configuration. Additionally, you can check out [this gitleaks blog post](https://blog.gitleaks.io/stop-leaking-secrets-configuration-2-3-aeed293b1fbf) which covers advanced configuration setups.
+Refer to the default [gitleaks config](https://github.com/zricethezav/gitleaks/blob/master/config/gitleaks.toml) for examples or follow the [contributing guidelines](https://github.com/zricetzezav/gitleaks/blob/master/README.md) if you would like to contribute to the default configuration. Additionally, you can check out [this gitleaks blog post](https://blog.gitleaks.io/stop-leaking-secrets-configuration-2-3-aeed293b1fbf) which covers advanced configuration setups.
 
 ### Additional Configuration
 
@@ -418,3 +418,25 @@ You can always set the exit code when leaks are encountered with the --exit-code
 1 - leaks or error encountered
 126 - unknown flag
 ```
+
+## Build-Graph & Quality Gates (Turborepo)
+
+Ab Oktober 2025 orchestriert Turborepo alle Quality Gates (lint, test, build) und parallele Builds für alle Workspaces:
+
+- **Parallele Ausführung:** Lint, Test und Build laufen für alle Services/Packages parallel.
+- **Affected Detection:** Mit `--filter=...[HEAD]` werden nur geänderte Workspaces gebaut.
+- **Quality Gates:** Fehler in einem Workspace blockieren den gesamten Build (siehe Output von `npm run turbo:lint`/`test`/`build`).
+- **Skripte:**
+  - `npm run turbo:lint` – Lint für alle Workspaces
+  - `npm run turbo:test` – Tests für alle Workspaces
+  - `npm run turbo:build` – Build für alle Workspaces
+  - `npm run turbo:affected:lint` – Lint nur für geänderte Workspaces
+  - `npm run turbo:affected:test` – Tests nur für geänderte Workspaces
+  - `npm run turbo:affected:build` – Build nur für geänderte Workspaces
+
+**Best Practices:**
+- Jeder Workspace benötigt ein eigenes `lint`-, `test`- und `build`-Skript in der package.json.
+- Quality Gates werden zentral über Turborepo gesteuert.
+- Fehlerhafte Workspaces müssen vor Merge/Deploy behoben werden.
+
+Siehe auch: turbo.json, package.json (root), Quality-Reports.

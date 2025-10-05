@@ -9,6 +9,7 @@
     "preview": "vite preview",
     "tokens:build": "node ./scripts/generate-design-tokens.mjs",
     "lh:ci": "node ./scripts/run-lighthouse.mjs"
+    ,"lint": "eslint . --ext .js,.ts,.tsx"
   },
   "dependencies": {
     "framer-motion": "^12.23.22",

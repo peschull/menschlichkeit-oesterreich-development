@@ -15,6 +15,7 @@ const fs = require('fs').promises;
 const fssync = require('fs');
 const path = require('path');
 const { spawn } = require('child_process');
+const { redactSecrets } = require('@menschlichkeit/shared');
 const Ajv = require('ajv');
 const crypto = require('crypto');
 const { trace, SpanStatusCode } = require('@opentelemetry/api');
@@ -401,7 +402,7 @@ class FileServerMCP {
         throw new Error(`File too large (${st.size} bytes), limit is ${this.maxFileBytes}`);
       }
       const contentRaw = await fs.readFile(fullPath, 'utf8');
-      const content = this.redact(contentRaw);
+  const content = redactSecrets(contentRaw);
       const opaOut = await this.opaAllow('data.mcp.policy.toolio.allow_output', { content });
       if (opaOut === false) {
         throw new Error('OPA policy denied output');
@@ -611,7 +612,7 @@ class FileServerMCP {
           const lines = text.split(/\r?\n/);
           for (let i = 0; i < lines.length && matchesFound < cfg.maxMatches; i++) {
             if (lines[i].toLowerCase().includes(lowerQuery)) {
-              const snippet = this.redact(lines[i]).slice(0, 200);
+              const snippet = redactSecrets(lines[i]).slice(0, 200);
               results.push({ service, path: relFile, line: i + 1, snippet });
               matchesFound += 1;
             }
@@ -700,20 +701,7 @@ class FileServerMCP {
     }
   }
 
-  // Redact secrets and sensitive markers
-  redact(text) {
-    if (typeof text !== 'string') return text;
-    const patterns = [
-      { re: /-----BEGIN [A-Z ]*PRIVATE KEY-----[\s\S]*?-----END [A-Z ]*PRIVATE KEY-----/g, repl: '-----BEGIN PRIVATE KEY-----\n[REDACTED]\n-----END PRIVATE KEY-----' },
-      { re: /(AWS_)?SECRET_ACCESS_KEY\s*[:=]\s*[^\n\r]+/gi, repl: 'SECRET_ACCESS_KEY=[REDACTED]' },
-      { re: /(x-api-key\s*[:=]\s*)[^\n\r]+/gi, repl: '$1[REDACTED]' },
-      { re: /(api[_-]?key\s*[:=]\s*)[^\n\r]+/gi, repl: '$1[REDACTED]' },
-      { re: /(authorization:\s*Bearer\s+)[A-Za-z0-9\-_.~+/=]+/gi, repl: '$1[REDACTED]' },
-    ];
-    let out = text;
-    for (const { re, repl } of patterns) out = out.replace(re, repl);
-    return out;
-  }
+  // Redaction ausgelagert in @menschlichkeit/shared
 }
 
 class TokenBucket {

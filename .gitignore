@@ -7,6 +7,9 @@
 #Ignore vscode AI rules
 .github\instructions\codacy.instructions.md
 
+# Turborepo
+.turbo/
+
 # ========================================
 # SECURITY & SECRETS - CRITICAL
 # ========================================
@@ -43,6 +46,12 @@ temp/*.decrypted
 *.dump
 *.backup
 *.bak
+
+# Plaintext password files (CRITICAL)
+*passwort*.txt
+*password*.txt
+*credentials*.txt
+*zugangsdaten*.txt
 
 # Configuration with secrets
 config/local.json
@@ -298,6 +307,9 @@ servers/src/*/dist/
 
 # Development databases
 *.sqlite
+
+# Prevent committing sensitive Plesk notes
+website/Plesk daten mit passwörter.txt
 *.db
 # Sensible Daten - NIEMALS in Git committen!
 .env

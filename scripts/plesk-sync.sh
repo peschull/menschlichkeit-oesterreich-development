@@ -10,7 +10,11 @@ fi
 ACTION="${1:-help}"
 APPLY="${2:-}"
 
-REMOTE="${PLESK_HOST:-plesk}:${PLESK_REMOTE_PATH:-/var/www/vhosts/menschlichkeit-oesterreich.at/httpdocs}"
+USER_PREFIX=""
+if [[ -n "${SSH_USER:-}" ]]; then
+  USER_PREFIX="${SSH_USER}@"
+fi
+REMOTE="${USER_PREFIX}${PLESK_HOST:-plesk}:${PLESK_REMOTE_PATH:-/var/www/vhosts/menschlichkeit-oesterreich.at/httpdocs}"
 LOCAL="${LOCAL_WEBROOT:-$ROOT_DIR}"
 
 SSH_OPTS=()
