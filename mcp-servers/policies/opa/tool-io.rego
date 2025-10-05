@@ -44,8 +44,15 @@ allow_output {
   not contains(to_string(input.content), "-----BEGIN PRIVATE KEY-----")
   not contains(to_string(input.content), "AWS_SECRET_ACCESS_KEY")
   not contains(to_string(input.content), "x-api-key")
+  not contains(lower(to_string(input.content)), "authorization: bearer ")
+  not contains(to_string(input.content), "SECRET_ACCESS_KEY")
+  not contains(to_string(input.content), "BEGIN RSA PRIVATE KEY")
 }
 
 to_string(x) = s {
   s := sprintf("%v", [x])
+}
+
+lower(s) = out {
+  out := lower_ascii(s)
 }

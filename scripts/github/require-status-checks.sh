@@ -27,11 +27,17 @@ read -r -d '' CONTEXTS_JSON <<'JSON' || true
       "Gitleaks",
       "CodeQL",
       "Generate SBOMs",
-      "sbom"
+      "sbom",
+      "i18n Checks",
+      "Trivy FS"
     ]
   },
   "enforce_admins": true,
-  "required_pull_request_reviews": null,
+  "required_pull_request_reviews": {
+    "required_approving_review_count": 2,
+    "dismiss_stale_reviews": true,
+    "require_code_owner_reviews": true
+  },
   "restrictions": null
 }
 JSON
@@ -44,3 +50,12 @@ curl -sS -X PUT \
   -d "${CONTEXTS_JSON}"
 
 echo "\nDone."
+
+# Require signed commits (separate endpoint)
+echo "Enabling required signed commits..."
+curl -sS -X POST \
+  -H "Authorization: Bearer ${TOKEN}" \
+  -H "Accept: application/vnd.github+json" \
+  "${GITHUB_API}/repos/${OWNER}/${REPO}/branches/${BRANCH}/protection/required_signatures" || true
+
+echo "\nBranch protection updated."
