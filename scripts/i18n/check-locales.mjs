@@ -7,6 +7,19 @@ import { parse } from '@formatjs/icu-messageformat-parser';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+// Konfiguration über Umgebungsvariablen
+// I18N_DIRS: Kommagetrennte Basisverzeichnisse (Standard: frontend,website,admin.menschlichkeit-oesterreich.at)
+// I18N_DIR_NAMES: Kommagetrennte Verzeichnisnamen, die Locale-Dateien enthalten (Standard: locales,i18n,lang)
+// I18N_FILE_BASENAMES: Basenamen (z. B. de.json,en.json) zur Referenzbestimmung (Standard: de.json,en.json)
+// I18N_REF_LOCALE: erzwinge Referenzsprache (de|en); leer = automatisch
+const I18N_DIRS = (process.env.I18N_DIRS || 'frontend,website,admin.menschlichkeit-oesterreich.at')
+  .split(',').map(s => s.trim()).filter(Boolean);
+const I18N_DIR_NAMES = (process.env.I18N_DIR_NAMES || 'locales,i18n,lang')
+  .split(',').map(s => s.trim()).filter(Boolean);
+const I18N_FILE_BASENAMES = (process.env.I18N_FILE_BASENAMES || 'de.json,en.json')
+  .split(',').map(s => s.trim()).filter(Boolean);
+const I18N_REF_LOCALE = (process.env.I18N_REF_LOCALE || '').trim();
+
 function* walk(dir) {
   const entries = fs.readdirSync(dir, { withFileTypes: true });
   for (const e of entries) {
@@ -18,16 +31,12 @@ function* walk(dir) {
 
 function findLocaleRoots() {
   const roots = [];
-  const candidates = [
-    'frontend',
-    'website',
-    'admin.menschlichkeit-oesterreich.at',
-  ];
-  for (const base of candidates) {
+  for (const base of I18N_DIRS) {
     if (!fs.existsSync(base)) continue;
     const locales = [];
     for (const f of walk(base)) {
-      if (/\blocales?\b/.test(f) && f.endsWith('.json')) {
+      const dirName = path.basename(path.dirname(f));
+      if (I18N_DIR_NAMES.includes(dirName) && f.endsWith('.json')) {
         locales.push(f);
       }
     }
@@ -85,7 +94,15 @@ for (const { base, locales } of roots) {
   }
 
   for (const [dir, files] of byDir.entries()) {
-    const refFile = files.find(f => /(^|\b|\/)de(\.|-)/.test(path.basename(f))) || files.find(f => /(^|\b|\/)en(\.|-)/.test(path.basename(f)));
+    const baseNames = I18N_FILE_BASENAMES;
+    let refFile = null;
+    if (I18N_REF_LOCALE) {
+      refFile = files.find(f => path.basename(f).startsWith(`${I18N_REF_LOCALE}.`)) ||
+                files.find(f => path.basename(f) === `${I18N_REF_LOCALE}.json`);
+    }
+    if (!refFile) {
+      refFile = files.find(f => baseNames.includes(path.basename(f)));
+    }
     if (!refFile) continue;
     const ref = flattenKeys(parseJSON(refFile));
 
@@ -96,7 +113,7 @@ for (const { base, locales } of roots) {
       const icuErrors = validateICU(tgt);
       if (missing.length || icuErrors.length) {
         failures++;
-        console.log(`\n[i18n] Probleme in ${f} (Basis: ${path.basename(refFile)}):`);
+        console.log(`\n[i18n] Probleme in ${f} (Basis: ${path.relative(process.cwd(), refFile)}):`);
         if (missing.length) console.log(`  Fehlende Keys (${missing.length}):`, missing.slice(0, 20).join(', '), missing.length > 20 ? '…' : '');
         for (const err of icuErrors.slice(0, 20)) console.log(`  ICU-Fehler: ${err.key} → ${err.message}`);
       }
@@ -110,4 +127,3 @@ if (failures) {
 }
 
 console.log('[i18n] Alle Checks erfolgreich.');
-
