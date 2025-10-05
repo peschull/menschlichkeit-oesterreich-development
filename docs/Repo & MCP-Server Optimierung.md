@@ -285,6 +285,40 @@ _Geschätzte Dauer: 3-4 Tage (iterativ)_
 - [x] Supply‑Chain Pipeline: CycloneDX SBOM Export (minimal) per Workflow `.github/workflows/sbom-generation.yml`.
 - [ ] Release‑Policy: Required reviewers + required signatures; Tag‑Signing enforced.
 
+### 🛡️ Security History Cleanup
+
+Ziel: Versehentlich committete Secrets und sensible Artefakte aus der Git‑Historie entfernen, Token rotieren und Schutzmechanismen verankern.
+
+Empfohlener Ablauf (koordiniert):
+
+1) Inventory & Befund
+- Vollständiger History‑Scan: `scripts/security/gitleaks-history-scan.sh`
+- Findings konsolidieren: betroffene Pfade (z. B. `.env`, Dumps), konkrete Secrets (PATs, API Keys)
+
+2) Rewrite‑Plan erstellen (Change Freeze!)
+- Team informieren, PRs pausieren, Rebase‑Konflikte einkalkulieren
+- Liste zu entfernender Pfade/Patterns definieren
+
+3) Git‑Historie bereinigen (git‑filter‑repo)
+- Trockenlauf: `FILES_TO_REMOVE=".env,.env.mcp" ./scripts/security/git-history-cleanup.sh --dry-run`
+- Ausführung: `FILES_TO_REMOVE=".env,.env.mcp" ./scripts/security/git-history-cleanup.sh`
+- Force‑Push: `git push --force --prune origin --all && git push --force --prune origin --tags`
+
+4) Nachbereitung
+- Tokenrotation: alle betroffenen Secrets revozieren/neu ausstellen (GitHub PATs, API Keys)
+- Zugriff invalidieren: alte Deploy Keys, CI‑Secrets, Webhooks prüfen
+- Re‑Clone kommunizieren: Forks/Clones müssen neu aufgesetzt werden
+
+5) Prävention verankern
+- Pre‑Commit Hooks: `.pre-commit-config.yaml`; Install: `scripts/setup/install-pre-commit.sh`
+- CI‑Gates: Gitleaks, CodeQL, Trivy, SBOM als Pflicht‑Checks (siehe Workflows)
+- Branch‑Protection: `scripts/github/require-status-checks.sh` ausführen
+
+Hinweise
+- History‑Rewrite ist destruktiv und erfordert enges Team‑Vorgehen.
+- Alte Klone enthalten weiterhin die Daten – nur Neu‑Clones sind „sauber“.
+
+
 ### 🔗 Referenzen
 
 - Threat Model Details: `analysis/phase-0/threat-model/STRIDE-LINDDUN-ANALYSIS.md`

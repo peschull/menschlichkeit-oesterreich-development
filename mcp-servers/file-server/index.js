@@ -10,7 +10,6 @@ const { StdioServerTransport } = require('@modelcontextprotocol/sdk/server/stdio
 const {
   CallToolRequestSchema,
   ListToolsRequestSchema,
-  Tool,
 } = require('@modelcontextprotocol/sdk/types.js');
 const fs = require('fs').promises;
 const fssync = require('fs');
@@ -18,7 +17,7 @@ const path = require('path');
 const { spawn } = require('child_process');
 const Ajv = require('ajv');
 const crypto = require('crypto');
-const { trace, context, SpanStatusCode } = require('@opentelemetry/api');
+const { trace, SpanStatusCode } = require('@opentelemetry/api');
 
 class FileServerMCP {
   constructor() {
@@ -67,7 +66,7 @@ class FileServerMCP {
 
   compileValidators() {
     const serviceEnum = Array.from(this.allowedServices);
-    const commonPathPattern = '^(?!/)(?!.*\\.\\.)(?!.*\\\\\\.\\\\\\.)(?!.*\\\\\\\\\\\\)';
+     // const commonPathPattern = '^(?!/)(?!.*\\\.\\.)(?!.*\\\\\\\.\\\\\.)(?!.*\\\\\\\\\\\\)';
     const readSchema = {
       type: 'object',
       properties: {
@@ -232,14 +231,13 @@ class FileServerMCP {
           return await spanRunner();
         } finally {
           const dur = Date.now() - start;
-          // eslint-disable-next-line no-console
           console.log(JSON.stringify({ type: 'mcp', rid, tool: request.params.name, duration_ms: dur }));
         }
       }
 
       return await this.tracer.startActiveSpan('mcp.tool', async span => {
-        span.setAttribute('tool.name', request.params.name);
-        span.setAttribute('mcp.rid', rid);
+  span.setAttribute('tool.name', request.params.name);
+  span.setAttribute('mcp.rid', rid);
         try {
           const res = await spanRunner();
           span.setStatus({ code: SpanStatusCode.OK });
@@ -254,7 +252,6 @@ class FileServerMCP {
         } finally {
           span.end();
           const dur = Date.now() - start;
-          // eslint-disable-next-line no-console
           console.log(JSON.stringify({ type: 'mcp', rid, tool: request.params.name, duration_ms: dur }));
         }
       });
@@ -381,7 +378,7 @@ class FileServerMCP {
     });
   }
 
-  async readMultiServiceFile(args, { rid } = {}) {
+  async readMultiServiceFile(args, { _rid } = {}) {
     try {
       if (!this.cbRead.allow()) {
         throw new Error('Circuit open for read operation');
@@ -433,7 +430,7 @@ class FileServerMCP {
     }
   }
 
-  async listServiceFiles(args, { rid } = {}) {
+  async listServiceFiles(args, { _rid } = {}) {
     try {
       if (!this.cbList.allow()) {
         throw new Error('Circuit open for list operation');
@@ -442,6 +439,10 @@ class FileServerMCP {
         throw new Error('Invalid arguments: ' + this.ajv.errorsText(this.validators.list.errors));
       }
       const { service, directory = '.' } = args;
+      // Input-Validierung: directory darf nicht zu lang/leer sein und keine Traversals enthalten
+      if (typeof directory !== 'string' || directory.length === 0 || directory.length > 4096 || directory.includes('..') || directory.startsWith('/')) {
+        throw new Error('Invalid directory argument');
+      }
       const opaIn = await this.opaAllow('data.mcp.policy.toolio.allow_input', { service, filePath: directory });
       if (opaIn === false) {
         throw new Error('OPA policy denied input');
@@ -454,18 +455,30 @@ class FileServerMCP {
         throw new Error(`Directory listing too large (${items.length} entries), limit is ${this.maxListEntries}`);
       }
 
-      const fileList = items.map(item => ({
-        name: item.name,
-        type: item.isDirectory() ? 'directory' : 'file',
-        path: path.join(directory, item.name),
-      }));
+      // Filterung der blockierten Extensions und Patterns
+      const filteredList = items
+        .filter(item => {
+          const ext = path.extname(item.name).toLowerCase();
+          if (item.isFile() && this.blockedExts.has(ext)) return false;
+          const lower = item.name.toLowerCase();
+          for (const pat of this.blockedPathPatterns) {
+            if (lower.includes(pat.toLowerCase())) return false;
+          }
+          if (!this.allowDotfiles && item.name.startsWith('.') && item.name !== '.') return false;
+          return true;
+        })
+        .map(item => ({
+          name: item.name,
+          type: item.isDirectory() ? 'directory' : 'file',
+          path: path.join(directory, item.name),
+        }));
 
       this.cbList.success();
       return {
         content: [
           {
             type: 'text',
-            text: `Files in ${service}/${directory}:\n\n${JSON.stringify(fileList, null, 2)}`,
+            text: `Files in ${service}/${directory}:\n\n${JSON.stringify(filteredList, null, 2)}`,
           },
         ],
       };
@@ -543,7 +556,7 @@ class FileServerMCP {
     };
   }
 
-  async searchAcrossServices(args, { rid } = {}) {
+  async searchAcrossServices(args, { _rid } = {}) {
     if (!this.validators.search(args)) {
       return {
         content: [{ type: 'text', text: 'Invalid arguments: ' + this.ajv.errorsText(this.validators.search.errors) }],

@@ -1,0 +1,16 @@
+{
+  "name": "@menschlichkeit/shared",
+  "version": "0.1.0",
+  "description": "Geteilte Utilities für das Menschlichkeit Österreich Monorepo",
+  "license": "MIT",
+  "type": "commonjs",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js"
+  },
+  "keywords": ["shared", "utils", "monorepo"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peschull/menschlichkeit-oesterreich-development.git"
+  }
+}
