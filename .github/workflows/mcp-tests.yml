@@ -12,6 +12,7 @@ on:
 
 jobs:
   test-file-server:
+    name: MCP Server Tests
     runs-on: ubuntu-latest
     env:
       CI: true
@@ -36,4 +37,3 @@ jobs:
       - name: Run tests (file-server)
         working-directory: mcp-servers/file-server
         run: npm test
-

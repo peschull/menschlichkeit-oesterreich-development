@@ -23,14 +23,11 @@ read -r -d '' CONTEXTS_JSON <<'JSON' || true
   "required_status_checks": {
     "strict": true,
     "contexts": [
-      "Phase 0 Verification",
-      "verify-phase-0",
+      "MCP Server Tests",
+      "Gitleaks",
+      "CodeQL",
       "Generate SBOMs",
-      "sbom",
-      "Docs Lint & ADR Index",
-      "docs",
-      "API OpenAPI Export",
-      "export-openapi"
+      "sbom"
     ]
   },
   "enforce_admins": true,
