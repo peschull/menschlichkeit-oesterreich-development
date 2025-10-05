@@ -11,6 +11,7 @@ redact = true
     '^tests/fixtures/',          # test fixtures
     '^vendor/',                  # vendor code
     '^crm\.menschlichkeit-oesterreich\.at/vendor/',
+    '^mcp-servers/file-server/__tests__/'
   ]
   regexes = [
     # Hex strings used as placeholders in docs/demos

@@ -17,6 +17,7 @@
     "install:all": "npm install --workspaces",
     "build:workspaces": "npm run build --workspaces",
     "test:all": "npm run test --workspaces",
+    "test:mcp": "npm run test --workspace=mcp-servers/file-server",
     "lint:js": "eslint **/*.{js,ts} --fix",
     "lint:md": "markdownlint **/*.md --fix",
     "format": "prettier --write **/*.{js,ts,json,md}",

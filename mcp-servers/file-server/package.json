@@ -10,6 +10,7 @@
   },
   "scripts": {
     "start": "node index.js",
+    "start:otel": "node -r ./otel-bootstrap.js index.js",
     "dev": "node --inspect index.js",
     "test": "jest --config ./jest.config.cjs --runInBand --passWithNoTests"
   }

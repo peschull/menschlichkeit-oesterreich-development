@@ -9,7 +9,8 @@ Security features
 - OPA integration for input/output gates; optional enforcement
 - Rate limiting, circuit breakers, and concurrency limiting
 - Per-call timeouts (default 5s)
- - OpenTelemetry spans for tool calls (tool, rid, durations, errors)
+- OpenTelemetry spans for tool calls (tool, rid, durations, errors)
+ - Optional SDK-Bootstrap (OTLP) via `otel-bootstrap.js`
 
 Environment variables
 - `PROJECT_ROOT`: Base path for service directories
@@ -23,7 +24,11 @@ Environment variables
 - `MCP_BLOCKED_PATH_PATTERNS`: Comma list of blocked substrings (default "id_rsa,/secrets/,/private/,/keys/")
 - `MCP_OPA_POLICY`: Rego policy for I/O guards (default policies/opa/tool-io.rego)
 - `MCP_OPA_REQUIRED`: Deny if OPA not available (default false)
- - `MCP_OTEL_ENABLED`: Enable OpenTelemetry spans (default true)
+- `MCP_OTEL_ENABLED`: Enable OpenTelemetry spans (default true)
+ - OTel SDK/Export (optional):
+   - `OTEL_EXPORTER_OTLP_ENDPOINT` (z. B. `http://localhost:4318`)
+   - `OTEL_SERVICE_NAME` (z. B. `mcp-file-server`)
+   - `MCP_OTEL_SDK_DISABLED` (default false)
  - Search limits:
    - `MCP_SEARCH_MAX_FILES` (default 100)
    - `MCP_SEARCH_MAX_MATCHES` (default 200)
@@ -34,6 +39,7 @@ Environment variables
 Run locally
 - Docker + seccomp: `scripts/run-mcp-file-server-seccomp.sh`
 - Bubblewrap sandbox: `scripts/run-mcp-file-server-bwrap.sh`
+ - Mit OTLP-Export: `cd mcp-servers/file-server && npm install && OTEL_SERVICE_NAME=mcp-file-server OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:4318 npm run start:otel`
 
 Quick sanity check
 1) Install deps: `cd mcp-servers/file-server && npm install`
