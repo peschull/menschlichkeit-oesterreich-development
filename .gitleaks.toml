@@ -1,0 +1,28 @@
+title = "Menschlichkeit Österreich - Gitleaks Policy"
+
+# Redact secrets in output; also pass --redact via CLI for safety
+redact = true
+
+# Global allowlist for false positives (example patterns and paths)
+[allowlist]
+  description = "Global allowlist for known false positives and test fixtures"
+  paths = [
+    "^quality-reports/private/", # reports folder
+    "^tests/fixtures/",          # test fixtures
+    "^vendor/",                  # vendor code
+    "^crm\.menschlichkeit-oesterreich\.at/vendor/",
+  ]
+  regexes = [
+    # Hex strings used as placeholders in docs/demos
+    "(?i)\b(PLACEHOLDER|DUMMY|EXAMPLE|TEST)_?TOKEN\b",
+    # Mock UUIDs used in examples
+    "\b00000000-0000-0000-0000-000000000000\b"
+  ]
+
+# Custom rules can be added here; keep default rules enabled by not redefining them.
+# Example of narrowing noisy rules (commented out by default):
+# [[rules]]
+# id = "generic-api-key"
+# description = "Generic API Key refined"
+# regex = '''(?i)\b(api|access|secret)[_-]?(token|key)\b\s*[:=]\s*['\"]?[A-Za-z0-9._-]{12,}['\"]?'''
+# tags = ["key", "api", "generic"]

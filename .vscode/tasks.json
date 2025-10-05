@@ -158,5 +158,52 @@
       },
       "problemMatcher": []
     }
+    ,
+    {
+      "label": "🎨 Figma: Extract File Key",
+      "type": "shell",
+      "command": "npm",
+      "args": [
+        "run",
+        "figma:filekey",
+        "--",
+        "${input:figmaUrl}"
+      ],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "group": "design"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "🎨 Figma: Extract Node ID",
+      "type": "shell",
+      "command": "npm",
+      "args": [
+        "run",
+        "figma:nodeid",
+        "--",
+        "${input:figmaUrl}"
+      ],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "group": "design"
+      },
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "figmaUrl",
+      "type": "promptString",
+      "description": "Figma URL (file or node link)",
+      "default": "https://www.figma.com/file/mTlUSy9BQk4326cvwNa8zQ?node-id=1%3A2"
+    }
   ]
 }
