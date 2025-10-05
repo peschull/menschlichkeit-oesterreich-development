@@ -68,7 +68,7 @@ module.exports = {
       .drupalRelativeURL('/')
       .waitForElementVisible('body')
       .execute(
-         
+
         function (testValues, testElements) {
           const testElementsContainer = document.createElement('div');
 
@@ -92,7 +92,7 @@ module.exports = {
         },
       )
       .execute(
-         
+
         function (testValues) {
           const rootStyles = getComputedStyle(document.documentElement);
           const topOffsetStyle = rootStyles.getPropertyValue(

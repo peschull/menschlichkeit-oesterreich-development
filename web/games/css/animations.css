@@ -282,7 +282,7 @@
 
 .glass-card:hover {
   transform: translateY(-2px);
-  box-shadow: 
+  box-shadow:
     var(--shadow-xl),
     0 0 0 1px rgba(255, 255, 255, 0.1);
 }
@@ -350,7 +350,7 @@
   overflow: hidden;
   white-space: nowrap;
   border-right: 2px solid var(--primary-color);
-  animation: 
+  animation:
     typing 2s steps(40, end),
     blinkCaret 0.75s step-end infinite;
 }
@@ -550,16 +550,16 @@
   .glass-card:hover {
     transform: none;
   }
-  
+
   .decision-option:hover {
     transform: none;
   }
-  
+
   /* Reduce animation intensity on mobile */
   .bounce {
     animation-duration: 0.4s;
   }
-  
+
   .pulse {
     animation-duration: 1.5s;
   }

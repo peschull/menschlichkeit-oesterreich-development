@@ -1,6 +1,6 @@
 # 🎉 Datenbank-Infrastruktur Erfolgreich Bereitgestellt!
 
-**Erstellt:** 2025-10-05  
+**Erstellt:** 2025-10-05
 **Status:** ✅ PRODUKTIONSBEREIT
 
 ---
@@ -204,7 +204,7 @@ KC_DB_PASSWORD=IDP_SecurePass_2024_xyz123ABC!
    ```bash
    # MariaDB Backup
    docker exec mo_mariadb mysqldump -uroot -pSecureRootPass2024! --all-databases > backup.sql
-   
+
    # PostgreSQL Backup
    docker exec mo_postgres pg_dumpall -U postgres > backup.sql
    ```
@@ -336,9 +336,9 @@ docker exec mo_mariadb mysql -uroot -pSecureRootPass2024! -e "SELECT table_schem
 
 ## ✨ Credits
 
-**Erstellt von:** GitHub Copilot AI Agent  
-**Technologie:** Docker Compose + MariaDB 10.11 + PostgreSQL 16  
-**Management-Tools:** phpMyAdmin + pgAdmin + VS Code SQLTools  
+**Erstellt von:** GitHub Copilot AI Agent
+**Technologie:** Docker Compose + MariaDB 10.11 + PostgreSQL 16
+**Management-Tools:** phpMyAdmin + pgAdmin + VS Code SQLTools
 **Projekt:** Menschlichkeit Österreich - Austrian NGO Platform
 
 ---

@@ -4,4 +4,3 @@ module.exports = {
   roots: ['<rootDir>'],
   testMatch: ['**/__tests__/**/*.spec.js'],
 };
-

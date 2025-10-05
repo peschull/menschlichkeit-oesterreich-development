@@ -76,7 +76,7 @@ if [[ -z "$REPO_KEY_ID" ]] || [[ "$REPO_KEY_ID" == "null" ]]; then
     echo ""
 else
     echo "✅ Repository Public Key abgerufen (Key ID: $REPO_KEY_ID)"
-    
+
     # Python für libsodium-Verschlüsselung (GitHub erfordert das)
     # Alternative: Manuell, da libsodium nicht installiert ist
     echo ""
@@ -148,7 +148,7 @@ if [[ $REPLY =~ ^[Jj]$ ]]; then
     if command -v ssh-copy-id &>/dev/null; then
         ssh-copy-id -i "$SSH_PUBLIC_KEY" "$PLESK_HOST"
         SSH_COPY_EXIT=$?
-        
+
         if [[ $SSH_COPY_EXIT -eq 0 ]]; then
             echo "✅ Public Key erfolgreich auf Plesk-Server hinzugefügt"
         else
@@ -158,7 +158,7 @@ if [[ $REPLY =~ ^[Jj]$ ]]; then
     else
         echo "⚠️  ssh-copy-id nicht verfügbar"
         echo "Verwende manuelle Methode..."
-        
+
         ssh -o StrictHostKeyChecking=no "$PLESK_HOST" \
             "mkdir -p ~/.ssh && chmod 700 ~/.ssh && echo '$(cat $SSH_PUBLIC_KEY)' >> ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys" \
             && echo "✅ Public Key manuell hinzugefügt" \
@@ -185,7 +185,7 @@ echo
 if [[ $REPLY =~ ^[Jj]$ ]]; then
     echo ""
     echo "🔗 Teste SSH-Verbindung mit neuem Schlüssel..."
-    
+
     if ssh -i "$SSH_PRIVATE_KEY" -o ConnectTimeout=10 -o StrictHostKeyChecking=no "$PLESK_HOST" \
         "echo '✅ SSH-Verbindung erfolgreich!' && hostname && whoami && pwd"; then
         echo ""

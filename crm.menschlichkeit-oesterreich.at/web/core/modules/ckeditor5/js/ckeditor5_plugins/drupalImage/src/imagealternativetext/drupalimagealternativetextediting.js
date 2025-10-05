@@ -64,7 +64,7 @@ export default class DrupalImageTextAlternativeEditing extends Plugin {
     );
 
     editor.editing.view.on('render', () => {
-       
+
       for (const view of this._missingAltTextViewReferences) {
         // Destroy view instances that are not connected to the DOM to ensure
         // there are no memory leaks.

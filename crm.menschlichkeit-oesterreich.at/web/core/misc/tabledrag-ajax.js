@@ -23,7 +23,7 @@ Drupal.AjaxCommands.prototype.tabledragChanged = function (
 
   const tableDrag = Drupal.tableDrag[response.tabledrag_instance];
 
-   
+
   const rowObject = new tableDrag.row(
     document.getElementById(response.id),
     '',

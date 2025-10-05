@@ -11,7 +11,7 @@ analyze_ownership() {
     local total_commits=$(git log --oneline -- "$path" 2>/dev/null | wc -l)
     local primary_author=$(git log --format='%aN' -- "$path" 2>/dev/null | sort | uniq -c | sort -rn | head -1 | awk '{$1=""; print $0}' | xargs)
     local last_modified=$(git log -1 --format='%aI' -- "$path" 2>/dev/null)
-    
+
     echo "  - Commits: $total_commits"
     echo "  - Primärer Autor: $primary_author"
     echo "  - Letzte Änderung: $last_modified"

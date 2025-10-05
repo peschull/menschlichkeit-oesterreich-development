@@ -8,7 +8,7 @@ interface ScrollProgressProps {
   ariaLabel?: string;
 }
 
-export function ScrollProgress({ 
+export function ScrollProgress({
   color = 'var(--brand-gradient)',
   height = 3,
   position = 'top',

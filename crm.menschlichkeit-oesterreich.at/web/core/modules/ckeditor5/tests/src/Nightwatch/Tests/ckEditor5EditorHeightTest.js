@@ -56,7 +56,7 @@ module.exports = {
         .drupalRelativeURL('/node/add/test')
         .waitForElementVisible('.ck-editor__editable')
         .execute(
-           
+
           function () {
             const height = document.querySelector(
               '.ck-editor__editable',
@@ -79,7 +79,7 @@ module.exports = {
         .click('.ck-source-editing-button')
         .waitForElementVisible('.ck-source-editing-area')
         .execute(
-           
+
           function () {
             const height = document.querySelector(
               '.ck-source-editing-area',
@@ -103,7 +103,7 @@ module.exports = {
         // Navigate to the create content page and measure max-height of the editor.
         .drupalRelativeURL('/node/add/test')
         .execute(
-           
+
           function () {
             window.Drupal.CKEditor5Instances.forEach((instance) => {
               instance.setData('<p>Llamas are cute.</p>'.repeat(100));
@@ -127,7 +127,7 @@ module.exports = {
         .click('.ck-source-editing-button')
         .waitForElementVisible('.ck-source-editing-area')
         .execute(
-           
+
           function () {
             function isScrollableY(element) {
               const style = window.getComputedStyle(element);
@@ -195,7 +195,7 @@ module.exports = {
         // Navigate to the create content page and measure height of the editor.
         .drupalRelativeURL('/node/add/test')
         .execute(
-           
+
           function () {
             const height = document.querySelector(
               '.ck-editor__editable',
@@ -215,7 +215,7 @@ module.exports = {
         .click('.ck-source-editing-button')
         .waitForElementVisible('.ck-source-editing-area')
         .execute(
-           
+
           function () {
             const height = document.querySelector(
               '.ck-source-editing-area',

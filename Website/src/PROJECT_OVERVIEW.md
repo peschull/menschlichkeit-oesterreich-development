@@ -2,11 +2,11 @@
 
 ## 📊 **Schnellübersicht**
 
-**Projekt:** Verein Menschlichkeit Österreich - Plattform  
-**Version:** 4.2.0  
-**Status:** 🟢 **PRODUKTIONSBEREIT**  
-**Technologie:** React + TypeScript + Tailwind CSS v4  
-**Deployment:** Plesk (menschlichkeit-oesterreich.at)  
+**Projekt:** Verein Menschlichkeit Österreich - Plattform
+**Version:** 4.2.0
+**Status:** 🟢 **PRODUKTIONSBEREIT**
+**Technologie:** React + TypeScript + Tailwind CSS v4
+**Deployment:** Plesk (menschlichkeit-oesterreich.at)
 
 ---
 
@@ -358,24 +358,24 @@ Environment Variables
 
 ### **LICENSE-Ordner:**
 
-⚠️ `LICENSE/` ist aktuell ein Ordner mit `.tsx` Dateien  
+⚠️ `LICENSE/` ist aktuell ein Ordner mit `.tsx` Dateien
 ✅ **Fix:** `rm -rf LICENSE/` ausführen
 
 ### **Figma FileKey:**
 
-⚠️ `.vscode/mcp.json` hat Placeholder  
+⚠️ `.vscode/mcp.json` hat Placeholder
 ✅ **Fix:** Aus Figma-URL extrahieren und eintragen
 
 ---
 
 ## 👥 **Team & Kontakt**
 
-**Organisation:** Verein Menschlichkeit Österreich  
-**Website:** https://menschlichkeit-oesterreich.at  
-**Email:** kontakt@menschlichkeit-oesterreich.at  
-**GitHub:** @menschlichkeit-oesterreich  
+**Organisation:** Verein Menschlichkeit Österreich
+**Website:** https://menschlichkeit-oesterreich.at
+**Email:** kontakt@menschlichkeit-oesterreich.at
+**GitHub:** @menschlichkeit-oesterreich
 
-**SSH-User (Plesk):** dmpl20230054  
+**SSH-User (Plesk):** dmpl20230054
 
 ---
 
@@ -417,9 +417,9 @@ GESAMT:        🟢 80% Ready for Launch
 
 ---
 
-**Version:** 1.0  
-**Erstellt:** 2025-10-02  
-**Status:** 🟢 **AKTIV**  
+**Version:** 1.0
+**Erstellt:** 2025-10-02
+**Status:** 🟢 **AKTIV**
 
 ---
 

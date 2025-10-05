@@ -45,6 +45,13 @@ export default function NavBar() {
       <div className="mx-auto max-w-6xl px-3 h-12 flex items-center justify-between">
         <nav className="flex items-center gap-1">
           <NavLink to="/home">Home</NavLink>
+          <NavLink to="/games">Games</NavLink>
+          <NavLink to="/forum">Forum</NavLink>
+          <NavLink to="/events">Events</NavLink>
+          <NavLink to="/news">News</NavLink>
+          <NavLink to="/join">Mitglied werden</NavLink>
+          <NavLink to="/donate">Spenden</NavLink>
+          <NavLink to="/contact">Kontakt</NavLink>
           {token && <NavLink to="/member">Mitgliederbereich</NavLink>}
           {token && <NavLink to="/account/privacy">Datenschutz</NavLink>}
         </nav>

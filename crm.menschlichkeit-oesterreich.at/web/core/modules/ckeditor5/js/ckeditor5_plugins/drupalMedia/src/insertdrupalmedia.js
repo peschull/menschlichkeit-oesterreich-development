@@ -70,9 +70,9 @@ export default class InsertDrupalMediaCommand extends Command {
       );
 
       const { normalizedStyles } = elementStyleEditing;
-       
+
       for (const group of Object.keys(normalizedStyles)) {
-         
+
         for (const style of elementStyleEditing.normalizedStyles[group]) {
           if (
             attributes[style.attributeName] &&

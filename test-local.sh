@@ -36,21 +36,21 @@ warning() {
 # Test Docker Environment
 test_docker_environment() {
     log "Testing Docker environment..."
-    
+
     # Check if Docker is running
     if ! docker info > /dev/null 2>&1; then
         error "Docker is not running"
         return 1
     fi
     success "Docker is running"
-    
+
     # Check docker-compose file
     if [ ! -f "$DOCKER_COMPOSE_FILE" ]; then
         error "docker-compose.yml not found"
         return 1
     fi
     success "docker-compose.yml found"
-    
+
     # Start containers
     log "Starting Docker containers..."
     if docker-compose up -d; then
@@ -59,7 +59,7 @@ test_docker_environment() {
         error "Failed to start Docker containers"
         return 1
     fi
-    
+
     # Wait for services to be ready
     log "Waiting for services to start..."
     sleep 30
@@ -68,7 +68,7 @@ test_docker_environment() {
 # Test CRM Service
 test_crm_service() {
     log "Testing CRM service..."
-    
+
     # Test Drupal access
     if curl -f -s "http://localhost:${CRM_PORT}" > /dev/null; then
         success "CRM service accessible on port ${CRM_PORT}"
@@ -76,7 +76,7 @@ test_crm_service() {
         error "CRM service not accessible on port ${CRM_PORT}"
         return 1
     fi
-    
+
     # Test CiviCRM installation (if available)
     if curl -f -s "http://localhost:${CRM_PORT}/civicrm" > /dev/null; then
         success "CiviCRM accessible"
@@ -88,7 +88,7 @@ test_crm_service() {
 # Test API Service
 test_api_service() {
     log "Testing API service..."
-    
+
     # Test FastAPI health endpoint
     if curl -f -s "http://localhost:${API_PORT}/health" > /dev/null; then
         success "API service accessible on port ${API_PORT}"
@@ -96,7 +96,7 @@ test_api_service() {
         error "API service not accessible on port ${API_PORT}"
         return 1
     fi
-    
+
     # Test API documentation
     if curl -f -s "http://localhost:${API_PORT}/docs" > /dev/null; then
         success "API documentation accessible"
@@ -108,7 +108,7 @@ test_api_service() {
 # Test Database Connectivity
 test_database() {
     log "Testing database connectivity..."
-    
+
     # Test MySQL connection through Docker
     if docker-compose exec -T db mysql -u root -proot_password -e "SELECT 1;" > /dev/null 2>&1; then
         success "Database connection successful"
@@ -116,7 +116,7 @@ test_database() {
         error "Database connection failed"
         return 1
     fi
-    
+
     # Check if CiviCRM database exists
     if docker-compose exec -T db mysql -u root -proot_password -e "USE civicrm; SHOW TABLES;" > /dev/null 2>&1; then
         success "CiviCRM database accessible"
@@ -128,18 +128,18 @@ test_database() {
 # Test File Structure
 test_file_structure() {
     log "Testing file structure..."
-    
+
     # Check deployment scripts
     scripts=(
         "deployment-scripts/deploy-crm-plesk.sh"
         "deployment-scripts/deploy-api-plesk.sh"
         "deployment-scripts/setup-cron-jobs.sh"
     )
-    
+
     for script in "${scripts[@]}"; do
         if [ -f "$script" ]; then
             success "Deployment script found: $script"
-            
+
             # Check if script is executable
             if [ -x "$script" ]; then
                 success "Script is executable: $script"
@@ -153,7 +153,7 @@ test_file_structure() {
             return 1
         fi
     done
-    
+
     # Check website files
     website_files=(
         "website/index.html"
@@ -163,7 +163,7 @@ test_file_structure() {
         "website/assets/js/auth-handler.js"
         "website/assets/js/sepa-handler.js"
     )
-    
+
     for file in "${website_files[@]}"; do
         if [ -f "$file" ]; then
             success "Website file found: $file"
@@ -177,13 +177,13 @@ test_file_structure() {
 # Test Configuration Files
 test_configuration() {
     log "Testing configuration files..."
-    
+
     # Check .env files
     env_files=(
         "crm.menschlichkeit-oesterreich.at/.env"
         "api.menschlichkeit-oesterreich.at/.env"
     )
-    
+
     for env_file in "${env_files[@]}"; do
         if [ -f "$env_file" ]; then
             success "Environment file found: $env_file"
@@ -191,7 +191,7 @@ test_configuration() {
             warning "Environment file missing: $env_file (will be created during deployment)"
         fi
     done
-    
+
     # Check composer files
     if [ -f "crm.menschlichkeit-oesterreich.at/composer.json" ]; then
         success "CRM composer.json found"
@@ -199,7 +199,7 @@ test_configuration() {
         error "CRM composer.json missing"
         return 1
     fi
-    
+
     if [ -f "api.menschlichkeit-oesterreich.at/requirements.txt" ]; then
         success "API requirements.txt found"
     else
@@ -211,13 +211,13 @@ test_configuration() {
 # Test Script Syntax
 test_script_syntax() {
     log "Testing deployment script syntax..."
-    
+
     scripts=(
         "deployment-scripts/deploy-crm-plesk.sh"
         "deployment-scripts/deploy-api-plesk.sh"
         "deployment-scripts/setup-cron-jobs.sh"
     )
-    
+
     for script in "${scripts[@]}"; do
         if bash -n "$script" 2>/dev/null; then
             success "Script syntax OK: $script"
@@ -231,13 +231,13 @@ test_script_syntax() {
 # Test JavaScript Syntax (basic)
 test_javascript_syntax() {
     log "Testing JavaScript files..."
-    
+
     js_files=(
         "website/assets/js/crm-api.js"
         "website/assets/js/auth-handler.js"
         "website/assets/js/sepa-handler.js"
     )
-    
+
     for js_file in "${js_files[@]}"; do
         # Basic syntax check - look for common issues
         if grep -q "function\|class\|const\|let\|var" "$js_file"; then
@@ -260,10 +260,10 @@ cleanup() {
 # Main function
 main() {
     log "🧪 Starting Local Development Testing"
-    
+
     # Initialize status
     local_status=0
-    
+
     # Run tests
     test_docker_environment || local_status=1
     test_crm_service || local_status=1
@@ -273,12 +273,12 @@ main() {
     test_configuration || local_status=1
     test_script_syntax || local_status=1
     test_javascript_syntax || local_status=1
-    
+
     log "🏁 Local Development Testing Complete"
-    
+
     if [ $local_status -eq 0 ]; then
         success "🎉 ALL LOCAL TESTS PASSED - READY FOR DEPLOYMENT!"
-        
+
         # Show next steps
         echo
         log "Next Steps:"
@@ -286,7 +286,7 @@ main() {
         echo "2. Run production testing: ./test-production.sh"
         echo "3. Verify all services are working correctly"
         echo
-        
+
         return 0
     else
         error "⚠️ SOME LOCAL TESTS FAILED - FIX ISSUES BEFORE DEPLOYMENT"

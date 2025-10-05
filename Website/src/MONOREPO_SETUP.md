@@ -272,20 +272,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-      
+
       - name: Install dependencies
         run: npm ci
-      
+
       - name: Build
         run: npm run build
         env:
           VITE_API_URL: ${{ secrets.API_URL }}
-      
+
       - name: Deploy to Plesk
         uses: easingthemes/ssh-deploy@main
         env:
@@ -535,9 +535,9 @@ cat scripts/sync-figma-tokens.sh
 
 ---
 
-**Version:** 1.0  
-**Erstellt:** 2025-10-02  
-**Zuletzt aktualisiert:** 2025-10-02  
+**Version:** 1.0
+**Erstellt:** 2025-10-02
+**Zuletzt aktualisiert:** 2025-10-02
 **Status:** 🟢 **AKTIV**
 
 ---

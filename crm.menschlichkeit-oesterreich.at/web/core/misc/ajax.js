@@ -1139,7 +1139,7 @@
           this.settings = null;
         })
         .catch((error) =>
-           
+
           console.error(
             Drupal.t(
               'An error occurred during the execution of the Ajax response: !error',

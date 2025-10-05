@@ -99,7 +99,7 @@ export default class DrupalLinkMediaUI extends Plugin {
    * @param {module:engine/model/selection~Selection} selection
    * @return {Boolean}
    */
-   
+
   _isSelectedLinkedMedia(selection) {
     const selectedModelElement = selection.getSelectedElement();
     return (

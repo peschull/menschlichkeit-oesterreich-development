@@ -16,7 +16,7 @@ function Write-ColorOutput {
         [string]$Message,
         [ConsoleColor]$ForegroundColor = [ConsoleColor]::White
     )
-    
+
     $originalColor = $host.UI.RawUI.ForegroundColor
     $host.UI.RawUI.ForegroundColor = $ForegroundColor
     Write-Output $Message
@@ -25,10 +25,10 @@ function Write-ColorOutput {
 
 function Test-Connection {
     Write-ColorOutput "🔍 Testing SSH Connection..." -ForegroundColor Cyan
-    
+
     try {
         $result = & ssh -i "$SSH_KEY" -o "StrictHostKeyChecking=accept-new" -o "ConnectTimeout=10" "$USER@$HOST_ADDR" "echo 'Connection successful'"
-        
+
         if ($LASTEXITCODE -eq 0) {
             Write-ColorOutput "✅ SSH Connection erfolgreich" -ForegroundColor Green
             return $true
@@ -49,20 +49,20 @@ function Upload-SingleFile {
         [string]$RemotePath,
         [string]$Description
     )
-    
+
     if (-not (Test-Path $LocalFile)) {
         Write-ColorOutput "❌ Lokale Datei nicht gefunden: $LocalFile" -ForegroundColor Red
         return $false
     }
-    
+
     Write-ColorOutput "📤 Upload: $Description..." -ForegroundColor Cyan
     Write-ColorOutput "   Von: $LocalFile" -ForegroundColor Gray
     Write-ColorOutput "   Nach: $RemotePath" -ForegroundColor Gray
-    
+
     try {
         # Verwende scp anstatt sftp für einfacheren Upload
         $result = & scp -i "$SSH_KEY" -o "StrictHostKeyChecking=accept-new" "$LocalFile" "${USER}@${HOST_ADDR}:$RemotePath" 2>&1
-        
+
         if ($LASTEXITCODE -eq 0) {
             Write-ColorOutput "✅ $Description erfolgreich hochgeladen" -ForegroundColor Green
             return $true
@@ -101,12 +101,12 @@ $db_success = Upload-SingleFile -LocalFile "$BASE_DIR\plesk-db-setup.php" -Remot
 Write-ColorOutput "`n📝 Upload WordPress .env Template..." -ForegroundColor Cyan
 $wp_env_success = Upload-SingleFile -LocalFile "$BASE_DIR\menschlichkeit-oesterreich-monorepo\.env.template" -RemotePath "httpdocs/.env.template" -Description "WordPress .env Template"
 
-# 3. Laravel API .env Template hochladen  
+# 3. Laravel API .env Template hochladen
 Write-ColorOutput "`n🔧 Upload Laravel API .env Template..." -ForegroundColor Cyan
 $api_env_success = Upload-SingleFile -LocalFile "$BASE_DIR\menschlichkeit-oesterreich-monorepo\api.menschlichkeit-oesterreich.at\.env.template" -RemotePath "api.menschlichkeit-oesterreich.at/.env.template" -Description "Laravel API .env Template"
 
 # 4. CiviCRM .env Template hochladen
-Write-ColorOutput "`n🏢 Upload CiviCRM .env Template..." -ForegroundColor Cyan  
+Write-ColorOutput "`n🏢 Upload CiviCRM .env Template..." -ForegroundColor Cyan
 $crm_env_success = Upload-SingleFile -LocalFile "$BASE_DIR\menschlichkeit-oesterreich-monorepo\crm.menschlichkeit-oesterreich.at\.env.template" -RemotePath "crm.menschlichkeit-oesterreich.at/.env.template" -Description "CiviCRM .env Template"
 
 # ====== Zusammenfassung ======
@@ -125,7 +125,7 @@ if ($all_success) {
     Write-ColorOutput "   https://menschlichkeit-oesterreich.at/plesk-db-setup.php?key=MO_SETUP_2025_SECURE_KEY" -ForegroundColor Gray
     Write-ColorOutput "2. .env-Dateien von Templates erstellen:" -ForegroundColor Yellow
     Write-ColorOutput "   - httpdocs/.env (WordPress)" -ForegroundColor Gray
-    Write-ColorOutput "   - api.menschlichkeit-oesterreich.at/.env (Laravel)" -ForegroundColor Gray  
+    Write-ColorOutput "   - api.menschlichkeit-oesterreich.at/.env (Laravel)" -ForegroundColor Gray
     Write-ColorOutput "   - crm.menschlichkeit-oesterreich.at/.env (CiviCRM)" -ForegroundColor Gray
     Write-ColorOutput "3. Nach Database Setup: .env-Dateien mit echten DB-Daten aktualisieren" -ForegroundColor Yellow
     Write-ColorOutput "4. Setup-Script löschen: rm httpdocs/plesk-db-setup.php" -ForegroundColor Yellow

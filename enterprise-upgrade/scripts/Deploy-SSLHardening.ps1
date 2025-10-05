@@ -4,7 +4,7 @@
 param(
     [Parameter(Mandatory=$false)]
     [switch]$TestMode = $false,
-    
+
     [Parameter(Mandatory=$false)]
     [string]$BackupPath = "C:\Plesk\backup\ssl-config-$(Get-Date -Format 'yyyyMMdd-HHmmss')"
 )
@@ -22,7 +22,7 @@ $Script:Config = @{
 # Logging functions
 function Write-Log {
     param([string]$Message, [string]$Level = "INFO")
-    
+
     $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
     $color = switch ($Level) {
         "ERROR" { "Red" }
@@ -30,9 +30,9 @@ function Write-Log {
         "SUCCESS" { "Green" }
         default { "White" }
     }
-    
+
     Write-Host "[$timestamp] [$Level] $Message" -ForegroundColor $color
-    
+
     # Log to file
     $logPath = "C:\Plesk\logs\ssl-hardening.log"
     if (!(Test-Path (Split-Path $logPath))) {
@@ -44,7 +44,7 @@ function Write-Log {
 # Error handling
 function Write-Error-Log {
     param([string]$Message, [System.Management.Automation.ErrorRecord]$ErrorRecord = $null)
-    
+
     Write-Log $Message "ERROR"
     if ($ErrorRecord) {
         Write-Log "Exception: $($ErrorRecord.Exception.Message)" "ERROR"
@@ -55,58 +55,58 @@ function Write-Error-Log {
 # Check prerequisites
 function Test-Prerequisites {
     Write-Log "Checking prerequisites..."
-    
+
     $errors = @()
-    
+
     # Check if running as Administrator
     if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
         $errors += "Script must be run as Administrator"
     }
-    
+
     # Check if Plesk is installed
     if (!(Test-Path $Script:Config.PleskPath)) {
         $errors += "Plesk installation not found at $($Script:Config.PleskPath)"
     }
-    
+
     # Check if nginx is available
     if (!(Test-Path "$($Script:Config.NginxPath)\nginx.exe")) {
         $errors += "nginx not found in Plesk installation"
     }
-    
+
     # Check PowerShell version
     if ($PSVersionTable.PSVersion.Major -lt 5) {
         $errors += "PowerShell 5.0 or higher required"
     }
-    
+
     if ($errors.Count -gt 0) {
         foreach ($error in $errors) {
             Write-Error-Log $error
         }
         throw "Prerequisites check failed"
     }
-    
+
     Write-Log "Prerequisites check completed successfully" "SUCCESS"
 }
 
 # Create backup
 function New-ConfigBackup {
     Write-Log "Creating configuration backup..."
-    
+
     try {
         if (!(Test-Path $BackupPath)) {
             New-Item -ItemType Directory -Path $BackupPath -Force | Out-Null
         }
-        
+
         # Backup nginx configuration
         if (Test-Path $Script:Config.NginxPath) {
             Copy-Item -Path "$($Script:Config.NginxPath)\*" -Destination $BackupPath -Recurse -Force
         }
-        
+
         # Backup Plesk panel configuration
         if (Test-Path "C:\Plesk\admin\conf\panel.ini") {
             Copy-Item -Path "C:\Plesk\admin\conf\panel.ini" -Destination "$BackupPath\panel.ini.bak"
         }
-        
+
         Write-Log "Backup created successfully at: $BackupPath" "SUCCESS"
         return $true
     }
@@ -119,7 +119,7 @@ function New-ConfigBackup {
 # Deploy SSL security configuration
 function Set-SSLSecurityConfig {
     Write-Log "Deploying SSL security configuration..."
-    
+
     try {
         $sslConfigContent = @"
 # Modern SSL Configuration for A+ Rating
@@ -156,10 +156,10 @@ add_header X-XSS-Protection "1; mode=block" always;
 add_header Referrer-Policy "strict-origin-when-cross-origin" always;
 add_header Permissions-Policy "geolocation=(), microphone=(), camera=()" always;
 "@
-        
+
         $sslConfigPath = "$($Script:Config.NginxPath)\ssl_security.conf"
         $sslConfigContent | Out-File -FilePath $sslConfigPath -Encoding UTF8
-        
+
         Write-Log "SSL security configuration deployed to: $sslConfigPath" "SUCCESS"
         return $true
     }
@@ -172,19 +172,19 @@ add_header Permissions-Policy "geolocation=(), microphone=(), camera=()" always;
 # Generate DH parameters
 function New-DHParameters {
     $dhParamPath = "$($Script:Config.SSLPath)\dhparam.pem"
-    
+
     if (Test-Path $dhParamPath) {
         Write-Log "DH parameters already exist: $dhParamPath"
         return $true
     }
-    
+
     Write-Log "Generating DH parameters (this may take several minutes)..."
-    
+
     try {
         if (!(Test-Path $Script:Config.SSLPath)) {
             New-Item -ItemType Directory -Path $Script:Config.SSLPath -Force | Out-Null
         }
-        
+
         # Use OpenSSL from Plesk installation or system PATH
         $opensslPath = Get-Command openssl -ErrorAction SilentlyContinue
         if ($opensslPath) {
@@ -209,19 +209,19 @@ function New-DHParameters {
 # Configure SSL for domains using Plesk CLI
 function Set-DomainSSL {
     param([string]$Domain)
-    
+
     Write-Log "Configuring SSL for domain: $Domain"
-    
+
     try {
         $pleskBin = "$($Script:Config.PleskPath)\plesk.exe"
-        
+
         # Enable SSL for domain
         $arguments = @("bin", "site", "--update-ssl", $Domain, "-ssl-certificates-location", "default")
         $process = Start-Process -FilePath $pleskBin -ArgumentList $arguments -Wait -PassThru -NoNewWindow -RedirectStandardOutput "C:\temp\plesk_output.txt" -RedirectStandardError "C:\temp\plesk_error.txt"
-        
+
         if ($process.ExitCode -eq 0) {
             Write-Log "SSL enabled for $Domain" "SUCCESS"
-            
+
             # Configure security headers via Plesk
             Set-SecurityHeaders $Domain
             return $true
@@ -240,24 +240,24 @@ function Set-DomainSSL {
 # Configure security headers for domain
 function Set-SecurityHeaders {
     param([string]$Domain)
-    
+
     Write-Log "Configuring security headers for: $Domain"
-    
+
     try {
         $pleskBin = "$($Script:Config.PleskPath)\plesk.exe"
-        
+
         # HSTS Header
         $hstsDirective = 'add_header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" always;'
         & $pleskBin bin site --update $Domain -nginx-directives $hstsDirective
-        
+
         # X-Frame-Options
         $frameDirective = 'add_header X-Frame-Options "SAMEORIGIN" always;'
         & $pleskBin bin site --update $Domain -nginx-directives $frameDirective
-        
+
         # X-Content-Type-Options
         $contentTypeDirective = 'add_header X-Content-Type-Options "nosniff" always;'
         & $pleskBin bin site --update $Domain -nginx-directives $contentTypeDirective
-        
+
         Write-Log "Security headers configured for $Domain" "SUCCESS"
         return $true
     }
@@ -270,7 +270,7 @@ function Set-SecurityHeaders {
 # Create SSL monitoring script
 function New-SSLMonitoringScript {
     Write-Log "Creating SSL monitoring script..."
-    
+
     try {
         $monitoringScript = @"
 # SSL Certificate Monitoring Script for Windows/Plesk
@@ -287,7 +287,7 @@ param()
 
 function Test-SSLCertificate {
     param([string]`$Domain)
-    
+
     try {
         # Get certificate information
         `$cert = [System.Net.ServicePointManager]::ServerCertificateValidationCallback = {`$true}
@@ -295,19 +295,19 @@ function Test-SSLCertificate {
         `$request.Timeout = 10000
         `$response = `$request.GetResponse()
         `$cert = `$request.ServicePoint.Certificate
-        
+
         if (`$cert) {
             `$expiryDate = [DateTime]::Parse(`$cert.GetExpirationDateString())
             `$daysUntilExpiry = (`$expiryDate - (Get-Date)).Days
-            
+
             Write-Output "Domain: `$Domain - Expires in `$daysUntilExpiry days (`$expiryDate)"
-            
+
             if (`$daysUntilExpiry -lt `$Config.AlertThreshold) {
                 `$subject = "SSL Certificate Alert - `$Domain"
                 `$body = "SSL certificate for `$Domain expires in `$daysUntilExpiry days on `$expiryDate"
                 Send-MailMessage -To `$Config.AlertEmail -Subject `$subject -Body `$body -SmtpServer "localhost"
             }
-            
+
             return `$daysUntilExpiry
         }
     }
@@ -322,19 +322,19 @@ foreach (`$domain in `$Config.Domains) {
     Test-SSLCertificate `$domain
 }
 "@
-        
+
         $scriptPath = "C:\Plesk\scripts\ssl-monitor.ps1"
         if (!(Test-Path (Split-Path $scriptPath))) {
             New-Item -ItemType Directory -Path (Split-Path $scriptPath) -Force | Out-Null
         }
-        
+
         $monitoringScript | Out-File -FilePath $scriptPath -Encoding UTF8
-        
+
         Write-Log "SSL monitoring script created: $scriptPath" "SUCCESS"
-        
+
         # Create scheduled task for monitoring
         New-SSLMonitoringTask $scriptPath
-        
+
         return $true
     }
     catch {
@@ -346,24 +346,24 @@ foreach (`$domain in `$Config.Domains) {
 # Create scheduled task for SSL monitoring
 function New-SSLMonitoringTask {
     param([string]$ScriptPath)
-    
+
     Write-Log "Creating scheduled task for SSL monitoring..."
-    
+
     try {
         $taskName = "SSL Certificate Monitoring"
         $action = New-ScheduledTaskAction -Execute "PowerShell.exe" -Argument "-File `"$ScriptPath`""
         $trigger = New-ScheduledTaskTrigger -Daily -At "06:00"
         $principal = New-ScheduledTaskPrincipal -UserId "SYSTEM" -LogonType ServiceAccount -RunLevel Highest
         $settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable
-        
+
         # Remove existing task if it exists
         try {
             Unregister-ScheduledTask -TaskName $taskName -Confirm:$false -ErrorAction SilentlyContinue
         } catch {}
-        
+
         # Register new task
         Register-ScheduledTask -TaskName $taskName -Action $action -Trigger $trigger -Principal $principal -Settings $settings
-        
+
         Write-Log "SSL monitoring scheduled task created successfully" "SUCCESS"
         return $true
     }
@@ -376,23 +376,23 @@ function New-SSLMonitoringTask {
 # Test SSL configuration
 function Test-SSLConfiguration {
     Write-Log "Testing SSL configuration..."
-    
+
     $results = @{}
-    
+
     foreach ($domain in $Script:Config.Domains) {
         Write-Log "Testing SSL for: $domain"
-        
+
         try {
             # Test basic SSL connection
             $request = [System.Net.WebRequest]::Create("https://$domain")
             $request.Timeout = 10000
             $response = $request.GetResponse()
-            
+
             if ($response.StatusCode -eq [System.Net.HttpStatusCode]::OK) {
                 Write-Log "✓ SSL connection to $domain successful" "SUCCESS"
                 $results[$domain] = @{ Connection = $true }
             }
-            
+
             # Test HSTS header
             $headers = $response.Headers
             if ($headers["Strict-Transport-Security"]) {
@@ -402,7 +402,7 @@ function Test-SSLConfiguration {
                 Write-Log "✗ HSTS header missing for $domain" "WARN"
                 $results[$domain].HSTS = $false
             }
-            
+
             $response.Close()
         }
         catch {
@@ -410,21 +410,21 @@ function Test-SSLConfiguration {
             $results[$domain] = @{ Connection = $false; Error = $_.Exception.Message }
         }
     }
-    
+
     return $results
 }
 
 # Rollback configuration
 function Restore-Configuration {
     Write-Log "Rolling back SSL configuration..." "WARN"
-    
+
     try {
         if (Test-Path $BackupPath) {
             Copy-Item -Path "$BackupPath\*" -Destination $Script:Config.NginxPath -Recurse -Force
-            
+
             # Restart nginx
             Restart-Service -Name "nginx" -Force
-            
+
             Write-Log "Configuration rolled back successfully" "SUCCESS"
         } else {
             Write-Log "Backup path not found, cannot rollback" "ERROR"
@@ -439,34 +439,34 @@ function Restore-Configuration {
 function Start-SSLHardening {
     Write-Log "Starting SSL/TLS Production Hardening for Windows/Plesk"
     Write-Log "=========================================================="
-    
+
     $success = $true
-    
+
     try {
         # Test mode check
         if ($TestMode) {
             Write-Log "Running in TEST MODE - no changes will be made" "WARN"
         }
-        
+
         # Run deployment steps
         Test-Prerequisites
-        
+
         if (-not $TestMode) {
             $success = $success -and (New-ConfigBackup)
             $success = $success -and (Set-SSLSecurityConfig)
             $success = $success -and (New-DHParameters)
-            
+
             # Configure SSL for each domain
             foreach ($domain in $Script:Config.Domains) {
                 $success = $success -and (Set-DomainSSL $domain)
             }
-            
+
             $success = $success -and (New-SSLMonitoringScript)
         }
-        
+
         # Always run tests
         $testResults = Test-SSLConfiguration
-        
+
         if ($success -and -not $TestMode) {
             Write-Log "=========================================================="
             Write-Log "SSL/TLS Production Hardening Completed Successfully!" "SUCCESS"
@@ -489,7 +489,7 @@ function Start-SSLHardening {
                 Restore-Configuration
             }
         }
-        
+
         return $success
     }
     catch {

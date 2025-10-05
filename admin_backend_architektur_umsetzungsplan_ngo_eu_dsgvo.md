@@ -472,4 +472,3 @@ CREATE POLICY org_scope ON member
 ```
 
 **Damit ist das Admin‑Backend maximal konkretisiert: multi‑tenant, DSGVO‑hart, betriebssicher – mit klaren Code‑Einstiegspunkten und Abnahme‑kriterien.**
-

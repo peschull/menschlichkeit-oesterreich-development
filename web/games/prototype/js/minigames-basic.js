@@ -285,11 +285,11 @@ class FactCheckSpeedrun {
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="claims-container" id="claims-container">
                     ${this.renderClaims()}
                 </div>
-                
+
                 <div class="game-progress">
                     <div class="progress-bar">
                         <div class="progress-fill" id="progress-fill"></div>
@@ -451,7 +451,7 @@ class FactCheckSpeedrun {
     container.innerHTML = `
             <div class="game-results glass-panel">
                 <h3 class="results-title">🎯 Fact-Check Ergebnis</h3>
-                
+
                 <div class="results-grid">
                     <div class="result-item">
                         <div class="result-value">${results.score}%</div>
@@ -466,13 +466,13 @@ class FactCheckSpeedrun {
                         <div class="result-label">Zeit verwendet</div>
                     </div>
                 </div>
-                
+
                 <div class="achievement-badges">
                     ${results.accuracy >= 90 ? '<div class="badge expert">🏆 Experte</div>' : ''}
                     ${results.timeBonus ? '<div class="badge speedy">⚡ Blitzschnell</div>' : ''}
                     ${results.correctAnswers === results.totalAnswers ? '<div class="badge perfect">🌟 Perfekt</div>' : ''}
                 </div>
-                
+
                 <div class="learning-summary">
                     <h4>Was du gelernt hast:</h4>
                     <ul>
@@ -482,7 +482,7 @@ class FactCheckSpeedrun {
                         <li>🎯 Kontext bei Informationen beachten</li>
                     </ul>
                 </div>
-                
+
                 <div class="results-actions">
                     <button class="action-btn secondary" onclick="location.reload()">
                         🔄 Nochmal spielen
@@ -580,22 +580,22 @@ class BridgePuzzle {
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="puzzle-instructions">
                     <p>Verbinde demokratische Werte durch Brücken. Stärkere Verbindungen führen zu einer stabileren Demokratie!</p>
                 </div>
-                
+
                 <div class="puzzle-grid" id="puzzle-grid">
                     <!-- Grid wird dynamisch generiert -->
                 </div>
-                
+
                 <div class="value-legend">
                     <div class="legend-item empathy">💜 Empathie</div>
                     <div class="legend-item rights">⚖️ Rechtsstaatlichkeit</div>
                     <div class="legend-item participation">🗳️ Partizipation</div>
                     <div class="legend-item courage">🦁 Zivilcourage</div>
                 </div>
-                
+
                 <div class="puzzle-actions">
                     <button class="action-btn secondary" id="reset-puzzle">
                         🔄 Zurücksetzen
@@ -878,7 +878,7 @@ class BridgePuzzle {
     container.innerHTML = `
             <div class="game-results glass-panel">
                 <h3 class="results-title">🌉 Bridge Puzzle Ergebnis</h3>
-                
+
                 <div class="results-grid">
                     <div class="result-item">
                         <div class="result-value">${Math.floor(results.score)}%</div>
@@ -893,13 +893,13 @@ class BridgePuzzle {
                         <div class="result-label">Netzwerk-Abdeckung</div>
                     </div>
                 </div>
-                
+
                 <div class="achievement-badges">
                     ${results.score >= 90 ? '<div class="badge architect">🏗️ Brücken-Architekt</div>' : ''}
                     ${results.networkCoverage >= 80 ? '<div class="badge connector">🔗 Super-Vernetzer</div>' : ''}
                     ${results.avgBridgeStrength >= 85 ? '<div class="badge engineer">⚙️ Qualitäts-Ingenieur</div>' : ''}
                 </div>
-                
+
                 <div class="learning-summary">
                     <h4>Was du gelernt hast:</h4>
                     <ul>
@@ -909,7 +909,7 @@ class BridgePuzzle {
                         <li>🔧 Praktische Demokratie-Gestaltung</li>
                     </ul>
                 </div>
-                
+
                 <div class="results-actions">
                     <button class="action-btn secondary" onclick="location.reload()">
                         🔄 Nochmal puzzeln
@@ -993,14 +993,14 @@ class DebateDuel {
                         <p>${this.debateTopic.description}</p>
                     </div>
                 </div>
-                
+
                 <div class="debate-arena">
                     <div class="debater player-side">
                         <div class="debater-avatar">👤</div>
                         <div class="debater-position">${this.debateTopic.playerSide}</div>
                         <div class="debater-score" id="player-score">${this.playerScore}</div>
                     </div>
-                    
+
                     <div class="audience-meter">
                         <div class="audience-title">Publikum</div>
                         <div class="audience-bar">
@@ -1012,22 +1012,22 @@ class DebateDuel {
                             <span>KI</span>
                         </div>
                     </div>
-                    
+
                     <div class="debater ai-side">
                         <div class="debater-avatar">🤖</div>
                         <div class="debater-position">${this.debateTopic.aiSide}</div>
                         <div class="debater-score" id="ai-score">${this.aiScore}</div>
                     </div>
                 </div>
-                
+
                 <div class="round-info">
                     <span>Runde <span id="current-round">1</span> / ${this.rounds}</span>
                 </div>
-                
+
                 <div class="argument-section" id="argument-section">
                     <!-- Wird dynamisch gefüllt -->
                 </div>
-                
+
                 <div class="debate-log" id="debate-log">
                     <!-- Argument-Historie -->
                 </div>
@@ -1306,7 +1306,7 @@ class DebateDuel {
     container.innerHTML = `
             <div class="game-results glass-panel ${victory}">
                 <h3 class="results-title">🗣️ Debate Duel Ergebnis</h3>
-                
+
                 <div class="final-verdict">
                     ${
                       victory === 'victory'
@@ -1316,7 +1316,7 @@ class DebateDuel {
                           : '🤝 Unentschieden - beide Seiten hatten gute Punkte!'
                     }
                 </div>
-                
+
                 <div class="results-grid">
                     <div class="result-item">
                         <div class="result-value">${results.score}</div>
@@ -1331,13 +1331,13 @@ class DebateDuel {
                         <div class="result-label">Starke Argumente</div>
                     </div>
                 </div>
-                
+
                 <div class="achievement-badges">
                     ${results.audienceSupport >= 80 ? '<div class="badge orator">🎤 Meister-Redner</div>' : ''}
                     ${results.argumentsWon === results.totalArguments ? '<div class="badge logical">🧠 Logik-Genie</div>' : ''}
                     ${results.debateQuality >= 80 ? '<div class="badge quality">⭐ Qualitäts-Debattierer</div>' : ''}
                 </div>
-                
+
                 <div class="learning-summary">
                     <h4>Was du gelernt hast:</h4>
                     <ul>
@@ -1347,7 +1347,7 @@ class DebateDuel {
                         <li>⚖️ Demokratischen Diskurs führen</li>
                     </ul>
                 </div>
-                
+
                 <div class="results-actions">
                     <button class="action-btn secondary" onclick="location.reload()">
                         🔄 Neue Debatte

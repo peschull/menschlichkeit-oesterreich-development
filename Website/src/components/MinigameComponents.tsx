@@ -5,7 +5,7 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Badge } from './ui/badge';
 import { Progress } from './ui/progress';
-import { 
+import {
   CheckCircle,
   XCircle,
   Clock,
@@ -112,7 +112,7 @@ export function FactCheckArena({ onComplete, timeLimit = 180, difficulty = 3 }: 
 
     const isCorrect = selectedAnswer === currentClaimData.correct;
     const points = isCorrect ? (6 - currentClaimData.difficulty) : 0;
-    
+
     setScore(score + points);
     setResults([...results, {
       claim: currentClaimData,
@@ -122,7 +122,7 @@ export function FactCheckArena({ onComplete, timeLimit = 180, difficulty = 3 }: 
     }]);
 
     setShowFeedback(true);
-    
+
     setTimeout(() => {
       if (currentClaim < filteredClaims.length - 1) {
         setCurrentClaim(currentClaim + 1);
@@ -141,7 +141,7 @@ export function FactCheckArena({ onComplete, timeLimit = 180, difficulty = 3 }: 
       maxScore: maxPossibleScore,
       timeUsed: timeLimit - timeLeft,
       timeLimit,
-      feedback: score >= maxPossibleScore * 0.8 
+      feedback: score >= maxPossibleScore * 0.8
         ? "Ausgezeichnet! Du hast ein sehr gutes Gespür für Falschinformationen."
         : score >= maxPossibleScore * 0.6
           ? "Gut gemacht! Mit etwas mehr Übung wirst du zum Fact-Check-Profi."
@@ -201,17 +201,17 @@ export function FactCheckArena({ onComplete, timeLimit = 180, difficulty = 3 }: 
           >
             {isCorrect ? <CheckCircle className="w-8 h-8" /> : <XCircle className="w-8 h-8" />}
           </motion.div>
-          
+
           <h3 className={`mb-4 ${isCorrect ? 'text-green-600' : 'text-red-600'}`}>
             {isCorrect ? 'Richtig!' : 'Nicht ganz richtig'}
           </h3>
-          
+
           <div className="bg-muted/50 p-4 rounded-lg mb-4">
             <p className="text-sm leading-relaxed">
               {currentClaimData.explanation}
             </p>
           </div>
-          
+
           <div className="flex justify-center space-x-4 text-sm text-muted-foreground">
             <span>Punkte: +{isCorrect ? (6 - currentClaimData.difficulty) : 0}</span>
             <span>•</span>
@@ -245,7 +245,7 @@ export function FactCheckArena({ onComplete, timeLimit = 180, difficulty = 3 }: 
         </div>
         <Progress value={(currentClaim / filteredClaims.length) * 100} className="mt-4" />
       </CardHeader>
-      
+
       <CardContent className="space-y-6">
         <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 p-6 rounded-lg">
           <p className="text-lg leading-relaxed mb-4">
@@ -258,7 +258,7 @@ export function FactCheckArena({ onComplete, timeLimit = 180, difficulty = 3 }: 
 
         <div className="space-y-3">
           <h4>Wie bewertest du diese Behauptung?</h4>
-          
+
           <div className="grid gap-3">
             {[
               { value: 'true', label: 'Wahr', color: 'border-green-200 hover:bg-green-50', icon: CheckCircle, iconColor: 'text-green-600' },
@@ -288,7 +288,7 @@ export function FactCheckArena({ onComplete, timeLimit = 180, difficulty = 3 }: 
           </div>
         </div>
 
-        <Button 
+        <Button
           onClick={submitAnswer}
           disabled={!selectedAnswer}
           className="w-full btn-primary-gradient"
@@ -353,10 +353,10 @@ export function BridgePuzzle({ onComplete, timeLimit = 300, difficulty = 3 }: Mi
       // Versuche Verbindung zu erstellen
       if (isValidConnection(selectedGroup, groupId)) {
         const newConnection = [selectedGroup, groupId].sort();
-        const connectionExists = connections.some(conn => 
+        const connectionExists = connections.some(conn =>
           conn[0] === newConnection[0] && conn[1] === newConnection[1]
         );
-        
+
         if (!connectionExists) {
           setConnections([...connections, newConnection]);
           const sharedValues = getSharedValues(selectedGroup, groupId);
@@ -372,22 +372,22 @@ export function BridgePuzzle({ onComplete, timeLimit = 300, difficulty = 3 }: Mi
     const networkBonus = connections.length >= 5 ? 50 : 0;
     const timeBonus = Math.max(0, timeLeft * 2);
     const finalScore = score + networkBonus + timeBonus;
-    
+
     const result: MinigameResult = {
       score: finalScore,
       maxScore: 200,
       timeUsed: timeLimit - timeLeft,
       timeLimit,
-      feedback: finalScore >= 160 
+      feedback: finalScore >= 160
         ? "Fantastic! Du hast ein starkes Netzwerk aufgebaut und Gemeinsamkeiten erkannt."
         : finalScore >= 120
           ? "Gut gemacht! Deine Brücken verbinden verschiedene Gruppen erfolgreich."
           : "Ein solider Anfang. Gesellschaftliche Brücken brauchen Zeit und Verständnis.",
-      details: { 
-        connections: connections.length, 
+      details: {
+        connections: connections.length,
         networkBonus,
         timeBonus,
-        sharedValuesFound: connections.reduce((sum, conn) => 
+        sharedValuesFound: connections.reduce((sum, conn) =>
           sum + getSharedValues(conn[0], conn[1]).length, 0
         )
       }
@@ -398,11 +398,11 @@ export function BridgePuzzle({ onComplete, timeLimit = 300, difficulty = 3 }: Mi
   const areAllConnected = () => {
     // Prüfe ob alle Gruppen durch Brücken verbunden sind (Graph-Konnektivität)
     if (connections.length === 0) return false;
-    
+
     const visited = new Set<number>();
     const queue = [0]; // Starte mit Gruppe 0
     visited.add(0);
-    
+
     while (queue.length > 0) {
       const current = queue.shift()!;
       connections.forEach(([a, b]) => {
@@ -415,7 +415,7 @@ export function BridgePuzzle({ onComplete, timeLimit = 300, difficulty = 3 }: Mi
         }
       });
     }
-    
+
     return visited.size === groups.length;
   };
 
@@ -432,7 +432,7 @@ export function BridgePuzzle({ onComplete, timeLimit = 300, difficulty = 3 }: Mi
         <CardContent className="text-center">
           <div className="space-y-4 mb-6">
             <p className="text-sm">
-              Klicke auf zwei Gruppen, um eine Brücke zu bauen. 
+              Klicke auf zwei Gruppen, um eine Brücke zu bauen.
               Brücken entstehen nur, wenn Gruppen gemeinsame Werte haben.
             </p>
             <div className="bg-muted/50 p-4 rounded-lg">
@@ -470,7 +470,7 @@ export function BridgePuzzle({ onComplete, timeLimit = 300, difficulty = 3 }: Mi
           </div>
         </div>
       </CardHeader>
-      
+
       <CardContent>
         <div className="relative bg-gradient-to-br from-blue-50 to-green-50 dark:from-gray-800 dark:to-gray-700 rounded-lg p-8 min-h-[400px]">
           {/* SVG für Verbindungen */}
@@ -480,7 +480,7 @@ export function BridgePuzzle({ onComplete, timeLimit = 300, difficulty = 3 }: Mi
               const posA = groups[groupA].position;
               const posB = groups[groupB].position;
               const sharedValues = getSharedValues(groupA, groupB);
-              
+
               return (
                 <g key={index}>
                   <line
@@ -540,7 +540,7 @@ export function BridgePuzzle({ onComplete, timeLimit = 300, difficulty = 3 }: Mi
           <div className="text-sm text-muted-foreground">
             {connections.length} Brücken gebaut • {areAllConnected() ? 'Alle verbunden!' : 'Noch nicht alle verbunden'}
           </div>
-          <Button 
+          <Button
             onClick={endGame}
             variant="outline"
           >

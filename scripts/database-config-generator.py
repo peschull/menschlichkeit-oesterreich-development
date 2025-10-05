@@ -11,7 +11,7 @@ DATABASE_CONFIG = {
         'critical': True
     },
     'api': {
-        'name': 'mo_laravel_api', 
+        'name': 'mo_laravel_api',
         'purpose': 'Laravel-basierte API',
         'website': 'api.menschlichkeit-oesterreich.at',
         'tables': ['migrations', 'users', 'api_tokens', 'cache'],
@@ -31,30 +31,30 @@ def generate_secure_password(length=32):
     """Generiert sichere Passwörter für Produktions-Datenbanken"""
     import secrets
     import string
-    
+
     alphabet = string.ascii_letters + string.digits + "!@#$%^&*"
     return ''.join(secrets.choice(alphabet) for _ in range(length))
 
 ## 🏗️ Database Setup Scripts
 def create_database_users():
     """MySQL-Befehle für Plesk Database Management"""
-    
+
     commands = [
         # WordPress Database User
         f"CREATE USER 'wp_user_prod'@'localhost' IDENTIFIED BY '{generate_secure_password()}';",
         f"GRANT ALL PRIVILEGES ON mo_wordpress_main.* TO 'wp_user_prod'@'localhost';",
-        
-        # Laravel API Database User  
+
+        # Laravel API Database User
         f"CREATE USER 'api_user_prod'@'localhost' IDENTIFIED BY '{generate_secure_password()}';",
         f"GRANT ALL PRIVILEGES ON mo_laravel_api.* TO 'api_user_prod'@'localhost';",
-        
+
         # CiviCRM Database User
         f"CREATE USER 'civicrm_user_prod'@'localhost' IDENTIFIED BY '{generate_secure_password()}';",
         f"GRANT ALL PRIVILEGES ON mo_civicrm_data.* TO 'civicrm_user_prod'@'localhost';",
-        
+
         "FLUSH PRIVILEGES;"
     ]
-    
+
     return commands
 
 print("🗂️ Database Configuration für menschlichkeit-oesterreich.at")
@@ -74,7 +74,7 @@ for db_key in DATABASE_CONFIG.keys():
 
 print(f"\n📝 Nächste Schritte:")
 print("1. Plesk-Panel → Databases öffnen")
-print("2. Neue Benutzer mit generierten Passwörtern erstellen") 
+print("2. Neue Benutzer mit generierten Passwörtern erstellen")
 print("3. Produktions-.env Datei aktualisieren")
 print("4. Database-Backups einrichten")
 print("5. Monitoring für alle drei DBs aktivieren")

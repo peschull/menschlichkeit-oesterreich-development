@@ -65,7 +65,7 @@ function viewToModelDrupalMediaAttributeConverter(dataFilter) {
 function getDescendantElement(writer, containerElement, elementName) {
   const range = writer.createRangeOn(containerElement);
 
-   
+
   for (const { item } of range.getWalker()) {
     if (item.is('element', elementName)) {
       return item;

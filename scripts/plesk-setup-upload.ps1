@@ -25,7 +25,7 @@ function Write-ColorOutput {
         [string]$Message,
         [ConsoleColor]$ForegroundColor = [ConsoleColor]::White
     )
-    
+
     $originalColor = $host.UI.RawUI.ForegroundColor
     $host.UI.RawUI.ForegroundColor = $ForegroundColor
     Write-Output $Message
@@ -38,28 +38,28 @@ function Upload-File {
         [string]$RemotePath,
         [string]$Description
     )
-    
+
     if (-not (Test-Path $LocalFile)) {
         Write-ColorOutput "❌ Lokale Datei nicht gefunden: $LocalFile" -ForegroundColor Red
         return $false
     }
-    
+
     Write-ColorOutput "📤 Upload: $Description..." -ForegroundColor Cyan
-    
+
     $batchFile = Join-Path $env:TEMP "sftp_upload_$([Guid]::NewGuid().ToString()).txt"
-    
+
     "put `"$LocalFile`" `"$RemotePath`"" | Out-File -FilePath $batchFile -Encoding utf8
-    
+
     try {
         $result = & sftp -i "$SSH_KEY" -o "StrictHostKeyChecking=accept-new" -b $batchFile "$USER@$HOST_ADDR" 2>&1
         $success = ($LASTEXITCODE -eq 0)
-        
+
         if ($success) {
             Write-ColorOutput "✅ $Description erfolgreich hochgeladen" -ForegroundColor Green
         } else {
             Write-ColorOutput "❌ Upload fehlgeschlagen: $result" -ForegroundColor Red
         }
-        
+
         return $success
     }
     catch {
@@ -76,13 +76,13 @@ function Execute-RemoteCommand {
         [string]$Command,
         [string]$Description
     )
-    
+
     Write-ColorOutput "🔧 Ausführung: $Description..." -ForegroundColor Cyan
-    
+
     try {
         $result = & ssh -i "$SSH_KEY" -o "StrictHostKeyChecking=accept-new" "$USER@$HOST_ADDR" $Command 2>&1
         $success = ($LASTEXITCODE -eq 0)
-        
+
         if ($success) {
             Write-ColorOutput "✅ $Description erfolgreich" -ForegroundColor Green
             if ($result) {
@@ -91,7 +91,7 @@ function Execute-RemoteCommand {
         } else {
             Write-ColorOutput "❌ Fehler bei $Description`: $result" -ForegroundColor Red
         }
-        
+
         return $success
     }
     catch {
@@ -133,10 +133,10 @@ Execute-RemoteCommand -Command "chmod 755 /var/www/vhosts/*/httpdocs/plesk-db-se
 if ($Execute) {
     Write-ColorOutput "`n🔧 Database Setup wird ausgeführt..." -ForegroundColor Yellow
     Write-ColorOutput "⚠️  Achtung: Dies erfordert das Database Root Passwort!" -ForegroundColor Yellow
-    
+
     $rootPassword = Read-Host -AsSecureString "Database Root Passwort eingeben"
     $rootPasswordText = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto([System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($rootPassword))
-    
+
     # Setup via curl (falls möglich)
     $setupUrl = "https://menschlichkeit-oesterreich.at/plesk-db-setup.php"
     Write-ColorOutput "Database Setup URL: $setupUrl" -ForegroundColor Gray
@@ -151,7 +151,7 @@ if ($all_success) {
     Write-ColorOutput "`n🎯 Nächste Schritte:" -ForegroundColor Yellow
     Write-ColorOutput "1. Database Setup im Browser ausführen:" -ForegroundColor Yellow
     Write-ColorOutput "   https://menschlichkeit-oesterreich.at/plesk-db-setup.php?key=MO_SETUP_2025_SECURE_KEY" -ForegroundColor Gray
-    Write-ColorOutput "2. .env-Dateien von Templates kopieren und anpassen" -ForegroundColor Yellow  
+    Write-ColorOutput "2. .env-Dateien von Templates kopieren und anpassen" -ForegroundColor Yellow
     Write-ColorOutput "3. WordPress Salts generieren und einsetzen" -ForegroundColor Yellow
     Write-ColorOutput "4. Laravel App Key generieren: php artisan key:generate" -ForegroundColor Yellow
     Write-ColorOutput "5. CiviCRM Site Key und API Key generieren" -ForegroundColor Yellow

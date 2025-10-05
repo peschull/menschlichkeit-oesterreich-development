@@ -460,7 +460,7 @@ class AssessmentEngine {
 }
 
 /* ==========================================================================
-   CURRICULUM ALIGNER  
+   CURRICULUM ALIGNER
    ========================================================================== */
 
 class CurriculumAligner {

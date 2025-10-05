@@ -40,10 +40,10 @@ class SepaHandler {
                             <div class="alert alert-info">
                                 <i class="bi bi-info-circle me-2"></i>
                                 <strong>Sicher und DSGVO-konform</strong><br>
-                                Ihre Bankdaten werden verschlüsselt übertragen und DSGVO-konform gespeichert. 
+                                Ihre Bankdaten werden verschlüsselt übertragen und DSGVO-konform gespeichert.
                                 Das SEPA-Mandat können Sie jederzeit widerrufen.
                             </div>
-                            
+
                             <form id="sepaForm" novalidate>
                                 <div class="row mb-4">
                                     <div class="col-12">
@@ -71,9 +71,9 @@ class SepaHandler {
                                             <label for="sepaAccountHolder" class="form-label fw-semibold">
                                                 <i class="bi bi-person me-2"></i>Kontoinhaber*
                                             </label>
-                                            <input type="text" 
-                                                   class="form-control" 
-                                                   id="sepaAccountHolder" 
+                                            <input type="text"
+                                                   class="form-control"
+                                                   id="sepaAccountHolder"
                                                    required
                                                    placeholder="Max Mustermann">
                                             <div class="invalid-feedback">
@@ -86,9 +86,9 @@ class SepaHandler {
                                             <label for="sepaEmail" class="form-label fw-semibold">
                                                 <i class="bi bi-envelope me-2"></i>E-Mail-Adresse*
                                             </label>
-                                            <input type="email" 
-                                                   class="form-control" 
-                                                   id="sepaEmail" 
+                                            <input type="email"
+                                                   class="form-control"
+                                                   id="sepaEmail"
                                                    required
                                                    placeholder="max@beispiel.at">
                                             <div class="invalid-feedback">
@@ -102,9 +102,9 @@ class SepaHandler {
                                     <label for="sepaIban" class="form-label fw-semibold">
                                         <i class="bi bi-bank me-2"></i>IBAN*
                                     </label>
-                                    <input type="text" 
-                                           class="form-control font-monospace" 
-                                           id="sepaIban" 
+                                    <input type="text"
+                                           class="form-control font-monospace"
+                                           id="sepaIban"
                                            required
                                            placeholder="AT12 3456 7890 1234 5678"
                                            maxlength="34"
@@ -121,9 +121,9 @@ class SepaHandler {
                                     <label for="sepaBic" class="form-label fw-semibold">
                                         <i class="bi bi-building me-2"></i>BIC (optional)
                                     </label>
-                                    <input type="text" 
-                                           class="form-control font-monospace" 
-                                           id="sepaBic" 
+                                    <input type="text"
+                                           class="form-control font-monospace"
+                                           id="sepaBic"
                                            placeholder="GIBAATWWXXX"
                                            maxlength="11">
                                     <div class="form-text">
@@ -135,9 +135,9 @@ class SepaHandler {
                                     <label for="sepaAddress" class="form-label fw-semibold">
                                         <i class="bi bi-geo-alt me-2"></i>Adresse
                                     </label>
-                                    <textarea class="form-control" 
-                                              id="sepaAddress" 
-                                              rows="3" 
+                                    <textarea class="form-control"
+                                              id="sepaAddress"
+                                              rows="3"
                                               placeholder="Straße, Hausnummer&#10;PLZ Ort&#10;Land"></textarea>
                                 </div>
 
@@ -148,10 +148,10 @@ class SepaHandler {
                                         Mandatsreferenz: <strong>wird automatisch generiert</strong>
                                     </p>
                                     <p class="small mb-0">
-                                        Mit der Erteilung des SEPA-Lastschriftmandats ermächtigen Sie den 
-                                        <strong>Verein Menschlichkeit Österreich</strong>, Zahlungen von Ihrem Konto 
-                                        mittels Lastschrift einzuziehen. Zugleich weisen Sie Ihr Kreditinstitut an, 
-                                        die vom <strong>Verein Menschlichkeit Österreich</strong> auf Ihr Konto 
+                                        Mit der Erteilung des SEPA-Lastschriftmandats ermächtigen Sie den
+                                        <strong>Verein Menschlichkeit Österreich</strong>, Zahlungen von Ihrem Konto
+                                        mittels Lastschrift einzuziehen. Zugleich weisen Sie Ihr Kreditinstitut an,
+                                        die vom <strong>Verein Menschlichkeit Österreich</strong> auf Ihr Konto
                                         gezogenen Lastschriften einzulösen.
                                     </p>
                                 </div>
@@ -160,7 +160,7 @@ class SepaHandler {
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="sepaConsent" required>
                                         <label class="form-check-label" for="sepaConsent">
-                                            Ich erteile hiermit das SEPA-Lastschriftmandat und bestätige, 
+                                            Ich erteile hiermit das SEPA-Lastschriftmandat und bestätige,
                                             dass ich Kontoinhaber oder bevollmächtigt bin.*
                                         </label>
                                         <div class="invalid-feedback">
@@ -170,7 +170,7 @@ class SepaHandler {
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="sepaDataConsent" required>
                                         <label class="form-check-label" for="sepaDataConsent">
-                                            Ich stimme der Verarbeitung meiner Bankdaten gemäß 
+                                            Ich stimme der Verarbeitung meiner Bankdaten gemäß
                                             <a href="datenschutz.html" target="_blank">Datenschutzerklärung</a> zu.*
                                         </label>
                                         <div class="invalid-feedback">
@@ -181,8 +181,8 @@ class SepaHandler {
 
                                 <div class="alert alert-warning small">
                                     <i class="bi bi-exclamation-triangle me-2"></i>
-                                    <strong>Hinweis:</strong> Sie können dieses Mandat jederzeit durch eine 
-                                    Mitteilung an uns widerrufen. Ein Widerruf betrifft nur zukünftige 
+                                    <strong>Hinweis:</strong> Sie können dieses Mandat jederzeit durch eine
+                                    Mitteilung an uns widerrufen. Ein Widerruf betrifft nur zukünftige
                                     Zahlungen, nicht bereits ausgeführte Lastschriften.
                                 </div>
 

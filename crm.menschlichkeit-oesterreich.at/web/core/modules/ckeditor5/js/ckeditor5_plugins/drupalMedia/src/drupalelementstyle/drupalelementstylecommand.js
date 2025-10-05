@@ -37,7 +37,7 @@ export default class DrupalElementStyleCommand extends Command {
       );
     });
     this.modelAttributes = [];
-     
+
     for (const group of Object.keys(styles)) {
       const modelAttribute = groupNameToModelAttributeKey(group);
       // Generate list of model attributes.
@@ -85,7 +85,7 @@ export default class DrupalElementStyleCommand extends Command {
       if (element.hasAttribute(modelAttribute)) {
         value[group] = element.getAttribute(modelAttribute);
       } else {
-         
+
         for (const [, style] of this.styles[group]) {
           // Set it to the default value.
           if (style.isDefault) {

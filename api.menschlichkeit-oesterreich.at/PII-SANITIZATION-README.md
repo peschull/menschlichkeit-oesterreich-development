@@ -1,7 +1,7 @@
 # PII-Sanitization System
 
-**Status:** ✅ Phase 1 Complete (FastAPI Backend)  
-**Compliance:** DSGVO Art. 5 (Datenminimierung), Art. 32 (Datensicherheit)  
+**Status:** ✅ Phase 1 Complete (FastAPI Backend)
+**Compliance:** DSGVO Art. 5 (Datenminimierung), Art. 32 (Datensicherheit)
 **Coverage:** Logs, API Requests/Responses, Structured Data
 
 ---
@@ -362,6 +362,6 @@ from logging.handlers import QueueHandler
 
 ---
 
-**Author:** Menschlichkeit Österreich DevOps  
-**Date:** 2025-10-03  
+**Author:** Menschlichkeit Österreich DevOps
+**Date:** 2025-10-03
 **License:** MIT

@@ -11,7 +11,7 @@ mkdir -p quality-reports
 echo "🐍 Installing Python dependencies for API service..."
 cd api.menschlichkeit-oesterreich.at
 
-# Try minimal requirements first (more likely to succeed)  
+# Try minimal requirements first (more likely to succeed)
 if [ -f "requirements-minimal.txt" ]; then
     echo "📦 Installing minimal Python requirements..."
     pip install --user --timeout 120 -r requirements-minimal.txt || echo "⚠️ Minimal requirements install failed, will try manual install"
@@ -61,7 +61,7 @@ echo "✅ Devcontainer setup complete!"
 echo ""
 echo "🎯 Quick Start Commands:"
 echo "  npm run dev:all      - Start all development services"
-echo "  npm run dev:api      - Start API service only" 
+echo "  npm run dev:api      - Start API service only"
 echo "  npm run dev:frontend - Start frontend only"
 echo "  npm run dev:crm      - Start CRM service only"
 echo ""

@@ -1,7 +1,7 @@
 # Git LFS Migration Report
 
-**Datum:** 4. Oktober 2025  
-**Branch:** `chore/git-lfs-migration`  
+**Datum:** 4. Oktober 2025
+**Branch:** `chore/git-lfs-migration`
 **Status:** ✅ ERFOLGREICH ABGESCHLOSSEN
 
 ## Zusammenfassung
@@ -109,6 +109,6 @@ c0e1f572 chore(crm): Remove CiviCRM from Git tracking (now in .gitignore)
 
 ---
 
-**Erstellt:** 2025-10-04 19:40 UTC  
-**Verantwortlich:** Peter Schuller  
+**Erstellt:** 2025-10-04 19:40 UTC
+**Verantwortlich:** Peter Schuller
 **Review-Status:** Pending

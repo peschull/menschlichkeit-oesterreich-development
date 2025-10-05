@@ -6,4 +6,3 @@ export function NewsManagement() {
     </div>
   );
 }
-

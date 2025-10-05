@@ -80,4 +80,3 @@ echo "  1) Force-push all branches:   git push --force --prune origin --all"
 echo "  2) Force-push all tags:       git push --force --prune origin --tags"
 echo "  3) Invalidate forks/old clones: communicate and re-clone"
 echo "  4) Rotate any leaked credentials (PATs, API keys, etc.)"
-

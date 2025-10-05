@@ -291,7 +291,7 @@
     // Check for any rows marked as changed before this tabledrag was rerendered
     // and mark them as changed for this current render.
     this.changedRowIds.forEach((changedRowId) => {
-       
+
       const rowObject = new self.row(
         document.getElementById(changedRowId),
         '',

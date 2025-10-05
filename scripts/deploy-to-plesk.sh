@@ -148,29 +148,29 @@ case "$CHOICE" in
             -e "ssh -i '$SSH_KEY' -p $SSH_PORT" \
             "${EXCLUDES[@]}" \
             "$ROOT_DIR/" "$SSH_HOST:$REMOTE_PATH/"
-        
+
         echo -e "\n${GREEN}✅ Dry-Run abgeschlossen${NC}"
         echo -e "${YELLOW}💡 Keine Änderungen wurden auf dem Server vorgenommen${NC}"
         ;;
-    
+
     2)
         echo -e "\n${RED}⚠️  LETZTE WARNUNG${NC}"
         echo "Dies wird Dateien auf dem Produktionsserver ÜBERSCHREIBEN!"
         read -p "Wirklich fortfahren? (yes zum Bestätigen): " CONFIRM
-        
+
         if [[ "$CONFIRM" != "yes" ]]; then
             echo -e "${YELLOW}❌ Deployment abgebrochen${NC}"
             exit 0
         fi
-        
+
         echo -e "\n${GREEN}🚀 Starte Deployment...${NC}"
         echo ""
-        
+
         rsync -az --delete --partial --info=progress2 \
             -e "ssh -i '$SSH_KEY' -p $SSH_PORT" \
             "${EXCLUDES[@]}" \
             "$ROOT_DIR/" "$SSH_HOST:$REMOTE_PATH/"
-        
+
         if [[ $? -eq 0 ]]; then
             echo -e "\n${GREEN}╔══════════════════════════════════════════════════════════════╗${NC}"
             echo -e "${GREEN}║              ✅ DEPLOYMENT ERFOLGREICH                      ║${NC}"
@@ -178,7 +178,7 @@ case "$CHOICE" in
             echo ""
             echo -e "${CYAN}🌐 Überprüfe deine Website:${NC}"
             echo "   https://menschlichkeit-oesterreich.at"
-            
+
             # Optional: Health Check
             echo ""
             echo -e "${CYAN}🏥 Führe Health-Check durch...${NC}"
@@ -192,12 +192,12 @@ case "$CHOICE" in
             exit 1
         fi
         ;;
-    
+
     3)
         echo -e "${YELLOW}❌ Deployment abgebrochen${NC}"
         exit 0
         ;;
-    
+
     *)
         echo -e "${RED}❌ Ungültige Auswahl${NC}"
         exit 1

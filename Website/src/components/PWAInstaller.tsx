@@ -24,7 +24,7 @@ export function PWAInstaller() {
         try {
           const registration = await navigator.serviceWorker.register('/sw.js');
           console.log('SW registered: ', registration);
-          
+
           // Check for updates
           registration.addEventListener('updatefound', () => {
             const newWorker = registration.installing;
@@ -47,7 +47,7 @@ export function PWAInstaller() {
     const handleBeforeInstallPrompt = (e: Event) => {
       e.preventDefault();
       setDeferredPrompt(e as BeforeInstallPromptEvent);
-      
+
       // Show install prompt after a delay
       setTimeout(() => {
         setShowInstallPrompt(true);
@@ -79,7 +79,7 @@ export function PWAInstaller() {
     window.addEventListener('offline', handleOffline);
 
     // Check if already installed
-    if (window.matchMedia('(display-mode: standalone)').matches || 
+    if (window.matchMedia('(display-mode: standalone)').matches ||
         (window.navigator as any).standalone === true) {
       setIsInstalled(true);
     }
@@ -97,13 +97,13 @@ export function PWAInstaller() {
 
     deferredPrompt.prompt();
     const { outcome } = await deferredPrompt.userChoice;
-    
+
     if (outcome === 'accepted') {
       console.log('User accepted the install prompt');
     } else {
       console.log('User dismissed the install prompt');
     }
-    
+
     setDeferredPrompt(null);
     setShowInstallPrompt(false);
   };
@@ -150,12 +150,12 @@ export function PWAInstaller() {
                     <X className="h-4 w-4" />
                   </Button>
                 </div>
-                
+
                 <h4 className="mb-2">Brücken Bauen installieren</h4>
                 <p className="text-sm text-muted-foreground mb-4">
                   Installiere das Democracy Game als App für ein besseres Spielerlebnis - auch offline verfügbar!
                 </p>
-                
+
                 <div className="flex items-center space-x-2 mb-4">
                   <div className="flex items-center space-x-1 text-xs text-muted-foreground">
                     <Smartphone className="h-3 w-3" />
@@ -170,7 +170,7 @@ export function PWAInstaller() {
                     <span>Offline</span>
                   </div>
                 </div>
-                
+
                 <div className="flex space-x-2">
                   <Button
                     onClick={handleInstallClick}
@@ -234,8 +234,8 @@ export function PWAInstaller() {
       {/* Online Status Indicator */}
       <div className="fixed bottom-4 left-4 z-40">
         <div className={`flex items-center space-x-2 px-3 py-1 rounded-full text-xs transition-all ${
-          isOnline 
-            ? 'bg-green-100 text-green-700 dark:bg-green-900/20 dark:text-green-400' 
+          isOnline
+            ? 'bg-green-100 text-green-700 dark:bg-green-900/20 dark:text-green-400'
             : 'bg-red-100 text-red-700 dark:bg-red-900/20 dark:text-red-400'
         }`}>
           {isOnline ? (

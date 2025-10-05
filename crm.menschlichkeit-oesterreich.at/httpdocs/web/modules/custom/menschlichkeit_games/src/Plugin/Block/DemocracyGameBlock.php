@@ -24,7 +24,7 @@ class DemocracyGameBlock extends BlockBase implements BlockPluginInterface {
    */
   public function build() {
     $config = $this->getConfiguration();
-    
+
     // Get game URL (can be configured in block settings)
     $game_url = $config['game_url'] ?? '/games/';
     $show_preview = $config['show_preview'] ?? TRUE;
@@ -113,7 +113,7 @@ class DemocracyGameBlock extends BlockBase implements BlockPluginInterface {
    */
   public function blockSubmit($form, FormStateInterface $form_state) {
     parent::blockSubmit($form, $form_state);
-    
+
     $values = $form_state->getValues();
     $this->configuration['game_url'] = $values['game_url'];
     $this->configuration['show_preview'] = $values['show_preview'];

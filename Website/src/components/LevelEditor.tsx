@@ -11,7 +11,7 @@ import { Slider } from './ui/slider';
 import { Switch } from './ui/switch';
 import { Label } from './ui/label';
 import { Separator } from './ui/separator';
-import { 
+import {
   Plus,
   Trash2,
   Eye,
@@ -30,10 +30,10 @@ import {
   Zap
 } from 'lucide-react';
 import { MinigameIcon, StakeholderAvatar, LevelThumbnail } from './GameGraphics';
-import GameDataGenerator, { 
-  type GameLevel, 
-  type ScenarioData, 
-  type Stakeholder, 
+import GameDataGenerator, {
+  type GameLevel,
+  type ScenarioData,
+  type Stakeholder,
   type Choice,
   type StakeholderReaction
 } from './GameDataGenerator';
@@ -51,11 +51,11 @@ interface ValidationResult {
   warnings: string[];
 }
 
-export function LevelEditor({ 
-  onSave, 
-  onPreview, 
+export function LevelEditor({
+  onSave,
+  onPreview,
   initialLevel,
-  mode = 'create' 
+  mode = 'create'
 }: LevelEditorProps) {
   const [currentLevel, setCurrentLevel] = useState<Partial<GameLevel>>(
     initialLevel || {
@@ -146,12 +146,12 @@ export function LevelEditor({
       const newLevel = { ...prev };
       const keys = path.split('.');
       let current: any = newLevel;
-      
+
       for (let i = 0; i < keys.length - 1; i++) {
         if (!current[keys[i]]) current[keys[i]] = {};
         current = current[keys[i]];
       }
-      
+
       current[keys[keys.length - 1]] = value;
       return newLevel;
     });
@@ -275,12 +275,12 @@ export function LevelEditor({
         <div>
           <h1 className="text-3xl font-bold text-gradient">Level Editor</h1>
           <p className="text-muted-foreground">
-            {mode === 'create' ? 'Erstelle ein neues Democracy Level' : 
-             mode === 'edit' ? 'Bearbeite bestehendes Level' : 
+            {mode === 'create' ? 'Erstelle ein neues Democracy Level' :
+             mode === 'edit' ? 'Bearbeite bestehendes Level' :
              'Verwende Template als Grundlage'}
           </p>
         </div>
-        
+
         <div className="flex space-x-2">
           <input
             type="file"
@@ -304,8 +304,8 @@ export function LevelEditor({
             <Eye className="w-4 h-4 mr-2" />
             Vorschau
           </Button>
-          <Button 
-            onClick={handleSave} 
+          <Button
+            onClick={handleSave}
             disabled={!validation.isValid}
             className="btn-primary-gradient"
           >
@@ -332,7 +332,7 @@ export function LevelEditor({
                 </ul>
               </div>
             )}
-            
+
             {validation.warnings.length > 0 && (
               <div>
                 <div className="flex items-center text-warning mb-2">
@@ -392,11 +392,11 @@ export function LevelEditor({
                     placeholder="z.B. Nachbarschaftskonflikt"
                   />
                 </div>
-                
+
                 <div>
                   <Label htmlFor="chapter">Kapitel</Label>
-                  <Select 
-                    value={currentLevel.chapter?.toString()} 
+                  <Select
+                    value={currentLevel.chapter?.toString()}
                     onValueChange={(value) => updateLevel('chapter', parseInt(value))}
                   >
                     <SelectTrigger>
@@ -427,8 +427,8 @@ export function LevelEditor({
               <div className="grid md:grid-cols-3 gap-4">
                 <div>
                   <Label htmlFor="category">Kategorie</Label>
-                  <Select 
-                    value={currentLevel.category} 
+                  <Select
+                    value={currentLevel.category}
                     onValueChange={(value) => updateLevel('category', value)}
                   >
                     <SelectTrigger>
@@ -476,9 +476,9 @@ export function LevelEditor({
               <div>
                 <div className="flex items-center justify-between mb-2">
                   <Label>Lernziele *</Label>
-                  <Button 
-                    type="button" 
-                    variant="outline" 
+                  <Button
+                    type="button"
+                    variant="outline"
                     size="sm"
                     onClick={addLearningObjective}
                   >
@@ -622,7 +622,7 @@ export function LevelEditor({
                           placeholder="z.B. Frau Weber"
                         />
                       </div>
-                      
+
                       <div>
                         <Label>Rolle</Label>
                         <Input
@@ -792,8 +792,8 @@ export function LevelEditor({
                               value={[choice.scores.empathy]}
                               onValueChange={(value) => {
                                 const newChoices = [...(currentLevel.scenario?.choices || [])];
-                                newChoices[index] = { 
-                                  ...choice, 
+                                newChoices[index] = {
+                                  ...choice,
                                   scores: { ...choice.scores, empathy: value[0] }
                                 };
                                 updateLevel('scenario.choices', newChoices);
@@ -814,8 +814,8 @@ export function LevelEditor({
                               value={[choice.scores.humanRights]}
                               onValueChange={(value) => {
                                 const newChoices = [...(currentLevel.scenario?.choices || [])];
-                                newChoices[index] = { 
-                                  ...choice, 
+                                newChoices[index] = {
+                                  ...choice,
                                   scores: { ...choice.scores, humanRights: value[0] }
                                 };
                                 updateLevel('scenario.choices', newChoices);
@@ -836,8 +836,8 @@ export function LevelEditor({
                               value={[choice.scores.participation]}
                               onValueChange={(value) => {
                                 const newChoices = [...(currentLevel.scenario?.choices || [])];
-                                newChoices[index] = { 
-                                  ...choice, 
+                                newChoices[index] = {
+                                  ...choice,
                                   scores: { ...choice.scores, participation: value[0] }
                                 };
                                 updateLevel('scenario.choices', newChoices);
@@ -858,8 +858,8 @@ export function LevelEditor({
                               value={[choice.scores.civilCourage]}
                               onValueChange={(value) => {
                                 const newChoices = [...(currentLevel.scenario?.choices || [])];
-                                newChoices[index] = { 
-                                  ...choice, 
+                                newChoices[index] = {
+                                  ...choice,
                                   scores: { ...choice.scores, civilCourage: value[0] }
                                 };
                                 updateLevel('scenario.choices', newChoices);
@@ -940,9 +940,9 @@ export function LevelEditor({
               <div>
                 <div className="flex items-center justify-between mb-2">
                   <Label>Transfer-Fragen</Label>
-                  <Button 
-                    type="button" 
-                    variant="outline" 
+                  <Button
+                    type="button"
+                    variant="outline"
                     size="sm"
                     onClick={() => {
                       const current = currentLevel.scenario?.reflection?.transferQuestions || [''];
@@ -984,9 +984,9 @@ export function LevelEditor({
               <div>
                 <div className="flex items-center justify-between mb-2">
                   <Label>Diskussions-Prompts</Label>
-                  <Button 
-                    type="button" 
-                    variant="outline" 
+                  <Button
+                    type="button"
+                    variant="outline"
                     size="sm"
                     onClick={() => {
                       const current = currentLevel.scenario?.reflection?.discussionPrompts || [''];
@@ -1053,13 +1053,13 @@ export function LevelEditor({
                     Schließen
                   </Button>
                 </div>
-                
+
                 {/* Preview Content würde hier das actual Level Component rendern */}
                 <div className="space-y-4">
                   <div className="bg-muted/50 p-4 rounded-lg">
                     <h3 className="font-semibold mb-2">{currentLevel.title || 'Unbenanntes Level'}</h3>
                     <p className="text-muted-foreground text-sm mb-4">{currentLevel.description}</p>
-                    
+
                     {currentLevel.scenario?.situation && (
                       <div className="bg-white dark:bg-gray-700 p-4 rounded">
                         <h4 className="font-medium mb-2">Situation</h4>
@@ -1067,7 +1067,7 @@ export function LevelEditor({
                       </div>
                     )}
                   </div>
-                  
+
                   <div className="text-center text-muted-foreground">
                     <Gamepad2 className="w-8 h-8 mx-auto mb-2" />
                     <p>Vollständige Vorschau verfügbar nach dem Speichern</p>

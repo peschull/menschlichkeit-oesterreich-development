@@ -201,8 +201,8 @@ class GameUI {
     const optionsHTML = decisions
       .map(
         decision => `
-      <button 
-        class="decision-option" 
+      <button
+        class="decision-option"
         data-decision-id="${decision.id}"
         type="button"
         role="radio"

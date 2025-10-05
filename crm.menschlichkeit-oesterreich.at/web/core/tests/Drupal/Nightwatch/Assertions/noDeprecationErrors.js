@@ -16,7 +16,7 @@ module.exports.assertion = function () {
     );
   };
   this.command = (callback) =>
-     
+
     this.api.execute(function () {
       return window.sessionStorage.getItem('js_testing_log_test.warnings');
     }, callback);

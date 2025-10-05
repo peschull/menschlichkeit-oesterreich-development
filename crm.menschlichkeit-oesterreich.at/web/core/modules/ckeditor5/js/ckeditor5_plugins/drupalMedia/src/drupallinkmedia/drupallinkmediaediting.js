@@ -236,7 +236,7 @@ function downcastMediaLinkManualDecorator(decorator) {
           return;
         }
 
-         
+
         for (const [key, val] of toMap(decorator.attributes)) {
           conversionApi.writer.setAttribute(key, val, mediaLink);
         }
@@ -248,7 +248,7 @@ function downcastMediaLinkManualDecorator(decorator) {
         // Add support for `style` attribute in manual decorators to remain
         // consistent with CKEditor 5. This only works with text formats that
         // have no HTMl filtering enabled.
-         
+
         for (const key in decorator.styles) {
           if (Object.prototype.hasOwnProperty.call(decorator.styles, key)) {
             conversionApi.writer.setStyle(
@@ -375,7 +375,7 @@ export default class DrupalLinkMediaEditing extends Plugin {
     const editor = this.editor;
     const command = editor.commands.get('link');
 
-     
+
     for (const decorator of command.manualDecorators) {
       editor.model.schema.extend('drupalMedia', {
         allowAttributes: decorator.id,

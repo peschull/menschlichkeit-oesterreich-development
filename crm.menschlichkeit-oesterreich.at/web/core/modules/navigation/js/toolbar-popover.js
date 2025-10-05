@@ -53,7 +53,7 @@ const POPOVER_NO_CLICK_DELAY = 500;
          * @param {boolean} initialLoad Happens on page loads.
          */
         const toggleState = (state, initialLoad = false) => {
-           
+
           state && !initialLoad ? expandPopover() : collapsePopover();
           button.setAttribute('aria-expanded', state && !initialLoad);
 
@@ -81,7 +81,7 @@ const POPOVER_NO_CLICK_DELAY = 500;
         const delayedClose = () => {
           setTimeout(() => {
             if (isPopoverHoverOrFocus()) return;
-             
+
             close();
           }, POPOVER_CLOSE_DELAY);
         };

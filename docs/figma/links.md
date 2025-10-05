@@ -116,5 +116,5 @@ Liste abweichende Tokens separat.
 
 ---
 
-**Last Updated**: 2025-10-03  
+**Last Updated**: 2025-10-03
 **Maintainer**: Development Team

@@ -37,7 +37,7 @@ const NETWORK_FIRST = [
  */
 self.addEventListener('install', (event) => {
   console.log('[SW] Installing Service Worker...');
-  
+
   event.waitUntil(
     Promise.all([
       // Cache static assets
@@ -56,14 +56,14 @@ self.addEventListener('install', (event) => {
  */
 self.addEventListener('activate', (event) => {
   console.log('[SW] Activating Service Worker...');
-  
+
   event.waitUntil(
     Promise.all([
       // Clean up old caches
       caches.keys().then((cacheNames) => {
         return Promise.all(
           cacheNames.map((cacheName) => {
-            if (cacheName !== STATIC_CACHE_NAME && 
+            if (cacheName !== STATIC_CACHE_NAME &&
                 cacheName !== DYNAMIC_CACHE_NAME &&
                 cacheName !== CACHE_NAME) {
               console.log('[SW] Deleting old cache:', cacheName);
@@ -84,38 +84,38 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   const request = event.request;
   const url = new URL(request.url);
-  
+
   // Skip non-GET requests
   if (request.method !== 'GET') {
     return;
   }
-  
+
   // Skip chrome-extension and other non-http requests
   if (!url.protocol.startsWith('http')) {
     return;
   }
-  
+
   // Network first for critical API endpoints
   if (NETWORK_FIRST.some(pattern => url.pathname.startsWith(pattern))) {
     event.respondWith(networkFirst(request));
     return;
   }
-  
+
   // Cache first for static assets
   if (STATIC_ASSETS.some(asset => url.pathname === asset || url.pathname.startsWith(asset))) {
     event.respondWith(cacheFirst(request));
     return;
   }
-  
+
   // Stale while revalidate for images and other assets
-  if (url.hostname === 'images.unsplash.com' || 
+  if (url.hostname === 'images.unsplash.com' ||
       request.destination === 'image' ||
       request.destination === 'style' ||
       request.destination === 'script') {
     event.respondWith(staleWhileRevalidate(request));
     return;
   }
-  
+
   // Default to network first with cache fallback
   event.respondWith(networkWithCacheFallback(request));
 });
@@ -127,22 +127,22 @@ self.addEventListener('fetch', (event) => {
 async function networkFirst(request) {
   try {
     const networkResponse = await fetch(request);
-    
+
     if (networkResponse.ok) {
       // Cache successful responses
       const cache = await caches.open(DYNAMIC_CACHE_NAME);
       cache.put(request, networkResponse.clone());
     }
-    
+
     return networkResponse;
   } catch (error) {
     console.log('[SW] Network failed, trying cache:', request.url);
-    
+
     const cachedResponse = await caches.match(request);
     if (cachedResponse) {
       return cachedResponse;
     }
-    
+
     // Return offline page for navigation requests
     if (request.mode === 'navigate') {
       return await caches.match('/') || new Response('Offline', {
@@ -150,7 +150,7 @@ async function networkFirst(request) {
         statusText: 'Service Unavailable'
       });
     }
-    
+
     throw error;
   }
 }
@@ -161,19 +161,19 @@ async function networkFirst(request) {
  */
 async function cacheFirst(request) {
   const cachedResponse = await caches.match(request);
-  
+
   if (cachedResponse) {
     return cachedResponse;
   }
-  
+
   try {
     const networkResponse = await fetch(request);
-    
+
     if (networkResponse.ok) {
       const cache = await caches.open(STATIC_CACHE_NAME);
       cache.put(request, networkResponse.clone());
     }
-    
+
     return networkResponse;
   } catch (error) {
     console.log('[SW] Failed to fetch:', request.url);
@@ -188,7 +188,7 @@ async function cacheFirst(request) {
 async function staleWhileRevalidate(request) {
   const cache = await caches.open(DYNAMIC_CACHE_NAME);
   const cachedResponse = await cache.match(request);
-  
+
   // Fetch in background to update cache
   const networkPromise = fetch(request).then((networkResponse) => {
     if (networkResponse.ok) {
@@ -199,12 +199,12 @@ async function staleWhileRevalidate(request) {
     // Network failed, but we might have cache
     console.log('[SW] Background fetch failed for:', request.url);
   });
-  
+
   // Return cached response immediately if available
   if (cachedResponse) {
     return cachedResponse;
   }
-  
+
   // If no cache, wait for network
   try {
     return await networkPromise;
@@ -221,21 +221,21 @@ async function staleWhileRevalidate(request) {
 async function networkWithCacheFallback(request) {
   try {
     const networkResponse = await fetch(request);
-    
+
     if (networkResponse.ok) {
       const cache = await caches.open(DYNAMIC_CACHE_NAME);
       cache.put(request, networkResponse.clone());
     }
-    
+
     return networkResponse;
   } catch (error) {
     console.log('[SW] Network failed, trying cache:', request.url);
-    
+
     const cachedResponse = await caches.match(request);
     if (cachedResponse) {
       return cachedResponse;
     }
-    
+
     // For navigation requests, return the main page
     if (request.mode === 'navigate') {
       const offlinePage = await caches.match('/');
@@ -243,7 +243,7 @@ async function networkWithCacheFallback(request) {
         return offlinePage;
       }
     }
-    
+
     throw error;
   }
 }
@@ -255,11 +255,11 @@ self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING') {
     self.skipWaiting();
   }
-  
+
   if (event.data && event.data.type === 'GET_VERSION') {
     event.ports[0].postMessage({ version: CACHE_NAME });
   }
-  
+
   if (event.data && event.data.type === 'CACHE_GAME_DATA') {
     // Cache game progress data
     const cache = caches.open(DYNAMIC_CACHE_NAME);
@@ -295,7 +295,7 @@ async function syncGameProgress() {
  */
 self.addEventListener('push', (event) => {
   if (!event.data) return;
-  
+
   const data = event.data.json();
   const title = data.title || 'Brücken Bauen';
   const options = {
@@ -315,7 +315,7 @@ self.addEventListener('push', (event) => {
       }
     ]
   };
-  
+
   event.waitUntil(
     self.registration.showNotification(title, options)
   );
@@ -326,7 +326,7 @@ self.addEventListener('push', (event) => {
  */
 self.addEventListener('notificationclick', (event) => {
   event.notification.close();
-  
+
   if (event.action === 'open' || !event.action) {
     event.waitUntil(
       clients.openWindow('/#democracy-game')

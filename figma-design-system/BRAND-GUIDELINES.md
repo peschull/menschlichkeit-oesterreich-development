@@ -322,12 +322,12 @@ Alle Abstände basieren auf einem **4px Raster** für visuelle Konsistenz:
 ```tsx
 <button
   className="
-  bg-primary text-white 
-  px-6 py-3 
-  rounded-md 
-  font-semibold 
-  hover:bg-primary/90 
-  transition-colors 
+  bg-primary text-white
+  px-6 py-3
+  rounded-md
+  font-semibold
+  hover:bg-primary/90
+  transition-colors
   shadow-md hover:shadow-lg
 "
 >
@@ -340,12 +340,12 @@ Alle Abstände basieren auf einem **4px Raster** für visuelle Konsistenz:
 ```tsx
 <button
   className="
-  bg-transparent text-primary 
-  border-2 border-primary 
-  px-6 py-3 
-  rounded-md 
-  font-semibold 
-  hover:bg-primary hover:text-white 
+  bg-transparent text-primary
+  border-2 border-primary
+  px-6 py-3
+  rounded-md
+  font-semibold
+  hover:bg-primary hover:text-white
   transition-all
 "
 >
@@ -358,13 +358,13 @@ Alle Abstände basieren auf einem **4px Raster** für visuelle Konsistenz:
 ```tsx
 <button
   className="
-  bg-gradient-to-br from-secondary-500 to-secondary-600 
-  text-white 
-  px-8 py-4 
-  rounded-lg 
-  font-bold 
-  shadow-xl hover:shadow-2xl 
-  transform hover:scale-105 
+  bg-gradient-to-br from-secondary-500 to-secondary-600
+  text-white
+  px-8 py-4
+  rounded-lg
+  font-bold
+  shadow-xl hover:shadow-2xl
+  transform hover:scale-105
   transition-all
 "
 >
@@ -379,11 +379,11 @@ Alle Abstände basieren auf einem **4px Raster** für visuelle Konsistenz:
 ```tsx
 <div
   className="
-  bg-card border border-border 
-  rounded-md 
-  p-6 
-  shadow-card 
-  hover:shadow-lg 
+  bg-card border border-border
+  rounded-md
+  p-6
+  shadow-card
+  hover:shadow-lg
   transition-shadow
 "
 >
@@ -397,10 +397,10 @@ Alle Abstände basieren auf einem **4px Raster** für visuelle Konsistenz:
 ```tsx
 <div
   className="
-  bg-gradient-to-br from-secondary-500 to-secondary-600 
-  text-white 
-  rounded-xl 
-  p-8 md:p-12 
+  bg-gradient-to-br from-secondary-500 to-secondary-600
+  text-white
+  rounded-xl
+  p-8 md:p-12
   shadow-2xl
 "
 >

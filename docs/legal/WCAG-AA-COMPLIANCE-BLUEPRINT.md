@@ -1,9 +1,9 @@
 # WCAG 2.1 AA Compliance Blueprint
 
-**Version:** 1.0.0  
-**Datum:** 2025-10-03  
-**Standard:** WCAG 2.1 Level AA  
-**Zusätzlich:** ATAG 2.0 (für CMS-Bereiche)  
+**Version:** 1.0.0
+**Datum:** 2025-10-03
+**Standard:** WCAG 2.1 Level AA
+**Zusätzlich:** ATAG 2.0 (für CMS-Bereiche)
 **Rechtl. Basis:** EU Web Accessibility Directive, Österreichisches Behindertengleichstellungsgesetz
 
 ---
@@ -579,7 +579,7 @@ Menschlichkeit Österreich ist bemüht, ihre Website barrierefrei zugänglich zu
 
 ### Gesamt-Score
 
-**Erfüllt:** 12 / 78 Checkboxen (15.4%)  
+**Erfüllt:** 12 / 78 Checkboxen (15.4%)
 **Status:** 🔴 NICHT COMPLIANT
 
 ### Lighthouse-Ziel
@@ -607,6 +607,6 @@ Menschlichkeit Österreich ist bemüht, ihre Website barrierefrei zugänglich zu
 
 ---
 
-**Review-Zyklus:** Quartalsweise + nach jedem Major-Release  
-**Nächste Review:** 2025-12-31  
+**Review-Zyklus:** Quartalsweise + nach jedem Major-Release
+**Nächste Review:** 2025-12-31
 **Verantwortlich:** UX/UI Team + QA

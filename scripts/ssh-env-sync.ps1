@@ -24,4 +24,3 @@ if (!(Test-Path $LocalEnvPath)) { throw "Local env file not found: $LocalEnvPath
 Write-Host "[SCP] $LocalEnvPath -> $RemoteUser@$RemoteHost:$RemotePath"
 & scp -P $RemotePort $LocalEnvPath "$RemoteUser@$RemoteHost:$RemotePath"
 Write-Host "[OK] .env übertragen" -ForegroundColor Green
-

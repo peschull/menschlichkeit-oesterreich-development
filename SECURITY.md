@@ -12,4 +12,3 @@ Verfahren
 
 Offenlegung
 - Koordinierte Offenlegung nach Fix/Release
-

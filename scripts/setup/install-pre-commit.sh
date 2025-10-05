@@ -15,4 +15,3 @@ fi
 pre-commit install
 pre-commit autoupdate || true
 echo "pre-commit installed and hooks configured."
-

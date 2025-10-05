@@ -35,7 +35,7 @@ export function MobileCard({ children, className = '', onClick }: MobileCardProp
       whileTap={{ scale: onClick ? 0.98 : 1 }}
       transition={{ duration: 0.1 }}
     >
-      <Card 
+      <Card
         className={`card-mobile touch-spacing ${onClick ? 'cursor-pointer' : ''} ${className}`}
         onClick={onClick}
       >
@@ -54,12 +54,12 @@ interface MobileButtonProps {
 }
 
 // Touch-optimierter Button (min 44px height)
-export function MobileButton({ 
-  children, 
-  onClick, 
-  variant = 'default', 
+export function MobileButton({
+  children,
+  onClick,
+  variant = 'default',
   fullWidth = false,
-  className = '' 
+  className = ''
 }: MobileButtonProps) {
   return (
     <Button
@@ -81,7 +81,7 @@ interface MobileGridProps {
 // Responsive Grid mit Mobile-First
 export function MobileGrid({ children, columns = 3, className = '' }: MobileGridProps) {
   const gridClass = columns === 2 ? 'grid-tablet' : 'grid-mobile';
-  
+
   return (
     <div className={`${gridClass} ${className}`}>
       {children}
@@ -141,7 +141,7 @@ interface ResponsiveTextProps {
 export function ResponsiveText({ children, variant = 'p', className = '' }: ResponsiveTextProps) {
   const Component = variant === 'lead' ? 'p' : variant;
   const variantClass = variant === 'lead' ? 'lead' : '';
-  
+
   return React.createElement(
     Component,
     { className: `${variantClass} ${className}` },
@@ -165,11 +165,11 @@ export function SwipeableCard({ children, onSwipeLeft, onSwipeRight, className =
 }
 
 // Bottom Sheet für Mobile (Alternative zu Modal auf kleinen Bildschirmen)
-export function MobileBottomSheet({ 
-  isOpen, 
-  onClose, 
+export function MobileBottomSheet({
+  isOpen,
+  onClose,
   children,
-  title 
+  title
 }: {
   isOpen: boolean;
   onClose: () => void;
@@ -209,19 +209,19 @@ export function MobileBottomSheet({
 }
 
 // Floating Action Button (FAB) für Mobile
-export function FloatingActionButton({ 
-  onClick, 
-  icon, 
+export function FloatingActionButton({
+  onClick,
+  icon,
   label,
-  position = 'bottom-right' 
+  position = 'bottom-right'
 }: {
   onClick: () => void;
   icon: React.ReactNode;
   label: string;
   position?: 'bottom-right' | 'bottom-left';
 }) {
-  const positionClass = position === 'bottom-right' 
-    ? 'bottom-6 right-6' 
+  const positionClass = position === 'bottom-right'
+    ? 'bottom-6 right-6'
     : 'bottom-6 left-6';
 
   return (
@@ -238,10 +238,10 @@ export function FloatingActionButton({
 }
 
 // Mobile-optimierte Tab-Navigation (Horizontal Scroll)
-export function MobileTabNav({ 
-  tabs, 
-  activeTab, 
-  onChange 
+export function MobileTabNav({
+  tabs,
+  activeTab,
+  onChange
 }: {
   tabs: Array<{ id: string; label: string; icon?: React.ReactNode }>;
   activeTab: string;
@@ -256,8 +256,8 @@ export function MobileTabNav({
           className={`
             flex items-center gap-2 px-4 py-2 rounded-lg whitespace-nowrap
             transition-all min-h-[44px]
-            ${activeTab === tab.id 
-              ? 'bg-primary text-primary-foreground' 
+            ${activeTab === tab.id
+              ? 'bg-primary text-primary-foreground'
               : 'bg-muted text-muted-foreground hover:bg-muted-hover'
             }
           `}
@@ -282,10 +282,10 @@ export default {
   MobileBottomSheet,
   FloatingActionButton,
   MobileTabNav
-};({ 
-  tabs, 
-  activeTab, 
-  onTabChange 
+};({
+  tabs,
+  activeTab,
+  onTabChange
 }: {
   tabs: Array<{ id: string; label: string; icon?: React.ReactNode }>;
   activeTab: string;
@@ -300,8 +300,8 @@ export default {
             onClick={() => onTabChange(tab.id)}
             className={`
               flex items-center gap-2 px-4 py-2.5 rounded-lg whitespace-nowrap transition-all
-              ${activeTab === tab.id 
-                ? 'bg-primary text-primary-foreground shadow-md' 
+              ${activeTab === tab.id
+                ? 'bg-primary text-primary-foreground shadow-md'
                 : 'bg-muted text-muted-foreground hover:bg-muted-hover'
               }
             `}
@@ -316,9 +316,9 @@ export default {
 }
 
 // Sticky Header für Mobile (bleibt beim Scrollen oben)
-export function MobileStickyHeader({ 
-  children, 
-  className = '' 
+export function MobileStickyHeader({
+  children,
+  className = ''
 }: {
   children: React.ReactNode;
   className?: string;

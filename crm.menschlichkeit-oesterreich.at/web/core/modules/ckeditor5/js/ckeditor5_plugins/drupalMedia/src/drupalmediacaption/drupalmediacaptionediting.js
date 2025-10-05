@@ -110,7 +110,7 @@ function modelCaptionToCaptionAttribute(editor) {
       // fragment.
       mapper.bindElements(data.item, viewDocumentFragment);
 
-       
+
       for (const { item } of Array.from(range)) {
         const itemData = {
           item,
@@ -123,7 +123,7 @@ function modelCaptionToCaptionAttribute(editor) {
 
         editor.data.downcastDispatcher.fire(eventName, itemData, conversionApi);
 
-         
+
         for (const key of item.getAttributeKeys()) {
           Object.assign(itemData, {
             attributeKey: key,
@@ -141,7 +141,7 @@ function modelCaptionToCaptionAttribute(editor) {
 
       // Unbind all the view elements that were downcasted to the document
       // fragment.
-       
+
       for (const child of writer
         .createRangeIn(viewDocumentFragment)
         .getItems()) {

@@ -141,10 +141,10 @@ cd "$CRM_ROOT"
 if $PHP_BINARY "$DRUSH_PATH" -r "$CRM_ROOT/web" --quiet civicrm-api extension.get key=org.project60.sepa | grep -q "installed"; then
     # Run SEPA batching
     $PHP_BINARY "$DRUSH_PATH" -r "$CRM_ROOT/web" --quiet civicrm-api job.sepa_ppbatch >> "${CRM_ROOT}/../private/logs/sepa-processing.log" 2>&1
-    
+
     # Close SEPA groups
     $PHP_BINARY "$DRUSH_PATH" -r "$CRM_ROOT/web" --quiet civicrm-api job.sepa_closegroup >> "${CRM_ROOT}/../private/logs/sepa-processing.log" 2>&1
-    
+
     echo "SEPA processing completed on \$(date)" >> "${CRM_ROOT}/../private/logs/sepa-processing.log"
 else
     echo "SEPA extension not installed, skipping SEPA processing" >> "${CRM_ROOT}/../private/logs/sepa-processing.log"
@@ -252,21 +252,21 @@ ALERT_EMAIL="$ADMIN_EMAIL"
 check_log_freshness() {
     local logfile="\$1"
     local max_age="\$2"  # in minutes
-    
+
     if [[ ! -f "\$logfile" ]]; then
         echo "ERROR: Log file \$logfile does not exist"
         return 1
     fi
-    
+
     local last_modified=\$(stat -c %Y "\$logfile")
     local current_time=\$(date +%s)
     local age=\$(( (current_time - last_modified) / 60 ))
-    
+
     if [[ \$age -gt \$max_age ]]; then
         echo "WARNING: \$logfile is \$age minutes old (max: \$max_age)"
         return 1
     fi
-    
+
     echo "OK: \$logfile updated \$age minutes ago"
     return 0
 }

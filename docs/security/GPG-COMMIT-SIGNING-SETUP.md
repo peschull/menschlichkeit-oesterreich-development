@@ -1,16 +1,16 @@
 # GPG Commit Signing - Setup-Anleitung
 
-**Version:** 1.0.0  
-**Datum:** 2025-10-03  
-**Status:** 🔴 KRITISCH (Finding F-01)  
+**Version:** 1.0.0
+**Datum:** 2025-10-03
+**Status:** 🔴 KRITISCH (Finding F-01)
 **Ziel:** Alle Commits GPG-signiert, Branch-Protection enforced
 
 ---
 
 ## Warum GPG-Signing?
 
-**Sicherheit:** Verhindert Commit-Spoofing (Angreifer kann nicht im Namen anderer committen)  
-**Compliance:** Git-Governance-Policy, Supply-Chain-Security (SLSA Level 2+)  
+**Sicherheit:** Verhindert Commit-Spoofing (Angreifer kann nicht im Namen anderer committen)
+**Compliance:** Git-Governance-Policy, Supply-Chain-Security (SLSA Level 2+)
 **Audit:** Nachweisbare Authentizität aller Code-Änderungen
 
 ---
@@ -457,6 +457,6 @@ gpg --armor --export ABCDEF1234567890 | gh gpg-key add -
 
 ---
 
-**Review-Zyklus:** Jährlich (Key-Rotation)  
-**Nächste Key-Rotation:** 2026-10-03  
+**Review-Zyklus:** Jährlich (Key-Rotation)
+**Nächste Key-Rotation:** 2026-10-03
 **Verantwortlich:** DevOps + Security Team

@@ -303,7 +303,7 @@
         let atLeastOneFound = false;
         Object.keys(universe).forEach((tag) => {
           if (
-             
+
             findPropertyValuesOnTag(
               universe,
               tag,
@@ -383,7 +383,7 @@
       function deleteAllTagsFromUniverseIfAllowed(universe) {
         let atLeastOneDeleted = false;
         Object.keys(universe).forEach((tag) => {
-           
+
           if (deleteFromUniverseIfAllowed(universe, tag)) {
             atLeastOneDeleted = true;
           }

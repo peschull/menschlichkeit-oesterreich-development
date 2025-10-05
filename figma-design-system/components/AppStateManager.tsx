@@ -94,11 +94,11 @@ export function AppStateProvider({ children }: AppStateProviderProps) {
 
   const login = async (credentials: { email: string; password: string }) => {
     setState(prev => ({ ...prev, loading: true, error: null }));
-    
+
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1500));
-      
+
       const user = mockUsers[credentials.email];
       if (user && credentials.password === 'demo123') {
         setState(prev => ({
@@ -108,7 +108,7 @@ export function AppStateProvider({ children }: AppStateProviderProps) {
           currentModal: null,
           loading: false
         }));
-        
+
         // Save to localStorage for persistence
         localStorage.setItem('user', JSON.stringify(user));
         localStorage.setItem('isAuthenticated', 'true');
@@ -133,7 +133,7 @@ export function AppStateProvider({ children }: AppStateProviderProps) {
       loading: false,
       error: null
     });
-    
+
     // Clear localStorage
     localStorage.removeItem('user');
     localStorage.removeItem('isAuthenticated');
@@ -168,7 +168,7 @@ export function AppStateProvider({ children }: AppStateProviderProps) {
   React.useEffect(() => {
     const savedUser = localStorage.getItem('user');
     const savedAuth = localStorage.getItem('isAuthenticated');
-    
+
     if (savedUser && savedAuth === 'true') {
       try {
         const user = JSON.parse(savedUser);

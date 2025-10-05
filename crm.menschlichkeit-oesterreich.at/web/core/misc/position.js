@@ -192,14 +192,14 @@
         const overRight =
           collisionPosLeft + data.collisionWidth - outerWidth - offsetLeft;
         const myOffset =
-           
+
           data.my[0] === 'left'
             ? -data.elemWidth
             : data.my[0] === 'right'
               ? data.elemWidth
               : 0;
         const atOffset =
-           
+
           data.at[0] === 'left'
             ? data.targetWidth
             : data.at[0] === 'right'
@@ -246,14 +246,14 @@
         const overBottom =
           collisionPosTop + data.collisionHeight - outerHeight - offsetTop;
         const top = data.my[1] === 'top';
-         
+
         const myOffset = top
           ? -data.elemHeight
           : data.my[1] === 'bottom'
             ? data.elemHeight
             : 0;
         const atOffset =
-           
+
           data.at[1] === 'top'
             ? data.targetHeight
             : data.at[1] === 'bottom'
@@ -366,7 +366,7 @@
     },
   };
 
-   
+
   /**
    * Positions an element relative to another.
    *
@@ -425,7 +425,7 @@
    */
   $.fn.position = function (options) {
     if (!options || !options.of) {
-       
+
       return _position.apply(this, arguments);
     }
 
@@ -457,12 +457,12 @@
 
     // Force my and at to have valid horizontal and vertical positions
     // if a value is missing or invalid, it will be converted to center
-     
+
     $.each(['my', 'at'], function () {
       let pos = (options[this] || '').split(' ');
 
       if (pos.length === 1) {
-         
+
         pos = regexHorizontal.test(pos[0])
           ? pos.concat(['center'])
           : regexVertical.test(pos[0])
@@ -489,7 +489,7 @@
 
     // Normalize collision option
     if (collision.length === 1) {
-       
+
       collision[1] = collision[0];
     }
 
@@ -509,7 +509,7 @@
     basePosition.left += atOffset[0];
     basePosition.top += atOffset[1];
 
-     
+
     return this.each(function () {
       let using;
       const elem = $(this);
@@ -554,7 +554,7 @@
         marginTop,
       };
 
-       
+
       $.each(['left', 'top'], function (i, dir) {
         if (collisions[collision[i]]) {
           collisions[collision[i]][dir](position, {
@@ -576,7 +576,7 @@
 
       if (options.using) {
         // Adds feedback as second argument to using callback, if present
-         
+
         using = function (props) {
           const left = targetOffset.left - position.left;
           const right = left + targetWidth - elemWidth;
@@ -597,9 +597,9 @@
               width: elemWidth,
               height: elemHeight,
             },
-             
+
             horizontal: right < 0 ? 'left' : left > 0 ? 'right' : 'center',
-             
+
             vertical: bottom < 0 ? 'top' : top > 0 ? 'bottom' : 'middle',
           };
           if (targetWidth < elemWidth && abs(left + right) < targetWidth) {

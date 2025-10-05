@@ -1,8 +1,8 @@
 # 🎉 DEPLOYMENT & INTEGRATION ERFOLGSREPORT - 5. Oktober 2025
 
-**Projekt:** Menschlichkeit Österreich - Complete Infrastructure Setup  
-**Datum:** 2025-10-05  
-**Status:** 🟢 **PRODUKTIONSBEREIT**  
+**Projekt:** Menschlichkeit Österreich - Complete Infrastructure Setup
+**Datum:** 2025-10-05
+**Status:** 🟢 **PRODUKTIONSBEREIT**
 **Dauer:** ~4 Stunden intensive Arbeit
 
 ---
@@ -29,8 +29,8 @@
 - ✅ `mo_grafana` - Monitoring Dashboard - **MEDIUM**
 - ✅ `mo_discourse` - Community Forum - **LOW**
 
-**Service-User:** 12 Service-Accounts erstellt mit sicheren Passwörtern  
-**Management-Tools:** phpMyAdmin (Port 8080) + pgAdmin (Port 8081)  
+**Service-User:** 12 Service-Accounts erstellt mit sicheren Passwörtern
+**Management-Tools:** phpMyAdmin (Port 8080) + pgAdmin (Port 8081)
 **VS Code Integration:** SQLTools mit 8 vorkonfigurierten Verbindungen
 
 ---
@@ -237,7 +237,17 @@ npm run db:reset        # Komplett-Reset (VORSICHT!)
    ```bash
    npm run dev
    ```
-   **Erwartung:** App läuft auf http://localhost:3000
+**Erwartung:** App läuft auf http://localhost:3000
+
+3a. Navigation & Routen verdrahtet (DONE)
+   - Neue App‑Routen: `/games`, `/games/bridge`, `/games/bridge-100`, `/forum`, `/events`, `/news`, `/join`, `/donate`, `/contact`, `/admin`
+   - Navigation erweitert: `frontend/src/components/NavBar.tsx` verlinkt alle neuen Routen
+
+3b. Build‑Verifikation (DONE)
+   ```bash
+   cd frontend && npm run build
+   ```
+   Ergebnis: Build erfolgreich; Artefakte unter `frontend/dist/`
 
 ### Diese Woche
 
@@ -350,6 +360,25 @@ npm run db:reset        # Komplett-Reset (VORSICHT!)
 
 ---
 
+## 🔒 Security & Deployment Notes (NEU)
+
+- `.gitignore` erweitert: `secrets/**` global ignoriert; Ausnahmen nur für `.example` und `.gitkeep`
+- `scripts/plesk-sync.sh` gehärtet:
+  - Excludes: `secrets`, `.env*`, Schlüssel/Certs, sensible Reports
+  - Optionales Site‑Mapping via `PLESK_SITE` (z. B. `votes` → `subdomains/vote/httpdocs`)
+  - Guard: Kein Push vom Repo‑Root ohne `ALLOW_ROOT_SYNC=true`
+
+Beispiele:
+```bash
+SSH_USER=dmpl20230054 PLESK_HOST=<host> PLESK_SITE=main LOCAL_WEBROOT=website \
+  scripts/plesk-sync.sh push           # Dry‑Run
+
+SSH_USER=dmpl20230054 PLESK_HOST=<host> PLESK_SITE=votes LOCAL_WEBROOT=website \
+  scripts/plesk-sync.sh push --apply   # Ausführen
+```
+
+---
+
 ## 🎓 Lessons Learned
 
 ### Was gut funktioniert hat
@@ -451,12 +480,12 @@ cd frontend && npm run build
 
 **Heute wurde eine vollständige, produktionsbereite Infrastruktur aufgebaut:**
 
-✅ **12 Datenbanken** - MariaDB + PostgreSQL in Docker  
-✅ **57,000 Dateien** - deployed auf Plesk Server  
-✅ **65 Komponenten** - Figma Website integriert  
-✅ **42 Dependencies** - Modern UI Stack  
-✅ **4 Container** - Database + Management Tools  
-✅ **3,605 Zeilen** - Dokumentation & Automation  
+✅ **12 Datenbanken** - MariaDB + PostgreSQL in Docker
+✅ **57,000 Dateien** - deployed auf Plesk Server
+✅ **65 Komponenten** - Figma Website integriert
+✅ **42 Dependencies** - Modern UI Stack
+✅ **4 Container** - Database + Management Tools
+✅ **3,605 Zeilen** - Dokumentation & Automation
 
 **Status:** 🟢 **PRODUKTIONSBEREIT**
 
@@ -464,7 +493,7 @@ cd frontend && npm run build
 
 ---
 
-**Erstellt:** 2025-10-05  
-**Dauer:** ~4 Stunden  
-**Erfolgsrate:** 95% (Datenbanken ✅, Deployment ✅, Integration ✅)  
+**Erstellt:** 2025-10-05
+**Dauer:** ~4 Stunden
+**Erfolgsrate:** 95% (Datenbanken ✅, Deployment ✅, Integration ✅)
 **Nächstes Review:** 2025-10-12

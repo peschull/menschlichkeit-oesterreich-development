@@ -100,7 +100,7 @@ import { useOnlineStatus } from './hooks/useOnlineStatus';
 
 function App() {
   const isOnline = useOnlineStatus();
-  
+
   if (!isOnline) {
     return <OfflineMessage />;
   }
@@ -337,10 +337,10 @@ const PerformanceHints = () => <link rel="dns-prefetch" ... />;
 function AppContent() {
   const { state } = useAppState();
   const isOnline = useOnlineStatus();
-  
+
   usePerformanceMonitoring();
   usePrefetch(prefetchCriticalComponents());
-  
+
   return <div>...</div>;
 }
 
@@ -360,7 +360,7 @@ export default function App() {
   useEffect(() => {
     console.log(`${APP_NAME} v${APP_VERSION}`);
   }, []);
-  
+
   return <AppWithRecovery />;
 }
 ```
@@ -384,13 +384,13 @@ function Component() {
   // 1. Hooks
   const [state, setState] = useState();
   const { data } = useQuery();
-  
+
   // 2. Effects
   useEffect(() => { ... }, []);
-  
+
   // 3. Handlers
   const handleClick = () => { ... };
-  
+
   // 4. Render
   return <div>...</div>;
 }
@@ -407,11 +407,11 @@ function Component() {
 // ✅ Good
 export function useCustomHook(param: string) {
   const [state, setState] = useState();
-  
+
   useEffect(() => {
     // Logic here
   }, [param]);
-  
+
   return { state, setState };
 }
 
@@ -537,7 +537,7 @@ test('renders app with performance monitoring', () => {
    ```tsx
    // Old
    import { APP_NAME } from './constants';
-   
+
    // New
    import { APP_NAME } from './config/constants';
    ```
@@ -546,7 +546,7 @@ test('renders app with performance monitoring', () => {
    ```tsx
    // Old
    interface User { ... }
-   
+
    // New
    import { User } from './types';
    ```
@@ -557,7 +557,7 @@ test('renders app with performance monitoring', () => {
    useEffect(() => {
      // Performance monitoring code
    }, []);
-   
+
    // New
    usePerformanceMonitoring();
    ```
@@ -574,8 +574,8 @@ Bei Fragen zur neuen Architektur:
 
 ---
 
-**Version**: 4.2.0  
-**Datum**: 2025-10-02  
+**Version**: 4.2.0
+**Datum**: 2025-10-02
 **Status**: 🟢 **IMPLEMENTIERT**
 
 ---

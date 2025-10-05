@@ -33,13 +33,13 @@ export default tseslint.config(
     rules: {
       // React Hooks Rules
       ...reactHooks.configs.recommended.rules,
-      
+
       // React Refresh Rules
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },
       ],
-      
+
       // Security Rules (MANDATORY - PR Blocking)
       'no-eval': 'error',
       'no-implied-eval': 'error',
@@ -50,7 +50,7 @@ export default tseslint.config(
       '@typescript-eslint/no-unsafe-member-access': 'error',
       '@typescript-eslint/no-unsafe-return': 'error',
       '@typescript-eslint/no-explicit-any': 'warn',
-      
+
       // Accessibility Rules (WCAG AA Compliance - MANDATORY)
       'jsx-a11y/accessible-emoji': 'error',
       'jsx-a11y/alt-text': 'error',
@@ -76,32 +76,32 @@ export default tseslint.config(
       'jsx-a11y/role-supports-aria-props': 'error',
       'jsx-a11y/scope': 'error',
       'jsx-a11y/tabindex-no-positive': 'error',
-      
+
       // Performance Rules
       'react-hooks/exhaustive-deps': 'error',
       'react/jsx-no-bind': 'error',
       'no-console': ['warn', { allow: ['warn', 'error'] }],
-      
+
       // Code Quality Rules (Maintainability ≥85%)
       'complexity': ['error', { max: 15 }],
       'max-depth': ['error', { max: 4 }],
       'max-lines': ['error', { max: 300, skipBlankLines: true, skipComments: true }],
       'max-lines-per-function': ['error', { max: 50, skipBlankLines: true, skipComments: true }],
       'max-params': ['error', { max: 5 }],
-      'no-magic-numbers': ['warn', { 
-        ignore: [0, 1, -1, 2, 24, 60, 1000], 
+      'no-magic-numbers': ['warn', {
+        ignore: [0, 1, -1, 2, 24, 60, 1000],
         ignoreArrayIndexes: true,
-        ignoreDefaultValues: true 
+        ignoreDefaultValues: true
       }],
-      
+
       // Austrian/German Specific Rules
       'prefer-const': 'error',
       'no-var': 'error',
       'eqeqeq': ['error', 'always'],
-      
+
       // GDPR Compliance Rules
       'no-console': ['error', { allow: ['warn', 'error'] }], // Prevent PII logging
-      
+
       // React Best Practices
       'react/prop-types': 'off', // Using TypeScript instead
       'react/react-in-jsx-scope': 'off', // Not needed in React 17+
@@ -121,9 +121,9 @@ export default tseslint.config(
       'react/no-unknown-property': 'error',
       'react/no-unsafe': 'error',
       'react/require-render-return': 'error',
-      
+
       // TypeScript Specific Rules
-      '@typescript-eslint/no-unused-vars': ['error', { 
+      '@typescript-eslint/no-unused-vars': ['error', {
         argsIgnorePattern: '^_',
         varsIgnorePattern: '^_'
       }],
@@ -132,18 +132,18 @@ export default tseslint.config(
       '@typescript-eslint/no-non-null-assertion': 'warn',
       '@typescript-eslint/prefer-nullish-coalescing': 'error',
       '@typescript-eslint/prefer-optional-chain': 'error',
-      
+
       // Import Rules
       'import/no-default-export': 'off',
       'import/prefer-default-export': 'off',
-      
+
       // Prevent common mistakes
       'no-unreachable': 'error',
       'no-unused-expressions': 'error',
       'no-unused-labels': 'error',
       'no-useless-catch': 'error',
       'no-useless-return': 'error',
-      
+
       // Austrian Brand/Accessibility specific
       'prefer-template': 'error',
       'template-curly-spacing': ['error', 'never'],

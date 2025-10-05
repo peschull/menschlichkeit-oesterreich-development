@@ -128,7 +128,7 @@ class FactCheckSpeedrun {
           <div class="timer-bar"></div>
           <span class="time-remaining">${this.timeLimit}s</span>
         </div>
-        
+
         <div class="claim-container">
           <div class="claim-text" id="current-claim"></div>
           <div class="source-indicators">
@@ -136,19 +136,19 @@ class FactCheckSpeedrun {
             <div class="credibility-meter"></div>
           </div>
         </div>
-        
+
         <div class="fact-check-controls">
           <button class="verdict-btn true" data-verdict="true">
             ✓ Wahr
           </button>
-          <button class="verdict-btn fake" data-verdict="false">  
+          <button class="verdict-btn fake" data-verdict="false">
             ✗ Falsch
           </button>
           <button class="skip-btn">
             → Überspringen
           </button>
         </div>
-        
+
         <div class="speedrun-stats">
           <span class="score">Score: <span id="current-score">0</span></span>
           <span class="accuracy">Genauigkeit: <span id="accuracy-rate">100%</span></span>
@@ -180,7 +180,7 @@ class FactCheckSpeedrun {
 }
 
 /* ==========================================================================
-   2. BRIDGE PUZZLE 
+   2. BRIDGE PUZZLE
    Connect democratic values while avoiding contradictions
    ========================================================================== */
 
@@ -217,11 +217,11 @@ class BridgePuzzle {
             <div class="material courage" data-value="Z">🦁 Mut</div>
           </div>
         </div>
-        
+
         <div class="puzzle-grid" id="bridge-grid">
           <!-- 8x8 grid generated dynamically -->
         </div>
-        
+
         <div class="bridge-controls">
           <button class="test-stability">🔧 Stabilität testen</button>
           <button class="clear-bridges">🗑️ Zurücksetzen</button>
@@ -328,9 +328,9 @@ class DebateDuel {
             <div class="name">${this.opponent.name}</div>
             <div class="argument-bubble" id="opponent-argument"></div>
           </div>
-          
+
           <div class="vs-indicator">VS</div>
-          
+
           <div class="player-side">
             <div class="avatar">👤</div>
             <div class="name">Du</div>
@@ -344,7 +344,7 @@ class DebateDuel {
             </div>
           </div>
         </div>
-        
+
         <div class="debate-progress">
           <div class="round-indicator">Runde ${this.currentRound}/${this.maxRounds}</div>
           <div class="persuasion-meter">
@@ -431,14 +431,14 @@ class CitySimulation {
             </div>
           </div>
         </div>
-        
+
         <div class="project-selection">
           <h3>Verfügbare Projekte</h3>
           <div class="project-cards" id="available-projects">
             <!-- Generated dynamically based on scenario -->
           </div>
         </div>
-        
+
         <div class="stakeholder-feedback">
           <div class="feedback-panel" id="live-feedback">
             <!-- Real-time reactions from different groups -->
@@ -611,13 +611,13 @@ class CrisisCouncil {
             </div>
           </div>
         </div>
-        
+
         <div class="crisis-situation">
           <div class="situation-brief">
             <h3>🚨 Lageeinschätzung</h3>
             <p>${this.crisis.description}</p>
           </div>
-          
+
           <div class="resource-status">
             <div class="resource personnel">👥 Personal: <span>${this.resources.personnel}%</span></div>
             <div class="resource budget">💰 Budget: <span>${this.resources.budget.toLocaleString()}€</span></div>
@@ -625,17 +625,17 @@ class CrisisCouncil {
             <div class="resource support">🌍 Int. Unterstützung: <span>${this.resources.internationalSupport}%</span></div>
           </div>
         </div>
-        
+
         <div class="decision-panel" id="current-decision">
           <!-- Dynamic decision content -->
         </div>
-        
+
         <div class="stakeholder-reactions">
           <div class="reaction-feed" id="stakeholder-feed">
             <!-- Live reactions from different groups -->
           </div>
         </div>
-        
+
         <div class="crisis-metrics">
           <div class="metrics-grid" id="crisis-metrics">
             <!-- Real-time impact visualization -->
@@ -765,7 +765,7 @@ class DialogueRPG {
             Angespannte Stimmung im Gemeindezentrum...
           </div>
         </div>
-        
+
         <div class="conversation-area">
           <div class="character-panel">
             <div class="active-character" id="current-speaker">
@@ -777,25 +777,25 @@ class DialogueRPG {
               </div>
             </div>
           </div>
-          
+
           <div class="dialogue-content">
             <div class="speech-bubble" id="character-speech">
               <!-- Character's current statement -->
             </div>
-            
+
             <div class="response-options" id="player-responses">
               <!-- Player's response choices with tone indicators -->
             </div>
           </div>
         </div>
-        
+
         <div class="empathy-tools">
           <div class="emotional-intelligence">
             <button class="empathy-action listen" data-action="active_listening">
               👂 Aktiv zuhören
             </button>
             <button class="empathy-action validate" data-action="validate_feelings">
-              💜 Gefühle anerkennen  
+              💜 Gefühle anerkennen
             </button>
             <button class="empathy-action reframe" data-action="reframe_perspective">
               🔄 Perspektive erweitern
@@ -805,7 +805,7 @@ class DialogueRPG {
             </button>
           </div>
         </div>
-        
+
         <div class="relationship-tracker">
           <div class="relationship-meters" id="relationship-status">
             <!-- Real-time relationship and trust levels -->
@@ -898,7 +898,7 @@ class NetworkAnalysis {
               📰 Fakten-Verbreitung
             </button>
           </div>
-          
+
           <div class="network-metrics">
             <div class="metric">Knoten: <span id="node-count">0</span></div>
             <div class="metric">Verbindungen: <span id="edge-count">0</span></div>
@@ -906,7 +906,7 @@ class NetworkAnalysis {
             <div class="metric">Manipulation: <span id="manipulation-score" class="danger">0%</span></div>
           </div>
         </div>
-        
+
         <div class="network-visualization">
           <canvas id="network-canvas" width="800" height="600"></canvas>
           <div class="visualization-controls">
@@ -916,7 +916,7 @@ class NetworkAnalysis {
             <button class="view-control" data-view="time_series">Zeitverlauf</button>
           </div>
         </div>
-        
+
         <div class="analysis-results">
           <div class="findings-panel" id="analysis-findings">
             <!-- Dynamic analysis results -->

@@ -22,16 +22,16 @@ LICENSE  (Textdatei mit MIT/GPL/Apache License)
 
 ## 🔍 **Warum ist das ein Problem?**
 
-1. **Git/GitHub-Konvention:**  
+1. **Git/GitHub-Konvention:**
    LICENSE sollte eine Datei sein, kein Ordner
 
-2. **Legal Requirements:**  
+2. **Legal Requirements:**
    Open-Source-Projekte brauchen eine LICENSE-Datei im Root
 
-3. **GitHub-Erkennung:**  
+3. **GitHub-Erkennung:**
    GitHub erkennt die License nicht automatisch
 
-4. **npm/Package-Manager:**  
+4. **npm/Package-Manager:**
    Package-Manager erwarten LICENSE-Datei
 
 ---
@@ -252,8 +252,8 @@ Wenn du unsicher bist:
 
 ---
 
-**Status:** ⚠️ **MUSS BEHOBEN WERDEN**  
-**Priorität:** 🟡 **MEDIUM** (vor Go-Live)  
+**Status:** ⚠️ **MUSS BEHOBEN WERDEN**
+**Priorität:** 🟡 **MEDIUM** (vor Go-Live)
 **Aufwand:** ⏱️ **5 Minuten**
 
 ---

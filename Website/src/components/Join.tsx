@@ -90,7 +90,7 @@ export function Join() {
   return (
     <section id="join" className="py-20 bg-gradient-to-br from-primary/5 to-muted/30">
       <div className="container mx-auto px-4">
-        <motion.div 
+        <motion.div
           className="text-center space-y-4 mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -99,7 +99,7 @@ export function Join() {
         >
           <h2 className="text-3xl lg:text-4xl">Mitgliedschaft</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Werde Teil von Menschlichkeit Österreich und unterstütze unsere Mission. 
+            Werde Teil von Menschlichkeit Österreich und unterstütze unsere Mission.
             Wähle die Mitgliedschaftsart, die zu deinen Möglichkeiten und Wünschen passt.
           </p>
         </motion.div>
@@ -144,7 +144,7 @@ export function Join() {
                       </li>
                     ))}
                   </ul>
-                  <Button 
+                  <Button
                     className={`w-full ${type.popular ? 'bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700' : ''}`}
                     variant={type.popular ? 'default' : 'outline'}
                     size="lg"
@@ -159,7 +159,7 @@ export function Join() {
                   >
                     {type.buttonText}
                   </Button>
-                  
+
                   {!state.isAuthenticated && (
                     <div className="flex items-center justify-center gap-2 mt-2 text-sm text-muted-foreground">
                       <RefreshCw className="h-3 w-3" />
@@ -210,7 +210,7 @@ export function Join() {
         </motion.div>
 
         {/* Bottom CTA */}
-        <motion.div 
+        <motion.div
           className="text-center space-y-6 bg-card rounded-2xl p-8 shadow-sm"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -219,7 +219,7 @@ export function Join() {
         >
           <h3 className="text-2xl">Noch Fragen?</h3>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Unser Team steht dir gerne zur Verfügung, um alle deine Fragen zu beantworten 
+            Unser Team steht dir gerne zur Verfügung, um alle deine Fragen zu beantworten
             und dir bei der Auswahl der passenden Mitgliedschaft zu helfen.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

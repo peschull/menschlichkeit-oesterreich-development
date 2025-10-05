@@ -2,7 +2,7 @@
 /**
  * Plesk-kompatible PHP-Bridge für FastAPI
  * Leitet Requests an lokalen FastAPI-Service weiter
- * 
+ *
  * Für Production: Node.js Process Manager (PM2) empfohlen
  */
 
@@ -10,7 +10,7 @@
 $fastapi_host = '127.0.0.1';
 $fastapi_port = 8000;
 
-// CORS Headers für Frontend-Integration  
+// CORS Headers für Frontend-Integration
 header('Access-Control-Allow-Origin: https://menschlichkeit-oesterreich.at');
 header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');

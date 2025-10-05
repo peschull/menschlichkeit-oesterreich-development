@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { Progress } from './ui/progress';
 import { Badge } from './ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
-import { 
-  Heart, 
-  Users, 
-  Scale, 
-  Shield, 
+import {
+  Heart,
+  Users,
+  Scale,
+  Shield,
   Star,
   ArrowRight,
   RotateCcw,
@@ -30,9 +30,9 @@ import {
   TrendingUp
 } from 'lucide-react';
 import GameDataGenerator, { GameLevel, Chapter, type MinigameData, type BossData } from './GameDataGenerator';
-import { 
-  ImmersiveScenario, 
-  ImmersiveProgressDashboard 
+import {
+  ImmersiveScenario,
+  ImmersiveProgressDashboard
 } from './ImmersiveGameInterface';
 import {
   ParticleSystem,
@@ -141,8 +141,8 @@ export function BridgeBuilding100() {
 
   // Berechne Gesamtfortschritt
   const totalProgress = (gameState.completedLevels.length / 100) * 100;
-  const chapterProgress = currentChapter ? 
-    ((gameState.completedLevels.filter(l => l >= currentChapter.levelRange[0] && l <= currentChapter.levelRange[1]).length) / 
+  const chapterProgress = currentChapter ?
+    ((gameState.completedLevels.filter(l => l >= currentChapter.levelRange[0] && l <= currentChapter.levelRange[1]).length) /
      (currentChapter.levelRange[1] - currentChapter.levelRange[0] + 1)) * 100 : 0;
 
   // Skill Tree Daten
@@ -262,10 +262,10 @@ export function BridgeBuilding100() {
   const completeLevel = () => {
     const newCompletedLevels = [...gameState.completedLevels, gameState.currentLevel];
     const nextLevel = gameState.currentLevel + 1;
-    
+
     // Check if chapter is completed
-    const chapterComplete = currentChapter && 
-      newCompletedLevels.filter(l => l >= currentChapter.levelRange[0] && l <= currentChapter.levelRange[1]).length 
+    const chapterComplete = currentChapter &&
+      newCompletedLevels.filter(l => l >= currentChapter.levelRange[0] && l <= currentChapter.levelRange[1]).length
       === (currentChapter.levelRange[1] - currentChapter.levelRange[0] + 1);
 
     setGameState(prev => ({
@@ -298,36 +298,36 @@ export function BridgeBuilding100() {
   const getDemocracyProfile = () => {
     const totalScore = Object.values(gameState.globalScores).reduce((sum, score) => sum + score, 0);
     const avgScore = totalScore / 4;
-    
-    if (avgScore >= 80) return { 
-      title: "Demokratie-Visionär", 
+
+    if (avgScore >= 80) return {
+      title: "Demokratie-Visionär",
       description: "Du gestaltest die Zukunft der Demokratie",
       color: "text-purple-600",
       icon: Rocket
     };
-    if (avgScore >= 65) return { 
-      title: "Demokratie-Champion", 
+    if (avgScore >= 65) return {
+      title: "Demokratie-Champion",
       description: "Du bist ein Vorbild für demokratische Werte",
-      color: "text-green-600", 
-      icon: Trophy 
+      color: "text-green-600",
+      icon: Trophy
     };
-    if (avgScore >= 50) return { 
-      title: "Brückenbauer*in", 
+    if (avgScore >= 50) return {
+      title: "Brückenbauer*in",
       description: "Du verbindest Menschen und Ideen",
-      color: "text-blue-600", 
-      icon: Target 
+      color: "text-blue-600",
+      icon: Target
     };
-    if (avgScore >= 35) return { 
-      title: "Demokratie-Lernende*r", 
+    if (avgScore >= 35) return {
+      title: "Demokratie-Lernende*r",
       description: "Du entwickelst dein demokratisches Verständnis",
-      color: "text-yellow-600", 
-      icon: Star 
+      color: "text-yellow-600",
+      icon: Star
     };
-    return { 
-      title: "Demokratie-Entdecker*in", 
+    return {
+      title: "Demokratie-Entdecker*in",
       description: "Du beginnst deine demokratische Reise",
-      color: "text-purple-600", 
-      icon: Heart 
+      color: "text-purple-600",
+      icon: Heart
     };
   };
 
@@ -342,13 +342,13 @@ export function BridgeBuilding100() {
     return (
       <section id="democracy-metaverse" className="relative min-h-screen overflow-hidden">
         {/* Enhanced Dynamic Background */}
-        <DynamicBackground 
-          variant="democracy" 
-          intensity="high" 
-          color="#3b82f6" 
-          animated={true} 
+        <DynamicBackground
+          variant="democracy"
+          intensity="high"
+          color="#3b82f6"
+          animated={true}
         />
-        
+
         <div className="relative z-10 container mx-auto px-4 py-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -370,13 +370,13 @@ export function BridgeBuilding100() {
                 size="large"
               />
             </motion.div>
-            
+
             <h2 className="mb-6 text-gradient text-5xl font-bold">
               Brücken Bauen 🌉
             </h2>
             <h3 className="mb-6 text-2xl">Das komplette Democracy Game - 100+ Level</h3>
             <p className="lead max-w-4xl mx-auto mb-8">
-              Erlebe die **vollständige Democracy-Journey** von Nachbarschaftskonflikten bis zu globalen Krisen. 
+              Erlebe die **vollständige Democracy-Journey** von Nachbarschaftskonflikten bis zu globalen Krisen.
               10 Kapitel, 100+ Level, Multiplayer-Modus und ein komplettes Skill-System für die Demokratie-Bildung der Zukunft.
             </p>
           </motion.div>
@@ -387,8 +387,8 @@ export function BridgeBuilding100() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              <Advanced3DCard 
-                glowColor="#3b82f6" 
+              <Advanced3DCard
+                glowColor="#3b82f6"
                 tiltIntensity={8}
                 className="text-center h-full"
               >
@@ -413,8 +413,8 @@ export function BridgeBuilding100() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <Advanced3DCard 
-                glowColor="#22c55e" 
+              <Advanced3DCard
+                glowColor="#22c55e"
                 tiltIntensity={8}
                 className="text-center h-full"
               >
@@ -439,8 +439,8 @@ export function BridgeBuilding100() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              <Advanced3DCard 
-                glowColor="#8b5cf6" 
+              <Advanced3DCard
+                glowColor="#8b5cf6"
                 tiltIntensity={8}
                 className="text-center h-full"
               >
@@ -465,8 +465,8 @@ export function BridgeBuilding100() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <Advanced3DCard 
-                glowColor="#f97316" 
+              <Advanced3DCard
+                glowColor="#f97316"
                 tiltIntensity={8}
                 className="text-center h-full"
               >
@@ -491,8 +491,8 @@ export function BridgeBuilding100() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
             >
-              <Advanced3DCard 
-                glowColor="#ef4444" 
+              <Advanced3DCard
+                glowColor="#ef4444"
                 tiltIntensity={8}
                 className="text-center h-full"
               >
@@ -517,8 +517,8 @@ export function BridgeBuilding100() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
             >
-              <Advanced3DCard 
-                glowColor="#06b6d4" 
+              <Advanced3DCard
+                glowColor="#06b6d4"
                 tiltIntensity={8}
                 className="text-center h-full"
               >
@@ -545,8 +545,8 @@ export function BridgeBuilding100() {
             transition={{ duration: 0.6, delay: 0.7 }}
             className="text-center"
           >
-            <Advanced3DCard 
-              glowColor="#3b82f6" 
+            <Advanced3DCard
+              glowColor="#3b82f6"
               tiltIntensity={10}
               className="max-w-3xl mx-auto"
             >
@@ -560,11 +560,11 @@ export function BridgeBuilding100() {
                   direction="radial"
                   trigger={true}
                 />
-                
+
                 <div className="relative z-10">
                   <h3 className="mb-4">Deine Democracy-Journey beginnt</h3>
                   <div className="space-y-4 text-left mb-6">
-                    <motion.div 
+                    <motion.div
                       className="flex items-start space-x-3"
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
@@ -575,7 +575,7 @@ export function BridgeBuilding100() {
                         <strong>Spiralcurriculum:</strong> Themen wiederholen sich in komplexerer Form
                       </p>
                     </motion.div>
-                    <motion.div 
+                    <motion.div
                       className="flex items-start space-x-3"
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
@@ -586,7 +586,7 @@ export function BridgeBuilding100() {
                         <strong>4-Achsen Entwicklung:</strong> Empathie, Menschenrechte, Partizipation, Zivilcourage
                       </p>
                     </motion.div>
-                    <motion.div 
+                    <motion.div
                       className="flex items-start space-x-3"
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
@@ -597,7 +597,7 @@ export function BridgeBuilding100() {
                         <strong>Real-World Transfer:</strong> Direkter Bezug zu aktuellen gesellschaftlichen Herausforderungen
                       </p>
                     </motion.div>
-                    <motion.div 
+                    <motion.div
                       className="flex items-start space-x-3"
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
@@ -609,7 +609,7 @@ export function BridgeBuilding100() {
                       </p>
                     </motion.div>
                   </div>
-                  
+
                   <div className="text-center space-y-2 mb-6">
                     <p className="small text-muted-foreground">
                       <strong>Geschätzte Gesamtspielzeit:</strong> 15-20 Stunden
@@ -623,18 +623,18 @@ export function BridgeBuilding100() {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <Button 
+                    <Button
                       onClick={startGame}
                       className="btn-primary-gradient relative overflow-hidden"
                       size="lg"
                     >
                       <motion.div
                         className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0"
-                        animate={{ 
+                        animate={{
                           x: [-200, 200],
                           opacity: [0, 0.3, 0]
                         }}
-                        transition={{ 
+                        transition={{
                           duration: 2,
                           repeat: Infinity,
                           ease: "linear"
@@ -658,13 +658,13 @@ export function BridgeBuilding100() {
     return (
       <section className="relative min-h-screen overflow-hidden">
         {/* Enhanced Background */}
-        <DynamicBackground 
-          variant="geometric" 
-          intensity="medium" 
-          color="#8b5cf6" 
-          animated={true} 
+        <DynamicBackground
+          variant="geometric"
+          intensity="medium"
+          color="#8b5cf6"
+          animated={true}
         />
-        
+
         <div className="relative z-10 container mx-auto px-4 py-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -685,44 +685,44 @@ export function BridgeBuilding100() {
                 size="large"
               />
             </motion.div>
-            
+
             <h2 className="mb-4 text-gradient text-4xl font-bold">Democracy World Map</h2>
             <p className="lead mb-6 max-w-2xl mx-auto">
               Wähle dein nächstes Kapitel in der Welt der Demokratie
             </p>
-            
+
             {/* Enhanced Progress Overview */}
-            <Advanced3DCard 
-              glowColor="#8b5cf6" 
+            <Advanced3DCard
+              glowColor="#8b5cf6"
               className="max-w-2xl mx-auto mb-8"
             >
               <CardContent className="p-6">
                 <h4 className="mb-4">Dein Fortschritt</h4>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
                   <div className="text-center">
-                    <AnimatedCounter 
-                      value={gameState.completedLevels.length} 
+                    <AnimatedCounter
+                      value={gameState.completedLevels.length}
                       className="text-2xl font-bold text-primary"
                     />
                     <div className="text-sm text-muted-foreground">Level abgeschlossen</div>
                   </div>
                   <div className="text-center">
-                    <AnimatedCounter 
-                      value={gameState.completedChapters.length} 
+                    <AnimatedCounter
+                      value={gameState.completedChapters.length}
                       className="text-2xl font-bold text-secondary"
                     />
                     <div className="text-sm text-muted-foreground">Kapitel gemeistert</div>
                   </div>
                   <div className="text-center">
-                    <AnimatedCounter 
-                      value={gameState.experiencePoints} 
+                    <AnimatedCounter
+                      value={gameState.experiencePoints}
                       className="text-2xl font-bold text-green-500"
                     />
                     <div className="text-sm text-muted-foreground">XP gesammelt</div>
                   </div>
                   <div className="text-center">
-                    <AnimatedCounter 
-                      value={gameState.achievements.length} 
+                    <AnimatedCounter
+                      value={gameState.achievements.length}
                       className="text-2xl font-bold text-purple-500"
                     />
                     <div className="text-sm text-muted-foreground">Achievements</div>
@@ -742,7 +742,7 @@ export function BridgeBuilding100() {
               const IconComponent = getChapterIcon(chapter.id);
               const isUnlocked = gameState.worldState.regions[index].unlocked;
               const isCompleted = gameState.completedChapters.includes(chapter.id);
-              
+
               return (
                 <motion.div
                   key={chapter.id}
@@ -750,22 +750,22 @@ export function BridgeBuilding100() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <Card 
+                  <Card
                     className={`card-modern h-full transition-all ${
-                      isUnlocked 
-                        ? 'hover:shadow-lg cursor-pointer' 
+                      isUnlocked
+                        ? 'hover:shadow-lg cursor-pointer'
                         : 'opacity-50 cursor-not-allowed'
                     } ${isCompleted ? 'border-green-500 bg-green-50 dark:bg-green-900/20' : ''}`}
                     onClick={() => isUnlocked && selectChapter(chapter.id)}
                   >
                     <CardHeader className="text-center">
                       <div className="flex items-center justify-center mb-4">
-                        <div 
+                        <div
                           className={`w-16 h-16 rounded-full flex items-center justify-center ${
-                            isCompleted 
-                              ? 'bg-green-100 dark:bg-green-900/50' 
-                              : isUnlocked 
-                                ? 'bg-primary/10' 
+                            isCompleted
+                              ? 'bg-green-100 dark:bg-green-900/50'
+                              : isUnlocked
+                                ? 'bg-primary/10'
                                 : 'bg-gray-100 dark:bg-gray-800'
                           }`}
                         >
@@ -787,32 +787,32 @@ export function BridgeBuilding100() {
                     </CardHeader>
                     <CardContent className="pt-0">
                       <div className="space-y-3">
-                        <Badge 
+                        <Badge
                           variant={isCompleted ? "default" : "outline"}
                           className={isCompleted ? "bg-green-500" : ""}
                         >
                           {chapter.iconSymbol} {chapter.theme}
                         </Badge>
-                        
+
                         <p className="text-sm">
                           {chapter.description}
                         </p>
-                        
+
                         <div className="flex justify-between text-xs text-muted-foreground">
                           <span>Level {chapter.levelRange[0]}-{chapter.levelRange[1]}</span>
                           <span>{chapter.estimatedDuration}</span>
                         </div>
-                        
+
                         {isUnlocked && (
                           <div className="space-y-2">
                             <div className="flex justify-between text-xs">
                               <span>Fortschritt</span>
-                              <span>{Math.round((gameState.completedLevels.filter(l => 
+                              <span>{Math.round((gameState.completedLevels.filter(l =>
                                 l >= chapter.levelRange[0] && l <= chapter.levelRange[1]
                               ).length / (chapter.levelRange[1] - chapter.levelRange[0] + 1)) * 100)}%</span>
                             </div>
-                            <Progress 
-                              value={(gameState.completedLevels.filter(l => 
+                            <Progress
+                              value={(gameState.completedLevels.filter(l =>
                                 l >= chapter.levelRange[0] && l <= chapter.levelRange[1]
                               ).length / (chapter.levelRange[1] - chapter.levelRange[0] + 1)) * 100}
                               className="h-2"
@@ -830,7 +830,7 @@ export function BridgeBuilding100() {
           {/* Action Buttons */}
           <div className="text-center mt-12">
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
+              <Button
                 onClick={() => setGameState(prev => ({ ...prev, gamePhase: 'intro' }))}
                 variant="outline"
                 size="lg"
@@ -838,8 +838,8 @@ export function BridgeBuilding100() {
                 <ArrowRight className="w-5 h-5 mr-2 rotate-180" />
                 Zurück zur Übersicht
               </Button>
-              
-              <Button 
+
+              <Button
                 className="btn-primary-gradient"
                 size="lg"
                 onClick={() => selectChapter(1)}
@@ -883,16 +883,16 @@ export function BridgeBuilding100() {
 
     return (
       <section className="relative min-h-screen overflow-hidden">
-        <DynamicBackground 
-          variant="democracy" 
-          intensity="medium" 
-          color="#3b82f6" 
-          animated={true} 
+        <DynamicBackground
+          variant="democracy"
+          intensity="medium"
+          color="#3b82f6"
+          animated={true}
         />
-        
+
         <div className="relative z-10 container mx-auto px-4 py-8">
           <div className="max-w-6xl mx-auto">
-            
+
             {/* Enhanced Header with Skills & Progress */}
             <motion.div
               initial={{ opacity: 0, y: -20 }}
@@ -967,8 +967,8 @@ export function BridgeBuilding100() {
                   exit={{ opacity: 0, x: -20 }}
                   transition={{ duration: 0.5 }}
                 >
-                  <Advanced3DCard 
-                    glowColor="#8b5cf6" 
+                  <Advanced3DCard
+                    glowColor="#8b5cf6"
                     tiltIntensity={8}
                     className="relative overflow-hidden"
                   >
@@ -981,7 +981,7 @@ export function BridgeBuilding100() {
                       direction="radial"
                       trigger={true}
                     />
-                    
+
                     <CardHeader className="relative z-10">
                       <div className="flex justify-between items-start">
                         <div>
@@ -1009,7 +1009,7 @@ export function BridgeBuilding100() {
                         </div>
                       </div>
                     </CardHeader>
-                    
+
                     <CardContent>
                       {/* Learning Objectives */}
                       <div className="mb-6">
@@ -1071,7 +1071,7 @@ export function BridgeBuilding100() {
                                     whileHover={{ scale: 1.02 }}
                                     whileTap={{ scale: 0.98 }}
                                   >
-                                    <Card 
+                                    <Card
                                       className={`cursor-pointer transition-all ${
                                         gameState.selectedChoice === choice.id
                                           ? 'border-primary bg-primary/5'
@@ -1105,9 +1105,9 @@ export function BridgeBuilding100() {
                                   </motion.div>
                                 ))}
                               </div>
-                              
+
                               <div className="text-center pt-6">
-                                <Button 
+                                <Button
                                   onClick={submitChoice}
                                   disabled={gameState.selectedChoice === null}
                                   className="btn-primary-gradient"
@@ -1129,7 +1129,7 @@ export function BridgeBuilding100() {
                                 return selectedChoice ? (
                                   <div className="space-y-6">
                                     <h4>Konsequenzen deiner Entscheidung</h4>
-                                    
+
                                     {/* Immediate & Long-term consequences */}
                                     <div className="grid md:grid-cols-2 gap-4">
                                       <Card className="p-4">
@@ -1149,11 +1149,11 @@ export function BridgeBuilding100() {
                                         {selectedChoice.stakeholderReactions.map((reaction) => {
                                           const stakeholder = currentLevel.scenario?.stakeholders.find(s => s.id === reaction.stakeholderId);
                                           return (
-                                            <div 
+                                            <div
                                               key={reaction.stakeholderId}
                                               className={`p-3 rounded-lg ${
-                                                reaction.reaction === 'positive' 
-                                                  ? 'bg-green-50 dark:bg-green-900/20 border border-green-200' 
+                                                reaction.reaction === 'positive'
+                                                  ? 'bg-green-50 dark:bg-green-900/20 border border-green-200'
                                                   : reaction.reaction === 'negative'
                                                     ? 'bg-red-50 dark:bg-red-900/20 border border-red-200'
                                                     : 'bg-gray-50 dark:bg-gray-800 border border-gray-200'
@@ -1164,14 +1164,14 @@ export function BridgeBuilding100() {
                                                   <strong>{stakeholder?.name}</strong>
                                                   <p className="text-sm mt-1">{reaction.reasoning}</p>
                                                 </div>
-                                                <Badge 
+                                                <Badge
                                                   variant={
                                                     reaction.reaction === 'positive' ? 'default' :
                                                     reaction.reaction === 'negative' ? 'destructive' : 'secondary'
                                                   }
                                                 >
-                                                  {reaction.reaction === 'positive' ? '😊' : 
-                                                   reaction.reaction === 'negative' ? '😞' : '😐'} 
+                                                  {reaction.reaction === 'positive' ? '😊' :
+                                                   reaction.reaction === 'negative' ? '😞' : '😐'}
                                                   {reaction.trustChange > 0 ? '+' : ''}{reaction.trustChange}
                                                 </Badge>
                                               </div>
@@ -1207,9 +1207,9 @@ export function BridgeBuilding100() {
                                         </div>
                                       </div>
                                     </Card>
-                                    
+
                                     <div className="text-center">
-                                      <Button 
+                                      <Button
                                         onClick={completeLevel}
                                         className="btn-primary-gradient"
                                         size="lg"

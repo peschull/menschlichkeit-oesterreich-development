@@ -17,17 +17,17 @@ switch ($Target) {
         Write-Host "📤 Uploading API Backend..." -ForegroundColor Cyan
         scp -r "api.menschlichkeit-oesterreich.at/*" "${Server}:${BasePath}/subdomains/api/httpdocs/"
     }
-    
+
     "crm" {
         Write-Host "📤 Uploading CRM System..." -ForegroundColor Cyan
         scp -r "crm.menschlichkeit-oesterreich.at/*" "${Server}:${BasePath}/subdomains/crm/httpdocs/"
     }
-    
+
     "games" {
         Write-Host "📤 Uploading Games Platform..." -ForegroundColor Cyan
         scp -r "web/*" "${Server}:${BasePath}/subdomains/games/httpdocs/"
     }
-    
+
     "all" {
         Write-Host "📤 Uploading ALL systems..." -ForegroundColor Yellow
         scp -r "api.menschlichkeit-oesterreich.at/*" "${Server}:${BasePath}/subdomains/api/httpdocs/"

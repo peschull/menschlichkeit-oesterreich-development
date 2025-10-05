@@ -152,8 +152,8 @@ import { toast } from 'sonner';
 
 ### Design Tokens (Quelle: Figma → Tailwind v4 Sync)
 
-**Sync-Status**: ✅ Synchronisiert (Stand: 2025-09-26)  
-**Quelle**: `figma-design-system/00_design-tokens.json`  
+**Sync-Status**: ✅ Synchronisiert (Stand: 2025-09-26)
+**Quelle**: `figma-design-system/00_design-tokens.json`
 **Ziel**: `/styles/globals.css` (Tailwind v4.0 Custom Properties)
 
 ### Farbpalette
@@ -574,7 +574,7 @@ PWAInstaller.tsx          // PWA-Installations-Prompt
 import { useAppState } from './components/AppStateManager';
 
 function MyComponent() {
-  const { 
+  const {
     state,           // Global State
     updateUser,      // User updaten
     openModal,       // Modal öffnen
@@ -654,7 +654,7 @@ import {
 } from './components/Enhanced3DGameGraphics';
 
 // Beispiel-Nutzung
-<Advanced3DCard 
+<Advanced3DCard
   glowColor="#3b82f6"       // Hex-Farbe für Glow-Effekt
   tiltIntensity={8}         // Tilt-Stärke (1-10)
   depth={3}                 // 3D-Tiefe
@@ -818,7 +818,7 @@ Alle Komponenten **MÜSSEN** folgende Accessibility-Standards erfüllen:
 <span className="sr-only">Empathie-Punkte</span>
 
 // Interaktive Elemente mit aria-label
-<button 
+<button
   onClick={handleClick}
   aria-label="Profil öffnen"
   aria-expanded={isOpen}
@@ -827,9 +827,9 @@ Alle Komponenten **MÜSSEN** folgende Accessibility-Standards erfüllen:
 </button>
 
 // Live-Regions für dynamische Inhalte
-<div 
-  role="status" 
-  aria-live="polite" 
+<div
+  role="status"
+  aria-live="polite"
   aria-atomic="true"
 >
   {statusMessage}
@@ -853,8 +853,8 @@ Alle Komponenten **MÜSSEN** folgende Accessibility-Standards erfüllen:
 </button>
 
 // Skip-Links
-<a 
-  href="#main-content" 
+<a
+  href="#main-content"
   className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary text-primary-foreground px-4 py-2 rounded-md z-50"
 >
   Zum Hauptinhalt springen
@@ -865,7 +865,7 @@ Alle Komponenten **MÜSSEN** folgende Accessibility-Standards erfüllen:
 
 ```tsx
 // Sichtbarer Focus-Ring (automatisch via globals.css)
-<div 
+<div
   tabIndex={0}
   className="focus:ring-2 focus:ring-primary focus:outline-none"
 >
@@ -964,7 +964,7 @@ const BridgeBuilding100 = lazy(() => import('./components/BridgeBuilding100'));
 ```typescript
 // ✅ KORREKT - Nur transform/opacity animieren
 <motion.div
-  animate={{ 
+  animate={{
     x: 100,           // ✅ transform
     y: 50,            // ✅ transform
     scale: 1.2,       // ✅ transform
@@ -975,7 +975,7 @@ const BridgeBuilding100 = lazy(() => import('./components/BridgeBuilding100'));
 
 // ❌ FALSCH - Layout-triggernde Animationen
 <motion.div
-  animate={{ 
+  animate={{
     width: '100%',    // ❌ Layout reflow
     height: '100%',   // ❌ Layout reflow
     top: 100,         // ❌ Layout reflow
@@ -990,7 +990,7 @@ const BridgeBuilding100 = lazy(() => import('./components/BridgeBuilding100'));
 // IMMER ImageWithFallback für neue Bilder
 import { ImageWithFallback } from './components/figma/ImageWithFallback';
 
-<ImageWithFallback 
+<ImageWithFallback
   src="/path/to/image.jpg"
   alt="Beschreibung"
   className="w-full h-auto"
@@ -1026,11 +1026,11 @@ interface MyComponentProps {
 }
 
 // Function Components (bevorzugt)
-export function MyComponent({ 
-  title, 
+export function MyComponent({
+  title,
   count = 0,              // Default-Werte
   onAction,
-  children 
+  children
 }: MyComponentProps) {
   // Component logic
 }
@@ -1080,14 +1080,14 @@ interface MyComponentProps {
 }
 
 // 2. Component
-export function MyComponent({ 
+export function MyComponent({
   title,
-  onAction 
+  onAction
 }: MyComponentProps) {
   // 3. State Hooks
   const [count, setCount] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
-  
+
   // 4. Effect Hooks
   useEffect(() => {
     // Side effects
@@ -1232,8 +1232,8 @@ if (isTokenExpiringSoon(token)) {
 
 // ✅ Nutze Library wie DOMPurify
 import DOMPurify from 'dompurify';
-<div dangerouslySetInnerHTML={{ 
-  __html: DOMPurify.sanitize(userInput) 
+<div dangerouslySetInnerHTML={{
+  __html: DOMPurify.sanitize(userInput)
 }} />
 
 // CSRF-Protection
@@ -1366,8 +1366,8 @@ import { toast } from 'sonner@2.0.3';              // ✅
 import { Button } from './components/ui/button';   // ✅
 
 // 5. Accessibility first
-<button 
-  onClick={handleClick} 
+<button
+  onClick={handleClick}
   aria-label="Aktion"
   onKeyDown={handleKeyDown}
 >
@@ -1390,9 +1390,9 @@ import { Button } from './components/ui/button';   // ✅
 
 ### Design-Token-Synchronisation
 
-**Quelle**: Figma Design System  
-**Ziel**: `/styles/globals.css` (Tailwind v4.0)  
-**Frequenz**: Bei Design-Updates  
+**Quelle**: Figma Design System
+**Ziel**: `/styles/globals.css` (Tailwind v4.0)
+**Frequenz**: Bei Design-Updates
 **Status**: ✅ Synchronisiert (2025-09-26)
 
 ### Figma → Code Workflow
@@ -1622,11 +1622,11 @@ npm run preview
 
 ---
 
-**Version**: 2.0.0  
-**Letzte Aktualisierung**: Oktober 2025  
-**Projekt**: Menschlichkeit Österreich  
-**Maintainer**: Development Team  
-**Lizenz**: [Projektspezifisch]  
+**Version**: 2.0.0
+**Letzte Aktualisierung**: Oktober 2025
+**Projekt**: Menschlichkeit Österreich
+**Maintainer**: Development Team
+**Lizenz**: [Projektspezifisch]
 **Repository**: [GitHub-Link]
 
 ---

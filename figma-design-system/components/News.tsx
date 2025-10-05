@@ -83,7 +83,7 @@ export function News() {
   return (
     <section id="news" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
-        <motion.div 
+        <motion.div
           className="text-center space-y-4 mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -92,14 +92,14 @@ export function News() {
         >
           <h2 className="text-3xl lg:text-4xl">News & Updates</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Bleibe auf dem Laufenden über unsere aktuellen Projekte, Erfolge und Aktivitäten. 
+            Bleibe auf dem Laufenden über unsere aktuellen Projekte, Erfolge und Aktivitäten.
             Hier erfährst du, was wir bewegen.
           </p>
         </motion.div>
 
         {/* Featured News */}
         {featuredNews && (
-          <motion.div 
+          <motion.div
             className="mb-12"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -133,11 +133,11 @@ export function News() {
                         {featuredNews.readTime}
                       </div>
                     </div>
-                    
+
                     <h3 className="text-2xl lg:text-3xl">{featuredNews.title}</h3>
-                    
+
                     <p className="text-muted-foreground text-lg">{featuredNews.excerpt}</p>
-                    
+
                     <Button size="lg" className="group w-fit">
                       Weiterlesen
                       <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -202,7 +202,7 @@ export function News() {
         </div>
 
         {/* Newsletter Signup */}
-        <motion.div 
+        <motion.div
           className="text-center space-y-6 bg-card rounded-2xl p-8 shadow-sm"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -211,7 +211,7 @@ export function News() {
         >
           <h3 className="text-2xl">Immer informiert bleiben</h3>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Verpasse keine wichtigen Updates! Abonniere unseren Newsletter und 
+            Verpasse keine wichtigen Updates! Abonniere unseren Newsletter und
             erfahre als Erste*r von neuen Projekten, Erfolgen und Events.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">

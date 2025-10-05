@@ -1,7 +1,7 @@
 # Phase 0: Tiefgründige Repository-Analyse
 
-**Datum:** 2025-10-03  
-**Analysetyp:** Enterprise Security & Governance Assessment  
+**Datum:** 2025-10-03
+**Analysetyp:** Enterprise Security & Governance Assessment
 **Framework:** STRIDE/LINDDUN + DSGVO + Supply Chain Security
 
 ---
@@ -323,6 +323,6 @@ diff checksums-1.txt checksums-2.txt
 
 ---
 
-**Analysestatus:** ✅ Phase 0 Abgeschlossen  
-**Nächste Phase:** Phase 1 - Altlasten & Hygiene  
+**Analysestatus:** ✅ Phase 0 Abgeschlossen
+**Nächste Phase:** Phase 1 - Altlasten & Hygiene
 **Review-Datum:** 2025-10-10

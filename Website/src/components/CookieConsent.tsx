@@ -72,7 +72,7 @@ export function CookieConsent() {
   const savePreferences = (prefs: CookiePreferences) => {
     localStorage.setItem(COOKIE_CONSENT_KEY, 'true');
     localStorage.setItem(COOKIE_PREFERENCES_KEY, JSON.stringify(prefs));
-    
+
     // Trigger GTM/Analytics based on preferences
     if (prefs.analytics) {
       // Initialize analytics
@@ -123,11 +123,11 @@ export function CookieConsent() {
               </Button>
             </div>
           </CardHeader>
-          
+
           <CardContent className="space-y-4">
             <p className="text-sm leading-relaxed">
-              Diese Website verwendet Cookies, um Ihnen die bestmögliche Erfahrung zu bieten. 
-              Notwendige Cookies sind für die Grundfunktionen der Website erforderlich. 
+              Diese Website verwendet Cookies, um Ihnen die bestmögliche Erfahrung zu bieten.
+              Notwendige Cookies sind für die Grundfunktionen der Website erforderlich.
               Weitere Cookies helfen uns, die Website zu verbessern und Ihnen relevante Inhalte anzuzeigen.
             </p>
 
@@ -165,7 +165,7 @@ export function CookieConsent() {
                 className="space-y-4 pt-4"
               >
                 <Separator />
-                
+
                 <div className="space-y-4">
                   {/* Necessary Cookies */}
                   <div className="flex items-start justify-between gap-4 p-4 bg-muted/50 rounded-lg">
@@ -192,7 +192,7 @@ export function CookieConsent() {
                     <div className="flex items-start gap-3 flex-1">
                       <Eye className="w-5 h-5 text-blue-500 mt-0.5" />
                       <div className="flex-1">
-                        <Label 
+                        <Label
                           htmlFor="functional-cookies"
                           className="text-base mb-1 cursor-pointer"
                         >
@@ -216,7 +216,7 @@ export function CookieConsent() {
                     <div className="flex items-start gap-3 flex-1">
                       <BarChart3 className="w-5 h-5 text-green-500 mt-0.5" />
                       <div className="flex-1">
-                        <Label 
+                        <Label
                           htmlFor="analytics-cookies"
                           className="text-base mb-1 cursor-pointer"
                         >
@@ -240,7 +240,7 @@ export function CookieConsent() {
                     <div className="flex items-start gap-3 flex-1">
                       <Cookie className="w-5 h-5 text-orange-500 mt-0.5" />
                       <div className="flex-1">
-                        <Label 
+                        <Label
                           htmlFor="marketing-cookies"
                           className="text-base mb-1 cursor-pointer"
                         >

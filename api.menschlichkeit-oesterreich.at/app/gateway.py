@@ -47,7 +47,7 @@ app.add_middleware(
 # Configuration
 class Config:
     CRM_BASE_URL = os.getenv("CRM_BASE_URL", "http://localhost:8000")
-    FRONTEND_BASE_URL = os.getenv("FRONTEND_BASE_URL", "http://localhost:3000") 
+    FRONTEND_BASE_URL = os.getenv("FRONTEND_BASE_URL", "http://localhost:3000")
     GAMES_BASE_URL = os.getenv("GAMES_BASE_URL", "http://localhost:5500")
     DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///app.db")
 
@@ -191,7 +191,7 @@ def create_response(success: bool, data: Any = None, message: str = None) -> API
 async def health_check():
     """System health check for all services"""
     services_status = {}
-    
+
     # Check CRM
     try:
         async with httpx.AsyncClient() as client:
@@ -199,7 +199,7 @@ async def health_check():
             services_status["crm"] = crm_response.status_code == 200
     except:
         services_status["crm"] = False
-    
+
     # Check Frontend
     try:
         async with httpx.AsyncClient() as client:
@@ -207,7 +207,7 @@ async def health_check():
             services_status["frontend"] = frontend_response.status_code == 200
     except:
         services_status["frontend"] = False
-    
+
     # Check Games
     try:
         async with httpx.AsyncClient() as client:
@@ -215,9 +215,9 @@ async def health_check():
             services_status["games"] = games_response.status_code == 200
     except:
         services_status["games"] = False
-    
+
     overall_health = all(services_status.values())
-    
+
     return create_response(
         success=overall_health,
         data={
@@ -234,10 +234,10 @@ async def proxy_crm(path: str, request: Request):
     try:
         query_params = dict(request.query_params)
         url = f"{config.CRM_BASE_URL}/api/{path}"
-        
+
         data = await proxy_request(url, params=query_params)
         return create_response(success=True, data=data)
-        
+
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"CRM service error: {str(e)}")
 
@@ -247,10 +247,10 @@ async def proxy_crm_post(path: str, request: Request):
     try:
         body = await request.json()
         url = f"{config.CRM_BASE_URL}/api/{path}"
-        
+
         data = await proxy_request(url, method="POST", json=body)
         return create_response(success=True, data=data)
-        
+
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"CRM service error: {str(e)}")
 
@@ -310,23 +310,23 @@ async def get_user_profile(user_id: int):
     try:
         # Get CRM data
         crm_data = await proxy_request(f"{config.CRM_BASE_URL}/api/user/{user_id}")
-        
+
         # Get game scores (placeholder)
         game_scores = {"game1": 1500, "game2": 2300}
-        
+
         user_profile = {
             "id": user_id,
             "crm_data": crm_data,
             "game_scores": game_scores,
             "last_login": datetime.now().isoformat()
         }
-        
+
         return create_response(
             success=True,
             data=user_profile,
             message="User profile retrieved"
         )
-        
+
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Profile service error: {str(e)}")
 
@@ -341,7 +341,7 @@ async def login(email: str, password: str):
             method="POST",
             json={"email": email, "password": password}
         )
-        
+
         if crm_auth.get("success"):
             # Create session valid for all systems
             session_data = {
@@ -350,7 +350,7 @@ async def login(email: str, password: str):
                 "token": crm_auth["token"],
                 "expires_at": (datetime.now().timestamp() + 3600 * 24)  # 24 hours
             }
-            
+
             return create_response(
                 success=True,
                 data=session_data,
@@ -358,7 +358,7 @@ async def login(email: str, password: str):
             )
         else:
             raise HTTPException(status_code=401, detail="Invalid credentials")
-            
+
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Authentication error: {str(e)}")
 
@@ -369,7 +369,7 @@ async def list_mcp_services():
     services = {
         "essential-stack": {
             "stripe": "Payment processing",
-            "mailchimp": "Email marketing", 
+            "mailchimp": "Email marketing",
             "google-services": "Google integrations"
         },
         "web-stack": {
@@ -383,7 +383,7 @@ async def list_mcp_services():
             "memory": "In-memory storage"
         }
     }
-    
+
     return create_response(
         success=True,
         data=services,
@@ -396,13 +396,13 @@ async def integration_status():
     """Get overall system integration status"""
     status = {
         "crm_integration": True,
-        "frontend_integration": True, 
+        "frontend_integration": True,
         "games_integration": True,
         "mcp_integration": True,
         "database_connection": True,
         "last_sync": datetime.now().isoformat()
     }
-    
+
     return create_response(
         success=True,
         data=status,
@@ -414,16 +414,16 @@ async def sync_systems():
     """Trigger data synchronization between all systems"""
     try:
         # Sync CRM data
-        # Sync game scores  
+        # Sync game scores
         # Update user profiles
         # Refresh caches
-        
+
         return create_response(
             success=True,
             data={"synced_at": datetime.now().isoformat()},
             message="Systems synchronized successfully"
         )
-        
+
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Sync error: {str(e)}")
 
@@ -432,7 +432,7 @@ async def sync_systems():
 async def websocket_endpoint(websocket):
     """WebSocket endpoint for real-time system updates"""
     await websocket.accept()
-    
+
     try:
         while True:
             # Send periodic updates to connected clients
@@ -443,7 +443,7 @@ async def websocket_endpoint(websocket):
             }
             await websocket.send_json(update)
             await asyncio.sleep(30)  # Send updates every 30 seconds
-            
+
     except Exception as e:
         print(f"WebSocket error: {e}")
     finally:
@@ -464,7 +464,7 @@ async def root():
         "endpoints": {
             "health": "/health",
             "crm": "/api/crm/*",
-            "games": "/api/games/*", 
+            "games": "/api/games/*",
             "frontend": "/api/frontend/*",
             "auth": "/api/auth/*",
             "mcp": "/api/mcp/*",

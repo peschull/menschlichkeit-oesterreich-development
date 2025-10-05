@@ -26,7 +26,7 @@ engines:
       "@typescript-eslint/no-unsafe-call": error
       "@typescript-eslint/no-unsafe-member-access": error
       "@typescript-eslint/no-unsafe-return": error
-      
+
       # Accessibility Rules (WCAG AA Compliance)
       "jsx-a11y/accessible-emoji": error
       "jsx-a11y/alt-text": error
@@ -52,12 +52,12 @@ engines:
       "jsx-a11y/role-supports-aria-props": error
       "jsx-a11y/scope": error
       "jsx-a11y/tabindex-no-positive": error
-      
+
       # Performance Rules
       "react-hooks/exhaustive-deps": error
       "react/jsx-no-bind": error
       "import/no-dynamic-require": error
-      
+
       # Maintainability Rules
       "complexity": [error, {"max": 15}]
       "max-depth": [error, {"max": 4}]
@@ -79,7 +79,7 @@ engines:
       "PhpCsFixer/no_eval": error
       "PhpCsFixer/no_php_short_tags": error
       "SlevomatCodingStandard/strict_comparison": error
-      
+
       # GDPR/Privacy rules
       "custom/no_personal_data_in_logs": error
       "custom/data_sanitization_required": error
@@ -95,7 +95,7 @@ engines:
       "W601": error  # has_key usage
       "W602": error  # deprecated modules
       "R1717": error  # consider-using-dict-comprehension
-      
+
   # Security Analysis
   bandit:
     enabled: true
@@ -242,26 +242,26 @@ custom_rules:
     pattern: "console\\.(log|error|warn|info).*(@|phone|ssn|passport)"
     message: "Personal data detected in logging - GDPR violation"
     severity: "error"
-    
+
   - name: "consent-management-required"
     pattern: "cookie|localStorage|sessionStorage"
     message: "Data storage requires GDPR consent management"
     severity: "warning"
-    
+
   # Austrian Brand Compliance
   - name: "austrian-colors-only"
     pattern: "#(?!c8102e|ffffff)[0-9a-fA-F]{6}"
     message: "Use official Austrian colors: #c8102e (red) and #ffffff (white)"
     severity: "info"
     files: "styles/**/*.css"
-    
+
   # Accessibility Requirements
   - name: "german-alt-text"
     pattern: "alt=[\"'][^\"']*[\"']"
     message: "Alt text should be in German for Austrian users"
     severity: "warning"
     files: "**/*.tsx"
-    
+
   # Security for Austrian Government Standards
   - name: "no-hardcoded-secrets"
     pattern: "(password|secret|key|token)\\s*=\\s*[\"'][^\"']+[\"']"
@@ -274,11 +274,11 @@ integrations:
     enabled: true
     auto_fix_pull_requests: false  # Manual review required
     status_checks: true
-    
+
   slack:
     enabled: true
     channel: "#quality-alerts"
-    
+
 # Reporting
 reporting:
   format: ["json", "sarif", "html"]

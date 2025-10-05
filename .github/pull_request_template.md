@@ -13,4 +13,3 @@ Kurzbeschreibung der Änderung und Motivation.
 ## Hinweise für Reviewer
 
 Besondere Stellen, Risiken oder Migrationshinweise.
-

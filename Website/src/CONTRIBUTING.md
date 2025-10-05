@@ -1,6 +1,6 @@
 # 🤝 Contributing to Menschlichkeit Österreich
 
-Vielen Dank für dein Interesse, zu **Menschlichkeit Österreich** beizutragen! 
+Vielen Dank für dein Interesse, zu **Menschlichkeit Österreich** beizutragen!
 
 Wir freuen uns über jeden Beitrag – ob Code, Dokumentation, Bug-Reports oder Feature-Vorschläge.
 

@@ -1,7 +1,7 @@
 # Subdomain DNS Check Guide - Plesk Server
 
-**Datum:** 2025-10-04  
-**Server:** `dmpl20230054@5.183.217.146`  
+**Datum:** 2025-10-04
+**Server:** `dmpl20230054@5.183.217.146`
 **Projekt:** Menschlichkeit Österreich
 
 ---
@@ -414,7 +414,7 @@ Nach manuellem Setup überprüfen:
 
 ---
 
-**Dokumentiert:** 2025-10-04  
-**Autor:** DevOps Team  
-**Projekt:** Menschlichkeit Österreich  
+**Dokumentiert:** 2025-10-04
+**Autor:** DevOps Team
+**Projekt:** Menschlichkeit Österreich
 **Status:** Ready for Implementation

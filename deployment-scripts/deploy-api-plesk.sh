@@ -181,7 +181,7 @@ chmod 600 "$PRIVATE_ROOT/.env"
 # Create systemd service file (if systemd is available)
 if command -v systemctl &> /dev/null; then
     log_info "Creating systemd service..."
-    
+
     sudo tee /etc/systemd/system/moe-api.service > /dev/null << EOF
 [Unit]
 Description=Menschlichkeit Österreich API
@@ -204,7 +204,7 @@ EOF
     sudo systemctl daemon-reload
     sudo systemctl enable moe-api
     sudo systemctl start moe-api
-    
+
     log_success "Systemd service created and started"
 else
     log_warning "Systemd not available, manual process management required"

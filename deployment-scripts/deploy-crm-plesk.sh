@@ -198,7 +198,7 @@ if [[ -f "$CIVI_SETTINGS" ]]; then
     else
         echo "define('CIVICRM_SITE_KEY', '$CIVICRM_SITE_KEY');" >> "$CIVI_SETTINGS"
     fi
-    
+
     # Set base URL
     if ! grep -q "CIVICRM_UF_BASEURL" "$CIVI_SETTINGS"; then
         echo "if (!defined('CIVICRM_UF_BASEURL')) define('CIVICRM_UF_BASEURL', 'https://crm.menschlichkeit-oesterreich.at/');" >> "$CIVI_SETTINGS"

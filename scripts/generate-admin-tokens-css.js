@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 /**
  * generate-admin-tokens-css.js
- * 
+ *
  * Generiert CSS Custom Properties aus admin-portal-tokens.json
  * für Runtime Multi-Org Branding im Next.js Admin Portal
- * 
+ *
  * Usage: node scripts/generate-admin-tokens-css.js
  * Output: figma-design-system/styles/admin-portal.css
  */
@@ -36,7 +36,7 @@ let css = `/**
  * Admin Portal Design System
  * Auto-generated from admin-portal-tokens.json
  * DO NOT EDIT MANUALLY - run 'npm run admin:tokens' instead
- * 
+ *
  * Last Generated: ${new Date().toISOString()}
  */
 
@@ -51,7 +51,7 @@ let css = `/**
   --color-primary-500: ${baseTokens.designTokens.colors.primary['500']};
   --color-primary-600: ${baseTokens.designTokens.colors.primary['600']};
   --color-primary-700: ${baseTokens.designTokens.colors.primary['700']};
-  
+
   /* Semantic Colors */
   --semantic-background: ${baseTokens.designTokens.colors.semantic.background};
   --semantic-surface: ${baseTokens.designTokens.colors.semantic.surface};
@@ -59,7 +59,7 @@ let css = `/**
   --semantic-text-secondary: ${baseTokens.designTokens.colors.semantic['text-secondary']};
   --semantic-border: ${baseTokens.designTokens.colors.semantic.border};
   --semantic-border-focus: ${baseTokens.designTokens.colors.semantic['border-focus']};
-  
+
   /* Spacing */
   --spacing-1: ${baseTokens.designTokens.spacing['1']};
   --spacing-2: ${baseTokens.designTokens.spacing['2']};
@@ -67,19 +67,19 @@ let css = `/**
   --spacing-4: ${baseTokens.designTokens.spacing['4']};
   --spacing-6: ${baseTokens.designTokens.spacing['6']};
   --spacing-8: ${baseTokens.designTokens.spacing['8']};
-  
+
   /* Border Radius */
   --border-radius-md: ${baseTokens.designTokens.borderRadius.md};
   --border-radius-lg: ${baseTokens.designTokens.borderRadius.lg};
   --border-radius-xl: ${baseTokens.designTokens.borderRadius.xl};
   --border-radius-full: ${baseTokens.designTokens.borderRadius.full};
-  
+
   /* Shadows */
   --shadow-sm: ${baseTokens.designTokens.shadows.sm};
   --shadow-md: ${baseTokens.designTokens.shadows.md};
   --shadow-lg: ${baseTokens.designTokens.shadows.lg};
   --shadow-2xl: ${baseTokens.designTokens.shadows['2xl']};
-  
+
   /* Typography */
   --font-family-primary: ${baseTokens.designTokens.typography.fontFamily.primary.join(', ')};
   --font-size-xs: ${baseTokens.designTokens.typography.fontSize.xs};
@@ -90,7 +90,7 @@ let css = `/**
   --font-weight-medium: ${baseTokens.designTokens.typography.fontWeight.medium};
   --font-weight-semibold: ${baseTokens.designTokens.typography.fontWeight.semibold};
   --font-weight-bold: ${baseTokens.designTokens.typography.fontWeight.bold};
-  
+
   /* Z-Index */
   --z-index-sticky: ${baseTokens.designTokens.zIndex.sticky};
   --z-index-modal: ${baseTokens.designTokens.zIndex.modal};
@@ -327,7 +327,7 @@ let css = `/**
     width: ${adminTokens.responsive.mobile.sidebar.width};
     position: ${adminTokens.responsive.mobile.sidebar.position};
   }
-  
+
   .admin-topbar {
     height: ${adminTokens.responsive.mobile.topbar.height};
   }

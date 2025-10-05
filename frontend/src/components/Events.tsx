@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 
 export function Events() {
   const events = [
@@ -92,7 +92,7 @@ export function Events() {
   return (
     <section id="events" className="py-20">
       <div className="container mx-auto px-4">
-        <motion.div 
+        <motion.div
           className="text-center space-y-4 mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -101,7 +101,7 @@ export function Events() {
         >
           <h2 className="text-3xl lg:text-4xl">Events & Veranstaltungen</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Besuche unsere Workshops, Diskussionen und Veranstaltungen. 
+            Besuche unsere Workshops, Diskussionen und Veranstaltungen.
             Lerne neue Menschen kennen und werde Teil der Community.
           </p>
         </motion.div>
@@ -123,7 +123,7 @@ export function Events() {
                     ⭐ Empfohlen
                   </Badge>
                 )}
-                
+
                 <div className="relative">
                   <ImageWithFallback
                     src={event.image}
@@ -166,7 +166,7 @@ export function Events() {
                       <span>{event.participants}/{event.maxParticipants} Teilnehmer</span>
                     </div>
                     <div className="w-24 bg-muted rounded-full h-2">
-                      <div 
+                      <div
                         className="h-2 bg-primary rounded-full transition-all duration-300"
                         style={{ width: `${(event.participants / event.maxParticipants) * 100}%` }}
                       />
@@ -184,7 +184,7 @@ export function Events() {
         </div>
 
         {/* Call to Action */}
-        <motion.div 
+        <motion.div
           className="text-center space-y-6 bg-gradient-to-br from-primary/5 to-muted/30 rounded-2xl p-8"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -193,7 +193,7 @@ export function Events() {
         >
           <h3 className="text-2xl">Verpasse keine Events mehr</h3>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Abonniere unseren Newsletter und erhalte rechtzeitig Informationen 
+            Abonniere unseren Newsletter und erhalte rechtzeitig Informationen
             über alle kommenden Veranstaltungen, Workshops und Events.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

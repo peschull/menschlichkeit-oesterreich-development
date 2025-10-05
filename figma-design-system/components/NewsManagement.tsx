@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { 
-  FileText, 
-  Search, 
-  Filter, 
-  Plus, 
-  Edit3, 
-  Trash2, 
-  Eye, 
+import {
+  FileText,
+  Search,
+  Filter,
+  Plus,
+  Edit3,
+  Trash2,
+  Eye,
   Share2,
   Calendar,
   User,
@@ -134,7 +134,7 @@ export function NewsManagement() {
                          article.author.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesStatus = selectedStatus === 'all' || article.status === selectedStatus;
     const matchesCategory = selectedCategory === 'all' || article.category === selectedCategory;
-    
+
     return matchesSearch && matchesStatus && matchesCategory;
   });
 
@@ -170,7 +170,7 @@ export function NewsManagement() {
           <h2 className="text-2xl font-bold text-gray-900">News-Verwaltung</h2>
           <p className="text-gray-600 mt-1">Verwalten Sie alle Artikel und Nachrichten</p>
         </div>
-        
+
         <Dialog open={isAddNewsOpen} onOpenChange={setIsAddNewsOpen}>
           <DialogTrigger asChild>
             <Button className="flex items-center gap-2">
@@ -256,7 +256,7 @@ export function NewsManagement() {
               />
             </div>
           </div>
-          
+
           <Select value={selectedCategory} onValueChange={setSelectedCategory}>
             <SelectTrigger className="w-[180px]">
               <SelectValue />
@@ -328,7 +328,7 @@ export function NewsManagement() {
               {filteredArticles.length} von {newsArticles.length} Artikeln
             </div>
           </div>
-          
+
           <div className="overflow-x-auto">
             <Table>
               <TableHeader>
@@ -480,22 +480,22 @@ function AddNewsForm({ onClose }: { onClose: () => void }) {
             <Label htmlFor="title">Titel *</Label>
             <Input id="title" placeholder="Titel des Artikels" required />
           </div>
-          
+
           <div>
             <Label htmlFor="excerpt">Kurzbeschreibung *</Label>
             <Textarea id="excerpt" placeholder="Kurze Zusammenfassung des Artikels (wird in Übersichten angezeigt)" required />
           </div>
-          
+
           <div>
             <Label htmlFor="content">Inhalt *</Label>
-            <Textarea 
-              id="content" 
-              placeholder="Vollständiger Artikel-Inhalt..." 
+            <Textarea
+              id="content"
+              placeholder="Vollständiger Artikel-Inhalt..."
               className="min-h-[200px]"
-              required 
+              required
             />
           </div>
-          
+
           <div className="grid grid-cols-2 gap-4">
             <div>
               <Label htmlFor="category">Kategorie *</Label>
@@ -526,7 +526,7 @@ function AddNewsForm({ onClose }: { onClose: () => void }) {
               </Select>
             </div>
           </div>
-          
+
           <div>
             <Label htmlFor="tags">Tags</Label>
             <Input id="tags" placeholder="Tags durch Kommas getrennt (z.B. Spenden, Bildung, Erfolg)" />
@@ -547,34 +547,34 @@ function AddNewsForm({ onClose }: { onClose: () => void }) {
               </SelectContent>
             </Select>
           </div>
-          
+
           <div>
             <Label htmlFor="publishDate">Veröffentlichungsdatum</Label>
             <Input id="publishDate" type="datetime-local" />
           </div>
-          
+
           <div className="space-y-3">
             <div className="flex items-center space-x-2">
               <Checkbox id="featured" />
               <Label htmlFor="featured">Als hervorgehobenen Artikel markieren</Label>
             </div>
-            
+
             <div className="flex items-center space-x-2">
               <Checkbox id="allowComments" defaultChecked />
               <Label htmlFor="allowComments">Kommentare erlauben</Label>
             </div>
-            
+
             <div className="flex items-center space-x-2">
               <Checkbox id="sendNewsletter" />
               <Label htmlFor="sendNewsletter">In Newsletter aufnehmen</Label>
             </div>
-            
+
             <div className="flex items-center space-x-2">
               <Checkbox id="notifyMembers" />
               <Label htmlFor="notifyMembers">Mitglieder benachrichtigen</Label>
             </div>
           </div>
-          
+
           <div>
             <Label htmlFor="visibility">Sichtbarkeit</Label>
             <Select defaultValue="public">
@@ -595,27 +595,27 @@ function AddNewsForm({ onClose }: { onClose: () => void }) {
             <Label htmlFor="metaTitle">Meta-Titel</Label>
             <Input id="metaTitle" placeholder="SEO-optimierter Titel (falls abweichend)" />
           </div>
-          
+
           <div>
             <Label htmlFor="metaDescription">Meta-Beschreibung</Label>
             <Textarea id="metaDescription" placeholder="SEO-Beschreibung für Suchmaschinen (max. 160 Zeichen)" />
           </div>
-          
+
           <div>
             <Label htmlFor="slug">URL-Slug</Label>
             <Input id="slug" placeholder="url-freundlicher-artikelname (automatisch generiert)" />
           </div>
-          
+
           <div>
             <Label htmlFor="socialTitle">Social Media Titel</Label>
             <Input id="socialTitle" placeholder="Titel für Social Media Sharing" />
           </div>
-          
+
           <div>
             <Label htmlFor="socialDescription">Social Media Beschreibung</Label>
             <Textarea id="socialDescription" placeholder="Beschreibung für Social Media Sharing" />
           </div>
-          
+
           <div>
             <Label htmlFor="featuredImage">Titelbild</Label>
             <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">

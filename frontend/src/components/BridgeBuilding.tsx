@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Card, CardContent } from './ui/card';
 import { Button } from './ui/button';
 import { Progress } from './ui/progress';
 import { Badge } from './ui/badge';
-import { 
-  Heart, 
-  Users, 
-  Scale, 
-  Shield, 
+import {
+  Heart,
+  Users,
+  Scale,
+  Shield,
   Star,
   ArrowRight,
   RotateCcw,
@@ -374,7 +374,7 @@ export function BridgeBuilding() {
 
   const nextScenario = () => {
     const newCompletedScenarios = [...gameState.completedScenarios, gameState.currentScenario];
-    
+
     if (gameState.currentScenario < SCENARIOS.length - 1) {
       setGameState(prev => ({
         ...prev,
@@ -384,7 +384,7 @@ export function BridgeBuilding() {
         showFeedback: false,
         gamePhase: 'reflection'
       }));
-      
+
       // Automatically move to next scenario after reflection
       setTimeout(() => {
         setGameState(prev => ({ ...prev, gamePhase: 'playing' }));
@@ -419,7 +419,7 @@ export function BridgeBuilding() {
     const totalScore = Object.values(gameState.scores).reduce((sum, score) => sum + score, 0);
     const maxPossibleScore = SCENARIOS.length * 4 * 9; // 4 categories, max 9 points each
     const percentage = (totalScore / maxPossibleScore) * 100;
-    
+
     if (percentage >= 80) return { level: "Demokratie-Champion", color: "text-green-600", icon: Trophy };
     if (percentage >= 60) return { level: "Brückenbauer*in", color: "text-blue-600", icon: Target };
     if (percentage >= 40) return { level: "Demokratie-Lernende*r", color: "text-yellow-600", icon: Star };
@@ -443,10 +443,10 @@ export function BridgeBuilding() {
               Brücken Bauen 🌉
             </h2>
             <p className="lead max-w-3xl mx-auto mb-8">
-              Ein interaktives Political Education Game über <strong>Empathie</strong>, <strong>Menschenrechte</strong> und <strong>demokratischen Zusammenhalt</strong>. 
+              Ein interaktives Political Education Game über <strong>Empathie</strong>, <strong>Menschenrechte</strong> und <strong>demokratischen Zusammenhalt</strong>.
               Erlebe realistische gesellschaftliche Szenarien und entdecke, wie Du zu einer gerechteren Gesellschaft beitragen kannst.
             </p>
-            
+
             {/* Hero Image */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
@@ -454,7 +454,7 @@ export function BridgeBuilding() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="max-w-4xl mx-auto mb-8 rounded-xl overflow-hidden shadow-lg"
             >
-              <img 
+              <img
                 src="https://images.unsplash.com/photo-1632870781574-fd9758881cb5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxicmlkZ2UlMjBidWlsZGluZyUyMGNvbW11bml0eSUyMGNvbm5lY3Rpb258ZW58MXx8fHwxNzU5MDcxNDA0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
                 alt="Menschen bauen Brücken des Verständnisses"
                 className="w-full h-64 md:h-80 object-cover"
@@ -563,7 +563,7 @@ export function BridgeBuilding() {
                     </p>
                   </div>
                 </div>
-                
+
                 <div className="text-center space-y-2 mb-6">
                   <p className="small text-muted-foreground">
                     <strong>Spieldauer:</strong> 20-30 Minuten
@@ -573,7 +573,7 @@ export function BridgeBuilding() {
                   </p>
                 </div>
 
-                <Button 
+                <Button
                   onClick={startGame}
                   className="btn-primary-gradient"
                   size="lg"
@@ -611,12 +611,12 @@ export function BridgeBuilding() {
                     <Heart className="w-8 h-8 text-white" />
                   </div>
                 </motion.div>
-                
+
                 <h3 className="mb-4">Reflexion</h3>
                 <p className="lead mb-6">
                   {currentScenario.reflection.question}
                 </p>
-                
+
                 <Card className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 border-none">
                   <CardContent className="p-6">
                     <p className="text-sm font-medium mb-2 text-primary">
@@ -627,7 +627,7 @@ export function BridgeBuilding() {
                     </p>
                   </CardContent>
                 </Card>
-                
+
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -650,7 +650,7 @@ export function BridgeBuilding() {
   if (gameState.gamePhase === 'completed') {
     const democracyLevel = getDemocracyLevel();
     const IconComponent = democracyLevel.icon;
-    
+
     return (
       <section className="section-padding bg-gradient-to-br from-green-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
         <div className="container mx-auto px-4">
@@ -689,8 +689,8 @@ export function BridgeBuilding() {
                   <div className="text-2xl font-bold mb-2 text-primary">
                     {gameState.scores.empathy}
                   </div>
-                  <Progress 
-                    value={(gameState.scores.empathy / (SCENARIOS.length * 9)) * 100} 
+                  <Progress
+                    value={(gameState.scores.empathy / (SCENARIOS.length * 9)) * 100}
                     className="w-full h-2"
                   />
                 </CardContent>
@@ -703,8 +703,8 @@ export function BridgeBuilding() {
                   <div className="text-2xl font-bold mb-2 text-primary">
                     {gameState.scores.humanRights}
                   </div>
-                  <Progress 
-                    value={(gameState.scores.humanRights / (SCENARIOS.length * 9)) * 100} 
+                  <Progress
+                    value={(gameState.scores.humanRights / (SCENARIOS.length * 9)) * 100}
                     className="w-full h-2"
                   />
                 </CardContent>
@@ -717,8 +717,8 @@ export function BridgeBuilding() {
                   <div className="text-2xl font-bold mb-2 text-primary">
                     {gameState.scores.participation}
                   </div>
-                  <Progress 
-                    value={(gameState.scores.participation / (SCENARIOS.length * 9)) * 100} 
+                  <Progress
+                    value={(gameState.scores.participation / (SCENARIOS.length * 9)) * 100}
                     className="w-full h-2"
                   />
                 </CardContent>
@@ -731,8 +731,8 @@ export function BridgeBuilding() {
                   <div className="text-2xl font-bold mb-2 text-primary">
                     {gameState.scores.civilCourage}
                   </div>
-                  <Progress 
-                    value={(gameState.scores.civilCourage / (SCENARIOS.length * 9)) * 100} 
+                  <Progress
+                    value={(gameState.scores.civilCourage / (SCENARIOS.length * 9)) * 100}
                     className="w-full h-2"
                   />
                 </CardContent>
@@ -772,7 +772,7 @@ export function BridgeBuilding() {
             </Card>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
+              <Button
                 onClick={restartGame}
                 variant="outline"
                 size="lg"
@@ -780,7 +780,7 @@ export function BridgeBuilding() {
                 <RotateCcw className="w-5 h-5 mr-2" />
                 Nochmal spielen
               </Button>
-              <Button 
+              <Button
                 onClick={() => {
                   const element = document.getElementById('join');
                   element?.scrollIntoView({ behavior: 'smooth' });
@@ -852,7 +852,7 @@ export function BridgeBuilding() {
                       {currentScenario.description}
                     </p>
                   </div>
-                  
+
                   <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 rounded-lg p-6 mb-6">
                     <p className="leading-relaxed">
                       {currentScenario.situation}
@@ -868,7 +868,7 @@ export function BridgeBuilding() {
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
                         >
-                          <Card 
+                          <Card
                             className={`cursor-pointer transition-all ${
                               gameState.selectedChoice === choice.id
                                 ? 'border-primary bg-primary/5'
@@ -891,9 +891,9 @@ export function BridgeBuilding() {
                           </Card>
                         </motion.div>
                       ))}
-                      
+
                       <div className="text-center pt-4">
-                        <Button 
+                        <Button
                           onClick={submitChoice}
                           disabled={gameState.selectedChoice === null}
                           className="btn-primary-gradient"
@@ -925,9 +925,9 @@ export function BridgeBuilding() {
                                 </div>
                               </CardContent>
                             </Card>
-                            
+
                             <div className="text-center">
-                              <Button 
+                              <Button
                                 onClick={nextScenario}
                                 className="btn-primary-gradient"
                                 size="lg"

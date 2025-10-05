@@ -383,6 +383,6 @@ Aktualisiere nach jeder Änderung:
 
 ---
 
-**Date:** 2025-10-02  
-**Status:** DOCUMENTED  
+**Date:** 2025-10-02
+**Status:** DOCUMENTED
 **Resolution:** Developer Window Reload + Ignore Ghost Notifications

@@ -42,4 +42,3 @@ Security & Compliance
 Referenzen
 - Threat Model: `analysis/phase-0/threat-model/STRIDE-LINDDUN-ANALYSIS.md`
 - Consent/PII: `docs/legal/RIGHT-TO-ERASURE-WORKFLOW.md`, `docs/security/AUTHENTICATION-FLOWS.md`
-

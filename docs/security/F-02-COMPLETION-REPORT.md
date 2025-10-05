@@ -1,8 +1,8 @@
 # F-02: n8n HTTPS Aktivierung - Completion Report
 
-**Status:** ✅ IMPLEMENTIERT (Deployment-Ready)  
-**Datum:** 2025-10-03  
-**Verantwortlich:** GitHub Copilot + Peter Schuller  
+**Status:** ✅ IMPLEMENTIERT (Deployment-Ready)
+**Datum:** 2025-10-03
+**Verantwortlich:** GitHub Copilot + Peter Schuller
 **SOFORT-Maßnahme:** 2/6 abgeschlossen
 
 ---
@@ -529,7 +529,7 @@ Alle Objectives erreicht:
 
 ---
 
-**Datum:** 2025-10-03  
-**Author:** GitHub Copilot  
-**Reviewer:** Peter Schuller (pending)  
+**Datum:** 2025-10-03
+**Author:** GitHub Copilot
+**Reviewer:** Peter Schuller (pending)
 **Version:** 1.0

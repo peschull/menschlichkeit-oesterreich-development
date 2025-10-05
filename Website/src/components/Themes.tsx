@@ -59,7 +59,7 @@ export function Themes() {
   return (
     <section id="themes" className="py-20">
       <div className="container mx-auto px-4">
-        <motion.div 
+        <motion.div
           className="text-center space-y-4 mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -68,7 +68,7 @@ export function Themes() {
         >
           <h2 className="text-3xl lg:text-4xl">Unsere Arbeitsbereiche</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Als Verein nach österreichischem Recht konzentrieren wir uns auf konkrete 
+            Als Verein nach österreichischem Recht konzentrieren wir uns auf konkrete
             Hilfsprojekte und den Aufbau einer solidarischen Gemeinschaft in ganz Österreich.
           </p>
         </motion.div>
@@ -90,8 +90,8 @@ export function Themes() {
                       <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-lg flex items-center justify-center">
                         <Icon className="w-6 h-6 text-white" />
                       </div>
-                      <Badge 
-                        variant="secondary" 
+                      <Badge
+                        variant="secondary"
                         className={theme.priority === 'hoch' ? 'bg-yellow-100 text-yellow-800 border-yellow-200' : 'bg-gray-100 text-gray-800 border-gray-200'}
                       >
                         {theme.priority === 'hoch' ? '🔥 Priorität' : 'Aktiv'}
@@ -122,7 +122,7 @@ export function Themes() {
         </div>
 
         {/* Call to Action */}
-        <motion.div 
+        <motion.div
           className="text-center space-y-6 bg-muted/50 rounded-2xl p-8"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -131,7 +131,7 @@ export function Themes() {
         >
           <h3 className="text-2xl">Gemeinsam für Menschlichkeit in Österreich</h3>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Unsere Arbeitsbereiche zeigen, wie vielfältig die Möglichkeiten sind, 
+            Unsere Arbeitsbereiche zeigen, wie vielfältig die Möglichkeiten sind,
             Menschlichkeit zu fördern. Werde Mitglied und unterstütze unsere Mission.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

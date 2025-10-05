@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { 
-  DollarSign, 
-  Search, 
-  Filter, 
-  Download, 
-  Plus, 
+import {
+  DollarSign,
+  Search,
+  Filter,
+  Download,
+  Plus,
   Calendar,
   CreditCard,
   Building2,
@@ -119,7 +119,7 @@ export function DonationManagement() {
                          donation.purpose.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesType = selectedType === 'all' || donation.type === selectedType;
     const matchesStatus = selectedStatus === 'all' || donation.status === selectedStatus;
-    
+
     return matchesSearch && matchesType && matchesStatus;
   });
 
@@ -162,7 +162,7 @@ export function DonationManagement() {
           <h2 className="text-2xl font-bold text-gray-900">Spendenverwaltung</h2>
           <p className="text-gray-600 mt-1">Verwalten Sie alle Spenden und SEPA-Transaktionen</p>
         </div>
-        
+
         <Dialog open={isAddDonationOpen} onOpenChange={setIsAddDonationOpen}>
           <DialogTrigger asChild>
             <Button className="flex items-center gap-2">
@@ -248,7 +248,7 @@ export function DonationManagement() {
               />
             </div>
           </div>
-          
+
           <Select value={selectedType} onValueChange={setSelectedType}>
             <SelectTrigger className="w-[200px]">
               <SelectValue />
@@ -299,7 +299,7 @@ export function DonationManagement() {
               {filteredDonations.length} von {donations.length} Spenden
             </div>
           </div>
-          
+
           <div className="overflow-x-auto">
             <Table>
               <TableHeader>
@@ -412,7 +412,7 @@ function AddDonationForm({ onClose }: { onClose: () => void }) {
               </SelectContent>
             </Select>
           </div>
-          
+
           <div className="grid grid-cols-2 gap-4">
             <div>
               <Label htmlFor="amount">Betrag (€) *</Label>
@@ -433,7 +433,7 @@ function AddDonationForm({ onClose }: { onClose: () => void }) {
               </Select>
             </div>
           </div>
-          
+
           <div>
             <Label htmlFor="purpose">Spendenzweck *</Label>
             <Select required>
@@ -449,7 +449,7 @@ function AddDonationForm({ onClose }: { onClose: () => void }) {
               </SelectContent>
             </Select>
           </div>
-          
+
           <div>
             <Label htmlFor="date">Spendendatum</Label>
             <Input id="date" type="date" defaultValue={new Date().toISOString().split('T')[0]} />
@@ -461,33 +461,33 @@ function AddDonationForm({ onClose }: { onClose: () => void }) {
             <Label htmlFor="reference">Referenz/Transaktions-ID</Label>
             <Input id="reference" placeholder="Automatisch generiert falls leer" />
           </div>
-          
+
           <div className="space-y-3">
             <div className="flex items-center space-x-2">
               <input type="checkbox" id="recurring" className="rounded" />
               <Label htmlFor="recurring">Regelmäßige Spende (monatlich)</Label>
             </div>
-            
+
             <div className="flex items-center space-x-2">
               <input type="checkbox" id="taxDeductible" className="rounded" defaultChecked />
               <Label htmlFor="taxDeductible">Steuerlich absetzbar</Label>
             </div>
-            
+
             <div className="flex items-center space-x-2">
               <input type="checkbox" id="sendReceipt" className="rounded" defaultChecked />
               <Label htmlFor="sendReceipt">Spendenquittung per E-Mail senden</Label>
             </div>
           </div>
-          
+
           <div>
             <Label htmlFor="notes">Notizen</Label>
             <Textarea id="notes" placeholder="Zusätzliche Informationen zur Spende..." />
           </div>
-          
+
           <div className="p-4 bg-blue-50 rounded-lg">
             <h4 className="font-medium text-blue-900 mb-2">SEPA-Informationen</h4>
             <p className="text-sm text-blue-700">
-              Bei SEPA-Lastschriften wird automatisch ein Mandat erstellt. 
+              Bei SEPA-Lastschriften wird automatisch ein Mandat erstellt.
               Der Einzug erfolgt nach der gesetzlichen Vorankündigungsfrist.
             </p>
           </div>

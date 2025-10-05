@@ -44,7 +44,7 @@ printf "%s\n" "$(printf '=%.0s' {1..110})"
 for domain in "${subdomains[@]}"; do
     # DNS-Auflösung versuchen
     ip=$(host "$domain" 2>/dev/null | grep "has address" | awk '{print $NF}' | head -1)
-    
+
     if [[ -n "$ip" ]]; then
         if [[ "$ip" == "$EXPECTED_IP" ]]; then
             printf "%-50s | %-15s | %s\n" "$domain" "✅ Konfiguriert" "$ip"

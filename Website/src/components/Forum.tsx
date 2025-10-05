@@ -113,7 +113,7 @@ export function Forum() {
   });
 
   const BoardCard = ({ board }: { board: Board }) => (
-    <Card 
+    <Card
       className="cursor-pointer hover:shadow-md transition-all duration-200 group"
       onClick={() => {
         setSelectedBoard(board.id);
@@ -149,7 +149,7 @@ export function Forum() {
   );
 
   const ThreadCard = ({ thread }: { thread: Thread }) => (
-    <Card 
+    <Card
       className="cursor-pointer hover:shadow-md transition-all duration-200 group"
       onClick={() => {
         setSelectedThread(thread);
@@ -180,9 +180,9 @@ export function Forum() {
                 </h3>
               </div>
             </div>
-            
+
             <p className="text-sm text-muted-foreground mb-3 line-clamp-2">{thread.content}</p>
-            
+
             <div className="flex items-center flex-wrap gap-2 mb-3">
               {thread.tags.map(tag => (
                 <Badge key={tag} variant="outline" className="text-xs">
@@ -190,7 +190,7 @@ export function Forum() {
                 </Badge>
               ))}
             </div>
-            
+
             <div className="flex items-center justify-between text-xs text-muted-foreground">
               <div className="flex items-center gap-4">
                 <span>von {thread.author}</span>
@@ -217,8 +217,8 @@ export function Forum() {
   const ThreadDetail = ({ thread }: { thread: Thread }) => (
     <div className="space-y-6">
       <div className="flex items-center gap-2 mb-4">
-        <Button 
-          variant="ghost" 
+        <Button
+          variant="ghost"
           size="sm"
           onClick={() => setCurrentView('threads')}
         >
@@ -287,7 +287,7 @@ export function Forum() {
 
       <div className="space-y-4">
         <h3 className="font-semibold">Antworten ({thread.replies})</h3>
-        
+
         {/* Mock replies */}
         {Array.from({ length: 3 }).map((_, i) => (
           <Card key={i}>
@@ -327,7 +327,7 @@ export function Forum() {
         <CardContent className="p-4">
           <h4 className="font-semibold mb-3">Antwort schreiben</h4>
           <div className="space-y-3">
-            <textarea 
+            <textarea
               className="w-full min-h-[100px] p-3 border border-border rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
               placeholder="Ihre Antwort hier eingeben..."
             />
@@ -356,7 +356,7 @@ export function Forum() {
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-4">Community Forum</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Tauschen Sie sich mit anderen Mitgliedern aus, diskutieren Sie über Projekte 
+            Tauschen Sie sich mit anderen Mitgliedern aus, diskutieren Sie über Projekte
             und gestalten Sie gemeinsam unsere Mission für mehr soziale Gerechtigkeit.
           </p>
         </div>
@@ -371,7 +371,7 @@ export function Forum() {
                 Diskussionen
               </TabsTrigger>
             </TabsList>
-            
+
             <div className="flex items-center gap-3">
               <div className="relative flex-1 min-w-[250px]">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
@@ -402,8 +402,8 @@ export function Forum() {
               <div className="flex items-center gap-2">
                 {selectedBoard !== 'all' && (
                   <>
-                    <Button 
-                      variant="ghost" 
+                    <Button
+                      variant="ghost"
                       size="sm"
                       onClick={() => {
                         setSelectedBoard('all');
@@ -428,14 +428,14 @@ export function Forum() {
               {filteredThreads.map(thread => (
                 <ThreadCard key={thread.id} thread={thread} />
               ))}
-              
+
               {filteredThreads.length === 0 && (
                 <Card>
                   <CardContent className="p-12 text-center">
                     <MessageSquare className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
                     <h3 className="font-semibold mb-2">Keine Diskussionen gefunden</h3>
                     <p className="text-muted-foreground mb-4">
-                      {searchQuery 
+                      {searchQuery
                         ? 'Versuchen Sie andere Suchbegriffe oder starten Sie eine neue Diskussion.'
                         : 'Seien Sie der Erste und starten Sie eine neue Diskussion!'
                       }

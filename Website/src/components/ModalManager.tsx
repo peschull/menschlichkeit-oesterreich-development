@@ -27,7 +27,7 @@ export function ModalManager() {
             mode={state.authMode}
           />
         );
-      
+
       case 'profile':
         return (
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
@@ -47,7 +47,7 @@ export function ModalManager() {
             </div>
           </div>
         );
-      
+
       case 'security':
         return (
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
@@ -67,7 +67,7 @@ export function ModalManager() {
             </div>
           </div>
         );
-      
+
       case 'privacy':
         return (
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
@@ -87,7 +87,7 @@ export function ModalManager() {
             </div>
           </div>
         );
-      
+
       case 'sepa':
         return (
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
@@ -107,7 +107,7 @@ export function ModalManager() {
             </div>
           </div>
         );
-      
+
       default:
         return null;
     }

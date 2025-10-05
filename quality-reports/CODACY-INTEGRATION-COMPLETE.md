@@ -1,7 +1,7 @@
 # Codacy Integration – Status Report (Phase 0 Abschluss)
 
-**Datum:** 04.10.2025  
-**Milestone:** Phase 0 – Enterprise DevOps Setup  
+**Datum:** 04.10.2025
+**Milestone:** Phase 0 – Enterprise DevOps Setup
 **Status:** ✅ **COMPLETE WITH WORKAROUND**
 
 ---
@@ -179,6 +179,6 @@ Das MCP-Binding-Problem ist als **bekannte Limitation** dokumentiert und blockie
 
 ---
 
-**Report Erstellt:** 2025-10-04 15:05 UTC  
-**Autor:** GitHub Copilot (Enterprise DevOps Agent)  
+**Report Erstellt:** 2025-10-04 15:05 UTC
+**Autor:** GitHub Copilot (Enterprise DevOps Agent)
 **Bestätigt durch:** Codacy CLI 7.10.0 + Markdownlint Zero-Issues-Validierung

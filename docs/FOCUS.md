@@ -1,6 +1,6 @@
 # 🎯 FOCUS - Community Forum Integration (2 Wochen Sprint)
 
-**Sprint**: 2025-10-03 bis 2025-10-17  
+**Sprint**: 2025-10-03 bis 2025-10-17
 **Ziel**: DSGVO-konformes Forum mit Figma Design System Integration
 
 ---
@@ -59,7 +59,7 @@
 
 ## 🔮 Phase 3: Admin-Backend Portal (Next Sprint)
 
-**Zeitrahmen**: W1-W4 nach Current Sprint  
+**Zeitrahmen**: W1-W4 nach Current Sprint
 **Bezugsdokument**: `admin_backend_architektur_umsetzungsplan_ngo_eu_dsgvo.md`
 
 ### Architektur-Stack
@@ -210,5 +210,5 @@
 
 ---
 
-**Letzte Aktualisierung**: 2025-10-03  
+**Letzte Aktualisierung**: 2025-10-03
 **Next Review**: 2025-10-10 (Midpoint Check)

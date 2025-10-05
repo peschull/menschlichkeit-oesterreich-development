@@ -19,7 +19,7 @@ export function elementSupportsDrupalElementStyles(
   modelAttributes,
   schema,
 ) {
-   
+
   for (const modelAttribute of modelAttributes) {
     if (schema.checkAttribute(selectedElement, modelAttribute)) {
       return true;
@@ -59,7 +59,7 @@ export function getClosestElementWithElementStyleAttribute(
 
   while (parent) {
     if (parent.is('element')) {
-       
+
       if (elementSupportsDrupalElementStyles(parent, modelAttributes, schema)) {
         return parent;
       }

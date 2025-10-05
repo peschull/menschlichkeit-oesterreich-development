@@ -25,7 +25,7 @@ const focusTrapCheck = (browser, parentSelector, tabCount, tabBackwards) => {
   }
   browser
     .execute(
-       
+
       function (parentSelector) {
         // Verify focused element is still within the focus trap.
         return document.activeElement.matches(parentSelector);
@@ -120,7 +120,7 @@ module.exports = {
       })
       .pause(50)
       .execute(
-         
+
         function (linkSubMenuId) {
           return document.activeElement.matches(`#${linkSubMenuId} *`);
         },
@@ -134,7 +134,7 @@ module.exports = {
       })
       .pause(50)
       .execute(
-         
+
         function (linkSubMenuId) {
           return document.activeElement.matches(
             `[aria-controls="${linkSubMenuId}"]`,
@@ -153,7 +153,7 @@ module.exports = {
       })
       .pause(50)
       .execute(
-         
+
         function (buttonSubMenuId) {
           return document.activeElement.matches(`#${buttonSubMenuId} *`);
         },
@@ -167,7 +167,7 @@ module.exports = {
       })
       .pause(50)
       .execute(
-         
+
         function (buttonSubMenuId) {
           return document.activeElement.matches(
             `[aria-controls="${buttonSubMenuId}"]`,

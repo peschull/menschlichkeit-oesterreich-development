@@ -299,8 +299,8 @@ export function SkillTreeInterface({
     }
   };
 
-  const filteredSkills = activeCategory === 'all' 
-    ? skills 
+  const filteredSkills = activeCategory === 'all'
+    ? skills
     : skills.filter(s => s.category === activeCategory);
 
   const canUnlockSkill = (skill: Skill) => {
@@ -462,7 +462,7 @@ export function SkillTreeInterface({
               onClick={(e) => e.stopPropagation()}
               className="w-full max-w-2xl"
             >
-              <Advanced3DCard 
+              <Advanced3DCard
                 glowColor={getCategoryColor(selectedSkill.category).text.replace('text-', '#')}
                 tiltIntensity={10}
               >

@@ -215,7 +215,7 @@ export function Moderation() {
             <h2 className="text-3xl font-bold">Moderation Dashboard</h2>
           </div>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Überwachen und verwalten Sie Community-Inhalte, bearbeiten Sie Meldungen 
+            Überwachen und verwalten Sie Community-Inhalte, bearbeiten Sie Meldungen
             und sorgen Sie für eine respektvolle Diskussionskultur.
           </p>
         </div>
@@ -284,7 +284,7 @@ export function Moderation() {
                 Meldung bearbeiten
               </DialogTitle>
             </DialogHeader>
-            
+
             {selectedReport && (
               <div className="space-y-6">
                 <div className="space-y-4">
@@ -297,7 +297,7 @@ export function Moderation() {
                       <span className="ml-1 capitalize">{selectedReport.status}</span>
                     </Badge>
                   </div>
-                  
+
                   <div>
                     <h4 className="font-semibold mb-2">{selectedReport.contentTitle}</h4>
                     <p className="text-sm text-muted-foreground mb-4">{selectedReport.contentExcerpt}</p>
@@ -336,7 +336,7 @@ export function Moderation() {
 
                 <div className="space-y-4">
                   <h4 className="font-semibold">Moderationsaktion</h4>
-                  
+
                   <div className="flex flex-wrap gap-2">
                     <Button variant="outline" size="sm">
                       <Eye className="w-4 h-4 mr-1" />

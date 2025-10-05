@@ -27,7 +27,7 @@ export function SEOHead({
   publishedTime,
   modifiedTime
 }: SEOHeadProps) {
-  
+
   useEffect(() => {
     // Update document title
     document.title = title;
@@ -70,25 +70,25 @@ export function SEOHead({
 
 function updateMetaTag(name: string, content: string, attributeName: 'name' | 'property' = 'name') {
   let element = document.querySelector(`meta[${attributeName}="${name}"]`);
-  
+
   if (!element) {
     element = document.createElement('meta');
     element.setAttribute(attributeName, name);
     document.head.appendChild(element);
   }
-  
+
   element.setAttribute('content', content);
 }
 
 function updateLinkTag(rel: string, href: string) {
   let element = document.querySelector(`link[rel="${rel}"]`) as HTMLLinkElement;
-  
+
   if (!element) {
     element = document.createElement('link');
     element.setAttribute('rel', rel);
     document.head.appendChild(element);
   }
-  
+
   element.setAttribute('href', href);
 }
 
@@ -143,13 +143,13 @@ export function NGOStructuredData() {
     script.type = 'application/ld+json';
     script.text = JSON.stringify(structuredData);
     script.id = 'ngo-structured-data';
-    
+
     // Remove existing if present
     const existing = document.getElementById('ngo-structured-data');
     if (existing) {
       existing.remove();
     }
-    
+
     document.head.appendChild(script);
 
     return () => {

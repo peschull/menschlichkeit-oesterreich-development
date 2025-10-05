@@ -1,8 +1,8 @@
 # 🎨 Figma Website Integration - Menschlichkeit Österreich
 
-**Datum:** 2025-10-05  
-**Status:** ✅ Integration abgeschlossen  
-**Quelle:** Figma Design → `/Website` Ordner  
+**Datum:** 2025-10-05
+**Status:** ✅ Integration abgeschlossen
+**Quelle:** Figma Design → `/Website` Ordner
 **Ziel:** Hauptprojekt-Integration in `/website` und `/frontend`
 
 ---
@@ -520,6 +520,6 @@ npm run build -- --mode analyze
 
 ---
 
-**Erstellt:** 2025-10-05  
-**Nächstes Review:** 2025-10-12  
+**Erstellt:** 2025-10-05
+**Nächstes Review:** 2025-10-12
 **Verantwortlich:** GitHub Copilot + Development Team

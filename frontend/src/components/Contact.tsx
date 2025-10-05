@@ -6,7 +6,7 @@ import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { Textarea } from './ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -88,7 +88,7 @@ export function Contact() {
   return (
     <section id="contact" className="py-20">
       <div className="container mx-auto px-4">
-        <motion.div 
+        <motion.div
           className="text-center space-y-4 mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -97,7 +97,7 @@ export function Contact() {
         >
           <h2 className="text-3xl lg:text-4xl">Kontakt</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Hast du Fragen, Ideen oder möchtest du mit uns zusammenarbeiten? 
+            Hast du Fragen, Ideen oder möchtest du mit uns zusammenarbeiten?
             Wir freuen uns von dir zu hören und helfen gerne weiter.
           </p>
         </motion.div>
@@ -199,7 +199,7 @@ export function Contact() {
           </motion.div>
 
           {/* Contact Information */}
-          <motion.div 
+          <motion.div
             className="space-y-6"
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -207,7 +207,7 @@ export function Contact() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <h3 className="text-2xl">Weitere Kontaktmöglichkeiten</h3>
-            
+
             <div className="space-y-4">
               {contactMethods.map((method, index) => {
                 const Icon = method.icon;
@@ -278,7 +278,7 @@ export function Contact() {
         </div>
 
         {/* Office Hours & Info */}
-        <motion.div 
+        <motion.div
           className="grid md:grid-2 gap-6"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

@@ -1,9 +1,9 @@
 # Codacy Status Report - Post LFS Merge
 
-**Datum:** 4. Oktober 2025  
-**Branch:** `chore/figma-mcp-make`  
-**Letzter analysierter Commit:** `0840b2e7` (3. Okt 2025)  
-**Aktuelle HEAD:** `1011ac0d` (4. Okt 2025)  
+**Datum:** 4. Oktober 2025
+**Branch:** `chore/figma-mcp-make`
+**Letzter analysierter Commit:** `0840b2e7` (3. Okt 2025)
+**Aktuelle HEAD:** `1011ac0d` (4. Okt 2025)
 
 ## Repository Status (Codacy Dashboard)
 
@@ -152,7 +152,7 @@ git push origin chore/figma-mcp-make --force-with-lease
 
 ---
 
-**Erstellt:** 2025-10-04 20:15 UTC  
-**Autor:** Peter Schuller  
-**Branch:** chore/figma-mcp-make (1011ac0d)  
+**Erstellt:** 2025-10-04 20:15 UTC
+**Autor:** Peter Schuller
+**Branch:** chore/figma-mcp-make (1011ac0d)
 **Codacy Dashboard:** https://app.codacy.com/gh/peschull/menschlichkeit-oesterreich-development

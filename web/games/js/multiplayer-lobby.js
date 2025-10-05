@@ -91,7 +91,7 @@ class DemocracyLobby {
                         <div id="lobby-status-indicator" class="status-idle"></div>
                     </div>
                 </div>
-                
+
                 <div class="lobby-content">
                     <!-- Lobby erstellen oder beitreten -->
                     <div id="lobby-join-create" class="lobby-section">
@@ -123,7 +123,7 @@ class DemocracyLobby {
                                     Session erstellen
                                 </button>
                             </div>
-                            
+
                             <div class="option-card join-lobby">
                                 <h3>🚪 Session beitreten</h3>
                                 <p>Trete einer bestehenden Democracy-Session bei</p>
@@ -133,7 +133,7 @@ class DemocracyLobby {
                                 </div>
                                 <div class="room-input">
                                     <label for="room-code">Raum-Code:</label>
-                                    <input type="text" id="room-code" placeholder="z.B. DEMO123" maxlength="6" 
+                                    <input type="text" id="room-code" placeholder="z.B. DEMO123" maxlength="6"
                                            style="text-transform: uppercase;">
                                 </div>
                                 <button id="join-lobby-btn" class="lobby-btn secondary">
@@ -142,7 +142,7 @@ class DemocracyLobby {
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- Aktive Lobby -->
                     <div id="active-lobby" class="lobby-section" style="display: none;">
                         <div class="lobby-info">
@@ -158,7 +158,7 @@ class DemocracyLobby {
                                     </button>
                                 </div>
                             </div>
-                            
+
                             <div class="teacher-controls" id="teacher-controls" style="display: none;">
                                 <h4>👩‍🏫 Lehrkraft-Optionen</h4>
                                 <label>
@@ -172,13 +172,13 @@ class DemocracyLobby {
                                 </label>
                             </div>
                         </div>
-                        
+
                         <div class="players-list">
                             <h3>Teilnehmer (<span id="player-count">0</span>/<span id="max-player-count">4</span>)</h3>
                             <div id="players-container" class="players-grid">
                                 <!-- Spieler werden dynamisch hinzugefügt -->
                             </div>
-                            
+
                             <div class="waiting-area">
                                 <div id="waiting-message">
                                     <p>⏳ Warte auf weitere Spieler...</p>
@@ -186,7 +186,7 @@ class DemocracyLobby {
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="lobby-actions">
                             <button id="start-game-btn" class="lobby-btn primary" disabled>
                                 🚀 Spiel starten
@@ -196,7 +196,7 @@ class DemocracyLobby {
                             </button>
                         </div>
                     </div>
-                    
+
                     <!-- Game Starting Countdown -->
                     <div id="game-starting" class="lobby-section" style="display: none;">
                         <div class="starting-countdown">
@@ -209,7 +209,7 @@ class DemocracyLobby {
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- QR-Code Modal -->
                 <div id="qr-modal" class="modal" style="display: none;">
                     <div class="modal-content">
@@ -248,14 +248,14 @@ class DemocracyLobby {
                 min-height: 100vh;
                 color: #333;
             }
-            
+
             .lobby-main {
                 background: white;
                 border-radius: 16px;
                 padding: 24px;
                 box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             }
-            
+
             .lobby-header {
                 display: flex;
                 justify-content: space-between;
@@ -264,44 +264,44 @@ class DemocracyLobby {
                 padding-bottom: 16px;
                 border-bottom: 2px solid #f0f0f0;
             }
-            
+
             .lobby-header h2 {
                 margin: 0;
                 color: #2c3e50;
                 font-size: 24px;
             }
-            
+
             .lobby-status {
                 display: flex;
                 align-items: center;
                 gap: 12px;
             }
-            
+
             .status-idle { background: #95a5a6; }
             .status-waiting { background: #f39c12; }
             .status-ready { background: #27ae60; }
             .status-starting { background: #e74c3c; }
-            
+
             #lobby-status-indicator {
                 width: 12px;
                 height: 12px;
                 border-radius: 50%;
                 animation: pulse 2s infinite;
             }
-            
+
             @keyframes pulse {
                 0% { opacity: 1; }
                 50% { opacity: 0.5; }
                 100% { opacity: 1; }
             }
-            
+
             .join-create-options {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
                 gap: 24px;
                 margin-bottom: 32px;
             }
-            
+
             .option-card {
                 background: #f8f9fa;
                 border: 2px solid #e9ecef;
@@ -309,29 +309,29 @@ class DemocracyLobby {
                 padding: 24px;
                 transition: all 0.3s ease;
             }
-            
+
             .option-card:hover {
                 border-color: #667eea;
                 box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
             }
-            
+
             .option-card h3 {
                 margin: 0 0 12px 0;
                 color: #2c3e50;
                 font-size: 18px;
             }
-            
+
             .player-input, .room-input, .game-settings {
                 margin: 16px 0;
             }
-            
+
             .player-input label, .room-input label, .game-settings label {
                 display: block;
                 margin-bottom: 6px;
                 font-weight: 500;
                 color: #555;
             }
-            
+
             .player-input input, .room-input input, .game-settings select {
                 width: 100%;
                 padding: 10px 12px;
@@ -340,7 +340,7 @@ class DemocracyLobby {
                 font-size: 14px;
                 box-sizing: border-box;
             }
-            
+
             .lobby-btn {
                 padding: 12px 24px;
                 border: none;
@@ -353,97 +353,97 @@ class DemocracyLobby {
                 display: inline-block;
                 text-decoration: none;
             }
-            
+
             .lobby-btn.primary {
                 background: #667eea;
                 color: white;
             }
-            
+
             .lobby-btn.primary:hover {
                 background: #5a67d8;
             }
-            
+
             .lobby-btn.secondary {
                 background: #e2e8f0;
                 color: #4a5568;
             }
-            
+
             .lobby-btn.secondary:hover {
                 background: #cbd5e0;
             }
-            
+
             .lobby-btn.danger {
                 background: #f56565;
                 color: white;
             }
-            
+
             .lobby-btn.danger:hover {
                 background: #e53e3e;
             }
-            
+
             .lobby-btn.small {
                 padding: 8px 16px;
                 font-size: 12px;
             }
-            
+
             .lobby-btn:disabled {
                 opacity: 0.5;
                 cursor: not-allowed;
             }
-            
+
             .lobby-info {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
                 gap: 24px;
                 margin-bottom: 24px;
             }
-            
+
             .room-info h3 {
                 margin: 0 0 12px 0;
                 font-size: 20px;
                 color: #2c3e50;
             }
-            
+
             .room-share {
                 display: flex;
                 gap: 8px;
                 margin-top: 12px;
             }
-            
+
             .teacher-controls {
                 background: #f0f4f8;
                 padding: 16px;
                 border-radius: 8px;
                 border-left: 4px solid #667eea;
             }
-            
+
             .teacher-controls h4 {
                 margin: 0 0 12px 0;
                 color: #2c3e50;
             }
-            
+
             .teacher-controls label {
                 display: block;
                 margin: 8px 0;
                 cursor: pointer;
             }
-            
+
             .teacher-controls input[type="checkbox"] {
                 margin-right: 8px;
             }
-            
+
             .players-list h3 {
                 margin: 0 0 16px 0;
                 color: #2c3e50;
             }
-            
+
             .players-grid {
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
                 gap: 16px;
                 margin-bottom: 24px;
             }
-            
+
             .player-card {
                 background: #f8f9fa;
                 border: 2px solid #e9ecef;
@@ -452,17 +452,17 @@ class DemocracyLobby {
                 text-align: center;
                 position: relative;
             }
-            
+
             .player-card.host {
                 border-color: #ffd700;
                 background: #fffdf0;
             }
-            
+
             .player-card.ready {
                 border-color: #27ae60;
                 background: #f0fff4;
             }
-            
+
             .player-avatar {
                 width: 48px;
                 height: 48px;
@@ -476,20 +476,20 @@ class DemocracyLobby {
                 font-size: 20px;
                 font-weight: bold;
             }
-            
+
             .player-name {
                 font-weight: 500;
                 margin-bottom: 4px;
                 color: #2c3e50;
             }
-            
+
             .player-status {
                 font-size: 12px;
                 color: #666;
                 text-transform: uppercase;
                 letter-spacing: 0.5px;
             }
-            
+
             .host-badge {
                 position: absolute;
                 top: -8px;
@@ -504,7 +504,7 @@ class DemocracyLobby {
                 justify-content: center;
                 font-size: 12px;
             }
-            
+
             .waiting-area {
                 text-align: center;
                 padding: 32px;
@@ -512,34 +512,34 @@ class DemocracyLobby {
                 border-radius: 8px;
                 border: 2px dashed #dee2e6;
             }
-            
+
             .waiting-area p {
                 margin: 8px 0;
                 color: #6c757d;
             }
-            
+
             .min-players {
                 font-size: 14px;
                 font-weight: 500;
             }
-            
+
             .lobby-actions {
                 display: flex;
                 justify-content: center;
                 gap: 16px;
                 margin-top: 24px;
             }
-            
+
             .starting-countdown {
                 text-align: center;
                 padding: 48px 24px;
             }
-            
+
             .starting-countdown h2 {
                 margin: 0 0 24px 0;
                 color: #2c3e50;
             }
-            
+
             .countdown-display {
                 font-size: 72px;
                 font-weight: bold;
@@ -547,13 +547,13 @@ class DemocracyLobby {
                 margin: 24px 0;
                 animation: countdownPulse 1s infinite;
             }
-            
+
             @keyframes countdownPulse {
                 0% { transform: scale(1); }
                 50% { transform: scale(1.1); }
                 100% { transform: scale(1); }
             }
-            
+
             .modal {
                 position: fixed;
                 top: 0;
@@ -566,7 +566,7 @@ class DemocracyLobby {
                 justify-content: center;
                 z-index: 1000;
             }
-            
+
             .modal-content {
                 background: white;
                 border-radius: 12px;
@@ -575,19 +575,19 @@ class DemocracyLobby {
                 max-height: 80vh;
                 overflow-y: auto;
             }
-            
+
             .modal-header {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
                 padding: 20px 24px 0 24px;
             }
-            
+
             .modal-header h3 {
                 margin: 0;
                 color: #2c3e50;
             }
-            
+
             .close-btn {
                 background: none;
                 border: none;
@@ -601,12 +601,12 @@ class DemocracyLobby {
                 align-items: center;
                 justify-content: center;
             }
-            
+
             .modal-body {
                 padding: 20px 24px 24px 24px;
                 text-align: center;
             }
-            
+
             #qr-code-display {
                 margin: 20px 0;
                 padding: 20px;
@@ -614,32 +614,32 @@ class DemocracyLobby {
                 border: 1px solid #ddd;
                 border-radius: 8px;
             }
-            
+
             .manual-join {
                 margin-top: 20px;
                 padding: 16px;
                 background: #f8f9fa;
                 border-radius: 6px;
             }
-            
+
             .manual-join p {
                 margin: 4px 0;
                 font-size: 14px;
             }
-            
+
             @media (max-width: 768px) {
                 .join-create-options {
                     grid-template-columns: 1fr;
                 }
-                
+
                 .lobby-info {
                     grid-template-columns: 1fr;
                 }
-                
+
                 .players-grid {
                     grid-template-columns: 1fr 1fr;
                 }
-                
+
                 .room-share {
                     flex-direction: column;
                 }
@@ -1124,8 +1124,8 @@ class DemocracyLobby {
 
     // Placeholder for QR code generation
     qrContainer.innerHTML = `
-            <div style="width: 200px; height: 200px; background: #f0f0f0; 
-                        display: flex; align-items: center; justify-content: center; 
+            <div style="width: 200px; height: 200px; background: #f0f0f0;
+                        display: flex; align-items: center; justify-content: center;
                         margin: 0 auto; border-radius: 8px;">
                 <div style="text-align: center;">
                     <div style="font-size: 24px; margin-bottom: 8px;">📱</div>

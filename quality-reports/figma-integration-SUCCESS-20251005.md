@@ -1,8 +1,8 @@
 # 🎨 Figma-Integration Erfolgreich Abgeschlossen!
 
-**Datum:** 2025-10-05  
-**Status:** ✅ PRODUKTIONSBEREIT  
-**Quelle:** `/workspaces/menschlichkeit-oesterreich-development/Website/` (Figma Export)  
+**Datum:** 2025-10-05
+**Status:** ✅ PRODUKTIONSBEREIT
+**Quelle:** `/workspaces/menschlichkeit-oesterreich-development/Website/` (Figma Export)
 **Ziel:** `frontend/src/components/`
 
 ---
@@ -76,6 +76,12 @@ frontend/src/
 │
 └── lib/
     └── utils.ts               # Utility-Funktionen (cn, clsx)
+
+### Zusätzliche Helfer (neu hinzugefügt)
+```
+frontend/src/components/figma/ImageWithFallback.tsx  # Bildkomponente mit Fallback
+frontend/src/components/AppStateManager.tsx          # Einfacher State‑Hook (Platzhalter)
+```
 ```
 
 ### Original Figma Export
@@ -118,6 +124,13 @@ context-menu.tsx      → frontend/src/components/ui/
 dialog.tsx            → frontend/src/components/ui/
 drawer.tsx            → frontend/src/components/ui/
 dropdown-menu.tsx     → frontend/src/components/ui/
+
+#### Routen & Navigation
+- App‑Routen ergänzt: `/games`, `/games/bridge`, `/games/bridge-100`, `/forum`, `/events`, `/news`, `/join`, `/donate`, `/contact`, `/admin`
+- Navigation erweitert: `frontend/src/components/NavBar.tsx`
+
+#### Build‑Status
+- `npm run build` erfolgreich, Artefakte unter `frontend/dist/`
 form.tsx              → frontend/src/components/ui/
 hover-card.tsx        → frontend/src/components/ui/
 input-otp.tsx         → frontend/src/components/ui/
@@ -411,10 +424,10 @@ figma-design-system/00_design-tokens.json
    ```bash
    # UI-Komponenten
    cp -r Website/src/components/ui/* frontend/src/components/ui/
-   
+
    # Feature-Komponenten
    cp Website/src/components/*.tsx frontend/src/components/
-   
+
    # Utils
    cp Website/src/lib/utils.ts frontend/src/lib/
    ```
@@ -506,13 +519,13 @@ import { Card } from './ui/card'
 
 export default function Events() {
   const [events, setEvents] = useState([])
-  
+
   useEffect(() => {
     fetch('https://api.menschlichkeit-oesterreich.at/events')
       .then(res => res.json())
       .then(setEvents)
   }, [])
-  
+
   return (
     <div className="grid gap-4">
       {events.map(event => (
@@ -580,7 +593,7 @@ Alle Komponenten sind produktionsbereit und können sofort verwendet werden.
 
 ---
 
-**Erstellt von:** GitHub Copilot AI Agent  
-**Technologie:** React + TypeScript + Tailwind CSS + Radix UI  
-**Projekt:** Menschlichkeit Österreich - Austrian NGO Platform  
+**Erstellt von:** GitHub Copilot AI Agent
+**Technologie:** React + TypeScript + Tailwind CSS + Radix UI
+**Projekt:** Menschlichkeit Österreich - Austrian NGO Platform
 **Datum:** 2025-10-05

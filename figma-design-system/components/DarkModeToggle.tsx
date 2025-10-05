@@ -28,7 +28,7 @@ export function DarkModeToggle() {
 
   const applyTheme = (newTheme: Theme) => {
     const root = document.documentElement;
-    
+
     if (newTheme === 'system') {
       const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
         ? 'dark'

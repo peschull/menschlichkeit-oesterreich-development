@@ -121,12 +121,12 @@ export function NotificationCenter({ userId }: NotificationCenterProps) {
 
   const getTimeAgo = (date: Date) => {
     const seconds = Math.floor((Date.now() - date.getTime()) / 1000);
-    
+
     if (seconds < 60) return 'Gerade eben';
     if (seconds < 3600) return `vor ${Math.floor(seconds / 60)} Min`;
     if (seconds < 86400) return `vor ${Math.floor(seconds / 3600)} Std`;
     if (seconds < 604800) return `vor ${Math.floor(seconds / 86400)} Tagen`;
-    
+
     return date.toLocaleDateString('de-AT', {
       day: '2-digit',
       month: '2-digit',
@@ -227,7 +227,7 @@ export function NotificationCenter({ userId }: NotificationCenterProps) {
                         }`}>
                           {getNotificationIcon(notification)}
                         </div>
-                        
+
                         <div className="flex-1 min-w-0">
                           <div className="flex items-start justify-between gap-2">
                             <h5 className="font-medium text-sm mb-1">
@@ -237,16 +237,16 @@ export function NotificationCenter({ userId }: NotificationCenterProps) {
                               <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0 mt-1" />
                             )}
                           </div>
-                          
+
                           <p className="text-sm text-muted-foreground mb-2">
                             {notification.message}
                           </p>
-                          
+
                           <div className="flex items-center justify-between">
                             <span className="text-xs text-muted-foreground">
                               {getTimeAgo(notification.timestamp)}
                             </span>
-                            
+
                             <div className="flex items-center gap-1">
                               {!notification.read && (
                                 <Button

@@ -62,7 +62,7 @@ function TestSSHConnection {
 
     try {
         Write-Host "📡 Teste SSH-Verbindung zu $user_value@$host_value..." -ForegroundColor Cyan
-        
+
         # Prüfe erst, ob der Host erreichbar ist
         $testConn = Test-NetConnection -ComputerName $host_value -Port 22 -WarningAction SilentlyContinue -ErrorAction SilentlyContinue
         if (-not $testConn.TcpTestSucceeded) {
@@ -78,12 +78,12 @@ function TestSSHConnection {
         $processInfo.RedirectStandardOutput = $true
         $processInfo.UseShellExecute = $false
         $processInfo.CreateNoWindow = $true
-        
+
         $process = New-Object System.Diagnostics.Process
         $process.StartInfo = $processInfo
         $process.Start() | Out-Null
         $process.WaitForExit()
-        
+
         if ($process.ExitCode -eq 0) {
             Write-Host "✅ SSH-Verbindung erfolgreich getestet!" -ForegroundColor Green
             return $true
@@ -116,7 +116,7 @@ if (-not (TestSSHConnection -host_value $host_value -user_value $user_value -key
     Write-Host "  - Host-Key noch nicht akzeptiert (einmal manuell verbinden)" -ForegroundColor Yellow
     Write-Host "  - SSH-Key benötigt Passphrase (wird im Skript nicht unterstützt)" -ForegroundColor Yellow
     Write-Host "  - Firewall blockiert Verbindung" -ForegroundColor Yellow
-    
+
     $continue = Read-Host "Trotzdem fortfahren? (j/n)"
     if ($continue -ne "j") {
         exit 1
@@ -141,30 +141,30 @@ get -r wp-content/plugins
 "@
 
     Write-Host "→ Pull: Hauptdomain (WordPress) nach $BASE_DIR\menschlichkeit-oesterreich-monorepo\httpdocs" -ForegroundColor Cyan
-    
+
     # Verzeichnis erstellen falls nicht vorhanden
     New-Item -Path "$BASE_DIR\menschlichkeit-oesterreich-monorepo\httpdocs" -ItemType Directory -Force | Out-Null
-    
+
     # SFTP-Batch direkt ausführen
     $batchFile = Join-Path $env:TEMP "sftp_commands.txt"
     $batchCommands | Set-Content -Path $batchFile -Encoding UTF8
-    
+
     # SFTP direkt aus PowerShell aufrufen
     $sftpArgs = @(
         "-i", "`"$key_value`"",
-        "-b", "`"$batchFile`"", 
+        "-b", "`"$batchFile`"",
         "$user_value@$host_value"
     )
-    
+
     Write-Host "sftp $sftpArgs" -ForegroundColor DarkGray
     & sftp $sftpArgs
-    
+
     if ($LASTEXITCODE -eq 0) {
         Write-Host "✅ Sync erfolgreich abgeschlossen!" -ForegroundColor Green
     } else {
         Write-Host "❌ Sync fehlgeschlagen mit Exit-Code: $LASTEXITCODE" -ForegroundColor Red
     }
-    
+
     # Temp-Datei aufräumen
     Remove-Item -Path $batchFile -Force -ErrorAction SilentlyContinue
 }

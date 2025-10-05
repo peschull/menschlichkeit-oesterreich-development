@@ -8,12 +8,12 @@ import { Switch } from './ui/switch';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
 import { Separator } from './ui/separator';
-import { 
-  Settings, 
-  Shield, 
-  Mail, 
-  Globe, 
-  Users, 
+import {
+  Settings,
+  Shield,
+  Mail,
+  Globe,
+  Users,
   CreditCard,
   Bell,
   Database,
@@ -43,23 +43,23 @@ export function AdminSettings() {
               <Globe className="h-4 w-4" />
               Vereinseinstellungen
             </h4>
-            
+
             <div className="grid grid-cols-1 gap-4">
               <div>
                 <Label htmlFor="organizationName">Vereinsname</Label>
                 <Input id="organizationName" defaultValue="Menschlichkeit Österreich" />
               </div>
-              
+
               <div>
                 <Label htmlFor="organizationEmail">Haupt-E-Mail</Label>
                 <Input id="organizationEmail" type="email" defaultValue="info@menschlichkeit-oesterreich.at" />
               </div>
-              
+
               <div>
                 <Label htmlFor="organizationPhone">Telefon</Label>
                 <Input id="organizationPhone" defaultValue="+43 1 234 5678" />
               </div>
-              
+
               <div>
                 <Label htmlFor="organizationAddress">Adresse</Label>
                 <Textarea id="organizationAddress" defaultValue="Mariahilfer Straße 123&#10;1060 Wien&#10;Österreich" />
@@ -74,23 +74,23 @@ export function AdminSettings() {
               <Users className="h-4 w-4" />
               Mitgliedschaftseinstellungen
             </h4>
-            
+
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="standardPrice">Standard Mitgliedschaft (€/Jahr)</Label>
                 <Input id="standardPrice" type="number" defaultValue="30" />
               </div>
-              
+
               <div>
                 <Label htmlFor="premiumPrice">Premium Mitgliedschaft (€/Jahr)</Label>
                 <Input id="premiumPrice" type="number" defaultValue="60" />
               </div>
-              
+
               <div>
                 <Label htmlFor="studentPrice">Student Mitgliedschaft (€/Jahr)</Label>
                 <Input id="studentPrice" type="number" defaultValue="15" />
               </div>
-              
+
               <div>
                 <Label htmlFor="gracePeriod">Kulanzzeit (Tage)</Label>
                 <Input id="gracePeriod" type="number" defaultValue="30" />
@@ -105,18 +105,18 @@ export function AdminSettings() {
               <CreditCard className="h-4 w-4" />
               SEPA-Einstellungen
             </h4>
-            
+
             <div className="grid grid-cols-1 gap-4">
               <div>
                 <Label htmlFor="creditorId">Gläubiger-Identifikationsnummer</Label>
                 <Input id="creditorId" defaultValue="AT12ZZZ12345678901" />
               </div>
-              
+
               <div>
                 <Label htmlFor="bankAccount">IBAN</Label>
                 <Input id="bankAccount" defaultValue="AT123456789012345678" />
               </div>
-              
+
               <div>
                 <Label htmlFor="preNotificationDays">Vorlaufzeit SEPA-Lastschrift (Tage)</Label>
                 <Select defaultValue="5">
@@ -141,7 +141,7 @@ export function AdminSettings() {
               <Bell className="h-4 w-4" />
               E-Mail Benachrichtigungen
             </h4>
-            
+
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <div>
@@ -150,7 +150,7 @@ export function AdminSettings() {
                 </div>
                 <Switch id="newMemberNotification" defaultChecked />
               </div>
-              
+
               <div className="flex items-center justify-between">
                 <div>
                   <Label htmlFor="donationNotification">Spenden</Label>
@@ -158,7 +158,7 @@ export function AdminSettings() {
                 </div>
                 <Switch id="donationNotification" defaultChecked />
               </div>
-              
+
               <div className="flex items-center justify-between">
                 <div>
                   <Label htmlFor="eventRegistrationNotification">Event-Anmeldungen</Label>
@@ -166,7 +166,7 @@ export function AdminSettings() {
                 </div>
                 <Switch id="eventRegistrationNotification" defaultChecked />
               </div>
-              
+
               <div className="flex items-center justify-between">
                 <div>
                   <Label htmlFor="forumModerationNotification">Forum-Moderation</Label>
@@ -184,19 +184,19 @@ export function AdminSettings() {
               <Mail className="h-4 w-4" />
               E-Mail-Einstellungen
             </h4>
-            
+
             <div className="grid grid-cols-1 gap-4">
               <div>
                 <Label htmlFor="smtpServer">SMTP Server</Label>
                 <Input id="smtpServer" defaultValue="smtp.gmail.com" />
               </div>
-              
+
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="smtpPort">Port</Label>
                   <Input id="smtpPort" defaultValue="587" />
                 </div>
-                
+
                 <div>
                   <Label htmlFor="smtpSecurity">Verschlüsselung</Label>
                   <Select defaultValue="tls">
@@ -211,18 +211,18 @@ export function AdminSettings() {
                   </Select>
                 </div>
               </div>
-              
+
               <div>
                 <Label htmlFor="smtpUsername">Benutzername</Label>
                 <Input id="smtpUsername" defaultValue="noreply@menschlichkeit-oesterreich.at" />
               </div>
-              
+
               <div>
                 <Label htmlFor="smtpPassword">Passwort</Label>
                 <Input id="smtpPassword" type="password" placeholder="••••••••" />
               </div>
             </div>
-            
+
             <Button variant="outline" size="sm">
               Verbindung testen
             </Button>
@@ -235,7 +235,7 @@ export function AdminSettings() {
               <Shield className="h-4 w-4" />
               Sicherheitseinstellungen
             </h4>
-            
+
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <div>
@@ -244,7 +244,7 @@ export function AdminSettings() {
                 </div>
                 <Switch id="requireTwoFactor" />
               </div>
-              
+
               <div className="flex items-center justify-between">
                 <div>
                   <Label htmlFor="sessionTimeout">Session-Timeout</Label>
@@ -262,7 +262,7 @@ export function AdminSettings() {
                   </SelectContent>
                 </Select>
               </div>
-              
+
               <div className="flex items-center justify-between">
                 <div>
                   <Label htmlFor="passwordComplexity">Passwort-Komplexität</Label>
@@ -270,7 +270,7 @@ export function AdminSettings() {
                 </div>
                 <Switch id="passwordComplexity" defaultChecked />
               </div>
-              
+
               <div className="flex items-center justify-between">
                 <div>
                   <Label htmlFor="loginAttempts">Login-Versuche begrenzen</Label>
@@ -288,7 +288,7 @@ export function AdminSettings() {
               <Key className="h-4 w-4" />
               API-Schlüssel
             </h4>
-            
+
             <div className="space-y-4">
               <div>
                 <Label htmlFor="publicKey">Öffentlicher API-Schlüssel</Label>
@@ -297,7 +297,7 @@ export function AdminSettings() {
                   <Button variant="outline" size="sm">Regenerieren</Button>
                 </div>
               </div>
-              
+
               <div>
                 <Label htmlFor="privateKey">Privater API-Schlüssel</Label>
                 <div className="flex gap-2">
@@ -315,7 +315,7 @@ export function AdminSettings() {
               <Lock className="h-4 w-4" />
               Datenschutz
             </h4>
-            
+
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <div>
@@ -334,7 +334,7 @@ export function AdminSettings() {
                   </SelectContent>
                 </Select>
               </div>
-              
+
               <div className="flex items-center justify-between">
                 <div>
                   <Label htmlFor="anonymizeData">Daten anonymisieren</Label>
@@ -352,7 +352,7 @@ export function AdminSettings() {
               <Database className="h-4 w-4" />
               Externe Integrationen
             </h4>
-            
+
             <div className="space-y-4">
               <div className="border rounded-lg p-4">
                 <div className="flex items-center justify-between mb-2">
@@ -367,7 +367,7 @@ export function AdminSettings() {
                   <Input id="gaTrackingId" placeholder="GA4-G-XXXXXXXXXX" />
                 </div>
               </div>
-              
+
               <div className="border rounded-lg p-4">
                 <div className="flex items-center justify-between mb-2">
                   <div>
@@ -381,7 +381,7 @@ export function AdminSettings() {
                   <Input id="mailchimpApiKey" type="password" placeholder="••••••••" />
                 </div>
               </div>
-              
+
               <div className="border rounded-lg p-4">
                 <div className="flex items-center justify-between mb-2">
                   <div>

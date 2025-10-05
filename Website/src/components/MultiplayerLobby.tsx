@@ -207,7 +207,7 @@ export function MultiplayerLobby({
     return (
       <div className="relative min-h-screen overflow-hidden">
         <DynamicBackground variant="network" intensity="medium" color="#3b82f6" animated={true} />
-        
+
         <div className="relative z-10 container mx-auto px-4 py-8">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -333,7 +333,7 @@ export function MultiplayerLobby({
     return (
       <div className="relative min-h-screen overflow-hidden">
         <DynamicBackground variant="geometric" intensity="medium" color="#8b5cf6" animated={true} />
-        
+
         <div className="relative z-10 container mx-auto px-4 py-8">
           <div className="max-w-6xl mx-auto">
             {/* Room Header */}
@@ -390,8 +390,8 @@ export function MultiplayerLobby({
                         <Users className="w-5 h-5 mr-2" />
                         Spieler ({players.length}/{currentRoom.maxPlayers})
                       </span>
-                      <Progress 
-                        value={(players.length / currentRoom.maxPlayers) * 100} 
+                      <Progress
+                        value={(players.length / currentRoom.maxPlayers) * 100}
                         className="w-32 h-2"
                       />
                     </CardTitle>

@@ -18,7 +18,7 @@ $DatabaseRequirements = @{
         Priority = 1
     }
     CRM = @{
-        Name = "mo_civicrm_data" 
+        Name = "mo_civicrm_data"
         Purpose = "CiviCRM Datenmanagement"
         Technology = "CiviCRM + Drupal"
         Provider = "MySQL/MariaDB"
@@ -46,16 +46,16 @@ $DatabaseRequirements = @{
 function Show-ProjectDatabaseNeeds {
     Write-Host "`n📊 Projektanalysierte Datenbank-Anforderungen:" -ForegroundColor Yellow
     Write-Host "===============================================" -ForegroundColor Yellow
-    
+
     Write-Host "`n🎯 Basierend auf gefundenen Dateien:" -ForegroundColor Cyan
     Write-Host "   schema.prisma: PostgreSQL für Gaming Platform" -ForegroundColor Green
     Write-Host "   .env: Laravel API + CiviCRM (MySQL/MariaDB)" -ForegroundColor Green
     Write-Host "   composer.json: CiviCRM + Drupal System" -ForegroundColor Green
-    
+
     Write-Host "`n🗂️ Erforderliche Datenbanken:" -ForegroundColor Cyan
-    
+
     $requiredDbs = $DatabaseRequirements.Values | Where-Object { $_.Required -eq $true } | Sort-Object Priority
-    
+
     foreach ($db in $requiredDbs) {
         Write-Host "`n📋 $($db.Name)" -ForegroundColor Yellow
         Write-Host "   Zweck: $($db.Purpose)" -ForegroundColor Gray
@@ -68,7 +68,7 @@ function Show-ProjectDatabaseNeeds {
 function Generate-PleskSQLCommands {
     Write-Host "`n🔧 SQL-Befehle für phpMyAdmin @ digimagical.com:" -ForegroundColor Yellow
     Write-Host "================================================" -ForegroundColor Yellow
-    
+
     Write-Host @"
 
 -- ============================================================================
@@ -78,19 +78,19 @@ function Generate-PleskSQLCommands {
 
 -- 1️⃣ DATENBANKEN ERSTELLEN (falls noch nicht vorhanden)
 -- ============================================================================
-CREATE DATABASE IF NOT EXISTS mo_laravel_api 
-    CHARACTER SET utf8mb4 
-    COLLATE utf8mb4_unicode_ci 
+CREATE DATABASE IF NOT EXISTS mo_laravel_api
+    CHARACTER SET utf8mb4
+    COLLATE utf8mb4_unicode_ci
     COMMENT 'Laravel API Backend - PRIMARY SYSTEM';
 
-CREATE DATABASE IF NOT EXISTS mo_civicrm_data 
-    CHARACTER SET utf8mb4 
-    COLLATE utf8mb4_unicode_ci 
+CREATE DATABASE IF NOT EXISTS mo_civicrm_data
+    CHARACTER SET utf8mb4
+    COLLATE utf8mb4_unicode_ci
     COMMENT 'CiviCRM Datenmanagement + Drupal';
 
-CREATE DATABASE IF NOT EXISTS mo_gaming_platform 
-    CHARACTER SET utf8mb4 
-    COLLATE utf8mb4_unicode_ci 
+CREATE DATABASE IF NOT EXISTS mo_gaming_platform
+    CHARACTER SET utf8mb4
+    COLLATE utf8mb4_unicode_ci
     COMMENT 'Educational Gaming Platform (Prisma ORM)';
 
 -- 2️⃣ BENUTZER ERSTELLEN mit minimalen Rechten
@@ -98,17 +98,17 @@ CREATE DATABASE IF NOT EXISTS mo_gaming_platform
 
 -- Laravel API Benutzer
 CREATE USER IF NOT EXISTS 'laravel_user'@'localhost' IDENTIFIED BY 'IHR_SICHERES_LARAVEL_PASSWORT_HIER';
-GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER, REFERENCES 
+GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER, REFERENCES
     ON mo_laravel_api.* TO 'laravel_user'@'localhost';
 
 -- CiviCRM Benutzer
 CREATE USER IF NOT EXISTS 'civicrm_user'@'localhost' IDENTIFIED BY 'IHR_SICHERES_CIVICRM_PASSWORT_HIER';
-GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER, REFERENCES 
+GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER, REFERENCES
     ON mo_civicrm_data.* TO 'civicrm_user'@'localhost';
 
 -- Gaming Platform Benutzer
 CREATE USER IF NOT EXISTS 'gaming_user'@'localhost' IDENTIFIED BY 'IHR_SICHERES_GAMING_PASSWORT_HIER';
-GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER, REFERENCES 
+GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER, REFERENCES
     ON mo_gaming_platform.* TO 'gaming_user'@'localhost';
 
 -- 3️⃣ BERECHTIGUNGEN AKTIVIEREN
@@ -117,11 +117,11 @@ FLUSH PRIVILEGES;
 
 -- 4️⃣ BENUTZER UND DATENBANKEN ÜBERPRÜFEN
 -- ============================================================================
-SELECT 
-    User AS DB_User, 
+SELECT
+    User AS DB_User,
     Host AS Host,
     plugin AS Auth_Plugin
-FROM mysql.user 
+FROM mysql.user
 WHERE User IN ('laravel_user', 'civicrm_user', 'gaming_user');
 
 SHOW DATABASES LIKE 'mo_%';
@@ -135,7 +135,7 @@ SET GLOBAL innodb_buffer_pool_size = 256M;
 SET GLOBAL max_connections = 200;
 SET GLOBAL query_cache_size = 64M;
 
--- CiviCRM Optimierungen  
+-- CiviCRM Optimierungen
 USE mo_civicrm_data;
 SET GLOBAL wait_timeout = 28800;
 SET GLOBAL interactive_timeout = 28800;
@@ -153,21 +153,21 @@ SET GLOBAL innodb_flush_log_at_trx_commit = 2;
 
 -- 7️⃣ VERBINDUNGSTEST
 -- ============================================================================
-SELECT 
+SELECT
     'Laravel API' AS System_Name,
     'mo_laravel_api' AS Database_Name,
     'laravel_user' AS User_Name,
     'READY' AS Status
 UNION ALL
-SELECT 
+SELECT
     'CiviCRM',
     'mo_civicrm_data',
     'civicrm_user',
     'READY'
 UNION ALL
-SELECT 
+SELECT
     'Gaming Platform',
-    'mo_gaming_platform', 
+    'mo_gaming_platform',
     'gaming_user',
     'READY';
 
@@ -177,7 +177,7 @@ SELECT
 function Show-DatabasePurposeMapping {
     Write-Host "`n🎯 Database-zu-System-Zuordnung:" -ForegroundColor Yellow
     Write-Host "=================================" -ForegroundColor Yellow
-    
+
     Write-Host @"
 
 📊 SYSTEM MAPPING für menschlichkeit-oesterreich.at:
@@ -197,7 +197,7 @@ function Show-DatabasePurposeMapping {
 3️⃣ mo_gaming_platform
    └── Educational Games (schema.prisma)
    └── User Progress, Achievements, Scores
-   └── Benutzer: gaming_user  
+   └── Benutzer: gaming_user
    └── Priorität: KRITISCH
 
 ❌ mo_wordpress_main (DEPRECATED)
@@ -210,15 +210,15 @@ function Show-DatabasePurposeMapping {
 function Show-PleskPanelSteps {
     Write-Host "`n📋 Plesk Panel - Manuelle Schritte:" -ForegroundColor Yellow
     Write-Host "===================================" -ForegroundColor Yellow
-    
+
     Write-Host @"
 
 1. 🌐 Plesk Panel Login:
    URL: https://digimagical.com:8443 (oder Ihr Plesk URL)
-   
+
 2. 🗂️ Databases → Create Database:
    ✅ mo_laravel_api
-   ✅ mo_civicrm_data  
+   ✅ mo_civicrm_data
    ✅ mo_gaming_platform
 
 3. 👤 Database Users erstellen:
@@ -243,7 +243,7 @@ function Show-PleskPanelSteps {
 function Generate-EnvironmentConfig {
     Write-Host "`n📄 .env Konfiguration aktualisieren:" -ForegroundColor Yellow
     Write-Host "====================================" -ForegroundColor Yellow
-    
+
     Write-Host @"
 
 # Nach DB-Erstellung diese Werte in .env eintragen:
@@ -258,7 +258,7 @@ LARAVEL_DB_PASS=IHR_LARAVEL_PASSWORT
 
 # CiviCRM Database
 CIVICRM_DB_HOST=localhost
-CIVICRM_DB_NAME=mo_civicrm_data  
+CIVICRM_DB_NAME=mo_civicrm_data
 CIVICRM_DB_USER=civicrm_user
 CIVICRM_DB_PASS=IHR_CIVICRM_PASSWORT
 
@@ -275,7 +275,7 @@ DB_COLLATE=utf8mb4_unicode_ci
 
 # Hauptausführung
 Show-ProjectDatabaseNeeds
-Generate-PleskSQLCommands  
+Generate-PleskSQLCommands
 Show-DatabasePurposeMapping
 Show-PleskPanelSteps
 Generate-EnvironmentConfig

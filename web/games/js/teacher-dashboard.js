@@ -293,19 +293,19 @@ class TeacherDashboard {
                 <div class="metrics-overview">
                     ${this.renderMetricsOverview()}
                 </div>
-                
+
                 <div class="alerts-panel">
                     ${this.renderAlertsPanel()}
                 </div>
-                
+
                 <div class="student-grid">
                     ${this.renderStudentGrid()}
                 </div>
-                
+
                 <div class="learning-analytics">
                     ${this.renderLearningAnalytics()}
                 </div>
-                
+
                 <div class="progress-visualization">
                     ${this.renderProgressVisualization()}
                 </div>
@@ -329,17 +329,17 @@ class TeacherDashboard {
                     <div class="metric-value">${this.classMetrics.activeStudents}/${this.classMetrics.totalStudents}</div>
                     <div class="metric-label">Aktive Schüler</div>
                 </div>
-                
+
                 <div class="metric-card average-progress">
                     <div class="metric-value">${Math.round(this.classMetrics.averageProgress * 100)}%</div>
                     <div class="metric-label">Durchschnittlicher Fortschritt</div>
                 </div>
-                
+
                 <div class="metric-card completion-rate">
                     <div class="metric-value">${Math.round(this.classMetrics.completionRate * 100)}%</div>
                     <div class="metric-label">Abschlussrate</div>
                 </div>
-                
+
                 <div class="metric-card help-requests">
                     <div class="metric-value">${this.classMetrics.helpRequestsTotal}</div>
                     <div class="metric-label">Hilfeanfragen</div>
@@ -442,7 +442,7 @@ class TeacherDashboard {
                               .join('')}
                         </div>
                     </div>
-                    
+
                     <div class="common-struggles">
                         <h4>Häufige Schwierigkeiten</h4>
                         <ul class="struggles-list">

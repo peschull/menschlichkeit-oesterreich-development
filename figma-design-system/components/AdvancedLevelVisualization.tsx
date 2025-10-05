@@ -5,7 +5,7 @@ import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 import { Progress } from './ui/progress';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
-import { 
+import {
   Map,
   Trophy,
   Star,
@@ -127,7 +127,7 @@ export function WorldMap({ chapters, currentChapter, completedChapters, onChapte
           </div>
         </div>
       </CardHeader>
-      
+
       <CardContent>
         <div className="relative">
           <svg
@@ -148,7 +148,7 @@ export function WorldMap({ chapters, currentChapter, completedChapters, onChapte
               const currentPos = chapterPositions[index];
               const prevPos = chapterPositions[index - 1];
               const currentStatus = getChapterStatus(chapter.id);
-              
+
               return (
                 <line
                   key={`connection-${chapter.id}`}
@@ -169,7 +169,7 @@ export function WorldMap({ chapters, currentChapter, completedChapters, onChapte
               const position = chapterPositions[index];
               const status = getChapterStatus(chapter.id);
               const isSelected = selectedChapter === chapter.id;
-              
+
               return (
                 <g key={chapter.id}>
                   {/* Node Background */}
@@ -203,8 +203,8 @@ export function WorldMap({ chapters, currentChapter, completedChapters, onChapte
                     fontWeight="bold"
                     className="pointer-events-none"
                   >
-                    {status === 'completed' ? '✓' : 
-                     status === 'locked' ? '🔒' : 
+                    {status === 'completed' ? '✓' :
+                     status === 'locked' ? '🔒' :
                      chapter.id}
                   </text>
 
@@ -265,7 +265,7 @@ export function WorldMap({ chapters, currentChapter, completedChapters, onChapte
                 <stop offset="100%" stopColor="#22c55e" />
               </linearGradient>
             </defs>
-            
+
             {/* Legend */}
             <g transform="translate(20, 350)">
               <rect x="0" y="0" width="200" height="35" fill="white" stroke="#e5e7eb" rx="5" opacity="0.9"/>
@@ -292,7 +292,7 @@ export function WorldMap({ chapters, currentChapter, completedChapters, onChapte
                     {(() => {
                       const chapter = chapters.find(c => c.id === selectedChapter);
                       if (!chapter) return null;
-                      
+
                       return (
                         <div>
                           <div className="flex items-center justify-between mb-3">
@@ -315,7 +315,7 @@ export function WorldMap({ chapters, currentChapter, completedChapters, onChapte
                             </div>
                             <div className="flex justify-between">
                               <span>Status:</span>
-                              <Badge 
+                              <Badge
                                 variant={getChapterStatus(chapter.id) === 'completed' ? 'default' : 'outline'}
                                 className="text-xs"
                               >
@@ -541,7 +541,7 @@ export function LevelNetwork({ levels, onLevelSelect }: { levels: LevelNode[], o
           </div>
         </div>
       </CardHeader>
-      
+
       <CardContent>
         <div className="relative overflow-auto max-h-96">
           <svg
@@ -550,11 +550,11 @@ export function LevelNetwork({ levels, onLevelSelect }: { levels: LevelNode[], o
             style={{ transform: `scale(${zoomLevel})` }}
           >
             {/* Verbindungslinien */}
-            {levels.map(level => 
+            {levels.map(level =>
               level.connections.map(targetId => {
                 const target = levels.find(l => l.id === targetId);
                 if (!target) return null;
-                
+
                 return (
                   <line
                     key={`${level.id}-${targetId}`}
@@ -589,7 +589,7 @@ export function LevelNetwork({ levels, onLevelSelect }: { levels: LevelNode[], o
                     onLevelSelect(level.id);
                   }}
                 />
-                
+
                 <text
                   x={level.position.x}
                   y={level.position.y + 4}
@@ -635,7 +635,7 @@ export function LevelNetwork({ levels, onLevelSelect }: { levels: LevelNode[], o
             {(() => {
               const level = levels.find(l => l.id === selectedLevel);
               if (!level) return null;
-              
+
               return (
                 <div>
                   <h4 className="font-semibold mb-2">{level.title}</h4>
@@ -651,7 +651,7 @@ export function LevelNetwork({ levels, onLevelSelect }: { levels: LevelNode[], o
                     <div>
                       <span className="text-muted-foreground">Status:</span>
                       <Badge variant="outline" className="ml-2">
-                        {level.completed ? 'Abgeschlossen' : 
+                        {level.completed ? 'Abgeschlossen' :
                          level.locked ? 'Gesperrt' : 'Verfügbar'}
                       </Badge>
                     </div>

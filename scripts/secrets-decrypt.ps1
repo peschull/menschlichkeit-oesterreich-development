@@ -17,4 +17,3 @@ if (!(Test-Path $encPath)) { throw ".env.enc nicht gefunden: $encPath" }
 Write-Host "[SOPS] Decrypting $encPath -> $envPath"
 & sops --input-type dotenv --decrypt $encPath | Out-File -FilePath $envPath -Encoding utf8 -NoNewline
 Write-Host "[OK] $envPath erstellt/aktualisiert" -ForegroundColor Green
-

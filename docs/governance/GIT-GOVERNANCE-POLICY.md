@@ -1,8 +1,8 @@
 # Git Governance & Repository Policy
 
-**Version:** 1.0.0  
-**Datum:** 2025-10-03  
-**Enforcement:** Automated (GitHub Branch Protection + Pre-Commit Hooks)  
+**Version:** 1.0.0
+**Datum:** 2025-10-03
+**Enforcement:** Automated (GitHub Branch Protection + Pre-Commit Hooks)
 **Revision:** Quartalsweise
 
 ---
@@ -711,7 +711,7 @@ ssh-keygen -t ed25519 -C "your_email@example.com"
 
 ### 7.2 Gesamt-Score
 
-**Erfüllt:** 2 / 23 Checkboxen (8.7%)  
+**Erfüllt:** 2 / 23 Checkboxen (8.7%)
 **Status:** 🔴 NICHT COMPLIANT
 
 ---
@@ -730,6 +730,6 @@ ssh-keygen -t ed25519 -C "your_email@example.com"
 
 ---
 
-**Review-Zyklus:** Quartalsweise  
-**Nächste Review:** 2025-12-31  
+**Review-Zyklus:** Quartalsweise
+**Nächste Review:** 2025-12-31
 **Verantwortlich:** Repository Admin (@peschull) + DevOps Team

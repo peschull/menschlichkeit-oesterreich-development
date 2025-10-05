@@ -50,13 +50,13 @@ ALLOWED_LOG_FIELDS = {
 class AllowlistJsonFormatter(jsonlogger.JsonFormatter):
     """
     JSON-Formatter der nur Allowlist-Felder loggt.
-    
+
     Verhindert unbeabsichtigtes Logging von PII in `extra={...}`.
     """
-    
+
     def add_fields(self, log_record: Dict[str, Any], record: logging.LogRecord, message_dict: Dict[str, Any]):
         super().add_fields(log_record, record, message_dict)
-        
+
         # Nur Allowlist-Felder behalten
         allowed = {k: v for k, v in log_record.items() if k in ALLOWED_LOG_FIELDS}
         log_record.clear()
@@ -70,27 +70,27 @@ def setup_logging(
 ):
     """
     Konfiguriert Logging für FastAPI-App.
-    
+
     Args:
         level: Log-Level (default: ENV["LOG_LEVEL"] oder "INFO")
         format: "json" oder "text"
         enable_pii_filter: Aktiviert PII-Redaktion
-        
+
     Usage:
         from app.config import setup_logging
         setup_logging(level="DEBUG", format="json")
     """
-    
+
     # Environment-basiertes Level
     if level is None:
         level = os.getenv("LOG_LEVEL", "INFO").upper()
-    
+
     # Sanitizer
     sanitizer = PiiSanitizer() if enable_pii_filter else None
-    
+
     # Handler konfigurieren
     handlers = {}
-    
+
     if format == "json":
         # JSON-Handler für Produktion
         handlers["default"] = {
@@ -107,7 +107,7 @@ def setup_logging(
             "formatter": "text",
             "stream": "ext://sys.stdout"
         }
-    
+
     # Datei-Handler (optional)
     log_dir = os.getenv("LOG_DIR", "./logs")
     if os.getenv("LOG_FILE_ENABLED", "false").lower() == "true":
@@ -120,7 +120,7 @@ def setup_logging(
             "maxBytes": 10 * 1024 * 1024,  # 10 MB
             "backupCount": 5
         }
-    
+
     # Logging Config
     config = {
         "version": 1,
@@ -148,16 +148,16 @@ def setup_logging(
             "fastapi": {"level": "INFO", "propagate": True},
         }
     }
-    
+
     # Apply Config
     logging.config.dictConfig(config)
-    
+
     # PII-Filter zu allen Handlern hinzufügen
     if enable_pii_filter and sanitizer:
         pii_filter = LoggingPiiFilter(sanitizer)
         for handler in logging.root.handlers:
             handler.addFilter(pii_filter)
-    
+
     logger = logging.getLogger(__name__)
     logger.info(
         f"Logging configured: level={level}, format={format}, pii_filter={enable_pii_filter}"
@@ -167,7 +167,7 @@ def setup_logging(
 def get_logger(name: str) -> logging.Logger:
     """
     Gibt Logger mit PII-Filter zurück.
-    
+
     Usage:
         from app.config import get_logger
         logger = get_logger(__name__)
@@ -185,7 +185,7 @@ def log_request(
 ):
     """
     Strukturiertes Request-Logging.
-    
+
     Usage:
         log_request("GET", "/api/users", user_id=123, duration_ms=45.2, status=200)
     """
@@ -212,7 +212,7 @@ def log_security_event(
 ):
     """
     Security-Event-Logging.
-    
+
     Usage:
         log_security_event(
             "failed_login",
@@ -223,20 +223,20 @@ def log_security_event(
         )
     """
     logger = get_logger("api.security")
-    
+
     extra = {
         "action": "security_event",
         "event_type": event_type,
         "user_id": user_id,
         "ip_masked": ip_masked,
     }
-    
+
     # Details (nur Allowlist-Felder!)
     if details:
         for key, value in details.items():
             if key in ALLOWED_LOG_FIELDS:
                 extra[key] = value
-    
+
     if severity == "warning":
         logger.warning(f"Security: {event_type}", extra=extra)
     elif severity == "error":

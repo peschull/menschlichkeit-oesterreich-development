@@ -74,16 +74,16 @@ const validateAustrianIBAN = (iban: string): ValidationResult => {
     '20111': { name: 'Erste Bank', bic: 'GIBAATWW' },
     '32000': { name: 'Raiffeisen', bic: 'RLNWATWW' }
   };
-  
+
   const cleanIban = iban.replace(/\\s/g, '').toUpperCase();
-  
+
   if (!cleanIban.startsWith('AT') || cleanIban.length !== 20) {
     return { isValid: false, error: 'Ungültiges österreichisches IBAN-Format' };
   }
-  
+
   const bankCode = cleanIban.substring(4, 9);
   const bank = austrianBanks[bankCode];
-  
+
   return {
     isValid: true,
     bank: bank?.name || 'Unbekannte Bank',

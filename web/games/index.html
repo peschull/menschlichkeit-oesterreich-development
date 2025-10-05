@@ -6,14 +6,14 @@
     <meta name="description" content="Brücken Bauen - Ein interaktives Lernspiel über Empathie, Menschenrechte und demokratischen Zusammenhalt">
     <meta name="keywords" content="Demokratie, Menschenrechte, Empathie, Bildungsspiel, Menschlichkeit Österreich">
     <meta name="author" content="Menschlichkeit Österreich">
-    
+
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Brücken Bauen - Democracy Game">
     <meta property="og:description" content="Ein interaktives Lernspiel über Empathie, Menschenrechte und demokratischen Zusammenhalt">
     <meta property="og:type" content="website">
     <meta property="og:image" content="./assets/icons/og-image.png">
     <meta property="og:url" content="https://menschlichkeit-oesterreich.at/games/">
-    
+
     <!-- PWA Manifest -->
     <link rel="manifest" href="./manifest.json">
     <meta name="theme-color" content="#b80000">
@@ -21,27 +21,27 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="Brücken Bauen">
     <link rel="apple-touch-icon" href="./assets/icons/icon-192x192.png">
-    
+
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="./assets/icons/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="./assets/icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./assets/icons/favicon-16x16.png">
-    
+
     <!-- Stylesheets -->
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/components.css">
     <link rel="stylesheet" href="./css/animations.css">
-    
+
     <!-- Preload Critical Resources -->
     <link rel="preload" href="./js/game.js" as="script">
     <link rel="preload" href="./js/scenarios.js" as="script">
-    
+
     <title>Brücken Bauen - Interactive Democracy Game | Menschlichkeit Österreich</title>
 </head>
 <body>
     <!-- Skip Navigation für Screen Reader -->
     <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
-    
+
     <!-- Header -->
     <header class="game-header" role="banner">
         <div class="header-content">
@@ -64,14 +64,14 @@
 
     <!-- Main Content -->
     <main id="main-content" class="game-main" role="main">
-        
+
         <!-- Start Screen -->
         <section id="start-screen" class="screen active" aria-labelledby="start-title">
             <div class="container">
                 <div class="welcome-card glass-card">
                     <h2 id="start-title" class="screen-title">Willkommen bei Brücken Bauen</h2>
                     <p class="screen-subtitle">Ein interaktives Lernspiel über Empathie, Menschenrechte und demokratischen Zusammenhalt</p>
-                    
+
                     <div class="game-info">
                         <div class="info-item">
                             <svg class="info-icon" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
@@ -92,7 +92,7 @@
                             <span><strong>Keine Anmeldung</strong> erforderlich</span>
                         </div>
                     </div>
-                    
+
                     <div class="learning-goals">
                         <h3>Das lernst du:</h3>
                         <ul>
@@ -102,7 +102,7 @@
                             <li>Zivilcourage in schwierigen Situationen</li>
                         </ul>
                     </div>
-                    
+
                     <button id="start-game-btn" class="cta-button primary-button" type="button">
                         <svg class="button-icon" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true">
                             <path d="M6 4l8 6-8 6V4z" fill="currentColor"/>
@@ -117,13 +117,13 @@
         <section id="game-screen" class="screen" aria-labelledby="scenario-title">
             <div class="container">
                 <div class="scenario-card glass-card">
-                    
+
                     <!-- Scenario Header -->
                     <div class="scenario-header">
                         <span class="scenario-category" id="scenario-category">Szenario</span>
                         <h2 id="scenario-title" class="scenario-title">Szenario wird geladen...</h2>
                     </div>
-                    
+
                     <!-- Scenario Content -->
                     <div class="scenario-content">
                         <div class="scenario-image-container">
@@ -135,7 +135,7 @@
                             </p>
                         </div>
                     </div>
-                    
+
                     <!-- Decision Options -->
                     <div class="decisions-section">
                         <h3 class="decisions-title">Was machst du?</h3>
@@ -143,14 +143,14 @@
                             <!-- Decision buttons will be populated by JavaScript -->
                         </div>
                     </div>
-                    
+
                     <!-- Action Button -->
                     <div class="action-section">
                         <button id="submit-decision-btn" class="cta-button secondary-button" type="button" disabled>
                             Entscheidung treffen
                         </button>
                     </div>
-                    
+
                 </div>
             </div>
         </section>
@@ -162,19 +162,19 @@
                     <div class="result-header">
                         <h2 id="result-title" class="result-title">Deine Entscheidung</h2>
                     </div>
-                    
+
                     <div class="result-content">
                         <div id="result-feedback" class="result-feedback">
                             <p id="feedback-text" class="feedback-text"></p>
                         </div>
-                        
+
                         <div class="perspectives-section">
                             <h3>Andere Perspektiven:</h3>
                             <div id="perspectives-list" class="perspectives-list">
                                 <!-- Perspectives will be populated by JavaScript -->
                             </div>
                         </div>
-                        
+
                         <div class="score-section">
                             <h3>Dein Demokratie-Score:</h3>
                             <div class="score-display">
@@ -205,7 +205,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="result-actions">
                         <button id="continue-btn" class="cta-button primary-button" type="button">
                             Weiter zum nächsten Szenario
@@ -227,7 +227,7 @@
                         <h2 id="final-title" class="final-title">Herzlichen Glückwunsch!</h2>
                         <p class="final-subtitle">Du hast alle Szenarien erfolgreich durchgespielt</p>
                     </div>
-                    
+
                     <div class="final-content">
                         <div class="final-score">
                             <h3>Dein Demokratie-Profil:</h3>
@@ -235,18 +235,18 @@
                                 <!-- Profile will be generated by JavaScript -->
                             </div>
                         </div>
-                        
+
                         <div class="reflection-section">
                             <h3>Deine Reflexion:</h3>
-                            <textarea 
-                                id="reflection-text" 
-                                class="reflection-textarea" 
+                            <textarea
+                                id="reflection-text"
+                                class="reflection-textarea"
                                 placeholder="Was hast du aus diesem Spiel gelernt? Welche Erkenntnisse nimmst du für deinen Alltag mit?"
                                 rows="4"
                                 aria-label="Persönliche Reflexion über das Spiel"
                             ></textarea>
                         </div>
-                        
+
                         <div class="resources-section">
                             <h3>Weiterführende Ressourcen:</h3>
                             <div class="resource-links">
@@ -271,7 +271,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="final-actions">
                         <button id="share-btn" class="cta-button secondary-button" type="button">
                             <svg class="button-icon" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true">
@@ -297,7 +297,7 @@
         <div class="footer-content">
             <div class="footer-info">
                 <p class="footer-text">
-                    Entwickelt von 
+                    Entwickelt von
                     <a href="https://menschlichkeit-oesterreich.at" class="footer-link" target="_blank" rel="noopener">
                         Menschlichkeit Österreich
                     </a>

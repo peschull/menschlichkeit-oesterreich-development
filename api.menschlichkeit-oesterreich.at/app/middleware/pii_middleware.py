@@ -31,15 +31,15 @@ logger = logging.getLogger(__name__)
 class PiiSanitizationMiddleware(BaseHTTPMiddleware):
     """
     Middleware für automatische PII-Redaktion in Requests/Responses.
-    
+
     Usage:
         from fastapi import FastAPI
         from app.middleware import PiiSanitizationMiddleware
-        
+
         app = FastAPI()
         app.add_middleware(PiiSanitizationMiddleware)
     """
-    
+
     def __init__(
         self,
         app,
@@ -56,7 +56,7 @@ class PiiSanitizationMiddleware(BaseHTTPMiddleware):
         self.sanitize_response_body = sanitize_response_body
         self.sanitize_headers = sanitize_headers
         self.sanitize_query_params = sanitize_query_params
-        
+
         # Headers die NICHT geloggt werden dürfen
         self.header_allowlist = header_allowlist or {
             "content-type",
@@ -68,14 +68,14 @@ class PiiSanitizationMiddleware(BaseHTTPMiddleware):
             "connection",
             "cache-control"
         }
-    
+
     async def dispatch(self, request: Request, call_next: Callable) -> Response:
         """Verarbeitet Request und redaktiert PII"""
-        
+
         # Sanitize Request (für Logging)
         sanitized_headers = self._sanitize_headers(request.headers)
         sanitized_query = self._sanitize_query_params(request.query_params)
-        
+
         # Request-Body (für Logging, nicht für Verarbeitung!)
         if self.sanitize_request_body and request.method in ("POST", "PUT", "PATCH"):
             # Body nur lesen wenn Content-Type JSON ist
@@ -101,26 +101,26 @@ class PiiSanitizationMiddleware(BaseHTTPMiddleware):
                         )
                 except Exception as e:
                     logger.warning(f"Failed to parse request body: {e}")
-        
+
         # Forward Request
         response = await call_next(request)
-        
+
         # Sanitize Response (optional, meist nicht nötig)
         if self.sanitize_response_body:
             # Response body sanitization (komplizierter, siehe unten)
             pass
-        
+
         return response
-    
+
     def _sanitize_headers(self, headers: Headers) -> dict:
         """Redaktiert sensitive Headers"""
         if not self.sanitize_headers:
             return dict(headers)
-        
+
         sanitized = {}
         for key, value in headers.items():
             key_lower = key.lower()
-            
+
             if key_lower in self.header_allowlist:
                 sanitized[key] = value
             elif key_lower in ("authorization", "cookie", "set-cookie"):
@@ -128,14 +128,14 @@ class PiiSanitizationMiddleware(BaseHTTPMiddleware):
             else:
                 # Anderen Text scrubben
                 sanitized[key] = self.sanitizer.scrub_text(value)
-        
+
         return sanitized
-    
+
     def _sanitize_query_params(self, query_params: QueryParams) -> dict:
         """Redaktiert sensitive Query-Parameter"""
         if not self.sanitize_query_params:
             return dict(query_params)
-        
+
         return self.sanitizer.scrub_dict(
             dict(query_params),
             RedactionStrategy.MASK
@@ -145,18 +145,18 @@ class PiiSanitizationMiddleware(BaseHTTPMiddleware):
 class PiiLoggingMiddleware(BaseHTTPMiddleware):
     """
     Lightweight Middleware nur für Logging (ohne Request-Mutation).
-    
+
     Usage:
         app.add_middleware(PiiLoggingMiddleware)
     """
-    
+
     def __init__(self, app, sanitizer: Optional[PiiSanitizer] = None):
         super().__init__(app)
         self.sanitizer = sanitizer or PiiSanitizer()
-    
+
     async def dispatch(self, request: Request, call_next: Callable) -> Response:
         """Loggt Request/Response mit PII-Redaktion"""
-        
+
         # Log Request
         logger.info(
             f"{request.method} {request.url.path}",
@@ -167,10 +167,10 @@ class PiiLoggingMiddleware(BaseHTTPMiddleware):
                 "headers": self._safe_headers(request.headers)
             }
         )
-        
+
         # Process
         response = await call_next(request)
-        
+
         # Log Response
         logger.info(
             f"{request.method} {request.url.path} -> {response.status_code}",
@@ -179,9 +179,9 @@ class PiiLoggingMiddleware(BaseHTTPMiddleware):
                 "path": request.url.path
             }
         )
-        
+
         return response
-    
+
     def _safe_headers(self, headers: Headers) -> dict:
         """Gibt nur safe Headers zurück"""
         safe = {}

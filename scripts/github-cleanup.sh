@@ -48,7 +48,7 @@ echo "   - peschull/menschlichkeit-oesterreich-development"
 echo
 echo "❌ ZU LÖSCHEN (konsolidiert in Haupt-Repository):"
 echo "   - peschull/menschlichkeit-oesterreich-monorepo"
-echo "   - peschull/menschlichkeit-oesterreich" 
+echo "   - peschull/menschlichkeit-oesterreich"
 echo "   - peschull/crm.menschlichkeit-oesterreich"
 echo "   - peschull/api.menschlichkeit-oesterreich"
 echo
@@ -74,7 +74,7 @@ echo
 echo "# 1. Monorepo-Duplikat löschen"
 echo "gh repo delete peschull/menschlichkeit-oesterreich-monorepo --yes"
 echo
-echo "# 2. Ursprüngliches Haupt-Repository löschen (jetzt konsolidiert)"  
+echo "# 2. Ursprüngliches Haupt-Repository löschen (jetzt konsolidiert)"
 echo "gh repo delete peschull/menschlichkeit-oesterreich --yes"
 echo
 echo "# 3. Separates CRM-Repository löschen"

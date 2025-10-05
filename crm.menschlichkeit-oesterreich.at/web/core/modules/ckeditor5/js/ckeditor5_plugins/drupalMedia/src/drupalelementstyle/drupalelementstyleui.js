@@ -171,7 +171,7 @@ export default class DrupalElementStyleUi extends Plugin {
           'defaultItem must be part of items in the dropdown configuration.',
         );
       }
-       
+
       for (const item of obj.items) {
         const groupName = item.split(':')[1];
         items.push(groupName);
@@ -229,7 +229,7 @@ export default class DrupalElementStyleUi extends Plugin {
         );
 
     const filteredDefinedStyles = definedStyles.filter(function (item) {
-       
+
       for (const [key, value] of toMap(item.modelAttributes)) {
         if (modelElement && modelElement.hasAttribute(key)) {
           return value.includes(modelElement.getAttribute(key));
@@ -502,7 +502,7 @@ export default class DrupalElementStyleUi extends Plugin {
       // default label of the splitbutton.
       dropdownButtonView.bind('label').to(command, 'value', (commandValue) => {
         if (commandValue && commandValue[group]) {
-           
+
           for (const style of definedStyles) {
             if (style.name === commandValue[group]) {
               return style.title;

@@ -152,16 +152,16 @@ Ablage:
 ```
 1. Metadata abrufen
    → Struktur analysieren
-   
+
 2. Code generieren
    → React + TS + Tailwind
-   
+
 3. Screenshot vergleichen
    → Visual-Check
-   
+
 4. Code ablegen
    → figma-design-system/components/ui/
-   
+
 5. Testen
    → npm run dev + Visual-Test
 ```
@@ -277,7 +277,7 @@ const x: ButtonProps = ...    // Types
 
 ---
 
-**Version:** 1.0  
+**Version:** 1.0
 **Zuletzt aktualisiert:** 2025-10-02
 
 ---

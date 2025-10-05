@@ -1,9 +1,9 @@
 # Codacy Baseline – 2025-10-04
 
-Branch: chore/codacy-phase-0-verify-2025-10-04  
-Commit: 3c662a48eb1f92b7719e469af6ba4dd379ed36f2  
-Subject: chore(phase-0): add verification script/report; docs: update supply-chain blueprint & threat model; build: add sbom workflow; test  
-Committed: 2025-10-04T21:02:07+02:00  
+Branch: chore/codacy-phase-0-verify-2025-10-04
+Commit: 3c662a48eb1f92b7719e469af6ba4dd379ed36f2
+Subject: chore(phase-0): add verification script/report; docs: update supply-chain blueprint & threat model; build: add sbom workflow; test
+Committed: 2025-10-04T21:02:07+02:00
 PR: https://github.com/peschull/menschlichkeit-oesterreich-development/pull/39
 
 Current Codacy (last analysed on default branch):

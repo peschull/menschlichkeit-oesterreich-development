@@ -69,27 +69,27 @@ if [[ "$ACTION" == "dry-run" ]]; then
         -e "ssh -i '$SSH_KEY' -p $SSH_PORT -o StrictHostKeyChecking=no" \
         "${EXCLUDES[@]}" \
         "$ROOT_DIR/" "$SSH_HOST:$REMOTE_PATH/"
-    
+
     echo -e "\n${GREEN}✅ Dry-Run abgeschlossen${NC}"
     echo -e "${YELLOW}💡 Führe './scripts/deploy-to-plesk-direct.sh deploy' aus um tatsächlich zu deployen${NC}"
-    
+
 elif [[ "$ACTION" == "deploy" ]]; then
     echo -e "${RED}⚠️  PRODUKTIONS-DEPLOYMENT STARTET${NC}"
     echo -e "${YELLOW}Dateien werden auf den Server übertragen...${NC}"
     echo ""
-    
+
     rsync -az --delete --partial --info=progress2 --stats \
         -e "ssh -i '$SSH_KEY' -p $SSH_PORT -o StrictHostKeyChecking=no" \
         "${EXCLUDES[@]}" \
         "$ROOT_DIR/" "$SSH_HOST:$REMOTE_PATH/"
-    
+
     if [[ $? -eq 0 ]]; then
         echo -e "\n${GREEN}╔══════════════════════════════════════════════════════════════╗${NC}"
         echo -e "${GREEN}║              ✅ DEPLOYMENT ERFOLGREICH                      ║${NC}"
         echo -e "${GREEN}╚══════════════════════════════════════════════════════════════╝${NC}"
         echo ""
         echo -e "${CYAN}🌐 Website: https://menschlichkeit-oesterreich.at${NC}"
-        
+
         # Health Check
         echo -e "\n${CYAN}🏥 Health-Check...${NC}"
         if curl -fsSL --max-time 15 "https://menschlichkeit-oesterreich.at" -o /dev/null 2>/dev/null; then

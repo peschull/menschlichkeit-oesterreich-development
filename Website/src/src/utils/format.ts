@@ -108,11 +108,11 @@ export const formatNumber = {
    */
   fileSize: (bytes: number): string => {
     if (bytes === 0) return '0 Bytes';
-    
+
     const k = 1024;
     const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
-    
+
     return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
   },
 };
@@ -183,7 +183,7 @@ export const formatDuration = {
     const seconds = Math.floor(ms / 1000);
     const minutes = Math.floor(seconds / 60);
     const hours = Math.floor(minutes / 60);
-    
+
     if (hours > 0) {
       return `${hours}h ${minutes % 60}m`;
     }
@@ -213,7 +213,7 @@ export const formatList = {
     if (items.length === 0) return '';
     if (items.length === 1) return items[0];
     if (items.length === 2) return items.join(' und ');
-    
+
     return items.slice(0, -1).join(', ') + ' und ' + items[items.length - 1];
   },
 
@@ -224,7 +224,7 @@ export const formatList = {
     if (items.length === 0) return '';
     if (items.length === 1) return items[0];
     if (items.length === 2) return items.join(' oder ');
-    
+
     return items.slice(0, -1).join(', ') + ' oder ' + items[items.length - 1];
   },
 };
@@ -247,11 +247,11 @@ export const format = {
   phone: (phone: string): string => {
     const cleaned = phone.replace(/\D/g, '');
     const match = cleaned.match(/^(\d{1,4})(\d{3})(\d{4})$/);
-    
+
     if (match) {
       return `+${match[1]} ${match[2]} ${match[3]}`;
     }
-    
+
     return phone;
   },
 

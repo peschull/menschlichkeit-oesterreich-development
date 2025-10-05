@@ -9,9 +9,9 @@ interface LoadingSpinnerProps {
   variant?: 'default' | 'brand';
 }
 
-export function LoadingSpinner({ 
-  size = 'md', 
-  text, 
+export function LoadingSpinner({
+  size = 'md',
+  text,
   fullScreen = false,
   variant = 'default'
 }: LoadingSpinnerProps) {

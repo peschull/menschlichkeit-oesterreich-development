@@ -46,7 +46,7 @@ for subdomain in "${CORE_DOMAINS[@]}"; do
         check_domain="${subdomain}.${DOMAIN}"
         display_name="$check_domain"
     fi
-    
+
     ip=$(getent hosts "$check_domain" 2>/dev/null | awk '{print $1}' || echo "")
     if [[ -n "$ip" ]]; then
         echo "  ✅ $display_name → $ip"
@@ -220,7 +220,7 @@ add_dns_record() {
     local host="$1"
     local type="$2"
     local value="$3"
-    
+
     if plesk bin dns --info "$DOMAIN" | grep -q "^$host\s"; then
         echo "  ⏭️  $host.$DOMAIN bereits vorhanden (übersprungen)"
     else

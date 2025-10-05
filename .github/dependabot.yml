@@ -21,4 +21,3 @@ updates:
     directory: "/crm.menschlichkeit-oesterreich.at"
     schedule:
       interval: "weekly"
-

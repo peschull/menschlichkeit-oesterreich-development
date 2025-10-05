@@ -55,8 +55,8 @@
   height: 200px;
   border-radius: var(--border-radius-lg);
   overflow: hidden;
-  background: linear-gradient(135deg, 
-    rgba(184, 0, 0, 0.1), 
+  background: linear-gradient(135deg,
+    rgba(184, 0, 0, 0.1),
     rgba(245, 245, 240, 0.3));
   display: flex;
   align-items: center;
@@ -479,32 +479,32 @@
   .scenario-content {
     grid-template-columns: 1fr;
   }
-  
+
   .scenario-image-container {
     height: 150px;
   }
-  
+
   .decision-option {
     padding: var(--space-md);
   }
-  
+
   .decision-option-text {
     padding-right: var(--space-xl);
   }
-  
+
   .score-label {
     min-width: 80px;
     font-size: var(--font-size-xs);
   }
-  
+
   .final-actions {
     flex-direction: column;
   }
-  
+
   .resource-links {
     gap: var(--space-sm);
   }
-  
+
   .resource-link {
     padding: var(--space-md);
     font-size: var(--font-size-sm);
@@ -516,11 +516,11 @@
   .achievement-icon {
     animation: none;
   }
-  
+
   .decision-option:hover {
     transform: none;
   }
-  
+
   .resource-link:hover {
     transform: none;
   }
@@ -531,15 +531,15 @@
   .decision-option {
     border-width: 3px;
   }
-  
+
   .decision-option.selected {
     background: rgba(184, 0, 0, 0.2);
   }
-  
+
   .resource-link {
     border-width: 2px;
   }
-  
+
   .reflection-textarea {
     border-width: 3px;
   }

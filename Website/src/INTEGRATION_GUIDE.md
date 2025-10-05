@@ -24,7 +24,7 @@ Suche Zeile ~100 (Desktop Navigation) und füge hinzu:
   <div className="flex items-center gap-3 ml-6">
     {/* ✅ NEU: Dark Mode Toggle */}
     <DarkModeToggle />
-    
+
     {!isAuthenticated ? (
       // ... existing code
     )}
@@ -43,7 +43,7 @@ Suche Zeile ~236 (Mobile Navigation) und füge hinzu:
     <span className="text-sm font-medium">Theme</span>
     <DarkModeToggle />
   </div>
-  
+
   {!isAuthenticated ? (
     // ... existing code
   )}
@@ -230,7 +230,7 @@ import { LoadingSpinner } from './components/LoadingSpinner';
 async function handleSave() {
   // Loading-Toast
   const toastId = showToast.loading('Speichere...');
-  
+
   try {
     await saveData();
     toast.dismiss(toastId);
@@ -249,7 +249,7 @@ import { useCookiePreferences } from './components/CookieConsent';
 
 function AnalyticsWrapper() {
   const preferences = useCookiePreferences();
-  
+
   useEffect(() => {
     if (preferences.analytics) {
       // Google Analytics initialisieren
@@ -343,18 +343,18 @@ import { ErrorBoundary } from './components/ErrorBoundary';
 Nach Abschluss aller Schritte ist **Menschlichkeit Österreich** **100% produktionsbereit**! 🚀🇦🇹
 
 ### Features komplett:
-✅ PWA (Offline-fähig)  
-✅ DSGVO-konform  
-✅ Accessibility (WCAG 2.1 AA)  
-✅ Mobile-optimiert  
-✅ Dark Mode  
-✅ Democracy Games (100+ Level)  
-✅ Admin-System  
-✅ Community-Features  
+✅ PWA (Offline-fähig)
+✅ DSGVO-konform
+✅ Accessibility (WCAG 2.1 AA)
+✅ Mobile-optimiert
+✅ Dark Mode
+✅ Democracy Games (100+ Level)
+✅ Admin-System
+✅ Community-Features
 
 ---
 
 **Support**: Für Fragen oder Probleme → #contact oder direkt im Code Issues erstellen.
 
-**Version**: 3.0.0 Final  
+**Version**: 3.0.0 Final
 **Status**: 🟢 Ready for Production

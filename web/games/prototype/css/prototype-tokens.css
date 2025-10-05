@@ -1,10 +1,10 @@
 /**
  * Democracy Metaverse - Prototype Design Tokens
  * Glassmorphism Design System für Democratic Values
- * 
+ *
  * Colors basieren auf den 4 demokratischen Werten:
  * - Empathy (Empathie): Purple/Magenta
- * - Rights (Rechtsstaatlichkeit): Cyan/Blue  
+ * - Rights (Rechtsstaatlichkeit): Cyan/Blue
  * - Participation (Partizipation): Emerald/Green
  * - Courage (Zivilcourage): Amber/Orange
  */
@@ -21,7 +21,7 @@
   --empathy-700: #a21caf;
   --empathy-800: #86198f;
   --empathy-900: #701a75;
-  
+
   --rights-50: #ecfeff;
   --rights-100: #cffafe;
   --rights-200: #a5f3fc;
@@ -32,7 +32,7 @@
   --rights-700: #0e7490;
   --rights-800: #155e75;
   --rights-900: #164e63;
-  
+
   --participation-50: #ecfdf5;
   --participation-100: #d1fae5;
   --participation-200: #a7f3d0;
@@ -43,7 +43,7 @@
   --participation-700: #047857;
   --participation-800: #065f46;
   --participation-900: #064e3b;
-  
+
   --courage-50: #fffbeb;
   --courage-100: #fef3c7;
   --courage-200: #fde68a;
@@ -54,22 +54,22 @@
   --courage-700: #b45309;
   --courage-800: #92400e;
   --courage-900: #78350f;
-  
+
   /* === GLASSMORPHISM BASE === */
   --glass-bg-primary: rgba(255, 255, 255, 0.15);
   --glass-bg-secondary: rgba(255, 255, 255, 0.08);
   --glass-bg-tertiary: rgba(255, 255, 255, 0.05);
-  
+
   --glass-border: rgba(255, 255, 255, 0.2);
   --glass-border-secondary: rgba(255, 255, 255, 0.1);
-  
+
   --glass-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
   --glass-shadow-hover: 0 12px 40px rgba(31, 38, 135, 0.2);
   --glass-shadow-active: 0 4px 16px rgba(31, 38, 135, 0.1);
-  
+
   --glass-blur: blur(15px);
   --glass-blur-strong: blur(25px);
-  
+
   /* === NEUTRAL COLORS === */
   --gray-50: #f9fafb;
   --gray-100: #f3f4f6;
@@ -81,7 +81,7 @@
   --gray-700: #374151;
   --gray-800: #1f2937;
   --gray-900: #111827;
-  
+
   /* === SEMANTIC COLORS === */
   --success-400: #4ade80;
   --success-500: #22c55e;
@@ -91,7 +91,7 @@
   --error-500: #ef4444;
   --info-400: #60a5fa;
   --info-500: #3b82f6;
-  
+
   /* === TYPOGRAPHY === */
   --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-size-xs: 0.75rem;    /* 12px */
@@ -102,17 +102,17 @@
   --font-size-2xl: 1.5rem;    /* 24px */
   --font-size-3xl: 1.875rem;  /* 30px */
   --font-size-4xl: 2.25rem;   /* 36px */
-  
+
   --font-weight-light: 300;
   --font-weight-normal: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
-  
+
   --line-height-tight: 1.25;
   --line-height-normal: 1.5;
   --line-height-loose: 1.75;
-  
+
   /* === SPACING === */
   --space-1: 0.25rem;    /* 4px */
   --space-2: 0.5rem;     /* 8px */
@@ -125,7 +125,7 @@
   --space-12: 3rem;      /* 48px */
   --space-16: 4rem;      /* 64px */
   --space-20: 5rem;      /* 80px */
-  
+
   /* === BORDER RADIUS === */
   --radius-sm: 0.375rem;   /* 6px */
   --radius-md: 0.5rem;     /* 8px */
@@ -133,12 +133,12 @@
   --radius-xl: 1rem;       /* 16px */
   --radius-2xl: 1.5rem;    /* 24px */
   --radius-full: 9999px;
-  
+
   /* === TRANSITIONS === */
   --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
-  
+
   /* === Z-INDEX SCALE === */
   --z-dropdown: 1000;
   --z-sticky: 1020;
@@ -148,12 +148,12 @@
   --z-popover: 1060;
   --z-tooltip: 1070;
   --z-toast: 1080;
-  
+
   /* === LAYOUT === */
   --container-max-width: 1200px;
   --sidebar-width: 280px;
   --header-height: 70px;
-  
+
   /* === ANIMATIONS === */
   --animation-bounce: bounce 1s infinite;
   --animation-pulse: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
@@ -167,10 +167,10 @@
   --glass-bg-primary: rgba(0, 0, 0, 0.15);
   --glass-bg-secondary: rgba(0, 0, 0, 0.08);
   --glass-bg-tertiary: rgba(0, 0, 0, 0.05);
-  
+
   --glass-border: rgba(255, 255, 255, 0.1);
   --glass-border-secondary: rgba(255, 255, 255, 0.05);
-  
+
   --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   --glass-shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.4);
   --glass-shadow-active: 0 4px 16px rgba(0, 0, 0, 0.2);
@@ -184,7 +184,7 @@
     --glass-border: rgba(0, 0, 0, 0.3);
     --glass-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
   }
-  
+
   [data-theme="dark"] {
     --glass-bg-primary: rgba(0, 0, 0, 0.9);
     --glass-bg-secondary: rgba(0, 0, 0, 0.8);
@@ -201,7 +201,7 @@
     --glass-blur: none;
     --glass-blur-strong: none;
   }
-  
+
   *,
   *::before,
   *::after {

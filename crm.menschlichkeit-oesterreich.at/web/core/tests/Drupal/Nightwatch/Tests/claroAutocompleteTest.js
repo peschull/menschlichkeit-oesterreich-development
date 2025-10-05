@@ -40,18 +40,18 @@ module.exports = {
     // Tests both the autocomplete-message nor the autocomplete dropdown are
     // present when nothing has been entered in autocomplete-3.
 
-     
+
     browser.expect.element(
       '.js-form-item-autocomplete-3 [data-drupal-selector="autocomplete-message"]',
     ).to.not.visible;
-     
+
     browser.expect.element('#ui-id-3.ui-autocomplete').to.not.visible;
 
     // Tests that upon entering some text in autocomplete-3, first the
     // autocomplete-message appears and then the autocomplete dropdown with a
     // result. At that point the autocomplete-message should be invisible again.
 
-     
+
     browser
       .setValue('[name="autocomplete_3"]', '123')
       .waitForElementVisible(

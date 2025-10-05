@@ -146,7 +146,7 @@ define('CIVICRM_SERVER_MODE', 'FPM-Apache');
  * =============================================================================
  * Config Created: $(date)
  * Target: crm.menschlichkeit-oesterreich.at
- * Database: mo_civicrm_data (civicrm_user)  
+ * Database: mo_civicrm_data (civicrm_user)
  * PHP: 8.3.25 FPM-Apache @ digimagical.com
  * CiviCRM: Latest Stable
  * Status: Production Ready ✅

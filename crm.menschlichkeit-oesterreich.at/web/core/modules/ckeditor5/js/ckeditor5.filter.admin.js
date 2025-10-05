@@ -20,7 +20,7 @@
               'drupal-ajax',
               '[data-drupal-selector="filter-format-edit-form"] [disabled], [data-drupal-selector="filter-format-add-form"] [disabled]',
             )
-             
+
             .forEach((disabledElement) => {
               disabledElement.removeAttribute('disabled');
             });

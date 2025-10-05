@@ -23,7 +23,7 @@ module.exports = {
       .waitForElementVisible('body')
       // Check that <link rel="preload"> tags properly reference font.
       .execute(
-         
+
         function (preloadFontPaths) {
           const basePath = drupalSettings.path.baseUrl;
           let selectorsExist = true;
@@ -45,7 +45,7 @@ module.exports = {
       )
       // Check that the CSS @font-face declaration has loaded the font.
       .execute(
-         
+
         function () {
           document.fonts.load('16px metropolis');
           document.fonts.load('16px Lora');

@@ -6,17 +6,17 @@
 
 **Problem:**
 ```
-Warning: Function components cannot be given refs. Attempts to access this ref will fail. 
+Warning: Function components cannot be given refs. Attempts to access this ref will fail.
 Did you mean to use React.forwardRef()?
 
-Check the render method of `SlotClone`. 
+Check the render method of `SlotClone`.
     at SheetOverlay (components/ui/sheet.tsx:32:2)
 ```
 
-**Ursache:**  
+**Ursache:**
 Die `SheetOverlay` Komponente war eine normale Funktion und konnte keine Refs empfangen, die von Radix UI's `SlotClone` weitergegeben wurden.
 
-**Lösung:**  
+**Lösung:**
 ✅ `SheetOverlay` in `React.forwardRef` umgewandelt:
 
 ```typescript
@@ -64,10 +64,10 @@ SheetOverlay.displayName = "SheetOverlay";
 If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
 ```
 
-**Ursache:**  
+**Ursache:**
 Das Sheet (basiert auf Radix Dialog) hatte keine `SheetTitle` für Screen-Reader-Nutzer.
 
-**Lösung:**  
+**Lösung:**
 ✅ Versteckten `SheetTitle` und `SheetDescription` hinzugefügt:
 
 ```tsx
@@ -76,7 +76,7 @@ Das Sheet (basiert auf Radix Dialog) hatte keine `SheetTitle` für Screen-Reader
   {/* ✅ NEU: Accessibility */}
   <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
   <SheetDescription className="sr-only">
-    Hauptnavigation für Menschlichkeit Österreich. 
+    Hauptnavigation für Menschlichkeit Österreich.
     Hier finden Sie Links zu allen wichtigen Bereichen der Website.
   </SheetDescription>
 
@@ -86,10 +86,10 @@ Das Sheet (basiert auf Radix Dialog) hatte keine `SheetTitle` für Screen-Reader
 
 **Imports aktualisiert:**
 ```tsx
-import { 
-  Sheet, 
-  SheetContent, 
-  SheetTrigger, 
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
   SheetClose,
   SheetTitle,        // ✅ NEU
   SheetDescription   // ✅ NEU
@@ -107,10 +107,10 @@ import {
 Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
 ```
 
-**Ursache:**  
+**Ursache:**
 Radix Dialog erfordert entweder eine Description oder explizites `aria-describedby={undefined}`.
 
-**Lösung:**  
+**Lösung:**
 ✅ `SheetDescription` wurde hinzugefügt (siehe oben).
 
 ---
@@ -200,10 +200,10 @@ Radix Dialog erfordert entweder eine Description oder explizites `aria-described
 
 ### **Alle ShadCN Dialog-basierten Components:**
 
-✅ **Sheet** - Behoben  
-✅ **Dialog** - Prüfen (falls verwendet)  
-✅ **AlertDialog** - Prüfen (falls verwendet)  
-✅ **Drawer** - Prüfen (falls verwendet)  
+✅ **Sheet** - Behoben
+✅ **Dialog** - Prüfen (falls verwendet)
+✅ **AlertDialog** - Prüfen (falls verwendet)
+✅ **Drawer** - Prüfen (falls verwendet)
 
 ### **Accessibility-Tests:**
 
@@ -238,8 +238,8 @@ npm run lighthouse          # Lighthouse Accessibility Scan
 
 ---
 
-**Version:** 4.2.1  
-**Datum:** 2025-10-02  
+**Version:** 4.2.1
+**Datum:** 2025-10-02
 **Status:** ✅ **BEHOBEN**
 
 ---

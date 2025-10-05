@@ -52,7 +52,7 @@ SUBDOMAINS=(
 create_dns_record() {
     local subdomain="$1"
     local ip="$2"
-    
+
     # XML-Payload für DNS-Record
     local xml_payload=$(cat <<EOF
 <packet>
@@ -67,7 +67,7 @@ create_dns_record() {
 </packet>
 EOF
 )
-    
+
     # API-Request
     if [[ -n "$PLESK_API_KEY" ]]; then
         # Mit API-Key
@@ -119,7 +119,7 @@ FAILED=0
 
 for subdomain in "${SUBDOMAINS[@]}"; do
     echo -n "  $subdomain.$DOMAIN → $SERVER_IP ... "
-    
+
     if create_dns_record "$subdomain" "$SERVER_IP" 2>/dev/null | grep -q "ok"; then
         echo "✅"
         ((SUCCESS++))

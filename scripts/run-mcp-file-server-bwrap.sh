@@ -26,4 +26,3 @@ exec bwrap \
   --tmpfs /tmp \
   --chdir "$PWD" \
   node "$SCRIPT" "$@"
-

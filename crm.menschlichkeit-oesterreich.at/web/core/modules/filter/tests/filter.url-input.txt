@@ -35,7 +35,7 @@ The old URL filter has problems with <a title="kind of link www.example.com with
 </dl>
 
 <!-- <p>This url http://www.test.com is
- inside a comment containing newlines and 
+ inside a comment containing newlines and
 <em>html</em> tags.</p> -->
 
 This is the end!

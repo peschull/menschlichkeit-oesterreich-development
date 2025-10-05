@@ -20,18 +20,18 @@ class EducationalGameAssetManager:
     Asset Manager für das Educational Gaming System
     Integriert Batch-Verarbeitung, Metadaten-Generierung und Qualitätskontrolle
     """
-    
+
     def __init__(self, base_path: str = "./web/games"):
         self.base_path = Path(base_path)
         self.assets_path = self.base_path / "assets"
         self.generated_path = self.assets_path / "generated"
         self.metadata_path = self.assets_path / "metadata"
-        
+
         # Erstelle Verzeichnisse
         self.assets_path.mkdir(exist_ok=True)
         self.generated_path.mkdir(exist_ok=True)
         self.metadata_path.mkdir(exist_ok=True)
-        
+
         # Asset Familien aus batch_prompt_template.csv
         self.asset_families = {
             "icons_values": {
@@ -44,10 +44,10 @@ class EducationalGameAssetManager:
                 }
             },
             "map_regions": {
-                "items": ["austria", "vienna", "graz", "linz", "salzburg", 
+                "items": ["austria", "vienna", "graz", "linz", "salzburg",
                          "innsbruck", "klagenfurt", "bregenz", "eisenstadt", "st_poelten"],
                 "composition_rules": {
-                    "style": "isometric_tiles", 
+                    "style": "isometric_tiles",
                     "background": "transparent",
                     "centering": True
                 }
@@ -57,7 +57,7 @@ class EducationalGameAssetManager:
                          "character_left", "character_right", "plank_horizontal", "plank_vertical"],
                 "composition_rules": {
                     "style": "game_sprites",
-                    "background": "transparent", 
+                    "background": "transparent",
                     "pixel_perfect": True
                 }
             },
@@ -79,41 +79,41 @@ class EducationalGameAssetManager:
                 }
             }
         }
-        
+
         # Initialisiere Tools
         self.metadata_generator = AssetMetadataGenerator()
         self.asset_processor = AssetProcessor()
         self.color_analyzer = ColorAnalyzer()
-    
+
     def generate_batch_assets(self, family_name: str) -> List[Dict]:
         """
         Generiert Assets für eine komplette Familie basierend auf den Templates
         """
         if family_name not in self.asset_families:
             raise ValueError(f"Unknown asset family: {family_name}")
-        
+
         family = self.asset_families[family_name]
         results = []
-        
+
         print(f"🎨 Generating assets for family: {family_name}")
         print(f"   Items: {len(family['items'])}")
         print(f"   Style: {family['composition_rules']['style']}")
-        
+
         for item_name in family['items']:
             asset_id = f"{family_name}_{item_name}"
-            
+
             # Generiere SVG basierend auf Typ
             svg_content = self._generate_svg_for_item(
-                family_name, 
-                item_name, 
+                family_name,
+                item_name,
                 family['composition_rules']
             )
-            
+
             # Speichere SVG
             svg_path = self.generated_path / f"{asset_id}.svg"
             with open(svg_path, 'w', encoding='utf-8') as f:
                 f.write(svg_content)
-            
+
             # Generiere Metadaten und Thumbnail
             try:
                 metadata = self.metadata_generator.generate_metadata(
@@ -123,12 +123,12 @@ class EducationalGameAssetManager:
                     alt_text=self._generate_alt_text(family_name, item_name),
                     tags=self._generate_tags(family_name, item_name)
                 )
-                
+
                 # Speichere Metadaten
                 metadata_path = self.metadata_path / f"{asset_id}.json"
                 with open(metadata_path, 'w', encoding='utf-8') as f:
                     json.dump(metadata, f, indent=2, ensure_ascii=False)
-                
+
                 results.append({
                     "asset_id": asset_id,
                     "family": family_name,
@@ -138,7 +138,7 @@ class EducationalGameAssetManager:
                     "metadata": metadata,
                     "status": "success"
                 })
-                
+
             except Exception as e:
                 print(f"❌ Error processing {asset_id}: {e}")
                 results.append({
@@ -149,39 +149,39 @@ class EducationalGameAssetManager:
                     "error": str(e),
                     "status": "error"
                 })
-        
+
         return results
-    
+
     def generate_all_assets(self) -> Dict[str, List[Dict]]:
         """
         Generiert alle Assets für alle Familien
         """
         all_results = {}
-        
+
         print("🚀 Starting batch asset generation...")
         print(f"   Families: {len(self.asset_families)}")
         print(f"   Total items: {sum(len(f['items']) for f in self.asset_families.values())}")
-        
+
         for family_name in self.asset_families:
             try:
                 results = self.generate_batch_assets(family_name)
                 all_results[family_name] = results
-                
+
                 success_count = sum(1 for r in results if r['status'] == 'success')
                 print(f"✅ {family_name}: {success_count}/{len(results)} assets generated")
-                
+
             except Exception as e:
                 print(f"❌ Failed to generate {family_name}: {e}")
                 all_results[family_name] = {"error": str(e)}
-        
+
         # Speichere Gesamtübersicht
         summary_path = self.metadata_path / "batch_generation_summary.json"
         with open(summary_path, 'w', encoding='utf-8') as f:
             json.dump(all_results, f, indent=2, ensure_ascii=False)
-        
+
         print(f"📊 Generation summary saved to: {summary_path}")
         return all_results
-    
+
     def _generate_svg_for_item(self, family: str, item: str, rules: Dict) -> str:
         """
         Generiert SVG-Content basierend auf Familie und Item
@@ -198,7 +198,7 @@ class EducationalGameAssetManager:
             return self._generate_character(item, rules)
         else:
             return self._generate_placeholder(item, rules)
-    
+
     def _generate_value_icon(self, value: str, rules: Dict) -> str:
         """Generiert Icons für demokratische Werte"""
         icons = {
@@ -237,7 +237,7 @@ class EducationalGameAssetManager:
             """
         }
         return icons.get(value, self._generate_placeholder(value, rules))
-    
+
     def _generate_map_region(self, region: str, rules: Dict) -> str:
         """Generiert isometrische Karten-Tiles"""
         # Vereinfachte isometrische Tiles
@@ -255,7 +255,7 @@ class EducationalGameAssetManager:
             <text x="50" y="45" text-anchor="middle" font-family="Inter" font-size="6" fill="white">{region.upper()}</text>
         </svg>
         """
-    
+
     def _generate_bridge_element(self, element: str, rules: Dict) -> str:
         """Generiert Brücken-Puzzle Elemente"""
         elements = {
@@ -281,7 +281,7 @@ class EducationalGameAssetManager:
             """
         }
         return elements.get(element, self._generate_placeholder(element, rules))
-    
+
     def _generate_ui_button(self, button: str, rules: Dict) -> str:
         """Generiert UI Button Icons"""
         buttons = {
@@ -310,7 +310,7 @@ class EducationalGameAssetManager:
             """
         }
         return buttons.get(button, self._generate_placeholder(button, rules))
-    
+
     def _generate_character(self, character: str, rules: Dict) -> str:
         """Generiert Charakter Avatare"""
         characters = {
@@ -348,7 +348,7 @@ class EducationalGameAssetManager:
             """
         }
         return characters.get(character, self._generate_placeholder(character, rules))
-    
+
     def _generate_placeholder(self, item: str, rules: Dict) -> str:
         """Generiert Platzhalter-SVG"""
         return f"""
@@ -358,13 +358,13 @@ class EducationalGameAssetManager:
             <text x="50" y="60" text-anchor="middle" font-family="Inter" font-size="6" fill="#9CA3AF">placeholder</text>
         </svg>
         """
-    
+
     def _generate_title(self, family: str, item: str) -> str:
         """Generiert benutzerfreundlichen Titel"""
         title_map = {
             "icons_values": {
                 "equality": "Gleichheit Icon",
-                "freedom": "Freiheit Icon", 
+                "freedom": "Freiheit Icon",
                 "solidarity": "Solidarität Icon",
                 "justice": "Gerechtigkeit Icon"
             },
@@ -374,32 +374,32 @@ class EducationalGameAssetManager:
                 "student_female": "Schülerin Avatar"
             }
         }
-        
+
         if family in title_map and item in title_map[family]:
             return title_map[family][item]
-        
+
         return f"{item.replace('_', ' ').title()} ({family})"
-    
+
     def _generate_alt_text(self, family: str, item: str) -> str:
         """Generiert Accessibility Alt-Text"""
         alt_map = {
             "icons_values": {
                 "equality": "Symbol für Gleichheit - zwei gleiche Kreise mit verbindender Linie",
                 "freedom": "Symbol für Freiheit - stilisierter Vogel im Flug",
-                "solidarity": "Symbol für Solidarität - zwei verbundene Hände", 
+                "solidarity": "Symbol für Solidarität - zwei verbundene Hände",
                 "justice": "Symbol für Gerechtigkeit - Waage im Gleichgewicht"
             }
         }
-        
+
         if family in alt_map and item in alt_map[family]:
             return alt_map[family][item]
-        
+
         return f"{self._generate_title(family, item)} - Grafisches Element für das Educational Gaming System"
-    
+
     def _generate_tags(self, family: str, item: str) -> List[str]:
         """Generiert relevante Tags für Suche und Organisation"""
         base_tags = ["educational", "gaming", "democracy", "ui", "svg"]
-        
+
         family_tags = {
             "icons_values": ["icon", "value", "democracy", "concept"],
             "map_regions": ["map", "geography", "austria", "region"],
@@ -407,12 +407,12 @@ class EducationalGameAssetManager:
             "ui_buttons": ["button", "interface", "control", "ui"],
             "characters": ["character", "avatar", "person", "role"]
         }
-        
+
         tags = base_tags + family_tags.get(family, [])
         tags.append(item.replace("_", "-"))
-        
+
         return list(set(tags))
-    
+
     def validate_assets(self) -> Dict:
         """
         Validiert generierte Assets auf Qualität und WCAG-Konformität
@@ -423,45 +423,45 @@ class EducationalGameAssetManager:
             "wcag_compliant": 0,
             "issues": []
         }
-        
+
         for svg_file in self.generated_path.glob("*.svg"):
             validation_results["total_assets"] += 1
-            
+
             try:
                 # Lade Metadaten
                 metadata_file = self.metadata_path / f"{svg_file.stem}.json"
                 if metadata_file.exists():
                     with open(metadata_file, 'r', encoding='utf-8') as f:
                         metadata = json.load(f)
-                    
+
                     # Prüfe WCAG Konformität
                     contrast_ratio = metadata.get('contrast_ratio', 0)
                     if contrast_ratio >= 4.5:  # WCAG AA Standard
                         validation_results["wcag_compliant"] += 1
-                    
+
                     validation_results["valid_assets"] += 1
                 else:
                     validation_results["issues"].append(f"Missing metadata for {svg_file.name}")
-                    
+
             except Exception as e:
                 validation_results["issues"].append(f"Error validating {svg_file.name}: {e}")
-        
+
         return validation_results
 
 def main():
     """CLI Interface für Asset Management"""
     import argparse
-    
+
     parser = argparse.ArgumentParser(description="Educational Game Asset Manager")
-    parser.add_argument("--action", choices=["generate", "validate", "all"], 
+    parser.add_argument("--action", choices=["generate", "validate", "all"],
                        default="all", help="Action to perform")
     parser.add_argument("--family", help="Specific asset family to process")
     parser.add_argument("--output", help="Output directory", default="./web/games")
-    
+
     args = parser.parse_args()
-    
+
     manager = EducationalGameAssetManager(args.output)
-    
+
     if args.action in ["generate", "all"]:
         if args.family:
             if args.family in manager.asset_families:
@@ -474,7 +474,7 @@ def main():
             results = manager.generate_all_assets()
             total = sum(len(r) for r in results.values() if isinstance(r, list))
             print(f"Generated {total} total assets across all families")
-    
+
     if args.action in ["validate", "all"]:
         validation = manager.validate_assets()
         print(f"Validation Results:")

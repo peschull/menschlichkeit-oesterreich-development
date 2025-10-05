@@ -1,6 +1,6 @@
 # 🎨 Figma Sync Status Report
 
-**Letzte Synchronisation**: 2025-10-03  
+**Letzte Synchronisation**: 2025-10-03
 **Status**: ✅ **ERFOLGREICH**
 
 ## Synchronisierte Komponenten

@@ -14,9 +14,9 @@ export function usePerformanceMonitoring() {
         const entries = list.getEntries();
         const lastEntry = entries[entries.length - 1];
         const lcpValue = lastEntry.renderTime || lastEntry.loadTime;
-        
+
         console.log('LCP:', lcpValue);
-        
+
         // Optional: Send to analytics
         if (window.gtag) {
           window.gtag('event', 'web_vitals', {
@@ -33,7 +33,7 @@ export function usePerformanceMonitoring() {
         for (const entry of list.getEntries()) {
           const fidValue = entry.processingStart - entry.startTime;
           console.log('FID:', fidValue);
-          
+
           if (window.gtag) {
             window.gtag('event', 'web_vitals', {
               event_category: 'Performance',
@@ -52,7 +52,7 @@ export function usePerformanceMonitoring() {
           if (!(entry as any).hadRecentInput) {
             clsValue += (entry as any).value;
             console.log('CLS:', clsValue);
-            
+
             if (window.gtag) {
               window.gtag('event', 'web_vitals', {
                 event_category: 'Performance',

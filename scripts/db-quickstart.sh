@@ -116,9 +116,9 @@ MARIADB_DBS=(
 
 for db_entry in "${MARIADB_DBS[@]}"; do
     IFS=':' read -r db_name db_user db_pass priority <<< "$db_entry"
-    
+
     echo "  📦 $db_name ($priority)"
-    
+
     if [ -f "scripts/db/provision-mariadb.sh" ]; then
         bash scripts/db/provision-mariadb.sh \
             $ACTION_FLAG \
@@ -145,9 +145,9 @@ POSTGRES_DBS=(
 
 for db_entry in "${POSTGRES_DBS[@]}"; do
     IFS=':' read -r db_name db_user db_pass priority <<< "$db_entry"
-    
+
     echo "  📦 $db_name ($priority)"
-    
+
     if [ -f "scripts/db/provision-postgres.sh" ]; then
         bash scripts/db/provision-postgres.sh \
             $ACTION_FLAG \

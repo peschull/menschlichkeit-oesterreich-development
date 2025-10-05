@@ -140,7 +140,7 @@ export interface Chapter {
 }
 
 export class GameDataGenerator {
-  
+
   /**
    * Generiert alle 10 Kapitel des Democracy Metaverse
    */
@@ -902,7 +902,7 @@ export class GameDataGenerator {
       "Anna Müller", "David Schmidt", "Maria Koller", "Thomas Weber",
       "Sarah Ahmed", "Michael Gruber", "Lisa Patel", "Alexander Novak"
     ];
-    
+
     const roles = {
       neighborhood: ["Anwohner*in", "Hausverwalter*in", "Elternteil", "Senior*in"],
       workplace: ["Kolleg*in", "Vorgesetzte*r", "Betriebsrat", "HR-Manager*in"],

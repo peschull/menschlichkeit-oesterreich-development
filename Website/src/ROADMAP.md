@@ -653,9 +653,9 @@ npm install @hookform/resolvers
 
 ---
 
-**Version**: Roadmap v1.0  
-**Erstellt**: 2025-10-02  
-**Nächstes Update**: 2025-10-09  
+**Version**: Roadmap v1.0
+**Erstellt**: 2025-10-02
+**Nächstes Update**: 2025-10-09
 **Status**: 🟢 **AKTIV**
 
 ---

@@ -29,4 +29,3 @@ Referenzen
 - Seccomp: `mcp-servers/policies/seccomp/node-min.json`
 - Runner: `scripts/run-mcp-file-server-seccomp.sh`
 - Threat Model: `docs/security/MCP-SERVER-THREAT-MODEL.md`
-

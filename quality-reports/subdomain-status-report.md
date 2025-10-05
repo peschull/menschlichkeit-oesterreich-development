@@ -1,7 +1,7 @@
 # Subdomain Status Report - Menschlichkeit Österreich
 
-**Datum:** 2025-10-04 23:19 UTC  
-**Ausführer:** GitHub Copilot (Automatisierte Prüfung)  
+**Datum:** 2025-10-04 23:19 UTC
+**Ausführer:** GitHub Copilot (Automatisierte Prüfung)
 **Server:** `dmpl20230054@5.183.217.146`
 
 ---
@@ -121,7 +121,7 @@
 
 #### Aktion 1: DNS-Records erstellen
 
-**Verantwortlich:** Domain-Administrator  
+**Verantwortlich:** Domain-Administrator
 **Tool:** Plesk Panel oder DNS-Provider Interface
 
 **Methode A: Plesk Panel (EMPFOHLEN)**
@@ -172,7 +172,7 @@ plesk bin dns --add menschlichkeit-oesterreich.at -host "*" -type A -value 5.183
 
 #### Aktion 2: DNS-Propagierung verifizieren
 
-**Zeitrahmen:** 1-24 Stunden nach DNS-Änderung  
+**Zeitrahmen:** 1-24 Stunden nach DNS-Änderung
 **Kommando:**
 
 ```bash
@@ -303,10 +303,10 @@ location /n8n/ {
 
 ---
 
-**Report-Signatur:**  
-Generiert von: GitHub Copilot Enterprise Quality Agent  
-Timestamp: 2025-10-04T23:19:32Z  
-Workflow: `subdomain-status-check.yml`  
+**Report-Signatur:**
+Generiert von: GitHub Copilot Enterprise Quality Agent
+Timestamp: 2025-10-04T23:19:32Z
+Workflow: `subdomain-status-check.yml`
 Commit: `chore/figma-mcp-make` (latest)
 
 ---

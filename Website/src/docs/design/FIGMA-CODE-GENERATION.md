@@ -320,7 +320,7 @@ export function HeroSection({
         >
           {title}
         </motion.h1>
-        
+
         {subtitle && (
           <motion.p
             className="mt-4 text-center text-muted-foreground"
@@ -331,7 +331,7 @@ export function HeroSection({
             {subtitle}
           </motion.p>
         )}
-        
+
         <motion.div
           className="mt-8 flex justify-center"
           initial={{ opacity: 0, y: 20 }}
@@ -496,25 +496,25 @@ git commit -m "chore(design): sync Figma tokens"
 
 ### **DO:**
 
-✅ **Metadata ZUERST abrufen** (Struktur analysieren)  
-✅ **Screenshots vergleichen** (Visual-Regression)  
-✅ **CSS-Variablen nutzen** (Token-Drift = 0)  
-✅ **TypeScript vollständig** (Props-Interface + Types)  
-✅ **Accessibility einbauen** (WCAG 2.1 AA)  
-✅ **Responsive testen** (Mobile, Tablet, Desktop)  
-✅ **Default-Export** (für dynamische Imports)  
-✅ **JSDoc-Kommentare** (für IntelliSense)  
+✅ **Metadata ZUERST abrufen** (Struktur analysieren)
+✅ **Screenshots vergleichen** (Visual-Regression)
+✅ **CSS-Variablen nutzen** (Token-Drift = 0)
+✅ **TypeScript vollständig** (Props-Interface + Types)
+✅ **Accessibility einbauen** (WCAG 2.1 AA)
+✅ **Responsive testen** (Mobile, Tablet, Desktop)
+✅ **Default-Export** (für dynamische Imports)
+✅ **JSDoc-Kommentare** (für IntelliSense)
 
 ### **DON'T:**
 
-❌ **Hardcoded Colors** (#0d6efd statt var(--primary))  
-❌ **Typography-Klassen** (text-4xl font-bold)  
-❌ **Inline-Styles** (außer absolut nötig)  
-❌ **Magic-Numbers** (width: 250)  
-❌ **Non-Semantic HTML** (<div onClick> statt <button>)  
-❌ **Missing ARIA** (Keine Labels bei Icons)  
-❌ **Kleine Touch-Targets** (< 44px)  
-❌ **Low-Contrast** (< 4.5:1)  
+❌ **Hardcoded Colors** (#0d6efd statt var(--primary))
+❌ **Typography-Klassen** (text-4xl font-bold)
+❌ **Inline-Styles** (außer absolut nötig)
+❌ **Magic-Numbers** (width: 250)
+❌ **Non-Semantic HTML** (<div onClick> statt <button>)
+❌ **Missing ARIA** (Keine Labels bei Icons)
+❌ **Kleine Touch-Targets** (< 44px)
+❌ **Low-Contrast** (< 4.5:1)
 
 ---
 
@@ -674,8 +674,8 @@ Nach jeder Code-Generierung prüfen:
 
 ---
 
-**Version:** 1.0  
-**Erstellt:** 2025-10-02  
+**Version:** 1.0
+**Erstellt:** 2025-10-02
 **Status:** 🟢 **PRODUCTION**
 
 ---

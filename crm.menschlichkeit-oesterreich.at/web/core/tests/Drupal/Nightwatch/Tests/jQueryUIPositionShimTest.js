@@ -776,7 +776,7 @@ module.exports = {
       .drupalRelativeURL('/position-shim-test')
       .waitForElementPresent('#position-reference-1', 1000)
       .executeAsync(
-         
+
         function (testIterations, done) {
           const $ = jQuery;
           const toReturn = {};
@@ -939,7 +939,7 @@ module.exports = {
                 options.collision = 'none';
                 const idKey = `${attachToType}${key}`;
 
-                 
+
                 const tip = await new Promise((resolve) => {
                   const addedTip = $(
                     `<div class="test-tip"  style="position:${
@@ -951,7 +951,7 @@ module.exports = {
                     resolve(addedTip);
                   });
                 });
-                 
+
                 await checkPosition(tip, options, attachToType, idKey);
                 tip.remove();
               }
@@ -980,7 +980,7 @@ module.exports = {
   // The remaining tests are ported from jQuery UI's QUnit tests.
   'my, at, of': (browser) => {
     browser.execute(
-       
+
       function () {
         const $ = jQuery;
         const toReturn = {};
@@ -1039,7 +1039,7 @@ module.exports = {
   },
   'multiple elements': (browser) => {
     browser.execute(
-       
+
       function () {
         const $ = jQuery;
         const toReturn = {};
@@ -1054,7 +1054,7 @@ module.exports = {
           actual: result,
           expected: elements,
         };
-         
+
         elements.each(function (index) {
           toReturn[`element${index}`] = {
             actual: $(this).offset(),
@@ -1075,7 +1075,7 @@ module.exports = {
   },
   positions: (browser) => {
     browser.execute(
-       
+
       function () {
         const $ = jQuery;
         const toReturn = {};
@@ -1092,7 +1092,7 @@ module.exports = {
 
         $.each([0, 1], (my) => {
           $.each(['top', 'center', 'bottom'], (vIndex, vertical) => {
-             
+
             $.each(['left', 'center', 'right'], (hIndex, horizontal) => {
               const _my = my ? `${horizontal} ${vertical}` : 'left top';
               const _at = !my ? `${horizontal} ${vertical}` : 'left top';
@@ -1127,7 +1127,7 @@ module.exports = {
   },
   of: (browser) => {
     browser.execute(
-       
+
       function () {
         const $ = jQuery;
         const toReturn = {};
@@ -1136,11 +1136,11 @@ module.exports = {
         const win = $(window);
         let event;
 
-         
+
         let scrollTopSupport = function () {
           const support = win.scrollTop(1).scrollTop() === 1;
           win.scrollTop(0);
-           
+
           scrollTopSupport = function () {
             return support;
           };
@@ -1303,7 +1303,7 @@ module.exports = {
   },
   offsets: (browser) => {
     browser.execute(
-       
+
       function () {
         const $ = jQuery;
         const toReturn = {
@@ -1409,7 +1409,7 @@ module.exports = {
   },
   using: (browser) => {
     browser.execute(
-       
+
       function () {
         const $ = jQuery;
         const toReturn = {};
@@ -1471,7 +1471,7 @@ module.exports = {
           },
         });
 
-         
+
         elems.each(function (index) {
           toReturn[`elements not moved: ${index}`] = {
             actual: $(this).offset(),
@@ -1492,7 +1492,7 @@ module.exports = {
   },
   'collision: fit, no collision': (browser) => {
     browser.execute(
-       
+
       function () {
         const $ = jQuery;
         const toReturn = {};
@@ -1542,17 +1542,17 @@ module.exports = {
   },
   'collision: fit, collision': (browser) => {
     browser.execute(
-       
+
       function () {
         const $ = jQuery;
         const toReturn = {};
         const $elx = $('#elx');
         const win = $(window);
-         
+
         let scrollTopSupport = function () {
           const support = win.scrollTop(1).scrollTop() === 1;
           win.scrollTop(0);
-           
+
           scrollTopSupport = function () {
             return support;
           };
@@ -1621,7 +1621,7 @@ module.exports = {
   },
   'collision: flip, no collision': (browser) => {
     browser.execute(
-       
+
       function () {
         const $ = jQuery;
         const toReturn = {};
@@ -1670,7 +1670,7 @@ module.exports = {
   },
   'collision: flip, collision': (browser) => {
     browser.execute(
-       
+
       function () {
         const $ = jQuery;
         const toReturn = {};
@@ -1719,7 +1719,7 @@ module.exports = {
   },
   'collision: flipfit, no collision': (browser) => {
     browser.execute(
-       
+
       function () {
         const $ = jQuery;
         const toReturn = {};
@@ -1768,7 +1768,7 @@ module.exports = {
   },
   'collision: flipfit, collision': (browser) => {
     browser.execute(
-       
+
       function () {
         const $ = jQuery;
         const toReturn = {};
@@ -1817,7 +1817,7 @@ module.exports = {
   },
   'collision: none, no collision': (browser) => {
     browser.execute(
-       
+
       function () {
         const $ = jQuery;
         const toReturn = {};
@@ -1866,7 +1866,7 @@ module.exports = {
   },
   'collision: none, collision': (browser) => {
     browser.execute(
-       
+
       function () {
         const $ = jQuery;
         const toReturn = {};
@@ -1915,7 +1915,7 @@ module.exports = {
   },
   'collision: fit, with margin': (browser) => {
     browser.execute(
-       
+
       function () {
         const $ = jQuery;
         const toReturn = {};
@@ -1968,7 +1968,7 @@ module.exports = {
   },
   'collision: flip, with margin': (browser) => {
     browser.execute(
-       
+
       function () {
         const $ = jQuery;
         const toReturn = {};
@@ -2036,7 +2036,7 @@ module.exports = {
   },
   within: (browser) => {
     browser.execute(
-       
+
       function () {
         const $ = jQuery;
         const toReturn = {};
@@ -2166,7 +2166,7 @@ module.exports = {
   },
   'with scrollbars': (browser) => {
     browser.execute(
-       
+
       function () {
         const $ = jQuery;
         const toReturn = {};
@@ -2257,7 +2257,7 @@ module.exports = {
   },
   fractions: (browser) => {
     browser.execute(
-       
+
       function () {
         const $ = jQuery;
         const toReturn = {};
@@ -2284,7 +2284,7 @@ module.exports = {
   },
   'bug #5280: consistent results (avoid fractional values)': (browser) => {
     browser.execute(
-       
+
       function () {
         const $ = jQuery;
         const toReturn = {};
@@ -2323,7 +2323,7 @@ module.exports = {
   },
   'bug #8710: flip if flipped position fits more': (browser) => {
     browser.execute(
-       
+
       function () {
         const $ = jQuery;
         const toReturn = {};

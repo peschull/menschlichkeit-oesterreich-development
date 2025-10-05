@@ -16,4 +16,3 @@ docker run -d --name otel-collector \
   --config /etc/otelcol/config.yaml
 
 echo "Collector läuft. Logs: docker logs -f otel-collector"
-

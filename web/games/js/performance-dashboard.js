@@ -109,7 +109,7 @@ class DemocracyPerformanceDashboard {
                     <button id="close-dashboard" class="dashboard-btn small">✖️</button>
                 </div>
             </div>
-            
+
             <!-- System Overview -->
             <div class="dashboard-section">
                 <h4>⚡ System Status</h4>
@@ -132,7 +132,7 @@ class DemocracyPerformanceDashboard {
                     </div>
                 </div>
             </div>
-            
+
             <!-- Performance Charts -->
             <div class="dashboard-section">
                 <h4>📈 Performance Trends</h4>
@@ -140,7 +140,7 @@ class DemocracyPerformanceDashboard {
                     <canvas id="performance-chart" width="350" height="150"></canvas>
                 </div>
             </div>
-            
+
             <!-- User Engagement -->
             <div class="dashboard-section">
                 <h4>👥 User Engagement</h4>
@@ -157,7 +157,7 @@ class DemocracyPerformanceDashboard {
                     <canvas id="engagement-chart" width="350" height="100"></canvas>
                 </div>
             </div>
-            
+
             <!-- Alerts Panel -->
             <div class="dashboard-section">
                 <h4>🚨 Active Alerts</h4>
@@ -165,7 +165,7 @@ class DemocracyPerformanceDashboard {
                     <div class="no-alerts">✅ No active alerts</div>
                 </div>
             </div>
-            
+
             <!-- Error Tracking -->
             <div class="dashboard-section">
                 <h4>⚠️ Error Monitor</h4>
@@ -185,7 +185,7 @@ class DemocracyPerformanceDashboard {
                     <!-- Recent errors will be listed here -->
                 </div>
             </div>
-            
+
             <!-- Multiplayer Status -->
             <div class="dashboard-section">
                 <h4>🎮 Multiplayer Status</h4>
@@ -200,7 +200,7 @@ class DemocracyPerformanceDashboard {
                     </div>
                 </div>
             </div>
-            
+
             <!-- Quick Actions -->
             <div class="dashboard-section">
                 <h4>⚡ Quick Actions</h4>
@@ -227,7 +227,7 @@ class DemocracyPerformanceDashboard {
                 font-size: 12px;
                 line-height: 1.4;
             }
-            
+
             .dashboard-header {
                 display: flex;
                 justify-content: space-between;
@@ -239,18 +239,18 @@ class DemocracyPerformanceDashboard {
                 top: 0;
                 z-index: 10;
             }
-            
+
             .dashboard-header h3 {
                 margin: 0;
                 font-size: 14px;
                 color: #495057;
             }
-            
+
             .dashboard-controls {
                 display: flex;
                 gap: 4px;
             }
-            
+
             .dashboard-btn {
                 padding: 4px 8px;
                 border: 1px solid #ced4da;
@@ -260,34 +260,34 @@ class DemocracyPerformanceDashboard {
                 font-size: 12px;
                 transition: all 0.2s ease;
             }
-            
+
             .dashboard-btn:hover {
                 background: #e9ecef;
             }
-            
+
             .dashboard-btn.small {
                 padding: 4px 6px;
                 font-size: 10px;
             }
-            
+
             .dashboard-section {
                 padding: 16px;
                 border-bottom: 1px solid #f1f3f4;
             }
-            
+
             .dashboard-section h4 {
                 margin: 0 0 12px 0;
                 font-size: 13px;
                 color: #495057;
                 font-weight: 600;
             }
-            
+
             .metrics-grid {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
                 gap: 8px;
             }
-            
+
             .metric-card {
                 background: #f8f9fa;
                 border: 1px solid #e9ecef;
@@ -295,76 +295,76 @@ class DemocracyPerformanceDashboard {
                 padding: 8px;
                 text-align: center;
             }
-            
+
             .metric-label {
                 font-size: 10px;
                 color: #6c757d;
                 margin-bottom: 4px;
             }
-            
+
             .metric-value {
                 font-size: 14px;
                 font-weight: bold;
                 color: #495057;
             }
-            
+
             .metric-value.warning {
                 color: #fd7e14;
             }
-            
+
             .metric-value.danger {
                 color: #dc3545;
             }
-            
+
             .metric-value.success {
                 color: #198754;
             }
-            
+
             .chart-container {
                 background: #fafafa;
                 border: 1px solid #e9ecef;
                 border-radius: 6px;
                 padding: 8px;
             }
-            
+
             .engagement-overview {
                 margin-bottom: 12px;
             }
-            
+
             .engagement-metric {
                 background: #f8f9fa;
                 border: 1px solid #e9ecef;
                 border-radius: 6px;
                 padding: 12px;
             }
-            
+
             .engagement-label {
                 font-size: 11px;
                 color: #6c757d;
                 margin-bottom: 4px;
             }
-            
+
             .engagement-value {
                 font-size: 18px;
                 font-weight: bold;
                 color: #495057;
                 margin-bottom: 8px;
             }
-            
+
             .engagement-bar {
                 height: 6px;
                 background: #e9ecef;
                 border-radius: 3px;
                 overflow: hidden;
             }
-            
+
             .engagement-fill {
                 height: 100%;
                 background: linear-gradient(90deg, #28a745, #20c997);
                 transition: width 0.3s ease;
                 width: 0%;
             }
-            
+
             .activity-chart {
                 margin-top: 8px;
                 background: #fafafa;
@@ -372,19 +372,19 @@ class DemocracyPerformanceDashboard {
                 border-radius: 6px;
                 padding: 8px;
             }
-            
+
             .alerts-container {
                 max-height: 150px;
                 overflow-y: auto;
             }
-            
+
             .no-alerts {
                 text-align: center;
                 color: #28a745;
                 font-style: italic;
                 padding: 20px;
             }
-            
+
             .alert-item {
                 background: #fff3cd;
                 border: 1px solid #ffeaa7;
@@ -393,31 +393,31 @@ class DemocracyPerformanceDashboard {
                 margin-bottom: 4px;
                 border-left: 4px solid #ffc107;
             }
-            
+
             .alert-item.critical {
                 background: #f8d7da;
                 border-color: #f5c6cb;
                 border-left-color: #dc3545;
             }
-            
+
             .alert-item.warning {
                 background: #fff3cd;
                 border-color: #ffeaa7;
                 border-left-color: #ffc107;
             }
-            
+
             .alert-type {
                 font-weight: bold;
                 font-size: 11px;
                 text-transform: uppercase;
             }
-            
+
             .alert-message {
                 font-size: 11px;
                 margin-top: 2px;
                 color: #495057;
             }
-            
+
             .error-overview {
                 background: #f8f9fa;
                 border: 1px solid #e9ecef;
@@ -425,30 +425,30 @@ class DemocracyPerformanceDashboard {
                 padding: 12px;
                 margin-bottom: 12px;
             }
-            
+
             .error-stats {
                 display: flex;
                 justify-content: space-between;
             }
-            
+
             .error-stat {
                 text-align: center;
             }
-            
+
             .error-count, .error-rate {
                 display: block;
                 font-size: 16px;
                 font-weight: bold;
                 color: #dc3545;
             }
-            
+
             .error-label {
                 display: block;
                 font-size: 10px;
                 color: #6c757d;
                 margin-top: 2px;
             }
-            
+
             .error-log {
                 max-height: 100px;
                 overflow-y: auto;
@@ -457,7 +457,7 @@ class DemocracyPerformanceDashboard {
                 border-radius: 4px;
                 padding: 8px;
             }
-            
+
             .error-entry {
                 font-size: 10px;
                 color: #dc3545;
@@ -466,23 +466,23 @@ class DemocracyPerformanceDashboard {
                 background: rgba(220, 53, 69, 0.1);
                 border-radius: 2px;
             }
-            
+
             .multiplayer-overview {
                 display: flex;
                 justify-content: space-between;
             }
-            
+
             .multiplayer-metric {
                 text-align: center;
                 flex: 1;
             }
-            
+
             .action-buttons {
                 display: flex;
                 gap: 8px;
                 flex-wrap: wrap;
             }
-            
+
             .action-btn {
                 padding: 8px 12px;
                 border: 1px solid #007bff;
@@ -495,12 +495,12 @@ class DemocracyPerformanceDashboard {
                 min-width: 80px;
                 transition: all 0.2s ease;
             }
-            
+
             .action-btn:hover {
                 background: #0056b3;
                 border-color: #0056b3;
             }
-            
+
             .action-btn:active {
                 transform: translateY(1px);
             }

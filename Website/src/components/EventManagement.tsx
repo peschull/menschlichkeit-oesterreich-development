@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { 
-  Calendar, 
-  Search, 
-  Filter, 
-  Plus, 
-  Edit3, 
-  Trash2, 
-  Users, 
+import {
+  Calendar,
+  Search,
+  Filter,
+  Plus,
+  Edit3,
+  Trash2,
+  Users,
   MapPin,
   Clock,
   Euro,
@@ -137,7 +137,7 @@ export function EventManagement() {
                          event.location.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesStatus = selectedStatus === 'all' || event.status === selectedStatus;
     const matchesCategory = selectedCategory === 'all' || event.category === selectedCategory;
-    
+
     return matchesSearch && matchesStatus && matchesCategory;
   });
 
@@ -184,7 +184,7 @@ export function EventManagement() {
           <h2 className="text-2xl font-bold text-gray-900">Event-Verwaltung</h2>
           <p className="text-gray-600 mt-1">Verwalten Sie alle Veranstaltungen und Anmeldungen</p>
         </div>
-        
+
         <Dialog open={isAddEventOpen} onOpenChange={setIsAddEventOpen}>
           <DialogTrigger asChild>
             <Button className="flex items-center gap-2">
@@ -270,7 +270,7 @@ export function EventManagement() {
               />
             </div>
           </div>
-          
+
           <Select value={selectedCategory} onValueChange={setSelectedCategory}>
             <SelectTrigger className="w-[180px]">
               <SelectValue />
@@ -316,7 +316,7 @@ export function EventManagement() {
               {filteredEvents.length} von {events.length} Events
             </div>
           </div>
-          
+
           <div className="overflow-x-auto">
             <Table>
               <TableHeader>
@@ -379,8 +379,8 @@ export function EventManagement() {
                           </span>
                         </div>
                         <div className="w-16 bg-gray-200 rounded-full h-1">
-                          <div 
-                            className="bg-blue-500 h-1 rounded-full" 
+                          <div
+                            className="bg-blue-500 h-1 rounded-full"
                             style={{ width: `${getRegistrationProgress(event.registrations, event.maxParticipants)}%` }}
                           ></div>
                         </div>
@@ -457,12 +457,12 @@ function AddEventForm({ onClose }: { onClose: () => void }) {
             <Label htmlFor="title">Event-Titel *</Label>
             <Input id="title" placeholder="Titel des Events" required />
           </div>
-          
+
           <div>
             <Label htmlFor="description">Beschreibung *</Label>
             <Textarea id="description" placeholder="Detaillierte Beschreibung des Events" required />
           </div>
-          
+
           <div className="grid grid-cols-2 gap-4">
             <div>
               <Label htmlFor="date">Datum *</Label>
@@ -473,7 +473,7 @@ function AddEventForm({ onClose }: { onClose: () => void }) {
               <Input id="time" type="time" required />
             </div>
           </div>
-          
+
           <div className="grid grid-cols-2 gap-4">
             <div>
               <Label htmlFor="duration">Dauer (Minuten)</Label>
@@ -495,7 +495,7 @@ function AddEventForm({ onClose }: { onClose: () => void }) {
               </Select>
             </div>
           </div>
-          
+
           <div>
             <Label htmlFor="location">Veranstaltungsort *</Label>
             <Input id="location" placeholder="Adresse des Veranstaltungsortes" required />
@@ -513,7 +513,7 @@ function AddEventForm({ onClose }: { onClose: () => void }) {
               <Input id="price" type="number" placeholder="0.00" step="0.01" />
             </div>
           </div>
-          
+
           <div>
             <Label htmlFor="organizer">Veranstalter</Label>
             <Select>
@@ -527,12 +527,12 @@ function AddEventForm({ onClose }: { onClose: () => void }) {
               </SelectContent>
             </Select>
           </div>
-          
+
           <div>
             <Label htmlFor="requirements">Teilnahmevoraussetzungen</Label>
             <Textarea id="requirements" placeholder="Besondere Voraussetzungen für die Teilnahme..." />
           </div>
-          
+
           <div>
             <Label htmlFor="agenda">Agenda/Programm</Label>
             <Textarea id="agenda" placeholder="Detailliertes Programm des Events..." />
@@ -552,34 +552,34 @@ function AddEventForm({ onClose }: { onClose: () => void }) {
               </SelectContent>
             </Select>
           </div>
-          
+
           <div className="space-y-3">
             <div className="flex items-center space-x-2">
               <Checkbox id="requiresRegistration" defaultChecked />
               <Label htmlFor="requiresRegistration">Anmeldung erforderlich</Label>
             </div>
-            
+
             <div className="flex items-center space-x-2">
               <Checkbox id="memberOnly" />
               <Label htmlFor="memberOnly">Nur für Mitglieder</Label>
             </div>
-            
+
             <div className="flex items-center space-x-2">
               <Checkbox id="waitingList" />
               <Label htmlFor="waitingList">Warteliste aktivieren</Label>
             </div>
-            
+
             <div className="flex items-center space-x-2">
               <Checkbox id="reminderEmail" defaultChecked />
               <Label htmlFor="reminderEmail">Erinnerungs-E-Mail senden</Label>
             </div>
           </div>
-          
+
           <div>
             <Label htmlFor="registrationDeadline">Anmeldeschluss</Label>
             <Input id="registrationDeadline" type="date" />
           </div>
-          
+
           <div>
             <Label htmlFor="cancellationDeadline">Stornierungsfrist (Stunden)</Label>
             <Input id="cancellationDeadline" type="number" placeholder="24" />

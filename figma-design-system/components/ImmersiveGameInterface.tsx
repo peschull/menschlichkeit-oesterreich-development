@@ -4,10 +4,10 @@ import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 import { Progress } from './ui/progress';
-import { 
-  ParticleSystem, 
-  Advanced3DCard, 
-  DynamicBackground, 
+import {
+  ParticleSystem,
+  Advanced3DCard,
+  DynamicBackground,
   AnimatedCounter,
   HolographicBadge,
   DemocracyWheel
@@ -98,16 +98,16 @@ export function ImmersiveScenario({ scenario, onChoiceSelect, playerStats }: Imm
   return (
     <div className="relative min-h-screen overflow-hidden">
       {/* Dynamic Background */}
-      <DynamicBackground 
-        variant="democracy" 
-        intensity="medium" 
-        color="#3b82f6" 
-        animated={true} 
+      <DynamicBackground
+        variant="democracy"
+        intensity="medium"
+        color="#3b82f6"
+        animated={true}
       />
-      
+
       {/* Main Content */}
       <div className="relative z-10 container mx-auto px-4 py-8">
-        
+
         {/* Scenario Header */}
         <motion.div
           initial={{ opacity: 0, y: -50 }}
@@ -115,8 +115,8 @@ export function ImmersiveScenario({ scenario, onChoiceSelect, playerStats }: Imm
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-center mb-12"
         >
-          <Advanced3DCard 
-            glowColor="#3b82f6" 
+          <Advanced3DCard
+            glowColor="#3b82f6"
             tiltIntensity={8}
             className="max-w-4xl mx-auto"
           >
@@ -135,7 +135,7 @@ export function ImmersiveScenario({ scenario, onChoiceSelect, playerStats }: Imm
                   size="large"
                 />
               </motion.div>
-              
+
               <CardTitle className="text-3xl mb-4 text-gradient">
                 {scenario.title}
               </CardTitle>
@@ -153,20 +153,20 @@ export function ImmersiveScenario({ scenario, onChoiceSelect, playerStats }: Imm
           transition={{ duration: 0.8, delay: 0.6 }}
           className="mb-12"
         >
-          <Advanced3DCard 
-            glowColor="#22c55e" 
+          <Advanced3DCard
+            glowColor="#22c55e"
             className="max-w-5xl mx-auto"
           >
             <CardContent className="p-8">
               <div className="bg-gradient-to-br from-blue-50 via-purple-50 to-green-50 dark:from-gray-800 dark:via-gray-700 dark:to-gray-600 rounded-2xl p-8 relative overflow-hidden">
-                
+
                 {/* Floating UI Elements */}
                 <FloatingUIElement delay={1} direction="up">
                   <div className="absolute top-4 right-4 opacity-30">
                     <Globe className="w-8 h-8 text-blue-500" />
                   </div>
                 </FloatingUIElement>
-                
+
                 <FloatingUIElement delay={1.5} direction="down">
                   <div className="absolute bottom-4 left-4 opacity-30">
                     <Users className="w-8 h-8 text-green-500" />
@@ -177,7 +177,7 @@ export function ImmersiveScenario({ scenario, onChoiceSelect, playerStats }: Imm
                   <Sparkles className="w-6 h-6 mr-3 text-yellow-500" />
                   Die Situation
                 </h3>
-                
+
                 <p className="text-lg leading-relaxed">
                   {scenario.situation}
                 </p>
@@ -193,13 +193,13 @@ export function ImmersiveScenario({ scenario, onChoiceSelect, playerStats }: Imm
           transition={{ duration: 0.8, delay: 0.8 }}
           className="mb-12"
         >
-          <Advanced3DCard 
-            glowColor="#8b5cf6" 
+          <Advanced3DCard
+            glowColor="#8b5cf6"
             className="max-w-6xl mx-auto"
           >
             <CardContent className="p-6">
               <h4 className="text-xl font-semibold mb-6 text-center">Deine aktuellen Demokratie-Kompetenzen</h4>
-              
+
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                 {[
                   { key: 'empathy', label: 'Empathie', icon: Heart, color: '#ef4444' },
@@ -214,23 +214,23 @@ export function ImmersiveScenario({ scenario, onChoiceSelect, playerStats }: Imm
                     transition={{ duration: 0.6, delay: 1 + index * 0.1 }}
                     className="text-center"
                   >
-                    <div 
+                    <div
                       className="w-16 h-16 mx-auto mb-3 rounded-full flex items-center justify-center"
                       style={{ backgroundColor: `${color}20`, border: `2px solid ${color}` }}
                     >
                       <Icon className="w-8 h-8" style={{ color }} />
                     </div>
-                    
+
                     <h5 className="font-medium mb-2">{label}</h5>
-                    
-                    <AnimatedCounter 
-                      value={playerStats[key as keyof typeof playerStats]} 
+
+                    <AnimatedCounter
+                      value={playerStats[key as keyof typeof playerStats]}
                       className="text-2xl font-bold"
                       style={{ color }}
                     />
-                    
-                    <Progress 
-                      value={playerStats[key as keyof typeof playerStats]} 
+
+                    <Progress
+                      value={playerStats[key as keyof typeof playerStats]}
                       className="h-2 mt-2"
                     />
                   </motion.div>
@@ -250,7 +250,7 @@ export function ImmersiveScenario({ scenario, onChoiceSelect, playerStats }: Imm
           <h3 className="text-2xl font-bold text-center mb-8">
             Wie entscheidest du dich?
           </h3>
-          
+
           <div className="grid gap-6 max-w-4xl mx-auto">
             {scenario.choices.map((choice, index) => (
               <motion.div
@@ -261,19 +261,19 @@ export function ImmersiveScenario({ scenario, onChoiceSelect, playerStats }: Imm
                 onMouseEnter={() => setHoveredChoice(choice.id)}
                 onMouseLeave={() => setHoveredChoice(null)}
               >
-                <Advanced3DCard 
+                <Advanced3DCard
                   glowColor={selectedChoice === choice.id ? "#22c55e" : "#3b82f6"}
                   tiltIntensity={12}
                   className={`cursor-pointer transition-all duration-300 ${
                     selectedChoice === choice.id ? 'ring-4 ring-green-400' : ''
                   }`}
                 >
-                  <CardContent 
+                  <CardContent
                     className="p-6 relative overflow-hidden"
                     onClick={() => handleChoiceClick(choice.id)}
                   >
                     {/* Particle Effect on Hover */}
-                    <ParticleSystem 
+                    <ParticleSystem
                       count={20}
                       color="#3b82f6"
                       size={3}
@@ -281,13 +281,13 @@ export function ImmersiveScenario({ scenario, onChoiceSelect, playerStats }: Imm
                       direction="radial"
                       trigger={hoveredChoice === choice.id}
                     />
-                    
+
                     <div className="relative z-10">
                       <div className="flex items-start justify-between mb-4">
                         <Badge variant="outline" className="text-sm">
                           Option {choice.id}
                         </Badge>
-                        
+
                         {selectedChoice === choice.id && (
                           <motion.div
                             initial={{ scale: 0 }}
@@ -298,21 +298,21 @@ export function ImmersiveScenario({ scenario, onChoiceSelect, playerStats }: Imm
                           </motion.div>
                         )}
                       </div>
-                      
+
                       <p className="text-lg mb-4 leading-relaxed">
                         {choice.text}
                       </p>
-                      
+
                       <div className="text-sm text-muted-foreground mb-4">
                         <strong>Mögliche Folgen:</strong> {choice.consequences}
                       </div>
-                      
+
                       {/* Score Preview */}
                       <div className="grid grid-cols-4 gap-2 text-xs">
                         {Object.entries(choice.scores).map(([key, value]) => (
                           <div key={key} className="text-center">
                             <div className={`w-full h-2 rounded-full bg-gray-200 overflow-hidden`}>
-                              <motion.div 
+                              <motion.div
                                 className="h-full bg-gradient-to-r from-blue-400 to-green-400"
                                 initial={{ width: 0 }}
                                 animate={{ width: `${(value / 10) * 100}%` }}
@@ -332,7 +332,7 @@ export function ImmersiveScenario({ scenario, onChoiceSelect, playerStats }: Imm
         </motion.div>
 
         {/* Particle Effect on Selection */}
-        <ParticleSystem 
+        <ParticleSystem
           count={100}
           color="#22c55e"
           size={4}
@@ -346,12 +346,12 @@ export function ImmersiveScenario({ scenario, onChoiceSelect, playerStats }: Imm
 }
 
 // Immersive Progress Dashboard
-export function ImmersiveProgressDashboard({ 
-  playerLevel, 
-  experience, 
-  maxExperience, 
-  achievements, 
-  stats 
+export function ImmersiveProgressDashboard({
+  playerLevel,
+  experience,
+  maxExperience,
+  achievements,
+  stats
 }: ImmersiveProgressDashboardProps) {
   const [selectedAchievement, setSelectedAchievement] = useState<string | null>(null);
 
@@ -365,15 +365,15 @@ export function ImmersiveProgressDashboard({
   return (
     <div className="relative min-h-screen overflow-hidden">
       {/* Animated Background */}
-      <DynamicBackground 
-        variant="geometric" 
-        intensity="low" 
-        color="#8b5cf6" 
-        animated={true} 
+      <DynamicBackground
+        variant="geometric"
+        intensity="low"
+        color="#8b5cf6"
+        animated={true}
       />
-      
+
       <div className="relative z-10 container mx-auto px-4 py-8">
-        
+
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -30 }}
@@ -390,7 +390,7 @@ export function ImmersiveProgressDashboard({
         </motion.div>
 
         <div className="grid lg:grid-cols-3 gap-8">
-          
+
           {/* Player Level & Experience */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -413,11 +413,11 @@ export function ImmersiveProgressDashboard({
                     size="large"
                   />
                 </motion.div>
-                
+
                 <h3 className="text-2xl font-bold mb-4">
                   Level <AnimatedCounter value={playerLevel} />
                 </h3>
-                
+
                 <div className="mb-4">
                   <div className="flex justify-between text-sm mb-2">
                     <span>Erfahrung</span>
@@ -425,7 +425,7 @@ export function ImmersiveProgressDashboard({
                   </div>
                   <Progress value={(experience / maxExperience) * 100} className="h-3" />
                 </div>
-                
+
                 <p className="text-muted-foreground">
                   Noch <strong>{maxExperience - experience} XP</strong> bis zum nächsten Level
                 </p>
@@ -442,14 +442,14 @@ export function ImmersiveProgressDashboard({
             <Advanced3DCard glowColor="#3b82f6" className="h-full">
               <CardContent className="p-8 text-center">
                 <h3 className="text-xl font-bold mb-6">Kompetenz-Rad</h3>
-                
+
                 <DemocracyWheel
                   segments={democracyWheelSegments}
                   selectedSegment={selectedAchievement}
                   onSegmentSelect={setSelectedAchievement}
                   size={250}
                 />
-                
+
                 <p className="text-sm text-muted-foreground mt-4">
                   Klicke zum Drehen und entdecke deine Stärken
                 </p>
@@ -468,7 +468,7 @@ export function ImmersiveProgressDashboard({
                 <h3 className="text-xl font-bold mb-6 text-center">
                   Achievements
                 </h3>
-                
+
                 <div className="grid grid-cols-3 gap-4">
                   {achievements.slice(0, 9).map((achievement, index) => (
                     <motion.div
@@ -486,7 +486,7 @@ export function ImmersiveProgressDashboard({
                         size="small"
                         animated={achievement.unlocked}
                       />
-                      
+
                       {!achievement.unlocked && (
                         <div className="absolute inset-0 bg-black bg-opacity-50 rounded-full flex items-center justify-center">
                           <div className="w-4 h-4 bg-gray-400 rounded-full" />
@@ -495,7 +495,7 @@ export function ImmersiveProgressDashboard({
                     </motion.div>
                   ))}
                 </div>
-                
+
                 <div className="text-center mt-6">
                   <Badge variant="outline">
                     {achievements.filter(a => a.unlocked).length} / {achievements.length} freigeschaltet
@@ -518,34 +518,34 @@ export function ImmersiveProgressDashboard({
               <h3 className="text-2xl font-bold text-center mb-8">
                 Detaillierte Kompetenz-Analyse
               </h3>
-              
+
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 {[
-                  { 
-                    key: 'empathy', 
-                    label: 'Empathie', 
-                    icon: Heart, 
+                  {
+                    key: 'empathy',
+                    label: 'Empathie',
+                    icon: Heart,
                     color: '#ef4444',
                     description: 'Fähigkeit, verschiedene Perspektiven zu verstehen'
                   },
-                  { 
-                    key: 'humanRights', 
-                    label: 'Menschenrechte', 
-                    icon: Scale, 
+                  {
+                    key: 'humanRights',
+                    label: 'Menschenrechte',
+                    icon: Scale,
                     color: '#3b82f6',
                     description: 'Verständnis für universelle Rechte und Gerechtigkeit'
                   },
-                  { 
-                    key: 'participation', 
-                    label: 'Partizipation', 
-                    icon: Users, 
+                  {
+                    key: 'participation',
+                    label: 'Partizipation',
+                    icon: Users,
                     color: '#22c55e',
                     description: 'Aktive Teilnahme an demokratischen Prozessen'
                   },
-                  { 
-                    key: 'civilCourage', 
-                    label: 'Zivilcourage', 
-                    icon: Shield, 
+                  {
+                    key: 'civilCourage',
+                    label: 'Zivilcourage',
+                    icon: Shield,
                     color: '#8b5cf6',
                     description: 'Mut, für die eigenen Überzeugungen einzustehen'
                   }
@@ -558,33 +558,33 @@ export function ImmersiveProgressDashboard({
                     className="text-center group cursor-pointer"
                     whileHover={{ scale: 1.05 }}
                   >
-                    <div 
+                    <div
                       className="w-20 h-20 mx-auto mb-4 rounded-2xl flex items-center justify-center transition-all duration-300 group-hover:shadow-xl"
-                      style={{ 
-                        backgroundColor: `${color}20`, 
+                      style={{
+                        backgroundColor: `${color}20`,
                         border: `3px solid ${color}`,
                         boxShadow: `0 0 20px ${color}40`
                       }}
                     >
                       <Icon className="w-10 h-10" style={{ color }} />
                     </div>
-                    
+
                     <h4 className="font-bold text-lg mb-2">{label}</h4>
-                    
+
                     <div className="mb-3">
-                      <AnimatedCounter 
-                        value={stats[key as keyof typeof stats]} 
+                      <AnimatedCounter
+                        value={stats[key as keyof typeof stats]}
                         className="text-3xl font-bold"
                         suffix="/100"
                         style={{ color }}
                       />
                     </div>
-                    
-                    <Progress 
-                      value={stats[key as keyof typeof stats]} 
+
+                    <Progress
+                      value={stats[key as keyof typeof stats]}
                       className="h-3 mb-3"
                     />
-                    
+
                     <p className="text-xs text-muted-foreground leading-relaxed">
                       {description}
                     </p>

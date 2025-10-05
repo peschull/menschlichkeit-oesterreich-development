@@ -241,7 +241,7 @@ module.exports = {
     browser.drupalRelativeURL('/form-test/machine-name');
     MachineNameTestArray.forEach((iteration) => {
       browser.execute(
-         
+
         function (object) {
           return Drupal.behaviors.machineName.transliterate(
             object.machineName,

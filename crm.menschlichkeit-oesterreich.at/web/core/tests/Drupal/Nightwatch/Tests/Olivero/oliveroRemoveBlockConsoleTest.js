@@ -44,7 +44,7 @@ module.exports = {
       .drupalRelativeURL('/')
       .waitForElementVisible('body')
       .execute(
-         
+
         function () {
           return Drupal.errorLog.length === 0;
         },

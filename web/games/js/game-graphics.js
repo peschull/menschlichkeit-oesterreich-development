@@ -23,10 +23,10 @@ class GameGraphics {
           </linearGradient>
         </defs>
         <circle cx="16" cy="16" r="14" fill="url(#factCheckGrad)" />
-        <path d="M12 8 L20 8 M12 12 L24 12 M8 16 L18 16 M8 20 L22 20 M12 24 L20 24" 
+        <path d="M12 8 L20 8 M12 12 L24 12 M8 16 L18 16 M8 20 L22 20 M12 24 L20 24"
               stroke="white" stroke-width="2" stroke-linecap="round" />
         <circle cx="24" cy="8" r="4" fill="#27ae60" />
-        <path d="M22 8 L24 9.5 L26 7" stroke="white" stroke-width="1.5" 
+        <path d="M22 8 L24 9.5 L26 7" stroke="white" stroke-width="1.5"
               stroke-linecap="round" stroke-linejoin="round" />
       </svg>
     `;
@@ -120,7 +120,7 @@ class GameGraphics {
           </linearGradient>
           <filter id="alertGlow">
             <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-            <feMerge> 
+            <feMerge>
               <feMergeNode in="coloredBlur"/>
               <feMergeNode in="SourceGraphic"/>
             </feMerge>
@@ -133,7 +133,7 @@ class GameGraphics {
         <circle cx="16" cy="21" r="1.5" fill="white" />
         <!-- Clock indicators -->
         <circle cx="24" cy="8" r="3" fill="#f39c12" opacity="0.9" />
-        <path d="M24 6 L24 8 L25.5 9" stroke="white" stroke-width="1" 
+        <path d="M24 6 L24 8 L25.5 9" stroke="white" stroke-width="1"
               stroke-linecap="round" stroke-linejoin="round" />
       </svg>
     `;
@@ -151,19 +151,19 @@ class GameGraphics {
         <!-- Speech Bubbles -->
         <ellipse cx="10" cy="12" rx="8" ry="6" fill="url(#dialogueGrad)" />
         <path d="M6 16 L4 20 L8 18 Z" fill="url(#dialogueGrad)" />
-        
+
         <ellipse cx="22" cy="20" rx="8" ry="6" fill="${this.lightenColor(color, 30)}" />
         <path d="M26 24 L28 28 L24 26 Z" fill="${this.lightenColor(color, 30)}" />
-        
+
         <!-- Conversation Icons -->
         <circle cx="7" cy="10" r="1" fill="white" />
         <circle cx="10" cy="10" r="1" fill="white" />
         <circle cx="13" cy="10" r="1" fill="white" />
-        
-        <path d="M19 18 Q22 16 25 18" stroke="white" stroke-width="1.5" 
+
+        <path d="M19 18 Q22 16 25 18" stroke="white" stroke-width="1.5"
               stroke-linecap="round" fill="none" />
         <!-- Hearts for Empathy -->
-        <path d="M16 6 C16 5 17 4 18 5 C19 4 20 5 20 6 C20 7 18 9 16 11 C14 9 12 7 12 6 C12 5 13 4 14 5 C15 4 16 5 16 6 Z" 
+        <path d="M16 6 C16 5 17 4 18 5 C19 4 20 5 20 6 C20 7 18 9 16 11 C14 9 12 7 12 6 C12 5 13 4 14 5 C15 4 16 5 16 6 Z"
               fill="#e74c3c" opacity="0.7" />
       </svg>
     `;
@@ -179,18 +179,18 @@ class GameGraphics {
           </linearGradient>
         </defs>
         <!-- Network Connections -->
-        <path d="M8 8 L16 16 M16 16 L24 8 M8 24 L16 16 M16 16 L24 24 M8 8 L24 24 M8 24 L24 8" 
+        <path d="M8 8 L16 16 M16 16 L24 8 M8 24 L16 16 M16 16 L24 24 M8 8 L24 24 M8 24 L24 8"
               stroke="url(#networkGrad)" stroke-width="1.5" opacity="0.6" />
-        
+
         <!-- Network Nodes -->
         <circle cx="8" cy="8" r="3" fill="#3498db" />
         <circle cx="24" cy="8" r="3" fill="#27ae60" />
         <circle cx="16" cy="16" r="4" fill="url(#networkGrad)" />
         <circle cx="8" cy="24" r="3" fill="#e74c3c" />
         <circle cx="24" cy="24" r="3" fill="#f39c12" />
-        
+
         <!-- Bot Indicator -->
-        <circle cx="24" cy="8" r="5" fill="none" stroke="#e74c3c" stroke-width="2" 
+        <circle cx="24" cy="8" r="5" fill="none" stroke="#e74c3c" stroke-width="2"
                 stroke-dasharray="2,2" opacity="0.8" />
         <text x="26" y="6" fill="#e74c3c" font-size="8" font-weight="bold">!</text>
       </svg>
@@ -221,23 +221,23 @@ class GameGraphics {
           </linearGradient>
           <filter id="badgeGlow_${type}">
             <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-            <feMerge> 
+            <feMerge>
               <feMergeNode in="coloredBlur"/>
               <feMergeNode in="SourceGraphic"/>
             </feMerge>
           </filter>
         </defs>
-        
+
         <!-- Badge Background -->
         <circle cx="24" cy="24" r="20" fill="url(#badgeGrad_${type})" filter="url(#badgeGlow_${type})" />
         <circle cx="24" cy="24" r="18" fill="none" stroke="white" stroke-width="2" opacity="0.3" />
-        
+
         <!-- Inner Circle -->
         <circle cx="24" cy="24" r="14" fill="rgba(255,255,255,0.2)" />
-        
+
         <!-- Icon -->
         <text x="24" y="30" text-anchor="middle" font-size="16" fill="white">${icon}</text>
-        
+
         <!-- Sparkles for higher tiers -->
         ${
           type === 'gold' || type === 'platinum' || type === 'legendary'
@@ -271,20 +271,20 @@ class GameGraphics {
             <stop offset="100%" stop-color="#27ae60" />
           </linearGradient>
         </defs>
-        
+
         <!-- Background Circle -->
-        <circle cx="${size / 2}" cy="${size / 2}" r="${radius}" fill="none" 
+        <circle cx="${size / 2}" cy="${size / 2}" r="${radius}" fill="none"
                 stroke="#ecf0f1" stroke-width="${strokeWidth}" />
-        
+
         <!-- Progress Circle -->
-        <circle cx="${size / 2}" cy="${size / 2}" r="${radius}" fill="none" 
+        <circle cx="${size / 2}" cy="${size / 2}" r="${radius}" fill="none"
                 stroke="url(#progressGrad)" stroke-width="${strokeWidth}"
                 stroke-dasharray="${circumference} ${circumference}"
                 stroke-dashoffset="${offset}" stroke-linecap="round"
                 transform="rotate(-90 ${size / 2} ${size / 2})" />
-        
+
         <!-- Percentage Text -->
-        <text x="${size / 2}" y="${size / 2 + 5}" text-anchor="middle" font-size="${size / 4}" 
+        <text x="${size / 2}" y="${size / 2 + 5}" text-anchor="middle" font-size="${size / 4}"
               font-weight="bold" fill="#2c3e50">${Math.round(percentage)}%</text>
       </svg>
     `;
@@ -306,7 +306,7 @@ class GameGraphics {
             <stop offset="100%" stop-color="#2980b9" />
           </linearGradient>
         </defs>
-        
+
         ${data
           .map((value, index) => {
             const barHeight = (value / maxValue) * height * 0.8;
@@ -314,11 +314,11 @@ class GameGraphics {
             const y = height - barHeight;
 
             return `
-            <rect x="${x}" y="${y}" width="${barWidth * 0.8}" height="${barHeight}" 
+            <rect x="${x}" y="${y}" width="${barWidth * 0.8}" height="${barHeight}"
                   fill="url(#chartGrad)" rx="2" opacity="0.8">
-              <animate attributeName="height" from="0" to="${barHeight}" 
+              <animate attributeName="height" from="0" to="${barHeight}"
                        dur="1s" begin="${index * 0.1}s" />
-              <animate attributeName="y" from="${height}" to="${y}" 
+              <animate attributeName="y" from="${height}" to="${y}"
                        dur="1s" begin="${index * 0.1}s" />
             </rect>
           `;
@@ -455,17 +455,17 @@ class GameGraphics {
         0%, 100% { opacity: 0.8; transform: scale(1); }
         50% { opacity: 1; transform: scale(1.05); }
       }
-      
+
       @keyframes float {
         0%, 100% { transform: translateY(0px); }
         50% { transform: translateY(-10px); }
       }
-      
+
       @keyframes rotate {
         from { transform: rotate(0deg); }
         to { transform: rotate(360deg); }
       }
-      
+
       .interactive-game-card {
         background: linear-gradient(135deg, #fff, #f8f9fa);
         border-radius: 15px;
@@ -476,38 +476,38 @@ class GameGraphics {
         position: relative;
         overflow: hidden;
       }
-      
+
       .interactive-game-card:hover {
         transform: translateY(-5px);
         box-shadow: 0 8px 24px rgba(0,0,0,0.15);
       }
-      
+
       .card-icon {
         margin-bottom: 15px;
       }
-      
+
       .card-content {
         text-align: center;
       }
-      
+
       .card-title {
         color: #2c3e50;
         margin-bottom: 8px;
       }
-      
+
       .card-description {
         color: #7f8c8d;
         font-size: 0.9em;
         margin-bottom: 15px;
       }
-      
+
       .card-progress {
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 10px;
       }
-      
+
       .card-status {
         position: absolute;
         top: 10px;

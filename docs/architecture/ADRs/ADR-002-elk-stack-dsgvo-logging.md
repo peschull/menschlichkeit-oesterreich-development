@@ -43,4 +43,3 @@ Referenzen
 - Threat Model: `analysis/phase-0/threat-model/STRIDE-LINDDUN-ANALYSIS.md`
 - Blueprint: `docs/security/SUPPLY-CHAIN-SECURITY-BLUEPRINT.md`
 - Retention: `docs/infrastructure/LOG-RETENTION-OPERATIONS.md`
-

@@ -66,7 +66,7 @@
        proxy_set_header Host $host;
        proxy_set_header X-Real-IP $remote_addr;
    }
-   
+
    # SPA Routing (alle anderen Requests → index.html)
    location / {
        try_files $uri $uri/ /index.html;

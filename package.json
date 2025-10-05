@@ -130,6 +130,7 @@
     "markdownlint-cli": "^0.43.0",
     "n8n-workflow": "^1.17.0",
     "prettier": "^3.4.2",
+    "prisma": "6.16.3",
     "ts-jest": "^29.4.4",
     "turbo": "2.5.8",
     "typescript": "^5.9.2",
@@ -155,6 +156,7 @@
   "author": "Menschlichkeit Österreich",
   "license": "MIT",
   "dependencies": {
+    "@prisma/client": "6.16.3",
     "vite": "7.1.9"
   }
 }

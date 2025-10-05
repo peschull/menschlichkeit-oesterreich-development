@@ -1,6 +1,6 @@
 # Secret Inventory & GitHub Secrets Mapping
-**Erstellt:** 2025-10-05  
-**Status:** ✅ Produktionsreif  
+**Erstellt:** 2025-10-05
+**Status:** ✅ Produktionsreif
 **Zweck:** Vollständige Übersicht aller Secrets, ENV-Variablen und deren Quellen für sichere CI/CD-Integration
 
 ---
@@ -227,10 +227,10 @@ Verwendet von `scripts/nextcloud/setup-nextcloud.sh`.
    export MYSQL_HOST=externe-db.provider.at
    export MYSQL_ADMIN_USER=admin
    export MYSQL_ADMIN_PASS='SecureAdminPass'
-   
+
    # Dry-Run
    bash scripts/db/provision-mariadb.sh --dry-run
-   
+
    # Apply
    bash scripts/db/provision-mariadb.sh --apply
    ```
@@ -256,7 +256,6 @@ Verwendet von `scripts/nextcloud/setup-nextcloud.sh`.
 
 ---
 
-**Verantwortlich:** DevOps/SecOps  
-**Review-Datum:** 2025-10-05  
+**Verantwortlich:** DevOps/SecOps
+**Review-Datum:** 2025-10-05
 **Nächste Review:** 2026-01-05
-

@@ -34,7 +34,7 @@ export function About() {
   return (
     <section id="about" className="section-padding bg-background-alt">
       <div className="container mx-auto px-4">
-        <motion.div 
+        <motion.div
           className="text-center space-y-6 mb-20"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -49,8 +49,8 @@ export function About() {
             Über <span className="text-gradient">Menschlichkeit Österreich</span>
           </h2>
           <p className="lead max-w-4xl mx-auto text-balance">
-            Als gemeinnütziger Verein nach österreichischem Vereinsrecht fördern wir Menschlichkeit und soziale Gerechtigkeit 
-            in ganz Österreich. Unser Ziel ist es, eine solidarische Gesellschaft aufzubauen, in der alle Menschen 
+            Als gemeinnütziger Verein nach österreichischem Vereinsrecht fördern wir Menschlichkeit und soziale Gerechtigkeit
+            in ganz Österreich. Unser Ziel ist es, eine solidarische Gesellschaft aufzubauen, in der alle Menschen
             die Unterstützung erhalten, die sie benötigen.
           </p>
         </motion.div>
@@ -70,9 +70,9 @@ export function About() {
                 className="w-full h-[500px] object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-              
+
               {/* Floating stats */}
-              <motion.div 
+              <motion.div
                 className="absolute bottom-6 left-6 glass rounded-xl p-4 text-white"
                 initial={{ y: 20, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
@@ -90,7 +90,7 @@ export function About() {
           </motion.div>
 
           {/* Enhanced Content */}
-          <motion.div 
+          <motion.div
             className="space-y-8"
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -101,19 +101,19 @@ export function About() {
               <h3 className="mb-4">Unser <span className="text-gradient">Vereinszweck</span></h3>
               <div className="space-y-4">
                 <p>
-                  Menschlichkeit Österreich wurde mit dem klaren Ziel gegründet, die Förderung der 
-                  Menschlichkeit und sozialen Gerechtigkeit in Österreich voranzutreiben. Als 
-                  eingetragener Verein nach österreichischem Vereinsrecht arbeiten wir systematisch 
+                  Menschlichkeit Österreich wurde mit dem klaren Ziel gegründet, die Förderung der
+                  Menschlichkeit und sozialen Gerechtigkeit in Österreich voranzutreiben. Als
+                  eingetragener Verein nach österreichischem Vereinsrecht arbeiten wir systematisch
                   an der Unterstützung bedürftiger Personen und dem Aufbau einer solidarischen Gemeinschaft.
                 </p>
                 <p>
-                  Unser digitales System ermöglicht es uns, effizient zu arbeiten: Mit DSGVO-konformer 
-                  Datenschutz-Implementierung, modernem Member-Dashboard und SEPA-Integration für 
+                  Unser digitales System ermöglicht es uns, effizient zu arbeiten: Mit DSGVO-konformer
+                  Datenschutz-Implementierung, modernem Member-Dashboard und SEPA-Integration für
                   österreichische Banken schaffen wir einen nachhaltigen Vereinsbetrieb.
                 </p>
               </div>
             </div>
-            
+
             <div className="bg-primary-50 rounded-xl p-6 border border-primary-100">
               <h4 className="text-primary mb-4 flex items-center gap-2">
                 <TreePine className="w-5 h-5" />
@@ -151,11 +151,11 @@ export function About() {
           <div className="text-center mb-16">
             <h3 className="mb-4">Unsere <span className="text-gradient">Aktivitäten</span></h3>
             <p className="lead max-w-2xl mx-auto">
-              Von sozialer Unterstützung bis hin zu Bildungsförderung - wir sind in verschiedenen 
+              Von sozialer Unterstützung bis hin zu Bildungsförderung - wir sind in verschiedenen
               Bereichen aktiv, um nachhaltige positive Veränderungen zu bewirken.
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {activities.map((activity, index) => {
               const Icon = activity.icon;

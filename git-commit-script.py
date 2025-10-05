@@ -11,7 +11,7 @@ from pathlib import Path
 def run_eslint_fix():
     """Fuehre ESLint --fix aus um automatische Fixes anzuwenden"""
     print("Running ESLint --fix to resolve code quality issues...")
-    
+
     try:
         # Versuche npm run lint:fix
         result = subprocess.run(
@@ -21,7 +21,7 @@ def run_eslint_fix():
             text=True,
             timeout=60
         )
-        
+
         if result.returncode == 0:
             print("ESLint fixes applied successfully")
             return True
@@ -32,7 +32,7 @@ def run_eslint_fix():
             if result.stderr:
                 print(f"Error: {result.stderr.strip()}")
             return False
-            
+
     except Exception as e:
         print(f"Exception running ESLint fix: {e}")
         return False
@@ -40,7 +40,7 @@ def run_eslint_fix():
 def run_git_command(command_args, description=""):
     """Fuehre Git-Befehl aus ohne Terminal-Tool"""
     print(f"{description}...")
-    
+
     try:
         result = subprocess.run(
             command_args,
@@ -50,7 +50,7 @@ def run_git_command(command_args, description=""):
             encoding='utf-8',
             timeout=30
         )
-        
+
         if result.returncode == 0:
             print(f"{description} erfolgreich")
             if result.stdout:
@@ -61,7 +61,7 @@ def run_git_command(command_args, description=""):
             if result.stderr:
                 print(f"Error: {result.stderr.strip()}")
             return False
-            
+
     except subprocess.TimeoutExpired:
         print(f"Timeout bei {description}")
         return False

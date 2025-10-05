@@ -1,8 +1,8 @@
 # ✅ Figma Website Integration - ABGESCHLOSSEN
 
-**Datum:** 2025-10-05  
-**Status:** 🎉 ERFOLGREICH INTEGRIERT  
-**Quelle:** `/Website` (Figma Download)  
+**Datum:** 2025-10-05
+**Status:** 🎉 ERFOLGREICH INTEGRIERT
+**Quelle:** `/Website` (Figma Download)
 **Ziel:** `/frontend` (Haupt-Frontend)
 
 ---
@@ -175,7 +175,7 @@ Kopiere von `Website/src/index.css`:
   /* Österreich Farben */
   --color-primary: #dc0000;
   --color-secondary: #ffffff;
-  
+
   /* ShadCN Variables */
   --background: 0 0% 100%;
   --foreground: 222.2 84% 4.9%;

@@ -33,7 +33,7 @@
             );
             const afterIndex = [...inputElements].indexOf(element) + 1;
 
-             
+
             for (const inputElement of [...inputElements].slice(afterIndex)) {
               if (isFocusable(inputElement)) {
                 return inputElement;

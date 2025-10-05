@@ -1,7 +1,7 @@
 # F-02: n8n HTTPS Setup - Deployment Guide
 
-**Status:** ✅ IMPLEMENTIERT  
-**Datum:** 2025-10-03  
+**Status:** ✅ IMPLEMENTIERT
+**Datum:** 2025-10-03
 **DSGVO Impact:** Art. 32 (Verschlüsselung personenbezogener Daten)
 
 ---
@@ -521,6 +521,6 @@ https://n8n.menschlichkeit-oesterreich.at/webhook/deployment-notification
 
 ---
 
-**Completion Status:** ✅ F-02 ABGESCHLOSSEN  
-**Next SOFORT-Maßnahme:** F-03 (PII-Sanitization in Logs)  
+**Completion Status:** ✅ F-02 ABGESCHLOSSEN
+**Next SOFORT-Maßnahme:** F-03 (PII-Sanitization in Logs)
 **Deployment-Ready:** JA (nach DNS-Konfiguration)

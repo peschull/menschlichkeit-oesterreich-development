@@ -6,10 +6,10 @@ param(
     [Parameter(Mandatory=$false)]
     [ValidateSet("api", "crm", "games", "frontend", "all")]
     [string]$Target = "all",
-    
+
     [Parameter(Mandatory=$false)]
     [switch]$DryRun = $false,
-    
+
     [Parameter(Mandatory=$false)]
     [switch]$Force = $false
 )
@@ -23,7 +23,7 @@ Write-Host "=" * 60 -ForegroundColor Gray
 
 function Deploy-API {
     Write-Host "📡 Deploying API Backend (FastAPI)..." -ForegroundColor Green
-    
+
     if (-not $DryRun) {
         # Build requirements.txt if not exists
         if (Test-Path "api.menschlichkeit-oesterreich.at/requirements.txt") {
@@ -42,7 +42,7 @@ pydantic==2.5.0
 pydantic-settings==2.1.0
 "@
         }
-        
+
         # Deploy API files
         scp -r "api.menschlichkeit-oesterreich.at/*" "${Server}:subdomains/api/httpdocs/"
         Write-Host "  ✅ API files deployed"
@@ -53,16 +53,16 @@ pydantic-settings==2.1.0
 
 function Deploy-CRM {
     Write-Host "🏛️ Deploying CRM System (Drupal+CiviCRM)..." -ForegroundColor Green
-    
+
     if (-not $DryRun) {
         # Deploy CRM files
         scp -r "crm.menschlichkeit-oesterreich.at/httpdocs/*" "${Server}:subdomains/crm/httpdocs/"
-        
+
         # Deploy .env file
         if (Test-Path "crm.menschlichkeit-oesterreich.at/.env") {
             scp "crm.menschlichkeit-oesterreich.at/.env" "${Server}:subdomains/crm/httpdocs/"
         }
-        
+
         Write-Host "  ✅ CRM files deployed"
     } else {
         Write-Host "  🔍 [DRY RUN] Would deploy: crm.menschlichkeit-oesterreich.at/httpdocs/* -> subdomains/crm/httpdocs/"
@@ -71,7 +71,7 @@ function Deploy-CRM {
 
 function Deploy-Games {
     Write-Host "🎮 Deploying Gaming Platform..." -ForegroundColor Green
-    
+
     if (-not $DryRun) {
         # Deploy game files
         scp -r "web/*" "${Server}:subdomains/games/httpdocs/"
@@ -83,14 +83,14 @@ function Deploy-Games {
 
 function Deploy-Frontend {
     Write-Host "🌐 Deploying Frontend (Next.js)..." -ForegroundColor Green
-    
+
     if (-not $DryRun) {
         # Build frontend first
         Write-Host "  📦 Building Next.js application..."
         Set-Location "frontend"
         npm run build
         Set-Location ".."
-        
+
         # Deploy built files
         if (Test-Path "frontend/out") {
             scp -r "frontend/out/*" "${Server}:httpdocs/"
@@ -108,7 +108,7 @@ function Deploy-Frontend {
 
 function Set-Permissions {
     Write-Host "🔐 Setting correct permissions..." -ForegroundColor Cyan
-    
+
     if (-not $DryRun) {
         ssh $Server @"
 chmod -R 755 httpdocs/

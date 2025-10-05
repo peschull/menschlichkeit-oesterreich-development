@@ -44,7 +44,7 @@
       "label": "Menschlichkeit Österreich - Desktop View"
     },
     {
-      "src": "/screenshot-narrow.png", 
+      "src": "/screenshot-narrow.png",
       "sizes": "360x640",
       "type": "image/png",
       "form_factor": "narrow",

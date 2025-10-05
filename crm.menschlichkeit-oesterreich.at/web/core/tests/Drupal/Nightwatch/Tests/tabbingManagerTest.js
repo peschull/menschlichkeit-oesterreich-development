@@ -15,7 +15,7 @@ module.exports = {
     // third input should focus the fourth.
     browser
       .execute(
-         
+
         function () {
           document.querySelector('#first').focus();
           return document.activeElement.id;
@@ -31,7 +31,7 @@ module.exports = {
       )
       .setValue('#first', [browser.Keys.TAB])
       .execute(
-         
+
         function () {
           return document.activeElement.id;
         },
@@ -46,7 +46,7 @@ module.exports = {
       )
       .setValue('#second', [browser.Keys.TAB])
       .execute(
-         
+
         function () {
           return document.activeElement.id;
         },
@@ -61,7 +61,7 @@ module.exports = {
       )
       .setValue('#third', [browser.Keys.TAB])
       .execute(
-         
+
         function () {
           return document.activeElement.id;
         },
@@ -80,7 +80,7 @@ module.exports = {
     // input should move focus back to the first one.
     browser
       .execute(
-         
+
         function () {
           Drupal.tabbingManager.constrain(
             document.querySelector('#tabbingmanager-test-container'),
@@ -100,7 +100,7 @@ module.exports = {
       )
       .setValue('#first', [browser.Keys.TAB])
       .execute(
-         
+
         function () {
           return document.activeElement.id;
         },
@@ -115,7 +115,7 @@ module.exports = {
       )
       .setValue('#second', [browser.Keys.TAB])
       .execute(
-         
+
         function () {
           return document.activeElement.id;
         },
@@ -130,7 +130,7 @@ module.exports = {
       )
       .setValue('#third', [browser.Keys.TAB])
       .execute(
-         
+
         function () {
           return document.activeElement.id;
         },
@@ -147,7 +147,7 @@ module.exports = {
     // Confirm shift+tab on the first element focuses the third (final).
     browser
       .execute(
-         
+
         function () {
           document.querySelector('#first').focus();
           return document.activeElement.id;
@@ -163,7 +163,7 @@ module.exports = {
       )
       .setValue('#first', [browser.Keys.SHIFT, browser.Keys.TAB])
       .execute(
-         
+
         function () {
           return document.activeElement.id;
         },

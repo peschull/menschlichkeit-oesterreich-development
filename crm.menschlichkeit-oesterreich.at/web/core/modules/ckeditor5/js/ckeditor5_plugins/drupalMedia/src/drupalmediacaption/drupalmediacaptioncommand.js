@@ -14,7 +14,7 @@ import { getMediaCaptionFromModelSelection } from './utils';
  *   element.
  */
 function getCaptionFromDrupalMediaModelElement(drupalMediaModelElement) {
-   
+
   for (const node of drupalMediaModelElement.getChildren()) {
     if (!!node && node.is('element', 'caption')) {
       return node;

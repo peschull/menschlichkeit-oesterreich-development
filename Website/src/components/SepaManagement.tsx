@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { 
-  CreditCard, 
-  FileText, 
-  Download, 
-  Mail, 
-  CheckCircle, 
+import {
+  CreditCard,
+  FileText,
+  Download,
+  Mail,
+  CheckCircle,
   AlertCircle,
   Calendar,
   Building2,
@@ -146,7 +146,7 @@ export function SepaManagement() {
           <h2 className="text-2xl font-bold text-gray-900">SEPA-Lastschrift Verwaltung</h2>
           <p className="text-gray-600 mt-1">Verwalten Sie alle SEPA-Mandate und Lastschriften</p>
         </div>
-        
+
         <Button onClick={() => setIsCreatingMandate(true)} className="flex items-center gap-2">
           <CreditCard className="h-4 w-4" />
           Neues Mandat
@@ -274,7 +274,7 @@ export function SepaManagement() {
                   </Button>
                 </div>
               </div>
-              
+
               <div className="overflow-x-auto">
                 <Table>
                   <TableHeader>
@@ -319,7 +319,7 @@ export function SepaManagement() {
                         </TableCell>
                         <TableCell>
                           <Badge variant="outline">
-                            {mandate.frequency === 'monthly' ? 'Monatlich' : 
+                            {mandate.frequency === 'monthly' ? 'Monatlich' :
                              mandate.frequency === 'quarterly' ? 'Vierteljährlich' : 'Jährlich'}
                           </Badge>
                         </TableCell>
@@ -341,16 +341,16 @@ export function SepaManagement() {
                         </TableCell>
                         <TableCell>
                           <div className="flex gap-1">
-                            <Button 
-                              variant="outline" 
+                            <Button
+                              variant="outline"
                               size="sm"
                               onClick={() => generateMandatePdf(mandate)}
                             >
                               <FileText className="h-3 w-3" />
                             </Button>
                             {mandate.status === 'failed' && (
-                              <Button 
-                                variant="outline" 
+                              <Button
+                                variant="outline"
                                 size="sm"
                                 onClick={() => handleRetryFailedDebit(mandate.id)}
                               >
@@ -398,18 +398,18 @@ export function SepaManagement() {
                           <Badge variant="destructive">Fehlgeschlagen</Badge>
                         </div>
                         <div className="text-sm text-gray-600 mt-1">
-                          Mandats-ID: {mandate.id.slice(-8)} | 
-                          IBAN: {mandate.iban.replace(/(.{4})/g, '$1 ').trim()} | 
+                          Mandats-ID: {mandate.id.slice(-8)} |
+                          IBAN: {mandate.iban.replace(/(.{4})/g, '$1 ').trim()} |
                           Betrag: €{mandate.amount}
                         </div>
                         <div className="text-sm text-red-600 mt-1">
-                          {mandate.failureCount} Fehlversuche | 
+                          {mandate.failureCount} Fehlversuche |
                           Letzter Versuch: {new Date(mandate.lastDebit!).toLocaleDateString('de-AT')}
                         </div>
                       </div>
                       <div className="flex gap-2">
-                        <Button 
-                          variant="outline" 
+                        <Button
+                          variant="outline"
                           size="sm"
                           onClick={() => handleRetryFailedDebit(mandate.id)}
                         >
@@ -445,7 +445,7 @@ function CreateMandateModal({ onClose }: { onClose: () => void }) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    
+
     // Simulate API call
     setTimeout(() => {
       setIsLoading(false);
@@ -474,7 +474,7 @@ function CreateMandateModal({ onClose }: { onClose: () => void }) {
           <div className="mb-6">
             <div className="flex items-center justify-between">
               {[1, 2, 3].map((s) => (
-                <div 
+                <div
                   key={s}
                   className={`flex items-center ${s < 3 ? 'flex-1' : ''}`}
                 >
@@ -542,11 +542,11 @@ function CreateMandateModal({ onClose }: { onClose: () => void }) {
                 <h4 className="font-medium">Bankverbindung</h4>
                 <div>
                   <Label htmlFor="iban">IBAN</Label>
-                  <Input 
-                    id="iban" 
+                  <Input
+                    id="iban"
                     placeholder="AT12 3456 7890 1234 5678"
                     pattern="[A-Z]{2}[0-9]{2}[A-Z0-9]{4}[0-9]{7}([A-Z0-9]?){0,16}"
-                    required 
+                    required
                   />
                 </div>
                 <div>
@@ -587,7 +587,7 @@ function CreateMandateModal({ onClose }: { onClose: () => void }) {
                     <span className="font-medium">AT12 3456 •••• •••• 5678</span>
                   </div>
                 </div>
-                
+
                 <div className="space-y-3">
                   <div className="flex items-center space-x-2">
                     <Checkbox id="consent" required />

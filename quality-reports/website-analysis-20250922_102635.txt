@@ -1,7 +1,7 @@
-09/22 08:26:48 [1;31mERROR[0;39m [36mc.c.a.c.a.CodacyPluginsAnalyser:31[0;39m - Failed analysis for semgrep 
-java.lang.Throwable: 
+09/22 08:26:48 [1;31mERROR[0;39m [36mc.c.a.c.a.CodacyPluginsAnalyser:31[0;39m - Failed analysis for semgrep
+java.lang.Throwable:
 Docker exited with code 1
-stdout: 
+stdout:
 The command 'docker' could not be found in this WSL 2 distro.
 We recommend to activate the WSL integration in Docker Desktop settings.
 
@@ -9,8 +9,8 @@ For details about using Docker Desktop with WSL 2, visit:
 
 https://docs.docker.com/go/wsl2/
 
-stderr: 
-           
+stderr:
+
 	at com.codacy.plugins.runners.BinaryDockerRunner.$anonfun$run$4(BinaryDockerRunner.scala:84)
 	at scala.util.Success.flatMap(Try.scala:251)
 	at com.codacy.plugins.runners.BinaryDockerRunner.run(BinaryDockerRunner.scala:69)
@@ -76,10 +76,10 @@ stderr:
 	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843)
 	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808)
 	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188)
-09/22 08:26:48 [1;31mERROR[0;39m [36mc.c.a.c.a.CodacyPluginsAnalyser:31[0;39m - Failed analysis for stylelint 
-java.lang.Throwable: 
+09/22 08:26:48 [1;31mERROR[0;39m [36mc.c.a.c.a.CodacyPluginsAnalyser:31[0;39m - Failed analysis for stylelint
+java.lang.Throwable:
 Docker exited with code 1
-stdout: 
+stdout:
 The command 'docker' could not be found in this WSL 2 distro.
 We recommend to activate the WSL integration in Docker Desktop settings.
 
@@ -87,8 +87,8 @@ For details about using Docker Desktop with WSL 2, visit:
 
 https://docs.docker.com/go/wsl2/
 
-stderr: 
-           
+stderr:
+
 	at com.codacy.plugins.runners.BinaryDockerRunner.$anonfun$run$4(BinaryDockerRunner.scala:84)
 	at scala.util.Success.flatMap(Try.scala:251)
 	at com.codacy.plugins.runners.BinaryDockerRunner.run(BinaryDockerRunner.scala:69)
@@ -133,10 +133,10 @@ stderr:
 	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843)
 	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808)
 	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188)
-09/22 08:26:48 [1;31mERROR[0;39m [36mc.c.a.c.a.CodacyPluginsAnalyser:31[0;39m - Failed analysis for csslint 
-java.lang.Throwable: 
+09/22 08:26:48 [1;31mERROR[0;39m [36mc.c.a.c.a.CodacyPluginsAnalyser:31[0;39m - Failed analysis for csslint
+java.lang.Throwable:
 Docker exited with code 1
-stdout: 
+stdout:
 The command 'docker' could not be found in this WSL 2 distro.
 We recommend to activate the WSL integration in Docker Desktop settings.
 
@@ -144,8 +144,8 @@ For details about using Docker Desktop with WSL 2, visit:
 
 https://docs.docker.com/go/wsl2/
 
-stderr: 
-           
+stderr:
+
 	at com.codacy.plugins.runners.BinaryDockerRunner.$anonfun$run$4(BinaryDockerRunner.scala:84)
 	at scala.util.Success.flatMap(Try.scala:251)
 	at com.codacy.plugins.runners.BinaryDockerRunner.run(BinaryDockerRunner.scala:69)
@@ -190,10 +190,10 @@ stderr:
 	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843)
 	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808)
 	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188)
-09/22 08:26:48 [1;31mERROR[0;39m [36mc.c.a.c.a.CodacyPluginsAnalyser:31[0;39m - Failed analysis for trivy 
-java.lang.Throwable: 
+09/22 08:26:48 [1;31mERROR[0;39m [36mc.c.a.c.a.CodacyPluginsAnalyser:31[0;39m - Failed analysis for trivy
+java.lang.Throwable:
 Docker exited with code 1
-stdout: 
+stdout:
 The command 'docker' could not be found in this WSL 2 distro.
 We recommend to activate the WSL integration in Docker Desktop settings.
 
@@ -201,8 +201,8 @@ For details about using Docker Desktop with WSL 2, visit:
 
 https://docs.docker.com/go/wsl2/
 
-stderr: 
-           
+stderr:
+
 	at com.codacy.plugins.runners.BinaryDockerRunner.$anonfun$run$4(BinaryDockerRunner.scala:84)
 	at scala.util.Success.flatMap(Try.scala:251)
 	at com.codacy.plugins.runners.BinaryDockerRunner.run(BinaryDockerRunner.scala:69)
@@ -268,10 +268,10 @@ stderr:
 	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843)
 	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808)
 	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188)
-09/22 08:26:48 [1;31mERROR[0;39m [36mc.c.a.c.a.CodacyPluginsAnalyser:31[0;39m - Failed analysis for pmd 
-java.lang.Throwable: 
+09/22 08:26:48 [1;31mERROR[0;39m [36mc.c.a.c.a.CodacyPluginsAnalyser:31[0;39m - Failed analysis for pmd
+java.lang.Throwable:
 Docker exited with code 1
-stdout: 
+stdout:
 The command 'docker' could not be found in this WSL 2 distro.
 We recommend to activate the WSL integration in Docker Desktop settings.
 
@@ -279,8 +279,8 @@ For details about using Docker Desktop with WSL 2, visit:
 
 https://docs.docker.com/go/wsl2/
 
-stderr: 
-           
+stderr:
+
 	at com.codacy.plugins.runners.BinaryDockerRunner.$anonfun$run$4(BinaryDockerRunner.scala:84)
 	at scala.util.Success.flatMap(Try.scala:251)
 	at com.codacy.plugins.runners.BinaryDockerRunner.run(BinaryDockerRunner.scala:69)
@@ -325,10 +325,10 @@ stderr:
 	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843)
 	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808)
 	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188)
-09/22 08:26:48 [1;31mERROR[0;39m [36mc.c.a.c.a.CodacyPluginsAnalyser:71[0;39m - Failed duplication for duplication 
-java.lang.Throwable: 
+09/22 08:26:48 [1;31mERROR[0;39m [36mc.c.a.c.a.CodacyPluginsAnalyser:71[0;39m - Failed duplication for duplication
+java.lang.Throwable:
 Docker exited with code 1
-stdout: 
+stdout:
 The command 'docker' could not be found in this WSL 2 distro.
 We recommend to activate the WSL integration in Docker Desktop settings.
 
@@ -336,8 +336,8 @@ For details about using Docker Desktop with WSL 2, visit:
 
 https://docs.docker.com/go/wsl2/
 
-stderr: 
-           
+stderr:
+
 	at com.codacy.plugins.runners.BinaryDockerRunner.$anonfun$run$4(BinaryDockerRunner.scala:84)
 	at scala.util.Success.flatMap(Try.scala:251)
 	at com.codacy.plugins.runners.BinaryDockerRunner.run(BinaryDockerRunner.scala:69)
@@ -393,10 +393,10 @@ stderr:
 	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843)
 	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808)
 	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188)
-09/22 08:26:48 [1;31mERROR[0;39m [36mc.c.a.c.a.CodacyPluginsAnalyser:31[0;39m - Failed analysis for pmd-7 
-java.lang.Throwable: 
+09/22 08:26:48 [1;31mERROR[0;39m [36mc.c.a.c.a.CodacyPluginsAnalyser:31[0;39m - Failed analysis for pmd-7
+java.lang.Throwable:
 Docker exited with code 1
-stdout: 
+stdout:
 The command 'docker' could not be found in this WSL 2 distro.
 We recommend to activate the WSL integration in Docker Desktop settings.
 
@@ -404,8 +404,8 @@ For details about using Docker Desktop with WSL 2, visit:
 
 https://docs.docker.com/go/wsl2/
 
-stderr: 
-           
+stderr:
+
 	at com.codacy.plugins.runners.BinaryDockerRunner.$anonfun$run$4(BinaryDockerRunner.scala:84)
 	at scala.util.Success.flatMap(Try.scala:251)
 	at com.codacy.plugins.runners.BinaryDockerRunner.run(BinaryDockerRunner.scala:69)
@@ -450,10 +450,10 @@ stderr:
 	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843)
 	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808)
 	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188)
-09/22 08:26:48 [1;31mERROR[0;39m [36mc.c.a.c.a.CodacyPluginsAnalyser:31[0;39m - Failed analysis for eslint-9 
-java.lang.Throwable: 
+09/22 08:26:48 [1;31mERROR[0;39m [36mc.c.a.c.a.CodacyPluginsAnalyser:31[0;39m - Failed analysis for eslint-9
+java.lang.Throwable:
 Docker exited with code 1
-stdout: 
+stdout:
 The command 'docker' could not be found in this WSL 2 distro.
 We recommend to activate the WSL integration in Docker Desktop settings.
 
@@ -461,8 +461,8 @@ For details about using Docker Desktop with WSL 2, visit:
 
 https://docs.docker.com/go/wsl2/
 
-stderr: 
-           
+stderr:
+
 	at com.codacy.plugins.runners.BinaryDockerRunner.$anonfun$run$4(BinaryDockerRunner.scala:84)
 	at scala.util.Success.flatMap(Try.scala:251)
 	at com.codacy.plugins.runners.BinaryDockerRunner.run(BinaryDockerRunner.scala:69)
@@ -507,10 +507,10 @@ stderr:
 	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843)
 	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808)
 	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188)
-09/22 08:26:48 [1;31mERROR[0;39m [36mc.c.a.c.a.CodacyPluginsAnalyser:52[0;39m - Failed metrics for metrics 
-java.lang.Throwable: 
+09/22 08:26:48 [1;31mERROR[0;39m [36mc.c.a.c.a.CodacyPluginsAnalyser:52[0;39m - Failed metrics for metrics
+java.lang.Throwable:
 Docker exited with code 1
-stdout: 
+stdout:
 The command 'docker' could not be found in this WSL 2 distro.
 We recommend to activate the WSL integration in Docker Desktop settings.
 
@@ -518,8 +518,8 @@ For details about using Docker Desktop with WSL 2, visit:
 
 https://docs.docker.com/go/wsl2/
 
-stderr: 
-           
+stderr:
+
 	at com.codacy.plugins.runners.BinaryDockerRunner.$anonfun$run$4(BinaryDockerRunner.scala:84)
 	at scala.util.Success.flatMap(Try.scala:251)
 	at com.codacy.plugins.runners.BinaryDockerRunner.run(BinaryDockerRunner.scala:69)
@@ -575,10 +575,10 @@ stderr:
 	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843)
 	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808)
 	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188)
-09/22 08:26:48 [1;31mERROR[0;39m [36mc.c.a.c.a.CodacyPluginsAnalyser:31[0;39m - Failed analysis for lizard 
-java.lang.Throwable: 
+09/22 08:26:48 [1;31mERROR[0;39m [36mc.c.a.c.a.CodacyPluginsAnalyser:31[0;39m - Failed analysis for lizard
+java.lang.Throwable:
 Docker exited with code 1
-stdout: 
+stdout:
 The command 'docker' could not be found in this WSL 2 distro.
 We recommend to activate the WSL integration in Docker Desktop settings.
 
@@ -586,8 +586,8 @@ For details about using Docker Desktop with WSL 2, visit:
 
 https://docs.docker.com/go/wsl2/
 
-stderr: 
-           
+stderr:
+
 	at com.codacy.plugins.runners.BinaryDockerRunner.$anonfun$run$4(BinaryDockerRunner.scala:84)
 	at scala.util.Success.flatMap(Try.scala:251)
 	at com.codacy.plugins.runners.BinaryDockerRunner.run(BinaryDockerRunner.scala:69)
@@ -632,10 +632,10 @@ stderr:
 	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843)
 	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808)
 	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188)
-09/22 08:26:48 [1;31mERROR[0;39m [36mc.c.a.c.a.CodacyPluginsAnalyser:52[0;39m - Failed metrics for metrics 
-java.lang.Throwable: 
+09/22 08:26:48 [1;31mERROR[0;39m [36mc.c.a.c.a.CodacyPluginsAnalyser:52[0;39m - Failed metrics for metrics
+java.lang.Throwable:
 Docker exited with code 1
-stdout: 
+stdout:
 The command 'docker' could not be found in this WSL 2 distro.
 We recommend to activate the WSL integration in Docker Desktop settings.
 
@@ -643,8 +643,8 @@ For details about using Docker Desktop with WSL 2, visit:
 
 https://docs.docker.com/go/wsl2/
 
-stderr: 
-           
+stderr:
+
 	at com.codacy.plugins.runners.BinaryDockerRunner.$anonfun$run$4(BinaryDockerRunner.scala:84)
 	at scala.util.Success.flatMap(Try.scala:251)
 	at com.codacy.plugins.runners.BinaryDockerRunner.run(BinaryDockerRunner.scala:69)
@@ -679,10 +679,10 @@ stderr:
 	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843)
 	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808)
 	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188)
-09/22 08:26:48 [1;31mERROR[0;39m [36mc.c.a.c.a.CodacyPluginsAnalyser:52[0;39m - Failed metrics for metrics 
-java.lang.Throwable: 
+09/22 08:26:48 [1;31mERROR[0;39m [36mc.c.a.c.a.CodacyPluginsAnalyser:52[0;39m - Failed metrics for metrics
+java.lang.Throwable:
 Docker exited with code 1
-stdout: 
+stdout:
 The command 'docker' could not be found in this WSL 2 distro.
 We recommend to activate the WSL integration in Docker Desktop settings.
 
@@ -690,8 +690,8 @@ For details about using Docker Desktop with WSL 2, visit:
 
 https://docs.docker.com/go/wsl2/
 
-stderr: 
-           
+stderr:
+
 	at com.codacy.plugins.runners.BinaryDockerRunner.$anonfun$run$4(BinaryDockerRunner.scala:84)
 	at scala.util.Success.flatMap(Try.scala:251)
 	at com.codacy.plugins.runners.BinaryDockerRunner.run(BinaryDockerRunner.scala:69)
@@ -747,10 +747,10 @@ stderr:
 	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843)
 	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808)
 	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188)
-09/22 08:26:48 [1;31mERROR[0;39m [36mc.c.a.c.a.CodacyPluginsAnalyser:52[0;39m - Failed metrics for metrics 
-java.lang.Throwable: 
+09/22 08:26:48 [1;31mERROR[0;39m [36mc.c.a.c.a.CodacyPluginsAnalyser:52[0;39m - Failed metrics for metrics
+java.lang.Throwable:
 Docker exited with code 1
-stdout: 
+stdout:
 The command 'docker' could not be found in this WSL 2 distro.
 We recommend to activate the WSL integration in Docker Desktop settings.
 
@@ -758,8 +758,8 @@ For details about using Docker Desktop with WSL 2, visit:
 
 https://docs.docker.com/go/wsl2/
 
-stderr: 
-           
+stderr:
+
 	at com.codacy.plugins.runners.BinaryDockerRunner.$anonfun$run$4(BinaryDockerRunner.scala:84)
 	at scala.util.Success.flatMap(Try.scala:251)
 	at com.codacy.plugins.runners.BinaryDockerRunner.run(BinaryDockerRunner.scala:69)
@@ -794,10 +794,10 @@ stderr:
 	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843)
 	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808)
 	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188)
-09/22 08:26:48 [1;31mERROR[0;39m [36mc.c.a.c.a.CodacyPluginsAnalyser:31[0;39m - Failed analysis for jshint 
-java.lang.Throwable: 
+09/22 08:26:48 [1;31mERROR[0;39m [36mc.c.a.c.a.CodacyPluginsAnalyser:31[0;39m - Failed analysis for jshint
+java.lang.Throwable:
 Docker exited with code 1
-stdout: 
+stdout:
 The command 'docker' could not be found in this WSL 2 distro.
 We recommend to activate the WSL integration in Docker Desktop settings.
 
@@ -805,8 +805,8 @@ For details about using Docker Desktop with WSL 2, visit:
 
 https://docs.docker.com/go/wsl2/
 
-stderr: 
-           
+stderr:
+
 	at com.codacy.plugins.runners.BinaryDockerRunner.$anonfun$run$4(BinaryDockerRunner.scala:84)
 	at scala.util.Success.flatMap(Try.scala:251)
 	at com.codacy.plugins.runners.BinaryDockerRunner.run(BinaryDockerRunner.scala:69)
@@ -851,10 +851,10 @@ stderr:
 	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843)
 	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808)
 	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188)
-09/22 08:26:48 [1;31mERROR[0;39m [36mc.c.a.c.a.CodacyPluginsAnalyser:31[0;39m - Failed analysis for eslint 
-java.lang.Throwable: 
+09/22 08:26:48 [1;31mERROR[0;39m [36mc.c.a.c.a.CodacyPluginsAnalyser:31[0;39m - Failed analysis for eslint
+java.lang.Throwable:
 Docker exited with code 1
-stdout: 
+stdout:
 The command 'docker' could not be found in this WSL 2 distro.
 We recommend to activate the WSL integration in Docker Desktop settings.
 
@@ -862,8 +862,8 @@ For details about using Docker Desktop with WSL 2, visit:
 
 https://docs.docker.com/go/wsl2/
 
-stderr: 
-           
+stderr:
+
 	at com.codacy.plugins.runners.BinaryDockerRunner.$anonfun$run$4(BinaryDockerRunner.scala:84)
 	at scala.util.Success.flatMap(Try.scala:251)
 	at com.codacy.plugins.runners.BinaryDockerRunner.run(BinaryDockerRunner.scala:69)
@@ -908,10 +908,10 @@ stderr:
 	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843)
 	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808)
 	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188)
-09/22 08:26:49 [1;31mERROR[0;39m [36mc.c.a.c.a.CodacyPluginsAnalyser:31[0;39m - Failed analysis for eslint-8 
-java.lang.Throwable: 
+09/22 08:26:49 [1;31mERROR[0;39m [36mc.c.a.c.a.CodacyPluginsAnalyser:31[0;39m - Failed analysis for eslint-8
+java.lang.Throwable:
 Docker exited with code 1
-stdout: 
+stdout:
 The command 'docker' could not be found in this WSL 2 distro.
 We recommend to activate the WSL integration in Docker Desktop settings.
 
@@ -919,8 +919,8 @@ For details about using Docker Desktop with WSL 2, visit:
 
 https://docs.docker.com/go/wsl2/
 
-stderr: 
-           
+stderr:
+
 	at com.codacy.plugins.runners.BinaryDockerRunner.$anonfun$run$4(BinaryDockerRunner.scala:84)
 	at scala.util.Success.flatMap(Try.scala:251)
 	at com.codacy.plugins.runners.BinaryDockerRunner.run(BinaryDockerRunner.scala:69)

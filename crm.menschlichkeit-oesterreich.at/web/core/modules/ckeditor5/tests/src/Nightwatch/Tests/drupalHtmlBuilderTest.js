@@ -8,7 +8,7 @@ const { JSDOM } = require('jsdom');
 // directly here.
 // @todo remove this after https://www.drupal.org/project/drupal/issues/3247647
 //   has been resolved.
- 
+
 const DrupalHtmlBuilder = eval(
   `(${fs
     .readFileSync(

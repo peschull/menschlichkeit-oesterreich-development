@@ -27,21 +27,21 @@ test_domain() {
     local domain=$1
     local expected_status=$2
     local description=$3
-    
+
     echo -e "\n${YELLOW}🌐 Testing: $description${NC}"
     echo "Domain: https://$domain"
-    
+
     # HTTP Status Check
     if command -v curl &> /dev/null; then
         status_code=$(curl -s -o /dev/null -w "%{http_code}" "https://$domain" --max-time 10)
-        
+
         if [ "$status_code" == "$expected_status" ]; then
             echo -e "${GREEN}✅ HTTP Status: $status_code (Expected: $expected_status)${NC}"
         else
             echo -e "${RED}❌ HTTP Status: $status_code (Expected: $expected_status)${NC}"
             return 1
         fi
-        
+
         # Response Time Check
         response_time=$(curl -s -o /dev/null -w "%{time_total}" "https://$domain" --max-time 10)
         if (( $(echo "$response_time < 3.0" | bc -l) )); then
@@ -49,22 +49,22 @@ test_domain() {
         else
             echo -e "${YELLOW}⚠️  Response Time: ${response_time}s (>3s)${NC}"
         fi
-        
+
     else
         echo -e "${YELLOW}⚠️  curl nicht verfügbar - überspringe HTTP-Tests${NC}"
     fi
-    
+
     return 0
 }
 
 test_ssl_certificate() {
     local domain=$1
-    
+
     echo -e "\n${YELLOW}🔒 SSL Certificate Test: $domain${NC}"
-    
+
     if command -v openssl &> /dev/null; then
         ssl_info=$(echo | openssl s_client -servername "$domain" -connect "$domain:443" 2>/dev/null | openssl x509 -noout -dates 2>/dev/null)
-        
+
         if [ $? -eq 0 ]; then
             echo -e "${GREEN}✅ SSL Certificate valid${NC}"
             echo "$ssl_info" | grep "notAfter" | sed 's/notAfter=/Expires: /'
@@ -78,13 +78,13 @@ test_ssl_certificate() {
 
 test_website_content() {
     echo -e "\n${YELLOW}📄 Website Content Verification${NC}"
-    
+
     if command -v curl &> /dev/null; then
         # Test für wichtige Keywords auf Hauptseite
         content=$(curl -s "https://$MAIN_DOMAIN" --max-time 10)
-        
+
         keywords=("Menschlichkeit" "Österreich" "Gewerkschaft" "Solidarität")
-        
+
         for keyword in "${keywords[@]}"; do
             if echo "$content" | grep -i "$keyword" > /dev/null; then
                 echo -e "${GREEN}✅ Keyword found: $keyword${NC}"
@@ -92,21 +92,21 @@ test_website_content() {
                 echo -e "${YELLOW}⚠️  Keyword missing: $keyword${NC}"
             fi
         done
-        
+
         # Test HTML-Struktur
         if echo "$content" | grep -i "<!DOCTYPE html>" > /dev/null; then
             echo -e "${GREEN}✅ Valid HTML structure${NC}"
         else
             echo -e "${RED}❌ HTML structure issue${NC}"
         fi
-        
+
         # Test Bootstrap CSS
         if echo "$content" | grep -i "bootstrap" > /dev/null; then
             echo -e "${GREEN}✅ Bootstrap CSS loaded${NC}"
         else
             echo -e "${YELLOW}⚠️  Bootstrap CSS not detected${NC}"
         fi
-        
+
     else
         echo -e "${YELLOW}⚠️  curl nicht verfügbar - überspringe Content-Tests${NC}"
     fi
@@ -122,7 +122,7 @@ test_domain "$MAIN_DOMAIN" "200" "Hauptdomain Website"
 test_domain "$API_DOMAIN" "404" "API Subdomain (Under Development)" || \
 test_domain "$API_DOMAIN" "200" "API Subdomain (Setup Page)"
 
-# 3. CRM Subdomain testen (erwartet 404 oder Setup-Page) 
+# 3. CRM Subdomain testen (erwartet 404 oder Setup-Page)
 test_domain "$CRM_DOMAIN" "404" "CRM Subdomain (Under Development)" || \
 test_domain "$CRM_DOMAIN" "200" "CRM Subdomain (Setup Page)"
 
@@ -138,7 +138,7 @@ test_website_content
 echo -e "\n${YELLOW}📱 Mobile Responsiveness Test${NC}"
 if command -v curl &> /dev/null; then
     mobile_content=$(curl -s -H "User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X)" "https://$MAIN_DOMAIN" --max-time 10)
-    
+
     if echo "$mobile_content" | grep -i "viewport" > /dev/null; then
         echo -e "${GREEN}✅ Mobile viewport meta tag found${NC}"
     else
@@ -155,7 +155,7 @@ echo -e "${RED}❌ Critical issues found (fix required)${NC}"
 
 echo -e "\n${BLUE}🔗 Quick Links:${NC}"
 echo "Main Website: https://$MAIN_DOMAIN"
-echo "API Subdomain: https://$API_DOMAIN" 
+echo "API Subdomain: https://$API_DOMAIN"
 echo "CRM Subdomain: https://$CRM_DOMAIN"
 
 echo -e "\n${BLUE}📋 Next Steps After Deployment:${NC}"

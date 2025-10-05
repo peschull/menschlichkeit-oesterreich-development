@@ -3,6 +3,10 @@ repos:
     rev: v4.6.0
     hooks:
       - id: check-yaml
+        exclude: |
+          ^crm\.menschlichkeit-oesterreich\.at/web/core/tests/|
+          ^crm\.menschlichkeit-oesterreich\.at/web/core/modules/.*/tests/|
+          ^crm\.menschlichkeit-oesterreich\.at/web/core/themes/.*/tests/
       - id: end-of-file-fixer
       - id: trailing-whitespace
 
@@ -11,4 +15,3 @@ repos:
     hooks:
       - id: gitleaks
         args: ["protect", "--staged", "--redact", "--config=.gitleaks.toml"]
-

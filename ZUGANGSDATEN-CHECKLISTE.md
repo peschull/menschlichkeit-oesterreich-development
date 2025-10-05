@@ -1,12 +1,12 @@
 # 📋 ZUGANGSDATEN CHECKLISTE - Menschlichkeit Österreich
-**Stand:** 29. September 2025  
+**Stand:** 29. September 2025
 **System:** Multi-Service Austrian NGO Platform
 
 ## ✅ VERFÜGBARE ZUGANGSDATEN
 
 ### 📧 E-Mail Accounts (KOMPLETT)
 - ✅ **logging@menschlichkeit-oesterreich.at** | `wa3&3M59m`
-- ✅ **info@menschlichkeit-oesterreich.at** | `4%4if15Ao`  
+- ✅ **info@menschlichkeit-oesterreich.at** | `4%4if15Ao`
 - ✅ **peter.schuller@menschlichkeit-oesterreich.at** | `17d3lT8?h`
 - ✅ **civimail@menschlichkeit-oesterreich.at** | `69nTdv$16`
 - ✅ **bounce@menschlichkeit-oesterreich.at** | `1w8S%8a9k`
@@ -28,7 +28,7 @@
   - User: `laravel_user`
   - **Aktion:** Echtes Passwort von Plesk holen
 
-- ❌ **CiviCRM Database Password**  
+- ❌ **CiviCRM Database Password**
   - Current: `SECURE_CIVICRM_2025` (DUMMY)
   - Database: `mo_civicrm_data`
   - User: `civicrm_user`
@@ -49,13 +49,13 @@
   - **Verwendung:** API v4 Integration
 
 - ❌ **CiviCRM Site Key**
-  - **Quelle:** CiviCRM Admin → System Settings → Site Key  
+  - **Quelle:** CiviCRM Admin → System Settings → Site Key
   - **Verwendung:** API Security
 
 ### 🤖 n8n Automation
 - ❌ **n8n Admin Username**
   - **Empfehlung:** `moe_admin` oder `admin`
-  
+
 - ❌ **n8n Admin Password**
   - **Generierung:** Starkes Passwort 16+ Zeichen
   - **Pattern:** Mix aus Buchstaben, Zahlen, Sonderzeichen
@@ -106,12 +106,12 @@
 
 ### 🔥 SOFORT (Blockiert Entwicklung)
 1. **Database Passwörter** - Plesk Database Access
-2. **JWT Secret** - API Security  
+2. **JWT Secret** - API Security
 3. **CiviCRM Keys** - Member Management
 
 ### ⚠️ HOCH (Quality Gates)
 4. **Codacy Token** - Code Quality CI/CD
-5. **Snyk Token** - Security Scanning  
+5. **Snyk Token** - Security Scanning
 6. **n8n Credentials** - Automation Workflows
 
 ### 🟡 MITTEL (Features)
@@ -132,7 +132,7 @@
 - [ ] n8n Admin Credentials definieren
 - [ ] Alle Secrets in `.env` eintragen
 
-### Phase 2: External Services (Tag 2-3)  
+### Phase 2: External Services (Tag 2-3)
 - [ ] Codacy Account erstellen → API Token holen
 - [ ] Snyk Account erstellen → API Token holen
 - [ ] CiviCRM installieren → API & Site Keys generieren
@@ -154,7 +154,7 @@
 ### ✅ SICHERE PRAKTIKEN
 - Alle Production Secrets nur in GitHub Secrets
 - Lokale `.env` nie in Git committen
-- Starke Passwörter (16+ Zeichen)  
+- Starke Passwörter (16+ Zeichen)
 - Regelmäßige Key Rotation
 - 2FA für alle External Services
 
@@ -174,12 +174,12 @@
 - **SSH User:** dmpl20230054
 
 ### External Services
-- **Codacy Support:** support@codacy.com  
+- **Codacy Support:** support@codacy.com
 - **Snyk Support:** support@snyk.io
 - **CiviCRM Community:** https://civicrm.org/support
 
 ---
 
-**Letzte Aktualisierung:** 29. September 2025  
-**Nächste Review:** Bei System Changes  
+**Letzte Aktualisierung:** 29. September 2025
+**Nächste Review:** Bei System Changes
 **Verantwortlich:** Peter Schuller (peter.schuller@menschlichkeit-oesterreich.at)

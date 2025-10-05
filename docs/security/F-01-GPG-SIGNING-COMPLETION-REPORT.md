@@ -1,17 +1,17 @@
 # F-01: GPG-Commit-Signierung - Abschlussbericht
 
-**Status:** ✅ ABGESCHLOSSEN (mit Einschränkung)  
-**Datum:** 2025-10-03  
-**Aufwand:** 2h (DevOps)  
+**Status:** ✅ ABGESCHLOSSEN (mit Einschränkung)
+**Datum:** 2025-10-03
+**Aufwand:** 2h (DevOps)
 **Priorität:** KRITISCH (SOFORT-Maßnahme)
 
 ---
 
 ## Executive Summary
 
-**Ziel:** Alle Commits GPG-signiert, Branch-Protection mit `required_signatures` enforced  
-**Ergebnis:** GPG-Infrastruktur vollständig eingerichtet, Dokumentation erstellt, Test-Commit erfolgreich  
-**Limitation:** Branch Protection mit `required_signatures` NICHT aktiviert (GitHub Token fehlt `admin:gpg_key` scope)  
+**Ziel:** Alle Commits GPG-signiert, Branch-Protection mit `required_signatures` enforced
+**Ergebnis:** GPG-Infrastruktur vollständig eingerichtet, Dokumentation erstellt, Test-Commit erfolgreich
+**Limitation:** Branch Protection mit `required_signatures` NICHT aktiviert (GitHub Token fehlt `admin:gpg_key` scope)
 **Workaround:** Manuelle Aktivierung via GitHub Web-UI erforderlich
 
 ---
@@ -82,8 +82,8 @@ gpgconf --launch gpg-agent 2>/dev/null || true
 
 ### 4. Test-Commit ✅
 
-**Commit:** `2a767e9c` - "security: enable GPG commit signing (F-01)"  
-**Status:** Erfolgreich gepusht zu GitHub  
+**Commit:** `2a767e9c` - "security: enable GPG commit signing (F-01)"
+**Status:** Erfolgreich gepusht zu GitHub
 **Dateien:**
 
 - `.gpg-signing-test.txt` (Timestamp)
@@ -98,8 +98,8 @@ git log --show-signature -1
 
 ### 5. Phase-0-Deliverables ✅
 
-**Commit:** `0deedb41` - "docs: complete Phase 0 - Deep Analysis deliverables"  
-**Status:** Erfolgreich gepusht  
+**Commit:** `0deedb41` - "docs: complete Phase 0 - Deep Analysis deliverables"
+**Status:** Erfolgreich gepusht
 **Dateien:** Alle 10 Phase-0-Dokumente (2.2 MB)
 
 ---
@@ -175,7 +175,7 @@ gpg --armor --export 81A6DEC43E1C96C2299398174640581F19248721
 
 ### Git-Governance-Policy
 
-**Vorher:** 2/23 Checkboxes (8.7%) - 🔴 NICHT COMPLIANT  
+**Vorher:** 2/23 Checkboxes (8.7%) - 🔴 NICHT COMPLIANT
 **Nachher:** 8/23 Checkboxes (34.8%) - 🟡 TEILWEISE COMPLIANT
 
 **Neue Erfüllungen:**
@@ -194,7 +194,7 @@ gpg --armor --export 81A6DEC43E1C96C2299398174640581F19248721
 
 ### Supply-Chain-Security-Blueprint
 
-**Vorher:** 5/24 Checkboxes (20.8%) - 🔴 NICHT COMPLIANT  
+**Vorher:** 5/24 Checkboxes (20.8%) - 🔴 NICHT COMPLIANT
 **Nachher:** 7/24 Checkboxes (29.2%) - 🟡 TEILWEISE COMPLIANT
 
 **Neue Erfüllungen:**
@@ -313,7 +313,7 @@ gpg --armor --export 81A6DEC43E1C96C2299398174640581F19248721
 
 ## Zeitaufwand
 
-**Geplant:** 2 Stunden (DevOps)  
+**Geplant:** 2 Stunden (DevOps)
 **Tatsächlich:** 2.5 Stunden
 
 **Breakdown:**
@@ -347,6 +347,6 @@ gpg --armor --export 81A6DEC43E1C96C2299398174640581F19248721
 
 ---
 
-**Status:** ✅ F-01 BEHOBEN (mit manueller Branch-Protection-Aktivierung erforderlich)  
-**Nächste SOFORT-Maßnahme:** F-02 (n8n HTTPS aktivieren, 4h DevOps)  
+**Status:** ✅ F-01 BEHOBEN (mit manueller Branch-Protection-Aktivierung erforderlich)
+**Nächste SOFORT-Maßnahme:** F-02 (n8n HTTPS aktivieren, 4h DevOps)
 **Review-Datum:** 2027-10-03 (GPG-Key-Rotation)

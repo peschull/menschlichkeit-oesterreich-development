@@ -54,7 +54,7 @@
      * @param {Object} event
      *   A jQuery Event object.
      */
-     
+
     blurHandler(event) {
       // This event handler should only proceed if the event came from direct
       // interaction with the form element. If this fires on events triggered
@@ -371,7 +371,7 @@
       );
       bulkActions.map(
         (bulkActionForm) =>
-           
+
           new Drupal.ClaroBulkActions(bulkActionForm),
       );
     },

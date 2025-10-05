@@ -73,7 +73,7 @@ REM --- Ergebnis prüfen ---
 if %MAIN_ERR% NEQ 0 (
     echo [31m❌ WordPress-Sync fehlgeschlagen mit Code: %MAIN_ERR% - Siehe %TEMP%\winscp_main.log[0m
     set ERROR=1
-) 
+)
 if %API_ERR% NEQ 0 (
     echo [31m❌ API-Sync fehlgeschlagen mit Code: %API_ERR% - Siehe %TEMP%\winscp_api.log[0m
     set ERROR=1

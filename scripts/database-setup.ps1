@@ -16,23 +16,23 @@ function Invoke-MySQLCommand {
         [string]$Command,
         [string]$Database = ""
     )
-    
+
     $MySQLArgs = @(
         "-u", $MySQLRoot
         "-h", $MySQLHost
         "-P", $MySQLPort
     )
-    
+
     if ($MySQLRootPassword) {
         $MySQLArgs += "-p$MySQLRootPassword"
     }
-    
+
     if ($Database) {
         $MySQLArgs += $Database
     }
-    
+
     $MySQLArgs += "-e", $Command
-    
+
     try {
         & mysql @MySQLArgs
         return $true
@@ -202,7 +202,7 @@ CIVICRM_API_URL=https://crm.menschlichkeit-oesterreich.at/wp-content/plugins/civ
 CIVICRM_SITE_KEY=your-site-key
 CIVICRM_API_KEY=your-api-key
 
-# WordPress Integration  
+# WordPress Integration
 WP_API_URL=https://menschlichkeit-oesterreich.at/wp-json/wp/v2
 WP_APPLICATION_PASSWORD=your-app-password
 "@

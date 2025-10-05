@@ -1,5 +1,5 @@
 # Datenbank-Status Report - Menschlichkeit Österreich
-**Erstellt:** 5. Oktober 2025  
+**Erstellt:** 5. Oktober 2025
 **Status:** Deployment abgeschlossen, DB-Provisioning ausstehend
 
 ---
@@ -39,7 +39,7 @@ Laut Secret-Inventory existieren bereits **5 produktive MariaDB-Datenbanken** au
 
 ### Externe MariaDB (9 neue Datenbanken)
 
-**Status:** ❌ Nicht provisioniert  
+**Status:** ❌ Nicht provisioniert
 **Host:** Noch nicht bekannt (muss extern bereitgestellt werden)
 
 | DB Name | Service | User | Priorität | Anmerkung |
@@ -56,7 +56,7 @@ Laut Secret-Inventory existieren bereits **5 produktive MariaDB-Datenbanken** au
 
 ### Externe PostgreSQL (3 Datenbanken)
 
-**Status:** ❌ Nicht provisioniert  
+**Status:** ❌ Nicht provisioniert
 **Host:** Noch nicht bekannt
 
 | DB Name | Service | User | Priorität | Anmerkung |
@@ -94,7 +94,7 @@ ssh plesk "cd crm.menschlichkeit-oesterreich.at/httpdocs && \
 ```
 
 ### 2. Educational Games (Prisma + PostgreSQL)
-**Problem:** 
+**Problem:**
 - `schema.prisma` definiert Game-Models (User, Achievement, GameSession)
 - ❌ Keine PostgreSQL-Datenbank `mo_games` vorhanden
 - ❌ Prisma Migrations nicht ausgeführt
@@ -237,7 +237,7 @@ bash scripts/db/provision-mariadb.sh --apply --db mo_api --user svc_api
 1. **Externe DB-Hosts auswählen und bereitstellen**
    - MariaDB Host für 9 Datenbanken
    - PostgreSQL Host für 3 Datenbanken
-   
+
 2. **Credentials als GitHub Secrets speichern:**
    - `MYSQL_HOST`, `MYSQL_ADMIN_USER`, `MYSQL_ADMIN_PASS`
    - `PG_HOST`, `PG_ADMIN_USER`, `PG_ADMIN_PASS`
@@ -247,7 +247,7 @@ bash scripts/db/provision-mariadb.sh --apply --db mo_api --user svc_api
    ```bash
    # mo_crm (CiviCRM)
    bash scripts/db/provision-mariadb.sh --apply --db mo_crm --user svc_crm
-   
+
    # mo_games (Educational Games)
    bash scripts/db/provision-postgres.sh --apply --db mo_games --user svc_games
    ```
@@ -303,6 +303,6 @@ bash scripts/db/provision-mariadb.sh --apply --db mo_api --user svc_api
 
 ---
 
-**Stand:** 5. Oktober 2025, 14:02 Uhr  
-**Deployment:** ✅ Erfolgreich (Website online)  
+**Stand:** 5. Oktober 2025, 14:02 Uhr
+**Deployment:** ✅ Erfolgreich (Website online)
 **Datenbanken:** ⚠️ Provisioning ausstehend (kritischer Blocker)

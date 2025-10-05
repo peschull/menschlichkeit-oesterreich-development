@@ -116,19 +116,19 @@ export default defineConfig({
   build: {
     // Target modern browsers
     target: 'es2020',
-    
+
     // Output directory
     outDir: 'dist',
-    
+
     // Generate sourcemaps for debugging
     sourcemap: process.env.NODE_ENV === 'development',
-    
+
     // Minify with esbuild (faster than terser)
     minify: 'esbuild',
-    
+
     // Chunk size warnings
     chunkSizeWarningLimit: 1000,
-    
+
     // Rollup options
     rollupOptions: {
       output: {
@@ -136,10 +136,10 @@ export default defineConfig({
         manualChunks: {
           // React ecosystem
           'react-vendor': ['react', 'react-dom'],
-          
+
           // Motion/Framer
           'motion-vendor': ['motion/react'],
-          
+
           // UI Components (shadcn)
           'ui-vendor': [
             './components/ui/button',
@@ -151,10 +151,10 @@ export default defineConfig({
             './components/ui/toast',
             './components/ui/form'
           ],
-          
+
           // Icons
           'icons-vendor': ['lucide-react'],
-          
+
           // Game components (lazy loaded)
           'game-components': [
             './components/BridgeBuilding',
@@ -162,45 +162,45 @@ export default defineConfig({
             './components/Enhanced3DGameGraphics',
             './components/ImmersiveGameInterface'
           ],
-          
+
           // Admin components (lazy loaded)
           'admin-components': [
             './components/AdminDashboard',
             './components/Moderation'
           ]
         },
-        
+
         // Asset file names
         assetFileNames: (assetInfo) => {
           const info = assetInfo.name.split('.');
           const ext = info[info.length - 1];
-          
+
           if (/\.(png|jpe?g|svg|gif|webp|avif)$/.test(assetInfo.name)) {
             return 'assets/images/[name]-[hash][extname]';
           }
-          
+
           if (/\.css$/.test(assetInfo.name)) {
             return 'assets/css/[name]-[hash][extname]';
           }
-          
+
           if (/\.(woff2?|eot|ttf|otf)$/.test(assetInfo.name)) {
             return 'assets/fonts/[name]-[hash][extname]';
           }
-          
+
           return 'assets/[name]-[hash][extname]';
         },
-        
+
         // Chunk file names
         chunkFileNames: 'assets/js/[name]-[hash].js',
-        
+
         // Entry file names
         entryFileNames: 'assets/js/[name]-[hash].js'
       }
     },
-    
+
     // CSS code splitting
     cssCodeSplit: true,
-    
+
     // Reduce vendor chunk
     cssMinify: true
   },

@@ -6,7 +6,7 @@
  * the functionality of the button that shows/hides the navigation.
  */
 
- 
+
 ((Drupal) => {
   /**
    * Olivero helper functions.

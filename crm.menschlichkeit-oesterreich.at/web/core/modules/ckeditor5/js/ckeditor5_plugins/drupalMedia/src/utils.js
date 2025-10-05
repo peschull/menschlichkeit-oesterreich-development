@@ -111,7 +111,7 @@ export function isObject(value) {
  *   The preview child element if available.
  */
 export function getPreviewContainer(children) {
-   
+
   for (const child of children) {
     if (child.hasAttribute('data-drupal-media-preview')) {
       return child;

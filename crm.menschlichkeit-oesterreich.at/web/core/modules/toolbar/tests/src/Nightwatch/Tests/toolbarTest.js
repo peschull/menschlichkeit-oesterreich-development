@@ -314,14 +314,14 @@ module.exports = {
   'Locked toolbar vertical wide viewport': (browser) => {
     browser.setWindowSize(1000, 900);
     browser.waitForElementPresent(adminOrientationButton);
-     
+
     browser.expect.element(adminOrientationButton).to.be.visible;
     browser.setWindowSize(975, 900);
     browser.assert.hasClass(
       itemAdministrationTray,
       'is-active toolbar-tray-vertical',
     );
-     
+
     browser.expect.element(adminOrientationButton).to.not.be.visible;
   },
   'Settings are retained on refresh': (browser) => {

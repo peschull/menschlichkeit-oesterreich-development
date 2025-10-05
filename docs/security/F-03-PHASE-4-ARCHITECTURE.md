@@ -1,8 +1,8 @@
 # F-03 Phase 4: Centralized Log Aggregation - Architecture Design
 
-**Project:** F-03 PII-Sanitization in Logs  
-**Phase:** 4 of 4 - Centralized Log Aggregation (ELK Stack)  
-**Date:** 2025-01-XX  
+**Project:** F-03 PII-Sanitization in Logs
+**Phase:** 4 of 4 - Centralized Log Aggregation (ELK Stack)
+**Date:** 2025-01-XX
 **Status:** In Development
 
 ---
@@ -224,7 +224,7 @@ mutate {
 
 ### Option 1: Ruby Inline (Standalone)
 
-**Pros:** Keine externe Abhängigkeit, schnell  
+**Pros:** Keine externe Abhängigkeit, schnell
 **Cons:** Duplikation der PII-Regex aus Phase 1-3
 
 ```ruby
@@ -260,7 +260,7 @@ filter {
 
 ### Option 2: HTTP Filter (Reuses FastAPI Endpoint)
 
-**Pros:** Wiederverwendung von Phase 1 Code, zentrale PII-Logik  
+**Pros:** Wiederverwendung von Phase 1 Code, zentrale PII-Logik
 **Cons:** HTTP-Overhead, Latenz, Abhängigkeit von FastAPI
 
 ```ruby
@@ -836,5 +836,5 @@ curl -X PUT "localhost:9200/logs-operational-2025.01.15/_settings" \
 
 ---
 
-**Author:** AI DevOps Agent  
+**Author:** AI DevOps Agent
 **Last Updated:** 2025-01-XX

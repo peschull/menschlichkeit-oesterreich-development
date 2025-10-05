@@ -14,11 +14,10 @@ Was ist das erwartete Verhalten und was passiert tatsächlich?
 3.
 
 ### Umgebung
-- Service/Teil: 
+- Service/Teil:
 - Version/Branch:
 - Browser/OS (falls UI):
 
 ### Logs/Anhänge
 
 Relevante Logs oder Screenshots.
-

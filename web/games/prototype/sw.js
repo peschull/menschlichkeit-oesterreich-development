@@ -345,9 +345,9 @@ async function handleOfflineFallback(request) {
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <title>Democracy Metaverse - Offline</title>
           <style>
-            body { 
-              font-family: Inter, sans-serif; 
-              text-align: center; 
+            body {
+              font-family: Inter, sans-serif;
+              text-align: center;
               padding: 2rem;
               background: linear-gradient(135deg, #e879f9, #06b6d4, #10b981, #f59e0b);
               color: white;

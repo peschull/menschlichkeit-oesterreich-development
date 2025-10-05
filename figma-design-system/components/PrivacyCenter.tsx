@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { 
-  Shield, 
-  Download, 
-  Trash2, 
-  Eye, 
-  Settings, 
+import {
+  Shield,
+  Download,
+  Trash2,
+  Eye,
+  Settings,
   FileText,
   Mail,
   Clock,
@@ -208,7 +208,7 @@ export function PrivacyCenter() {
                     </DialogHeader>
                     <div className="space-y-4">
                       <p className="text-sm text-gray-600">
-                        Sie erhalten eine E-Mail mit einem Download-Link für Ihre Daten. 
+                        Sie erhalten eine E-Mail mit einem Download-Link für Ihre Daten.
                         Der Export umfasst alle Ihre persönlichen Daten, Aktivitäten und Einstellungen.
                       </p>
                       <Alert>
@@ -255,7 +255,7 @@ export function PrivacyCenter() {
                       <Alert className="border-red-200 bg-red-50">
                         <AlertCircle className="h-4 w-4 text-red-600" />
                         <AlertDescription className="text-red-800">
-                          <strong>Achtung:</strong> Diese Aktion kann nicht rückgängig gemacht werden. 
+                          <strong>Achtung:</strong> Diese Aktion kann nicht rückgängig gemacht werden.
                           Alle Ihre Daten werden dauerhaft gelöscht.
                         </AlertDescription>
                       </Alert>
@@ -330,7 +330,7 @@ export function PrivacyCenter() {
         <TabsContent value="data" className="space-y-6">
           <Card className="p-6">
             <h3 className="text-lg font-medium mb-4">Ihre gespeicherten Daten</h3>
-            
+
             <div className="space-y-6">
               <div>
                 <h4 className="font-medium mb-3 flex items-center gap-2">
@@ -385,7 +385,7 @@ export function PrivacyCenter() {
               <Alert>
                 <FileText className="h-4 w-4" />
                 <AlertDescription>
-                  Für einen vollständigen Export aller Ihrer Daten nutzen Sie die Funktion "Daten exportieren" 
+                  Für einen vollständigen Export aller Ihrer Daten nutzen Sie die Funktion "Daten exportieren"
                   in der Übersicht.
                 </AlertDescription>
               </Alert>
@@ -399,7 +399,7 @@ export function PrivacyCenter() {
             <p className="text-sm text-gray-600 mb-4">
               Hier sehen Sie alle Einverständnisse, die Sie erteilt oder widerrufen haben.
             </p>
-            
+
             <div className="overflow-x-auto">
               <Table>
                 <TableHeader>
@@ -434,11 +434,11 @@ export function PrivacyCenter() {
                 </TableBody>
               </Table>
             </div>
-            
+
             <Alert className="mt-4">
               <Lock className="h-4 w-4" />
               <AlertDescription>
-                Diese Aufzeichnungen werden zur Compliance mit der DSGVO geführt und können nicht gelöscht werden, 
+                Diese Aufzeichnungen werden zur Compliance mit der DSGVO geführt und können nicht gelöscht werden,
                 solange gesetzliche Aufbewahrungsfristen bestehen.
               </AlertDescription>
             </Alert>
@@ -512,7 +512,7 @@ export function PrivacyCenter() {
         <TabsContent value="settings" className="space-y-6">
           <Card className="p-6">
             <h3 className="text-lg font-medium mb-4">Datenschutz-Einstellungen</h3>
-            
+
             <div className="space-y-6">
               <div>
                 <h4 className="font-medium mb-3 flex items-center gap-2">
@@ -529,7 +529,7 @@ export function PrivacyCenter() {
                     </div>
                     <Switch id="newsletter" defaultChecked={personalData.preferences.newsletter} />
                   </div>
-                  
+
                   <div className="flex items-center justify-between">
                     <div>
                       <Label htmlFor="marketing">Marketing-Kommunikation</Label>
@@ -539,7 +539,7 @@ export function PrivacyCenter() {
                     </div>
                     <Switch id="marketing" defaultChecked={personalData.preferences.marketing} />
                   </div>
-                  
+
                   <div className="flex items-center justify-between">
                     <div>
                       <Label htmlFor="eventNotifications">Event-Benachrichtigungen</Label>
@@ -549,7 +549,7 @@ export function PrivacyCenter() {
                     </div>
                     <Switch id="eventNotifications" defaultChecked={personalData.preferences.eventNotifications} />
                   </div>
-                  
+
                   <div className="flex items-center justify-between">
                     <div>
                       <Label htmlFor="forumNotifications">Forum-Benachrichtigungen</Label>
@@ -579,7 +579,7 @@ export function PrivacyCenter() {
                     </div>
                     <Switch checked disabled />
                   </div>
-                  
+
                   <div className="flex items-center justify-between">
                     <div>
                       <Label htmlFor="analytics">Analyse-Cookies</Label>
@@ -589,7 +589,7 @@ export function PrivacyCenter() {
                     </div>
                     <Switch id="analytics" />
                   </div>
-                  
+
                   <div className="flex items-center justify-between">
                     <div>
                       <Label htmlFor="marketing-cookies">Marketing-Cookies</Label>

@@ -38,29 +38,29 @@ fi
 # Check prerequisites
 check_prerequisites() {
     log "Checking prerequisites..."
-    
+
     # Check if nginx is installed
     if ! command -v nginx &> /dev/null; then
         error "nginx is not installed"
     fi
-    
+
     # Check if openssl is available
     if ! command -v openssl &> /dev/null; then
         error "openssl is not installed"
     fi
-    
+
     # Check if plesk is installed
     if [ ! -f "/usr/local/psa/version" ]; then
         error "Plesk is not installed"
     fi
-    
+
     log "Prerequisites check completed"
 }
 
 # Create backup of existing configuration
 create_backup() {
     log "Creating configuration backup..."
-    
+
     if [ -d "/etc/nginx/conf.d" ]; then
         cp -r /etc/nginx/conf.d "$BACKUP_DIR"
         log "Backup created at: $BACKUP_DIR"
@@ -72,7 +72,7 @@ create_backup() {
 # Deploy SSL security configuration
 deploy_ssl_config() {
     log "Deploying SSL security configuration..."
-    
+
     cat > "$SSL_CONF" << 'EOF'
 # Modern SSL Configuration for A+ Rating
 # Menschlichkeit Österreich - Production SSL/TLS Configuration
@@ -108,7 +108,7 @@ add_header X-XSS-Protection "1; mode=block" always;
 add_header Referrer-Policy "strict-origin-when-cross-origin" always;
 add_header Permissions-Policy "geolocation=(), microphone=(), camera=()" always;
 EOF
-    
+
     log "SSL configuration deployed to: $SSL_CONF"
 }
 
@@ -127,7 +127,7 @@ generate_dhparams() {
 # Create SSL monitoring script
 create_ssl_monitor() {
     log "Creating SSL monitoring script..."
-    
+
     cat > "$MONITOR_SCRIPT" << 'EOF'
 #!/bin/bash
 # SSL Certificate Monitoring Script
@@ -140,21 +140,21 @@ ALERT_THRESHOLD=30
 check_ssl_expiry() {
     local domain=$1
     local cert_path="/opt/psa/var/certificates"
-    
+
     # Find certificate file for domain
     local cert_id=$(plesk bin certificate --list | grep "$domain" | awk '{print $1}' | head -1)
-    
+
     if [ -n "$cert_id" ]; then
         local cert_file="$cert_path/$cert_id/cert.pem"
-        
+
         if [ -f "$cert_file" ]; then
             local expiry_date=$(openssl x509 -in "$cert_file" -noout -enddate | cut -d= -f2)
             local expiry_epoch=$(date -d "$expiry_date" +%s)
             local current_epoch=$(date +%s)
             local days_until_expiry=$(( (expiry_epoch - current_epoch) / 86400 ))
-            
+
             echo "Domain: $domain - Expires in $days_until_expiry days"
-            
+
             if [ $days_until_expiry -lt $ALERT_THRESHOLD ]; then
                 echo "WARNING: SSL certificate for $domain expires in $days_until_expiry days" | \
                 mail -s "SSL Certificate Alert - $domain" "$ALERT_EMAIL"
@@ -171,14 +171,14 @@ check_ssl_expiry() {
 check_ssl_rating() {
     local domain=$1
     local api_url="https://api.ssllabs.com/api/v3/analyze?host=$domain&publish=off&fromCache=on"
-    
+
     local response=$(curl -s "$api_url")
     local status=$(echo "$response" | jq -r '.status // "UNKNOWN"')
-    
+
     if [ "$status" = "READY" ]; then
         local grade=$(echo "$response" | jq -r '.endpoints[0].grade // "UNKNOWN"')
         echo "Domain: $domain - SSL Labs Grade: $grade"
-        
+
         if [ "$grade" != "A+" ] && [ "$grade" != "A" ]; then
             echo "WARNING: SSL rating for $domain is $grade (expected A+)" | \
             mail -s "SSL Rating Alert - $domain" "$ALERT_EMAIL"
@@ -200,7 +200,7 @@ done
 #     done
 # fi
 EOF
-    
+
     chmod +x "$MONITOR_SCRIPT"
     log "SSL monitoring script created: $MONITOR_SCRIPT"
 }
@@ -208,7 +208,7 @@ EOF
 # Install cron job for SSL monitoring
 install_cron() {
     log "Installing SSL monitoring cron job..."
-    
+
     # Check if cron job already exists
     if ! crontab -l 2>/dev/null | grep -q "ssl-monitor.sh"; then
         # Add cron job: daily at 6:00 AM
@@ -222,20 +222,20 @@ install_cron() {
 # Configure domain-specific SSL settings
 configure_domains() {
     log "Configuring domain-specific SSL settings..."
-    
+
     # Main domain configuration
     configure_main_domain
-    
+
     # CRM subdomain configuration
     configure_crm_subdomain
-    
+
     # API subdomain configuration
     configure_api_subdomain
 }
 
 configure_main_domain() {
     local domain_config="/var/www/vhosts/menschlichkeit-oesterreich.at/conf/vhost_ssl.conf"
-    
+
     if [ ! -f "$domain_config" ]; then
         mkdir -p "$(dirname "$domain_config")"
         cat > "$domain_config" << 'EOF'
@@ -243,14 +243,14 @@ configure_main_domain() {
 server {
     listen 443 ssl http2;
     server_name menschlichkeit-oesterreich.at www.menschlichkeit-oesterreich.at;
-    
+
     include /etc/nginx/conf.d/ssl_security.conf;
-    
+
     # Force HTTPS redirect
     if ($scheme = http) {
         return 301 https://$server_name$request_uri;
     }
-    
+
     # Additional security headers for main site
     add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://js.stripe.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.menschlichkeit-oesterreich.at; frame-src 'self' https://js.stripe.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;" always;
 }
@@ -261,7 +261,7 @@ EOF
 
 configure_crm_subdomain() {
     local crm_config="/var/www/vhosts/menschlichkeit-oesterreich.at/subdomains/crm/conf/vhost_ssl.conf"
-    
+
     if [ ! -f "$crm_config" ]; then
         mkdir -p "$(dirname "$crm_config")"
         cat > "$crm_config" << 'EOF'
@@ -269,9 +269,9 @@ configure_crm_subdomain() {
 server {
     listen 443 ssl http2;
     server_name crm.menschlichkeit-oesterreich.at;
-    
+
     include /etc/nginx/conf.d/ssl_security.conf;
-    
+
     # CRM-specific security headers
     add_header X-Robots-Tag "noindex, nofollow" always;
     add_header Cache-Control "no-store, no-cache, must-revalidate" always;
@@ -284,7 +284,7 @@ EOF
 
 configure_api_subdomain() {
     local api_config="/var/www/vhosts/menschlichkeit-oesterreich.at/subdomains/api/conf/vhost_ssl.conf"
-    
+
     if [ ! -f "$api_config" ]; then
         mkdir -p "$(dirname "$api_config")"
         cat > "$api_config" << 'EOF'
@@ -292,22 +292,22 @@ configure_api_subdomain() {
 server {
     listen 443 ssl http2;
     server_name api.menschlichkeit-oesterreich.at;
-    
+
     include /etc/nginx/conf.d/ssl_security.conf;
-    
+
     # API rate limiting
     limit_req_zone $binary_remote_addr zone=api_limit:10m rate=10r/s;
     limit_req zone=api_limit burst=20 nodelay;
-    
+
     # CORS headers
     add_header Access-Control-Allow-Origin "https://menschlichkeit-oesterreich.at" always;
     add_header Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS" always;
     add_header Access-Control-Allow-Headers "Authorization, Content-Type, X-Requested-With" always;
     add_header Access-Control-Max-Age "86400" always;
-    
+
     # API-specific CSP
     add_header Content-Security-Policy "default-src 'none'; connect-src 'self'; frame-ancestors 'none';" always;
-    
+
     location / {
         proxy_pass http://127.0.0.1:8000;
         proxy_set_header Host $host;
@@ -324,7 +324,7 @@ EOF
 # Test nginx configuration
 test_nginx_config() {
     log "Testing nginx configuration..."
-    
+
     if nginx -t; then
         log "nginx configuration test passed"
         return 0
@@ -336,7 +336,7 @@ test_nginx_config() {
 # Reload nginx
 reload_nginx() {
     log "Reloading nginx..."
-    
+
     if systemctl reload nginx; then
         log "nginx reloaded successfully"
     else
@@ -347,19 +347,19 @@ reload_nginx() {
 # Run SSL tests
 run_ssl_tests() {
     log "Running SSL configuration tests..."
-    
+
     local domains=("menschlichkeit-oesterreich.at" "crm.menschlichkeit-oesterreich.at" "api.menschlichkeit-oesterreich.at")
-    
+
     for domain in "${domains[@]}"; do
         log "Testing SSL connection to $domain..."
-        
+
         # Test SSL connection
         if timeout 10 openssl s_client -servername "$domain" -connect "$domain:443" -tls1_2 </dev/null &>/dev/null; then
             log "✓ SSL connection to $domain successful"
         else
             warn "✗ SSL connection to $domain failed"
         fi
-        
+
         # Test HSTS header
         if curl -s -I "https://$domain" | grep -i "strict-transport-security" >/dev/null; then
             log "✓ HSTS header present for $domain"
@@ -372,7 +372,7 @@ run_ssl_tests() {
 # Rollback function
 rollback() {
     error "Rolling back changes due to failure..."
-    
+
     if [ -d "$BACKUP_DIR" ]; then
         rm -rf /etc/nginx/conf.d
         mv "$BACKUP_DIR" /etc/nginx/conf.d
@@ -385,10 +385,10 @@ rollback() {
 main() {
     log "Starting SSL/TLS Production Hardening Deployment"
     log "========================================================"
-    
+
     # Set trap for error handling
     trap rollback ERR
-    
+
     # Run deployment steps
     check_prerequisites
     create_backup
@@ -400,7 +400,7 @@ main() {
     test_nginx_config
     reload_nginx
     run_ssl_tests
-    
+
     log "========================================================"
     log "SSL/TLS Production Hardening Deployment Completed Successfully!"
     log ""

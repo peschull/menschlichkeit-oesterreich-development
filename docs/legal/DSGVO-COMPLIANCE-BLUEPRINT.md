@@ -1,8 +1,8 @@
 # DSGVO Compliance Blueprint
 
-**Version:** 1.0.0  
-**Datum:** 2025-10-03  
-**Verantwortlich:** Data Protection Officer (DPO)  
+**Version:** 1.0.0
+**Datum:** 2025-10-03
+**Verantwortlich:** Data Protection Officer (DPO)
 **Status:** 🟡 IN ARBEIT
 
 ---
@@ -291,7 +291,7 @@ jobs:
 
 ### Gesamt-Score
 
-**Erfüllt:** 2 / 87 Checkboxen (2.3%)  
+**Erfüllt:** 2 / 87 Checkboxen (2.3%)
 **Status:** 🔴 NICHT COMPLIANT
 
 ### Kritische Lücken
@@ -314,6 +314,6 @@ jobs:
 
 ---
 
-**Review-Zyklus:** Quartalsweise  
-**Nächste Review:** 2025-12-31  
+**Review-Zyklus:** Quartalsweise
+**Nächste Review:** 2025-12-31
 **Verantwortlich:** DPO / Legal Team

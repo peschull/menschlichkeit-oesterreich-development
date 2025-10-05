@@ -40,7 +40,7 @@ $chatgptExtensionDir = Get-ChildItem -Path $extensionDir -Directory | Where-Obje
 
 if ($chatgptExtensionDir) {
     Write-Host "✅ Extension Directory: $($chatgptExtensionDir.FullName)" -ForegroundColor Green
-    
+
     # Check package.json
     $packageJsonPath = Join-Path $chatgptExtensionDir.FullName "package.json"
     if (Test-Path $packageJsonPath) {
@@ -54,16 +54,16 @@ if ($chatgptExtensionDir) {
 # Reset Authentication if requested
 if ($ResetAuth) {
     Write-Host "`n4. Resetting ChatGPT Authentication..." -ForegroundColor Yellow
-    
+
     # Clear VS Code workspace storage
     $workspaceStorageDir = "$env:APPDATA\Code\User\workspaceStorage"
     if (Test-Path $workspaceStorageDir) {
-        Get-ChildItem -Path $workspaceStorageDir -Recurse -File | Where-Object { 
-            $_.Name -like "*chatgpt*" -or $_.Name -like "*openai*" 
+        Get-ChildItem -Path $workspaceStorageDir -Recurse -File | Where-Object {
+            $_.Name -like "*chatgpt*" -or $_.Name -like "*openai*"
         } | Remove-Item -Force -ErrorAction SilentlyContinue
         Write-Host "✅ Cleared workspace storage" -ForegroundColor Green
     }
-    
+
     # Clear global storage
     $globalStorageDir = "$env:APPDATA\Code\User\globalStorage\openai.chatgpt"
     if (Test-Path $globalStorageDir) {
@@ -77,13 +77,13 @@ Write-Host "`n5. Checking VS Code Settings..." -ForegroundColor Yellow
 $settingsPath = "d:\Arbeitsverzeichniss\.vscode\settings.json"
 if (Test-Path $settingsPath) {
     $settings = Get-Content $settingsPath | ConvertFrom-Json
-    
+
     if ($settings.PSObject.Properties["chatgpt.apiKey"]) {
         Write-Host "✅ ChatGPT API Key configured" -ForegroundColor Green
     } else {
         Write-Host "⚠️  ChatGPT API Key not configured in settings" -ForegroundColor Yellow
     }
-    
+
     if ($settings.PSObject.Properties["openai.apiKey"]) {
         Write-Host "✅ OpenAI API Key configured" -ForegroundColor Green
     } else {
@@ -125,20 +125,20 @@ try {
     } else {
         $currentSettings = @{}
     }
-    
+
     # Add/Update ChatGPT specific settings
     $currentSettings | Add-Member -Type NoteProperty -Name "chatgpt.apiKey" -Value "`${env:OPENAI_API_KEY}" -Force
     $currentSettings | Add-Member -Type NoteProperty -Name "chatgpt.openOnStartup" -Value $true -Force
     $currentSettings | Add-Member -Type NoteProperty -Name "chatgpt.gpt3.apiKey" -Value "`${env:OPENAI_API_KEY}" -Force
     $currentSettings | Add-Member -Type NoteProperty -Name "chatgpt.gpt3.organization" -Value "`${env:OPENAI_ORG_ID}" -Force
-    
+
     # Ensure OpenAI settings are also present
     $currentSettings | Add-Member -Type NoteProperty -Name "openai.apiKey" -Value "`${env:OPENAI_API_KEY}" -Force
     $currentSettings | Add-Member -Type NoteProperty -Name "openai.organization" -Value "`${env:OPENAI_ORG_ID}" -Force
-    
+
     $updatedJson = $currentSettings | ConvertTo-Json -Depth 10
     Set-Content -Path $settingsPath -Value $updatedJson -Encoding UTF8
-    
+
     Write-Host "✅ VS Code settings updated successfully" -ForegroundColor Green
 } catch {
     Write-Error "❌ Failed to update VS Code settings: $_"

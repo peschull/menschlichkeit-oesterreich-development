@@ -2,10 +2,10 @@
 
 ## Status Check
 
-✅ **n8n läuft:** `http://localhost:5678` (Browser geöffnet)  
+✅ **n8n läuft:** `http://localhost:5678` (Browser geöffnet)
 ✅ **Workflow-Dateien:**
-  - Minimal: `/workspaces/menschlichkeit-oesterreich-development/automation/n8n/workflows/right-to-erasure-minimal.json`  
-  - Fixed (HMAC): `/workspaces/menschlichkeit-oesterreich-development/automation/n8n/workflows/right-to-erasure.json`  
+  - Minimal: `/workspaces/menschlichkeit-oesterreich-development/automation/n8n/workflows/right-to-erasure-minimal.json`
+  - Fixed (HMAC): `/workspaces/menschlichkeit-oesterreich-development/automation/n8n/workflows/right-to-erasure.json`
 ✅ **Health:** `{"status":"ok"}`
 
 ---
@@ -14,7 +14,7 @@
 
 ### Methode 1: File Upload (EMPFOHLEN)
 
-**Schritt 1:** Öffne n8n UI  
+**Schritt 1:** Öffne n8n UI
 👉 **[http://localhost:5678](http://localhost:5678)** (sollte bereits offen sein)
 
 **Schritt 2:** Neuer Workflow
@@ -70,7 +70,7 @@ cat /workspaces/menschlichkeit-oesterreich-development/automation/n8n/workflows/
 
 Nach Import solltest du sehen:
 
-**Node 1:** "Webhook - Erasure Intake"  
+**Node 1:** "Webhook - Erasure Intake"
 **URL:** `http://localhost:5678/webhook/right-to-erasure`
 
 **Klicke auf den Node** → Siehst du die Webhook-URL?
@@ -119,7 +119,7 @@ curl -X POST http://localhost:5678/webhook/right-to-erasure \
 1. Klicke **"Executions"** (linke Sidebar)
 2. Siehst du eine neue Execution mit `request_id: test_001`?
 
-✅ **JA?** → Workflow funktioniert!  
+✅ **JA?** → Workflow funktioniert!
 ❌ **NEIN?** → Siehe Troubleshooting unten
 
 ---

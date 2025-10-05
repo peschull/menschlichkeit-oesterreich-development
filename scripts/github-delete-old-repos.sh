@@ -23,7 +23,7 @@ echo
 # Bestätigung einholen
 echo "❌ ZU LÖSCHENDE REPOSITORIES:"
 echo "   - peschull/menschlichkeit-oesterreich-monorepo"
-echo "   - peschull/menschlichkeit-oesterreich" 
+echo "   - peschull/menschlichkeit-oesterreich"
 echo "   - peschull/crm.menschlichkeit-oesterreich"
 echo "   - peschull/api.menschlichkeit-oesterreich"
 echo
@@ -53,7 +53,7 @@ fi
 
 echo
 
-# Repository 2: Ursprüngliches Haupt-Repository  
+# Repository 2: Ursprüngliches Haupt-Repository
 echo "🗑️ Lösche: menschlichkeit-oesterreich"
 if gh repo delete peschull/menschlichkeit-oesterreich --yes; then
     echo "✅ Erfolgreich gelöscht: menschlichkeit-oesterreich"

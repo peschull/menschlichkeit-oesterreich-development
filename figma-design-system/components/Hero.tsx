@@ -11,7 +11,7 @@ export function Hero() {
       {/* Enhanced background with Austria-inspired gradients */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary-50 via-background to-secondary-50" />
       <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-background/80 to-transparent" />
-      
+
       {/* Decorative elements */}
       <div className="absolute top-20 left-10 w-72 h-72 bg-brand-gradient opacity-10 rounded-full blur-3xl animate-pulse" />
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
@@ -19,7 +19,7 @@ export function Hero() {
       <div className="container mx-auto px-4 py-12 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Enhanced Content */}
-          <motion.div 
+          <motion.div
             className="space-y-8 order-2 lg:order-1"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -35,8 +35,8 @@ export function Hero() {
                   🇦🇹 Gemeinnütziger Verein nach österreichischem Recht
                 </Badge>
               </motion.div>
-              
-              <motion.h1 
+
+              <motion.h1
                 className="text-5xl lg:text-7xl tracking-tight leading-none"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -46,20 +46,20 @@ export function Hero() {
                 <span className="block text-gradient bg-brand-gradient bg-clip-text text-transparent">in Österreich</span>
                 <span className="block">leben</span>
               </motion.h1>
-              
-              <motion.p 
+
+              <motion.p
                 className="lead text-foreground-muted max-w-xl"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.8 }}
               >
-                Unser Verein fördert soziale Gerechtigkeit und Menschlichkeit in ganz Österreich. 
-                Gemeinsam unterstützen wir bedürftige Personen, stärken den gesellschaftlichen Zusammenhalt 
+                Unser Verein fördert soziale Gerechtigkeit und Menschlichkeit in ganz Österreich.
+                Gemeinsam unterstützen wir bedürftige Personen, stärken den gesellschaftlichen Zusammenhalt
                 und bauen eine solidarische Gemeinschaft für alle auf.
               </motion.p>
             </div>
 
-            <motion.div 
+            <motion.div
               className="flex flex-col sm:flex-row gap-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -72,7 +72,7 @@ export function Hero() {
                   <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </a>
               </Button>
-              
+
               <Button variant="outline" size="lg" asChild className="group border-primary text-primary hover:bg-primary hover:text-primary-foreground">
                 <a href="#about">
                   <Play className="mr-2 w-4 h-4" />
@@ -82,7 +82,7 @@ export function Hero() {
             </motion.div>
 
             {/* Enhanced Stats with icons */}
-            <motion.div 
+            <motion.div
               className="grid grid-cols-3 gap-8 pt-8 border-t border-border/50"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -113,14 +113,14 @@ export function Hero() {
           </motion.div>
 
           {/* Enhanced Logo & Image Section */}
-          <motion.div 
+          <motion.div
             className="order-1 lg:order-2"
             initial={{ opacity: 0, scale: 0.9, rotateY: 10 }}
             animate={{ opacity: 1, scale: 1, rotateY: 0 }}
             transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
           >
             {/* Logo Card */}
-            <motion.div 
+            <motion.div
               className="card-elevated p-8 mb-8 text-center"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -132,9 +132,9 @@ export function Hero() {
                   whileTap={{ scale: 0.95 }}
                   className="relative"
                 >
-                  <img 
-                    src={logoImage} 
-                    alt="Verein Menschlichkeit Österreich Logo" 
+                  <img
+                    src={logoImage}
+                    alt="Verein Menschlichkeit Österreich Logo"
                     className="w-48 h-48 mx-auto rounded-2xl shadow-brand-lg hover:shadow-brand transition-shadow"
                   />
                   <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-transparent via-white/10 to-transparent pointer-events-none" />
@@ -169,13 +169,13 @@ export function Hero() {
                 alt="Österreich Wien - Solidarität und Menschlichkeit"
                 className="w-full h-[400px] object-cover"
               />
-              
+
               {/* Enhanced overlay with Austria flag inspiration */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
               <div className="absolute top-0 left-0 right-0 h-2 austria-border" />
-              
+
               {/* Floating badges */}
-              <motion.div 
+              <motion.div
                 className="absolute top-6 left-6 glass rounded-xl p-4 text-white"
                 initial={{ x: -20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
@@ -190,7 +190,7 @@ export function Hero() {
                 </div>
               </motion.div>
 
-              <motion.div 
+              <motion.div
                 className="absolute bottom-6 right-6 glass rounded-xl p-4 text-white"
                 initial={{ x: 20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}

@@ -41,14 +41,14 @@ export interface AnimatedCounterProps {
 }
 
 // Particle System Component
-export function ParticleSystem({ 
-  count = 50, 
-  color = "#3b82f6", 
-  size = 4, 
-  speed = 1, 
+export function ParticleSystem({
+  count = 50,
+  color = "#3b82f6",
+  size = 4,
+  speed = 1,
   direction = 'up',
   shape = 'circle',
-  trigger = false 
+  trigger = false
 }: ParticleSystemProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [particles, setParticles] = useState<Array<{
@@ -103,14 +103,14 @@ export function ParticleSystem({
         );
       case 'diamond':
         return (
-          <div 
-            key={particle.id} 
+          <div
+            key={particle.id}
             style={{
               ...baseStyle,
               backgroundColor: color,
               transform: `${baseStyle.transform} rotate(45deg)`,
               borderRadius: '2px'
-            }} 
+            }}
           />
         );
       case 'heart':
@@ -123,13 +123,13 @@ export function ParticleSystem({
         );
       default:
         return (
-          <div 
-            key={particle.id} 
+          <div
+            key={particle.id}
             style={{
               ...baseStyle,
               backgroundColor: color,
               borderRadius: '50%'
-            }} 
+            }}
           />
         );
     }
@@ -147,8 +147,8 @@ export function ParticleSystem({
   };
 
   return (
-    <div 
-      ref={containerRef} 
+    <div
+      ref={containerRef}
       className="absolute inset-0 pointer-events-none overflow-hidden"
       style={{ zIndex: 10 }}
     >
@@ -157,13 +157,13 @@ export function ParticleSystem({
           <motion.div
             key={particle.id}
             initial={{ opacity: 0, scale: 0 }}
-            animate={{ 
+            animate={{
               opacity: [0, particle.opacity, 0],
               scale: [0, particle.scale, 0],
               ...getAnimationDirection()
             }}
             exit={{ opacity: 0, scale: 0 }}
-            transition={{ 
+            transition={{
               duration: 2 + Math.random() * 2,
               ease: "easeOut",
               delay: Math.random() * 0.5
@@ -178,38 +178,38 @@ export function ParticleSystem({
 }
 
 // Advanced 3D Card Component
-export function Advanced3DCard({ 
-  children, 
-  className = "", 
+export function Advanced3DCard({
+  children,
+  className = "",
   glowColor = "#3b82f6",
   tiltIntensity = 15,
   depth = 20,
-  interactive = true 
+  interactive = true
 }: Advanced3DCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  
+
   const springConfig = { stiffness: 150, damping: 15, mass: 0.1 };
   const x = useSpring(0, springConfig);
   const y = useSpring(0, springConfig);
-  
+
   const rotateX = useTransform(y, [-0.5, 0.5], [tiltIntensity, -tiltIntensity]);
   const rotateY = useTransform(x, [-0.5, 0.5], [-tiltIntensity, tiltIntensity]);
-  const translateZ = useTransform([rotateX, rotateY], ([rX, rY]) => 
+  const translateZ = useTransform([rotateX, rotateY], ([rX, rY]) =>
     Math.abs(rX) + Math.abs(rY) > 5 ? depth : 0
   );
 
   const handleMouseMove = useCallback((event: React.MouseEvent) => {
     if (!cardRef.current || !interactive) return;
-    
+
     const rect = cardRef.current.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
-    
+
     const mouseX = (event.clientX - centerX) / (rect.width / 2);
     const mouseY = (event.clientY - centerY) / (rect.height / 2);
-    
+
     x.set(mouseX);
     y.set(mouseY);
     setMousePosition({ x: mouseX, y: mouseY });
@@ -259,17 +259,17 @@ export function Advanced3DCard({
           }}
           transition={{ duration: 0.3 }}
         />
-        
+
         {/* Card Surface */}
         <motion.div
           className="relative w-full h-full rounded-xl overflow-hidden"
           style={{
-            background: `linear-gradient(135deg, 
-              rgba(255,255,255,${isHovered ? 0.15 : 0.1}) 0%, 
+            background: `linear-gradient(135deg,
+              rgba(255,255,255,${isHovered ? 0.15 : 0.1}) 0%,
               rgba(255,255,255,${isHovered ? 0.05 : 0.02}) 100%)`,
             backdropFilter: "blur(20px)",
             border: `1px solid rgba(255,255,255,${isHovered ? 0.3 : 0.1})`,
-            boxShadow: isHovered 
+            boxShadow: isHovered
               ? `0 25px 50px -12px rgba(0,0,0,0.25), 0 0 30px ${glowColor}30`
               : `0 10px 15px -3px rgba(0,0,0,0.1)`,
           }}
@@ -278,9 +278,9 @@ export function Advanced3DCard({
           <motion.div
             className="absolute inset-0 opacity-0"
             style={{
-              background: `linear-gradient(${135 + mousePosition.x * 30}deg, 
-                transparent 30%, 
-                rgba(255,255,255,0.1) 50%, 
+              background: `linear-gradient(${135 + mousePosition.x * 30}deg,
+                transparent 30%,
+                rgba(255,255,255,0.1) 50%,
                 transparent 70%)`,
             }}
             animate={{
@@ -288,7 +288,7 @@ export function Advanced3DCard({
             }}
             transition={{ duration: 0.3 }}
           />
-          
+
           {/* Content */}
           <div className="relative z-10 w-full h-full">
             {children}
@@ -300,11 +300,11 @@ export function Advanced3DCard({
 }
 
 // Dynamic Background Component
-export function DynamicBackground({ 
-  variant = 'democracy', 
-  intensity = 'medium', 
+export function DynamicBackground({
+  variant = 'democracy',
+  intensity = 'medium',
   color = "#3b82f6",
-  animated = true 
+  animated = true
 }: DynamicBackgroundProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number>();
@@ -349,7 +349,7 @@ export function DynamicBackground({
 
     // Initialize particles based on variant
     const particleCount = intensity === 'low' ? 20 : intensity === 'medium' ? 40 : 60;
-    
+
     for (let i = 0; i < particleCount; i++) {
       particles.push({
         x: Math.random() * dimensions.width,
@@ -384,7 +384,7 @@ export function DynamicBackground({
               const dx = particle.x - other.x;
               const dy = particle.y - other.y;
               const distance = Math.sqrt(dx * dx + dy * dy);
-              
+
               if (distance < 100) {
                 ctx.strokeStyle = `${color}${Math.floor((1 - distance / 100) * 20).toString(16).padStart(2, '0')}`;
                 ctx.lineWidth = 1;
@@ -406,7 +406,7 @@ export function DynamicBackground({
         // Geometric patterns
         ctx.strokeStyle = `${color}20`;
         ctx.lineWidth = 1;
-        
+
         for (let x = 0; x < dimensions.width; x += 50) {
           for (let y = 0; y < dimensions.height; y += 50) {
             const wave = Math.sin(animationTime + x * 0.01 + y * 0.01) * 10;
@@ -423,7 +423,7 @@ export function DynamicBackground({
           const centerX = dimensions.width * (0.2 + i * 0.15);
           const centerY = dimensions.height * 0.5;
           const radius = 50 + Math.sin(animationTime + i) * 20;
-          
+
           ctx.beginPath();
           ctx.arc(centerX, centerY + Math.sin(animationTime * 2 + i) * 30, radius, 0, Math.PI * 2);
           ctx.fill();
@@ -446,7 +446,7 @@ export function DynamicBackground({
     <canvas
       ref={canvasRef}
       className="absolute inset-0 w-full h-full pointer-events-none"
-      style={{ 
+      style={{
         opacity: intensity === 'low' ? 0.3 : intensity === 'medium' ? 0.5 : 0.7,
         zIndex: 1
       }}
@@ -455,12 +455,12 @@ export function DynamicBackground({
 }
 
 // Animated Counter Component
-export function AnimatedCounter({ 
-  value, 
-  duration = 1000, 
-  prefix = "", 
-  suffix = "", 
-  className = "" 
+export function AnimatedCounter({
+  value,
+  duration = 1000,
+  prefix = "",
+  suffix = "",
+  className = ""
 }: AnimatedCounterProps) {
   const [displayValue, setDisplayValue] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
@@ -493,11 +493,11 @@ export function AnimatedCounter({
       if (!startTime) startTime = currentTime;
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      
+
       // Easing function for smooth animation
       const easeOut = 1 - Math.pow(1 - progress, 3);
       const currentValue = Math.floor(startValue + (value - startValue) * easeOut);
-      
+
       setDisplayValue(currentValue);
 
       if (progress < 1) {
@@ -524,13 +524,13 @@ export function AnimatedCounter({
 }
 
 // Holographic Badge Component
-export function HolographicBadge({ 
-  icon, 
-  title, 
-  description, 
+export function HolographicBadge({
+  icon,
+  title,
+  description,
   rarity = 'common',
   size = 'medium',
-  animated = true 
+  animated = true
 }: {
   icon: React.ReactNode;
   title: string;
@@ -578,7 +578,7 @@ export function HolographicBadge({
           ease: "linear"
         }}
       />
-      
+
       {/* Inner Badge */}
       <motion.div
         className="absolute inset-1 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center"
@@ -623,11 +623,11 @@ export function HolographicBadge({
 }
 
 // Interactive Democracy Wheel
-export function DemocracyWheel({ 
-  segments, 
-  selectedSegment, 
+export function DemocracyWheel({
+  segments,
+  selectedSegment,
   onSegmentSelect,
-  size = 300 
+  size = 300
 }: {
   segments: Array<{
     id: string;
@@ -647,17 +647,17 @@ export function DemocracyWheel({
 
   const handleSpin = () => {
     if (isSpinning) return;
-    
+
     setIsSpinning(true);
     const randomRotation = rotation + 720 + Math.random() * 360;
     setRotation(randomRotation);
-    
+
     setTimeout(() => {
       setIsSpinning(false);
       // Calculate which segment is selected after spin
       const normalizedAngle = (360 - (randomRotation % 360)) % 360;
       let angleSum = 0;
-      
+
       for (const segment of segments) {
         const segmentAngle = (segment.value / totalValue) * 360;
         if (normalizedAngle >= angleSum && normalizedAngle < angleSum + segmentAngle) {
@@ -677,7 +677,7 @@ export function DemocracyWheel({
         className="cursor-pointer"
         onClick={handleSpin}
         animate={{ rotate: rotation }}
-        transition={{ 
+        transition={{
           duration: isSpinning ? 2 : 0.5,
           ease: isSpinning ? [0.23, 1, 0.32, 1] : "easeOut"
         }}
@@ -686,14 +686,14 @@ export function DemocracyWheel({
           const segmentAngle = (segment.value / totalValue) * 360;
           const startAngle = currentAngle;
           const endAngle = currentAngle + segmentAngle;
-          
+
           const x1 = Math.cos((startAngle - 90) * Math.PI / 180) * (size / 2 - 20);
           const y1 = Math.sin((startAngle - 90) * Math.PI / 180) * (size / 2 - 20);
           const x2 = Math.cos((endAngle - 90) * Math.PI / 180) * (size / 2 - 20);
           const y2 = Math.sin((endAngle - 90) * Math.PI / 180) * (size / 2 - 20);
-          
+
           const largeArcFlag = segmentAngle > 180 ? 1 : 0;
-          
+
           const pathData = [
             `M ${size / 2} ${size / 2}`,
             `L ${size / 2 + x1} ${size / 2 + y1}`,
@@ -719,7 +719,7 @@ export function DemocracyWheel({
                   transformOrigin: `${size / 2}px ${size / 2}px`,
                 }}
               />
-              
+
               {/* Segment Label */}
               <text
                 x={size / 2 + Math.cos((startAngle + segmentAngle / 2 - 90) * Math.PI / 180) * (size / 3)}
@@ -736,7 +736,7 @@ export function DemocracyWheel({
             </g>
           );
         })}
-        
+
         {/* Center circle */}
         <circle
           cx={size / 2}
@@ -746,7 +746,7 @@ export function DemocracyWheel({
           stroke="#333333"
           strokeWidth="3"
         />
-        
+
         {/* Spin indicator */}
         <text
           x={size / 2}
@@ -761,9 +761,9 @@ export function DemocracyWheel({
           {isSpinning ? '⟳' : 'SPIN'}
         </text>
       </motion.svg>
-      
+
       {/* Pointer */}
-      <div 
+      <div
         className="absolute top-2 left-1/2 transform -translate-x-1/2 w-0 h-0"
         style={{
           borderLeft: '10px solid transparent',

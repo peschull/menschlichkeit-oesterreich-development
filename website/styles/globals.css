@@ -2,7 +2,7 @@
 
 :root {
   --font-size: 16px;
-  
+
   /* Menschlichkeit Österreich Brand Colors */
   --brand-orange: #ff6b35;
   --brand-red: #e63946;
@@ -10,19 +10,19 @@
   --brand-bootstrap-blue: #0d6efd;
   --brand-austria-red: #c8102e;
   --brand-austria-white: #ffffff;
-  
+
   /* Background & Surface */
   --background: #fafbfc;
   --background-alt: #f8f9fa;
   --surface: #ffffff;
   --surface-elevated: #ffffff;
   --surface-hover: rgba(200, 16, 46, 0.04); /* Austrian Red hover */
-  
+
   /* Foreground & Text */
   --foreground: #1a202c;
   --foreground-muted: #4a5568;
   --foreground-subtle: #718096;
-  
+
   /* Brand Primary (Austrian Red) */
   --primary: #c8102e;
   --primary-50: #fef2f2;
@@ -38,7 +38,7 @@
   --primary-foreground: #ffffff;
   --primary-hover: #b91c1c;
   --primary-active: #991b1b;
-  
+
   /* Brand Secondary (Orange-Red Gradient) */
   --secondary: #ff6b35;
   --secondary-50: #fff5f2;
@@ -52,17 +52,17 @@
   --secondary-800: #b81e2b;
   --secondary-900: #a11825;
   --secondary-foreground: #ffffff;
-  
+
   /* Accent Colors */
   --accent: #f1f5f9;
   --accent-foreground: #334155;
   --accent-hover: #e2e8f0;
-  
+
   /* Muted Colors */
   --muted: #f8fafc;
   --muted-foreground: #64748b;
   --muted-hover: #f1f5f9;
-  
+
   /* Border & Input */
   --border: #e2e8f0;
   --border-muted: #f1f5f9;
@@ -71,60 +71,60 @@
   --input-border: #d1d5db;
   --input-border-focus: #c8102e; /* Austrian Red focus */
   --switch-background: #cbd5e1;
-  
+
   /* States */
   --destructive: #dc2626;
   --destructive-foreground: #ffffff;
   --destructive-50: #fef2f2;
   --destructive-100: #fee2e2;
-  
+
   --success: #16a34a;
   --success-foreground: #ffffff;
   --success-50: #f0fdf4;
   --success-100: #dcfce7;
-  
+
   --warning: #ca8a04;
   --warning-foreground: #ffffff;
   --warning-50: #fefce8;
   --warning-100: #fef3c7;
-  
+
   /* Card & Components */
   --card: #ffffff;
   --card-foreground: #1a202c;
   --card-border: #e2e8f0;
   --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   --card-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  
+
   /* Popover & Modal */
   --popover: #ffffff;
   --popover-foreground: #1a202c;
   --popover-border: #e2e8f0;
   --popover-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  
+
   /* Typography */
   --font-weight-light: 300;
   --font-weight-normal: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
-  
+
   /* Sizing & Spacing */
   --radius: 0.75rem;
   --radius-sm: 0.5rem;
   --radius-lg: 1rem;
   --radius-xl: 1.5rem;
-  
+
   /* Focus Ring */
   --ring: #93c5fd;
   --ring-offset: #ffffff;
-  
+
   /* Charts */
   --chart-1: #0d6efd;
   --chart-2: #ff6b35;
   --chart-3: #e63946;
   --chart-4: #16a34a;
   --chart-5: #ca8a04;
-  
+
   /* Sidebar */
   --sidebar: #f8fafc;
   --sidebar-foreground: #334155;
@@ -143,12 +143,12 @@
   --surface: #1e293b;
   --surface-elevated: #334155;
   --surface-hover: rgba(59, 130, 246, 0.1);
-  
+
   /* Foreground & Text */
   --foreground: #f1f5f9;
   --foreground-muted: #cbd5e1;
   --foreground-subtle: #94a3b8;
-  
+
   /* Brand Primary (Bootstrap Blue - adjusted for dark) */
   --primary: #3b82f6;
   --primary-50: #1e293b;
@@ -164,7 +164,7 @@
   --primary-foreground: #ffffff;
   --primary-hover: #2563eb;
   --primary-active: #1d4ed8;
-  
+
   /* Brand Secondary (Orange-Red Gradient - adjusted for dark) */
   --secondary: #f97316;
   --secondary-50: #1e293b;
@@ -178,17 +178,17 @@
   --secondary-800: #b91c1c;
   --secondary-900: #991b1b;
   --secondary-foreground: #ffffff;
-  
+
   /* Accent Colors */
   --accent: #334155;
   --accent-foreground: #f1f5f9;
   --accent-hover: #475569;
-  
+
   /* Muted Colors */
   --muted: #1e293b;
   --muted-foreground: #94a3b8;
   --muted-hover: #334155;
-  
+
   /* Border & Input */
   --border: #334155;
   --border-muted: #1e293b;
@@ -197,47 +197,47 @@
   --input-border: #475569;
   --input-border-focus: #3b82f6;
   --switch-background: #475569;
-  
+
   /* States */
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
   --destructive-50: #1e293b;
   --destructive-100: #374151;
-  
+
   --success: #22c55e;
   --success-foreground: #ffffff;
   --success-50: #1e293b;
   --success-100: #374151;
-  
+
   --warning: #eab308;
   --warning-foreground: #000000;
   --warning-50: #1e293b;
   --warning-100: #374151;
-  
+
   /* Card & Components */
   --card: #1e293b;
   --card-foreground: #f1f5f9;
   --card-border: #334155;
   --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
   --card-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
-  
+
   /* Popover & Modal */
   --popover: #1e293b;
   --popover-foreground: #f1f5f9;
   --popover-border: #334155;
   --popover-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
-  
+
   /* Focus Ring */
   --ring: #3b82f6;
   --ring-offset: #0f172a;
-  
+
   /* Charts */
   --chart-1: #3b82f6;
   --chart-2: #f97316;
   --chart-3: #ef4444;
   --chart-4: #22c55e;
   --chart-5: #eab308;
-  
+
   /* Sidebar */
   --sidebar: #1e293b;
   --sidebar-foreground: #cbd5e1;
@@ -256,12 +256,12 @@
   --color-surface: var(--surface);
   --color-surface-elevated: var(--surface-elevated);
   --color-surface-hover: var(--surface-hover);
-  
+
   /* Foreground & Text */
   --color-foreground: var(--foreground);
   --color-foreground-muted: var(--foreground-muted);
   --color-foreground-subtle: var(--foreground-subtle);
-  
+
   /* Brand Colors */
   --color-brand-orange: var(--brand-orange);
   --color-brand-red: var(--brand-red);
@@ -269,7 +269,7 @@
   --color-brand-bootstrap-blue: var(--brand-bootstrap-blue);
   --color-brand-austria-red: var(--brand-austria-red);
   --color-brand-austria-white: var(--brand-austria-white);
-  
+
   /* Primary Colors */
   --color-primary: var(--primary);
   --color-primary-50: var(--primary-50);
@@ -285,7 +285,7 @@
   --color-primary-foreground: var(--primary-foreground);
   --color-primary-hover: var(--primary-hover);
   --color-primary-active: var(--primary-active);
-  
+
   /* Secondary Colors */
   --color-secondary: var(--secondary);
   --color-secondary-50: var(--secondary-50);
@@ -299,7 +299,7 @@
   --color-secondary-800: var(--secondary-800);
   --color-secondary-900: var(--secondary-900);
   --color-secondary-foreground: var(--secondary-foreground);
-  
+
   /* Accent & Muted */
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
@@ -307,20 +307,20 @@
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-muted-hover: var(--muted-hover);
-  
+
   /* Cards & Components */
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
   --color-card-border: var(--card-border);
   --color-card-shadow: var(--card-shadow);
   --color-card-shadow-lg: var(--card-shadow-lg);
-  
+
   /* Popover & Modal */
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
   --color-popover-border: var(--popover-border);
   --color-popover-shadow: var(--popover-shadow);
-  
+
   /* States */
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
@@ -334,7 +334,7 @@
   --color-warning-foreground: var(--warning-foreground);
   --color-warning-50: var(--warning-50);
   --color-warning-100: var(--warning-100);
-  
+
   /* Border & Input */
   --color-border: var(--border);
   --color-border-muted: var(--border-muted);
@@ -343,24 +343,24 @@
   --color-input-border: var(--input-border);
   --color-input-border-focus: var(--input-border-focus);
   --color-switch-background: var(--switch-background);
-  
+
   /* Focus Ring */
   --color-ring: var(--ring);
   --color-ring-offset: var(--ring-offset);
-  
+
   /* Charts */
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
-  
+
   /* Radius */
   --radius-sm: var(--radius-sm);
   --radius-md: var(--radius);
   --radius-lg: var(--radius-lg);
   --radius-xl: var(--radius-xl);
-  
+
   /* Sidebar */
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
@@ -1274,7 +1274,7 @@ html {
 
   /* Enhanced Typography Glow */
   .text-glow {
-    text-shadow: 
+    text-shadow:
       0 0 5px currentColor,
       0 0 10px currentColor,
       0 0 15px currentColor,
@@ -1284,14 +1284,14 @@ html {
 
   @keyframes textGlow {
     from {
-      text-shadow: 
+      text-shadow:
         0 0 5px currentColor,
         0 0 10px currentColor,
         0 0 15px currentColor,
         0 0 20px currentColor;
     }
     to {
-      text-shadow: 
+      text-shadow:
         0 0 2px currentColor,
         0 0 5px currentColor,
         0 0 8px currentColor,
@@ -1759,7 +1759,7 @@ html {
   }
 
   /* Additional Mobile-First Utilities */
-  
+
   /* Responsive font sizes */
   .text-responsive-xl {
     font-size: 1.5rem;
@@ -2267,7 +2267,7 @@ html {
   /* Advanced Border Utilities */
   .border-gradient {
     border: 2px solid transparent;
-    background-image: linear-gradient(var(--background), var(--background)), 
+    background-image: linear-gradient(var(--background), var(--background)),
                       var(--brand-gradient);
     background-origin: border-box;
     background-clip: padding-box, border-box;
@@ -2275,7 +2275,7 @@ html {
 
   .border-gradient-primary {
     border: 2px solid transparent;
-    background-image: linear-gradient(var(--background), var(--background)), 
+    background-image: linear-gradient(var(--background), var(--background)),
                       linear-gradient(135deg, var(--primary) 0%, var(--primary-700) 100%);
     background-origin: border-box;
     background-clip: padding-box, border-box;

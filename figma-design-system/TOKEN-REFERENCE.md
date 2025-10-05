@@ -88,7 +88,7 @@
 - **disabled**: `#f1f5f9`
 
 
-## Typography Scale  
+## Typography Scale
 
 - **xs**: `0.75rem`
 - **sm**: `0.875rem`

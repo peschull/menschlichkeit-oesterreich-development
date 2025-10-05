@@ -479,8 +479,8 @@ export function AchievementGallery({
                             <span>Fortschritt</span>
                             <span>{achievement.progress}/{achievement.maxProgress}</span>
                           </div>
-                          <Progress 
-                            value={((achievement.progress || 0) / achievement.maxProgress) * 100} 
+                          <Progress
+                            value={((achievement.progress || 0) / achievement.maxProgress) * 100}
                             className="h-1.5"
                           />
                         </div>
@@ -540,8 +540,8 @@ export function AchievementGallery({
                   <div className="flex items-start space-x-4">
                     <div className={`p-4 rounded-lg ${getRarityColor(selectedAchievement.rarity).bg}`}>
                       {selectedAchievement.unlocked ? (
-                        <selectedAchievement.icon 
-                          className={`w-12 h-12 ${getRarityColor(selectedAchievement.rarity).text}`} 
+                        <selectedAchievement.icon
+                          className={`w-12 h-12 ${getRarityColor(selectedAchievement.rarity).text}`}
                         />
                       ) : (
                         <Lock className="w-12 h-12 text-gray-400" />

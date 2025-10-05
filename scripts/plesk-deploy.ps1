@@ -6,7 +6,7 @@ param(
     [Parameter(Mandatory=$false)]
     [ValidateSet("deploy", "sync", "status", "help")]
     [string]$Action = "help",
-    
+
     [Parameter(Mandatory=$false)]
     [switch]$Force
 )
@@ -32,19 +32,19 @@ Optionen:
 Beispiele:
   .\scripts\plesk-deploy.ps1 deploy
   .\scripts\plesk-deploy.ps1 sync -Force
-  
+
 Hinweis: Nutzt VS Code SFTP Extension für sicheren Transfer.
 "@ -ForegroundColor Yellow
 }
 
 function Test-SftpConfig {
     $sftpConfigPath = ".vscode/sftp.json"
-    
+
     if (-not (Test-Path $sftpConfigPath)) {
         Write-Error "SFTP-Konfiguration nicht gefunden: $sftpConfigPath"
         return $false
     }
-    
+
     try {
         $sftpConfig = Get-Content $sftpConfigPath | ConvertFrom-Json
         Write-Host "✅ SFTP-Konfiguration gefunden:" -ForegroundColor Green
@@ -61,13 +61,13 @@ function Test-SftpConfig {
 
 function Start-PlesPlDeploy {
     Write-Host "📤 Starte Plesk-Deployment..." -ForegroundColor Yellow
-    
+
     # Prüfe ob Änderungen vorliegen
     $gitStatus = git status --porcelain
     if ($gitStatus) {
         Write-Host "⚠️ Ungespeicherte Git-Änderungen gefunden:" -ForegroundColor Yellow
         $gitStatus | Write-Host -ForegroundColor Gray
-        
+
         if (-not $Force) {
             $response = Read-Host "Trotzdem fortfahren? (y/N)"
             if ($response -ne "y") {
@@ -76,10 +76,10 @@ function Start-PlesPlDeploy {
             }
         }
     }
-    
+
     Write-Host "🔄 Nutze VS Code SFTP Extension für sicheren Upload..." -ForegroundColor Green
     Write-Host @"
-    
+
 📋 Manuelle Schritte für Deployment:
 1. Öffnen Sie VS Code Command Palette (Ctrl+Shift+P)
 2. Führen Sie 'SFTP: Sync Local -> Remote' aus
@@ -88,22 +88,22 @@ function Start-PlesPlDeploy {
 
 Alternativ: Rechtsklick auf Ordner -> 'Upload Folder'
 "@ -ForegroundColor Cyan
-    
+
     return $true
 }
 
 function Show-DeploymentStatus {
     Write-Host "📊 Deployment-Status" -ForegroundColor Cyan
     Write-Host "===================" -ForegroundColor Cyan
-    
+
     # Git Status
     Write-Host "`n📁 Git Status:" -ForegroundColor Yellow
     git status --short
-    
+
     # Letzte Commits
     Write-Host "`n📝 Letzte Commits:" -ForegroundColor Yellow
     git log --oneline -5
-    
+
     # SFTP-Konfiguration
     Write-Host "`n🔧 SFTP-Konfiguration:" -ForegroundColor Yellow
     if (Test-Path ".vscode/sftp.json") {
@@ -121,22 +121,22 @@ switch ($Action) {
             Start-PleskDeploy
         }
     }
-    
+
     "sync" {
         if (Test-SftpConfig) {
             Write-Host "🔄 Vollständige Synchronisation wird vorbereitet..." -ForegroundColor Yellow
             Start-PleskDeploy
         }
     }
-    
+
     "status" {
         Show-DeploymentStatus
     }
-    
+
     "help" {
         Show-Help
     }
-    
+
     default {
         Write-Host "❌ Unbekannte Aktion: $Action" -ForegroundColor Red
         Show-Help

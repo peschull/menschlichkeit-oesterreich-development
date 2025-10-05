@@ -546,13 +546,13 @@ Nach dem Deployment:
 
 ### Was du bekommst:
 
-✅ **54% kleinerer Bundle** → Schnelleres Laden  
-✅ **+5 SEO-Score** → Bessere Rankings  
-✅ **Notification-Center** → Bessere UX  
-✅ **Command-Palette** → Power-User-Features  
-✅ **Optimierte Vite-Config** → Schnellere Builds  
-✅ **Sitemap + Robots.txt** → Besseres Crawling  
-✅ **Structured Data** → Rich-Snippets  
+✅ **54% kleinerer Bundle** → Schnelleres Laden
+✅ **+5 SEO-Score** → Bessere Rankings
+✅ **Notification-Center** → Bessere UX
+✅ **Command-Palette** → Power-User-Features
+✅ **Optimierte Vite-Config** → Schnellere Builds
+✅ **Sitemap + Robots.txt** → Besseres Crawling
+✅ **Structured Data** → Rich-Snippets
 
 ### Migration-Aufwand:
 
@@ -568,8 +568,8 @@ Nach dem Deployment:
 
 ---
 
-**Version**: 4.1.0  
-**Release-Datum**: 2025-10-02  
+**Version**: 4.1.0
+**Release-Datum**: 2025-10-02
 **Upgrade-Difficulty**: 🟢 **Easy** (Keine Breaking Changes)
 
 ---

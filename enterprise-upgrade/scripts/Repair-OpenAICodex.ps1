@@ -4,19 +4,19 @@
 param(
     [Parameter(Mandatory=$false)]
     [switch]$SetupKeys = $false,
-    
+
     [Parameter(Mandatory=$false)]
     [switch]$LoadSecrets = $false,
-    
+
     [Parameter(Mandatory=$false)]
     [switch]$TestConnection = $false,
-    
+
     [Parameter(Mandatory=$false)]
     [switch]$RepairExtension = $false,
-    
+
     [Parameter(Mandatory=$false)]
     [string]$OpenAIApiKey = "",
-    
+
     [Parameter(Mandatory=$false)]
     [string]$OpenAIOrgId = ""
 )
@@ -33,7 +33,7 @@ $Script:Config = @{
 # Logging function
 function Write-Log {
     param([string]$Message, [string]$Level = "INFO")
-    
+
     $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
     $color = switch ($Level) {
         "ERROR" { "Red" }
@@ -42,60 +42,60 @@ function Write-Log {
         "INFO" { "Cyan" }
         default { "White" }
     }
-    
+
     Write-Host "[$timestamp] [$Level] $Message" -ForegroundColor $color
 }
 
 function Test-Prerequisites {
     Write-Log "Checking prerequisites for OpenAI Codex repair..."
-    
+
     $errors = @()
-    
+
     # Check if VS Code is installed
     $vscodeCommand = Get-Command code -ErrorAction SilentlyContinue
     if (-not $vscodeCommand) {
         $errors += "VS Code command-line tool 'code' not found in PATH"
     }
-    
+
     # Check if Node.js is installed (required for MCP servers)
     $nodeCommand = Get-Command node -ErrorAction SilentlyContinue
     if (-not $nodeCommand) {
         $errors += "Node.js not found. Install from https://nodejs.org/"
     }
-    
+
     # Check if npm is available
     $npmCommand = Get-Command npm -ErrorAction SilentlyContinue
     if (-not $npmCommand) {
         $errors += "npm not found. Install Node.js to get npm"
     }
-    
+
     # Check for age encryption tool (optional but recommended)
     $ageCommand = Get-Command age -ErrorAction SilentlyContinue
     if (-not $ageCommand) {
         Write-Log "age encryption tool not found. Install from https://age-encryption.org/" "WARN"
         Write-Log "SOPS encryption will not work without age keys" "WARN"
     }
-    
+
     # Check for SOPS (optional but recommended)
     $sopsCommand = Get-Command sops -ErrorAction SilentlyContinue
     if (-not $sopsCommand) {
         Write-Log "SOPS not found. Install from https://github.com/mozilla/sops" "WARN"
         Write-Log "Secrets encryption will not be available" "WARN"
     }
-    
+
     if ($errors.Count -gt 0) {
         foreach ($error in $errors) {
             Write-Log $error "ERROR"
         }
         throw "Prerequisites check failed"
     }
-    
+
     Write-Log "Prerequisites check completed successfully" "SUCCESS"
 }
 
 function Install-RequiredPackages {
     Write-Log "Installing required MCP server packages..."
-    
+
     try {
         # Historically this script attempted to install MCP servers from npm.
         # Some entries (like @openai/mcp-server) are not published to the public registry
@@ -113,24 +113,24 @@ function Install-RequiredPackages {
 
 function Initialize-SecretsStructure {
     Write-Log "Initializing secrets directory structure..."
-    
+
     try {
         # Create directories if they don't exist
         $directories = @(
             $Script:Config.SecretsPath,
             $Script:Config.VSCodeSecretsPath,
             "$($Script:Config.SecretsPath)\production",
-            "$($Script:Config.SecretsPath)\staging", 
+            "$($Script:Config.SecretsPath)\staging",
             "$($Script:Config.SecretsPath)\development"
         )
-        
+
         foreach ($dir in $directories) {
             if (!(Test-Path $dir)) {
                 New-Item -ItemType Directory -Path $dir -Force | Out-Null
                 Write-Log "Created directory: $dir"
             }
         }
-        
+
         # Create .gitignore for secrets if it doesn't exist
         $secretsGitignore = "$($Script:Config.SecretsPath)\.gitignore"
         if (!(Test-Path $secretsGitignore)) {
@@ -147,7 +147,7 @@ function Initialize-SecretsStructure {
 *_backup.*
 "@ | Out-File -FilePath $secretsGitignore -Encoding UTF8
         }
-        
+
         Write-Log "Secrets directory structure initialized" "SUCCESS"
         return $true
     }
@@ -162,21 +162,21 @@ function Set-OpenAICredentials {
         [string]$ApiKey,
         [string]$OrgId
     )
-    
+
     Write-Log "Setting up OpenAI credentials..."
-    
+
     try {
         # Validate API key format
         if ($ApiKey -and $ApiKey -notmatch "^sk-[A-Za-z0-9]{32,}$") {
             Write-Log "Invalid OpenAI API key format. Should start with 'sk-'" "ERROR"
             return $false
         }
-        
+
         if ($OrgId -and $OrgId -notmatch "^org-[A-Za-z0-9]{24}$") {
             Write-Log "Invalid OpenAI Organization ID format. Should start with 'org-'" "ERROR"
             return $false
         }
-        
+
         # Read existing config or create new
         $configPath = "$($Script:Config.SecretsPath)\openai.json"
         $config = @{
@@ -194,11 +194,11 @@ function Set-OpenAICredentials {
                 tokens_per_minute = 40000
             }
         }
-        
+
         # Save configuration
         $config | ConvertTo-Json -Depth 5 | Out-File -FilePath $configPath -Encoding UTF8
         Write-Log "OpenAI configuration saved to: $configPath"
-        
+
         # Try to encrypt with SOPS if available
         $sopsCommand = Get-Command sops -ErrorAction SilentlyContinue
         if ($sopsCommand) {
@@ -210,7 +210,7 @@ function Set-OpenAICredentials {
                 Write-Log "Failed to encrypt configuration, but it's saved as plaintext" "WARN"
             }
         }
-        
+
         Write-Log "OpenAI credentials configured successfully" "SUCCESS"
         return $true
     }
@@ -222,11 +222,11 @@ function Set-OpenAICredentials {
 
 function Set-EnvironmentVariables {
     Write-Log "Setting environment variables for current session..."
-    
+
     try {
         # Load from secrets if available
         $configPath = "$($Script:Config.SecretsPath)\openai.json"
-        
+
         if (Test-Path $configPath) {
             # Try to decrypt with SOPS first
             $sopsCommand = Get-Command sops -ErrorAction SilentlyContinue
@@ -242,18 +242,18 @@ function Set-EnvironmentVariables {
             } else {
                 $decryptedContent = Get-Content $configPath | ConvertFrom-Json
             }
-            
+
             # Set environment variables
             if ($decryptedContent.openai_api_key) {
                 [System.Environment]::SetEnvironmentVariable("OPENAI_API_KEY", $decryptedContent.openai_api_key, "Process")
                 Write-Log "Set OPENAI_API_KEY environment variable"
             }
-            
+
             if ($decryptedContent.openai_org_id) {
-                [System.Environment]::SetEnvironmentVariable("OPENAI_ORG_ID", $decryptedContent.openai_org_id, "Process")  
+                [System.Environment]::SetEnvironmentVariable("OPENAI_ORG_ID", $decryptedContent.openai_org_id, "Process")
                 Write-Log "Set OPENAI_ORG_ID environment variable"
             }
-            
+
             # Create .env.local for other tools
             $envContent = @"
 # OpenAI Configuration - Auto-generated by secrets management script
@@ -262,10 +262,10 @@ OPENAI_API_KEY=$($decryptedContent.openai_api_key)
 OPENAI_ORG_ID=$($decryptedContent.openai_org_id)
 OPENAI_MODEL=$($decryptedContent.model_preferences.default_model)
 "@
-            
+
             $envContent | Out-File -FilePath $Script:Config.EnvironmentFile -Encoding UTF8
             Write-Log "Created .env.local file for environment variables"
-            
+
             return $true
         } else {
             Write-Log "OpenAI configuration not found. Run with -SetupKeys first." "ERROR"
@@ -280,33 +280,33 @@ OPENAI_MODEL=$($decryptedContent.model_preferences.default_model)
 
 function Test-OpenAIConnection {
     Write-Log "Testing OpenAI API connection..."
-    
+
     try {
         $apiKey = [System.Environment]::GetEnvironmentVariable("OPENAI_API_KEY", "Process")
         $orgId = [System.Environment]::GetEnvironmentVariable("OPENAI_ORG_ID", "Process")
-        
+
         if (-not $apiKey) {
             Write-Log "OPENAI_API_KEY environment variable not set" "ERROR"
             return $false
         }
-        
+
         # Test API connection
         $headers = @{
             "Authorization" = "Bearer $apiKey"
             "Content-Type" = "application/json"
         }
-        
+
         if ($orgId) {
             $headers["OpenAI-Organization"] = $orgId
         }
-        
+
         Write-Log "Making test request to OpenAI API..."
         $response = Invoke-RestMethod -Uri "https://api.openai.com/v1/models" -Headers $headers -Method GET
-        
+
         if ($response.data) {
             Write-Log "✅ OpenAI API connection successful!" "SUCCESS"
-            Write-Log "Available models: $($response.data.Count)" 
-            
+            Write-Log "Available models: $($response.data.Count)"
+
             # Check for GPT-4 availability
             $gpt4Models = $response.data | Where-Object { $_.id -like "*gpt-4*" }
             if ($gpt4Models) {
@@ -314,7 +314,7 @@ function Test-OpenAIConnection {
             } else {
                 Write-Log "⚠️  GPT-4 models not available with this API key" "WARN"
             }
-            
+
             return $true
         } else {
             Write-Log "Unexpected API response format" "ERROR"
@@ -330,21 +330,21 @@ function Test-OpenAIConnection {
 
 function Repair-VSCodeExtension {
     Write-Log "Repairing VS Code OpenAI/Codex extension..."
-    
+
     try {
         # Restart Extension Host
         Write-Log "Restarting VS Code Extension Host..."
         & code --command "workbench.action.restartExtensionHost"
         Start-Sleep -Seconds 3
-        
+
         # Check for OpenAI extensions
         Write-Log "Checking installed OpenAI-related extensions..."
         $extensions = & code --list-extensions
-        
-        $openaiExtensions = $extensions | Where-Object { 
-            $_ -match "(openai|codex|chatgpt|gpt)" 
+
+        $openaiExtensions = $extensions | Where-Object {
+            $_ -match "(openai|codex|chatgpt|gpt)"
         }
-        
+
         if ($openaiExtensions) {
             Write-Log "Found OpenAI extensions:" "SUCCESS"
             foreach ($ext in $openaiExtensions) {
@@ -352,31 +352,31 @@ function Repair-VSCodeExtension {
             }
         } else {
             Write-Log "No OpenAI extensions found. Installing recommended extension..." "WARN"
-            
+
             # Install ChatGPT/Codex extension
             & code --install-extension ms-vscode.copilot-chat
             & code --install-extension openai.codex
             Write-Log "Extensions installed. Restart VS Code to activate."
         }
-        
+
         # Update VS Code settings for OpenAI
         $settingsPath = "$($Script:Config.WorkspaceRoot)\.vscode\settings.json"
         if (Test-Path $settingsPath) {
             Write-Log "Updating VS Code settings for OpenAI integration..."
-            
+
             $settings = Get-Content $settingsPath | ConvertFrom-Json -AsHashtable
-            
+
             # Add OpenAI settings
             $settings["openai.apiKey"] = '${env:OPENAI_API_KEY}'
             $settings["openai.organization"] = '${env:OPENAI_ORG_ID}'
             $settings["chatgpt.apiKey"] = '${env:OPENAI_API_KEY}'
             $settings["github.copilot.advanced"] = $true
-            
+
             # Save updated settings
             $settings | ConvertTo-Json -Depth 10 | Out-File -FilePath $settingsPath -Encoding UTF8
             Write-Log "VS Code settings updated successfully" "SUCCESS"
         }
-        
+
         Write-Log "VS Code extension repair completed" "SUCCESS"
         return $true
     }
@@ -388,23 +388,23 @@ function Repair-VSCodeExtension {
 
 function Show-RepairStatus {
     Write-Log "=== OpenAI Codex Repair Status ===" "INFO"
-    
+
     # Check environment variables
     $apiKey = [System.Environment]::GetEnvironmentVariable("OPENAI_API_KEY", "Process")
     $orgId = [System.Environment]::GetEnvironmentVariable("OPENAI_ORG_ID", "Process")
-    
+
     if ($apiKey) {
         Write-Log "✅ OPENAI_API_KEY is set" "SUCCESS"
     } else {
         Write-Log "❌ OPENAI_API_KEY is not set" "ERROR"
     }
-    
+
     if ($orgId) {
         Write-Log "✅ OPENAI_ORG_ID is set" "SUCCESS"
     } else {
         Write-Log "⚠️  OPENAI_ORG_ID is not set (optional)" "WARN"
     }
-    
+
     # Check secrets files
     $configExists = Test-Path "$($Script:Config.SecretsPath)\openai.json"
     if ($configExists) {
@@ -412,7 +412,7 @@ function Show-RepairStatus {
     } else {
         Write-Log "❌ OpenAI configuration file missing" "ERROR"
     }
-    
+
     # Check VS Code MCP configuration
     $mcpConfig = Test-Path "$($Script:Config.WorkspaceRoot)\.vscode\mcp.json"
     if ($mcpConfig) {
@@ -420,7 +420,7 @@ function Show-RepairStatus {
     } else {
         Write-Log "❌ MCP configuration missing" "ERROR"
     }
-    
+
     Write-Log "=== Repair Status Complete ===" "INFO"
 }
 
@@ -428,38 +428,38 @@ function Show-RepairStatus {
 function Start-CodexRepair {
     Write-Log "🚀 Starting OpenAI Codex Repair Process" "INFO"
     Write-Log "=========================================="
-    
+
     try {
         # Test prerequisites
         Test-Prerequisites
-        
+
         # Initialize secrets structure
         Initialize-SecretsStructure
-        
+
         # Setup API keys if provided
         if ($SetupKeys -and $OpenAIApiKey) {
             Set-OpenAICredentials -ApiKey $OpenAIApiKey -OrgId $OpenAIOrgId
         }
-        
+
         # Load secrets into environment
         if ($LoadSecrets -or $SetupKeys) {
             Set-EnvironmentVariables
         }
-        
+
         # Test API connection
         if ($TestConnection -or $SetupKeys) {
             Test-OpenAIConnection
         }
-        
+
         # Repair VS Code extension
         if ($RepairExtension -or $SetupKeys) {
             Install-RequiredPackages
             Repair-VSCodeExtension
         }
-        
+
         # Show final status
         Show-RepairStatus
-        
+
         Write-Log "=========================================="
         Write-Log "🎉 OpenAI Codex Repair Process Completed!" "SUCCESS"
         Write-Log ""
@@ -473,7 +473,7 @@ function Start-CodexRepair {
         Write-Log "- Check VS Code Output panel → OpenAI/ChatGPT"
         Write-Log "- Verify your ChatGPT Plus/Pro subscription"
         Write-Log "- Run: Get-Help $($MyInvocation.MyCommand.Name) -Detailed"
-        
+
         return $true
     }
     catch {
@@ -492,7 +492,7 @@ try {
             $OpenAIOrgId = Read-Host -Prompt "Enter your OpenAI Organization ID (org-..., optional)"
         }
     }
-    
+
     $result = Start-CodexRepair
     if ($result) {
         exit 0
@@ -533,7 +533,7 @@ OpenAI Organization ID (beginnt mit org-)
 .EXAMPLE
 .\Repair-OpenAICodex.ps1 -SetupKeys -OpenAIApiKey "sk-..." -OpenAIOrgId "org-..."
 
-.EXAMPLE  
+.EXAMPLE
 .\Repair-OpenAICodex.ps1 -LoadSecrets -TestConnection
 
 .EXAMPLE

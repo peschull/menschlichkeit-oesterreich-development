@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { 
-  User, 
-  Lock, 
-  Mail, 
-  Eye, 
-  EyeOff, 
-  Shield, 
+import {
+  User,
+  Lock,
+  Mail,
+  Eye,
+  EyeOff,
+  Shield,
   Smartphone,
   Key,
   CheckCircle,
@@ -51,7 +51,7 @@ export function AuthSystem({ isOpen, onClose, mode: initialMode }: AuthSystemPro
     e.preventDefault();
     setIsLoading(true);
     setErrors({});
-    
+
     // Simulate API call
     setTimeout(() => {
       setIsLoading(false);
@@ -68,7 +68,7 @@ export function AuthSystem({ isOpen, onClose, mode: initialMode }: AuthSystemPro
   const handleTwoFactorSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    
+
     setTimeout(() => {
       setIsLoading(false);
       setSuccessMessage('Anmeldung erfolgreich! Willkommen zurück.');

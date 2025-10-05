@@ -60,7 +60,7 @@ module.exports = {
       .pause(400) // Wait for transitionend event to fire.
       // Assert that focus is moved to wide search text input.
       .execute(
-         
+
         function (searchWideInputSelector) {
           return document.activeElement.matches(searchWideInputSelector);
         },

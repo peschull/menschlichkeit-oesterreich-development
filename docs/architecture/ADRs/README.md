@@ -24,4 +24,3 @@ Inhalt (Kurzfassung)
 
 Index
 - Automatisch generierbar via `npm run docs:adr-index` (siehe `scripts/docs/generate-adr-index.mjs`).
-

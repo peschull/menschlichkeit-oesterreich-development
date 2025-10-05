@@ -42,4 +42,3 @@ const outDir = path.join('frontend', '.i18n', 'pseudo');
 fs.mkdirSync(outDir, { recursive: true });
 fs.writeFileSync(path.join(outDir, 'en-XX.json'), JSON.stringify(pseudo, null, 2));
 console.log(`[i18n] Pseudo-Locale erzeugt: ${path.join(outDir, 'en-XX.json')}`);
-

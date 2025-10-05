@@ -68,18 +68,18 @@
   // form to update the field config form based on changes made to the
   // storage settings.
   const originalAjaxBeforeSend = Drupal.Ajax.prototype.beforeSend;
-   
+
   Drupal.Ajax.prototype.beforeSend = function () {
     // Disable the submit button on AJAX request initiation.
     $('.field-config-edit-form [data-drupal-selector="edit-submit"]').prop(
       'disabled',
       true,
     );
-     
+
     return originalAjaxBeforeSend.apply(this, arguments);
   };
   // Re-enable the submit button after AJAX request is completed.
-   
+
   $(document).on('ajaxComplete', () => {
     $('.field-config-edit-form [data-drupal-selector="edit-submit"]').prop(
       'disabled',
@@ -166,7 +166,7 @@
       // updates the value of.
       if ($trigger.closest('.tabledrag-hide').length) {
         const thisTableDrag = Drupal.tableDrag['field-display-overview'];
-         
+
         const rowObject = new thisTableDrag.row(
           $row[0],
           '',

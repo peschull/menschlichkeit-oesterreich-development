@@ -86,4 +86,3 @@ def test_admin_endpoints_require_admin(monkeypatch: pytest.MonkeyPatch, client: 
     assert r2.status_code == 200
     body = r2.json()
     assert body["success"] is True
-

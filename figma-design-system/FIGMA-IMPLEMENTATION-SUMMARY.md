@@ -2,7 +2,7 @@
 
 ## ✅ Status: COMPLETE & PRODUCTION-READY
 
-**Implementiert am**: 2025-01-15  
+**Implementiert am**: 2025-01-15
 **Version**: 1.0.0
 
 ---
@@ -514,7 +514,7 @@ cat figma-design-system/sync-log.txt
 
 ---
 
-**Implementiert von**: GitHub Copilot  
-**Datum**: 2025-01-15  
-**Version**: 1.0.0  
+**Implementiert von**: GitHub Copilot
+**Datum**: 2025-01-15
+**Version**: 1.0.0
 **Status**: ✅ Production-Ready

@@ -240,5 +240,5 @@ echo "FIGMA_TOKEN=figd_YOUR_TOKEN_HERE" >> .env
 
 ---
 
-**Geschätzte Gesamtzeit**: 8-10 Minuten (bei stabiler Internetverbindung)  
+**Geschätzte Gesamtzeit**: 8-10 Minuten (bei stabiler Internetverbindung)
 **Support**: Issues auf GitHub oder [peter.schuller@menschlichkeit-oesterreich.at](mailto:peter.schuller@menschlichkeit-oesterreich.at)

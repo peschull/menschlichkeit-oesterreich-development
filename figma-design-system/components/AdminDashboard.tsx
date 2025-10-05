@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { 
-  Users, 
-  DollarSign, 
-  Calendar, 
-  FileText, 
-  Settings, 
+import {
+  Users,
+  DollarSign,
+  Calendar,
+  FileText,
+  Settings,
   Database,
   TrendingUp,
   AlertTriangle,

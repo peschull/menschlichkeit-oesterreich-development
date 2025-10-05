@@ -14,11 +14,11 @@ def verify_routes_structure():
     try:
         from app.routes import privacy
         print("✅ Privacy routes module imported successfully")
-        
+
         # Check router
         assert hasattr(privacy, 'router'), "Missing router object"
         print("✅ Router object exists")
-        
+
         # Check endpoint functions
         endpoints = [
             'request_data_deletion',
@@ -27,20 +27,20 @@ def verify_routes_structure():
             'get_all_deletion_requests_admin',
             'privacy_health_check'
         ]
-        
+
         for endpoint in endpoints:
             assert hasattr(privacy, endpoint), f"Missing endpoint: {endpoint}"
             print(f"✅ Endpoint exists: {endpoint}")
-        
+
         # Check data models
         models = ['DataDeletionRequest', 'DeletionStatus', 'ProcessDeletionRequest']
         for model in models:
             assert hasattr(privacy, model), f"Missing model: {model}"
             print(f"✅ Model exists: {model}")
-        
+
         print("\n🎉 All structural checks passed!")
         return True
-        
+
     except Exception as e:
         print(f"❌ Verification failed: {e}")
         import traceback
@@ -53,21 +53,21 @@ def verify_api_integration():
     try:
         from app import main
         print("\n✅ Main API module imported successfully")
-        
+
         # Check if privacy router is included
         app = main.app
         routes = [route.path for route in app.routes]
-        
+
         privacy_routes = [r for r in routes if r.startswith('/privacy')]
         print(f"✅ Found {len(privacy_routes)} privacy routes:")
         for route in privacy_routes:
             print(f"   - {route}")
-        
+
         assert len(privacy_routes) > 0, "No privacy routes found in app"
-        
+
         print("\n🎉 API integration verified!")
         return True
-        
+
     except Exception as e:
         print(f"❌ Integration verification failed: {e}")
         import traceback
@@ -79,11 +79,11 @@ if __name__ == "__main__":
     print("=" * 60)
     print("GDPR Right to Erasure API - Verification Script")
     print("=" * 60)
-    
+
     success = verify_routes_structure()
     if success:
         success = verify_api_integration()
-    
+
     if success:
         print("\n" + "=" * 60)
         print("✅ ALL CHECKS PASSED - Ready for testing!")

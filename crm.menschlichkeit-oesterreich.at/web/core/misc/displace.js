@@ -168,7 +168,7 @@
       // If the element's offset data attribute exits
       // but is not a valid number then get the displacement
       // dimensions directly from the element.
-       
+
       if (isNaN(displacement)) {
         displacement = getRawOffset(el, edge);
       }

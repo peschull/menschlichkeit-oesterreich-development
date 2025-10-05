@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { 
-  Users, 
-  Search, 
-  Filter, 
-  Download, 
-  Plus, 
-  Edit3, 
-  Trash2, 
-  Mail, 
+import {
+  Users,
+  Search,
+  Filter,
+  Download,
+  Plus,
+  Edit3,
+  Trash2,
+  Mail,
   Phone,
   MapPin,
   Calendar,
@@ -116,7 +116,7 @@ export function MemberManagement() {
                          member.email.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesType = selectedMembershipType === 'all' || member.membershipType === selectedMembershipType;
     const matchesStatus = selectedStatus === 'all' || member.status === selectedStatus;
-    
+
     return matchesSearch && matchesType && matchesStatus;
   });
 
@@ -150,7 +150,7 @@ export function MemberManagement() {
           <h2 className="text-2xl font-bold text-gray-900">Mitgliederverwaltung</h2>
           <p className="text-gray-600 mt-1">Verwalten Sie alle Vereinsmitglieder und deren Daten</p>
         </div>
-        
+
         <Dialog open={isAddMemberOpen} onOpenChange={setIsAddMemberOpen}>
           <DialogTrigger asChild>
             <Button className="flex items-center gap-2">
@@ -181,7 +181,7 @@ export function MemberManagement() {
               />
             </div>
           </div>
-          
+
           <Select value={selectedMembershipType} onValueChange={setSelectedMembershipType}>
             <SelectTrigger className="w-[200px]">
               <SelectValue />
@@ -227,7 +227,7 @@ export function MemberManagement() {
               {filteredMembers.length} von {members.length} Mitgliedern
             </div>
           </div>
-          
+
           <div className="overflow-x-auto">
             <Table>
               <TableHeader>
@@ -350,17 +350,17 @@ function AddMemberForm({ onClose }: { onClose: () => void }) {
               <Input id="lastName" placeholder="Nachname" required />
             </div>
           </div>
-          
+
           <div>
             <Label htmlFor="email">E-Mail *</Label>
             <Input id="email" type="email" placeholder="E-Mail-Adresse" required />
           </div>
-          
+
           <div>
             <Label htmlFor="phone">Telefon</Label>
             <Input id="phone" type="tel" placeholder="+43 xxx xxx xxxx" />
           </div>
-          
+
           <div>
             <Label htmlFor="address">Adresse</Label>
             <Textarea id="address" placeholder="Straße, PLZ, Ort" />
@@ -381,17 +381,17 @@ function AddMemberForm({ onClose }: { onClose: () => void }) {
               </SelectContent>
             </Select>
           </div>
-          
+
           <div>
             <Label htmlFor="joinDate">Beitrittsdatum</Label>
             <Input id="joinDate" type="date" defaultValue={new Date().toISOString().split('T')[0]} />
           </div>
-          
+
           <div className="flex items-center space-x-2">
             <Checkbox id="autoPayment" />
             <Label htmlFor="autoPayment">SEPA-Lastschrift aktivieren</Label>
           </div>
-          
+
           <div className="flex items-center space-x-2">
             <Checkbox id="newsletter" defaultChecked />
             <Label htmlFor="newsletter">Newsletter abonnieren</Label>
@@ -420,12 +420,12 @@ function AddMemberForm({ onClose }: { onClose: () => void }) {
               </div>
             </div>
           </div>
-          
+
           <div>
             <Label htmlFor="notes">Notizen</Label>
             <Textarea id="notes" placeholder="Zusätzliche Informationen..." />
           </div>
-          
+
           <div>
             <Label htmlFor="source">Wie haben Sie von uns erfahren?</Label>
             <Select>

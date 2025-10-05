@@ -249,41 +249,41 @@ body {
     body {
         padding-top: 70px;
     }
-    
+
     .hero-section {
         min-height: 90vh;
         padding: 2rem 0;
     }
-    
+
     .display-3 {
         font-size: 2.5rem;
     }
-    
+
     .display-4 {
         font-size: 2rem;
     }
-    
+
     .display-5 {
         font-size: 1.8rem;
     }
-    
+
     .icon-large,
     .card-body i,
     .action-card i,
     .trust-card i {
         font-size: 2.5rem;
     }
-    
+
     .membership-card {
         margin-bottom: 1rem;
     }
-    
+
     .hero-buttons .btn,
     .cta-buttons .btn {
         margin: 0.25rem;
         width: 100%;
     }
-    
+
     .social-links a {
         display: block;
         margin: 0.5rem 0;
@@ -294,7 +294,7 @@ body {
     .display-3 {
         font-size: 2rem;
     }
-    
+
     .hero-buttons .btn,
     .cta-buttons .btn {
         font-size: 0.9rem;
@@ -346,7 +346,7 @@ footer a:hover {
     #newsletter .col-md-3 {
         margin-bottom: 1rem;
     }
-    
+
     #newsletter .btn {
         width: 100%;
     }
@@ -392,11 +392,11 @@ footer a:hover {
     footer {
         display: none;
     }
-    
+
     body {
         padding-top: 0;
     }
-    
+
     .hero-section {
         min-height: auto;
         padding: 2rem 0;
@@ -615,17 +615,17 @@ footer a:hover {
     .cookie-consent {
         padding: 0.75rem;
     }
-    
+
     .cookie-categories {
         grid-template-columns: 1fr;
         gap: 0.75rem;
         margin-bottom: 1rem;
     }
-    
+
     .cookie-actions {
         justify-content: center;
     }
-    
+
     .btn-cookie {
         flex: 1;
         min-width: auto;
@@ -636,11 +636,11 @@ footer a:hover {
     .cookie-header h4 {
         font-size: 1.1rem;
     }
-    
+
     .cookie-header p {
         font-size: 0.85rem;
     }
-    
+
     .cookie-actions {
         flex-direction: column;
     }
@@ -881,11 +881,11 @@ html {
     .auth-info-panel {
         padding: 3rem 2rem !important;
     }
-    
+
     .auth-section .row {
         margin: 1rem;
     }
-    
+
     .benefit-item {
         margin-bottom: 2rem !important;
     }
@@ -901,11 +901,11 @@ html {
         z-index: 1000;
         transition: left 0.3s ease;
     }
-    
+
     .dashboard-sidebar.show {
         left: 0;
     }
-    
+
     .dashboard-overlay {
         position: fixed;
         top: 76px;
@@ -918,7 +918,7 @@ html {
         visibility: hidden;
         transition: all 0.3s ease;
     }
-    
+
     .dashboard-overlay.show {
         opacity: 1;
         visibility: visible;

@@ -237,7 +237,7 @@ export function CommunityDashboard() {
             <h2 className="text-3xl font-bold">Community Dashboard</h2>
           </div>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Überblick über die Community-Aktivitäten, Trends und wichtige Kennzahlen 
+            Überblick über die Community-Aktivitäten, Trends und wichtige Kennzahlen
             für eine gesunde und engagierte Gemeinschaft.
           </p>
         </div>
@@ -336,7 +336,7 @@ export function CommunityDashboard() {
               <h3 className="text-xl font-semibold">Aktivste Mitglieder</h3>
               <Badge variant="outline">{mockActiveUsers.filter(u => u.isOnline).length} online</Badge>
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {mockActiveUsers.map(user => (
                 <UserCard key={user.id} user={user} />
@@ -349,7 +349,7 @@ export function CommunityDashboard() {
               <h3 className="text-xl font-semibold">Trending Themen</h3>
               <Badge variant="outline">Letzte 7 Tage</Badge>
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {mockTrendingTopics.map(topic => (
                 <TopicCard key={topic.id} topic={topic} />

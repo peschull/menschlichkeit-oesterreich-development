@@ -1,8 +1,8 @@
 # F-03: PII-Sanitization in Logs - Phase 2 Completion Report
 
-**Datum:** 2025-10-04  
-**SOFORT-Maßnahme:** F-03 (PII-Sanitization)  
-**Phase:** 2 von 4 (Drupal/CiviCRM)  
+**Datum:** 2025-10-04
+**SOFORT-Maßnahme:** F-03 (PII-Sanitization)
+**Phase:** 2 von 4 (Drupal/CiviCRM)
 **Status:** ✅ **100% ABGESCHLOSSEN**
 
 ---
@@ -730,9 +730,9 @@ private static $patterns = []; // Class-level cache
 
 ---
 
-**Author:** Menschlichkeit Österreich DevOps  
-**Date:** 2025-10-04  
-**Branch:** chore/figma-mcp-make  
+**Author:** Menschlichkeit Österreich DevOps
+**Date:** 2025-10-04
+**Branch:** chore/figma-mcp-make
 **Status:** ✅ READY TO DEPLOY
 
 **Deployment Command:**

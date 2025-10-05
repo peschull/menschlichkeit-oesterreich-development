@@ -20,7 +20,7 @@ import { groupNameToModelAttributeKey } from '../utils';
  * @return {Drupal.CKEditor5~DrupalElementStyle}
  */
 function getStyleDefinitionByName(name, styles) {
-   
+
   for (const style of styles) {
     if (style.name === name) {
       return style;
@@ -109,7 +109,7 @@ function viewToModelStyleAttribute(styles, modelAttribute) {
     }
 
     // Convert styles with CSS classes one by one.
-     
+
     for (const style of nonDefaultStyles) {
       // Try to consume class corresponding with the style.
       if (style.attributeName === 'class') {
@@ -130,7 +130,7 @@ function viewToModelStyleAttribute(styles, modelAttribute) {
           attributes: [style.attributeName],
         })
       ) {
-         
+
         for (const style of nonDefaultStyles) {
           if (
             style.attributeValue ===

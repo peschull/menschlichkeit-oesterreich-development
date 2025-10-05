@@ -118,7 +118,7 @@ _Geschätzte Dauer: 3-4 Tage_
 - [ ] **ADR-003**: Drupal/CiviCRM Brücken-Architektur
 - [x] **ADR-004**: MCP Server Sicherheitsmodell
 - [ ] **ADR-005**: Frontend State & API Communication Patterns
-  
+
 Siehe `docs/architecture/ADRs/ADR-INDEX.md` (automatisch generierbar mit `npm run docs:adr-index`).
 
 ### 📖 Operational Playbooks

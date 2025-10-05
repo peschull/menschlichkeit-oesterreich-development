@@ -29,16 +29,16 @@ sync_directory() {
     local LOCAL_DIR=$1
     local REMOTE_DIR=$2
     local DESCRIPTION=$3
-    
+
     echo -e "\n${YELLOW}📂 Syncing: $DESCRIPTION${NC}"
     echo "   Local:  $LOCAL_DIR"
     echo "   Remote: $REMOTE_DIR"
-    
+
     if [ ! -d "$LOCAL_DIR" ]; then
         echo -e "${RED}❌ Local directory not found: $LOCAL_DIR${NC}"
         return 1
     fi
-    
+
     # SFTP Batch Commands
     cat > /tmp/sftp_batch.txt << EOF
 -mkdir $REMOTE_DIR
@@ -47,18 +47,18 @@ lcd $LOCAL_DIR
 put -r *
 quit
 EOF
-    
+
     # Execute SFTP mit SSH-Key
     echo -e "${BLUE}⬆️  Uploading...${NC}"
     sftp -P $REMOTE_PORT -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no -b /tmp/sftp_batch.txt $REMOTE_USER@$REMOTE_HOST
-    
+
     if [ $? -eq 0 ]; then
         echo -e "${GREEN}✅ Successfully synced: $DESCRIPTION${NC}"
     else
         echo -e "${RED}❌ Failed to sync: $DESCRIPTION${NC}"
         return 1
     fi
-    
+
     rm -f /tmp/sftp_batch.txt
 }
 

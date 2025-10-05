@@ -1,8 +1,8 @@
 # Supply Chain Security Blueprint
 
-**Version:** 1.0.0  
-**Datum:** 2025-10-03  
-**Framework:** SLSA Level 3 + NIST SSDF  
+**Version:** 1.0.0
+**Datum:** 2025-10-03
+**Framework:** SLSA Level 3 + NIST SSDF
 **Compliance:** EU Cyber Resilience Act (CRA) Ready
 
 ---
@@ -656,7 +656,7 @@ resolution:
 
 ### 7.2 Gesamt-Score
 
-**Erfüllt:** 5 / 24 Checkboxen (20.8%)  
+**Erfüllt:** 5 / 24 Checkboxen (20.8%)
 **Status:** 🔴 NICHT COMPLIANT
 
 ---
@@ -675,6 +675,6 @@ resolution:
 
 ---
 
-**Review-Zyklus:** Monatlich  
-**Nächste Review:** 2025-11-03  
+**Review-Zyklus:** Monatlich
+**Nächste Review:** 2025-11-03
 **Verantwortlich:** Security + DevOps Team

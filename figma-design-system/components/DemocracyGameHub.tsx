@@ -4,11 +4,11 @@ import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
-import { 
-  Heart, 
-  Users, 
-  Scale, 
-  Shield, 
+import {
+  Heart,
+  Users,
+  Scale,
+  Shield,
   Star,
   ArrowRight,
   Trophy,
@@ -158,7 +158,7 @@ export function DemocracyGameHub() {
   return (
     <section id="democracy-hub" className="section-padding bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:to-gray-800">
       <div className="container mx-auto px-4">
-        
+
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -173,8 +173,8 @@ export function DemocracyGameHub() {
             Deine Democracy-Lernreise 🎮
           </h2>
           <p className="lead max-w-3xl mx-auto mb-8">
-            Entdecke verschiedene Wege, demokratische Kompetenzen zu entwickeln. 
-            Vom schnellen Einstieg bis zur kompletten Democracy-Journey - 
+            Entdecke verschiedene Wege, demokratische Kompetenzen zu entwickeln.
+            Vom schnellen Einstieg bis zur kompletten Democracy-Journey -
             <strong> wähle das Format, das zu dir passt</strong>.
           </p>
         </motion.div>
@@ -216,7 +216,7 @@ export function DemocracyGameHub() {
                         {game.subtitle}
                       </p>
                     </CardHeader>
-                    
+
                     <CardContent className="space-y-4">
                       <p className="text-sm leading-relaxed">
                         {game.description}
@@ -262,7 +262,7 @@ export function DemocracyGameHub() {
                       </div>
 
                       {/* CTA Button */}
-                      <Button 
+                      <Button
                         onClick={() => scrollToSection(game.href)}
                         className="w-full btn-primary-gradient"
                         size="lg"
@@ -286,7 +286,7 @@ export function DemocracyGameHub() {
             >
               <h3 className="mb-4">Empfohlene Lernpfade</h3>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Je nach verfügbarer Zeit und Zielgruppe empfehlen wir verschiedene Lernpfade 
+                Je nach verfügbarer Zeit und Zielgruppe empfehlen wir verschiedene Lernpfade
                 für optimale Lernergebnisse.
               </p>
             </motion.div>
@@ -389,7 +389,7 @@ export function DemocracyGameHub() {
                       </li>
                     </ul>
                   </div>
-                  
+
                   <div>
                     <h5 className="mb-4 flex items-center">
                       <Scale className="w-5 h-5 text-blue-500 mr-2" />
@@ -470,11 +470,11 @@ export function DemocracyGameHub() {
               <Sparkles className="w-12 h-12 mx-auto mb-4 text-yellow-500" />
               <h3 className="mb-4">Bereit für deine Democracy-Journey?</h3>
               <p className="text-muted-foreground mb-6">
-                Beginne mit dem klassischen Brücken Bauen oder springe direkt in das 
+                Beginne mit dem klassischen Brücken Bauen oder springe direkt in das
                 vollständige Democracy Metaverse. Beide Wege führen zu mehr demokratischer Kompetenz!
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button 
+                <Button
                   onClick={() => scrollToSection('#democracy-game')}
                   className="btn-secondary-gradient"
                   size="lg"
@@ -482,7 +482,7 @@ export function DemocracyGameHub() {
                   <Heart className="w-5 h-5 mr-2" />
                   Klassiker starten
                 </Button>
-                <Button 
+                <Button
                   onClick={() => scrollToSection('#democracy-metaverse')}
                   className="btn-primary-gradient"
                   size="lg"

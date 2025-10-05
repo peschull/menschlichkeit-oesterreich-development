@@ -9,13 +9,13 @@
   "editor.tabSize": 2,
   "editor.insertSpaces": true,
   "editor.rulers": [80, 120],
-  
+
   // TypeScript
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "typescript.preferences.importModuleSpecifier": "relative",
   "typescript.updateImportsOnFileMove.enabled": "always",
-  
+
   // Files
   "files.eol": "\n",
   "files.trimTrailingWhitespace": true,
@@ -27,7 +27,7 @@
     "**/dist": true,
     "**/.cache": true
   },
-  
+
   // Tailwind CSS
   "tailwindCSS.experimental.classRegex": [
     ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
@@ -37,12 +37,12 @@
     "typescript": "javascript",
     "typescriptreact": "javascript"
   },
-  
+
   // CSS
   "css.validate": false,
   "less.validate": false,
   "scss.validate": false,
-  
+
   // Search
   "search.exclude": {
     "**/node_modules": true,
@@ -51,21 +51,21 @@
     "**/.cache": true,
     "**/package-lock.json": true
   },
-  
+
   // Emmet
   "emmet.includeLanguages": {
     "typescript": "html",
     "typescriptreact": "html"
   },
-  
+
   // Git
   "git.ignoreLimitWarning": true,
-  
+
   // Prettier
   "prettier.singleQuote": true,
   "prettier.semi": true,
   "prettier.trailingComma": "es5",
-  
+
   // ESLint
   "eslint.validate": [
     "javascript",
@@ -73,7 +73,7 @@
     "typescript",
     "typescriptreact"
   ],
-  
+
   // File Associations
   "files.associations": {
     "*.css": "tailwindcss"

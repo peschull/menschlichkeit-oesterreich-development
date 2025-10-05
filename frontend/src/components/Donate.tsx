@@ -7,7 +7,7 @@ import { Label } from './ui/label';
 import { Badge } from './ui/badge';
 import { RadioGroup, RadioGroupItem } from './ui/radio-group';
 import { Checkbox } from './ui/checkbox';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { useAppState } from './AppStateManager';
 
 export function Donate() {
@@ -50,7 +50,7 @@ export function Donate() {
   return (
     <section id="donate" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
-        <motion.div 
+        <motion.div
           className="text-center space-y-4 mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -59,7 +59,7 @@ export function Donate() {
         >
           <h2 className="text-3xl lg:text-4xl">Spenden</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Unterstütze Menschlichkeit Österreich bei der wichtigen Arbeit für soziale Gerechtigkeit. 
+            Unterstütze Menschlichkeit Österreich bei der wichtigen Arbeit für soziale Gerechtigkeit.
             Mit SEPA-Integration und DSGVO-konformer Abwicklung für österreichische Spender.
           </p>
         </motion.div>
@@ -121,7 +121,7 @@ export function Donate() {
                       </Button>
                     ))}
                   </div>
-                  
+
                   <div className="space-y-2">
                     <Label htmlFor="custom-amount">Oder eigenen Betrag eingeben</Label>
                     <Input
@@ -158,12 +158,12 @@ export function Donate() {
                       </Label>
                     </div>
                   </RadioGroup>
-                  
+
                   {paymentMethod === 'sepa' && (
                     <div className="p-3 bg-blue-50 rounded-lg">
                       <p className="text-sm text-blue-800">
                         <Shield className="w-4 h-4 inline mr-1" />
-                        Mit SEPA-Lastschrift können Sie sicher und bequem spenden. 
+                        Mit SEPA-Lastschrift können Sie sicher und bequem spenden.
                         {donationType === 'monthly' && ' Perfekt für wiederkehrende Spenden.'}
                       </p>
                     </div>
@@ -184,8 +184,8 @@ export function Donate() {
                 </div>
 
                 {/* Donate Button */}
-                <Button 
-                  size="lg" 
+                <Button
+                  size="lg"
                   className="w-full"
                   onClick={() => {
                     if (paymentMethod === 'sepa') {
@@ -201,12 +201,12 @@ export function Donate() {
                   }}
                 >
                   <Gift className="w-4 h-4 mr-2" />
-                  {paymentMethod === 'sepa' 
-                    ? `SEPA-Lastschrift €${currentAmount || '0'}` 
+                  {paymentMethod === 'sepa'
+                    ? `SEPA-Lastschrift €${currentAmount || '0'}`
                     : `Jetzt €${currentAmount || '0'} spenden`
                   }
                 </Button>
-                
+
                 {paymentMethod === 'sepa' && !state.isAuthenticated && (
                   <p className="text-sm text-muted-foreground text-center">
                     Für SEPA-Lastschrift ist eine Anmeldung erforderlich
@@ -229,7 +229,7 @@ export function Donate() {
           </motion.div>
 
           {/* Impact Examples */}
-          <motion.div 
+          <motion.div
             className="space-y-6"
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -239,7 +239,7 @@ export function Donate() {
             <div className="space-y-4">
               <h3 className="text-2xl">Deine Spende bewirkt</h3>
               <p className="text-muted-foreground">
-                Sieh dir an, wie deine Spende konkret hilft und welchen Unterschied 
+                Sieh dir an, wie deine Spende konkret hilft und welchen Unterschied
                 sie im Leben anderer Menschen macht.
               </p>
             </div>
@@ -272,7 +272,7 @@ export function Donate() {
             </div>
 
             {/* Trust Indicators */}
-            <motion.div 
+            <motion.div
               className="bg-card rounded-xl p-6 space-y-4"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -285,8 +285,8 @@ export function Donate() {
               </div>
               <div className="space-y-3 text-sm text-muted-foreground">
                 <p>
-                  Als österreichischer Verein arbeiten wir nach höchsten Transparenzstandards. 
-                  Alle Mittel werden gemäß unserer Satzung verwendet: 70% für direkte Hilfsprojekte, 
+                  Als österreichischer Verein arbeiten wir nach höchsten Transparenzstandards.
+                  Alle Mittel werden gemäß unserer Satzung verwendet: 70% für direkte Hilfsprojekte,
                   20% für Vereinsverwaltung und 10% für Rücklagen.
                 </p>
                 <div className="grid grid-3 gap-4 text-xs">

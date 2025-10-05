@@ -10,12 +10,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
 import { Separator } from './ui/separator';
 import { Alert, AlertDescription } from './ui/alert';
 import { Progress } from './ui/progress';
-import { 
-  Database, 
-  Sync, 
-  CheckCircle, 
-  AlertCircle, 
-  XCircle, 
+import {
+  Database,
+  Sync,
+  CheckCircle,
+  AlertCircle,
+  XCircle,
   RefreshCw,
   Download,
   Upload,
@@ -45,7 +45,7 @@ export function CivicrmIntegration() {
   const handleSync = () => {
     setIsSyncing(true);
     setSyncProgress(0);
-    
+
     const interval = setInterval(() => {
       setSyncProgress(prev => {
         if (prev >= 100) {
@@ -97,7 +97,7 @@ export function CivicrmIntegration() {
         <TabsContent value="status" className="space-y-6">
           <div className="space-y-4">
             <h4 className="text-sm font-medium text-gray-900">Verbindungsstatus</h4>
-            
+
             <div className="grid grid-cols-1 gap-4">
               <div className="flex items-center justify-between p-3 border rounded-lg">
                 <div className="flex items-center gap-3">
@@ -109,7 +109,7 @@ export function CivicrmIntegration() {
                 </div>
                 <Badge variant="default">Online</Badge>
               </div>
-              
+
               <div className="flex items-center justify-between p-3 border rounded-lg">
                 <div className="flex items-center gap-3">
                   <div className="w-3 h-3 bg-green-500 rounded-full"></div>
@@ -120,7 +120,7 @@ export function CivicrmIntegration() {
                 </div>
                 <Badge variant="default">Aktiv</Badge>
               </div>
-              
+
               <div className="flex items-center justify-between p-3 border rounded-lg">
                 <div className="flex items-center gap-3">
                   <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
@@ -138,7 +138,7 @@ export function CivicrmIntegration() {
 
           <div className="space-y-4">
             <h4 className="text-sm font-medium text-gray-900">Letzte Synchronisation</h4>
-            
+
             <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
               <Clock className="h-4 w-4 text-gray-500" />
               <div>
@@ -152,7 +152,7 @@ export function CivicrmIntegration() {
 
           <div className="space-y-4">
             <h4 className="text-sm font-medium text-gray-900">Datenstatistiken</h4>
-            
+
             <div className="grid grid-cols-2 gap-4">
               <div className="p-4 border rounded-lg">
                 <div className="flex items-center gap-2 mb-2">
@@ -162,7 +162,7 @@ export function CivicrmIntegration() {
                 <p className="text-2xl font-bold">{syncStats.members.synced.toLocaleString()}</p>
                 <p className="text-sm text-gray-500">von {syncStats.members.total.toLocaleString()} synchronisiert</p>
               </div>
-              
+
               <div className="p-4 border rounded-lg">
                 <div className="flex items-center gap-2 mb-2">
                   <DollarSign className="h-4 w-4 text-green-500" />
@@ -171,7 +171,7 @@ export function CivicrmIntegration() {
                 <p className="text-2xl font-bold">{syncStats.donations.synced.toLocaleString()}</p>
                 <p className="text-sm text-gray-500">von {syncStats.donations.total.toLocaleString()} synchronisiert</p>
               </div>
-              
+
               <div className="p-4 border rounded-lg">
                 <div className="flex items-center gap-2 mb-2">
                   <Calendar className="h-4 w-4 text-purple-500" />
@@ -180,7 +180,7 @@ export function CivicrmIntegration() {
                 <p className="text-2xl font-bold">{syncStats.events.synced}</p>
                 <p className="text-sm text-gray-500">von {syncStats.events.total} synchronisiert</p>
               </div>
-              
+
               <div className="p-4 border rounded-lg">
                 <div className="flex items-center gap-2 mb-2">
                   <Database className="h-4 w-4 text-orange-500" />
@@ -197,8 +197,8 @@ export function CivicrmIntegration() {
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <h4 className="text-sm font-medium text-gray-900">Manuelle Synchronisation</h4>
-              <Button 
-                onClick={handleSync} 
+              <Button
+                onClick={handleSync}
                 disabled={isSyncing}
                 className="flex items-center gap-2"
               >
@@ -206,7 +206,7 @@ export function CivicrmIntegration() {
                 {isSyncing ? 'Synchronisiere...' : 'Jetzt synchronisieren'}
               </Button>
             </div>
-            
+
             {isSyncing && (
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
@@ -216,10 +216,10 @@ export function CivicrmIntegration() {
                 <Progress value={syncProgress} className="w-full" />
               </div>
             )}
-            
+
             <div className="p-4 bg-blue-50 rounded-lg">
               <p className="text-sm text-blue-800">
-                Die Synchronisation überträgt alle Daten zwischen dem Admin-Dashboard und CiviCRM. 
+                Die Synchronisation überträgt alle Daten zwischen dem Admin-Dashboard und CiviCRM.
                 Dies kann je nach Datenmenge einige Minuten dauern.
               </p>
             </div>
@@ -229,7 +229,7 @@ export function CivicrmIntegration() {
 
           <div className="space-y-4">
             <h4 className="text-sm font-medium text-gray-900">Automatische Synchronisation</h4>
-            
+
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <div>
@@ -238,7 +238,7 @@ export function CivicrmIntegration() {
                 </div>
                 <Switch id="autoSync" defaultChecked />
               </div>
-              
+
               <div>
                 <Label htmlFor="syncInterval">Synchronisationsintervall</Label>
                 <Select defaultValue="15">
@@ -261,7 +261,7 @@ export function CivicrmIntegration() {
 
           <div className="space-y-4">
             <h4 className="text-sm font-medium text-gray-900">Datenrichtung</h4>
-            
+
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <div>
@@ -270,7 +270,7 @@ export function CivicrmIntegration() {
                 </div>
                 <Switch id="syncToRms" defaultChecked />
               </div>
-              
+
               <div className="flex items-center justify-between">
                 <div>
                   <Label htmlFor="syncFromRms">Dashboard → CiviCRM</Label>
@@ -285,7 +285,7 @@ export function CivicrmIntegration() {
 
           <div className="space-y-4">
             <h4 className="text-sm font-medium text-gray-900">Datenexport/Import</h4>
-            
+
             <div className="flex gap-3">
               <Button variant="outline" className="flex-1 flex items-center gap-2">
                 <Download className="h-4 w-4" />
@@ -305,13 +305,13 @@ export function CivicrmIntegration() {
               <Settings className="h-4 w-4" />
               Verbindungseinstellungen
             </h4>
-            
+
             <div className="grid grid-cols-1 gap-4">
               <div>
                 <Label htmlFor="crmUrl">CiviCRM URL</Label>
                 <Input id="crmUrl" defaultValue="https://crm.menschlichkeit-oesterreich.at" />
               </div>
-              
+
               <div>
                 <Label htmlFor="apiKey">API-Schlüssel</Label>
                 <div className="flex gap-2">
@@ -319,7 +319,7 @@ export function CivicrmIntegration() {
                   <Button variant="outline" size="sm">Test</Button>
                 </div>
               </div>
-              
+
               <div>
                 <Label htmlFor="siteKey">Site-Schlüssel</Label>
                 <div className="flex gap-2">
@@ -339,7 +339,7 @@ export function CivicrmIntegration() {
               <Shield className="h-4 w-4" />
               Sicherheitseinstellungen
             </h4>
-            
+
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <div>
@@ -348,7 +348,7 @@ export function CivicrmIntegration() {
                 </div>
                 <Switch id="sslVerify" defaultChecked />
               </div>
-              
+
               <div className="flex items-center justify-between">
                 <div>
                   <Label htmlFor="encryptData">Daten verschlüsseln</Label>
@@ -356,7 +356,7 @@ export function CivicrmIntegration() {
                 </div>
                 <Switch id="encryptData" defaultChecked />
               </div>
-              
+
               <div>
                 <Label htmlFor="timeout">Verbindungstimeout (Sekunden)</Label>
                 <Select defaultValue="30">
@@ -378,7 +378,7 @@ export function CivicrmIntegration() {
 
           <div className="space-y-4">
             <h4 className="text-sm font-medium text-gray-900">Erweiterte Einstellungen</h4>
-            
+
             <div className="space-y-4">
               <div>
                 <Label htmlFor="batchSize">Batch-Größe</Label>
@@ -395,7 +395,7 @@ export function CivicrmIntegration() {
                   </SelectContent>
                 </Select>
               </div>
-              
+
               <div className="flex items-center justify-between">
                 <div>
                   <Label htmlFor="debugMode">Debug-Modus</Label>
@@ -437,7 +437,7 @@ export function CivicrmIntegration() {
                     </Select>
                   </div>
                 </div>
-                
+
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <Label className="text-xs">Dashboard Feld</Label>
@@ -456,7 +456,7 @@ export function CivicrmIntegration() {
                     </Select>
                   </div>
                 </div>
-                
+
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <Label className="text-xs">Dashboard Feld</Label>
@@ -501,7 +501,7 @@ export function CivicrmIntegration() {
                     </Select>
                   </div>
                 </div>
-                
+
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <Label className="text-xs">Dashboard Feld</Label>

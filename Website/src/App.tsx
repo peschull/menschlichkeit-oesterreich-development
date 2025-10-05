@@ -69,14 +69,14 @@ function AppContent() {
       </AnimatePresence>
 
       {/* Skip Navigation */}
-      <a 
-        href="#main-content" 
+      <a
+        href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary text-primary-foreground px-4 py-2 rounded-md z-50"
       >
         Zum Hauptinhalt springen
       </a>
 
-      <Navigation 
+      <Navigation
         isAuthenticated={state.isAuthenticated}
         user={state.user}
         onLogin={() => openModal('auth', 'login')}
@@ -85,7 +85,7 @@ function AppContent() {
         onPrivacy={() => openModal('privacy')}
         onLogout={logout}
       />
-      
+
       <main id="main-content">
         <Hero />
         <About />
@@ -137,7 +137,7 @@ function AppContent() {
       )}
 
       <Footer />
-      
+
       <ModalManager />
       <PWAInstaller />
       <CookieConsent />

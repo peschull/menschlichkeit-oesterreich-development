@@ -5,7 +5,7 @@ Zentrale Utilities für das Monorepo.
 ## API
 
 - `redactSecrets(text: string): string`
-  - Reduziert Risiko, sensible Daten in Logs/Outputs preiszugeben (Keys, JWT, Passwörter). 
+  - Reduziert Risiko, sensible Daten in Logs/Outputs preiszugeben (Keys, JWT, Passwörter).
 - `isBlockedPath(name: string, options): boolean`
   - Nutzt Extension-/Pattern-/Dotfile-Filter, um sensible Pfade auszublenden.
 

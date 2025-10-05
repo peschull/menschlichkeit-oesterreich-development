@@ -26,12 +26,12 @@ export interface AuthState {
 // Modal System
 // ============================================
 
-export type ModalType = 
-  | 'auth' 
-  | 'profile' 
-  | 'security' 
-  | 'privacy' 
-  | 'donate' 
+export type ModalType =
+  | 'auth'
+  | 'profile'
+  | 'security'
+  | 'privacy'
+  | 'donate'
   | 'join';
 
 export type AuthMode = 'login' | 'register' | 'reset';

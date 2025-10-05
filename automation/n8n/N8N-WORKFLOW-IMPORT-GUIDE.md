@@ -2,8 +2,8 @@
 
 ## Workflow Status
 
-✅ **n8n läuft auf:** http://localhost:5678  
-✅ **Workflow-Datei:** `automation/n8n/workflows/right-to-erasure.json`  
+✅ **n8n läuft auf:** http://localhost:5678
+✅ **Workflow-Datei:** `automation/n8n/workflows/right-to-erasure.json`
 ✅ **Webhook-URL:** `http://localhost:5678/webhook/right-to-erasure`
 
 ---
@@ -296,9 +296,9 @@ docker-compose -f automation/n8n/docker-compose.yml restart
 
 ## Status
 
-✅ **n8n läuft:** http://localhost:5678  
-✅ **Workflow bereit:** `right-to-erasure.json`  
-⏳ **Import:** Manuell über UI (siehe Schritt 2)  
+✅ **n8n läuft:** http://localhost:5678
+✅ **Workflow bereit:** `right-to-erasure.json`
+⏳ **Import:** Manuell über UI (siehe Schritt 2)
 ⏳ **Testing:** Nach Import (siehe Testing-Sektion)
 
 ---

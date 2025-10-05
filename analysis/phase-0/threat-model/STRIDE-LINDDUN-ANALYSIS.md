@@ -1,8 +1,8 @@
 # STRIDE/LINDDUN Threat Model Analysis
 
-**Projekt:** Menschlichkeit Österreich - Multi-Service Platform  
-**Datum:** 2025-10-04  
-**Analyst:** Enterprise Security Assessment  
+**Projekt:** Menschlichkeit Österreich - Multi-Service Platform
+**Datum:** 2025-10-04
+**Analyst:** Enterprise Security Assessment
 **Methodik:** STRIDE (Spoofing, Tampering, Repudiation, Info Disclosure, DoS, Elevation) + LINDDUN (Linkability, Identifiability, Non-repudiation, Detectability, Disclosure, Unawareness, Non-compliance)
 
 ---
@@ -481,6 +481,6 @@ graph LR
 
 ---
 
-**Nächste Review:** 2025-11-04  
-**Verantwortlich:** Security Team  
+**Nächste Review:** 2025-11-04
+**Verantwortlich:** Security Team
 **Compliance Officer:** TBD

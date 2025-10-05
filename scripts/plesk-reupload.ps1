@@ -16,7 +16,7 @@ function Write-ColorOutput {
         [string]$Message,
         [ConsoleColor]$ForegroundColor = [ConsoleColor]::White
     )
-    
+
     $originalColor = $host.UI.RawUI.ForegroundColor
     $host.UI.RawUI.ForegroundColor = $ForegroundColor
     Write-Output $Message
@@ -41,7 +41,7 @@ Write-ColorOutput "✅ Lokale Setup-Datei gefunden: $SETUP_FILE" -ForegroundColo
 # Upload mit verschiedenen Pfaden versuchen
 $UPLOAD_PATHS = @(
     "httpdocs/plesk-db-setup.php",
-    "public_html/plesk-db-setup.php", 
+    "public_html/plesk-db-setup.php",
     "www/plesk-db-setup.php",
     "html/plesk-db-setup.php",
     "./plesk-db-setup.php"
@@ -51,10 +51,10 @@ $success = $false
 
 foreach ($remote_path in $UPLOAD_PATHS) {
     Write-ColorOutput "`n📤 Versuche Upload nach: $remote_path" -ForegroundColor Cyan
-    
+
     try {
         $result = & scp -i "$SSH_KEY" -o "StrictHostKeyChecking=accept-new" "$SETUP_FILE" "${USER}@${HOST_ADDR}:$remote_path" 2>&1
-        
+
         if ($LASTEXITCODE -eq 0) {
             Write-ColorOutput "✅ Upload erfolgreich nach: $remote_path" -ForegroundColor Green
             $success = $true

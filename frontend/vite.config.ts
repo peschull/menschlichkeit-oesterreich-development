@@ -19,7 +19,7 @@ export default defineConfig({
         manualChunks: {
           react: ['react', 'react-dom'],
           ui: ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu'],
-          motion: ['framer-motion'],
+          framer: ['framer-motion'],
         },
       },
     },

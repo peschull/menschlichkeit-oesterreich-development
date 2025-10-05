@@ -52,7 +52,7 @@
 <div class="layout-container">
   {# Skip to main content link for accessibility #}
   <a class="skip-link" href="#main-content">{{ 'Skip to main content'|t }}</a>
-  
+
   {# Header #}
   {% if page.header %}
     <header class="header" role="banner">
@@ -61,7 +61,7 @@
       </div>
     </header>
   {% endif %}
-  
+
   {# Primary Navigation #}
   {% if page.primary_menu %}
     <nav class="navigation navigation--primary" role="navigation" aria-label="{{ 'Main navigation'|t }}">
@@ -117,7 +117,7 @@
   {# Main Content Area #}
   <main id="main-content" class="main-content" role="main">
     <div class="container">
-      
+
       {# Content Top #}
       {% if page.content_top %}
         <div class="content-top">
@@ -126,7 +126,7 @@
       {% endif %}
 
       <div class="layout-content">
-        
+
         {# Sidebar First #}
         {% if page.sidebar_first %}
           <aside class="sidebar sidebar--first" role="complementary">
@@ -141,7 +141,7 @@
               {{ title }}
             </h1>
           {% endif %}
-          
+
           {{ page.content }}
         </div>
 
@@ -168,7 +168,7 @@
   {% if page.footer_first or page.footer_second or page.footer_third or page.footer_fourth or page.footer_bottom %}
     <footer class="footer" role="contentinfo">
       <div class="container">
-        
+
         {# Footer Content Areas #}
         {% if page.footer_first or page.footer_second or page.footer_third or page.footer_fourth %}
           <div class="footer__content">
@@ -177,19 +177,19 @@
                 {{ page.footer_first }}
               </div>
             {% endif %}
-            
+
             {% if page.footer_second %}
               <div class="footer__section footer__section--second">
                 {{ page.footer_second }}
               </div>
             {% endif %}
-            
+
             {% if page.footer_third %}
               <div class="footer__section footer__section--third">
                 {{ page.footer_third }}
               </div>
             {% endif %}
-            
+
             {% if page.footer_fourth %}
               <div class="footer__section footer__section--fourth">
                 {{ page.footer_fourth }}
@@ -204,7 +204,7 @@
             {{ page.footer_bottom }}
           </div>
         {% endif %}
-        
+
       </div>
     </footer>
   {% endif %}
@@ -220,8 +220,8 @@
 
 {# Dark mode toggle (optional) #}
 {% if logged_in %}
-  <button 
-    id="dark-mode-toggle" 
+  <button
+    id="dark-mode-toggle"
     class="btn btn--ghost btn--icon-only dark-mode-toggle"
     aria-label="{{ 'Toggle dark mode'|t }}"
     type="button"

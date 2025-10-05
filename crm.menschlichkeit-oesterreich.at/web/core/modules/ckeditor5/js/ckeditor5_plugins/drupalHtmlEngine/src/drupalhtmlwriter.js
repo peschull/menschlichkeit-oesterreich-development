@@ -21,7 +21,7 @@ export default class DrupalHtmlWriter {
    * @param {DocumentFragment} fragment
    * @return {String}
    */
-   
+
   getHtml(fragment) {
     const builder = new DrupalHtmlBuilder();
     builder.appendNode(fragment);

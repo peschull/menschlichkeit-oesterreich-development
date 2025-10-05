@@ -42,7 +42,7 @@ warning() {
 # Test Health Checks
 test_health_checks() {
     log "Starting Health Check Tests..."
-    
+
     # Test API Health
     log "Testing API health endpoint..."
     if curl -f -s "https://${API_DOMAIN}/health" > /dev/null; then
@@ -51,7 +51,7 @@ test_health_checks() {
         error "API health check failed"
         return 1
     fi
-    
+
     # Test CRM Access
     log "Testing CRM accessibility..."
     if curl -f -s -I "https://${CRM_DOMAIN}" | grep -q "200 OK"; then
@@ -60,7 +60,7 @@ test_health_checks() {
         error "CRM accessibility check failed"
         return 1
     fi
-    
+
     # Test Main Website
     log "Testing main website..."
     if curl -f -s -I "https://${DOMAIN}" | grep -q "200 OK"; then
@@ -74,12 +74,12 @@ test_health_checks() {
 # Test SSL Certificates
 test_ssl_certificates() {
     log "Starting SSL Certificate Tests..."
-    
+
     domains=("${DOMAIN}" "${CRM_DOMAIN}" "${API_DOMAIN}")
-    
+
     for domain in "${domains[@]}"; do
         log "Testing SSL certificate for ${domain}..."
-        
+
         # Check certificate validity
         if echo | openssl s_client -servername "$domain" -connect "${domain}:443" 2>/dev/null | \
            openssl x509 -noout -dates 2>/dev/null; then
@@ -94,7 +94,7 @@ test_ssl_certificates() {
 # Test API Authentication
 test_api_authentication() {
     log "Starting API Authentication Tests..."
-    
+
     # Test user registration
     log "Testing user registration..."
     register_response=$(curl -s -X POST "https://${API_DOMAIN}/auth/register" \
@@ -105,13 +105,13 @@ test_api_authentication() {
             \"email\": \"${TEST_EMAIL}\",
             \"password\": \"${TEST_PASSWORD}\"
         }")
-    
+
     if echo "$register_response" | grep -q "access_token\|already exists"; then
         success "User registration test passed"
     else
         warning "User registration test inconclusive: $register_response"
     fi
-    
+
     # Test user login
     log "Testing user login..."
     login_response=$(curl -s -X POST "https://${API_DOMAIN}/auth/login" \
@@ -120,7 +120,7 @@ test_api_authentication() {
             \"email\": \"${TEST_EMAIL}\",
             \"password\": \"${TEST_PASSWORD}\"
         }")
-    
+
     if echo "$login_response" | grep -q "access_token"; then
         success "User login test passed"
         # Extract JWT token for further tests
@@ -135,12 +135,12 @@ test_api_authentication() {
 # Test Contact Management
 test_contact_management() {
     log "Starting Contact Management Tests..."
-    
+
     if [ -z "$JWT_TOKEN" ]; then
         error "No JWT token available for contact tests"
         return 1
     fi
-    
+
     # Test contact creation
     log "Testing contact creation..."
     contact_response=$(curl -s -X POST "https://${API_DOMAIN}/contacts/create" \
@@ -151,10 +151,10 @@ test_contact_management() {
             "last_name": "Testmann",
             "email": "max.test@example.com"
         }')
-    
+
     if echo "$contact_response" | grep -q '"contact_id":\|"success":\|already exists'; then
         success "Contact creation test passed"
-        
+
         # Extract contact ID if available
         CONTACT_ID=$(echo "$contact_response" | grep -o '"contact_id":[0-9]*' | cut -d':' -f2)
         if [ -n "$CONTACT_ID" ]; then
@@ -170,17 +170,17 @@ test_contact_management() {
 # Test Membership Management
 test_membership_management() {
     log "Starting Membership Management Tests..."
-    
+
     if [ -z "$JWT_TOKEN" ]; then
         error "No JWT token available for membership tests"
         return 1
     fi
-    
+
     if [ -z "$CONTACT_ID" ]; then
         warning "No contact ID available for membership tests"
         return 0
     fi
-    
+
     # Test membership creation
     log "Testing membership creation..."
     membership_response=$(curl -s -X POST "https://${API_DOMAIN}/memberships/create" \
@@ -191,7 +191,7 @@ test_membership_management() {
             \"membership_type\": \"Standard\",
             \"amount\": 36.00
         }")
-    
+
     if echo "$membership_response" | grep -q '"membership_id":\|"success":\|already exists'; then
         success "Membership creation test passed"
     else
@@ -203,7 +203,7 @@ test_membership_management() {
 # Test Website Integration
 test_website_integration() {
     log "Starting Website Integration Tests..."
-    
+
     # Test login page accessibility
     log "Testing login page..."
     if curl -f -s "https://${DOMAIN}/login.html" > /dev/null; then
@@ -212,7 +212,7 @@ test_website_integration() {
         error "Login page not accessible"
         return 1
     fi
-    
+
     # Test member area (should redirect without auth)
     log "Testing member area protection..."
     if curl -s -I "https://${DOMAIN}/member-area.html" | grep -q "200 OK"; then
@@ -220,11 +220,11 @@ test_website_integration() {
     else
         warning "Member area may have authentication protection"
     fi
-    
+
     # Test JavaScript files
     log "Testing JavaScript resources..."
     js_files=("assets/js/crm-api.js" "assets/js/auth-handler.js" "assets/js/sepa-handler.js")
-    
+
     for js_file in "${js_files[@]}"; do
         if curl -f -s "https://${DOMAIN}/${js_file}" > /dev/null; then
             success "JavaScript file accessible: ${js_file}"
@@ -238,7 +238,7 @@ test_website_integration() {
 # Test Performance
 test_performance() {
     log "Starting Performance Tests..."
-    
+
     # Test API response time
     log "Testing API response time..."
     api_time=$(curl -o /dev/null -s -w '%{time_total}' "https://${API_DOMAIN}/health")
@@ -247,7 +247,7 @@ test_performance() {
     else
         warning "API response time: ${api_time}s (>= 2s)"
     fi
-    
+
     # Test website response time
     log "Testing website response time..."
     web_time=$(curl -o /dev/null -s -w '%{time_total}' "https://${DOMAIN}")
@@ -261,7 +261,7 @@ test_performance() {
 # Test Security Headers
 test_security_headers() {
     log "Starting Security Headers Tests..."
-    
+
     # Test HTTPS redirect
     log "Testing HTTPS redirect..."
     if curl -s -I "http://${DOMAIN}" | grep -q "301\|302"; then
@@ -269,17 +269,17 @@ test_security_headers() {
     else
         warning "HTTPS redirect may not be active"
     fi
-    
+
     # Test security headers
     log "Testing security headers..."
     headers_response=$(curl -s -I "https://${DOMAIN}")
-    
+
     if echo "$headers_response" | grep -qi "strict-transport-security"; then
         success "HSTS header present"
     else
         warning "HSTS header missing"
     fi
-    
+
     if echo "$headers_response" | grep -qi "x-content-type-options"; then
         success "X-Content-Type-Options header present"
     else
@@ -290,7 +290,7 @@ test_security_headers() {
 # Generate Test Report
 generate_report() {
     log "Generating test report..."
-    
+
     cat << EOF > "test-report-$(date +%Y%m%d-%H%M%S).md"
 # Production Test Report
 
@@ -337,7 +337,7 @@ main() {
     log "🧪 Starting Production Testing for Menschlichkeit Österreich CRM System"
     log "Domain: ${DOMAIN}"
     log "Log file: ${LOG_FILE}"
-    
+
     # Initialize status variables
     health_status=0
     ssl_status=0
@@ -347,7 +347,7 @@ main() {
     website_status=0
     performance_status=0
     security_status=0
-    
+
     # Run tests
     test_health_checks || health_status=1
     test_ssl_certificates || ssl_status=1
@@ -357,15 +357,15 @@ main() {
     test_website_integration || website_status=1
     test_performance || performance_status=1
     test_security_headers || security_status=1
-    
+
     # Calculate overall status
     overall_status=$((health_status + ssl_status + auth_status + contact_status + membership_status + website_status))
-    
+
     # Generate report
     generate_report
-    
+
     log "🏁 Production Testing Complete"
-    
+
     if [ $overall_status -eq 0 ]; then
         success "🎉 ALL CRITICAL TESTS PASSED - SYSTEM READY FOR PRODUCTION!"
         exit 0
@@ -378,7 +378,7 @@ main() {
 # Check dependencies
 check_dependencies() {
     dependencies=("curl" "openssl" "bc")
-    
+
     for dep in "${dependencies[@]}"; do
         if ! command -v "$dep" &> /dev/null; then
             error "Missing dependency: $dep"

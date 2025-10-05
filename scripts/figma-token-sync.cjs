@@ -21,7 +21,7 @@ class FigmaTokenSync {
      */
     async fetchFigmaTokens() {
         console.log('🔍 Fetching tokens from Figma...');
-        
+
         if (!this.figmaFileKey || !this.figmaToken) {
             console.warn('⚠️  Figma API credentials not configured. Using local tokens.');
             return await this.loadLocalTokens();
@@ -54,15 +54,15 @@ class FigmaTokenSync {
         // This would parse the Figma file structure
         // For now, we'll use the existing token structure
         console.log('🔄 Extracting tokens from Figma file...');
-        
+
         // In a real implementation, this would parse:
         // - Color styles from figmaData.document.styles
-        // - Text styles from figmaData.document.textStyles  
+        // - Text styles from figmaData.document.textStyles
         // - Effect styles (shadows) from figmaData.document.effects
-        
+
         return {
             colors: this.extractColorTokens(figmaData),
-            typography: this.extractTypographyTokens(figmaData), 
+            typography: this.extractTypographyTokens(figmaData),
             spacing: this.extractSpacingTokens(figmaData),
             effects: this.extractEffectTokens(figmaData)
         };
@@ -88,7 +88,7 @@ class FigmaTokenSync {
      */
     async updateTailwindConfig(tokens) {
         console.log('🎨 Updating Tailwind CSS configuration...');
-        
+
         const tailwindConfig = `
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -111,7 +111,7 @@ module.exports = {
     },
     extend: {
       colors: ${JSON.stringify(tokens.colors || {}, null, 8)},
-      fontFamily: ${JSON.stringify(tokens.typography?.fontFamily || {}, null, 8)}, 
+      fontFamily: ${JSON.stringify(tokens.typography?.fontFamily || {}, null, 8)},
       fontSize: ${JSON.stringify(tokens.typography?.fontSize || {}, null, 8)},
       spacing: ${JSON.stringify(tokens.spacing || {}, null, 8)},
       borderRadius: ${JSON.stringify(tokens.borderRadius || {}, null, 8)},
@@ -138,10 +138,10 @@ module.exports = {
      */
     async updateCSSVariables(tokens) {
         console.log('📝 Updating CSS variables...');
-        
+
         const cssVars = this.generateCSSVariables(tokens);
         const cssFile = path.join(this.designSystemPath, 'styles', 'design-tokens.css');
-        
+
         const cssContent = `
 /* 🎨 Auto-generated Design Tokens CSS Variables */
 /* Generated on: ${new Date().toISOString()} */
@@ -158,7 +158,7 @@ ${cssVars}
 }
 
 .dark {
-  /* Dark mode class overrides would go here */  
+  /* Dark mode class overrides would go here */
 }`;
 
         try {
@@ -174,7 +174,7 @@ ${cssVars}
      */
     generateCSSVariables(tokens) {
         let cssVars = '';
-        
+
         // Colors
         if (tokens.colors) {
             cssVars += '  /* Colors */\n';
@@ -199,7 +199,7 @@ ${cssVars}
             cssVars += '\n';
         }
 
-        // Spacing  
+        // Spacing
         if (tokens.spacing) {
             cssVars += '  /* Spacing */\n';
             Object.entries(tokens.spacing).forEach(([key, value]) => {
@@ -216,7 +216,7 @@ ${cssVars}
      */
     async updateComponentDocs(tokens) {
         console.log('📚 Updating component documentation...');
-        
+
         const docsPath = path.join(this.designSystemPath, 'TOKEN-REFERENCE.md');
         const docsContent = `
 # 🎨 Design Token Reference
@@ -225,7 +225,7 @@ ${cssVars}
 ## Color Palette
 ${this.generateColorDocs(tokens.colors)}
 
-## Typography Scale  
+## Typography Scale
 ${this.generateTypographyDocs(tokens.typography)}
 
 ## Spacing System
@@ -273,7 +273,7 @@ import { Button } from '@/components/ui/button';
      */
     generateColorDocs(colors) {
         if (!colors) return 'No color tokens defined.';
-        
+
         let docs = '';
         Object.entries(colors).forEach(([name, palette]) => {
             docs += `\n### ${name.charAt(0).toUpperCase() + name.slice(1)}\n`;
@@ -289,11 +289,11 @@ import { Button } from '@/components/ui/button';
     }
 
     /**
-     * Generate typography documentation  
+     * Generate typography documentation
      */
     generateTypographyDocs(typography) {
         if (!typography?.fontSize) return 'No typography tokens defined.';
-        
+
         let docs = '\n';
         Object.entries(typography.fontSize).forEach(([size, value]) => {
             docs += `- **${size}**: \`${value}\`\n`;
@@ -306,7 +306,7 @@ import { Button } from '@/components/ui/button';
      */
     generateSpacingDocs(spacing) {
         if (!spacing) return 'No spacing tokens defined.';
-        
+
         let docs = '\n';
         Object.entries(spacing).forEach(([key, value]) => {
             docs += `- **${key}**: \`${value}\`\n`;
@@ -319,32 +319,32 @@ import { Button } from '@/components/ui/button';
      */
     async sync() {
         console.log('🚀 Starting Figma Design Token Sync...');
-        
+
         try {
             // 1. Fetch tokens from Figma
             const tokens = await this.fetchFigmaTokens();
-            
+
             // 2. Update local token file
             const updatedTokenFile = {
                 designTokens: tokens,
                 lastSync: new Date().toISOString(),
                 source: this.figmaFileKey ? 'figma' : 'local'
             };
-            
+
             await fs.writeFile(this.tokensFile, JSON.stringify(updatedTokenFile, null, 2));
             console.log('✅ Token file updated');
-            
+
             // 3. Update Tailwind configuration
             await this.updateTailwindConfig(tokens);
-            
+
             // 4. Update CSS variables
             await this.updateCSSVariables(tokens);
-            
+
             // 5. Update documentation
             await this.updateComponentDocs(tokens);
-            
+
             console.log('🎉 Figma sync completed successfully!');
-            
+
         } catch (error) {
             console.error('❌ Sync failed:', error.message);
             process.exit(1);
@@ -365,7 +365,7 @@ if (require.main === module) {
         figmaToken: process.env.FIGMA_ACCESS_TOKEN,
         designSystemPath: './figma-design-system'
     });
-    
+
     sync.sync().catch(console.error);
 }
 

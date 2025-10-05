@@ -1,8 +1,8 @@
 # Subdomänen-Verzeichnis: menschlichkeit-oesterreich.at
 
-**Hauptdomain:** menschlichkeit-oesterreich.at  
-**Hosting:** Plesk  
-**Letzte Aktualisierung:** 2025-10-04  
+**Hauptdomain:** menschlichkeit-oesterreich.at
+**Hosting:** Plesk
+**Letzte Aktualisierung:** 2025-10-04
 **Status:** 19 aktive Subdomänen
 
 ---
@@ -192,7 +192,7 @@ server {
 
 ### Current Usage (as of 2025-10-04)
 
-**Total Storage:** ~4 MB (minimal, mostly placeholders)  
+**Total Storage:** ~4 MB (minimal, mostly placeholders)
 **Total Traffic:** 0 MB/month (services not yet in production)
 
 **Projected Growth (Q1 2026):**
@@ -301,12 +301,12 @@ server {
 
 ## 📞 Kontakt & Support
 
-**DevOps-Team:** devops@menschlichkeit-oesterreich.at  
-**Plesk-Admin:** admin@menschlichkeit-oesterreich.at  
+**DevOps-Team:** devops@menschlichkeit-oesterreich.at
+**Plesk-Admin:** admin@menschlichkeit-oesterreich.at
 **Emergency Contact:** +43 XXX XXXXXXX
 
 ---
 
-**Autor:** AI DevOps Agent  
-**Letzte Aktualisierung:** 2025-10-04  
+**Autor:** AI DevOps Agent
+**Letzte Aktualisierung:** 2025-10-04
 **Nächste Review:** 2026-01-04

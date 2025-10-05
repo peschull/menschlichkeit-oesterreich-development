@@ -13,6 +13,5 @@ Welche Nutzer-/Systemprobleme sollen gelöst werden?
 Kurzbeschreibung der Lösung/Änderung.
 
 ### Akzeptanzkriterien
-- [ ] 
-- [ ] 
-
+- [ ]
+- [ ]

@@ -38,7 +38,7 @@
       ${searchWideButtonSelector} *
     `);
     if (!clickInSearchArea && searchIsVisible()) {
-       
+
       toggleSearchVisibility(false);
     }
   }
@@ -61,7 +61,7 @@
       );
 
       if (!inSearchBar && !inSearchButton) {
-         
+
         toggleSearchVisibility(false);
       }
     }
@@ -74,7 +74,7 @@
    */
   function watchForEscapeOut(e) {
     if (e.key === 'Escape') {
-       
+
       toggleSearchVisibility(false);
     }
   }

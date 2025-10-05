@@ -21,4 +21,3 @@ if (!disabled) {
       console.error('[otel] SDK start error', err);
     });
 }
-

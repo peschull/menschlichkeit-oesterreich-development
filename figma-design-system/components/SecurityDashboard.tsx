@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { 
-  Shield, 
-  AlertTriangle, 
-  Lock, 
-  Key, 
+import {
+  Shield,
+  AlertTriangle,
+  Lock,
+  Key,
   Smartphone,
   Globe,
   Activity,
@@ -196,7 +196,7 @@ export function SecurityDashboard() {
                   {securityScore >= 80 ? "Sehr sicher" : securityScore >= 60 ? "Sicher" : "Verbesserung nötig"}
                 </Badge>
               </div>
-              
+
               <div className="space-y-4">
                 <div>
                   <div className="flex justify-between items-center mb-2">
@@ -205,7 +205,7 @@ export function SecurityDashboard() {
                   </div>
                   <Progress value={securityScore} className="h-2" />
                 </div>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
                   <div className="flex items-center gap-3 p-3 bg-green-50 rounded-lg">
                     <CheckCircle className="h-5 w-5 text-green-600" />
@@ -214,7 +214,7 @@ export function SecurityDashboard() {
                       <div className="text-xs text-gray-600">Zuletzt geändert: vor 4 Tagen</div>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center gap-3 p-3 bg-orange-50 rounded-lg">
                     <AlertTriangle className="h-5 w-5 text-orange-600" />
                     <div>
@@ -222,7 +222,7 @@ export function SecurityDashboard() {
                       <div className="text-xs text-gray-600">Zusätzliche Sicherheit empfohlen</div>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center gap-3 p-3 bg-blue-50 rounded-lg">
                     <Activity className="h-5 w-5 text-blue-600" />
                     <div>
@@ -272,8 +272,8 @@ export function SecurityDashboard() {
                   </div>
                 </Button>
 
-                <Button 
-                  variant="outline" 
+                <Button
+                  variant="outline"
                   className="h-auto p-4 flex flex-col items-center gap-2"
                   onClick={handleDownloadActivity}
                 >
@@ -297,7 +297,7 @@ export function SecurityDashboard() {
                       <div className="flex items-center justify-between">
                         <span className="font-medium">{getEventTypeLabel(event.type)}</span>
                         <Badge variant={getStatusBadgeVariant(event.status)}>
-                          {event.status === 'success' ? 'Erfolgreich' : 
+                          {event.status === 'success' ? 'Erfolgreich' :
                            event.status === 'failed' ? 'Fehlgeschlagen' : 'Blockiert'}
                         </Badge>
                       </div>
@@ -341,7 +341,7 @@ export function SecurityDashboard() {
                   Herunterladen
                 </Button>
               </div>
-              
+
               <div className="overflow-x-auto">
                 <Table>
                   <TableHeader>
@@ -365,7 +365,7 @@ export function SecurityDashboard() {
                         </TableCell>
                         <TableCell>
                           <Badge variant={getStatusBadgeVariant(event.status)}>
-                            {event.status === 'success' ? 'Erfolgreich' : 
+                            {event.status === 'success' ? 'Erfolgreich' :
                              event.status === 'failed' ? 'Fehlgeschlagen' : 'Blockiert'}
                           </Badge>
                         </TableCell>
@@ -402,7 +402,7 @@ export function SecurityDashboard() {
               <p className="text-sm text-gray-600 mb-6">
                 Hier sehen Sie alle Geräte, auf denen Sie aktuell angemeldet sind.
               </p>
-              
+
               <div className="space-y-4">
                 {activeSessions.map((session) => (
                   <div key={session.id} className="border rounded-lg p-4">
@@ -418,14 +418,14 @@ export function SecurityDashboard() {
                             {session.browser} • {session.location}
                           </div>
                           <div className="text-xs text-gray-500">
-                            IP: {session.ipAddress} • 
+                            IP: {session.ipAddress} •
                             Letzte Aktivität: {new Date(session.lastActivity).toLocaleString('de-AT')}
                           </div>
                         </div>
                       </div>
                       {!session.current && (
-                        <Button 
-                          variant="outline" 
+                        <Button
+                          variant="outline"
                           size="sm"
                           onClick={() => handleRevokeSession(session.id)}
                         >
@@ -436,11 +436,11 @@ export function SecurityDashboard() {
                   </div>
                 ))}
               </div>
-              
+
               <Alert className="mt-6">
                 <AlertTriangle className="h-4 w-4" />
                 <AlertDescription>
-                  Wenn Sie verdächtige Aktivitäten feststellen, beenden Sie alle Sitzungen 
+                  Wenn Sie verdächtige Aktivitäten feststellen, beenden Sie alle Sitzungen
                   und ändern Sie Ihr Passwort umgehend.
                 </AlertDescription>
               </Alert>
@@ -451,7 +451,7 @@ export function SecurityDashboard() {
         <TabsContent value="settings" className="space-y-6">
           <Card className="p-6">
             <h3 className="text-lg font-medium mb-4">Sicherheitseinstellungen</h3>
-            
+
             <div className="space-y-6">
               <div>
                 <h4 className="font-medium mb-3 flex items-center gap-2">
@@ -466,13 +466,13 @@ export function SecurityDashboard() {
                         Zusätzliche Sicherheit durch Bestätigungscode
                       </p>
                     </div>
-                    <Switch 
-                      id="twoFactor" 
+                    <Switch
+                      id="twoFactor"
                       checked={twoFactorEnabled}
                       onCheckedChange={setTwoFactorEnabled}
                     />
                   </div>
-                  
+
                   <div className="flex items-center justify-between">
                     <div>
                       <Label htmlFor="sessionTimeout">Automatische Abmeldung</Label>
@@ -500,7 +500,7 @@ export function SecurityDashboard() {
                     </div>
                     <Switch id="loginNotifications" defaultChecked />
                   </div>
-                  
+
                   <div className="flex items-center justify-between">
                     <div>
                       <Label htmlFor="suspiciousActivity">Verdächtige Aktivitäten</Label>
@@ -510,7 +510,7 @@ export function SecurityDashboard() {
                     </div>
                     <Switch id="suspiciousActivity" defaultChecked />
                   </div>
-                  
+
                   <div className="flex items-center justify-between">
                     <div>
                       <Label htmlFor="passwordReminder">Passwort-Erinnerungen</Label>
@@ -562,7 +562,7 @@ function TwoFactorSetup({ onClose }: { onClose: () => void }) {
               Installieren Sie eine Authenticator-App wie Google Authenticator oder Authy auf Ihrem Smartphone.
             </p>
           </div>
-          
+
           <div className="space-y-4">
             <div className="p-4 bg-gray-50 rounded-lg text-center">
               <div className="w-32 h-32 bg-white border-2 border-dashed border-gray-300 rounded-lg mx-auto mb-2 flex items-center justify-center">
@@ -572,7 +572,7 @@ function TwoFactorSetup({ onClose }: { onClose: () => void }) {
                 Scannen Sie diesen QR-Code mit Ihrer Authenticator-App
               </p>
             </div>
-            
+
             <div className="text-center">
               <p className="text-sm text-gray-600 mb-2">Oder geben Sie diesen Code manuell ein:</p>
               <code className="text-sm bg-gray-100 px-3 py-1 rounded">
@@ -580,13 +580,13 @@ function TwoFactorSetup({ onClose }: { onClose: () => void }) {
               </code>
             </div>
           </div>
-          
+
           <Button onClick={() => setStep(2)} className="w-full">
             Weiter
           </Button>
         </>
       )}
-      
+
       {step === 2 && (
         <>
           <div className="text-center mb-6">
@@ -595,7 +595,7 @@ function TwoFactorSetup({ onClose }: { onClose: () => void }) {
               Geben Sie den 6-stelligen Code aus Ihrer Authenticator-App ein.
             </p>
           </div>
-          
+
           <div className="space-y-4">
             <div>
               <Label htmlFor="verificationCode">Bestätigungscode</Label>
@@ -610,13 +610,13 @@ function TwoFactorSetup({ onClose }: { onClose: () => void }) {
               />
             </div>
           </div>
-          
+
           <div className="flex gap-3">
             <Button variant="outline" onClick={() => setStep(1)} className="flex-1">
               Zurück
             </Button>
-            <Button 
-              onClick={handleVerify} 
+            <Button
+              onClick={handleVerify}
               className="flex-1"
               disabled={verificationCode.length !== 6}
             >

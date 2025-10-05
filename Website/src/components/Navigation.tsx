@@ -27,14 +27,14 @@ interface NavigationProps {
   onLogout: () => void;
 }
 
-export function Navigation({ 
-  isAuthenticated, 
-  user, 
-  onLogin, 
-  onProfile, 
-  onSecurity, 
-  onPrivacy, 
-  onLogout 
+export function Navigation({
+  isAuthenticated,
+  user,
+  onLogin,
+  onProfile,
+  onSecurity,
+  onPrivacy,
+  onLogout
 }: NavigationProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [showAdmin, setShowAdmin] = useState(false);
@@ -100,17 +100,17 @@ export function Navigation({
         opacity: navOpacity,
       }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled 
-          ? 'glass backdrop-blur-xl border-b border-border/40 shadow-lg' 
+        scrolled
+          ? 'glass backdrop-blur-xl border-b border-border/40 shadow-lg'
           : 'bg-background/80 backdrop-blur-md border-b border-border/20'
       }`}
     >
       <div className="container mx-auto px-4 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          
+
           {/* Logo - Kompakt & Modern */}
-          <a 
-            href="#home" 
+          <a
+            href="#home"
             className="flex items-center gap-2 group"
             aria-label="Menschlichkeit Österreich - Zur Startseite"
           >
@@ -119,9 +119,9 @@ export function Navigation({
               whileTap={{ scale: 0.95 }}
               className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all flex-shrink-0"
             >
-              <img 
-                src={logoImage} 
-                alt="Menschlichkeit Österreich Logo" 
+              <img
+                src={logoImage}
+                alt="Menschlichkeit Österreich Logo"
                 className="w-full h-full object-cover"
               />
             </motion.div>
@@ -177,7 +177,7 @@ export function Navigation({
 
           {/* Right Section - Actions */}
           <div className="flex items-center gap-2">
-            
+
             {/* Dark Mode Toggle */}
             <div className="hidden md:block">
               <DarkModeToggle />
@@ -195,10 +195,10 @@ export function Navigation({
               {!isAuthenticated ? (
                 <>
                   {/* CTA 1: Mitmachen (Primary) */}
-                  <Button 
-                    variant="outline" 
-                    size="sm" 
-                    asChild 
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    asChild
                     className="border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all"
                   >
                     <a href="#join">
@@ -206,11 +206,11 @@ export function Navigation({
                       Mitmachen
                     </a>
                   </Button>
-                  
+
                   {/* CTA 2: Spenden (Prominent) */}
-                  <Button 
-                    size="sm" 
-                    asChild 
+                  <Button
+                    size="sm"
+                    asChild
                     className="btn-secondary-gradient shadow-md hover:shadow-lg"
                   >
                     <a href="#donate">
@@ -218,11 +218,11 @@ export function Navigation({
                       Spenden
                     </a>
                   </Button>
-                  
+
                   {/* Login */}
-                  <Button 
-                    variant="ghost" 
-                    size="sm" 
+                  <Button
+                    variant="ghost"
+                    size="sm"
                     onClick={onLogin}
                     className="hover:bg-primary/10"
                   >
@@ -233,9 +233,9 @@ export function Navigation({
               ) : (
                 <>
                   {/* CTA: Spenden (auch für eingeloggte User) */}
-                  <Button 
-                    size="sm" 
-                    asChild 
+                  <Button
+                    size="sm"
+                    asChild
                     className="btn-secondary-gradient shadow-md hover:shadow-lg"
                   >
                     <a href="#donate">
@@ -243,12 +243,12 @@ export function Navigation({
                       Spenden
                     </a>
                   </Button>
-                  
+
                   {/* Admin Button */}
                   {user?.role === 'admin' && (
-                    <Button 
-                      variant={showAdmin ? "default" : "ghost"} 
-                      size="sm" 
+                    <Button
+                      variant={showAdmin ? "default" : "ghost"}
+                      size="sm"
                       onClick={toggleAdmin}
                       title="Admin-Bereich"
                       className="transition-all"
@@ -256,13 +256,13 @@ export function Navigation({
                       <Settings className="w-4 h-4" />
                     </Button>
                   )}
-                  
+
                   {/* User Menu */}
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <Button 
-                        variant="ghost" 
-                        size="sm" 
+                      <Button
+                        variant="ghost"
+                        size="sm"
                         className="gap-2 hover:bg-primary/10"
                       >
                         <Avatar className="w-7 h-7">
@@ -313,8 +313,8 @@ export function Navigation({
             {/* Mobile Menu Button */}
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild className="lg:hidden">
-                <Button 
-                  variant="ghost" 
+                <Button
+                  variant="ghost"
                   size="sm"
                   className="hover:bg-primary/10"
                 >
@@ -322,9 +322,9 @@ export function Navigation({
                   <span className="sr-only">Menü öffnen</span>
                 </Button>
               </SheetTrigger>
-              
-              <SheetContent 
-                side="right" 
+
+              <SheetContent
+                side="right"
                 className="w-full sm:w-[400px] p-0"
               >
                 {/* Accessibility: Hidden title and description for screen readers */}
@@ -393,9 +393,9 @@ export function Navigation({
                   {!isAuthenticated ? (
                     <>
                       <SheetClose asChild>
-                        <Button 
-                          variant="outline" 
-                          asChild 
+                        <Button
+                          variant="outline"
+                          asChild
                           className="w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground"
                         >
                           <a href="#join">
@@ -404,10 +404,10 @@ export function Navigation({
                           </a>
                         </Button>
                       </SheetClose>
-                      
+
                       <SheetClose asChild>
-                        <Button 
-                          asChild 
+                        <Button
+                          asChild
                           className="w-full btn-secondary-gradient"
                         >
                           <a href="#donate">
@@ -416,11 +416,11 @@ export function Navigation({
                           </a>
                         </Button>
                       </SheetClose>
-                      
+
                       <SheetClose asChild>
-                        <Button 
-                          variant="ghost" 
-                          className="w-full" 
+                        <Button
+                          variant="ghost"
+                          className="w-full"
                           onClick={onLogin}
                         >
                           <LogIn className="w-4 h-4 mr-2" />
@@ -431,8 +431,8 @@ export function Navigation({
                   ) : (
                     <>
                       <SheetClose asChild>
-                        <Button 
-                          asChild 
+                        <Button
+                          asChild
                           className="w-full btn-secondary-gradient"
                         >
                           <a href="#donate">
@@ -441,11 +441,11 @@ export function Navigation({
                           </a>
                         </Button>
                       </SheetClose>
-                      
+
                       {user?.role === 'admin' && (
-                        <Button 
-                          variant={showAdmin ? "default" : "outline"} 
-                          className="w-full" 
+                        <Button
+                          variant={showAdmin ? "default" : "outline"}
+                          className="w-full"
                           onClick={() => {
                             toggleAdmin();
                             setIsOpen(false);
@@ -455,45 +455,45 @@ export function Navigation({
                           Admin-Bereich
                         </Button>
                       )}
-                      
+
                       <div className="pt-3 border-t border-border space-y-2">
                         <SheetClose asChild>
-                          <Button 
-                            variant="ghost" 
-                            className="w-full justify-start" 
+                          <Button
+                            variant="ghost"
+                            className="w-full justify-start"
                             onClick={onProfile}
                           >
                             <User className="w-4 h-4 mr-2" />
                             Mein Profil
                           </Button>
                         </SheetClose>
-                        
+
                         <SheetClose asChild>
-                          <Button 
-                            variant="ghost" 
-                            className="w-full justify-start" 
+                          <Button
+                            variant="ghost"
+                            className="w-full justify-start"
                             onClick={onSecurity}
                           >
                             <Shield className="w-4 h-4 mr-2" />
                             Sicherheit
                           </Button>
                         </SheetClose>
-                        
+
                         <SheetClose asChild>
-                          <Button 
-                            variant="ghost" 
-                            className="w-full justify-start" 
+                          <Button
+                            variant="ghost"
+                            className="w-full justify-start"
                             onClick={onPrivacy}
                           >
                             <Lock className="w-4 h-4 mr-2" />
                             Datenschutz
                           </Button>
                         </SheetClose>
-                        
+
                         <SheetClose asChild>
-                          <Button 
-                            variant="ghost" 
-                            className="w-full justify-start text-destructive hover:text-destructive hover:bg-destructive/10" 
+                          <Button
+                            variant="ghost"
+                            className="w-full justify-start text-destructive hover:text-destructive hover:bg-destructive/10"
                             onClick={onLogout}
                           >
                             <LogIn className="w-4 h-4 mr-2 rotate-180" />

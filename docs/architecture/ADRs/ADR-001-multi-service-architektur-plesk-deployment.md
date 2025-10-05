@@ -28,4 +28,3 @@ Referenzen
 - Netzwerk/Ports: `docs/Repo & MCP-Server Optimierung.md`
 - Threat Model: `analysis/phase-0/threat-model/STRIDE-LINDDUN-ANALYSIS.md`
 - Deploy: `.github/workflows/plesk-deployment.yml`
-

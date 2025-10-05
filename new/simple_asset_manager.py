@@ -26,19 +26,19 @@ class SimpleAssetManager:
     Vereinfachtes Asset Management System für Educational Gaming
     Fokus auf SVG-Generierung und Metadaten ohne externe Dependencies
     """
-    
+
     def __init__(self, base_path: str = "./web/games"):
         self.base_path = Path(base_path)
         self.assets_path = self.base_path / "assets"
         self.generated_path = self.assets_path / "generated"
         self.metadata_path = self.assets_path / "metadata"
         self.thumbnails_path = self.assets_path / "thumbnails"
-        
+
         # Erstelle Verzeichnisse
-        for path in [self.assets_path, self.generated_path, 
+        for path in [self.assets_path, self.generated_path,
                      self.metadata_path, self.thumbnails_path]:
             path.mkdir(exist_ok=True)
-        
+
         # Asset Familien aus batch_prompt_template.csv
         self.asset_families = {
             "icons_values": {
@@ -51,10 +51,10 @@ class SimpleAssetManager:
                 }
             },
             "map_regions": {
-                "items": ["austria", "vienna", "graz", "linz", "salzburg", 
+                "items": ["austria", "vienna", "graz", "linz", "salzburg",
                          "innsbruck", "klagenfurt", "bregenz", "eisenstadt", "st_poelten"],
                 "composition_rules": {
-                    "style": "isometric_tiles", 
+                    "style": "isometric_tiles",
                     "background": "transparent",
                     "centering": True
                 }
@@ -64,7 +64,7 @@ class SimpleAssetManager:
                          "character_left", "character_right", "plank_horizontal", "plank_vertical"],
                 "composition_rules": {
                     "style": "game_sprites",
-                    "background": "transparent", 
+                    "background": "transparent",
                     "pixel_perfect": True
                 }
             },
@@ -86,67 +86,67 @@ class SimpleAssetManager:
                 }
             }
         }
-    
+
     def generate_all_assets(self) -> Dict[str, List[Dict]]:
         """
         Generiert alle Assets für alle Familien
         """
         all_results = {}
-        
+
         print("🚀 Starting batch asset generation...")
         print(f"   Families: {len(self.asset_families)}")
         print(f"   Total items: {sum(len(f['items']) for f in self.asset_families.values())}")
-        
+
         for family_name in self.asset_families:
             try:
                 results = self.generate_batch_assets(family_name)
                 all_results[family_name] = results
-                
+
                 success_count = sum(1 for r in results if r['status'] == 'success')
                 print(f"✅ {family_name}: {success_count}/{len(results)} assets generated")
-                
+
             except Exception as e:
                 print(f"❌ Failed to generate {family_name}: {e}")
                 all_results[family_name] = {"error": str(e)}
-        
+
         # Speichere Gesamtübersicht
         summary_path = self.metadata_path / "batch_generation_summary.json"
         with open(summary_path, 'w', encoding='utf-8') as f:
             json.dump(all_results, f, indent=2, ensure_ascii=False)
-        
+
         print(f"📊 Generation summary saved to: {summary_path}")
         return all_results
-    
+
     def generate_batch_assets(self, family_name: str) -> List[Dict]:
         """
         Generiert Assets für eine komplette Familie
         """
         if family_name not in self.asset_families:
             raise ValueError(f"Unknown asset family: {family_name}")
-        
+
         family = self.asset_families[family_name]
         results = []
-        
+
         print(f"🎨 Generating assets for family: {family_name}")
         print(f"   Items: {len(family['items'])}")
         print(f"   Style: {family['composition_rules']['style']}")
-        
+
         for item_name in family['items']:
             asset_id = f"{family_name}_{item_name}"
-            
+
             try:
                 # Generiere SVG
                 svg_content = self._generate_svg_for_item(
-                    family_name, 
-                    item_name, 
+                    family_name,
+                    item_name,
                     family['composition_rules']
                 )
-                
+
                 # Speichere SVG
                 svg_path = self.generated_path / f"{asset_id}.svg"
                 with open(svg_path, 'w', encoding='utf-8') as f:
                     f.write(svg_content)
-                
+
                 # Generiere Metadaten
                 metadata = self._generate_simple_metadata(
                     str(svg_path),
@@ -155,12 +155,12 @@ class SimpleAssetManager:
                     item=item_name,
                     svg_content=svg_content
                 )
-                
+
                 # Speichere Metadaten
                 metadata_path = self.metadata_path / f"{asset_id}.json"
                 with open(metadata_path, 'w', encoding='utf-8') as f:
                     json.dump(metadata, f, indent=2, ensure_ascii=False)
-                
+
                 results.append({
                     "asset_id": asset_id,
                     "family": family_name,
@@ -170,9 +170,9 @@ class SimpleAssetManager:
                     "metadata": metadata,
                     "status": "success"
                 })
-                
+
                 print(f"  ✓ {asset_id}")
-                
+
             except Exception as e:
                 print(f"  ❌ {asset_id}: {e}")
                 results.append({
@@ -182,9 +182,9 @@ class SimpleAssetManager:
                     "error": str(e),
                     "status": "error"
                 })
-        
+
         return results
-    
+
     def _generate_simple_metadata(self, file_path: str, **kwargs) -> Dict:
         """
         Generiert vereinfachte Metadaten ohne externe Dependencies
@@ -193,12 +193,12 @@ class SimpleAssetManager:
         family = kwargs.get('family', '')
         item = kwargs.get('item', '')
         svg_content = kwargs.get('svg_content', '')
-        
+
         # Analysiere SVG für Basis-Informationen
         colors = self._extract_colors_from_svg(svg_content)
         file_size = len(svg_content.encode('utf-8'))
         content_hash = hashlib.sha256(svg_content.encode('utf-8')).hexdigest()
-        
+
         metadata = {
             "id": asset_id,
             "title": self._generate_title(family, item),
@@ -230,28 +230,28 @@ class SimpleAssetManager:
                 "attribution": "Auto-generated for Educational Gaming System"
             }
         }
-        
+
         return metadata
-    
+
     def _extract_colors_from_svg(self, svg_content: str) -> List[str]:
         """
         Extrahiert Farben aus SVG-Content mit RegEx
         """
         colors = set()
-        
+
         # Suche nach fill="color" und stroke="color"
         fill_pattern = r'fill="([^"]+)"'
         stroke_pattern = r'stroke="([^"]+)"'
-        
+
         fills = re.findall(fill_pattern, svg_content)
         strokes = re.findall(stroke_pattern, svg_content)
-        
+
         for color in fills + strokes:
             if color not in ["none", "transparent"]:
                 colors.add(color)
-        
+
         return list(colors)
-    
+
     def _generate_svg_for_item(self, family: str, item: str, rules: Dict) -> str:
         """
         Generiert SVG-Content basierend auf Familie und Item
@@ -268,7 +268,7 @@ class SimpleAssetManager:
             return self._generate_character(item, rules)
         else:
             return self._generate_placeholder(item, rules)
-    
+
     def _generate_value_icon(self, value: str, rules: Dict) -> str:
         """Generiert Icons für demokratische Werte"""
         icons = {
@@ -347,19 +347,19 @@ class SimpleAssetManager:
 </svg>"""
         }
         return icons.get(value, self._generate_placeholder(value, rules))
-    
+
     def _generate_map_region(self, region: str, rules: Dict) -> str:
         """Generiert isometrische Karten-Tiles"""
         # Verschiedene Farben für verschiedene Regionen
         colors = {
-            "austria": "#0ea5e9", "vienna": "#22c55e", "graz": "#f59e0b", 
+            "austria": "#0ea5e9", "vienna": "#22c55e", "graz": "#f59e0b",
             "linz": "#ef4444", "salzburg": "#8b5cf6", "innsbruck": "#06b6d4",
-            "klagenfurt": "#f97316", "bregenz": "#84cc16", "eisenstadt": "#ec4899", 
+            "klagenfurt": "#f97316", "bregenz": "#84cc16", "eisenstadt": "#ec4899",
             "st_poelten": "#6366f1"
         }
-        
+
         color = colors.get(region, "#64748b")
-        
+
         return f"""<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
     <defs>
         <linearGradient id="{region}Grad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -377,7 +377,7 @@ class SimpleAssetManager:
     <text x="50" y="48" class="region-text">{region[:3].upper()}</text>
     <text x="50" y="90" style="font-family: Inter, sans-serif; font-size: 8px; fill: #0f172a; text-anchor: middle;">{region.replace('_', ' ').title()}</text>
 </svg>"""
-    
+
     def _generate_bridge_element(self, element: str, rules: Dict) -> str:
         """Generiert Brücken-Puzzle Elemente"""
         elements = {
@@ -525,7 +525,7 @@ class SimpleAssetManager:
 </svg>"""
         }
         return elements.get(element, self._generate_placeholder(element, rules))
-    
+
     def _generate_ui_button(self, button: str, rules: Dict) -> str:
         """Generiert moderne UI Button Icons"""
         buttons = {
@@ -585,7 +585,7 @@ class SimpleAssetManager:
 </svg>"""
         }
         return buttons.get(button, self._generate_placeholder(button, rules))
-    
+
     def _generate_character(self, character: str, rules: Dict) -> str:
         """Generiert detaillierte Charakter Avatare"""
         characters = {
@@ -701,7 +701,7 @@ class SimpleAssetManager:
 </svg>"""
         }
         return characters.get(character, self._generate_placeholder(character, rules))
-    
+
     def _generate_placeholder(self, item: str, rules: Dict) -> str:
         """Generiert professionelle Platzhalter-SVG"""
         return f"""<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -718,13 +718,13 @@ class SimpleAssetManager:
     <rect x="40" y="65" width="20" height="3" rx="1.5" fill="#d1d5db"/>
     <text x="50" y="92" class="placeholder-text">{item.replace('_', ' ').title()}</text>
 </svg>"""
-    
+
     def _generate_title(self, family: str, item: str) -> str:
         """Generiert benutzerfreundlichen Titel"""
         title_map = {
             "icons_values": {
                 "equality": "Gleichheit Icon",
-                "freedom": "Freiheit Icon", 
+                "freedom": "Freiheit Icon",
                 "solidarity": "Solidarität Icon",
                 "justice": "Gerechtigkeit Icon"
             },
@@ -735,23 +735,23 @@ class SimpleAssetManager:
             },
             "ui_buttons": {
                 "play": "Play Button",
-                "pause": "Pause Button", 
+                "pause": "Pause Button",
                 "settings": "Einstellungen Button"
             }
         }
-        
+
         if family in title_map and item in title_map[family]:
             return title_map[family][item]
-        
+
         return f"{item.replace('_', ' ').title()} ({family.replace('_', ' ').title()})"
-    
+
     def _generate_alt_text(self, family: str, item: str) -> str:
         """Generiert detaillierten Alt-Text für Accessibility"""
         alt_map = {
             "icons_values": {
                 "equality": "Symbol für Gleichheit - Zwei identische Kreise mit ausbalancierter Waage, symbolisiert gleiche Rechte und Chancen",
                 "freedom": "Symbol für Freiheit - Stilisierter Vogel im Flug über dem Horizont, symbolisiert Bewegungsfreiheit und Selbstbestimmung",
-                "solidarity": "Symbol für Solidarität - Zwei sich reichende Hände mit Herz, symbolisiert Zusammenhalt und gegenseitige Unterstützung", 
+                "solidarity": "Symbol für Solidarität - Zwei sich reichende Hände mit Herz, symbolisiert Zusammenhalt und gegenseitige Unterstützung",
                 "justice": "Symbol für Gerechtigkeit - Ausbalancierte Waage mit gleichen Gewichten, symbolisiert faire Rechtsprechung"
             },
             "characters": {
@@ -765,16 +765,16 @@ class SimpleAssetManager:
                 "settings": "Einstellungen Button - Grauer Kreis mit Zahnrad-Symbol für Konfiguration"
             }
         }
-        
+
         if family in alt_map and item in alt_map[family]:
             return alt_map[family][item]
-        
+
         return f"{self._generate_title(family, item)} - Grafisches Element für das Educational Gaming System"
-    
+
     def _generate_tags(self, family: str, item: str) -> List[str]:
         """Generiert relevante Tags für Suche und Organisation"""
         base_tags = ["educational", "gaming", "democracy", "ui", "svg", "accessible"]
-        
+
         family_tags = {
             "icons_values": ["icon", "value", "democracy", "concept", "symbol"],
             "map_regions": ["map", "geography", "austria", "region", "isometric"],
@@ -782,12 +782,12 @@ class SimpleAssetManager:
             "ui_buttons": ["button", "interface", "control", "ui", "interactive"],
             "characters": ["character", "avatar", "person", "role", "human"]
         }
-        
+
         tags = base_tags + family_tags.get(family, [])
         tags.append(item.replace("_", "-"))
-        
+
         return list(set(tags))
-    
+
     def _get_usage_contexts(self, family: str, item: str) -> List[str]:
         """Definiert empfohlene Verwendungskontexte"""
         contexts = {
@@ -797,27 +797,27 @@ class SimpleAssetManager:
             "ui_buttons": ["Game controls", "Interface elements", "Navigation"],
             "characters": ["Role-playing scenarios", "Character selection", "Storytelling"]
         }
-        
+
         return contexts.get(family, ["General educational gaming"])
 
 def main():
     """CLI Interface für das vereinfachte Asset Management"""
     import argparse
-    
+
     parser = argparse.ArgumentParser(description="Simple Educational Game Asset Manager")
-    parser.add_argument("--action", choices=["generate", "validate", "all"], 
+    parser.add_argument("--action", choices=["generate", "validate", "all"],
                        default="all", help="Action to perform")
     parser.add_argument("--family", help="Specific asset family to process")
     parser.add_argument("--output", help="Output directory", default="./web/games")
-    
+
     args = parser.parse_args()
-    
+
     print("🎮 Simple Asset Management System")
     print("   Educational Gaming Platform - Democracy Learning")
     print()
-    
+
     manager = SimpleAssetManager(args.output)
-    
+
     if args.action in ["generate", "all"]:
         if args.family:
             if args.family in manager.asset_families:
@@ -833,10 +833,10 @@ def main():
             successful_families = sum(1 for r in results.values() if isinstance(r, list))
             total_assets = sum(len(r) for r in results.values() if isinstance(r, list))
             successful_assets = sum(
-                sum(1 for item in r if item['status'] == 'success') 
+                sum(1 for item in r if item['status'] == 'success')
                 for r in results.values() if isinstance(r, list)
             )
-            
+
             print()
             print("📊 Generation Summary:")
             print(f"   Families processed: {successful_families}/{total_families}")

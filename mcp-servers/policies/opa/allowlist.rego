@@ -32,4 +32,3 @@ deny[msg] {
   not allow
   msg := "Request denied by OPA policy (tool not allowed or params invalid)"
 }
-

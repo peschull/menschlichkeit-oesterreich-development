@@ -44,4 +44,3 @@ jobs:
       - name: Cleanup
         if: always()
         run: docker rm -f otel-collector || true
-

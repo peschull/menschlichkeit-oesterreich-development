@@ -15,4 +15,3 @@ export const ImageWithFallback: React.FC<Props> = ({ fallbackSrc, onError, src, 
 };
 
 export default ImageWithFallback;
-

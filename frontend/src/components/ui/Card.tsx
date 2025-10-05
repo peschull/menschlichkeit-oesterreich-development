@@ -16,4 +16,3 @@ export function Card({
     </div>
   );
 }
-

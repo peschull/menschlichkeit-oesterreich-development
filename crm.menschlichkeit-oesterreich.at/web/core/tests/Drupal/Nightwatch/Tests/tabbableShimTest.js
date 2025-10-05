@@ -175,7 +175,7 @@ const dialogIntegrationTestScenarios = [
     info: 'An element that was focused previously.',
     markup: '<div><input><input></div>',
     options: {},
-     
+
     testActions: function ($element) {
       const $input = $element
         .find('input:last')
@@ -189,7 +189,7 @@ const dialogIntegrationTestScenarios = [
     info: 'First element inside the dialog matching [autofocus]',
     markup: '<div><input><input autofocus></div>',
     options: defaultDialogOptions,
-     
+
     testActions: function ($element) {
       return $element.find('input')[1];
     },
@@ -198,7 +198,7 @@ const dialogIntegrationTestScenarios = [
     info: 'Tabbable element inside the content element',
     markup: '<div><input><input></div>',
     options: defaultDialogOptions,
-     
+
     testActions: function ($element) {
       return $element.find('input')[0];
     },
@@ -207,7 +207,7 @@ const dialogIntegrationTestScenarios = [
     info: 'Tabbable element inside the buttonpane',
     markup: '<div>text</div>',
     options: defaultDialogOptions,
-     
+
     testActions: function ($element) {
       return $element.dialog('widget').find('.ui-dialog-buttonpane button')[0];
     },
@@ -216,7 +216,7 @@ const dialogIntegrationTestScenarios = [
     info: 'The close button',
     markup: '<div>text</div>',
     options: {},
-     
+
     testActions: function ($element) {
       return $element
         .dialog('widget')
@@ -227,7 +227,7 @@ const dialogIntegrationTestScenarios = [
     info: 'The dialog itself',
     markup: '<div>text</div>',
     options: { autoOpen: false },
-     
+
     testActions: function ($element) {
       $element.dialog('widget').find('.ui-dialog-titlebar-close').hide();
       $element.dialog('open');
@@ -238,7 +238,7 @@ const dialogIntegrationTestScenarios = [
     info: 'Focus starts on second input',
     markup: '<div><input><input autofocus></div>',
     options: {
-       
+
       open: function () {
         const inputs = jQuery(this).find('input');
         inputs.last().on('keydown', function (event) {
@@ -247,7 +247,7 @@ const dialogIntegrationTestScenarios = [
         });
       },
     },
-     
+
     testActions: function ($element) {
       const inputs = $element.find('input');
       return inputs[1];
@@ -270,7 +270,7 @@ module.exports = {
 
     tabbableTestScenarios.forEach((iteration) => {
       browser.execute(
-         
+
         function (scenario) {
           const $container = jQuery('#tabbable-test-container');
           $container.empty();
@@ -306,7 +306,7 @@ module.exports = {
 
     dialogIntegrationTestScenarios.forEach((iteration) => {
       browser.execute(
-         
+
         function (scenario, testActions) {
           // Create the jQuery element that will be used in the test steps.
           const $element = jQuery(scenario.markup).dialog(scenario.options);
@@ -317,7 +317,7 @@ module.exports = {
           // The expectedActiveElement function performs steps specific to a test
           // iteration, then returns the element expected to be active after
           // those steps.
-           
+
           const expectedActiveElement = new Function(`return ${testActions}`)();
           return expectedActiveElement($element) === document.activeElement;
         },

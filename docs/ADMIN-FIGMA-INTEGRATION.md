@@ -2,7 +2,7 @@
 
 **Ziel**: Vollständige Design-Token-Integration für das Next.js Admin-Portal mit Multi-Org Branding
 
-**Stand**: 2025-10-03  
+**Stand**: 2025-10-03
 **Bezugsdokumente**:
 
 - `admin_backend_architektur_umsetzungsplan_ngo_eu_dsgvo.md` (Admin-Backend Architektur)
@@ -631,6 +631,6 @@ npx percy snapshot snapshots/ --widths "1280,768,375"
 
 ---
 
-**Last Updated**: 2025-10-03  
-**Maintainer**: GitHub Copilot + peschull  
+**Last Updated**: 2025-10-03
+**Maintainer**: GitHub Copilot + peschull
 **Status**: 🔄 IN PROGRESS (Phase 1)

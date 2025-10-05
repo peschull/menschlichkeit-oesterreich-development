@@ -16,7 +16,7 @@ Write-Host "==========================================" -ForegroundColor Cyan
 
 foreach ($url in $TEST_URLS) {
     Write-Host "`n📋 Testing: $url" -ForegroundColor Yellow
-    
+
     try {
         $response = Invoke-WebRequest -Uri $url -Method HEAD -TimeoutSec 10 -ErrorAction Stop
         Write-Host "✅ Status: $($response.StatusCode) $($response.StatusDescription)" -ForegroundColor Green
@@ -26,7 +26,7 @@ foreach ($url in $TEST_URLS) {
         if ($_.Exception.Response) {
             $statusCode = [int]$_.Exception.Response.StatusCode
             Write-Host "❌ Status: $statusCode" -ForegroundColor Red
-            
+
             if ($statusCode -eq 404) {
                 Write-Host "❌ File not found - Script ist nicht an diesem Pfad" -ForegroundColor Red
             } elseif ($statusCode -eq 403) {

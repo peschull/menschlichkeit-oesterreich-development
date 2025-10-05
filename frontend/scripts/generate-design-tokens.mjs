@@ -61,4 +61,3 @@ const css = `/* Auto-generated from figma-design-system/00_design-tokens.json */
 mkdirSync(resolve(__dirname, '../src/styles'), { recursive: true });
 writeFileSync(OUT_PATH, css);
 console.log(`Generated ${OUT_PATH}`);
-

@@ -193,14 +193,14 @@ export function UserProfile() {
                   {user.name.split(' ').map(n => n[0]).join('')}
                 </AvatarFallback>
               </Avatar>
-              
+
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between gap-4 mb-4">
                   <div>
                     <h1 className="text-2xl font-bold mb-2">{user.name}</h1>
                     <div className="flex items-center gap-2 flex-wrap">
                       <Badge variant={getRoleBadgeVariant(user.role)}>
-                        {user.role === 'admin' ? 'Administrator' : 
+                        {user.role === 'admin' ? 'Administrator' :
                          user.role === 'moderator' ? 'Moderator' : 'Mitglied'}
                       </Badge>
                       <Badge variant={getMembershipBadgeVariant(user.membershipType)}>
@@ -212,8 +212,8 @@ export function UserProfile() {
                       </span>
                     </div>
                   </div>
-                  
-                  <Button 
+
+                  <Button
                     variant={isEditing ? "default" : "outline"}
                     onClick={() => isEditing ? handleSaveProfile() : setIsEditing(true)}
                   >
@@ -248,7 +248,7 @@ export function UserProfile() {
                   ) : (
                     <p className="text-muted-foreground leading-relaxed">{user.bio}</p>
                   )}
-                  
+
                   <div className="flex items-center gap-4 text-sm text-muted-foreground flex-wrap">
                     {(user.preferences.showLocation && user.location) && (
                       <div className="flex items-center gap-1">
@@ -305,14 +305,14 @@ export function UserProfile() {
                         <div className="grid grid-cols-2 gap-4">
                           <div>
                             <label className="text-sm font-medium mb-2 block">Name</label>
-                            <Input 
+                            <Input
                               value={user.name}
                               onChange={(e) => setUser(prev => ({ ...prev, name: e.target.value }))}
                             />
                           </div>
                           <div>
                             <label className="text-sm font-medium mb-2 block">E-Mail</label>
-                            <Input 
+                            <Input
                               value={user.email}
                               onChange={(e) => setUser(prev => ({ ...prev, email: e.target.value }))}
                             />
@@ -321,14 +321,14 @@ export function UserProfile() {
                         <div className="grid grid-cols-2 gap-4">
                           <div>
                             <label className="text-sm font-medium mb-2 block">Telefon</label>
-                            <Input 
+                            <Input
                               value={user.phone || ''}
                               onChange={(e) => setUser(prev => ({ ...prev, phone: e.target.value }))}
                             />
                           </div>
                           <div>
                             <label className="text-sm font-medium mb-2 block">Standort</label>
-                            <Input 
+                            <Input
                               value={user.location || ''}
                               onChange={(e) => setUser(prev => ({ ...prev, location: e.target.value }))}
                             />
@@ -468,38 +468,38 @@ export function UserProfile() {
                       <label className="text-sm font-medium">E-Mail Benachrichtigungen</label>
                       <p className="text-xs text-muted-foreground">Erhalten Sie wichtige Updates per E-Mail</p>
                     </div>
-                    <Switch 
+                    <Switch
                       checked={user.preferences.emailNotifications}
                       onCheckedChange={(checked) => handlePreferenceChange('emailNotifications', checked)}
                     />
                   </div>
-                  
+
                   <Separator />
-                  
+
                   <div className="flex items-center justify-between">
                     <div>
                       <label className="text-sm font-medium">Forum Digest</label>
                       <p className="text-xs text-muted-foreground">Wöchentliche Zusammenfassung der Forum-Aktivitäten</p>
                     </div>
-                    <Switch 
+                    <Switch
                       checked={user.preferences.forumDigest}
                       onCheckedChange={(checked) => handlePreferenceChange('forumDigest', checked)}
                     />
                   </div>
-                  
+
                   <Separator />
-                  
+
                   <div className="flex items-center justify-between">
                     <div>
                       <label className="text-sm font-medium">Event Erinnerungen</label>
                       <p className="text-xs text-muted-foreground">Benachrichtigungen über bevorstehende Events</p>
                     </div>
-                    <Switch 
+                    <Switch
                       checked={user.preferences.eventReminders}
                       onCheckedChange={(checked) => handlePreferenceChange('eventReminders', checked)}
                     />
                   </div>
-                  
+
                   {user.role === 'moderator' || user.role === 'admin' ? (
                     <>
                       <Separator />
@@ -508,7 +508,7 @@ export function UserProfile() {
                           <label className="text-sm font-medium">Moderations-Alerts</label>
                           <p className="text-xs text-muted-foreground">Benachrichtigungen über neue Meldungen</p>
                         </div>
-                        <Switch 
+                        <Switch
                           checked={user.preferences.moderationAlerts}
                           onCheckedChange={(checked) => handlePreferenceChange('moderationAlerts', checked)}
                         />
@@ -525,7 +525,7 @@ export function UserProfile() {
                 <CardContent className="space-y-4">
                   <div>
                     <label className="text-sm font-medium mb-2 block">Profil Sichtbarkeit</label>
-                    <select 
+                    <select
                       className="w-full p-2 border border-border rounded-md"
                       value={user.preferences.profileVisibility}
                       onChange={(e) => handlePreferenceChange('profileVisibility', e.target.value)}
@@ -535,41 +535,41 @@ export function UserProfile() {
                       <option value="private">Privat</option>
                     </select>
                   </div>
-                  
+
                   <Separator />
-                  
+
                   <div className="flex items-center justify-between">
                     <div>
                       <label className="text-sm font-medium">E-Mail anzeigen</label>
                       <p className="text-xs text-muted-foreground">E-Mail-Adresse im Profil sichtbar</p>
                     </div>
-                    <Switch 
+                    <Switch
                       checked={user.preferences.showEmail}
                       onCheckedChange={(checked) => handlePreferenceChange('showEmail', checked)}
                     />
                   </div>
-                  
+
                   <Separator />
-                  
+
                   <div className="flex items-center justify-between">
                     <div>
                       <label className="text-sm font-medium">Telefon anzeigen</label>
                       <p className="text-xs text-muted-foreground">Telefonnummer im Profil sichtbar</p>
                     </div>
-                    <Switch 
+                    <Switch
                       checked={user.preferences.showPhone}
                       onCheckedChange={(checked) => handlePreferenceChange('showPhone', checked)}
                     />
                   </div>
-                  
+
                   <Separator />
-                  
+
                   <div className="flex items-center justify-between">
                     <div>
                       <label className="text-sm font-medium">Standort anzeigen</label>
                       <p className="text-xs text-muted-foreground">Standort im Profil sichtbar</p>
                     </div>
-                    <Switch 
+                    <Switch
                       checked={user.preferences.showLocation}
                       onCheckedChange={(checked) => handlePreferenceChange('showLocation', checked)}
                     />

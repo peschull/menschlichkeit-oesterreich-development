@@ -19,7 +19,7 @@ Write-Host "`n📋 Checking prerequisites..." -ForegroundColor Yellow
 $Prerequisites = @{
     "Node.js" = { node --version }
     "npm" = { npm --version }
-    "PHP" = { php --version }  
+    "PHP" = { php --version }
     "Python" = { python --version }
     "Docker" = { docker --version }
     "Git" = { git --version }
@@ -46,17 +46,17 @@ if ($MissingPrereqs.Count -gt 0) {
 # Install Dependencies
 if (-not $SkipDependencies) {
     Write-Host "`n📦 Installing dependencies..." -ForegroundColor Yellow
-    
+
     # Node.js Dependencies
     Write-Host "Installing Node.js packages..." -ForegroundColor Cyan
     npm run install:all
-    
+
     # PHP Dependencies (if composer.json exists)
     if (Test-Path "composer.json") {
         Write-Host "Installing PHP packages..." -ForegroundColor Cyan
         composer install --optimize-autoloader
     }
-    
+
     # Python Dependencies for API
     if (Test-Path "api.menschlichkeit-oesterreich.at/requirements.txt") {
         Write-Host "Installing Python packages..." -ForegroundColor Cyan
@@ -102,17 +102,17 @@ try {
     # Basic linting
     Write-Host "Running ESLint..." -ForegroundColor Cyan
     npm run lint 2>$null || Write-Host "ESLint completed with warnings" -ForegroundColor Yellow
-    
+
     # Security scan (if tools available)
     if (Get-Command "trivy" -ErrorAction SilentlyContinue) {
         Write-Host "Running security scan..." -ForegroundColor Cyan
         npm run security:scan 2>$null || Write-Host "Security scan completed with findings" -ForegroundColor Yellow
     }
-    
+
     # DSGVO compliance check
     Write-Host "Running DSGVO compliance check..." -ForegroundColor Cyan
     npm run compliance:dsgvo 2>$null || Write-Host "DSGVO check completed with warnings" -ForegroundColor Yellow
-    
+
 } catch {
     Write-Host "Quality checks completed with issues - review quality-reports/" -ForegroundColor Yellow
 }
@@ -121,22 +121,22 @@ try {
 switch ($Environment) {
     "development" {
         Write-Host "`n🔧 Development environment setup..." -ForegroundColor Yellow
-        
+
         # Start essential services for development
         Write-Host "Starting n8n automation..." -ForegroundColor Cyan
         npm run n8n:start
-        
+
         Write-Host "✅ Development environment ready!" -ForegroundColor Green
         Write-Host "Run 'npm run dev:all' to start all services" -ForegroundColor Cyan
     }
-    
+
     "production" {
         Write-Host "`n🏭 Production environment setup..." -ForegroundColor Yellow
-        
+
         # Run full quality gates
         Write-Host "Running complete quality gates..." -ForegroundColor Cyan
         npm run quality:gates
-        
+
         Write-Host "✅ Production environment validated!" -ForegroundColor Green
         Write-Host "Ready for deployment with './build-pipeline.sh production'" -ForegroundColor Cyan
     }
@@ -164,7 +164,7 @@ Write-Host "  📋 npm run quality:reports   - Generate comprehensive reports" -
 
 Write-Host "`n📁 Key Directories:" -ForegroundColor Yellow
 Write-Host "  📊 quality-reports/     - Quality and compliance reports" -ForegroundColor Cyan
-Write-Host "  🧪 playwright-results/  - E2E test results" -ForegroundColor Cyan  
+Write-Host "  🧪 playwright-results/  - E2E test results" -ForegroundColor Cyan
 Write-Host "  🔄 automation/n8n/      - Workflow automation" -ForegroundColor Cyan
 Write-Host "  🚢 deployment-scripts/  - Plesk deployment scripts" -ForegroundColor Cyan
 

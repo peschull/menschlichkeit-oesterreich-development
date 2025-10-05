@@ -188,7 +188,7 @@
         return CKEditor5[build][name];
       }
 
-       
+
       console.warn(`Failed to load ${build} - ${name}`);
       return null;
     });
@@ -202,10 +202,10 @@
    */
   function processRules(rulesGroup) {
     try {
-       
+
       [...rulesGroup.cssRules].forEach(ckeditor5SelectorProcessing);
     } catch (e) {
-       
+
       console.warn(
         `Stylesheet ${rulesGroup.href} not included in CKEditor reset due to the browser's CORS policy.`,
       );
@@ -459,11 +459,11 @@
           }
         })
         .catch((error) => {
-           
+
           console.info(
             'Debugging can be done with an unminified version of CKEditor by installing from the source file. Consult documentation at https://www.drupal.org/node/3258901',
           );
-           
+
           console.error(error);
         });
     },
@@ -505,7 +505,7 @@
             }
           })
           .catch((error) => {
-             
+
             console.error(error);
           });
       }
@@ -565,7 +565,7 @@
           });
         })
         .catch((error) => {
-           
+
           console.error(error);
         });
     },

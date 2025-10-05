@@ -6,7 +6,7 @@ param(
     [Parameter(Mandatory=$false)]
     [ValidateSet("setup", "status", "test", "help")]
     [string]$Action = "help",
-    
+
     [Parameter(Mandatory=$false)]
     [switch]$VerboseOutput
 )
@@ -35,7 +35,7 @@ Services die überwacht werden:
   🎮 Games Platform (/games)
   🗂️ Alle drei Datenbanken
   🔐 SSH/SFTP Verbindungen
-  
+
 "@ -ForegroundColor Yellow
 }
 
@@ -69,19 +69,19 @@ $MonitoringServices = @{
 
 function Test-ServiceHealth {
     param([hashtable]$Service)
-    
+
     try {
         $url = $Service.URL + $Service.HealthEndpoint
         Write-Host "🔍 Testing: $url" -ForegroundColor Gray
-        
+
         $response = Invoke-WebRequest -Uri $url -Method GET -TimeoutSec 10 -UseBasicParsing
-        
+
         $isHealthy = $response.StatusCode -eq $Service.ExpectedStatus
         $status = if ($isHealthy) { "✅ Healthy" } else { "❌ Unhealthy" }
         $color = if ($isHealthy) { "Green" } else { "Red" }
-        
+
         Write-Host "   $status (HTTP $($response.StatusCode))" -ForegroundColor $color
-        
+
         return @{
             Service = $Service.Name
             Healthy = $isHealthy
@@ -104,59 +104,59 @@ function Test-ServiceHealth {
 function Start-HealthChecks {
     Write-Host "`n🩺 Health Check Report" -ForegroundColor Yellow
     Write-Host "======================" -ForegroundColor Yellow
-    
+
     $results = @()
-    
+
     foreach ($serviceKey in $MonitoringServices.Keys) {
         $service = $MonitoringServices[$serviceKey]
         Write-Host "`n🔍 $($service.Name)" -ForegroundColor Cyan
-        
+
         $result = Test-ServiceHealth -Service $service
         $results += $result
-        
+
         if ($service.Critical -and -not $result.Healthy) {
             Write-Host "⚠️  CRITICAL SERVICE DOWN!" -ForegroundColor Red -BackgroundColor Yellow
         }
     }
-    
+
     # Zusammenfassung
     $healthyServices = ($results | Where-Object { $_.Healthy }).Count
     $totalServices = $results.Count
-    
+
     Write-Host "`n📊 Zusammenfassung:" -ForegroundColor Cyan
     Write-Host "   Gesunde Services: $healthyServices/$totalServices" -ForegroundColor Green
-    
+
     if ($healthyServices -eq $totalServices) {
         Write-Host "   🎉 Alle Services sind gesund!" -ForegroundColor Green
     } else {
         Write-Host "   ⚠️  $($totalServices - $healthyServices) Services haben Probleme" -ForegroundColor Yellow
     }
-    
+
     return $results
 }
 
 function Show-MonitoringStatus {
     Write-Host "`n📈 Monitoring Configuration Status" -ForegroundColor Yellow
     Write-Host "==================================" -ForegroundColor Yellow
-    
+
     # Plesk Panel Health Monitoring
     Write-Host "`n🎛️  Plesk Panel Monitoring:" -ForegroundColor Cyan
     Write-Host "   📊 Service Monitor: Aktiviert (alle 5 Min)" -ForegroundColor Green
     Write-Host "   📧 Email Alerts: admin@menschlichkeit-oesterreich.at" -ForegroundColor Green
     Write-Host "   📱 SMS Alerts: Konfiguration erforderlich" -ForegroundColor Yellow
-    
-    # Database Monitoring  
+
+    # Database Monitoring
     Write-Host "`n🗂️  Database Monitoring:" -ForegroundColor Cyan
     Write-Host "   mo_wordpress_main: ✅ Active" -ForegroundColor Green
     Write-Host "   mo_laravel_api: ✅ Active" -ForegroundColor Green
     Write-Host "   mo_civicrm_data: ⚠️ Setup required" -ForegroundColor Yellow
-    
+
     # Backup Status
     Write-Host "`n💾 Backup Monitoring:" -ForegroundColor Cyan
     Write-Host "   Automatische Backups: Täglich um 02:00" -ForegroundColor Green
     Write-Host "   Backup-Aufbewahrung: 30 Tage" -ForegroundColor Green
     Write-Host "   Offsite-Backup: Konfiguration empfohlen" -ForegroundColor Yellow
-    
+
     # Performance Monitoring
     Write-Host "`n⚡ Performance Monitoring:" -ForegroundColor Cyan
     Write-Host "   CPU Usage: < 80%" -ForegroundColor Green
@@ -167,9 +167,9 @@ function Show-MonitoringStatus {
 
 function Setup-PlesPlMonitoring {
     Write-Host "`n⚙️  Setting up Plesk Monitoring..." -ForegroundColor Yellow
-    
+
     Write-Host @"
-    
+
 📋 Manuelle Konfiguration in Plesk Panel:
 
 1. 📊 Service Monitoring:
@@ -199,7 +199,7 @@ function Setup-PlesPlMonitoring {
    - Enable backup notifications
 
 "@ -ForegroundColor Cyan
-    
+
     Write-Host "✅ Monitoring Setup-Guide bereitgestellt!" -ForegroundColor Green
 }
 
@@ -208,19 +208,19 @@ switch ($Action) {
     "setup" {
         Setup-PleskMonitoring
     }
-    
+
     "status" {
         Show-MonitoringStatus
     }
-    
+
     "test" {
         Start-HealthChecks
     }
-    
+
     "help" {
         Show-Help
     }
-    
+
     default {
         Write-Host "❌ Unbekannte Aktion: $Action" -ForegroundColor Red
         Show-Help
@@ -229,5 +229,5 @@ switch ($Action) {
 
 Write-Host "`n🎯 Nächste Schritte:" -ForegroundColor Cyan
 Write-Host "- Plesk Panel für Monitoring-Konfiguration öffnen" -ForegroundColor Gray
-Write-Host "- Email-Benachrichtigungen einrichten" -ForegroundColor Gray  
+Write-Host "- Email-Benachrichtigungen einrichten" -ForegroundColor Gray
 Write-Host "- Performance-Thresholds definieren" -ForegroundColor Gray

@@ -1,9 +1,9 @@
 # Right to Erasure Procedures (DSGVO Art. 17)
 
-**Dokumentstatus:** ✅ Phase 0 Compliance  
-**Erstellt:** 2024-10-04  
-**Letzte Aktualisierung:** 2024-10-04  
-**Verantwortlich:** DevOps & Legal Compliance Team  
+**Dokumentstatus:** ✅ Phase 0 Compliance
+**Erstellt:** 2024-10-04
+**Letzte Aktualisierung:** 2024-10-04
+**Verantwortlich:** DevOps & Legal Compliance Team
 **DSGVO-Referenz:** Art. 17 DSGVO (Recht auf Löschung/"Recht auf Vergessenwerden")
 
 ---

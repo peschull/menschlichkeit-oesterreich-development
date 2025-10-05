@@ -42,4 +42,3 @@ export function Breadcrumb({ items, className = '' }: { items: Crumb[]; classNam
     </nav>
   );
 }
-

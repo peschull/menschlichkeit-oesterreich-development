@@ -32,7 +32,7 @@ let css = `/*
  * Discourse Theme - Menschlichkeit Österreich
  * Auto-generated from Figma Design Tokens
  * Generated: ${new Date().toISOString()}
- * 
+ *
  * Upload to: Admin → Customize → Themes → Import
  */
 
@@ -45,17 +45,17 @@ let css = `/*
   --primary-medium: ${dt.colors?.primary?.['600'] || '#dc2626'};
   --primary-high: ${dt.colors?.primary?.['700'] || '#b91c1c'};
   --primary-very-high: ${dt.colors?.primary?.['800'] || '#991b1b'};
-  
+
   /* Secondary (Grau-Töne) */
   --secondary-low: ${dt.colors?.secondary?.['50'] || '#f8fafc'};
   --secondary-medium: ${dt.colors?.secondary?.['500'] || '#64748b'};
   --secondary-high: ${dt.colors?.secondary?.['700'] || '#334155'};
-  
+
   /* Accent */
   --tertiary-low: ${dt.colors?.accent?.['50'] || '#fef7ff'};
   --tertiary: ${dt.colors?.accent?.['500'] || '#f472b6'};
   --tertiary-high: ${dt.colors?.accent?.['700'] || '#db2777'};
-  
+
   /* Success, Warning, Error */
   --success: ${dt.colors?.success?.['600'] || '#16a34a'};
   --success-low: ${dt.colors?.success?.['50'] || '#f0fdf4'};
@@ -63,25 +63,25 @@ let css = `/*
   --warning-low: ${dt.colors?.warning?.['50'] || '#fff7ed'};
   --danger: ${dt.colors?.error?.['600'] || '#dc2626'};
   --danger-low: ${dt.colors?.error?.['50'] || '#fef2f2'};
-  
+
   /* Typography */
   --font-family: ${dt.typography?.fontFamily?.body || 'Inter, -apple-system, sans-serif'};
   --heading-font-family: ${dt.typography?.fontFamily?.heading || 'Inter, sans-serif'};
   --base-font-size: ${dt.typography?.fontSize?.base || '16px'};
   --line-height-medium: ${dt.typography?.lineHeight?.normal || '1.6'};
-  
+
   /* Spacing */
   --spacing-xs: ${dt.spacing?.['1'] || '0.25rem'};
   --spacing-sm: ${dt.spacing?.['2'] || '0.5rem'};
   --spacing-md: ${dt.spacing?.['4'] || '1rem'};
   --spacing-lg: ${dt.spacing?.['6'] || '1.5rem'};
   --spacing-xl: ${dt.spacing?.['8'] || '2rem'};
-  
+
   /* Border Radius */
   --border-radius-sm: ${dt.borderRadius?.sm || '0.25rem'};
   --border-radius-md: ${dt.borderRadius?.md || '0.5rem'};
   --border-radius-lg: ${dt.borderRadius?.lg || '0.75rem'};
-  
+
   /* Shadows */
   --shadow-sm: ${dt.shadows?.sm || '0 1px 2px 0 rgba(0,0,0,0.05)'};
   --shadow-md: ${dt.shadows?.md || '0 4px 6px -1px rgba(0,0,0,0.1)'};
@@ -217,7 +217,7 @@ input[type="button"] {
   .d-header {
     padding: var(--spacing-sm);
   }
-  
+
   .btn-primary {
     width: 100%;
     margin-bottom: var(--spacing-sm);

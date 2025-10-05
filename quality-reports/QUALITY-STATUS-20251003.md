@@ -1,6 +1,6 @@
 # 🎯 Quality Status Report
 
-**Datum**: 2025-10-03  
+**Datum**: 2025-10-03
 **Branch**: copilot/fix-6f203cad-121c-46af-8e50-987ac575049e
 
 ## ✅ Abgeschlossene Quality Gates
@@ -91,7 +91,7 @@
    wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
    echo "deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main" | sudo tee -a /etc/apt/sources.list.d/trivy.list
    sudo apt-get update && sudo apt-get install trivy
-   
+
    # Gitleaks (Secret Scanner)
    brew install gitleaks  # oder via binary download
    ```

@@ -140,6 +140,6 @@ npm run figma:validate
 
 ---
 
-**Implementiert**: 2025-01-15  
-**Status**: ✅ Production-Ready  
+**Implementiert**: 2025-01-15
+**Status**: ✅ Production-Ready
 **Version**: 1.0.0

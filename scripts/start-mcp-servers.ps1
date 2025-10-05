@@ -10,24 +10,24 @@ $serverProcesses = @()
 
 function Start-McpServer {
     param($Name, $Port, $ScriptPath)
-    
+
     Write-Host "Starting $Name MCP Server on port $Port..." -ForegroundColor Green
-    
+
     $process = Start-Process -FilePath "node" -ArgumentList $ScriptPath -WindowStyle Hidden -PassThru
     $serverProcesses += @{Name = $Name; Process = $process; Port = $Port}
-    
+
     Start-Sleep -Seconds 2
     return $process
 }
 
 function Stop-McpServers {
     Write-Host "Stopping all MCP servers..." -ForegroundColor Yellow
-    
+
     # Stop by process name
     Get-Process -Name "node" -ErrorAction SilentlyContinue | Where-Object {
         $_.CommandLine -like "*mcp-stub*" -or $_.CommandLine -like "*figma-mcp-server*"
     } | Stop-Process -Force
-    
+
     Write-Host "All MCP servers stopped." -ForegroundColor Red
 }
 

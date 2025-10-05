@@ -68,7 +68,7 @@ cat > "$REPORT_DIR/metrics-$TIMESTAMP.md" << EOF
 
 ## Datei-Übersicht
 - HTML Dateien: $HTML_FILES
-- CSS Dateien: $CSS_FILES  
+- CSS Dateien: $CSS_FILES
 - JavaScript Dateien: $JS_FILES
 
 ## Lines of Code (LOC)
@@ -105,7 +105,7 @@ fi
 
 echo -e "\n${BLUE}💡 Empfehlungen:${NC}"
 echo "1. Reports regelmäßig überprüfen (täglich/wöchentlich)"
-echo "2. Bei Code-Änderungen Analyse ausführen" 
+echo "2. Bei Code-Änderungen Analyse ausführen"
 echo "3. Metriken-Trends über Zeit verfolgen"
 echo "4. Automatisierung in CI/CD Pipeline einbauen"
 

@@ -88,10 +88,10 @@ if $SSH_CMD "test -d /var/www/vhosts" 2>/dev/null; then
     log_success "Plesk vhosts directory exists: /var/www/vhosts"
 else
     log_warning "Standard Plesk path not found, checking alternatives..."
-    
+
     # Try to find actual web root
     WEB_ROOT=$($SSH_CMD "find /var/www -maxdepth 2 -name 'httpdocs' -type d | head -1 | xargs dirname" 2>/dev/null || echo "")
-    
+
     if [[ -n "$WEB_ROOT" ]]; then
         log_info "Found web root: $WEB_ROOT"
     else
@@ -111,17 +111,17 @@ DOMAIN_BASE="/var/www/vhosts/menschlichkeit-oesterreich.at"
 check_domain_dir() {
     local domain=$1
     local path="$DOMAIN_BASE/$domain"
-    
+
     if $SSH_CMD "test -d $path" 2>/dev/null; then
         log_success "$domain exists"
-        
+
         # Check subdirectories
         if $SSH_CMD "test -d $path/httpdocs" 2>/dev/null; then
             log_info "  → httpdocs: ✓"
         else
             log_warning "  → httpdocs: ✗"
         fi
-        
+
         if $SSH_CMD "test -d $path/private" 2>/dev/null; then
             log_info "  → private: ✓"
         else

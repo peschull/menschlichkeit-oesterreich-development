@@ -28,4 +28,3 @@ sdk.start().then(async () => {
   console.error('OTel SDK start error', err);
   process.exit(1);
 });
-

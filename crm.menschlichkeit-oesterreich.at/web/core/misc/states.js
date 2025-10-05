@@ -340,7 +340,7 @@
       // bogus, we don't want to end up with an infinite loop.
       else if ($.isPlainObject(constraints)) {
         // This constraint is an object (AND).
-         
+
         for (const n in constraints) {
           if (constraints.hasOwnProperty(n)) {
             result = ternary(

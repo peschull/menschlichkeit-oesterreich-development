@@ -14,12 +14,16 @@
  * =============================================================================
  * 🗄️ PRODUCTION DATABASE CONFIGURATION
  * =============================================================================
+ * UPDATED: 05.10.2025 - Neue Docker-Infrastruktur
+ * Database: mo_crm (Docker MariaDB 10.11)
+ * User: svc_crm (Service Account)
+ * =============================================================================
  */
 $databases = [];
 $databases['default']['default'] = array(
-    'database' => 'mo_civicrm_data',
-    'username' => 'civicrm_user',
-    'password' => 'yFNhGHHcvU2Tw7BeSBgKwkFGxr',
+    'database' => 'mo_crm',
+    'username' => 'svc_crm',
+    'password' => 'CRM_SecurePass_2024_xyz123ABC!',
     'prefix' => '',
     'host' => 'localhost',
     'port' => '3306',

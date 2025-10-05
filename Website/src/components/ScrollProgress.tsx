@@ -7,7 +7,7 @@ interface ScrollProgressProps {
   position?: 'top' | 'bottom';
 }
 
-export function ScrollProgress({ 
+export function ScrollProgress({
   color = 'var(--brand-gradient)',
   height = 3,
   position = 'top'

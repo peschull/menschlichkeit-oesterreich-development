@@ -3,7 +3,7 @@
 /**
  * CLI Wrapper für PiiSanitizer
  * Ermöglicht JSON-basierte Kommandozeilen-Nutzung für n8n Integration
- * 
+ *
  * Usage: php cli-wrapper.php --text "..." --types "email,phone" --metrics 1
  */
 
