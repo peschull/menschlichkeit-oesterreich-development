@@ -294,6 +294,11 @@ quality-reports/**/secrets-scan.json
 quality-reports/private/**
 !quality-reports/private/.gitkeep
 
+# Global secrets directory (never commit plaintext secrets)
+secrets/**
+!secrets/**/.gitkeep
+!secrets/**/*.example.*
+
 # ========================================
 # Project Specific
 # ========================================

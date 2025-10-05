@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import AITestPage from './pages/AITestPage';
 import PrivacySettings from './pages/PrivacySettings';
@@ -11,6 +11,18 @@ import Login from './pages/Login';
 const Home = React.lazy(() =>
   import('./pages/Home').catch(() => ({ default: () => <AITestPage /> }))
 );
+
+// Figma‑integrierte Feature‑Komponenten (lazy geladen)
+const DemocracyGameHub = lazy(() => import('@/components/DemocracyGameHub'));
+const BridgeBuilding = lazy(() => import('@/components/BridgeBuilding'));
+const BridgeBuilding100 = lazy(() => import('@/components/BridgeBuilding100'));
+const Forum = lazy(() => import('@/components/Forum'));
+const Events = lazy(() => import('@/components/Events'));
+const News = lazy(() => import('@/components/News'));
+const Join = lazy(() => import('@/components/Join'));
+const Donate = lazy(() => import('@/components/Donate'));
+const Contact = lazy(() => import('@/components/Contact'));
+const AdminDashboard = lazy(() => import('@/components/AdminDashboard'));
 
 export default function App() {
   return (
@@ -34,6 +46,17 @@ export default function App() {
             <Route path="/Login" element={<Login />} />
             <Route path="/account/privacy" element={<ProtectedRoute><PrivacySettings /></ProtectedRoute>} />
             <Route path="/member" element={<ProtectedRoute><MemberArea /></ProtectedRoute>} />
+            {/* Neue Hauptbereiche aus Figma‑Integration */}
+            <Route path="/games" element={<DemocracyGameHub />} />
+            <Route path="/games/bridge" element={<BridgeBuilding />} />
+            <Route path="/games/bridge-100" element={<BridgeBuilding100 />} />
+            <Route path="/forum" element={<Forum />} />
+            <Route path="/events" element={<Events />} />
+            <Route path="/news" element={<News />} />
+            <Route path="/join" element={<Join />} />
+            <Route path="/donate" element={<Donate />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/admin" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
           </Routes>
         </Suspense>
       </main>

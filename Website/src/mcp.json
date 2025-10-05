@@ -1,0 +1,29 @@
+{
+  "mcpServers": {
+    "figma": {
+      "url": "https://mcp.figma.com/mcp",
+      "metadata": {
+        "fileKey": "YOUR_FIGMA_FILE_KEY_HERE",
+        "designTokens": "figma-design-system/00_design-tokens.json",
+        "syncCommand": "npm run sync-figma-tokens",
+        "rulesPath": ".github/instructions/figma-mcp/stack-rules.md",
+        "frameworks": ["react", "typescript", "tailwind"],
+        "languages": ["typescript", "css"],
+        "components": {
+          "path": "figma-design-system/components/ui",
+          "barrelExport": "figma-design-system/index.ts"
+        },
+        "styles": {
+          "cssVariables": "figma-design-system/styles/figma-variables.css",
+          "frontendTokens": "frontend/src/styles/tokens.css",
+          "typeDefinitions": "frontend/src/lib/figma-tokens.ts"
+        },
+        "quality": {
+          "wcag": "AA",
+          "semanticHtml": true,
+          "tokenDrift": 0
+        }
+      }
+    }
+  }
+}

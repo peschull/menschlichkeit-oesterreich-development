@@ -1,0 +1,92 @@
+version: '3.8'
+
+services:
+  # MariaDB für CiviCRM, Games, n8n, Consent, Hooks, Analytics, Nextcloud, Staging
+  mariadb:
+    image: mariadb:10.11
+    container_name: mo_mariadb
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-SecureRootPass2024!}
+      MYSQL_CHARACTER_SET_SERVER: utf8mb4
+      MYSQL_COLLATION_SERVER: utf8mb4_unicode_ci
+    volumes:
+      - mariadb_data:/var/lib/mysql
+      - ./scripts/db-init-mariadb.sql:/docker-entrypoint-initdb.d/01-init.sql
+    networks:
+      - mo_network
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # PostgreSQL für Keycloak, Grafana, Discourse
+  postgres:
+    image: postgres:16-alpine
+    container_name: mo_postgres
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-SecurePostgresPass2024!}
+      POSTGRES_DB: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./scripts/db-init-postgres.sql:/docker-entrypoint-initdb.d/01-init.sql
+    networks:
+      - mo_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # phpMyAdmin für MariaDB-Management
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: mo_phpmyadmin
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: mariadb
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: ${MYSQL_ROOT_PASSWORD:-SecureRootPass2024!}
+    networks:
+      - mo_network
+    depends_on:
+      - mariadb
+
+  # pgAdmin für PostgreSQL-Management
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: mo_pgadmin
+    restart: unless-stopped
+    ports:
+      - "8081:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL:-admin@menschlichkeit-oesterreich.at}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD:-SecureAdminPass2024!}
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    networks:
+      - mo_network
+    depends_on:
+      - postgres
+
+volumes:
+  mariadb_data:
+    driver: local
+  postgres_data:
+    driver: local
+  pgadmin_data:
+    driver: local
+
+networks:
+  mo_network:
+    driver: bridge

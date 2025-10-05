@@ -91,7 +91,20 @@
     "n8n:smoke": "python3 automation/n8n/smoke-test.py",
     "docs:adr-index": "node scripts/docs/generate-adr-index.mjs",
     "figma:filekey": "node scripts/figma-extract-filekey.mjs",
-    "figma:nodeid": "node scripts/figma-extract-nodeid.mjs"
+    "figma:nodeid": "node scripts/figma-extract-nodeid.mjs",
+    "db:start": "docker-compose -f docker-compose-databases.yml up -d",
+    "db:stop": "docker-compose -f docker-compose-databases.yml down",
+    "db:restart": "npm run db:stop && npm run db:start",
+    "db:logs": "docker-compose -f docker-compose-databases.yml logs -f",
+    "db:logs:mariadb": "docker logs mo_mariadb -f",
+    "db:logs:postgres": "docker logs mo_postgres -f",
+    "db:status": "docker ps --filter 'name=mo_' --format 'table {{.Names}}\\t{{.Status}}\\t{{.Ports}}'",
+    "db:shell:mariadb": "docker exec -it mo_mariadb mysql -uroot -pSecureRootPass2024!",
+    "db:shell:postgres": "docker exec -it mo_postgres psql -U postgres",
+    "db:backup:mariadb": "docker exec mo_mariadb mysqldump -uroot -pSecureRootPass2024! --all-databases > backups/mariadb-backup-$(date +%Y%m%d-%H%M%S).sql",
+    "db:backup:postgres": "docker exec mo_postgres pg_dumpall -U postgres > backups/postgres-backup-$(date +%Y%m%d-%H%M%S).sql",
+    "db:cleanup": "docker system prune -f && docker volume prune -f",
+    "db:reset": "docker-compose -f docker-compose-databases.yml down -v && npm run db:start"
   },
   "scriptsPhase0": {
     "verify": "bash analysis/phase-0/verification/verify-phase-0.sh"
