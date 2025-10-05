@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAuth } from '../auth/AuthContext';
 import { Alert } from '../components/ui/Alert';
-import { Card } from '../components/ui/Card';
+import { Card } from '../components/ui/card';
 import { Button } from '../components/ui/Button';
 import { api, CreateContactRequest, CreateMembershipRequest } from '../services/api';
 import { Breadcrumb } from '../components/ui/Breadcrumb';

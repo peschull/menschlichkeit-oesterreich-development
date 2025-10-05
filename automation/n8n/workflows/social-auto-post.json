@@ -1,0 +1,421 @@
+{
+  "name": "Social Auto Post (with Approval)",
+  "nodes": [
+    {
+      "id": "githubList",
+      "name": "List Social Files",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [520, -60],
+      "parameters": {
+        "url": "={{'https://api.github.com/repos/' + ($env.GITHUB_REPO || '') + '/contents/content/social?ref=' + ($env.GITHUB_REF || 'main')}}",
+        "method": "GET",
+        "jsonParameters": true,
+        "options": { "ignoreResponseCode": true, "responseFormat": "json" },
+        "headerParametersJson": "={ \n          \"Accept\": \"application/vnd.github+json\"\n          {{ $env.GITHUB_TOKEN ? ',\\n\"Authorization\": \"Bearer ' + $env.GITHUB_TOKEN + '\"' : '' }}\n        }"
+      }
+    },
+    {
+      "id": "filterJson",
+      "name": "Filter JSON Files",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 2,
+      "position": [760, -60],
+      "parameters": {
+        "functionCode": "// Input: array of GitHub file objects\nconst arr = Array.isArray(items[0]?.json) ? items[0].json : items.map(i=>i.json);\nconst out = (arr || []).filter(x => x && /\\.json$/i.test(x.name));\nreturn out.map(x => ({ json: x }));"
+      }
+    },
+    {
+      "id": "fetchFile",
+      "name": "Fetch File",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [1000, -60],
+      "parameters": {
+        "url": "={{$json.download_url}}",
+        "method": "GET",
+        "jsonParameters": true,
+        "options": { "ignoreResponseCode": true, "responseFormat": "json" }
+      }
+    },
+    {
+      "id": "cronTrigger",
+      "name": "Schedule",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [200, 200],
+      "parameters": {
+        "triggerTimes": {
+          "item": [
+            {
+              "hour": 9,
+              "minutes": 0,
+              "weekday": "MO-FR"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "manualTrigger",
+      "name": "Manual Start",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [200, 20]
+    },
+    {
+      "id": "collectContent",
+      "name": "Collect Content",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 2,
+      "position": [520, 140],
+      "parameters": {
+        "functionCode": "// INPUT: optionally read from a static list or an API\n// Replace this stub to fetch from your repo / CMS.\nconst posts = [\n  {\n    id: Date.now(),\n    title: 'Mitglied werden',\n    summary: 'Unterstütze unsere Mission – transparent, DSGVO-konform, barrierearm.',\n    url: 'https://www.menschlichkeit-oesterreich.at/join',\n    tags: ['Menschlichkeit', 'Österreich', 'Mitgliedschaft'],\n    imageUrl: '',\n    platforms: ['linkedin','x','facebook','instagram']\n  }\n];\nreturn posts.map(p => ({ json: p }));"
+      }
+    },
+    {
+      "id": "filterSchedule",
+      "name": "Filter Scheduled",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 2,
+      "position": [760, 40],
+      "parameters": {
+        "functionCode": "// Pass only items with scheduled_at <= now, or without scheduled_at\nconst now = new Date();\nfunction due(p){\n  if (!p || !p.scheduled_at) return true;\n  const d = new Date(p.scheduled_at);\n  return !isNaN(d) && d <= now;\n}\nreturn items.filter(i => due(i.json));"
+      }
+    },
+    {
+      "id": "renderTemplates",
+      "name": "Render Templates",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 2,
+      "position": [1000, 40],
+      "parameters": {
+        "functionCode": "// Create platform-specific text (length/hashtags)\nfunction trimTo(str, n) { return (str || '').length > n ? str.slice(0, n-1) + '…' : str; }\nfunction utm(url, platform, slug) {\n  const u = new URL(url);\n  u.searchParams.set('utm_source', platform);\n  u.searchParams.set('utm_medium', 'social');\n  u.searchParams.set('utm_campaign', slug || 'ngo');\n  return u.toString();\n}\nreturn items.map(item => {\n  const p = item.json || {};\n  const id = p.id || Date.now();\n  const slug = (p.title || 'post').toLowerCase().replace(/\s+/g,'-');\n  const tagStr = (p.tags||[]).map(t => '#' + t.replace(/\s+/g,'')).join(' ');\n  const link = utm(p.url || '', 'all', slug);\n  const linkedin = `${p.title || ''} – ${p.summary || ''}\n\n${tagStr}\n${link}`.trim();\n  const x = trimTo(`${p.title || ''} – ${p.summary || ''} ${tagStr} ${utm(p.url||'','x',slug)}`, 280);\n  const facebook = `${p.title || ''}\n\n${p.summary || ''}\n\n${tagStr}\n${utm(p.url||'','facebook',slug)}`;\n  const instagram = `${p.title || ''}\n\n${p.summary || ''}\n\n${tagStr}`;\n  return { json: { ...p, id, content: { linkedin, x, facebook, instagram }, link } };\n});"
+      }
+    },
+    {
+      "id": "slackPreview",
+      "name": "Preview Slack",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [1240, 40],
+      "parameters": {
+        "url": "={{$env.SLACK_WEBHOOK_URL}}",
+        "method": "POST",
+        "jsonParameters": true,
+        "options": { "ignoreResponseCode": true },
+        "sendBody": true,
+        "bodyParametersJson": "={ \n          \"text\": \"*Preview*\\nLinkedIn: {{$json.content.linkedin}}\\nX: {{$json.content.x}}\\nFacebook: {{$json.content.facebook}}\\nLink: {{$json.link}}\\nReleaseKey: social:approve:={{$json.id}}\"\n        }"
+      }
+    },
+    {
+      "id": "approval",
+      "name": "Wait for Approval",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [1000, 140],
+      "parameters": {
+        "releaseKey": "social:approve:={{$json.id}}",
+        "maxWaitTime": 172800
+      }
+    },
+    {
+      "id": "calcPlatforms",
+      "name": "Calc Platforms",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 2,
+      "position": [1180, 140],
+      "parameters": {
+        "functionCode": "const allow = String($env.SOCIAL_ONLY_PLATFORMS||'').split(',').map(s=>s.trim().toLowerCase()).filter(Boolean);\nconst exclude = String($env.SOCIAL_EXCLUDE_PLATFORMS||'').split(',').map(s=>s.trim().toLowerCase()).filter(Boolean);\nreturn items.map(i=>{\n  const p = i.json || {};\n  let list = Array.isArray(p.platforms)&&p.platforms.length ? p.platforms.map(x=>String(x).toLowerCase()) : ['linkedin','x','facebook','instagram','mastodon','telegram','reddit','slack','discord','pinterest'];\n  if (allow.length) list = list.filter(x=>allow.includes(x));\n  if (exclude.length) list = list.filter(x=>!exclude.includes(x));\n  const set = new Set(list);\n  const flags = {\n    enableLinkedIn: set.has('linkedin'),\n    enableX: set.has('x'),\n    enableFacebook: set.has('facebook'),\n    enableInstagram: set.has('instagram')\n  };\n  return { json: { ...p, ...flags, platformsEffective: Array.from(set) } };\n});"
+      }
+    },
+    {
+      "id": "ifLinkedIn",
+      "name": "IF LinkedIn",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [1360, 20],
+      "parameters": {
+        "conditions": { "boolean": [ { "value1": "={{$json.enableLinkedIn}}" } ] }
+      }
+    },
+    {
+      "id": "ifX",
+      "name": "IF X",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [1360, 100],
+      "parameters": {
+        "conditions": { "boolean": [ { "value1": "={{$json.enableX}}" } ] }
+      }
+    },
+    {
+      "id": "ifFacebook",
+      "name": "IF Facebook",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [1360, 180],
+      "parameters": {
+        "conditions": { "boolean": [ { "value1": "={{$json.enableFacebook}}" } ] }
+      }
+    },
+    {
+      "id": "ifInstagram",
+      "name": "IF Instagram",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [1360, 260],
+      "parameters": {
+        "conditions": { "boolean": [ { "value1": "={{$json.enableInstagram}}" } ] }
+      }
+    },
+    {
+      "id": "publishLinkedIn",
+      "name": "Publish LinkedIn",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [1240, 20],
+      "parameters": {
+        "url": "https://api.linkedin.com/v2/ugcPosts",
+        "method": "POST",
+        "authentication": "predefinedCredentialType",
+        "jsonParameters": true,
+        "options": {
+          "ignoreResponseCode": true
+        },
+        "sendBody": true,
+        "bodyParametersJson": "={\n          \"author\": \"urn:li:organization:${{ $json.linkedinOrgUrn || 'REPLACE_ORG_URN' }}\",\n          \"lifecycleState\": \"PUBLISHED\",\n          \"specificContent\": {\n            \"com.linkedin.ugc.ShareContent\": {\n              \"shareCommentary\": { \"text\": \"{{$json.content.linkedin}}\" },\n              \"shareMediaCategory\": \"NONE\"\n            }\n          },\n          \"visibility\": { \"com.linkedin.ugc.MemberNetworkVisibility\": \"PUBLIC\" }\n        }",
+        "nodeCredentialType": "linkedinOAuth2Api"
+      }
+    },
+    {
+      "id": "publishX",
+      "name": "Publish X (Twitter)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [1240, 140],
+      "parameters": {
+        "url": "https://api.twitter.com/2/tweets",
+        "method": "POST",
+        "authentication": "predefinedCredentialType",
+        "jsonParameters": true,
+        "sendBody": true,
+        "options": { "ignoreResponseCode": true },
+        "bodyParametersJson": "={ \"text\": \"{{$json.content.x}}\" }",
+        "nodeCredentialType": "twitterOAuth2Api"
+      }
+    },
+    {
+      "id": "publishFB",
+      "name": "Publish Facebook",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [1240, 260],
+      "parameters": {
+        "url": "=https://graph.facebook.com/v18.0/{{$json.facebookPageId || 'REPLACE_PAGE_ID'}}/feed",
+        "method": "POST",
+        "jsonParameters": true,
+        "options": { "ignoreResponseCode": true },
+        "sendQuery": true,
+        "queryParametersJson": "={ \"message\": \"{{$json.content.facebook}}\" }",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "facebookGraphApi"
+      }
+    },
+    {
+      "id": "publishMastodon",
+      "name": "Publish Mastodon",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [1240, 500],
+      "parameters": {
+        "url": "={{$env.MASTODON_BASE_URL?.replace(/\\\\\\/$/, '')}}/api/v1/statuses",
+        "method": "POST",
+        "jsonParameters": true,
+        "options": { "ignoreResponseCode": true },
+        "sendBody": true,
+        "bodyParametersJson": "={ \"status\": \"{{$json.content.linkedin}}\" }",
+        "headerParametersJson": "={ \"Authorization\": \"Bearer {{$env.MASTODON_ACCESS_TOKEN}}\" }"
+      }
+    },
+    {
+      "id": "publishTelegram",
+      "name": "Publish Telegram",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [1240, 620],
+      "parameters": {
+        "url": "=https://api.telegram.org/bot{{$env.TELEGRAM_BOT_TOKEN}}/sendMessage",
+        "method": "POST",
+        "jsonParameters": true,
+        "options": { "ignoreResponseCode": true },
+        "sendBody": true,
+        "bodyParametersJson": "={ \n          \"chat_id\": \"{{$env.TELEGRAM_CHAT_ID}}\",\n          \"text\": \"{{$json.content.linkedin}}\",\n          \"disable_web_page_preview\": false\n        }"
+      }
+    },
+    {
+      "id": "publishReddit",
+      "name": "Publish Reddit",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [1240, 740],
+      "parameters": {
+        "url": "https://oauth.reddit.com/api/submit",
+        "method": "POST",
+        "jsonParameters": false,
+        "options": { "ignoreResponseCode": true, "bodyContentType": "form-urlencoded" },
+        "sendBody": true,
+        "headerParametersJson": "={ \"Authorization\": \"Bearer {{$env.REDDIT_ACCESS_TOKEN}}\", \n                                     \"User-Agent\": \"moe-social-publisher/1.0\" }",
+        "bodyParametersUi": {
+          "parameter": [
+            { "name": "sr", "value": "={{$env.REDDIT_SUBREDDIT}}" },
+            { "name": "kind", "value": "link" },
+            { "name": "url", "value": "={{$json.link}}" },
+            { "name": "title", "value": "={{$json.title || 'Beitrag'}}" }
+          ]
+        }
+      }
+    },
+    {
+      "id": "publishSlack",
+      "name": "Publish Slack",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [1240, 860],
+      "parameters": {
+        "url": "={{$env.SLACK_WEBHOOK_URL}}",
+        "method": "POST",
+        "jsonParameters": true,
+        "options": { "ignoreResponseCode": true },
+        "sendBody": true,
+        "bodyParametersJson": "={ \"text\": \"{{$json.content.linkedin}}\" }"
+      }
+    },
+    {
+      "id": "publishDiscord",
+      "name": "Publish Discord",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [1240, 980],
+      "parameters": {
+        "url": "={{$env.DISCORD_WEBHOOK_URL}}",
+        "method": "POST",
+        "jsonParameters": true,
+        "options": { "ignoreResponseCode": true },
+        "sendBody": true,
+        "bodyParametersJson": "={ \"content\": \"{{$json.content.linkedin}}\" }"
+      }
+    },
+    {
+      "id": "publishPinterest",
+      "name": "Publish Pinterest",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [1240, 1100],
+      "parameters": {
+        "url": "https://api.pinterest.com/v5/pins",
+        "method": "POST",
+        "jsonParameters": true,
+        "options": { "ignoreResponseCode": true },
+        "sendBody": true,
+        "headerParametersJson": "={ \"Authorization\": \"Bearer {{$env.PINTEREST_ACCESS_TOKEN}}\" }",
+        "bodyParametersJson": "={ \n          \"board_id\": \"={{$json.pinterestBoardId || $env.PINTEREST_BOARD_ID}}\",\n          \"title\": \"={{$json.title}}\",\n          \"description\": \"={{$json.summary || ''}}\",\n          \"link\": \"={{$json.link}}\",\n          \"media_source\": { \"source_type\": \"image_url\", \"url\": \"={{$json.imageUrl}}\" }\n        }"
+      }
+    },
+    {
+      "id": "publishIGCreate",
+      "name": "IG Create Media",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [1240, 380],
+      "parameters": {
+        "url": "=https://graph.facebook.com/v18.0/{{$json.instagramUserId || 'REPLACE_IG_USER_ID'}}/media",
+        "method": "POST",
+        "jsonParameters": true,
+        "options": { "responseFormat": "json", "ignoreResponseCode": true },
+        "sendQuery": true,
+        "queryParametersJson": "={ \n          \"image_url\": \"{{$json.imageUrl}}\", \n          \"caption\": \"{{$json.content.instagram}}\" \n        }",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "facebookGraphApi"
+      }
+    },
+    {
+      "id": "publishIGPublish",
+      "name": "IG Publish",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [1470, 380],
+      "parameters": {
+        "url": "=https://graph.facebook.com/v18.0/{{$json.instagramUserId || 'REPLACE_IG_USER_ID'}}/media_publish",
+        "method": "POST",
+        "jsonParameters": true,
+        "options": { "ignoreResponseCode": true },
+        "sendQuery": true,
+        "queryParametersJson": "={ \n          \"creation_id\": \"={{$json.id}}\" \n        }",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "facebookGraphApi"
+      }
+    },
+    {
+      "id": "log",
+      "name": "Log Outcome",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 2,
+      "position": [1470, 140],
+      "parameters": {
+        "functionCode": "// Persist to n8n execution data / external log later\n// For now just pass through\nreturn items;"
+      }
+    }
+  ],
+  "connections": {
+    "List Social Files": { "main": [ [ { "node": "Filter JSON Files", "type": "main", "index": 0 } ] ] },
+    "Filter JSON Files": { "main": [ [ { "node": "Fetch File", "type": "main", "index": 0 } ] ] },
+    "Fetch File": { "main": [ [ { "node": "Filter Scheduled", "type": "main", "index": 0 } ] ] },
+    "Schedule": {
+      "main": [ [ { "node": "Collect Content", "type": "main", "index": 0 } ] ]
+    },
+    "Manual Start": {
+      "main": [ [ { "node": "Collect Content", "type": "main", "index": 0 } ] ]
+    },
+    "Collect Content": { "main": [ [ { "node": "Filter Scheduled", "type": "main", "index": 0 } ] ] },
+    "Filter Scheduled": { "main": [ [ { "node": "Render Templates", "type": "main", "index": 0 } ] ] },
+    "Render Templates": { "main": [ [ { "node": "Preview Slack", "type": "main", "index": 0 } ] ] },
+    "Preview Slack": { "main": [ [ { "node": "Wait for Approval", "type": "main", "index": 0 } ] ] },
+    "Wait for Approval": { "main": [ [ { "node": "Calc Platforms", "type": "main", "index": 0 } ] ] },
+    "Calc Platforms": {
+      "main": [
+        [ { "node": "IF LinkedIn", "type": "main", "index": 0 } ],
+        [ { "node": "IF X", "type": "main", "index": 0 } ],
+        [ { "node": "IF Facebook", "type": "main", "index": 0 } ],
+        [ { "node": "IF Instagram", "type": "main", "index": 0 } ],
+        [ { "node": "Publish Mastodon", "type": "main", "index": 0 } ],
+        [ { "node": "Publish Telegram", "type": "main", "index": 0 } ],
+        [ { "node": "Publish Reddit", "type": "main", "index": 0 } ],
+        [ { "node": "Publish Slack", "type": "main", "index": 0 } ],
+        [ { "node": "Publish Discord", "type": "main", "index": 0 } ],
+        [ { "node": "Publish Pinterest", "type": "main", "index": 0 } ]
+      ]
+    },
+    "IF LinkedIn": { "main": [ [ { "node": "Publish LinkedIn", "type": "main", "index": 0 } ], [ ] ] },
+    "IF X": { "main": [ [ { "node": "Publish X (Twitter)", "type": "main", "index": 0 } ], [ ] ] },
+    "IF Facebook": { "main": [ [ { "node": "Publish Facebook", "type": "main", "index": 0 } ], [ ] ] },
+    "IF Instagram": { "main": [ [ { "node": "IG Create Media", "type": "main", "index": 0 } ], [ ] ] },
+    "IG Create Media": { "main": [ [ { "node": "IG Publish", "type": "main", "index": 0 } ] ] },
+    "IG Publish": { "main": [ [ { "node": "Log Outcome", "type": "main", "index": 0 } ] ] },
+    "Publish Mastodon": { "main": [ [ { "node": "Log Outcome", "type": "main", "index": 0 } ] ] },
+    "Publish Telegram": { "main": [ [ { "node": "Log Outcome", "type": "main", "index": 0 } ] ] },
+    "Publish Reddit": { "main": [ [ { "node": "Log Outcome", "type": "main", "index": 0 } ] ] },
+    "Publish Slack": { "main": [ [ { "node": "Log Outcome", "type": "main", "index": 0 } ] ] },
+    "Publish Discord": { "main": [ [ { "node": "Log Outcome", "type": "main", "index": 0 } ] ] },
+    "Publish Pinterest": { "main": [ [ { "node": "Log Outcome", "type": "main", "index": 0 } ] ] },
+    "Publish LinkedIn": { "main": [ [ { "node": "Log Outcome", "type": "main", "index": 0 } ] ] },
+    "Publish X (Twitter)": { "main": [ [ { "node": "Log Outcome", "type": "main", "index": 0 } ] ] },
+    "Publish Facebook": { "main": [ [ { "node": "Log Outcome", "type": "main", "index": 0 } ] ] }
+    "Publish LinkedIn": { "main": [ [ { "node": "Log Outcome", "type": "main", "index": 0 } ] ] },
+    "Publish X (Twitter)": { "main": [ [ { "node": "Log Outcome", "type": "main", "index": 0 } ] ] },
+    "Publish Facebook": { "main": [ [ { "node": "Log Outcome", "type": "main", "index": 0 } ] ] }
+  },
+  "meta": {
+    "description": "Publiziert Social Posts mit manueller Freigabe; ersetzt Credentials/IDs in der n8n UI."
+  }
+}

@@ -267,6 +267,7 @@ const config = {
     "db"
   ],
   "activeProvider": "mysql",
+  "postinstall": true,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -288,7 +289,7 @@ if (!fs.existsSync(path.join(__dirname, 'schema.prisma'))) {
     "generated/client",
     "client",
   ]
-
+  
   const alternativePath = alternativePaths.find((altPath) => {
     return fs.existsSync(path.join(process.cwd(), altPath, 'schema.prisma'))
   }) ?? alternativePaths[0]

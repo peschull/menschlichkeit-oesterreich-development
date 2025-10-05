@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  n8n:
+    env_file:
+      - .env.n8n
+    environment:
+      # Allow overriding host URL if needed
+      - WEBHOOK_URL=${WEBHOOK_URL:-http://localhost:5678}
+
+# Nutzung:
+# 1) cp config-templates/n8n.env.example automation/n8n/.env.n8n
+# 2) Werte füllen (Tokens/IDs)
+# 3) docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
+
