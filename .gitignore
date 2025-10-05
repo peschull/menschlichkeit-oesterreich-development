@@ -16,6 +16,7 @@
 
 # Environment Variables & Secrets (P0 SECURITY)
 .env
+.env.database
 .env.local
 .env.development
 .env.staging
@@ -23,6 +24,8 @@
 .env.*.local
 .env.*.decrypted
 *.env.*
+**/.env
+**/.env.*
 
 # Exception: Allow .env.example template
 !.env.example
