@@ -365,3 +365,4 @@ cspell.json.backup
 # Turbo Console Log
 .turbo-console-log/
 .ssh/
+A fix-mcp-servers.js
