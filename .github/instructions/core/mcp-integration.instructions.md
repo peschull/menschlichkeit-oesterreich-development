@@ -2,7 +2,7 @@
 description: MCP Server Integration für AI-gestützte Entwicklung im Menschlichkeit Österreich Projekt - Optimiert & Extended
 applyTo: '**/*'
 priority: critical
-version: 2.0
+version: 2.0.0
 lastUpdated: 2025-10-07
 ---
 
