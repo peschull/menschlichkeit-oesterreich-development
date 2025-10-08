@@ -1,3 +1,14 @@
+---
+title: Figma Design System Sync Modus
+version: 1.0.0
+created: 2025-10-08
+lastUpdated: 2025-10-08
+status: ACTIVE
+priority: medium
+category: general
+applyTo: **/*
+---
+
 ```chatmode
 ---
 description: Design System Synchronisation mit Figma MCP für Austrian NGO Branding

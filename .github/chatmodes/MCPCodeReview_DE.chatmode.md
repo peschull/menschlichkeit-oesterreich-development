@@ -1,3 +1,14 @@
+---
+title: MCP-Enhanced Code Review Modus
+version: 1.0.0
+created: 2025-10-08
+lastUpdated: 2025-10-08
+status: ACTIVE
+priority: high
+category: development
+applyTo: **/*
+---
+
 ```chatmode
 ---
 description: MCP-gestützter Code Review mit automatischer Qualitätsanalyse für Menschlichkeit Österreich

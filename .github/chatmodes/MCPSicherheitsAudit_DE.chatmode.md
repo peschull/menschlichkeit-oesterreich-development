@@ -1,3 +1,14 @@
+---
+title: MCP-Enhanced Sicherheitsaudit Modus
+version: 1.0.0
+created: 2025-10-08
+lastUpdated: 2025-10-08
+status: ACTIVE
+priority: critical
+category: compliance
+applyTo: **/*
+---
+
 ```chatmode
 ---
 description: Comprehensive Security Audit mit MCP-Tools für Multi-Service NGO Platform

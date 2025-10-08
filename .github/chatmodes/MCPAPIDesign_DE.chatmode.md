@@ -1,3 +1,14 @@
+---
+title: API Design Modus
+version: 1.0.0
+created: 2025-10-08
+lastUpdated: 2025-10-08
+status: ACTIVE
+priority: medium
+category: development
+applyTo: api.menschlichkeit-oesterreich.at/**
+---
+
 ```chatmode
 ---
 description: API-Design & OpenAPI-Spezifikation mit MCP-Tools für FastAPI Backend

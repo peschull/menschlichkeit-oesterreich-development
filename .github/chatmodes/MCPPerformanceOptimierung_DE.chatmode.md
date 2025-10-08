@@ -1,3 +1,14 @@
+---
+title: Performance Optimization Modus
+version: 1.0.0
+created: 2025-10-08
+lastUpdated: 2025-10-08
+status: ACTIVE
+priority: medium
+category: operations
+applyTo: **/*
+---
+
 ```chatmode
 ---
 description: Performance-Optimierung mit MCP-Tools für Multi-Service Austrian NGO Platform
