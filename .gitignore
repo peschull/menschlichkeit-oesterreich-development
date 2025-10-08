@@ -29,6 +29,12 @@
 secrets/**/*.decrypted
 temp/*.decrypted
 
+# Large binaries (use package manager instead)
+bin/trivy
+bin/gitleaks
+bin/*.exe
+bin/*.dmg
+
 # Private keys & certificates
 *.pem
 *.key
@@ -366,3 +372,21 @@ cspell.json.backup
 .turbo-console-log/
 .ssh/
 A fix-mcp-servers.js
+
+# MCP Test/Debug Files (contain sensitive tokens)
+mcp-test-all.js
+mcp-comprehensive-test.js
+mcp-final-activation.js
+mcp-activation-repair.js
+mcp-integration-test.js
+mcp-extended-config-test.js
+mcp-config.json
+context7-debug.js
+validate-mcp-config.js
+.vscode/mcp-*.json
+quality-reports/mcp-*-report.json
+quality-reports/mcp-*-config.json
+
+# MCP Reports mit sensiblen Daten
+quality-reports/MCP-ACTIVATION-SUCCESS-REPORT.md
+quality-reports/MCP-INSTRUCTIONS-UPDATE-OPTIMIZATION-REPORT.md

@@ -52,9 +52,9 @@
     "lint:sarif": "eslint . -f sarif -o eslint.sarif || true",
     "lint:all": "npm run lint:js && npm run lint:php && npm run lint:md",
     "format:all": "npm run format && npm run format:php",
-    "quality:codacy": "codacy-analysis-cli analyze --project-directory . --format sarif --output quality-reports/codacy-analysis.sarif || true",
-    "security:trivy": "trivy fs --format sarif --output quality-reports/trivy-security.sarif . || true",
-    "security:scan": "npm run security:trivy && gitleaks detect --report-path quality-reports/secrets-scan.json --report-format json || true",
+    "quality:codacy": "npx @codacy/codacy-mcp analyze --project-directory . --format sarif --output quality-reports/codacy-analysis.sarif || true",
+    "security:trivy": "./bin/trivy fs --format sarif --output quality-reports/trivy-security.sarif . || true",
+    "security:scan": "npm run security:trivy && ./bin/gitleaks detect --report-path quality-reports/secrets-scan.json --report-format json || true",
     "performance:lighthouse": "npm run lh:ci --workspace=frontend",
     "compliance:dsgvo": "pwsh scripts/dsgvo-check.ps1",
     "quality:reports": "node scripts/generate-quality-report.js",
@@ -73,9 +73,26 @@
     "n8n:setup": "cd automation/n8n && cp .env.example .env && echo 'Please configure automation/n8n/.env with your settings'",
     "n8n:smoke": "python3 automation/n8n/smoke-test.py",
     "mcp:setup": "bash scripts/setup-mcp-servers.sh",
-    "mcp:check": "node scripts/check-mcp-servers.js",
-    "mcp:list": "cat .vscode/mcp.json | jq '.servers | keys'",
-    "mcp:docs": "cat docs/MCP-SERVER-SETUP.md"
+    "mcp:check": "bash scripts/mcp-health-check.sh",
+    "mcp:install": "npm install -g @modelcontextprotocol/server-filesystem @modelcontextprotocol/server-memory figma-mcp @notionhq/notion-mcp-server enhanced-postgres-mcp-server @upstash/context7-mcp",
+    "mcp:list": "cat mcp.json | jq '.servers | keys'",
+    "mcp:docs": "cat docs/MCP-SERVER-SETUP-DE.md",
+    "performance:setup": "bash scripts/performance/mcp-performance-optimization.sh",
+    "performance:report": "node scripts/performance/generate-report.cjs",
+    "performance:test": "k6 run scripts/performance/load-test.js",
+    "performance:monitor": "node scripts/performance/web-vitals-tracker.js",
+    "performance:cache": "bash scripts/performance/redis-cache-setup.sh",
+    "deploy:dashboard": "bash deployment-scripts/deployment-dashboard.sh",
+    "deploy:readiness": "bash deployment-scripts/deployment-readiness.sh",
+    "deploy:multi-service": "bash deployment-scripts/multi-service-deploy.sh",
+    "deploy:blue-green": "bash deployment-scripts/blue-green-deploy.sh",
+    "deploy:staging": "bash deployment-scripts/multi-service-deploy.sh staging",
+    "deploy:production": "bash deployment-scripts/multi-service-deploy.sh production",
+    "deploy:monitor": "bash deployment-scripts/deployment-monitoring.sh",
+    "deploy:rollback": "bash deployment-scripts/rollback.sh",
+    "deploy:smoke-tests": "bash deployment-scripts/smoke-tests.sh",
+    "deploy:health-check": "bash deployment-scripts/health-check-utils.sh",
+    "deploy:setup-env": "bash deployment-scripts/setup-environment.sh"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
@@ -104,8 +121,8 @@
     "vitest": "^3.2.4"
   },
   "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=8.0.0"
+    "node": ">=22.20.0",
+    "npm": ">=10.9.0"
   },
   "keywords": [
     "mcp",

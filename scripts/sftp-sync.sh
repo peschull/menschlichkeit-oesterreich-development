@@ -4,15 +4,36 @@
 # Sichere Konfiguration laden (falls nicht bereits geladen)
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 if [ -z "$DB_WP_NAME" ]; then
-    source "$SCRIPT_DIR/../config/load-config.sh"
-    initialize_secure_config || exit 1
+    CONFIG_SCRIPT="$SCRIPT_DIR/../config/load-config.sh"
+    if [[ -f "$CONFIG_SCRIPT" ]]; then
+        # shellcheck source=/dev/null
+        source "$CONFIG_SCRIPT"
+        if declare -f initialize_secure_config >/dev/null; then
+            initialize_secure_config || exit 1
+        fi
+    fi
 fi
 
-# SFTP Konfiguration mit korrekter IP-Adresse
-REMOTE_HOST="5.183.217.146"
-REMOTE_USER="dmpl20230054"
-REMOTE_PORT=22
-LOCAL_BASE="/mnt/d/Arbeitsverzeichniss"
+# Defaults für SFTP Konfiguration (können via Env überschrieben werden)
+DEFAULT_REMOTE_HOST="5.183.217.146"
+DEFAULT_REMOTE_USER="dmpl20230054"
+DEFAULT_REMOTE_PORT=22
+DEFAULT_LOCAL_BASE="/mnt/d/Arbeitsverzeichniss"
+
+REMOTE_HOST="${REMOTE_HOST:-$DEFAULT_REMOTE_HOST}"
+REMOTE_HOST="${SAFE_DEPLOY_REMOTE_HOST:-$REMOTE_HOST}"
+
+REMOTE_USER="${REMOTE_USER:-$DEFAULT_REMOTE_USER}"
+REMOTE_USER="${SAFE_DEPLOY_REMOTE_USER:-$REMOTE_USER}"
+
+REMOTE_PORT="${REMOTE_PORT:-$DEFAULT_REMOTE_PORT}"
+REMOTE_PORT="${SAFE_DEPLOY_REMOTE_PORT:-$REMOTE_PORT}"
+
+LOCAL_BASE="${LOCAL_BASE:-$DEFAULT_LOCAL_BASE}"
+LOCAL_BASE="${SAFE_DEPLOY_LOCAL_BASE:-$LOCAL_BASE}"
+
+SSH_KEY_PATH="${SSH_KEY_PATH:-$HOME/.ssh/id_ed25519}"
+SSH_KEY_PATH="${SAFE_DEPLOY_SSH_KEY_PATH:-$SSH_KEY_PATH}"
 
 # Farben für Output
 RED='\033[0;31m'
@@ -50,7 +71,7 @@ EOF
     
     # Execute SFTP mit SSH-Key
     echo -e "${BLUE}⬆️  Uploading...${NC}"
-    sftp -P $REMOTE_PORT -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no -b /tmp/sftp_batch.txt $REMOTE_USER@$REMOTE_HOST
+    sftp -P "$REMOTE_PORT" -i "$SSH_KEY_PATH" -o StrictHostKeyChecking=no -b /tmp/sftp_batch.txt "$REMOTE_USER@$REMOTE_HOST"
     
     if [ $? -eq 0 ]; then
         echo -e "${GREEN}✅ Successfully synced: $DESCRIPTION${NC}"
@@ -65,6 +86,11 @@ EOF
 # Check SFTP availability
 if ! command -v sftp &> /dev/null; then
     echo -e "${RED}❌ SFTP not found. Please install OpenSSH client.${NC}"
+    exit 1
+fi
+
+if [ ! -f "$SSH_KEY_PATH" ]; then
+    echo -e "${RED}❌ SSH key not found: $SSH_KEY_PATH${NC}"
     exit 1
 fi
 

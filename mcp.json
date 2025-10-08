@@ -1,11 +1,61 @@
 {
   "version": "1",
+  "inputs": {
+    "notion_token": {
+      "type": "promptString",
+      "description": "Notion API Integration Token from notion.so/my-integrations", 
+      "password": true
+    },
+    "postgres_url": {
+      "type": "promptString",
+      "description": "PostgreSQL connection string (postgresql://user:pass@host:port/db)",
+      "password": true
+    },
+    "figma_file_key": {
+      "type": "promptString",
+      "description": "Figma File Key from URL (figma.com/file/FILE_KEY/...)",
+      "password": false
+    }
+  },
   "servers": {
     "filesystem": {
-      "command": "filesystem",
-      "args": {
-        "root": "${workspaceFolder}"
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "${workspaceFolder}"]
+    },
+    "memory": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-memory"]
+    },
+    "notion": {
+      "type": "stdio",
+      "command": "npx", 
+      "args": ["-y", "@notionhq/notion-mcp-server"],
+      "env": {
+        "NOTION_API_KEY": "${input:notion_token}"
       }
+    },
+    "figma": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "figma-mcp"],
+      "env": {
+        "FIGMA_FILE_KEY": "${input:figma_file_key}"
+      }
+    },
+    "postgres": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "enhanced-postgres-mcp-server"],
+      "env": {
+        "DATABASE_URL": "${input:postgres_url}"
+      }
+    },
+    "upstash-context7": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp"]
     },
     "git": {
       "command": "git",

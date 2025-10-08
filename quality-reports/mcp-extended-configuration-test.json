@@ -1,0 +1,96 @@
+{
+  "timestamp": "2025-10-07T16:34:16.510Z",
+  "environment": {
+    "nodeVersion": "v22.20.0",
+    "platform": "linux",
+    "mcpServers": "extended-configuration"
+  },
+  "servers": {
+    "memory": {
+      "name": "memory",
+      "package": "@modelcontextprotocol/server-memory",
+      "status": "configured",
+      "error": null,
+      "configured": true,
+      "available": true
+    },
+    "sequential-thinking": {
+      "name": "sequential-thinking",
+      "package": "@modelcontextprotocol/server-sequential-thinking",
+      "status": "configured",
+      "error": null,
+      "configured": true,
+      "available": true
+    },
+    "figma": {
+      "name": "figma",
+      "package": "figma-mcp",
+      "status": "configured",
+      "error": null,
+      "configured": true,
+      "available": true
+    },
+    "github": {
+      "name": "github",
+      "package": "@modelcontextprotocol/server-github",
+      "status": "configured",
+      "error": null,
+      "configured": true,
+      "available": true
+    },
+    "upstash-context7": {
+      "name": "upstash-context7",
+      "package": "@upstash/context7-mcp",
+      "status": "configured",
+      "error": null,
+      "configured": true,
+      "available": true
+    },
+    "filesystem": {
+      "name": "filesystem",
+      "package": "@modelcontextprotocol/server-filesystem",
+      "status": "configured",
+      "error": null,
+      "configured": true,
+      "available": true
+    },
+    "codacy": {
+      "name": "codacy",
+      "package": "@codacy/codacy-mcp",
+      "status": "configured",
+      "error": null,
+      "configured": true,
+      "available": true
+    },
+    "microsoft-docs": {
+      "name": "microsoft-docs",
+      "package": "@microsoft/docs-mcp",
+      "status": "not-available",
+      "error": "Package not found in npm registry",
+      "configured": false,
+      "available": false
+    },
+    "notion": {
+      "name": "notion",
+      "package": "@notionhq/notion-mcp-server",
+      "status": "configured",
+      "error": null,
+      "configured": true,
+      "available": true
+    },
+    "stripe": {
+      "name": "stripe",
+      "package": "@stripe/mcp-server",
+      "status": "not-available",
+      "error": "Package not found in npm registry",
+      "configured": false,
+      "available": false
+    }
+  },
+  "summary": {
+    "total": 10,
+    "working": 8,
+    "configured": 8,
+    "notAvailable": 2
+  }
+}

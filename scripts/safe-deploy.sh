@@ -1,14 +1,28 @@
 #!/bin/bash
 # Safe Deployment Script mit Pre-Checks und Backup
 
-# Sichere Konfiguration laden
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-source "$SCRIPT_DIR/../config/load-config.sh"
 
-# Initialize secure configuration
-if ! initialize_secure_config; then
-    echo -e "${RED}❌ Fehler beim Laden der Konfiguration${NC}"
-    exit 1
+# Farben
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m'
+
+# Sichere Konfiguration laden (optional)
+CONFIG_SCRIPT="$SCRIPT_DIR/../config/load-config.sh"
+if [[ -f "$CONFIG_SCRIPT" ]]; then
+    # shellcheck source=/dev/null
+    source "$CONFIG_SCRIPT"
+    if declare -f initialize_secure_config >/dev/null; then
+        if ! initialize_secure_config; then
+            echo -e "${RED}❌ Fehler beim Laden der Konfiguration${NC}"
+            exit 1
+        fi
+    fi
+else
+    echo -e "${YELLOW}⚠️ Konfigurationsdatei nicht gefunden – verwende Umgebungsvariablen/Defaults${NC}"
 fi
 
 # SFTP Funktionen laden
@@ -22,12 +36,35 @@ else
     N8N_AVAILABLE=false
 fi
 
-# Farben
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-BLUE='\033[0;34m'
-NC='\033[0m'
+# Auto-Confirm für CI
+AUTO_CONFIRM_ENABLED=false
+if [[ "${SAFE_DEPLOY_AUTO_CONFIRM:-}" =~ ^([Tt]rue|[Yy]es|1)$ ]] || [[ "${CI:-}" == "true" ]]; then
+    AUTO_CONFIRM_ENABLED=true
+fi
+
+confirm_or_exit() {
+    local message="$1"
+    local default_no="${2:-true}"
+
+    if [[ "$AUTO_CONFIRM_ENABLED" == true ]]; then
+        echo -e "${YELLOW}${message} (auto-confirmed)${NC}"
+        return 0
+    fi
+
+    echo -e "${YELLOW}${message}${NC}"
+    if [[ "$default_no" == "true" ]]; then
+        read -r response
+        if [[ ! "$response" =~ ^([JjYy])$ ]]; then
+            return 1
+        fi
+    else
+        read -r response
+        if [[ "$response" =~ ^([Nn])$ ]]; then
+            return 1
+        fi
+    fi
+    return 0
+}
 
 # n8n Deployment Started Notification
 if [ "$N8N_AVAILABLE" = true ]; then
@@ -61,9 +98,7 @@ if command -v java &> /dev/null; then
         java -jar "$HOME/.codacy/codacy-analysis-cli-assembly.jar" analyze --directory "$LOCAL_BASE/website" --format text
 
         if [ $? -ne 0 ]; then
-            echo -e "${YELLOW}⚠️  Code-Qualität Warnungen gefunden. Fortfahren? (j/N)${NC}"
-            read -r response
-            if [[ ! "$response" =~ ^[Jj]$ ]]; then
+            if ! confirm_or_exit "⚠️  Code-Qualität Warnungen gefunden. Fortfahren? (j/N)" "true"; then
                 echo -e "${RED}Deployment abgebrochen.${NC}"
                 exit 1
             fi
@@ -87,10 +122,7 @@ echo "  - menschlichkeit-oesterreich.at → /httpdocs"
 echo "  - api.menschlichkeit-oesterreich.at → /subdomains/api/httpdocs"
 echo "  - crm.menschlichkeit-oesterreich.at → /subdomains/crm/httpdocs"
 echo ""
-echo -e "${YELLOW}Deployment starten? (j/N)${NC}"
-read -r response
-
-if [[ "$response" =~ ^[Jj]$ ]]; then
+if confirm_or_exit "Deployment starten? (j/N)" "true"; then
     echo -e "\n${GREEN}🚀 Starte Deployment...${NC}"
 
     # Original SFTP Script ausführen

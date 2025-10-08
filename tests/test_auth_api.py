@@ -14,8 +14,14 @@ os.environ.setdefault("CIVI_SITE_KEY", "test_site_key")
 os.environ.setdefault("CIVI_API_KEY", "test_api_key")
 os.environ.setdefault("JWT_SECRET", "unit_test_secret")
 
+# Import path fix for api module
+import sys
+from pathlib import Path
+api_path = Path(__file__).parent.parent / "api.menschlichkeit-oesterreich.at"
+if str(api_path) not in sys.path:
+    sys.path.insert(0, str(api_path))
 
-from api.menschlichkeit-oesterreich.at.app.main import app  # type: ignore  # noqa: E402
+from app.main import app  # type: ignore  # noqa: E402
 
 
 def make_token(sub: str, *, token_type: str = "access", exp_minutes: int = 60) -> str:
@@ -41,7 +47,7 @@ def test_profile_requires_auth(client: TestClient):
 
 def test_refresh_token_flow(monkeypatch: pytest.MonkeyPatch, client: TestClient):
     # Patch CiviCRM contact fetch used during refresh
-    import api.menschlichkeit-oesterreich.at.app.main as main_mod  # type: ignore
+    import app.main as main_mod  # type: ignore
 
     async def _contact_get(*, contact_id=None, email=None):
         return {"id": 101, "email": email or "test@example.org"}
@@ -65,7 +71,7 @@ def test_refresh_token_flow(monkeypatch: pytest.MonkeyPatch, client: TestClient)
 
 def test_deletion_pending_with_retention(monkeypatch: pytest.MonkeyPatch, client: TestClient):
     # Force retention exception to trigger pending path
-    import api.menschlichkeit-oesterreich.at.app.routes.privacy as privacy  # type: ignore
+    import app.routes.privacy as privacy  # type: ignore
 
     async def _retention(user_id: int, email: str):
         return [{"type": "donations", "legal_basis": "BAO § 132", "count": "1"}]

@@ -23,7 +23,7 @@ class DataDeletionRequest(BaseModel):
     """Request model for GDPR Art. 17 Right to Erasure"""
     reason: str
     scope: Literal["full", "partial"] = "full"
-    
+
 class DeletionStatus(BaseModel):
     """Status of a deletion request"""
     id: int
@@ -34,7 +34,7 @@ class DeletionStatus(BaseModel):
     retention_exceptions: List[Dict[str, Any]] = []
     requested_at: datetime
     completed_at: Optional[datetime] = None
-    
+
 class ProcessDeletionRequest(BaseModel):
     """Admin action to process a deletion request"""
     action: Literal["approve", "reject"]
@@ -51,10 +51,10 @@ from ..shared import verify_jwt_token, ApiResponse, require_admin
 async def civicrm_api_call(entity: str, action: str, params: dict):
     """Make authenticated call to CiviCRM APIv4"""
     import httpx
-    
+
     CIVI_API_KEY = os.getenv("CIVI_API_KEY", "")
     CIVI_SITE_KEY = os.getenv("CIVI_SITE_KEY", "")
-    
+
     payload = {
         "params": params,
         "_authx": {
@@ -62,23 +62,23 @@ async def civicrm_api_call(entity: str, action: str, params: dict):
             "key": CIVI_SITE_KEY
         }
     }
-    
+
     url = f"{CIVI_BASE_URL}/civicrm/ajax/api4/{entity}/{action}"
-    
+
     async with httpx.AsyncClient(timeout=30) as client:
         response = await client.post(url, json=payload)
-        
+
     if response.status_code != 200:
         raise HTTPException(status_code=502, detail="CiviCRM API unavailable")
-    
+
     try:
         data = response.json()
     except Exception:
         raise HTTPException(status_code=502, detail="Invalid response from CiviCRM")
-    
+
     if isinstance(data, dict) and data.get("is_error"):
         raise HTTPException(status_code=400, detail=data.get("error_message", "CiviCRM error"))
-    
+
     return data
 
 # Environment configuration
@@ -98,12 +98,12 @@ _request_id_counter = 1
 async def _check_retention_requirements(user_id: int, email: str) -> List[Dict[str, str]]:
     """
     Prüft gesetzliche Aufbewahrungspflichten.
-    
+
     Returns:
         Liste von Retention-Gründen mit Details
     """
     exceptions = []
-    
+
     # BAO § 132: Spendenbescheinigungen (7 Jahre ab Spendenjahr)
     try:
         donations = await _civicrm_get_recent_donations(email, years=7)
@@ -118,7 +118,7 @@ async def _check_retention_requirements(user_id: int, email: str) -> List[Dict[s
             })
     except Exception as e:
         logger.warning(f"Failed to check donations for {email}: {e}")
-    
+
     # SEPA-Mandate (14 Monate ab letzter Lastschrift)
     try:
         sepa_mandates = await _civicrm_get_active_sepa_mandates(email)
@@ -133,45 +133,45 @@ async def _check_retention_requirements(user_id: int, email: str) -> List[Dict[s
             })
     except Exception as e:
         logger.warning(f"Failed to check SEPA mandates for {email}: {e}")
-    
+
     return exceptions
 
 
 async def _civicrm_get_recent_donations(email: str, years: int = 7) -> List[Dict[str, Any]]:
     """Holt Spenden der letzten N Jahre für Retention-Check"""
     cutoff_date = (datetime.utcnow() - timedelta(days=years * 365)).strftime("%Y-%m-%d")
-    
+
     try:
         # Hole Contact ID
         contact = await civicrm_api_call("Contact", "get", {
             "email": email,
             "limit": 1
         })
-        
+
         if not contact or not isinstance(contact, dict):
             return []
-        
+
         contact_values = contact.get("values", [])
         if not contact_values:
             return []
-        
+
         contact_id = contact_values[0].get("id")
         if not contact_id:
             return []
-        
+
         # Hole Contributions (Spenden)
         contributions = await civicrm_api_call("Contribution", "get", {
             "contact_id": contact_id,
             "receive_date": {">": cutoff_date},
             "limit": 100
         })
-        
+
         if isinstance(contributions, dict):
             return contributions.get("values", [])
-        
+
     except Exception as e:
         logger.error(f"Error fetching donations for {email}: {e}")
-    
+
     return []
 
 
@@ -183,28 +183,28 @@ async def _civicrm_get_active_sepa_mandates(email: str) -> List[Dict[str, Any]]:
             "email": email,
             "limit": 1
         })
-        
+
         if not contact or not isinstance(contact, dict):
             return []
-        
+
         contact_values = contact.get("values", [])
         if not contact_values:
             return []
-        
+
         contact_id = contact_values[0].get("id")
         if not contact_id:
             return []
-        
+
         # Hole SEPA Mandate (falls CiviSEPA Extension installiert)
         mandates = await civicrm_api_call("SepaMandate", "get", {
             "contact_id": contact_id,
             "status": ["FRST", "RCUR", "OOFF"],  # Aktive Mandate-Stati
             "limit": 100
         })
-        
+
         if isinstance(mandates, dict):
             return mandates.get("values", [])
-        
+
     except HTTPException as e:
         # SepaMandate API könnte 404 sein wenn Extension nicht installiert
         if e.status_code == 404:
@@ -212,7 +212,7 @@ async def _civicrm_get_active_sepa_mandates(email: str) -> List[Dict[str, Any]]:
         raise
     except Exception as e:
         logger.error(f"Error fetching SEPA mandates for {email}: {e}")
-    
+
     return []
 
 
@@ -223,7 +223,7 @@ async def _civicrm_get_active_sepa_mandates(email: str) -> List[Dict[str, Any]]:
 async def _execute_deletion(user_id: int, email: str) -> Dict[str, Any]:
     """
     Führt vollständige Datenlöschung über alle Systeme durch.
-    
+
     Returns:
         Deletion log with results from all systems
     """
@@ -233,7 +233,7 @@ async def _execute_deletion(user_id: int, email: str) -> Dict[str, Any]:
         "timestamp": datetime.utcnow().isoformat(),
         "systems_affected": []
     }
-    
+
     # 1. CiviCRM: Soft-Delete + Anonymisierung
     try:
         civicrm_result = await _civicrm_anonymize_contact(email)
@@ -251,7 +251,7 @@ async def _execute_deletion(user_id: int, email: str) -> Dict[str, Any]:
             "error": str(e),
             "timestamp": datetime.utcnow().isoformat()
         })
-    
+
     # 2. PostgreSQL: CASCADE Delete (via Prisma - would need Python Prisma client)
     # TODO: Implement when Prisma Python client is configured
     # For now, document as planned action
@@ -262,7 +262,7 @@ async def _execute_deletion(user_id: int, email: str) -> Dict[str, Any]:
         "cascade_entities": ["UserAchievement", "GameSession", "UserProgress"],
         "timestamp": datetime.utcnow().isoformat()
     })
-    
+
     # 3. Drupal User Account (via CiviCRM User API)
     try:
         drupal_result = await civicrm_api_call("User", "delete", {
@@ -300,7 +300,7 @@ async def _execute_deletion(user_id: int, email: str) -> Dict[str, Any]:
             "error": str(e),
             "timestamp": datetime.utcnow().isoformat()
         })
-    
+
     # 4. JWT Token Revocation (TODO: in-memory blacklist)
     deletion_log["systems_affected"].append({
         "system": "JWT Tokens",
@@ -308,7 +308,7 @@ async def _execute_deletion(user_id: int, email: str) -> Dict[str, Any]:
         "note": "Token blacklist to be implemented",
         "timestamp": datetime.utcnow().isoformat()
     })
-    
+
     # 5. n8n Workflow Logs (via Webhook)
     try:
         n8n_result = await _trigger_n8n_user_deletion_workflow(user_id, email)
@@ -326,7 +326,7 @@ async def _execute_deletion(user_id: int, email: str) -> Dict[str, Any]:
             "error": str(e),
             "timestamp": datetime.utcnow().isoformat()
         })
-    
+
     return deletion_log
 
 
@@ -340,17 +340,17 @@ async def _civicrm_anonymize_contact(email: str) -> Dict[str, Any]:
         "email": email,
         "limit": 1
     })
-    
+
     if not contact_data or not isinstance(contact_data, dict):
         raise HTTPException(status_code=404, detail="Contact not found in CiviCRM")
-    
+
     contact_values = contact_data.get("values", [])
     if not contact_values:
         raise HTTPException(status_code=404, detail="Contact not found in CiviCRM")
-    
+
     contact = contact_values[0]
     contact_id = contact.get("id")
-    
+
     # Anonymisierungsdaten
     anonymized_data = {
         "id": contact_id,
@@ -367,15 +367,15 @@ async def _civicrm_anonymize_contact(email: str) -> Dict[str, Any]:
         "do_not_mail": 1,
         "do_not_sms": 1,
     }
-    
+
     # Update Contact
     result = await civicrm_api_call("Contact", "create", anonymized_data)
-    
+
     if isinstance(result, dict):
         values = result.get("values", [])
         if values:
             return values[0]
-    
+
     return result
 
 
@@ -386,9 +386,9 @@ async def _trigger_n8n_user_deletion_workflow(user_id: int, email: str) -> Dict[
     import hmac
     import hashlib
     import json
-    
+
     webhook_url = f"{N8N_BASE_URL}/webhook/right-to-erasure"
-    
+
     payload = {
         "requestId": f"del_{user_id}_{int(datetime.utcnow().timestamp())}",
         "subjectEmail": email,
@@ -399,9 +399,9 @@ async def _trigger_n8n_user_deletion_workflow(user_id: int, email: str) -> Dict[
             "triggered_at": datetime.utcnow().isoformat()
         }
     }
-    
+
     headers = {"Content-Type": "application/json"}
-    
+
     # HMAC Signature (falls N8N_WEBHOOK_SECRET gesetzt)
     if N8N_WEBHOOK_SECRET:
         signature = hmac.new(
@@ -410,16 +410,16 @@ async def _trigger_n8n_user_deletion_workflow(user_id: int, email: str) -> Dict[
             hashlib.sha256
         ).hexdigest()
         headers["X-Webhook-Signature"] = signature
-    
+
     async with httpx.AsyncClient(timeout=10) as client:
         response = await client.post(webhook_url, json=payload, headers=headers)
-    
+
     if response.status_code not in [200, 202]:
         raise HTTPException(
             status_code=502,
             detail=f"n8n webhook failed: {response.status_code} {response.text}"
         )
-    
+
     try:
         return response.json()
     except Exception:
@@ -437,28 +437,28 @@ async def request_data_deletion(
 ) -> ApiResponse:
     """
     Erstellt Löschantrag für betroffene Person (DSGVO Art. 17).
-    
+
     - Auto-Approval bei fehlenden Retention-Ausnahmen
     - Manual Review bei BAO § 132 / SEPA Rulebook Exceptions
     """
     global _request_id_counter
-    
+
     email = payload.get("sub")
     user_id = payload.get("user_id", 0)  # Fallback falls nicht im Token
-    
+
     if not email:
         raise HTTPException(status_code=401, detail="Invalid token subject")
-    
+
     # 1. Prüfe Retention-Ausnahmen
     retention_exceptions = await _check_retention_requirements(user_id, email)
-    
+
     # 2. Auto-Approval bei fehlenden Ausnahmen
     auto_approved = len(retention_exceptions) == 0
-    
+
     # 3. Erstelle Deletion Request
     request_id = _request_id_counter
     _request_id_counter += 1
-    
+
     deletion_request = DeletionStatus(
         id=request_id,
         user_id=user_id,
@@ -468,9 +468,9 @@ async def request_data_deletion(
         retention_exceptions=retention_exceptions,
         requested_at=datetime.utcnow()
     )
-    
+
     _deletion_requests[request_id] = deletion_request
-    
+
     # 4. Bei Auto-Approval: Sofort ausführen
     deletion_log = None
     if auto_approved:
@@ -483,7 +483,7 @@ async def request_data_deletion(
             logger.error(f"Auto-deletion failed for {email}: {e}")
             deletion_request.status = "pending"
             _deletion_requests[request_id] = deletion_request
-    
+
     return ApiResponse(
         success=True,
         data={
@@ -505,14 +505,14 @@ async def get_data_deletion_requests(
     email = payload.get("sub")
     if not email:
         raise HTTPException(status_code=401, detail="Invalid token subject")
-    
+
     # Filter requests by email
     user_requests = [
-        req.model_dump() 
-        for req in _deletion_requests.values() 
+        req.model_dump()
+        for req in _deletion_requests.values()
         if req.email == email
     ]
-    
+
     return ApiResponse(
         success=True,
         data={"requests": user_requests},
@@ -528,7 +528,7 @@ async def process_data_deletion_request(
 ) -> ApiResponse:
     """
     Admin-Endpoint: Löschantrag genehmigen oder ablehnen.
-    
+
     TODO: Add admin role check via JWT payload
     """
     # Admin check
@@ -536,26 +536,26 @@ async def process_data_deletion_request(
 
     if request_id not in _deletion_requests:
         raise HTTPException(status_code=404, detail="Deletion request not found")
-    
+
     deletion_request = _deletion_requests[request_id]
-    
+
     if deletion_request.status != "pending":
         raise HTTPException(
             status_code=400,
             detail=f"Request already {deletion_request.status}"
         )
-    
+
     if action.action == "approve":
         # Führe Löschung aus
         try:
             deletion_log = await _execute_deletion(
-                deletion_request.user_id, 
+                deletion_request.user_id,
                 str(deletion_request.email)
             )
             deletion_request.status = "completed"
             deletion_request.completed_at = datetime.utcnow()
             _deletion_requests[request_id] = deletion_request
-            
+
             return ApiResponse(
                 success=True,
                 data={
@@ -567,11 +567,11 @@ async def process_data_deletion_request(
         except Exception as e:
             logger.error(f"Deletion execution failed for request {request_id}: {e}")
             raise HTTPException(status_code=500, detail=f"Deletion failed: {str(e)}")
-    
+
     else:  # reject
         deletion_request.status = "rejected"
         _deletion_requests[request_id] = deletion_request
-        
+
         return ApiResponse(
             success=True,
             data={"request": deletion_request.model_dump()},
@@ -585,14 +585,14 @@ async def get_all_deletion_requests_admin(
 ) -> ApiResponse:
     """
     Admin-Endpoint: Holt alle Löschanträge (für Compliance-Reporting).
-    
+
     TODO: Add admin role check via JWT payload
     """
     # Admin check
     require_admin(payload)
 
     all_requests = [req.model_dump() for req in _deletion_requests.values()]
-    
+
     # Statistiken
     stats = {
         "total": len(all_requests),
@@ -601,7 +601,7 @@ async def get_all_deletion_requests_admin(
         "completed": sum(1 for r in _deletion_requests.values() if r.status == "completed"),
         "rejected": sum(1 for r in _deletion_requests.values() if r.status == "rejected"),
     }
-    
+
     return ApiResponse(
         success=True,
         data={

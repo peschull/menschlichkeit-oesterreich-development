@@ -1,0 +1,99 @@
+{
+  "metadata": {
+    "generated": "2025-10-07T15:03:20.519Z",
+    "platform": "Menschlichkeit Österreich - Austrian NGO",
+    "version": "1.0.0"
+  },
+  "baseline": {
+    "homepage": {
+      "performance": 72,
+      "accessibility": 85,
+      "bestPractices": 88,
+      "seo": 91,
+      "status": "NEEDS_OPTIMIZATION"
+    },
+    "donation": {
+      "performance": 68,
+      "accessibility": 82,
+      "bestPractices": 85,
+      "seo": 89,
+      "status": "NEEDS_OPTIMIZATION"
+    },
+    "crm": {
+      "performance": 58,
+      "accessibility": 78,
+      "bestPractices": 81,
+      "seo": 76,
+      "status": "CRITICAL"
+    }
+  },
+  "optimizations": [
+    {
+      "name": "Bundle Size Optimization",
+      "impact": "HIGH",
+      "status": "PLANNED"
+    },
+    {
+      "name": "Database Query Optimization",
+      "impact": "HIGH",
+      "status": "IN_PROGRESS"
+    },
+    {
+      "name": "Redis Caching Implementation",
+      "impact": "MEDIUM",
+      "status": "PLANNED"
+    },
+    {
+      "name": "Image Optimization",
+      "impact": "MEDIUM",
+      "status": "PLANNED"
+    },
+    {
+      "name": "CDN Implementation",
+      "impact": "LOW",
+      "status": "FUTURE"
+    }
+  ],
+  "currentMetrics": {
+    "bundleSize": {
+      "js": 374,
+      "css": 192,
+      "total": 566,
+      "target": 200
+    },
+    "apiResponseTime": {
+      "avg": 150,
+      "p95": 350,
+      "target": 100
+    },
+    "databaseQueries": {
+      "avg": 120,
+      "slow": 5,
+      "target": 50
+    },
+    "cacheHitRate": {
+      "current": 0,
+      "target": 80
+    }
+  },
+  "recommendations": [
+    {
+      "priority": "HIGH",
+      "title": "Implement Code-Splitting",
+      "description": "Reduce initial bundle size from 566KB to <200KB",
+      "effort": "MEDIUM"
+    },
+    {
+      "priority": "HIGH",
+      "title": "Database Index Optimization",
+      "description": "Add indexes for frequently queried columns",
+      "effort": "LOW"
+    },
+    {
+      "priority": "MEDIUM",
+      "title": "Redis Caching Layer",
+      "description": "Implement caching for API responses",
+      "effort": "HIGH"
+    }
+  ]
+}

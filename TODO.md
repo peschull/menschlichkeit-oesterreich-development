@@ -45,7 +45,7 @@
   _Akzeptanzkriterien:_ Lint/Typecheck auf staged files; Conventional Commits enforced.  
   _Labels:_ `devx`, `quality` · _Schätzung:_ 1h · _Fällig:_ 2025-10-12
 
-- [ ] **.github/ISSUE_TEMPLATE & Copilot‑Guidelines**  
+- [x] **.github/ISSUE_TEMPLATE & Copilot‑Guidelines**  
   _Akzeptanzkriterien:_ Vorlagen für Bug/Feature/Task; Datei `.github/copilot-instructions.md` existiert.  
   _Labels:_ `docs`, `meta` · _Schätzung:_ 1h · _Fällig:_ 2025-10-12
 
@@ -132,7 +132,7 @@ cd crm.menschlichkeit-oesterreich.at
 </details>
 
 <details>
-<summary><strong>[ ] 8. GitHub Actions CI/CD (deploy-staging)</strong></summary>
+<summary><strong>[x] 8. GitHub Actions CI/CD (deploy-staging)</strong></summary>
 
 **Akzeptanzkriterien**: Workflow triggert auf `push` zu `main`; Steps: checkout, `npm ci`, `npm run quality:gates`, build, `./scripts/safe-deploy.sh`.  
 **Pfad**: `.github/workflows/deploy-staging.yml` · **Labels**: `ci-cd`, `devops` · **Schätzung**: 2h
@@ -200,6 +200,83 @@ cd crm.menschlichkeit-oesterreich.at
 
 **Akzeptanzkriterien**: FCP (mobil) **< 3s**; Lighthouse ≥ **90**; Bundle‑Size reduziert; Bilder optimiert (WebP, Lazy).  
 **Labels**: `performance`, `frontend` · **Schätzung**: 4h
+</details>
+
+---
+
+## 🧾 CRM Automatisierung (Vereinsbuchhaltung) – ~32h · Fällig: 2025-11-09
+
+<details>
+<summary><strong>[ ] 35. CiviSEPA Setup & SEPA‑Export (Cron + Versand + Archiv)</strong></summary>
+
+**Akzeptanzkriterien**: Wöchentliche SEPA‑XML wird generiert, per Mail an Buchhaltung versendet und in Nextcloud archiviert; Mandatsstatus & IBAN formal validiert.  
+```bash
+# SEPA Datei erstellen (Plesk Cron)
+php vendor/bin/drush -l crm.menschlichkeit-oesterreich.at sepa-file-create \
+  --creditor=1 --output=/var/backups/sepa/moe_sepa_$(date +%F).xml
+
+# (n8n) Upload nach Nextcloud + Mail an Buchhaltung
+```
+**Pfade/Kommandos**: `crm.menschlichkeit-oesterreich.at` (Drush), `automation/n8n/flows/sepa-export.json`  
+**Labels**: `automation`, `finance`, `crm` · **Schätzung**: 6h
+</details>
+
+<details>
+<summary><strong>[ ] 36. Bankabgleich automatisieren (n8n + CiviBank)</strong></summary>
+
+**Akzeptanzkriterien**: Kontoauszug via SFTP/API geladen; CiviBank CSV‑Import läuft automatisch; Zahlungen werden Spenden/Mitgliedsbeiträgen zugeordnet; Matching‑Report an Buchhaltung.  
+```bash
+# n8n: SFTP Download → Execute Command → CiviBank Import
+php vendor/bin/drush -l crm.menschlichkeit-oesterreich.at banking-import \
+  --file=/tmp/bank.csv --config=banking/configs/sparkasse.json --nolog
+```
+**Pfade/Kommandos**: `automation/n8n/flows/bankimport.json`  
+**Labels**: `automation`, `finance`, `crm` · **Schätzung**: 6h
+</details>
+
+<details>
+<summary><strong>[ ] 37. Rechnungsversand & Mahnwesen (CiviInvoice + CiviRules)</strong></summary>
+
+**Akzeptanzkriterien**: Rechnung automatisch bei Beitragserstellung; 1. Mahnung nach X Tagen, 2. Mahnung mit Eskalation; PDFs abgelegt und optional in Nextcloud gespiegelt.  
+```bash
+# CiviRules: Contribution Added → Generate Invoice PDF → Send Email
+# CiviRules: Pending > X Tage → Reminder → Statusupdate
+```
+**Labels**: `automation`, `finance`, `crm` · **Schätzung**: 6h
+</details>
+
+<details>
+<summary><strong>[ ] 38. Intelligente Beitragslogik (Alters-/Statuswechsel)</strong></summary>
+
+**Akzeptanzkriterien**: Automatischer Wechsel „Jugendmitglied → Standardmitglied“ bei Altersgrenze; Statuswechsel berücksichtigt Beitragssatz; Kernel‑Tests vorhanden.  
+**Pfade**: `crm.menschlichkeit-oesterreich.at/web/modules/custom/mo_membership_rules/**` (PHP Action + Config)  
+**Labels**: `crm`, `rules`, `backend` · **Schätzung**: 4h
+</details>
+
+<details>
+<summary><strong>[ ] 39. Monitoring & Alerts (Buchhaltung)</strong></summary>
+
+**Akzeptanzkriterien**: n8n prüft täglich offene Rechnungen > 30 Tage, Mandate < 30 Tage Restlaufzeit, Kampagnenfortschritt < 10 %; Slack/Mail‑Alerts gehen an Buchhaltung.  
+**Pfade**: `automation/n8n/flows/billing-monitoring.json`  
+**Labels**: `monitoring`, `automation`, `crm` · **Schätzung**: 4h
+</details>
+
+<details>
+<summary><strong>[ ] 40. Buchhaltungs‑Export (Lexoffice/DATEV)</strong></summary>
+
+**Akzeptanzkriterien**: Monatlicher Export (JSON/CSV) mit Datum, Betrag, Zweck, Kontakt‑ID, Belegnummer; Push zur Ziel‑API; Erfolgsbericht in Slack.  
+```bash
+php scripts/export-bookkeeping.php --period="$(date +%Y-%m)"
+```
+**Pfade**: `scripts/export-bookkeeping.php`, `automation/n8n/flows/bookkeeping-export.json`  
+**Labels**: `automation`, `finance`, `integration` · **Schätzung**: 4h
+</details>
+
+<details>
+<summary><strong>[ ] 41. Zuwendungsbestätigungen (sofort & jährlich)</strong></summary>
+
+**Akzeptanzkriterien**: Automatischer Versand bei Spenden > 200 €; Jahreszusammenfassung im Januar; PDFs archiviert (Dateisystem oder Nextcloud).  
+**Labels**: `automation`, `donations`, `crm` · **Schätzung**: 6h
 </details>
 
 ---

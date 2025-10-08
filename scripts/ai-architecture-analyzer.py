@@ -815,4 +815,4 @@ if __name__ == "__main__":
         if args.output:
             analyzer.save_analysis(analysis, Path(args.output))
         else:
-            analyzer.save_analysis(analysis)            analyzer.save_analysis(analysis)
+            analyzer.save_analysis(analysis)

@@ -1,18 +1,21 @@
-from fastapi import FastAPI, HTTPException, Depends, Header, Body, Path
+import logging
+import os
+import time
+import uuid
+from typing import Optional, List, Dict, Any
+
+import httpx
+import jwt
+from dotenv import load_dotenv
+from fastapi import FastAPI, HTTPException, Depends, Path
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, EmailStr
-import httpx
-import os
-import jwt
-from typing import Optional, List, Dict, Any
-import uuid
-import asyncio
-import time
-import logging
 
-# Import shared utilities
+# Load environment variables from .env file
+load_dotenv()
+
+# Import shared utilities (nach load_dotenv)
 from app.shared import ApiResponse, verify_jwt_token
-
 
 # Environment Configuration
 logger = logging.getLogger("moe-api.config")
@@ -21,10 +24,12 @@ logger = logging.getLogger("moe-api.config")
 def _require_env(var_name: str, *, allow_blank: bool = False) -> str:
     value = os.getenv(var_name)
     if value is None:
-        raise RuntimeError(f"Missing required environment variable: {var_name}")
+        raise RuntimeError(
+            f"Missing required environment variable: {var_name}")
     value = value.strip()
     if not allow_blank and value == "":
-        raise RuntimeError(f"Environment variable {var_name} must not be blank")
+        raise RuntimeError(
+            f"Environment variable {var_name} must not be blank")
     return value
 
 
@@ -49,12 +54,15 @@ def _parse_int(var_name: str, default: int) -> int:
     try:
         return int(raw)
     except ValueError as exc:
-        raise RuntimeError(f"Environment variable {var_name} must be an integer") from exc
+        raise RuntimeError(
+            f"Environment variable {var_name} must be an integer") from exc
 
 
 APP_ENV = os.getenv("APP_ENV", "development").strip().lower()
 
-CIVI_BASE_URL = os.getenv("CIVI_BASE_URL", "https://crm.menschlichkeit-oesterreich.at")
+CIVI_BASE_URL = os.getenv(
+    "CIVI_BASE_URL",
+    "https://crm.menschlichkeit-oesterreich.at")
 CIVI_SITE_KEY = _require_env("CIVI_SITE_KEY")
 CIVI_API_KEY = _require_env("CIVI_API_KEY")
 JWT_SECRET = _require_env("JWT_SECRET")
@@ -68,41 +76,50 @@ _default_dev_origins = [
 
 frontend_origins_raw = os.getenv("FRONTEND_ORIGINS")
 if frontend_origins_raw:
-    allow_origins = [entry.strip() for entry in frontend_origins_raw.split(',') if entry.strip()]
+    allow_origins = [entry.strip()
+                     for entry in frontend_origins_raw.split(',') if entry.strip()]
     if not allow_origins:
-        raise RuntimeError("FRONTEND_ORIGINS must contain at least one origin when defined.")
+        raise RuntimeError(
+            "FRONTEND_ORIGINS must contain at least one origin when defined.")
 elif APP_ENV in {"development", "local", "test"}:
     allow_origins = _default_dev_origins
 else:
-    raise RuntimeError("FRONTEND_ORIGINS must be set for non-development environments.")
+    raise RuntimeError(
+        "FRONTEND_ORIGINS must be set for non-development environments.")
 
-allow_methods = _split_csv("CORS_ALLOW_METHODS", "GET,POST,PUT,PATCH,DELETE,OPTIONS") or [
-    "GET",
-    "POST",
-    "PUT",
-    "PATCH",
-    "DELETE",
-    "OPTIONS",
+allow_methods = _split_csv(
+    "CORS_ALLOW_METHODS",
+    "GET,POST,PUT,PATCH,DELETE,OPTIONS") or [
+        "GET",
+        "POST",
+        "PUT",
+        "PATCH",
+        "DELETE",
+        "OPTIONS",
 ]
 
-allow_headers = _split_csv("CORS_ALLOW_HEADERS", "Authorization,Content-Type,Accept") or [
-    "Authorization",
-    "Content-Type",
-    "Accept",
-]
+allow_headers = _split_csv("CORS_ALLOW_HEADERS",
+                           "Authorization,Content-Type,Accept") or ["Authorization",
+                                                                    "Content-Type",
+                                                                    "Accept",
+                                                                    ]
 
 expose_headers = _split_csv("CORS_EXPOSE_HEADERS", "")
 allow_credentials = _parse_bool("CORS_ALLOW_CREDENTIALS", True)
 cors_max_age = _parse_int("CORS_MAX_AGE_SECONDS", 600)
 
-logger.debug("Loaded CORS configuration (env=%s, origins=%s, allow_credentials=%s, max_age=%s)", APP_ENV, allow_origins, allow_credentials, cors_max_age)
+logger.debug(
+    "Loaded CORS configuration (env=%s, origins=%s, allow_credentials=%s, max_age=%s)",
+    APP_ENV,
+    allow_origins,
+    allow_credentials,
+    cors_max_age)
 
 
 app = FastAPI(
     title="Menschlichkeit Oesterreich API",
     description="CRM Integration API with JWT Authentication & GDPR Compliance",
-    version="1.0.0"
-)
+    version="1.0.0")
 
 app.add_middleware(
     CORSMiddleware,
@@ -116,21 +133,23 @@ app.add_middleware(
 
 # Mount routers
 try:
-    from app.routes.privacy import router as privacy_router
-    app.include_router(privacy_router)
+        app.include_router(privacy_router)
 except Exception:
-    # Router is optional during initial bootstrap; verify_privacy_api.py checks integration
+    # Router is optional during initial bootstrap; verify_privacy_api.py
+    # checks integration
     pass
 
 # Import Privacy Routes (GDPR Art. 17 Right to Erasure)
-from app.routes.privacy import router as privacy_router
 app.include_router(privacy_router)
 
 # Data Models
+
+
 class ContactCreate(BaseModel):
     email: EmailStr
     first_name: Optional[str] = None
     last_name: Optional[str] = None
+
 
 class MembershipCreate(BaseModel):
     contact_id: int
@@ -138,9 +157,11 @@ class MembershipCreate(BaseModel):
     start_date: Optional[str] = None
     end_date: Optional[str] = None
 
+
 class LoginRequest(BaseModel):
     email: EmailStr
     password: str
+
 
 class RegisterRequest(BaseModel):
     email: EmailStr
@@ -148,18 +169,22 @@ class RegisterRequest(BaseModel):
     first_name: Optional[str] = None
     last_name: Optional[str] = None
 
+
 class RefreshRequest(BaseModel):
     refresh_token: str
+
 
 class ContactUpdate(BaseModel):
     email: Optional[EmailStr] = None
     first_name: Optional[str] = None
     last_name: Optional[str] = None
 
+
 class MembershipUpdate(BaseModel):
     membership_type_id: Optional[int] = None
     start_date: Optional[str] = None
     end_date: Optional[str] = None
+
 
 class SepaMandateCreate(BaseModel):
     contact_id: int
@@ -201,8 +226,6 @@ class RegisterResult(BaseModel):
     tokens: Optional[AuthTokens] = None
 
 
-
-
 def _extract_first_value(data: dict) -> Optional[dict]:
     """Best-effort extraction of first record from CiviCRM APIv4 response."""
     try:
@@ -221,7 +244,10 @@ def _extract_first_value(data: dict) -> Optional[dict]:
 # Removed duplicate verify_jwt_token - now imported from shared.py
 
 
-def _create_token(sub: str, ttl_seconds: int, token_type: str = "access") -> str:
+def _create_token(
+        sub: str,
+        ttl_seconds: int,
+        token_type: str = "access") -> str:
     now = int(time.time())
     jti = str(uuid.uuid4()) if token_type == "refresh" else None
     payload = {
@@ -246,32 +272,58 @@ _refresh_store = RefreshStore()
 
 
 def _serialize_contact(contact: Dict[str, Any]) -> ContactResponse:
-    email_value = contact.get('email') or contact.get('email_primary') or contact.get('emailId')
+    email_value = contact.get('email') or contact.get(
+        'email_primary') or contact.get('emailId')
     email_parsed = EmailStr(str(email_value)) if email_value else None
     return ContactResponse(
-        id=int(contact.get('id')),
+        id=int(
+            contact.get('id')),
         email=email_parsed,
         first_name=contact.get('first_name'),
         last_name=contact.get('last_name'),
         communication_style_id=contact.get('communication_style_id'),
-        extra={k: v for k, v in contact.items() if k not in {'id', 'email', 'email_primary', 'emailId', 'first_name', 'last_name', 'communication_style_id'}} or None,
+        extra={
+            k: v for k,
+            v in contact.items() if k not in {
+                'id',
+                'email',
+                'email_primary',
+                'emailId',
+                'first_name',
+                'last_name',
+                'communication_style_id'}} or None,
     )
 
 
 def _serialize_membership(membership: Dict[str, Any]) -> MembershipResponse:
     return MembershipResponse(
-        id=int(membership.get('id')),
-        contact_id=int(membership.get('contact_id')),
-        membership_type_id=int(membership.get('membership_type_id')),
+        id=int(
+            membership.get('id')),
+        contact_id=int(
+            membership.get('contact_id')),
+        membership_type_id=int(
+            membership.get('membership_type_id')),
         status=membership.get('status'),
         start_date=membership.get('start_date'),
         end_date=membership.get('end_date'),
         auto_renew=membership.get('auto_renew'),
-        extra={k: v for k, v in membership.items() if k not in {'id', 'contact_id', 'membership_type_id', 'status', 'start_date', 'end_date', 'auto_renew'}} or None,
+        extra={
+            k: v for k,
+            v in membership.items() if k not in {
+                'id',
+                'contact_id',
+                'membership_type_id',
+                'status',
+                'start_date',
+                'end_date',
+                'auto_renew'}} or None,
     )
 
 
-async def _civicrm_contact_get(*, contact_id: Optional[int] = None, email: Optional[str] = None) -> Dict[str, Any]:
+async def _civicrm_contact_get(*,
+                               contact_id: Optional[int] = None,
+                               email: Optional[str] = None) -> Dict[str,
+                                                                    Any]:
     params: Dict[str, Any] = {"limit": 1}
     if contact_id is not None:
         params['id'] = contact_id
@@ -284,7 +336,8 @@ async def _civicrm_contact_get(*, contact_id: Optional[int] = None, email: Optio
     return contact
 
 
-async def _civicrm_contact_create_or_update(payload: Dict[str, Any]) -> Dict[str, Any]:
+async def _civicrm_contact_create_or_update(
+        payload: Dict[str, Any]) -> Dict[str, Any]:
     data = await civicrm_api_call("Contact", "create", payload)
     return _extract_first_value(data) or data
 
@@ -297,7 +350,8 @@ async def _civicrm_memberships_get(contact_id: int) -> List[Dict[str, Any]]:
     return []
 
 
-async def _civicrm_membership_update(membership_id: int, payload: Dict[str, Any]) -> Dict[str, Any]:
+async def _civicrm_membership_update(
+        membership_id: int, payload: Dict[str, Any]) -> Dict[str, Any]:
     params = {"id": membership_id, **payload}
     data = await civicrm_api_call("Membership", "create", params)
     return _extract_first_value(data) or data
@@ -310,6 +364,8 @@ async def health_check():
     return {"status": "healthy", "service": "moe-api", "version": "1.0.0"}
 
 # CiviCRM Integration Helper
+
+
 async def civicrm_api_call(entity: str, action: str, params: dict):
     """Make authenticated call to CiviCRM APIv4"""
     payload = {
@@ -319,26 +375,32 @@ async def civicrm_api_call(entity: str, action: str, params: dict):
             "key": CIVI_SITE_KEY
         }
     }
-    
+
     url = f"{CIVI_BASE_URL}/civicrm/ajax/api4/{entity}/{action}"
-    
+
     async with httpx.AsyncClient(timeout=30) as client:
         response = await client.post(url, json=payload)
-        
+
     if response.status_code != 200:
         raise HTTPException(status_code=502, detail="CiviCRM API unavailable")
-    
+
     try:
         data = response.json()
     except Exception:
-        raise HTTPException(status_code=502, detail="Invalid response from CiviCRM")
-    
+        raise HTTPException(status_code=502,
+                            detail="Invalid response from CiviCRM")
+
     if isinstance(data, dict) and data.get("is_error"):
-        raise HTTPException(status_code=400, detail=data.get("error_message", "CiviCRM error"))
-    
+        raise HTTPException(
+            status_code=400,
+            detail=data.get(
+                "error_message",
+                "CiviCRM error"))
+
     return data
 
 # API Endpoints
+
 
 @app.post("/auth/login", response_model=ApiResponse)
 async def login(request: LoginRequest) -> ApiResponse:
@@ -348,14 +410,18 @@ async def login(request: LoginRequest) -> ApiResponse:
         contact_record = await _civicrm_contact_get(email=email)
     except HTTPException as exc:
         if exc.status_code == 404:
-            raise HTTPException(status_code=401, detail="Invalid credentials") from exc
+            raise HTTPException(
+                status_code=401,
+                detail="Invalid credentials") from exc
         raise
 
     refresh_jwt = _create_token(email, 3600 * 24 * 7, token_type="refresh")
     try:
-        refresh_payload = jwt.decode(refresh_jwt, JWT_SECRET, algorithms=["HS256"])
+        refresh_payload = jwt.decode(
+            refresh_jwt, JWT_SECRET, algorithms=["HS256"])
     except Exception:
-        raise HTTPException(status_code=500, detail="Failed to issue refresh token")
+        raise HTTPException(status_code=500,
+                            detail="Failed to issue refresh token")
     jti = str(refresh_payload.get("jti"))
     if not jti:
         raise HTTPException(status_code=500, detail="Missing refresh token id")
@@ -371,6 +437,7 @@ async def login(request: LoginRequest) -> ApiResponse:
         "contact": _serialize_contact(contact_record).model_dump(),
     }
     return ApiResponse(success=True, data=payload, message="Login successful")
+
 
 @app.post("/auth/register", response_model=ApiResponse)
 async def register(request: RegisterRequest) -> ApiResponse:
@@ -395,7 +462,8 @@ async def register(request: RegisterRequest) -> ApiResponse:
     try:
         rp = jwt.decode(refresh_jwt, JWT_SECRET, algorithms=["HS256"])
     except Exception:
-        raise HTTPException(status_code=500, detail="Failed to issue refresh token")
+        raise HTTPException(status_code=500,
+                            detail="Failed to issue refresh token")
     jti = str(rp.get("jti"))
     if not jti:
         raise HTTPException(status_code=500, detail="Missing refresh token id")
@@ -409,17 +477,26 @@ async def register(request: RegisterRequest) -> ApiResponse:
         contact=_serialize_contact(contact_record),
         tokens=tokens,
     )
-    return ApiResponse(success=True, data=response.model_dump(), message="Registration successful")
+    return ApiResponse(
+        success=True,
+        data=response.model_dump(),
+        message="Registration successful")
+
 
 @app.post("/auth/refresh", response_model=ApiResponse)
 async def refresh_token(req: RefreshRequest) -> ApiResponse:
     """Issue a new access/refresh token pair from a valid refresh token."""
     try:
-        payload = jwt.decode(req.refresh_token, JWT_SECRET, algorithms=["HS256"])
+        payload = jwt.decode(
+            req.refresh_token,
+            JWT_SECRET,
+            algorithms=["HS256"])
     except jwt.ExpiredSignatureError as exc:
-        raise HTTPException(status_code=401, detail="Refresh token expired") from exc
+        raise HTTPException(status_code=401,
+                            detail="Refresh token expired") from exc
     except Exception as exc:
-        raise HTTPException(status_code=401, detail="Invalid refresh token") from exc
+        raise HTTPException(status_code=401,
+                            detail="Invalid refresh token") from exc
 
     if payload.get("type") != "refresh":
         raise HTTPException(status_code=400, detail="Invalid token type")
@@ -432,14 +509,16 @@ async def refresh_token(req: RefreshRequest) -> ApiResponse:
     expected_jti = _refresh_store.get_current(subject) or ""
     provided_jti = str(payload.get("jti") or "")
     if not provided_jti or expected_jti and provided_jti != expected_jti:
-        raise HTTPException(status_code=401, detail="Refresh token reused or invalid")
+        raise HTTPException(status_code=401,
+                            detail="Refresh token reused or invalid")
 
     # Issue new pair and rotate stored JTI
     new_refresh = _create_token(subject, 3600 * 24 * 7, token_type="refresh")
     try:
         new_payload = jwt.decode(new_refresh, JWT_SECRET, algorithms=["HS256"])
     except Exception:
-        raise HTTPException(status_code=500, detail="Failed to rotate refresh token")
+        raise HTTPException(status_code=500,
+                            detail="Failed to rotate refresh token")
     new_jti = str(new_payload.get("jti") or "")
     if not new_jti:
         raise HTTPException(status_code=500, detail="Missing refresh token id")
@@ -458,29 +537,37 @@ async def refresh_token(req: RefreshRequest) -> ApiResponse:
         else:
             raise
 
-    data = {
-        "tokens": tokens.model_dump(),
-        "contact": _serialize_contact(contact_record).model_dump() if contact_record else None,
-    }
+    data = {"tokens": tokens.model_dump(), "contact": _serialize_contact(
+        contact_record).model_dump() if contact_record else None, }
     return ApiResponse(success=True, data=data, message="Tokens refreshed")
 
+
 @app.get("/user/profile", response_model=ApiResponse)
-async def get_user_profile(payload: Dict[str, Any] = Depends(verify_jwt_token)) -> ApiResponse:
+async def get_user_profile(payload: Dict[str, Any] = Depends(
+        verify_jwt_token)) -> ApiResponse:
     email = payload.get("sub")
     if not email:
         raise HTTPException(status_code=401, detail="Invalid token subject")
 
     contact_record = await _civicrm_contact_get(email=email)
-    return ApiResponse(success=True, data=_serialize_contact(contact_record).model_dump(), message="Profile fetched")
+    return ApiResponse(success=True, data=_serialize_contact(
+        contact_record).model_dump(), message="Profile fetched")
+
 
 @app.put("/user/profile", response_model=ApiResponse)
-async def update_user_profile(update: ContactUpdate, payload: Dict[str, Any] = Depends(verify_jwt_token)) -> ApiResponse:
+async def update_user_profile(update: ContactUpdate,
+                              payload: Dict[str,
+                                            Any] = Depends(verify_jwt_token)) -> ApiResponse:
     email = payload.get("sub")
     if not email:
         raise HTTPException(status_code=401, detail="Invalid token subject")
 
-    if not any([update.email, update.first_name is not None, update.last_name is not None]):
-        raise HTTPException(status_code=400, detail="No update fields supplied")
+    if not any([update.email,
+                update.first_name is not None,
+                update.last_name is not None]):
+        raise HTTPException(
+            status_code=400,
+            detail="No update fields supplied")
 
     contact_record = await _civicrm_contact_get(email=email)
     params: Dict[str, Any] = {"id": contact_record.get("id")}
@@ -492,10 +579,13 @@ async def update_user_profile(update: ContactUpdate, payload: Dict[str, Any] = D
         params["last_name"] = update.last_name
 
     updated_contact = await _civicrm_contact_create_or_update(params)
-    return ApiResponse(success=True, data=_serialize_contact(updated_contact).model_dump(), message="Profile updated")
+    return ApiResponse(success=True, data=_serialize_contact(
+        updated_contact).model_dump(), message="Profile updated")
+
 
 @app.post("/contacts/create", response_model=ApiResponse)
-async def create_contact(contact: ContactCreate, _: Dict[str, Any] = Depends(verify_jwt_token)) -> ApiResponse:
+async def create_contact(contact: ContactCreate, _: Dict[str, Any] = Depends(
+        verify_jwt_token)) -> ApiResponse:
     params: Dict[str, Any] = {
         "contact_type": "Individual",
         "email": contact.email.lower(),
@@ -506,17 +596,29 @@ async def create_contact(contact: ContactCreate, _: Dict[str, Any] = Depends(ver
         params["last_name"] = contact.last_name
 
     created = await _civicrm_contact_create_or_update(params)
-    return ApiResponse(success=True, data=_serialize_contact(created).model_dump(), message="Contact created")
+    return ApiResponse(success=True, data=_serialize_contact(
+        created).model_dump(), message="Contact created")
+
 
 @app.get("/contacts/{contact_id}", response_model=ApiResponse)
-async def get_contact(contact_id: int = Path(..., gt=0), _: Dict[str, Any] = Depends(verify_jwt_token)) -> ApiResponse:
+async def get_contact(contact_id: int = Path(..., gt=0),
+                      _: Dict[str, Any] = Depends(verify_jwt_token)) -> ApiResponse:
     contact_record = await _civicrm_contact_get(contact_id=contact_id)
-    return ApiResponse(success=True, data=_serialize_contact(contact_record).model_dump(), message="Contact fetched")
+    return ApiResponse(success=True, data=_serialize_contact(
+        contact_record).model_dump(), message="Contact fetched")
+
 
 @app.put("/contacts/{contact_id}", response_model=ApiResponse)
-async def update_contact(contact_id: int, update: ContactUpdate, _: Dict[str, Any] = Depends(verify_jwt_token)) -> ApiResponse:
-    if not any([update.email, update.first_name is not None, update.last_name is not None]):
-        raise HTTPException(status_code=400, detail="No update fields supplied")
+async def update_contact(contact_id: int,
+                         update: ContactUpdate,
+                         _: Dict[str,
+                                 Any] = Depends(verify_jwt_token)) -> ApiResponse:
+    if not any([update.email,
+                update.first_name is not None,
+                update.last_name is not None]):
+        raise HTTPException(
+            status_code=400,
+            detail="No update fields supplied")
 
     params: Dict[str, Any] = {"id": contact_id}
     if update.email:
@@ -527,10 +629,13 @@ async def update_contact(contact_id: int, update: ContactUpdate, _: Dict[str, An
         params["last_name"] = update.last_name
 
     updated_contact = await _civicrm_contact_create_or_update(params)
-    return ApiResponse(success=True, data=_serialize_contact(updated_contact).model_dump(), message="Contact updated")
+    return ApiResponse(success=True, data=_serialize_contact(
+        updated_contact).model_dump(), message="Contact updated")
+
 
 @app.post("/memberships/create", response_model=ApiResponse)
-async def create_membership(membership: MembershipCreate, _: Dict[str, Any] = Depends(verify_jwt_token)) -> ApiResponse:
+async def create_membership(membership: MembershipCreate, _: Dict[str, Any] = Depends(
+        verify_jwt_token)) -> ApiResponse:
     """Create a new membership in CiviCRM."""
     import datetime
 
@@ -553,34 +658,17 @@ async def create_membership(membership: MembershipCreate, _: Dict[str, Any] = De
 
 
 @app.get("/memberships/contact/{contact_id}", response_model=ApiResponse)
-async def get_memberships_for_contact(contact_id: int, _: Dict[str, Any] = Depends(verify_jwt_token)) -> ApiResponse:
-    memberships = [_serialize_membership(entry).model_dump() for entry in await _civicrm_memberships_get(contact_id)]
-    return ApiResponse(success=True, data={"memberships": memberships}, message="Memberships fetched")
-
-
 @app.put("/memberships/{membership_id}", response_model=ApiResponse)
-async def update_membership(membership_id: int, update: MembershipUpdate, _: Dict[str, Any] = Depends(verify_jwt_token)) -> ApiResponse:
-    if not any([update.membership_type_id is not None, update.start_date is not None, update.end_date is not None]):
-        raise HTTPException(status_code=400, detail="No update fields supplied")
-
-    payload: Dict[str, Any] = {}
-    if update.membership_type_id is not None:
-        payload["membership_type_id"] = update.membership_type_id
-    if update.start_date is not None:
-        payload["start_date"] = update.start_date
-    if update.end_date is not None:
-        payload["end_date"] = update.end_date
-
-    updated = await _civicrm_membership_update(membership_id, payload)
-    return ApiResponse(success=True, data=_serialize_membership(updated).model_dump(), message="Membership updated")
 @app.get("/contacts/search")
-async def search_contacts(email: Optional[str] = None, _: dict = Depends(verify_jwt_token)):
+async def search_contacts(
+        email: Optional[str] = None,
+        _: dict = Depends(verify_jwt_token)):
     """Search for contacts in CiviCRM"""
-    
+
     params = {"limit": 25}
     if email:
         params["email"] = email
-    
+
     try:
         result = await civicrm_api_call("Contact", "get", params)
         return ApiResponse(
@@ -595,37 +683,11 @@ async def search_contacts(email: Optional[str] = None, _: dict = Depends(verify_
 
 
 @app.get("/memberships/contact/{contact_id}", response_model=ApiResponse)
-async def get_memberships_for_contact(contact_id: int, _: dict = Depends(verify_jwt_token)):
-    params = {"contact_id": contact_id}
-    try:
-        result = await civicrm_api_call("Membership", "get", params)
-        return ApiResponse(success=True, data=result, message="Memberships fetched")
-    except HTTPException as e:
-        raise e
-    except Exception:
-        raise HTTPException(status_code=500, detail="Internal server error")
-
-
 @app.put("/memberships/{membership_id}", response_model=ApiResponse)
-async def update_membership(membership_id: int, update: MembershipUpdate, _: dict = Depends(verify_jwt_token)):
-    params = {"id": membership_id}
-    if update.membership_type_id is not None:
-        params["membership_type_id"] = update.membership_type_id
-    if update.start_date is not None:
-        params["start_date"] = update.start_date
-    if update.end_date is not None:
-        params["end_date"] = update.end_date
-    try:
-        result = await civicrm_api_call("Membership", "create", params)
-        return ApiResponse(success=True, data=result, message="Membership updated")
-    except HTTPException as e:
-        raise e
-    except Exception:
-        raise HTTPException(status_code=500, detail="Internal server error")
-
-
 @app.post("/sepa/mandate", response_model=ApiResponse)
-async def create_sepa_mandate(mandate: SepaMandateCreate, _: dict = Depends(verify_jwt_token)):
+async def create_sepa_mandate(
+        mandate: SepaMandateCreate,
+        _: dict = Depends(verify_jwt_token)):
     """Create SEPA mandate via CiviCRM SEPA extension (if available)."""
     params = {
         "contact_id": mandate.contact_id,
@@ -641,7 +703,10 @@ async def create_sepa_mandate(mandate: SepaMandateCreate, _: dict = Depends(veri
         params["frequency"] = mandate.frequency
     try:
         result = await civicrm_api_call("SepaMandate", "create", params)
-        return ApiResponse(success=True, data=result, message="SEPA mandate created")
+        return ApiResponse(
+            success=True,
+            data=result,
+            message="SEPA mandate created")
     except HTTPException as e:
         raise e
     except Exception:
@@ -649,11 +714,16 @@ async def create_sepa_mandate(mandate: SepaMandateCreate, _: dict = Depends(veri
 
 
 @app.get("/sepa/mandate/{contact_id}", response_model=ApiResponse)
-async def get_sepa_mandate(contact_id: int, _: dict = Depends(verify_jwt_token)):
+async def get_sepa_mandate(
+        contact_id: int,
+        _: dict = Depends(verify_jwt_token)):
     params = {"contact_id": contact_id, "limit": 1}
     try:
         result = await civicrm_api_call("SepaMandate", "get", params)
-        return ApiResponse(success=True, data=result, message="SEPA mandate fetched")
+        return ApiResponse(
+            success=True,
+            data=result,
+            message="SEPA mandate fetched")
     except HTTPException as e:
         raise e
     except Exception:
@@ -668,7 +738,8 @@ REQUIRED_ENV = {
 }
 missing = [k for k, v in REQUIRED_ENV.items() if not v]
 if missing:
-    raise RuntimeError(f"Missing required environment variables: {', '.join(missing)}")
+    raise RuntimeError(
+        f"Missing required environment variables: {', '.join(missing)}")
 
 # CORS will be handled by Nginx in production
 # For development, you may need to add CORS middleware

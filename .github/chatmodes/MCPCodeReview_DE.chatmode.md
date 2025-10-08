@@ -255,4 +255,13 @@ Via Memory MCP:
 
 **Ausgabe:** Strukturierter Review-Report mit priorisierten Findings und konkreten Handlungsempfehlungen.
 **Keine Code-Änderungen:** Report dient zur Team-Diskussion und Optimierung.
+
+### Stop-Kriterien & Eskalation
+- Sofort STOP bei: hartkodierten Secrets, PII in Logs, CRITICAL CVEs, Auth‑Bypass, Datenverlust‑Risiko
+- Eskalation: „Blocker“ kennzeichnen, Team Lead benachrichtigen, Deployment pausieren
+
+### Schnellstart (3 Schritte)
+1) Via GitHub MCP: PR/Checks/Kommentare laden
+2) Via Filesystem MCP: Diff/Betroffene Module sichten; via PostgreSQL MCP: DB‑Änderungen prüfen
+3) „Review‑Report“ nach Vorlage ausgeben, Blocker priorisieren
 ```

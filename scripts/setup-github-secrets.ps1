@@ -1,16 +1,31 @@
 #!/usr/bin/env pwsh
-# GitHub Secrets Setup Helper für Menschlichkeit Österreich
-# Hilft beim sicheren Setup der GitHub Repository Secrets
+# GitHub Secrets Bulk Setup für Menschlichkeit Österreich
+# Verwendet GitHub CLI (gh) für Repository und Environment Secrets
 
 param(
-    [switch]$GenerateKeys,
-    [switch]$ValidateSecrets,
     [switch]$ShowSecretsList,
-    [string]$Environment = "development"
+    [switch]$GenerateKeys,
+    [switch]$DryRun,
+    [switch]$ValidateSecrets,
+    [string]$Environment = "staging",
+    [string]$Repository = "peschull/menschlichkeit-oesterreich-development"
 )
 
-Write-Host "🔐 GitHub Secrets Setup Helper" -ForegroundColor Green
-Write-Host "Menschlichkeit Österreich Enterprise Repository" -ForegroundColor Cyan
+# Farben für Output
+function Write-Status {
+    param([string]$Text, [string]$Color = "White")
+    
+    # Validate color parameter
+    $validColors = @("Black", "DarkBlue", "DarkGreen", "DarkCyan", "DarkRed", "DarkMagenta", "DarkYellow", "Gray", "DarkGray", "Blue", "Green", "Cyan", "Red", "Magenta", "Yellow", "White")
+    
+    if ($Color -notin $validColors) {
+        $Color = "White"
+    }
+    
+    Write-Host $Text -ForegroundColor $Color
+
+Write-ColoredText "🔐 GitHub Secrets Bulk Setup für Menschlichkeit Österreich" $Blue
+Write-ColoredText "=" * 65 $Blue
 
 # Define all required secrets
 $RequiredSecrets = @{

@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.1.0",
   "scripts": {
+    "build": "echo 'Website build: Copying assets...' && mkdir -p dist && cp -r * dist/ 2>/dev/null || true",
     "lh:ci": "node ./scripts/run-lighthouse.mjs",
     "serve": "http-server . -p 4180 -c-1"
   },

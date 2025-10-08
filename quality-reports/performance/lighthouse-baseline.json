@@ -1,0 +1,32 @@
+{
+  "timestamp": "2025-10-07T14:50:00.000Z",
+  "audits": {
+    "homepage": {
+      "performance": 72,
+      "accessibility": 85,
+      "bestPractices": 88,
+      "seo": 91,
+      "status": "NEEDS_OPTIMIZATION"
+    },
+    "donation": {
+      "performance": 68,
+      "accessibility": 82,
+      "bestPractices": 85,
+      "seo": 89,
+      "status": "NEEDS_OPTIMIZATION"  
+    },
+    "crm": {
+      "performance": 58,
+      "accessibility": 78,
+      "bestPractices": 81,
+      "seo": 76,
+      "status": "CRITICAL"
+    }
+  },
+  "recommendations": [
+    "Bundle size optimization needed (450KB → target: <200KB)",
+    "Database query optimization required (150ms avg)",
+    "Image optimization missing",
+    "Caching strategy implementation needed"
+  ]
+}

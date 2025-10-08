@@ -111,18 +111,18 @@ class SanitizationConfig:
     enable_secrets_detection: bool = True
     mask_char: str = "*"
     default_strategy: RedactionStrategy = RedactionStrategy.MASK
-    
+
 
 class PiiSanitizer:
     """
     Hauptklasse für PII-Sanitization.
-    
+
     Usage:
         sanitizer = PiiSanitizer()
         clean_text = sanitizer.scrub_text("Email: test@example.com")
         clean_dict = sanitizer.scrub_dict({"password": "secret"})
     """
-    
+
     def __init__(self, config: Optional[SanitizationConfig] = None):
         self.config = config or SanitizationConfig()
         self.metrics = {
@@ -134,55 +134,55 @@ class PiiSanitizer:
             "jwts_redacted": 0,
             "secrets_redacted": 0,
         }
-    
+
     def scrub_text(self, text: Union[str, None, Any]) -> Union[str, None, Any]:
         """
         Redaktiert PII aus Text.
-        
+
         Args:
             text: Zu sanitierender Text
-            
+
         Returns:
             Gesäuberter Text mit maskierten PII
         """
         if not isinstance(text, str):
             return text
-        
+
         if not text:
             return text
-        
+
         result = text
-        
+
         # Email
         if self.config.enable_email_detection:
             result = self._scrub_emails(result)
-        
+
         # Phone
         if self.config.enable_phone_detection:
             result = self._scrub_phones(result)
-        
+
         # JWT/Bearer
         if self.config.enable_jwt_detection:
             result = self._scrub_jwts(result)
-        
+
         # Secrets (AWS, GitHub, etc.)
         if self.config.enable_secrets_detection:
             result = self._scrub_secrets(result)
-        
+
         # Credit Cards (mit Luhn)
         if self.config.enable_card_detection:
             result = self._scrub_cards(result)
-        
+
         # IBAN
         if self.config.enable_iban_detection:
             result = self._scrub_ibans(result)
-        
+
         # IP
         if self.config.enable_ip_detection:
             result = self._scrub_ips(result)
-        
+
         return result
-    
+
     def scrub_dict(
         self,
         data: Dict[str, Any],
@@ -190,23 +190,23 @@ class PiiSanitizer:
     ) -> Dict[str, Any]:
         """
         Redaktiert PII aus Dictionary (rekursiv).
-        
+
         Args:
             data: Dictionary mit potentiell sensiblen Daten
             strategy: Redaktionsstrategie (default: MASK)
-            
+
         Returns:
             Gesäubertes Dictionary
         """
         if not isinstance(data, dict):
             return data
-        
+
         strategy = strategy or self.config.default_strategy
         result = {}
-        
+
         for key, value in data.items():
             key_lower = key.lower().replace("-", "_")
-            
+
             # Sensitive Key?
             if key_lower in self.config.sensitive_keys:
                 if strategy == RedactionStrategy.DROP:
@@ -230,20 +230,20 @@ class PiiSanitizer:
                 result[key] = self.scrub_text(value)
             else:
                 result[key] = value
-        
+
         return result
-    
+
     def get_metrics(self) -> Dict[str, int]:
         """Gibt Redaktions-Metriken zurück"""
         return self.metrics.copy()
-    
+
     def reset_metrics(self):
         """Setzt Metriken zurück"""
         for key in self.metrics:
             self.metrics[key] = 0
-    
+
     # Private Methods
-    
+
     def _scrub_emails(self, text: str) -> str:
         """Maskiert Email-Adressen"""
         def replacer(match):
@@ -255,9 +255,9 @@ class PiiSanitizer:
             else:
                 masked = self.config.mask_char * 3 + "@" + domain
             return masked
-        
+
         return EMAIL_RE.sub(replacer, text)
-    
+
     def _scrub_phones(self, text: str) -> str:
         """Maskiert Telefonnummern"""
         def replacer(match):
@@ -268,9 +268,9 @@ class PiiSanitizer:
                 return phone[:3] + self.config.mask_char * (len(phone) - 3)
             else:
                 return self.config.mask_char * len(phone)
-        
+
         return PHONE_RE.sub(replacer, text)
-    
+
     def _scrub_jwts(self, text: str) -> str:
         """Maskiert JWT/Bearer-Token"""
         def replacer(match):
@@ -278,18 +278,18 @@ class PiiSanitizer:
             if match.group(0).lower().startswith("bearer"):
                 return "Bearer [REDACTED]"
             return "[JWT_REDACTED]"
-        
+
         return JWT_RE.sub(replacer, text)
-    
+
     def _scrub_secrets(self, text: str) -> str:
         """Maskiert Secret-Präfixe"""
         def replacer(match):
             self.metrics["secrets_redacted"] += 1
             prefix = match.group(1)
             return f"[{prefix.upper()}_REDACTED]"
-        
+
         return SECRET_PREFIX_RE.sub(replacer, text)
-    
+
     def _scrub_cards(self, text: str) -> str:
         """Maskiert Kreditkarten (nur gültige Luhn)"""
         def replacer(match):
@@ -298,9 +298,9 @@ class PiiSanitizer:
                 self.metrics["cards_redacted"] += 1
                 return "[CARD]"
             return match.group(0)  # Luhn invalid -> behalten
-        
+
         return CC_CANDIDATE_RE.sub(replacer, text)
-    
+
     def _scrub_ibans(self, text: str) -> str:
         """Maskiert IBANs"""
         def replacer(match):
@@ -309,43 +309,43 @@ class PiiSanitizer:
                 self.metrics["ibans_redacted"] += 1
                 return iban[:4] + self.config.mask_char * 3
             return match.group(0)
-        
+
         return IBAN_RE.sub(replacer, text)
-    
+
     def _scrub_ips(self, text: str) -> str:
         """Maskiert IP-Adressen"""
         def replacer_v4(match):
             self.metrics["ips_redacted"] += 1
             parts = match.group(0).split(".")
             return f"{parts[0]}.{parts[1]}.{self.config.mask_char}.{self.config.mask_char}"
-        
+
         def replacer_v6(match):
             self.metrics["ips_redacted"] += 1
             return "[IPv6_REDACTED]"
-        
+
         result = IPv4_RE.sub(replacer_v4, text)
         result = IPv6_RE.sub(replacer_v6, result)
         return result
-    
+
     def _luhn_check(self, card_number: str) -> bool:
         """
         Luhn-Algorithmus für Kreditkarten-Validierung.
-        
+
         Args:
             card_number: Kartennummer (nur Ziffern)
-            
+
         Returns:
             True wenn Prüfziffer gültig
         """
         if not card_number.isdigit():
             return False
-        
+
         if len(card_number) < 13 or len(card_number) > 19:
             return False
-        
+
         digits = [int(d) for d in card_number]
         checksum = 0
-        
+
         # Von rechts nach links, jede zweite Ziffer verdoppeln
         for i, digit in enumerate(reversed(digits)):
             if i % 2 == 1:
@@ -353,45 +353,45 @@ class PiiSanitizer:
                 if digit > 9:
                     digit -= 9
             checksum += digit
-        
+
         return checksum % 10 == 0
-    
+
     def _iban_check(self, iban: str) -> bool:
         """
         Vereinfachte IBAN-Validierung.
-        
+
         Args:
             iban: IBAN (ohne Spaces)
-            
+
         Returns:
             True wenn Format gültig (echte Modulo-97-Prüfung wäre komplexer)
         """
         if len(iban) < 15 or len(iban) > 34:
             return False
-        
+
         if not iban[:2].isalpha() or not iban[2:4].isdigit():
             return False
-        
+
         # Einfache Längen-Checks pro Land
         country_lengths = {
             "AT": 20,  # Österreich
             "DE": 22,  # Deutschland
             "CH": 21,  # Schweiz
         }
-        
+
         country = iban[:2].upper()
         if country in country_lengths:
             return len(iban) == country_lengths[country]
-        
+
         return True  # Andere Länder: Basis-Check akzeptiert
-    
+
     def _mask_value(self, value: Any) -> str:
         """Maskiert Wert teilweise"""
         str_val = str(value)
         if len(str_val) <= 4:
             return self.config.mask_char * len(str_val)
         return str_val[:2] + self.config.mask_char * (len(str_val) - 4) + str_val[-2:]
-    
+
     def _hash_value(self, value: Any) -> str:
         """SHA256-Hash eines Werts"""
         str_val = str(value)
@@ -401,7 +401,7 @@ class PiiSanitizer:
 class LoggingPiiFilter(logging.Filter):
     """
     Python Logging-Filter für automatische PII-Redaktion.
-    
+
     Usage:
         import logging
         sanitizer = PiiSanitizer()
@@ -410,17 +410,17 @@ class LoggingPiiFilter(logging.Filter):
         logger = logging.getLogger()
         logger.addHandler(handler)
     """
-    
+
     def __init__(self, sanitizer: Optional[PiiSanitizer] = None):
         super().__init__()
         self.sanitizer = sanitizer or PiiSanitizer()
-    
+
     def filter(self, record: logging.LogRecord) -> bool:
         """Redaktiert LogRecord-Inhalte"""
         # Message sanitieren
         if isinstance(record.msg, str):
             record.msg = self.sanitizer.scrub_text(record.msg)
-        
+
         # Args sanitieren
         if record.args:
             if isinstance(record.args, dict):
@@ -430,7 +430,7 @@ class LoggingPiiFilter(logging.Filter):
                     self.sanitizer.scrub_text(arg) if isinstance(arg, str) else arg
                     for arg in record.args
                 )
-        
+
         return True
 
 
@@ -441,7 +441,7 @@ _default_sanitizer = None
 def scrub(text: str) -> str:
     """
     Shortcut für Text-Sanitization.
-    
+
     Usage:
         from app.lib.pii_sanitizer import scrub
         clean = scrub("Email: test@test.com")
@@ -455,7 +455,7 @@ def scrub(text: str) -> str:
 def scrub_dict(data: Dict[str, Any], strategy: RedactionStrategy = RedactionStrategy.DROP) -> Dict[str, Any]:
     """
     Shortcut für Dictionary-Sanitization.
-    
+
     Usage:
         from app.lib.pii_sanitizer import scrub_dict
         clean = scrub_dict({"password": "secret"})

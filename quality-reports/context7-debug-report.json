@@ -1,0 +1,18 @@
+{
+  "timestamp": "2025-10-07T15:55:38.077Z",
+  "context7Test": {
+    "code": null,
+    "signal": "SIGKILL",
+    "stdout": "{\"result\":{\"protocolVersion\":\"2024-11-05\",\"capabilities\":{\"tools\":{\"listChanged\":true}},\"serverInfo\":{\"name\":\"Context7\",\"version\":\"1.0.21\"},\"instructions\":\"Use this server to retrieve up-to-date documentation and code examples for any library.\"},\"jsonrpc\":\"2.0\",\"id\":1}\n",
+    "stderr": "Context7 Documentation MCP Server running on stdio\n"
+  },
+  "environment": {
+    "nodeVersion": "v22.20.0",
+    "hasApiKey": false,
+    "workingDirectory": "/workspaces/menschlichkeit-oesterreich-development"
+  },
+  "errorDiagnosis": {
+    "likelyIssue": "Missing API Key",
+    "recommendation": "Set CONTEXT7_API_KEY environment variable"
+  }
+}

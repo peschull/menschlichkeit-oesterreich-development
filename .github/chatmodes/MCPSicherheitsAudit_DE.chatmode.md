@@ -328,4 +328,11 @@ PLAYBOOKS vorhanden?
 **Ziel:** Zero Critical Vulnerabilities, 100% DSGVO Compliance, Transparent Audit Trail
 **Ausgabe:** Strukturierter Report mit Risk-Rating und Remediation-Timeline
 **Follow-up:** Via Memory MCP Tracking für alle Findings
+
+### Schnellstart & DoD
+- Schnellstart: 1) GitHub MCP Alerts laden 2) Filesystem Secret/PII‑Scan 3) PostgreSQL PII‑Status prüfen 4) Report erzeugen
+- Definition of Done:
+  - 0 CRITICAL/Blocker offen
+  - DSGVO‑Gates grün (PII‑Schutz/Logging/Retention)
+  - Klare Remediation‑Roadmap mit Ownern/Fristen
 ```

@@ -14,8 +14,14 @@ os.environ.setdefault("CIVI_SITE_KEY", "test_site_key")
 os.environ.setdefault("CIVI_API_KEY", "test_api_key")
 os.environ.setdefault("JWT_SECRET", "unit_test_secret")
 
+# Import path fix for api module
+import sys
+from pathlib import Path
+api_path = Path(__file__).parent.parent / "api.menschlichkeit-oesterreich.at"
+if str(api_path) not in sys.path:
+    sys.path.insert(0, str(api_path))
 
-from api.menschlichkeit-oesterreich.at.app.main import app  # type: ignore  # noqa: E402
+from app.main import app  # type: ignore  # noqa: E402
 
 
 def make_token(sub: str, *, roles: list[str] | None = None, is_admin: bool | None = None) -> str:
@@ -47,7 +53,7 @@ def test_privacy_health(client: TestClient):
 
 def test_request_deletion_auto_approved(monkeypatch: pytest.MonkeyPatch, client: TestClient):
     # Patch retention to no exceptions and anonymization + n8n to no-op
-    import api.menschlichkeit-oesterreich.at.app.routes.privacy as privacy  # type: ignore
+    import app.routes.privacy as privacy  # type: ignore
 
     async def _no_exceptions(user_id: int, email: str):
         return []

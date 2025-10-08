@@ -431,4 +431,12 @@ Falls Token-Drift:
 **Ziel:** Pixel-Perfect Design Consistency, Zero Manual Token Management, 100% Figma ↔ Code Sync
 **Ausgabe:** Aktualisierte Design Tokens, Generated Components, Documentation
 **Automation:** Scheduled Sync via GitHub Actions (täglich), On-Demand via npm script
+ 
+### Stop-Kriterien & DoD
+- STOP bei Token‑Drift ohne Entscheidung des Design Leads
+- STOP bei WCAG‑Kontrast < AA für produktive Komponenten
+- Definition of Done:
+  - 0 Token‑Drift (Figma ↔ Code)
+  - WCAG AA in Audit bestanden
+  - Komponenten verwenden ausschließlich Tokens (keine Hardcodes)
 ```
