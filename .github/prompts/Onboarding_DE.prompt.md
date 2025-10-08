@@ -1,4 +1,24 @@
 ---
+status: DEPRECATED
+deprecated_date: 2025-10-08
+migration_target: .github/chatmodes/Onboarding_DE.chatmode.md
+reason: Legacy Prompt-Format - ersetzt durch einheitliches Chatmode/Instructions-System
+---
+
+**⚠️ DEPRECATED - NICHT VERWENDEN**
+
+Diese Datei ist veraltet und wird in einer zukünftigen Version entfernt.
+
+- **Status:** DEPRECATED
+- **Datum:** 2025-10-08
+- **Migration:** .github/chatmodes/Onboarding_DE.chatmode.md
+- **Grund:** Legacy Prompt-Format - ersetzt durch einheitliches Chatmode/Instructions-System
+
+**Aktuelle Version verwenden:** .github/chatmodes/Onboarding_DE.chatmode.md
+
+---
+
+---
 description: 'Erstellt einen umfassenden Onboarding-Leitfaden auf Deutsch für neue Mitwirkende'
 mode: 'ask'
 tools: ['githubRepo']

@@ -1,0 +1,779 @@
+{
+  "analysis_date": "2025-10-08",
+  "total_duplicates": 49,
+  "statistics": {
+    "identical": 1,
+    "merge_recommended": 0,
+    "review_required": 0,
+    "keep_separate": 48
+  },
+  "duplicates": [
+    {
+      "type": "name_duplicate",
+      "normalized_name": "dockerisierung",
+      "file_count": 2,
+      "files": [
+        "chatmodes/Dockerisierung_DE.chatmode.md",
+        "prompts/Dockerisierung_DE.prompt.md"
+      ],
+      "unique_content_hashes": 2,
+      "average_similarity": 0.07,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "onboarding",
+      "file_count": 8,
+      "files": [
+        "chatmodes/Onboarding_DE.chatmode.md",
+        "prompts/Onboarding_DE.prompt.md",
+        "prompts/chatmodes/onboarding.yaml",
+        "prompts/chatmodes/onboarding_examples.md",
+        "prompts/chatmodes/onboarding.yaml.json",
+        "prompts/chatmodes/onboarding.yaml",
+        "prompts/chatmodes/onboarding_examples.md",
+        "prompts/chatmodes/onboarding.yaml.json"
+      ],
+      "unique_content_hashes": 5,
+      "average_similarity": 0.0,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "marketingcontent",
+      "file_count": 2,
+      "files": [
+        "chatmodes/MarketingContent_DE.chatmode.md",
+        "prompts/MarketingContent_DE.prompt.md"
+      ],
+      "unique_content_hashes": 2,
+      "average_similarity": 0.08,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "codereview",
+      "file_count": 2,
+      "files": [
+        "chatmodes/CodeReview_DE.chatmode.md",
+        "prompts/CodeReview_DE.prompt.md"
+      ],
+      "unique_content_hashes": 2,
+      "average_similarity": 0.06,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "readme",
+      "file_count": 3,
+      "files": [
+        "chatmodes/README_DE.chatmode.md",
+        "prompts/README.md",
+        "prompts/README_DE.prompt.md"
+      ],
+      "unique_content_hashes": 3,
+      "average_similarity": 0.0,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "architekturplan",
+      "file_count": 2,
+      "files": [
+        "chatmodes/Architekturplan_DE.chatmode.md",
+        "prompts/Architekturplan_DE.prompt.md"
+      ],
+      "unique_content_hashes": 2,
+      "average_similarity": 0.08,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "apidesign",
+      "file_count": 2,
+      "files": [
+        "chatmodes/APIDesign_DE.chatmode.md",
+        "prompts/APIDesign_DE.prompt.md"
+      ],
+      "unique_content_hashes": 2,
+      "average_similarity": 0.13,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "datenbankschema",
+      "file_count": 2,
+      "files": [
+        "chatmodes/DatenbankSchema_DE.chatmode.md",
+        "prompts/DatenbankSchema_DE.prompt.md"
+      ],
+      "unique_content_hashes": 2,
+      "average_similarity": 0.08,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "beitragsrichtlinien",
+      "file_count": 2,
+      "files": [
+        "chatmodes/Beitragsrichtlinien_DE.chatmode.md",
+        "prompts/Beitragsrichtlinien_DE.prompt.md"
+      ],
+      "unique_content_hashes": 2,
+      "average_similarity": 0.03,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "barrierefreiheitaudit",
+      "file_count": 2,
+      "files": [
+        "chatmodes/BarrierefreiheitAudit_DE.chatmode.md",
+        "prompts/BarrierefreiheitAudit_DE.prompt.md"
+      ],
+      "unique_content_hashes": 2,
+      "average_similarity": 0.08,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "benutzerdokumentation",
+      "file_count": 2,
+      "files": [
+        "chatmodes/BenutzerDokumentation_DE.chatmode.md",
+        "prompts/BenutzerDokumentation_DE.prompt.md"
+      ],
+      "unique_content_hashes": 2,
+      "average_similarity": 0.08,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "deploymentguide",
+      "file_count": 2,
+      "files": [
+        "chatmodes/DeploymentGuide_DE.chatmode.md",
+        "prompts/DeploymentGuide_DE.prompt.md"
+      ],
+      "unique_content_hashes": 2,
+      "average_similarity": 0.1,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "fehlerberichtvorlage",
+      "file_count": 2,
+      "files": [
+        "chatmodes/FehlerberichtVorlage_DE.chatmode.md",
+        "prompts/FehlerberichtVorlage_DE.prompt.md"
+      ],
+      "unique_content_hashes": 2,
+      "average_similarity": 0.07,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "sicherheitsaudit",
+      "file_count": 2,
+      "files": [
+        "chatmodes/SicherheitsAudit_DE.chatmode.md",
+        "prompts/SicherheitsAudit_DE.prompt.md"
+      ],
+      "unique_content_hashes": 2,
+      "average_similarity": 0.06,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "lokalisierungsplan",
+      "file_count": 2,
+      "files": [
+        "chatmodes/Lokalisierungsplan_DE.chatmode.md",
+        "prompts/Lokalisierungsplan_DE.prompt.md"
+      ],
+      "unique_content_hashes": 2,
+      "average_similarity": 0.08,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "cipipeline",
+      "file_count": 2,
+      "files": [
+        "chatmodes/CIPipeline_DE.chatmode.md",
+        "prompts/CIPipeline_DE.prompt.md"
+      ],
+      "unique_content_hashes": 2,
+      "average_similarity": 0.07,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "performanceoptimierung",
+      "file_count": 2,
+      "files": [
+        "chatmodes/PerformanceOptimierung_DE.chatmode.md",
+        "prompts/PerformanceOptimierung_DE.prompt.md"
+      ],
+      "unique_content_hashes": 2,
+      "average_similarity": 0.08,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "testgeneration",
+      "file_count": 2,
+      "files": [
+        "chatmodes/TestGeneration_DE.chatmode.md",
+        "prompts/TestGeneration_DE.prompt.md"
+      ],
+      "unique_content_hashes": 2,
+      "average_similarity": 0.02,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "featurevorschlag",
+      "file_count": 2,
+      "files": [
+        "chatmodes/FeatureVorschlag_DE.chatmode.md",
+        "prompts/FeatureVorschlag_DE.prompt.md"
+      ],
+      "unique_content_hashes": 2,
+      "average_similarity": 0.06,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "roadmap",
+      "file_count": 8,
+      "files": [
+        "chatmodes/Roadmap_DE.chatmode.md",
+        "prompts/Roadmap_DE.prompt.md",
+        "prompts/chatmodes/roadmap.yaml.json",
+        "prompts/chatmodes/roadmap.yaml",
+        "prompts/chatmodes/roadmap_examples.md",
+        "prompts/chatmodes/roadmap.yaml.json",
+        "prompts/chatmodes/roadmap.yaml",
+        "prompts/chatmodes/roadmap_examples.md"
+      ],
+      "unique_content_hashes": 5,
+      "average_similarity": 0.0,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "civicrm-n8n-automation",
+      "file_count": 8,
+      "files": [
+        "prompts/CiviCRM_n8n_Automation_DE.prompt.md",
+        "prompts/chatmodes/civicrm-n8n-automation.yaml.json",
+        "prompts/chatmodes/civicrm-n8n-automation.yaml",
+        "prompts/chatmodes/civicrm-n8n-automation_examples.md",
+        "prompts/chatmodes/civicrm-n8n-automation.yaml.json",
+        "prompts/chatmodes/civicrm-n8n-automation.yaml",
+        "prompts/chatmodes/civicrm-n8n-automation_examples.md",
+        "instructions/civicrm-n8n-automation.instructions.md"
+      ],
+      "unique_content_hashes": 5,
+      "average_similarity": 0.0,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "civicrm-vereinsbuchhaltung",
+      "file_count": 8,
+      "files": [
+        "prompts/CiviCRM_Vereinsbuchhaltung_DE.prompt.md",
+        "prompts/chatmodes/civicrm-vereinsbuchhaltung.yaml",
+        "prompts/chatmodes/civicrm-vereinsbuchhaltung_examples.md",
+        "prompts/chatmodes/civicrm-vereinsbuchhaltung.yaml.json",
+        "prompts/chatmodes/civicrm-vereinsbuchhaltung.yaml",
+        "prompts/chatmodes/civicrm-vereinsbuchhaltung_examples.md",
+        "prompts/chatmodes/civicrm-vereinsbuchhaltung.yaml.json",
+        "instructions/civicrm-vereinsbuchhaltung.instructions.md"
+      ],
+      "unique_content_hashes": 5,
+      "average_similarity": 0.0,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "n8n-workflows",
+      "file_count": 6,
+      "files": [
+        "prompts/chatmodes/n8n-workflows.yaml.json",
+        "prompts/chatmodes/n8n-workflows_examples.md",
+        "prompts/chatmodes/n8n-workflows.yaml",
+        "prompts/chatmodes/n8n-workflows.yaml.json",
+        "prompts/chatmodes/n8n-workflows_examples.md",
+        "prompts/chatmodes/n8n-workflows.yaml"
+      ],
+      "unique_content_hashes": 3,
+      "average_similarity": 0.0,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "marketing-content",
+      "file_count": 6,
+      "files": [
+        "prompts/chatmodes/marketing-content.yaml.json",
+        "prompts/chatmodes/marketing-content_examples.md",
+        "prompts/chatmodes/marketing-content.yaml",
+        "prompts/chatmodes/marketing-content.yaml.json",
+        "prompts/chatmodes/marketing-content_examples.md",
+        "prompts/chatmodes/marketing-content.yaml"
+      ],
+      "unique_content_hashes": 3,
+      "average_similarity": 0.0,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "dsgvo-compliance-audit",
+      "file_count": 6,
+      "files": [
+        "prompts/chatmodes/dsgvo-compliance-audit.yaml.json",
+        "prompts/chatmodes/dsgvo-compliance-audit.yaml",
+        "prompts/chatmodes/dsgvo-compliance-audit_examples.md",
+        "prompts/chatmodes/dsgvo-compliance-audit.yaml.json",
+        "prompts/chatmodes/dsgvo-compliance-audit.yaml",
+        "prompts/chatmodes/dsgvo-compliance-audit_examples.md"
+      ],
+      "unique_content_hashes": 3,
+      "average_similarity": 0.0,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "verein-mitgliederaufnahme",
+      "file_count": 6,
+      "files": [
+        "prompts/chatmodes/verein-mitgliederaufnahme_examples.md",
+        "prompts/chatmodes/verein-mitgliederaufnahme.yaml",
+        "prompts/chatmodes/verein-mitgliederaufnahme.yaml.json",
+        "prompts/chatmodes/verein-mitgliederaufnahme_examples.md",
+        "prompts/chatmodes/verein-mitgliederaufnahme.yaml",
+        "prompts/chatmodes/verein-mitgliederaufnahme.yaml.json"
+      ],
+      "unique_content_hashes": 3,
+      "average_similarity": 0.0,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "accessibility-audit",
+      "file_count": 6,
+      "files": [
+        "prompts/chatmodes/accessibility-audit.yaml",
+        "prompts/chatmodes/accessibility-audit_examples.md",
+        "prompts/chatmodes/accessibility-audit.yaml.json",
+        "prompts/chatmodes/accessibility-audit.yaml",
+        "prompts/chatmodes/accessibility-audit_examples.md",
+        "prompts/chatmodes/accessibility-audit.yaml.json"
+      ],
+      "unique_content_hashes": 3,
+      "average_similarity": 0.0,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "contribution-guidelines",
+      "file_count": 6,
+      "files": [
+        "prompts/chatmodes/contribution-guidelines.yaml.json",
+        "prompts/chatmodes/contribution-guidelines_examples.md",
+        "prompts/chatmodes/contribution-guidelines.yaml",
+        "prompts/chatmodes/contribution-guidelines.yaml.json",
+        "prompts/chatmodes/contribution-guidelines_examples.md",
+        "prompts/chatmodes/contribution-guidelines.yaml"
+      ],
+      "unique_content_hashes": 3,
+      "average_similarity": 0.0,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "deployment-operations",
+      "file_count": 6,
+      "files": [
+        "prompts/chatmodes/deployment-operations_examples.md",
+        "prompts/chatmodes/deployment-operations.yaml.json",
+        "prompts/chatmodes/deployment-operations.yaml",
+        "prompts/chatmodes/deployment-operations_examples.md",
+        "prompts/chatmodes/deployment-operations.yaml.json",
+        "prompts/chatmodes/deployment-operations.yaml"
+      ],
+      "unique_content_hashes": 3,
+      "average_similarity": 0.0,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "ci-pipeline",
+      "file_count": 6,
+      "files": [
+        "prompts/chatmodes/ci-pipeline_examples.md",
+        "prompts/chatmodes/ci-pipeline.yaml.json",
+        "prompts/chatmodes/ci-pipeline.yaml",
+        "prompts/chatmodes/ci-pipeline_examples.md",
+        "prompts/chatmodes/ci-pipeline.yaml.json",
+        "prompts/chatmodes/ci-pipeline.yaml"
+      ],
+      "unique_content_hashes": 3,
+      "average_similarity": 0.0,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "bug-report",
+      "file_count": 6,
+      "files": [
+        "prompts/chatmodes/bug-report.yaml.json",
+        "prompts/chatmodes/bug-report.yaml",
+        "prompts/chatmodes/bug-report_examples.md",
+        "prompts/chatmodes/bug-report.yaml.json",
+        "prompts/chatmodes/bug-report.yaml",
+        "prompts/chatmodes/bug-report_examples.md"
+      ],
+      "unique_content_hashes": 3,
+      "average_similarity": 0.0,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "verein-mitgliederversammlung",
+      "file_count": 6,
+      "files": [
+        "prompts/chatmodes/verein-mitgliederversammlung.yaml",
+        "prompts/chatmodes/verein-mitgliederversammlung.yaml.json",
+        "prompts/chatmodes/verein-mitgliederversammlung_examples.md",
+        "prompts/chatmodes/verein-mitgliederversammlung.yaml",
+        "prompts/chatmodes/verein-mitgliederversammlung.yaml.json",
+        "prompts/chatmodes/verein-mitgliederversammlung_examples.md"
+      ],
+      "unique_content_hashes": 3,
+      "average_similarity": 0.0,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "n8n-automation",
+      "file_count": 7,
+      "files": [
+        "prompts/chatmodes/n8n-automation_examples.md",
+        "prompts/chatmodes/n8n-automation.yaml",
+        "prompts/chatmodes/n8n-automation.yaml.json",
+        "prompts/chatmodes/n8n-automation_examples.md",
+        "prompts/chatmodes/n8n-automation.yaml",
+        "prompts/chatmodes/n8n-automation.yaml.json",
+        "instructions/n8n-automation.instructions.md"
+      ],
+      "unique_content_hashes": 4,
+      "average_similarity": 0.0,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "architecture-plan",
+      "file_count": 6,
+      "files": [
+        "prompts/chatmodes/architecture-plan.yaml.json",
+        "prompts/chatmodes/architecture-plan_examples.md",
+        "prompts/chatmodes/architecture-plan.yaml",
+        "prompts/chatmodes/architecture-plan.yaml.json",
+        "prompts/chatmodes/architecture-plan_examples.md",
+        "prompts/chatmodes/architecture-plan.yaml"
+      ],
+      "unique_content_hashes": 3,
+      "average_similarity": 0.0,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "repository-prompt-architect",
+      "file_count": 6,
+      "files": [
+        "prompts/chatmodes/repository-prompt-architect_examples.md",
+        "prompts/chatmodes/repository-prompt-architect.yaml.json",
+        "prompts/chatmodes/repository-prompt-architect.yaml",
+        "prompts/chatmodes/repository-prompt-architect_examples.md",
+        "prompts/chatmodes/repository-prompt-architect.yaml.json",
+        "prompts/chatmodes/repository-prompt-architect.yaml"
+      ],
+      "unique_content_hashes": 3,
+      "average_similarity": 0.0,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "test-generation",
+      "file_count": 6,
+      "files": [
+        "prompts/chatmodes/test-generation.yaml",
+        "prompts/chatmodes/test-generation.yaml.json",
+        "prompts/chatmodes/test-generation_examples.md",
+        "prompts/chatmodes/test-generation.yaml",
+        "prompts/chatmodes/test-generation.yaml.json",
+        "prompts/chatmodes/test-generation_examples.md"
+      ],
+      "unique_content_hashes": 3,
+      "average_similarity": 0.0,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "performance-optimization",
+      "file_count": 6,
+      "files": [
+        "prompts/chatmodes/performance-optimization.yaml",
+        "prompts/chatmodes/performance-optimization_examples.md",
+        "prompts/chatmodes/performance-optimization.yaml.json",
+        "prompts/chatmodes/performance-optimization.yaml",
+        "prompts/chatmodes/performance-optimization_examples.md",
+        "prompts/chatmodes/performance-optimization.yaml.json"
+      ],
+      "unique_content_hashes": 3,
+      "average_similarity": 0.0,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "quality-gates-audit",
+      "file_count": 6,
+      "files": [
+        "prompts/chatmodes/quality-gates-audit.yaml.json",
+        "prompts/chatmodes/quality-gates-audit.yaml",
+        "prompts/chatmodes/quality-gates-audit_examples.md",
+        "prompts/chatmodes/quality-gates-audit.yaml.json",
+        "prompts/chatmodes/quality-gates-audit.yaml",
+        "prompts/chatmodes/quality-gates-audit_examples.md"
+      ],
+      "unique_content_hashes": 3,
+      "average_similarity": 0.0,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "user-documentation",
+      "file_count": 6,
+      "files": [
+        "prompts/chatmodes/user-documentation.yaml",
+        "prompts/chatmodes/user-documentation_examples.md",
+        "prompts/chatmodes/user-documentation.yaml.json",
+        "prompts/chatmodes/user-documentation.yaml",
+        "prompts/chatmodes/user-documentation_examples.md",
+        "prompts/chatmodes/user-documentation.yaml.json"
+      ],
+      "unique_content_hashes": 3,
+      "average_similarity": 0.0,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "dockerization",
+      "file_count": 6,
+      "files": [
+        "prompts/chatmodes/dockerization.yaml.json",
+        "prompts/chatmodes/dockerization_examples.md",
+        "prompts/chatmodes/dockerization.yaml",
+        "prompts/chatmodes/dockerization.yaml.json",
+        "prompts/chatmodes/dockerization_examples.md",
+        "prompts/chatmodes/dockerization.yaml"
+      ],
+      "unique_content_hashes": 3,
+      "average_similarity": 0.0,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "feature-proposal",
+      "file_count": 6,
+      "files": [
+        "prompts/chatmodes/feature-proposal.yaml",
+        "prompts/chatmodes/feature-proposal_examples.md",
+        "prompts/chatmodes/feature-proposal.yaml.json",
+        "prompts/chatmodes/feature-proposal.yaml",
+        "prompts/chatmodes/feature-proposal_examples.md",
+        "prompts/chatmodes/feature-proposal.yaml.json"
+      ],
+      "unique_content_hashes": 3,
+      "average_similarity": 0.0,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "readme-modernization",
+      "file_count": 6,
+      "files": [
+        "prompts/chatmodes/readme-modernization_examples.md",
+        "prompts/chatmodes/readme-modernization.yaml",
+        "prompts/chatmodes/readme-modernization.yaml.json",
+        "prompts/chatmodes/readme-modernization_examples.md",
+        "prompts/chatmodes/readme-modernization.yaml",
+        "prompts/chatmodes/readme-modernization.yaml.json"
+      ],
+      "unique_content_hashes": 3,
+      "average_similarity": 0.0,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "verein-rechnungspruefung",
+      "file_count": 6,
+      "files": [
+        "prompts/chatmodes/verein-rechnungspruefung.yaml",
+        "prompts/chatmodes/verein-rechnungspruefung_examples.md",
+        "prompts/chatmodes/verein-rechnungspruefung.yaml.json",
+        "prompts/chatmodes/verein-rechnungspruefung.yaml",
+        "prompts/chatmodes/verein-rechnungspruefung_examples.md",
+        "prompts/chatmodes/verein-rechnungspruefung.yaml.json"
+      ],
+      "unique_content_hashes": 3,
+      "average_similarity": 0.0,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "localization-plan",
+      "file_count": 6,
+      "files": [
+        "prompts/chatmodes/localization-plan.yaml",
+        "prompts/chatmodes/localization-plan.yaml.json",
+        "prompts/chatmodes/localization-plan_examples.md",
+        "prompts/chatmodes/localization-plan.yaml",
+        "prompts/chatmodes/localization-plan.yaml.json",
+        "prompts/chatmodes/localization-plan_examples.md"
+      ],
+      "unique_content_hashes": 3,
+      "average_similarity": 0.0,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "database-schema",
+      "file_count": 6,
+      "files": [
+        "prompts/chatmodes/database-schema.yaml",
+        "prompts/chatmodes/database-schema_examples.md",
+        "prompts/chatmodes/database-schema.yaml.json",
+        "prompts/chatmodes/database-schema.yaml",
+        "prompts/chatmodes/database-schema_examples.md",
+        "prompts/chatmodes/database-schema.yaml.json"
+      ],
+      "unique_content_hashes": 3,
+      "average_similarity": 0.0,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "api-design",
+      "file_count": 6,
+      "files": [
+        "prompts/chatmodes/api-design.yaml",
+        "prompts/chatmodes/api-design_examples.md",
+        "prompts/chatmodes/api-design.yaml.json",
+        "prompts/chatmodes/api-design.yaml",
+        "prompts/chatmodes/api-design_examples.md",
+        "prompts/chatmodes/api-design.yaml.json"
+      ],
+      "unique_content_hashes": 3,
+      "average_similarity": 0.0,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "code-review",
+      "file_count": 6,
+      "files": [
+        "prompts/chatmodes/code-review.yaml.json",
+        "prompts/chatmodes/code-review.yaml",
+        "prompts/chatmodes/code-review_examples.md",
+        "prompts/chatmodes/code-review.yaml.json",
+        "prompts/chatmodes/code-review.yaml",
+        "prompts/chatmodes/code-review_examples.md"
+      ],
+      "unique_content_hashes": 3,
+      "average_similarity": 0.0,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "security-audit",
+      "file_count": 6,
+      "files": [
+        "prompts/chatmodes/security-audit.yaml.json",
+        "prompts/chatmodes/security-audit_examples.md",
+        "prompts/chatmodes/security-audit.yaml",
+        "prompts/chatmodes/security-audit.yaml.json",
+        "prompts/chatmodes/security-audit_examples.md",
+        "prompts/chatmodes/security-audit.yaml"
+      ],
+      "unique_content_hashes": 3,
+      "average_similarity": 0.0,
+      "identical_content": false,
+      "recommendation": "KEEP_SEPARATE - Unterschiedliche Inhalte trotz ähnlicher Namen"
+    },
+    {
+      "type": "name_duplicate",
+      "normalized_name": "-schema",
+      "file_count": 2,
+      "files": [
+        "prompts/chatmodes/_schema.json",
+        "prompts/chatmodes/_schema.json"
+      ],
+      "unique_content_hashes": 1,
+      "average_similarity": 1.0,
+      "identical_content": true,
+      "recommendation": "DELETE_DUPLICATES - Identischer Inhalt, eine Datei behalten"
+    }
+  ]
+}

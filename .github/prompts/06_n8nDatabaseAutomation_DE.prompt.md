@@ -1,4 +1,24 @@
 ---
+status: DEPRECATED
+deprecated_date: 2025-10-08
+migration_target: .github/instructions/06-n8ndatabaseautomation.instructions.md
+reason: Legacy Prompt-Format - ersetzt durch einheitliches Chatmode/Instructions-System
+---
+
+**⚠️ DEPRECATED - NICHT VERWENDEN**
+
+Diese Datei ist veraltet und wird in einer zukünftigen Version entfernt.
+
+- **Status:** DEPRECATED
+- **Datum:** 2025-10-08
+- **Migration:** .github/instructions/06-n8ndatabaseautomation.instructions.md
+- **Grund:** Legacy Prompt-Format - ersetzt durch einheitliches Chatmode/Instructions-System
+
+**Aktuelle Version verwenden:** .github/instructions/06-n8ndatabaseautomation.instructions.md
+
+---
+
+---
 description: 'n8n Datenbank-Automatisierung für Backups, Health Checks und Migration-Tracking'
   - 02_DatabaseRollout_DE
 ---

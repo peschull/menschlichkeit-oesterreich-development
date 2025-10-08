@@ -1,4 +1,24 @@
 ---
+status: DEPRECATED
+deprecated_date: 2025-10-08
+migration_target: .github/instructions/civicrm-vereinsbuchhaltung.instructions.md
+reason: Legacy Prompt-Format - ersetzt durch einheitliches Chatmode/Instructions-System
+---
+
+**⚠️ DEPRECATED - NICHT VERWENDEN**
+
+Diese Datei ist veraltet und wird in einer zukünftigen Version entfernt.
+
+- **Status:** DEPRECATED
+- **Datum:** 2025-10-08
+- **Migration:** .github/instructions/civicrm-vereinsbuchhaltung.instructions.md
+- **Grund:** Legacy Prompt-Format - ersetzt durch einheitliches Chatmode/Instructions-System
+
+**Aktuelle Version verwenden:** .github/instructions/civicrm-vereinsbuchhaltung.instructions.md
+
+---
+
+---
 description: 'Planung & Umsetzung der CiviCRM Vereinsbuchhaltung inkl. SEPA, Beiträge & Spenden'
 mode: 'agent'
 tools: ['githubRepo', 'codebase']

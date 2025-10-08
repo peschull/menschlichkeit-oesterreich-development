@@ -1,4 +1,24 @@
 ---
+status: DEPRECATED
+deprecated_date: 2025-10-08
+migration_target: .github/instructions/civicrm-n8n-automation.instructions.md
+reason: Legacy Prompt-Format - ersetzt durch einheitliches Chatmode/Instructions-System
+---
+
+**⚠️ DEPRECATED - NICHT VERWENDEN**
+
+Diese Datei ist veraltet und wird in einer zukünftigen Version entfernt.
+
+- **Status:** DEPRECATED
+- **Datum:** 2025-10-08
+- **Migration:** .github/instructions/civicrm-n8n-automation.instructions.md
+- **Grund:** Legacy Prompt-Format - ersetzt durch einheitliches Chatmode/Instructions-System
+
+**Aktuelle Version verwenden:** .github/instructions/civicrm-n8n-automation.instructions.md
+
+---
+
+---
 description: 'Konzipiert einen vollständigen Automationsplan (CiviCRM + n8n + Plesk + Monitoring) für Beiträge & Spenden'
 mode: 'agent'
 tools: ['githubRepo', 'codebase']

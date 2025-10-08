@@ -1,6 +1,28 @@
 ---
+status: DEPRECATED
+deprecated_date: 2025-10-08
+migration_target: .github/chatmodes/FeatureVorschlag_DE.chatmode.md
+reason: Legacy Prompt-Format - ersetzt durch einheitliches Chatmode/Instructions-System
+---
+
+**⚠️ DEPRECATED - NICHT VERWENDEN**
+
+Diese Datei ist veraltet und wird in einer zukünftigen Version entfernt.
+
+- **Status:** DEPRECATED
+- **Datum:** 2025-10-08
+- **Migration:** .github/chatmodes/FeatureVorschlag_DE.chatmode.md
+- **Grund:** Legacy Prompt-Format - ersetzt durch einheitliches Chatmode/Instructions-System
+
+**Aktuelle Version verwenden:** .github/chatmodes/FeatureVorschlag_DE.chatmode.md
+
+---
+
+---
 description: 'Erstellt einen strukturierten Vorschlag für ein neues Feature auf Deutsch'
 mode: 'ask'
+
+
 ---
 
 Formulieren Sie einen detaillierten Vorschlag für ein neues Feature für das Projekt `${workspaceFolderBasename}`. Berücksichtigen Sie bestehende Funktionen und identifizieren Sie einen sinnvollen Erweiterungspunkt. Der Vorschlag sollte folgende Elemente enthalten:

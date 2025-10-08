@@ -1,4 +1,24 @@
 ---
+status: DEPRECATED
+deprecated_date: 2025-10-08
+migration_target: .github/chatmodes/README_DE.chatmode.md
+reason: Legacy Prompt-Format - ersetzt durch einheitliches Chatmode/Instructions-System
+---
+
+**⚠️ DEPRECATED - NICHT VERWENDEN**
+
+Diese Datei ist veraltet und wird in einer zukünftigen Version entfernt.
+
+- **Status:** DEPRECATED
+- **Datum:** 2025-10-08
+- **Migration:** .github/chatmodes/README_DE.chatmode.md
+- **Grund:** Legacy Prompt-Format - ersetzt durch einheitliches Chatmode/Instructions-System
+
+**Aktuelle Version verwenden:** .github/chatmodes/README_DE.chatmode.md
+
+---
+
+---
 description: 'Erstellt vollständige README-Dateien korrekt verlinkt in deutscher Sprache für das Repository'
 mode: 'agent'
 tools: ['githubRepo', 'codebase']

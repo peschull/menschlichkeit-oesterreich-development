@@ -1,7 +1,27 @@
 ---
+status: DEPRECATED
+deprecated_date: 2025-10-08
+migration_target: .github/chatmodes/Beitragsrichtlinien_DE.chatmode.md
+reason: Legacy Prompt-Format - ersetzt durch einheitliches Chatmode/Instructions-System
+---
+
+**⚠️ DEPRECATED - NICHT VERWENDEN**
+
+Diese Datei ist veraltet und wird in einer zukünftigen Version entfernt.
+
+- **Status:** DEPRECATED
+- **Datum:** 2025-10-08
+- **Migration:** .github/chatmodes/Beitragsrichtlinien_DE.chatmode.md
+- **Grund:** Legacy Prompt-Format - ersetzt durch einheitliches Chatmode/Instructions-System
+
+**Aktuelle Version verwenden:** .github/chatmodes/Beitragsrichtlinien_DE.chatmode.md
+
+---
+
+---
 description: 'Erstellt verbindliche Beitragsrichtlinien (CONTRIBUTING) auf Deutsch'
 mode: 'agent'
-tools: ['githubRepo', 'codebase']
+tools: ['runCommands', 'runTasks', 'edit', 'runNotebooks', 'search', 'new', 'extensions', 'runTests', 'usages', 'vscodeAPI', 'think', 'problems', 'changes', 'testFailure', 'openSimpleBrowser', 'fetch', 'githubRepo', 'pylance mcp server', 'copilotCodingAgent', 'activePullRequest', 'openPullRequest', 'getPythonEnvironmentInfo', 'getPythonExecutableCommand', 'installPythonPackage', 'configurePythonEnvironment']
 ---
 
 Generieren Sie ein Dokument `CONTRIBUTING.md` in deutscher Sprache, das die Beitragsrichtlinien für das Projekt `${workspaceFolderBasename}` definiert. Es sollte folgende Punkte umfassen:

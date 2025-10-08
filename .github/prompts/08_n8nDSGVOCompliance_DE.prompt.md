@@ -1,4 +1,24 @@
 ---
+status: DEPRECATED
+deprecated_date: 2025-10-08
+migration_target: .github/instructions/08-n8ndsgvocompliance.instructions.md
+reason: Legacy Prompt-Format - ersetzt durch einheitliches Chatmode/Instructions-System
+---
+
+**⚠️ DEPRECATED - NICHT VERWENDEN**
+
+Diese Datei ist veraltet und wird in einer zukünftigen Version entfernt.
+
+- **Status:** DEPRECATED
+- **Datum:** 2025-10-08
+- **Migration:** .github/instructions/08-n8ndsgvocompliance.instructions.md
+- **Grund:** Legacy Prompt-Format - ersetzt durch einheitliches Chatmode/Instructions-System
+
+**Aktuelle Version verwenden:** .github/instructions/08-n8ndsgvocompliance.instructions.md
+
+---
+
+---
 description: 'n8n DSGVO-Compliance Workflows für Auskunft, Löschung, Consent & Audit'
   - 02_DatabaseRollout_DE
 ---

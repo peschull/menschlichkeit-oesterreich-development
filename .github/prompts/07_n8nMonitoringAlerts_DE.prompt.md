@@ -1,4 +1,24 @@
 ---
+status: DEPRECATED
+deprecated_date: 2025-10-08
+migration_target: .github/instructions/07-n8nmonitoringalerts.instructions.md
+reason: Legacy Prompt-Format - ersetzt durch einheitliches Chatmode/Instructions-System
+---
+
+**⚠️ DEPRECATED - NICHT VERWENDEN**
+
+Diese Datei ist veraltet und wird in einer zukünftigen Version entfernt.
+
+- **Status:** DEPRECATED
+- **Datum:** 2025-10-08
+- **Migration:** .github/instructions/07-n8nmonitoringalerts.instructions.md
+- **Grund:** Legacy Prompt-Format - ersetzt durch einheitliches Chatmode/Instructions-System
+
+**Aktuelle Version verwenden:** .github/instructions/07-n8nmonitoringalerts.instructions.md
+
+---
+
+---
 description: 'n8n Monitoring-Integration für Grafana, Service Health und SSL-Zertifikate'
   - 03_MCPMultiServiceDeployment_DE
 ---

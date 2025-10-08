@@ -1,7 +1,27 @@
 ---
+status: DEPRECATED
+deprecated_date: 2025-10-08
+migration_target: .github/chatmodes/Architekturplan_DE.chatmode.md
+reason: Legacy Prompt-Format - ersetzt durch einheitliches Chatmode/Instructions-System
+---
+
+**⚠️ DEPRECATED - NICHT VERWENDEN**
+
+Diese Datei ist veraltet und wird in einer zukünftigen Version entfernt.
+
+- **Status:** DEPRECATED
+- **Datum:** 2025-10-08
+- **Migration:** .github/chatmodes/Architekturplan_DE.chatmode.md
+- **Grund:** Legacy Prompt-Format - ersetzt durch einheitliches Chatmode/Instructions-System
+
+**Aktuelle Version verwenden:** .github/chatmodes/Architekturplan_DE.chatmode.md
+
+---
+
+---
 description: 'Erstellt einen detaillierten Architekturplan für das Projekt auf Deutsch'
 mode: 'agent'
-tools: ['githubRepo', 'codebase']
+tools: ['runCommands', 'runTasks', 'edit', 'runNotebooks', 'search', 'new', 'extensions', 'runTests', 'usages', 'vscodeAPI', 'think', 'problems', 'changes', 'testFailure', 'openSimpleBrowser', 'fetch', 'githubRepo', 'pylance mcp server', 'copilotCodingAgent', 'activePullRequest', 'openPullRequest', 'getPythonEnvironmentInfo', 'getPythonExecutableCommand', 'installPythonPackage', 'configurePythonEnvironment']
 ---
 
 Ziel ist es, einen technischen Architekturplan für das Projekt `${workspaceFolderBasename}` in deutscher Sprache zu erstellen. Nutzen Sie den vorhandenen Code und die Struktur des Repositories (#githubRepo), um folgende Punkte zu dokumentieren:
@@ -13,4 +33,4 @@ Ziel ist es, einen technischen Architekturplan für das Projekt `${workspaceFold
 5. **Abhängigkeiten** – Angabe externer Abhängigkeiten oder Dienste wie Datenbanken, Authentifizierungsdienste oder externe APIs.
 6. **Deployment** – Hinweise zur Bereitstellung und Skalierung (siehe ggf. separate Docker/CI-Promptdateien).
 
-Formulieren Sie den Plan klar und präzise in deutscher Sprache und referenzieren Sie relevante Dateien im Repository per `#file:`-Link. Die Struktur soll als Grundlage für weitere Dokumentation dienen.
+Formulieren Sie den Plan klar und präzise in deutscher Sprache und referenzieren Sie relevante Dateien im Repository. Die Struktur soll als Grundlage für weitere Dokumentation dienen.

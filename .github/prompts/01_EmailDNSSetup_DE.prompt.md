@@ -1,4 +1,24 @@
 ---
+status: DEPRECATED
+deprecated_date: 2025-10-08
+migration_target: .github/chatmodes/01_EmailDNSSetup_DE.chatmode.md
+reason: Legacy Prompt-Format - ersetzt durch einheitliches Chatmode/Instructions-System
+---
+
+**⚠️ DEPRECATED - NICHT VERWENDEN**
+
+Diese Datei ist veraltet und wird in einer zukünftigen Version entfernt.
+
+- **Status:** DEPRECATED
+- **Datum:** 2025-10-08
+- **Migration:** .github/chatmodes/01_EmailDNSSetup_DE.chatmode.md
+- **Grund:** Legacy Prompt-Format - ersetzt durch einheitliches Chatmode/Instructions-System
+
+**Aktuelle Version verwenden:** .github/chatmodes/01_EmailDNSSetup_DE.chatmode.md
+
+---
+
+---
 description: E-Mail-Setup mit SPF/DKIM/DMARC/TLSRPT für Plesk-basierte Multi-Domain-Architektur
 priority: high
 category: email-infrastructure
@@ -347,12 +367,12 @@ Menschlichkeit Österreich
 ## 📝 TODO Updates
 
 Bei erfolgreicher Ausführung dieser Prompt wird automatisch TODO.md aktualisiert:
-- [x] E-Mail-Postfächer angelegt (support@, dmarc@, tlsrpt@)
-- [x] Aliasse konfiguriert (alle rollenbasierten Adressen)
-- [x] DNS Records publiziert (SPF, DKIM, DMARC, TLSRPT)
-- [x] CiviMail konfiguriert (From, Reply-To, Bounce, List-Unsubscribe)
-- [x] Autoreplies aktiviert (abuse@, security@, noreply@)
-- [x] Smoke Tests bestanden (mail-tester ≥ 9/10)
+- [ ] E-Mail-Postfächer angelegt (support@, dmarc@, tlsrpt@)
+- [ ] Aliasse konfiguriert (alle rollenbasierten Adressen)
+- [ ] DNS Records publiziert (SPF, DKIM, DMARC, TLSRPT)
+- [ ] CiviMail konfiguriert (From, Reply-To, Bounce, List-Unsubscribe)
+- [ ] Autoreplies aktiviert (abuse@, security@, noreply@)
+- [ ] Smoke Tests bestanden (mail-tester ≥ 9/10)
 - [ ] Tag 30: DMARC auf p=reject umgestellt (pending)
 - [ ] Tag 60: BIMI aktiviert (optional, pending)
 
