@@ -45,6 +45,13 @@
   _Akzeptanzkriterien:_ Lint/Typecheck auf staged files; Conventional Commits enforced.  
   _Labels:_ `devx`, `quality` · _Schätzung:_ 1h · _Fällig:_ 2025-10-12
 
+- [ ] **MCP Server werden nicht angezeigt und nicht aktiviert**  
+  _Akzeptanzkriterien:_ VS Code zeigt alle 6 MCP Server in Copilot Chat an; Server sind funktionsfähig und antworten auf Anfragen.  
+  _Betroffene Dateien:_ `.vscode/mcp.json`, `.vscode/settings.json`  
+  _Debug Steps:_ VS Code neuladen, Copilot Logs prüfen (`~/.vscode/extensions/github.copilot-*/`), MCP Server manuell testen  
+  _Labels:_ `bug`, `mcp`, `devx`, `p0-critical` · _Schätzung:_ 2h · _Fällig:_ 2025-10-09  
+  _Kontext:_ 6 stabile Server konfiguriert (memory, sequential-thinking, figma, github, filesystem, upstash-context7), aber VS Code erkennt sie nicht
+
 - [x] **.github/ISSUE_TEMPLATE & Copilot‑Guidelines**  
   _Akzeptanzkriterien:_ Vorlagen für Bug/Feature/Task; Datei `.github/copilot-instructions.md` existiert.  
   _Labels:_ `docs`, `meta` · _Schätzung:_ 1h · _Fällig:_ 2025-10-12

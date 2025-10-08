@@ -29,11 +29,23 @@
 secrets/**/*.decrypted
 temp/*.decrypted
 
-# Large binaries (use package manager instead)
+# ========================================
+# LARGE BINARIES & BUILD ARTIFACTS
+# ========================================
+# Security scanning binaries (use package manager/CI to download)
 bin/trivy
 bin/gitleaks
 bin/*.exe
 bin/*.dmg
+bin/*.tar.gz
+bin/*.zip
+
+# Compiled binaries
+*.o
+*.a
+*.so
+*.dylib
+*.dll
 
 # Private keys & certificates
 *.pem
