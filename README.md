@@ -25,6 +25,7 @@
   </p>
 </p>
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/31fb30a90172427093c828f4d965e28e)](https://app.codacy.com/gh/peschull/menschlichkeit-oesterreich-development?utm_source=github.com&utm_medium=referral&utm_content=peschull/menschlichkeit-oesterreich-development&utm_campaign=Badge_Grade)
 ### Join our Discord! [![Discord](https://img.shields.io/discord/1102689410522284044.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/8Hzbrnkr7E)
 
 Gitleaks is a SAST tool for **detecting** and **preventing** hardcoded secrets like passwords, api keys, and tokens in git repos. Gitleaks is an **easy-to-use, all-in-one solution** for detecting secrets, past or present, in your code.
