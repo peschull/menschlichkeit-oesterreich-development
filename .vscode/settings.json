@@ -18,6 +18,17 @@
         ".github/instructions": true,
         "docs/ai-instructions": true
     },
+    
+    // MCP Server Configuration
+    "github.copilot.mcp.enabled": true,
+    "github.copilot.mcp.configPath": "${workspaceFolder}/.vscode/mcp.json",
+    
+    // Environment Variables für MCP
+    "terminal.integrated.env.linux": {
+        "FIGMA_ACCESS_TOKEN": "${env:FIGMA_ACCESS_TOKEN}",
+        "GITHUB_TOKEN": "${env:GITHUB_TOKEN}"
+    },
+    
     "telemetry.telemetryLevel": "off",
     "extensions.experimental.deferredStartupFinishedActivation": true
 }
