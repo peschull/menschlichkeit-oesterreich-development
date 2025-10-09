@@ -17,6 +17,9 @@ load_dotenv()
 # Import shared utilities (nach load_dotenv)
 from app.shared import ApiResponse, verify_jwt_token
 
+# Import routers
+from app.routes.privacy import router as privacy_router
+
 # Environment Configuration
 logger = logging.getLogger("moe-api.config")
 
@@ -133,14 +136,11 @@ app.add_middleware(
 
 # Mount routers
 try:
-        app.include_router(privacy_router)
+    app.include_router(privacy_router)
 except Exception:
     # Router is optional during initial bootstrap; verify_privacy_api.py
     # checks integration
     pass
-
-# Import Privacy Routes (GDPR Art. 17 Right to Erasure)
-app.include_router(privacy_router)
 
 # Data Models
 
