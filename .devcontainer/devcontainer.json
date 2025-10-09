@@ -1,32 +1,117 @@
 {
-  "name": "Menschlichkeit Österreich Development",
+  "name": "Menschlichkeit Österreich Dev",
   "image": "mcr.microsoft.com/devcontainers/universal:2",
   "features": {
-    "ghcr.io/devcontainers/features/git:1": {}
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "22",
+      "nodeGypDependencies": true
+    },
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
   },
-  "onCreateCommand": "powershell -ExecutionPolicy ByPass -c \"irm https://astral.sh/uv/install.ps1 | iex\" && chmod +x .devcontainer/setup-codespace.sh && bash .devcontainer/setup-codespace.sh",
-  "postCreateCommand": "bash .devcontainer/setup.sh",
+
+  "remoteUser": "codespace",
+  "overrideCommand": false,
+  "init": true,
+
+  "containerEnv": {
+    "TZ": "Europe/Vienna",
+    "LANG": "de_AT.UTF-8",
+    "NODE_ENV": "development",
+    "PYTHONUNBUFFERED": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PIP_DISABLE_PIP_VERSION_CHECK": "1",
+    "UV_LINK_MODE": "copy",
+    "PLAYWRIGHT_BROWSERS_PATH": "/home/codespace/.cache/ms-playwright"
+  },
+
+  "mounts": [
+    "type=cache,target=/home/codespace/.npm,id=npm-cache",
+    "type=cache,target=/home/codespace/.pnpm-store,id=pnpm-cache",
+    "type=cache,target=/home/codespace/.cache/pip,id=pip-cache",
+    "type=cache,target=/home/codespace/.cache/uv,id=uv-cache",
+    "type=cache,target=/home/codespace/.cache/ms-playwright,id=playwright-cache",
+    "type=cache,target=/home/codespace/.cache/composer,id=composer-cache"
+  ],
+
+  "runArgs": [
+    "--cap-add=SYS_PTRACE",
+    "--security-opt=seccomp=unconfined"
+  ],
+
+  "onCreateCommand": "bash -lc \"set -euo pipefail; sudo mkdir -p /home/vscode 2>/dev/null || true; sudo ln -sf /home/codespace/.minikube /home/vscode/.minikube 2>/dev/null || true; if command -v uv >/dev/null 2>&1; then echo 'uv already installed'; else if command -v pwsh >/dev/null 2>&1; then pwsh -NoProfile -c \\\"iwr -UseBasicParsing https://astral.sh/uv/install.ps1 | iex\\\"; else curl -LsSf https://astral.sh/uv/install.sh | sh; fi; fi; chmod +x .devcontainer/setup-codespace.sh || true; bash .devcontainer/setup-codespace.sh || true\"",
+
+  "postCreateCommand": "bash -lc \"if [ -f .devcontainer/setup.sh ]; then bash .devcontainer/setup.sh; fi; if [ -f package.json ]; then corepack enable; fi; if [ -f package.json ] && jq -e '.dependencies[\\\"@playwright/test\\\"] or .devDependencies[\\\"@playwright/test\\\"]' package.json >/dev/null 2>&1; then npx --yes playwright@latest install --with-deps; fi\"",
+
+  "postStartCommand": "bash -lc \"if command -v pnpm >/dev/null 2>&1; then pnpm --version >/dev/null 2>&1 || corepack prepare pnpm@latest --activate; fi\"",
+
   "customizations": {
     "vscode": {
       "extensions": [
         "ms-python.python",
         "ms-python.vscode-pylance",
         "ms-python.debugpy",
-        "ms-vscode.vscode-typescript-next",
+        "ms-python.black-formatter",
+        "charliermarsh.ruff",
+        "dbaeumer.vscode-eslint",
         "esbenp.prettier-vscode",
-        "ms-eslint.vscode-eslint",
         "bmewburn.vscode-intelephense-client",
+        "ms-azuretools.vscode-docker",
         "ms-playwright.playwright",
         "bradlc.vscode-tailwindcss",
         "GitHub.copilot",
-        "GitHub.copilot-chat"
+        "GitHub.copilot-chat",
+        "streetsidesoftware.code-spell-checker"
       ],
       "settings": {
         "terminal.integrated.defaultProfile.linux": "bash",
+
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+          "source.fixAll": "explicit",
+          "source.fixAll.eslint": "explicit",
+          "source.organizeImports": "explicit"
+        },
+        "editor.inlineSuggest.enabled": true,
+        "editor.inlineSuggest.edits.allowCodeShifting": "never",
+        "files.eol": "\n",
+        "files.watcherExclude": {
+          "**/node_modules/**": true,
+          "**/.git/**": true,
+          "**/dist/**": true,
+          "**/build/**": true,
+          "**/.venv/**": true
+        },
+        "search.exclude": {
+          "**/node_modules/**": true,
+          "**/dist/**": true,
+          "**/build/**": true
+        },
+
         "python.defaultInterpreterPath": "/usr/local/python/current/bin/python",
-        "python.linting.enabled": true,
-        "python.linting.pylintEnabled": true,
+        "python.testing.pytestEnabled": true,
+        "python.testing.unittestEnabled": false,
+        "python.analysis.typeCheckingMode": "basic",
+        "python.terminal.activateEnvironment": true,
+        "[python]": { "editor.defaultFormatter": "ms-python.black-formatter" },
+
+        "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+        "[typescript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+        "[json]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+
+        "eslint.workingDirectories": [{ "mode": "auto" }],
+        "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact", "vue"],
+        "prettier.useEditorConfig": true,
+        "prettier.singleQuote": true,
+
         "php.validate.executablePath": "/usr/local/php/current/bin/php",
+
+        "tailwindCSS.includeLanguages": {
+          "plaintext": "html",
+          "postcss": "css"
+        },
+
         "github.copilot.enable": {
           "*": true,
           "markdown": false,
@@ -36,7 +121,6 @@
           "dotenv": false
         },
         "github.copilot.nextEditSuggestions.enabled": true,
-        "editor.inlineSuggest.edits.allowCodeShifting": "never",
         "github.copilot.chat.localeOverride": "de",
         "github.copilot.chat.codesearch.enabled": true,
         "github.copilot.chat.codeGeneration.useInstructionFiles": true,
@@ -48,29 +132,13 @@
       }
     }
   },
-  "forwardPorts": [
-    3000,
-    5173,
-    8000,
-    8001
-  ],
+
+  "forwardPorts": [3000, 5173, 8000, 8001, 5678],
   "portsAttributes": {
-    "3000": {
-      "label": "Games Server",
-      "onAutoForward": "notify"
-    },
-    "5173": {
-      "label": "Frontend (Vite)",
-      "onAutoForward": "openBrowser"
-    },
-    "8000": {
-      "label": "CRM Server",
-      "onAutoForward": "notify"
-    },
-    "8001": {
-      "label": "API Server",
-      "onAutoForward": "notify"
-    }
-  },
-  "remoteUser": "codespace"
+    "3000": { "label": "Games Server", "onAutoForward": "notify" },
+    "5173": { "label": "Frontend (Vite)", "onAutoForward": "openBrowser" },
+    "8000": { "label": "CRM Server", "onAutoForward": "notify" },
+    "8001": { "label": "API Server", "onAutoForward": "notify" },
+    "5678": { "label": "n8n", "onAutoForward": "openBrowser" }
+  }
 }
