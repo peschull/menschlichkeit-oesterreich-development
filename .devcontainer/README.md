@@ -1,251 +1,146 @@
-# Codespace Setup - Menschlichkeit Österreich 🇦🇹
+# Codespace & Devcontainer Setup — Menschlichkeit Österreich 🇦🇹
 
-## 🚀 Automatische Installation
+> **Kurzüberblick:** Dieser Leitfaden ist auf den gehärteten Devcontainer mit Node 22, uv, Playwright‑Cache und zusätzlichen Ports (inkl. 5678 für n8n) abgestimmt.
 
-Dieses Setup wird **automatisch** beim Start eines GitHub Codespaces ausgeführt.
-
-### Was wird installiert?
-
-1. **uv** - Python Package Manager (moderner, schneller als pip)
-2. **Python-Dependencies** - API-Service und alle Python-Abhängigkeiten
-3. **Node.js Workspaces** - Frontend, Gaming Platform, Automation
-4. **Composer Dependencies** - PHP/Drupal für CRM-Service
-5. **Prisma Client** - Gaming Platform Datenbank-Client
-6. **Git-Konfiguration** - Optimierte Settings
-
-## 🌐 Development Servers
-
-Nach dem Setup alle Services starten:
+## 1) Schnellstart
 
 ```bash
-# Alle Services starten (empfohlen)
+# Container neu bauen (VS Code Command Palette)
+Dev Containers: Rebuild Container
+
+# Alternativ im Terminal (nach Rebuild):
 npm run dev:all
-
-# Oder einzelne Services:
-npm run dev:frontend    # Frontend (React) → http://localhost:5173
-npm run dev:api        # API (FastAPI) → http://localhost:8001
-npm run dev:crm        # CRM (Drupal) → http://localhost:8000
-npm run dev:games      # Games (Python) → http://localhost:3000
 ```
 
-## 📦 uv - Python Package Manager
+**Nach dem Start erreichbare Services**
 
-**uv** wird automatisch installiert und bietet:
-- ⚡ Bis zu 10x schneller als pip
-- 🔒 Sichere Dependency-Auflösung
-- 🎯 Kompatibel mit allen pip-Commands
-
-### Nutzung von uv
-
-```bash
-# Pakete installieren (ersetzt pip install)
-uv pip install <package>
-
-# Requirements-Datei installieren
-uv pip install -r requirements.txt
-
-# Paket-Informationen
-uv pip show <package>
-```
-
-## 🔍 System-Überprüfung
-
-Nach dem Setup wird automatisch angezeigt:
-- Node.js Version
-- npm Version  
-- Python Version
-- uv Version
-- PHP Version
-- Composer Version
-
-### Manuelle Überprüfung
-
-```bash
-# Script erneut ausführen
-bash .devcontainer/setup-codespace.sh
-
-# Oder einzelne Tools prüfen
-uv --version
-node --version
-python3 --version
-```
-
-## 🧪 Quality Gates & Testing
-
-### Quality Gates prüfen
-```bash
-npm run quality:gates
-```
-
-Führt aus:
-- ✅ Security Scan (Trivy, Gitleaks)
-- ✅ Code Quality (Codacy)
-- ✅ Performance Audit (Lighthouse)
-- ✅ DSGVO Compliance Check
-
-### Tests ausführen
-```bash
-npm run test:e2e      # E2E Tests (Playwright)
-npm run test:unit     # Unit Tests (Vitest)
-pytest tests/         # Python Backend Tests
-composer test         # Drupal/PHP Tests
-```
-
-## 🔧 Troubleshooting
-
-### uv Installation fehlgeschlagen
-
-```bash
-# Manuelle Installation
-pip install --upgrade pip
-pip install uv
-
-# Testen
-uv --version
-```
-
-### Python Dependencies Fehler
-
-Falls API-Service nicht startet:
-
-```bash
-cd api.menschlichkeit-oesterreich.at
-
-# Mit uv (schneller)
-uv pip install -r requirements.txt
-
-# Oder mit pip (falls uv Probleme macht)
-pip install -r requirements.txt
-
-# Nur essenzielle Pakete
-pip install fastapi uvicorn python-dotenv
-```
-
-### npm Workspace Fehler
-
-```bash
-# Clean install
-npm run clean:dist
-npm install --force
-
-# Einzelne Workspaces
-npm install --workspace=frontend
-npm install --workspace=mcp-servers
-```
-
-### Prisma Client Fehler
-
-```bash
-# Client neu generieren
-npx prisma generate
-
-# Mit Migration
-npx prisma migrate dev
-
-# Prisma Studio öffnen (GUI)
-npx prisma studio
-```
-
-### Network/Timeout Issues
-
-Falls pip während Setup timeoutet:
-
-```bash
-cd api.menschlichkeit-oesterreich.at
-
-# Längerer Timeout
-pip install --timeout 300 -r requirements.txt
-
-# Oder minimal setup
-pip install -r requirements-minimal.txt
-```
-
-### Git-Probleme
-
-```bash
-# Git-Konfiguration prüfen
-git config --list
-
-# Git neu konfigurieren
-git config --global user.name "Your Name"
-git config --global user.email "your.email@example.com"
-```
-
-## 🇦🇹 Austrian NGO Compliance
-
-Alle installierten Tools sind DSGVO-konform:
-- ✅ Keine Datensammlung durch uv
-- ✅ Lokale Entwicklung ohne Cloud-Services  
-- ✅ Alle Dependencies mit SPDX-Lizenz dokumentiert
-- ✅ PII-Sanitization in 2 Layern (Python + Drupal)
-
-## 📚 Weitere Dokumentation
-
-- **Projekt-Übersicht**: `README.md` im Root
-- **Development Guidelines**: `.github/instructions/project-development.instructions.md`
-- **Quality Gates**: `.github/instructions/quality-gates.instructions.md`
-- **MCP Integration**: `.github/instructions/mcp-integration.instructions.md`
-- **Copilot Instructions**: `.github/copilot-instructions.md`
-
-## 📞 Support
-
-Bei Problemen:
-1. **GitHub Issues** - Repository Issues erstellen
-2. **Logs prüfen** - `cat /tmp/codespace-setup.log`
-3. **Dokumentation** - Siehe Abschnitt "Weitere Dokumentation"
+| Dienst      | Port  | URL                         | Hinweis                         |
+|-------------|-------|-----------------------------|---------------------------------|
+| Frontend    | 5173  | http://localhost:5173       | Vite; Browser wird automatisch geöffnet |
+| API (FastAPI)| 8001 | http://localhost:8001       | Uvicorn                         |
+| CRM (Drupal)| 8000  | http://localhost:8000       | Composer-Install im Setup       |
+| Games       | 3000  | http://localhost:3000       | Python/Prisma                   |
+| n8n         | 5678  | http://localhost:5678       | Docker-/Automation-Workflows    |
 
 ---
 
-**Letztes Update:** 2025-01-07  
-**Maintainer:** Menschlichkeit Österreich Development Team
+## 2) Was der Devcontainer automatisch macht
 
-### Environment Configuration
+- **uv** installieren und aktivieren (Python Package Manager)
+- **Caches** mounten (npm/pnpm, uv/pip, Composer, Playwright)
+- **Playwright-Browser** installieren, wenn `@playwright/test` im `package.json` vorhanden ist
+- **Corepack** aktivieren (pnpm optional)
+- **.env** Dateien aus `*.env.example` kopieren (falls vorhanden)
+- **Composer install** für `crm.menschlichkeit-oesterreich.at`
+- **Python-Dependencies** für `api.menschlichkeit-oesterreich.at`
+- **Prisma Client** generieren, wenn `schema.prisma` existiert
 
-The setup automatically creates `.env` files from examples. To customize:
+> Die Logik steckt in `.devcontainer/setup.sh` und `.devcontainer/setup-codespace.sh` und ist idempotent.
 
-1. **API Configuration**: Edit `api.menschlichkeit-oesterreich.at/.env`
-2. **Frontend Configuration**: Edit `frontend/.env`
-3. **CRM Configuration**: Edit `crm.menschlichkeit-oesterreich.at/.env`
+---
 
-## 📊 Quality & Testing
+## 3) Entwicklung
 
-```bash
-# Run quality gates
-npm run quality:gates
-
-# Run linting
-npm run lint:all
-
-# Run tests
-npm run test:all
-```
-
-## 🐳 Docker Services
-
-For advanced features requiring Docker:
+### Empfohlene Skripte (Monorepo)
 
 ```bash
-# Start n8n automation
-npm run n8n:start
-
-# View n8n logs
-npm run n8n:logs
+npm run dev:all        # alle Services starten
+npm run dev:frontend   # Frontend (Vite)
+npm run dev:api        # FastAPI
+npm run dev:crm        # Drupal/CiviCRM
+npm run dev:games      # Games
+npm run n8n:start      # n8n Automations
 ```
 
-## 🆘 Getting Help
+> Falls einzelne Skripte im Projekt noch fehlen, im jeweiligen Service-Ordner starten (z. B. `cd frontend && npm run dev`).
 
-If services won't start:
+### Datenbank & Migrations
 
-1. Check the terminal output for specific error messages
-2. Verify prerequisites: `node --version`, `python3 --version`, `php --version`
-3. Try restarting individual services
-4. Check the `.env` files are properly configured
+**PostgreSQL** via `DATABASE_URL` (shared).
 
-## 📁 Project Structure
+```bash
+# Alembic (API)
+cd api.menschlichkeit-oesterreich.at
+alembic upgrade head
 
-- `frontend/` - React/TypeScript frontend
-- `api.menschlichkeit-oesterreich.at/` - FastAPI Python backend
-- `crm.menschlichkeit-oesterreich.at/` - CiviCRM PHP application
-- `web/` - Educational games
-- `automation/n8n/` - Workflow automation
-- `scripts/` - Development and deployment scripts
+# Prisma (Games)
+cd -
+npx prisma migrate dev
+npx prisma studio   # GUI
+```
+
+---
+
+## 4) Qualität, Sicherheit & Compliance
+
+```bash
+npm run quality:gates   # Security (Trivy, Gitleaks), Linting, Lighthouse, DSGVO-Checks
+npm run lint:all        # ESLint + Ruff
+npm run test:unit       # Vitest
+npm run test:e2e        # Playwright
+pytest tests/           # Python API
+composer test           # PHP/Drupal
+```
+
+- **DSGVO**: PII-Sanitizer in API/CRM/n8n
+- **Secrets**: Gitleaks (Policy 0-Secrets)
+- **SBOM**: CycloneDX + Cosign
+- **Vulnerabilities**: Trivy (HIGH/CRITICAL = 0)
+
+---
+
+## 5) Troubleshooting (kurz)
+
+**uv fehlt oder bricht ab**
+```bash
+pip install --upgrade pip
+pip install uv
+uv --version
+```
+
+**Playwright hängt**
+```bash
+npx playwright install --with-deps
+```
+
+**Prisma Fehler**
+```bash
+npx prisma generate
+npx prisma migrate dev
+```
+
+**Git Safe Directory**
+```bash
+git config --global --add safe.directory "$(pwd)"
+```
+
+**MCP Warnungen in VS Code**
+Siehe `VS-CODE-MCP-CACHE-ISSUE.md` für die definitive Lösung.
+
+---
+
+## 6) Projektstruktur (ausgewählt)
+
+- `api.menschlichkeit-oesterreich.at/` — FastAPI + Alembic
+- `crm.menschlichkeit-oesterreich.at/` — Drupal 10 + CiviCRM
+- `frontend/` — React 18 + TypeScript + Vite + Tailwind
+- `web/` — Games (Prisma + Python HTTP)
+- `automation/n8n/` — Workflows (Docker)
+- `mcp-servers/` — Model Context Protocol Integrationen
+
+---
+
+## 7) System-Check
+
+Nach dem Setup gibt das Bootstrap-Skript Versionen aus:
+- Node.js, npm, Python, uv, PHP, Composer
+
+Manuell prüfen:
+```bash
+node -v && npm -v && python3 --version && uv --version
+```
+
+---
+
+**Maintainer:** Menschlichkeit Österreich Development Team  
+**Letztes Update:** 2025‑10‑09
