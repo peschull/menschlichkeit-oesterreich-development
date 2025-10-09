@@ -28,6 +28,7 @@ export default [
       '**/__pycache__/**',
       '**/coverage/**',
       '**/test-results/**',
+      'figma-design-system/**',
     ],
   },
   js.configs.recommended,
@@ -54,6 +55,7 @@ export default [
       'playwright-results/**',
       'quality-reports/**',
       'website/**',
+      'figma-design-system/**',
     ],
     languageOptions: {
       ecmaVersion: 'latest',
@@ -87,6 +89,7 @@ export default [
       'playwright-results/**',
       'quality-reports/**',
       'website/**',
+      'figma-design-system/**',
     ],
     languageOptions: {
       parser: parser,
