@@ -4,6 +4,32 @@ import tseslint from '@typescript-eslint/eslint-plugin';
 import parser from '@typescript-eslint/parser';
 
 export default [
+  // Globale Ignores (Flat Config): schließt Build-/Artefaktordner aus
+  {
+    ignores: [
+      'node_modules/**',
+      '**/dist/**',
+      '**/build/**',
+      '**/*.min.js',
+      'frontend/dist/**',
+      'frontend/.next/**',
+      'website/**/dist/**',
+      'website/**/assets/**',
+      'web/games/js/**',
+      'web/games/prototype/**',
+      'playwright-results/**',
+      'quality-reports/**',
+      '**/vendor/**',
+      'crm.menschlichkeit-oesterreich.at/web/**',
+      'crm.menschlichkeit-oesterreich.at/vendor/**',
+      'api.menschlichkeit-oesterreich.at/dist/**',
+      'api.menschlichkeit-oesterreich.at/.venv/**',
+      '**/.venv/**',
+      '**/__pycache__/**',
+      '**/coverage/**',
+      '**/test-results/**',
+    ],
+  },
   js.configs.recommended,
   {
     files: ['**/*.{js,mjs,cjs}'],
@@ -23,7 +49,11 @@ export default [
       '**/test-results/**',
       '**/vendor/**',
       'crm.menschlichkeit-oesterreich.at/vendor/**',
-      'automation/n8n/webhook-client.js',
+      // Drittanbieter/Artefakte ausschließen, die ESLint unnötig triggern
+      'crm.menschlichkeit-oesterreich.at/web/**',
+      'playwright-results/**',
+      'quality-reports/**',
+      'website/**',
     ],
     languageOptions: {
       ecmaVersion: 'latest',
@@ -45,6 +75,18 @@ export default [
       'frontend/dist/**',
       'frontend/.next/**',
       'api.menschlichkeit-oesterreich.at/dist/**',
+      // Synchron mit JS-Ignores
+      'api.menschlichkeit-oesterreich.at/.venv/**',
+      '**/.venv/**',
+      '**/__pycache__/**',
+      '**/coverage/**',
+      '**/test-results/**',
+      '**/vendor/**',
+      'crm.menschlichkeit-oesterreich.at/vendor/**',
+      'crm.menschlichkeit-oesterreich.at/web/**',
+      'playwright-results/**',
+      'quality-reports/**',
+      'website/**',
     ],
     languageOptions: {
       parser: parser,

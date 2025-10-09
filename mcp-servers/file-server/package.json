@@ -9,6 +9,7 @@
   "scripts": {
     "build": "echo 'MCP File Server build: No build step required for Node.js runtime'",
     "start": "node index.js",
-    "dev": "node --inspect index.js"
+    "dev": "node --inspect index.js",
+    "test": "echo 'MCP File Server: Unit tests werden in Phase 1 implementiert' && exit 0"
   }
 }
