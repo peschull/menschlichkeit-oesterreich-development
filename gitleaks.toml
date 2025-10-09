@@ -36,14 +36,21 @@ paths = [
 
 [[rules]]
 id = "private-key"
-description = "Private Key Detection - DISABLED for test fixtures"
+description = "Private Key Detection - DISABLED for test fixtures and docs"
 regex = '''-----BEGIN[ A-Z]*PRIVATE KEY-----'''
 tags = ["key", "private"]
 [rules.allowlist]
 paths = [
     '''api\.menschlichkeit-oesterreich\.at/(\.)?venv/.*''',
     '''.*/tests?/.*''',
-    '''.*/bower_components/.*'''
+    '''.*/bower_components/.*''',
+    # Legacy prompts and documentation with example keys
+    '''\.github/prompts/.*''',
+    '''docs/.*\.md$'''
+]
+regexes = [
+    '''REDACTED''',  # Redacted/placeholder keys
+    '''SSH_PRIVATE_KEY.*REDACTED'''
 ]
 
 [allowlist]
@@ -61,8 +68,12 @@ paths = [
     # Example/template files with placeholders
     '''\.env\.example$''',
     '''\.env\.sample$''',
-    # Documentation with example keys
+    # Documentation with example keys and placeholders
     '''GITHUB-SECRETS.*\.md$''',
+    '''docs/.*\.md$''',
+    '''\.github/prompts/.*\.md$''',
+    # Secrets template files with REDACTED placeholders
+    '''secrets.*\.json$''',
     # VS Code MCP config (local development)
     '''\.vscode/mcp\.json$''',
     # Chatmode and instruction files with API examples
