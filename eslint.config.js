@@ -2,6 +2,7 @@ import js from '@eslint/js';
 import globals from 'globals';
 import tseslint from '@typescript-eslint/eslint-plugin';
 import parser from '@typescript-eslint/parser';
+import reactHooks from 'eslint-plugin-react-hooks';
 
 export default [
   // Globale Ignores (Flat Config): schließt Build-/Artefaktordner aus
@@ -52,7 +53,6 @@ export default [
       // Drittanbieter/Artefakte ausschließen, die ESLint unnötig triggern
       'crm.menschlichkeit-oesterreich.at/web/**',
       'playwright-results/**',
-      'quality-reports/**',
       'website/**',
       'figma-design-system/**',
     ],
@@ -100,11 +100,17 @@ export default [
     },
     plugins: {
       '@typescript-eslint': tseslint,
+      'react-hooks': reactHooks,
     },
     rules: {
       ...tseslint.configs.recommended.rules,
       '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
       '@typescript-eslint/no-explicit-any': 'warn',
+      // TypeScript already checks undefined identifiers; avoid false positives on DOM types like RequestInit
+      'no-undef': 'off',
+      // React hooks rules for TSX
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'warn',
       'no-console': 'off',
     },
   },

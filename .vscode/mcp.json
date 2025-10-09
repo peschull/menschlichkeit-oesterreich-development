@@ -1,50 +1,310 @@
 {
-  "mcpServers": {
-    "memory": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-memory"
-      ]
-    },
-    "sequential-thinking": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-sequential-thinking"
-      ]
-    },
-    "figma": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "figma-mcp"
-      ],
-      "env": {
-        "FIGMA_ACCESS_TOKEN": "${FIGMA_ACCESS_TOKEN}"
-      }
-    },
-    "github": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-github"
-      ]
-    },
-    "upstash-context7": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@upstash/context7-mcp"
-      ]
-    },
-    "filesystem": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-filesystem",
-        "${workspaceFolder}"
-      ]
-    }
-  }
+	"inputs": [
+		{
+			"id": "browser_url",
+			"type": "promptString",
+			"description": "Optional: connect to an already-running Chrome (remote debugging / port-forward). Example: http://127.0.0.1:9222",
+			"password": false
+		},
+		{
+			"id": "headless",
+			"type": "promptString",
+			"description": "Run Chrome headless (true/false). Default: false",
+			"password": false,
+			"default": "false"
+		},
+		{
+			"id": "isolated",
+			"type": "promptString",
+			"description": "Use a temporary user-data-dir (true/false). Default: false",
+			"password": false,
+			"default": "false"
+		},
+		{
+			"id": "chrome_channel",
+			"type": "promptString",
+			"description": "Chrome channel: stable | canary | beta | dev (default: stable).",
+			"password": false,
+			"default": "stable"
+		},
+		{
+			"id": "api_key",
+			"type": "promptString",
+			"description": "your API key",
+			"password": true
+		},
+		{
+			"id": "unity_mcp_server_src",
+			"type": "promptString",
+			"description": "Absolute path to the Unity MCP Server 'src' folder installed by the Unity package (e.g., macOS: ~/Library/Application Support/UnityMCP/UnityMcpServer/src; Windows: %USERPROFILE%/AppData/Local/UnityMCP/UnityMcpServer/src; Linux: ~/.local/share/UnityMCP/UnityMcpServer/src).",
+			"password": false
+		},
+		{
+			"id": "tfe_token",
+			"type": "promptString",
+			"description": "Terraform API Token",
+			"password": true
+		},
+		{
+			"id": "tfe_hostname",
+			"type": "promptString",
+			"description": "Terraform hostname",
+			"password": false
+		},
+		{
+			"id": "ado_org",
+			"type": "promptString",
+			"description": "Azure DevOps organization name (e.g., contoso).",
+			"password": false
+		},
+		{
+			"id": "ado_domain",
+			"type": "promptString",
+			"description": "Repeat to enable specific domains: core, work, work-items, search, test-plans, repositories, wiki, pipelines, advanced-security.",
+			"password": false
+		},
+		{
+			"id": "es_url",
+			"type": "promptString",
+			"description": "your elasticsearch url",
+			"password": false
+		},
+		{
+			"id": "es_api_key",
+			"type": "promptString",
+			"description": "your api key",
+			"password": true
+		},
+		{
+			"id": "chroma_client_type",
+			"type": "promptString",
+			"description": "Client type: ephemeral (default), persistent, cloud, or http.",
+			"password": false
+		},
+		{
+			"id": "chroma_dotenv_path",
+			"type": "promptString",
+			"description": "Optional path to .env (defaults to ./.chroma_env).",
+			"password": false
+		},
+		{
+			"id": "chroma_data_dir",
+			"type": "promptString",
+			"description": "Data directory for persistent client.",
+			"password": false
+		},
+		{
+			"id": "chroma_tenant",
+			"type": "promptString",
+			"description": "Chroma Cloud tenant ID.",
+			"password": false
+		},
+		{
+			"id": "chroma_database",
+			"type": "promptString",
+			"description": "Chroma Cloud database name.",
+			"password": false
+		},
+		{
+			"id": "chroma_api_key",
+			"type": "promptString",
+			"description": "Chroma Cloud API key.",
+			"password": true
+		},
+		{
+			"id": "chroma_host",
+			"type": "promptString",
+			"description": "Self-hosted Chroma host.",
+			"password": false
+		},
+		{
+			"id": "chroma_port",
+			"type": "promptString",
+			"description": "Self-hosted Chroma port.",
+			"password": false
+		},
+		{
+			"id": "chroma_custom_auth",
+			"type": "promptString",
+			"description": "Custom auth credentials for self-hosted Chroma.",
+			"password": true
+		},
+		{
+			"id": "chroma_ssl",
+			"type": "promptString",
+			"description": "Use SSL (true/false) for self-hosted HTTP.",
+			"password": false
+		},
+		{
+			"id": "codacy_account_token",
+			"type": "promptString",
+			"description": "Your Codacy Account API token (from app.codacy.com → Account). Required.",
+			"password": true
+		},
+		{
+			"id": "codacy_cli_version",
+			"type": "promptString",
+			"description": "Optional: pin Codacy CLI version used by local analysis (e.g., 2.3.1).",
+			"password": false
+		},
+		{
+			"id": "kusto_service_uri",
+			"type": "promptString",
+			"description": "Default Kusto cluster URI (e.g., https://help.kusto.windows.net/ or your cluster).",
+			"password": false
+		},
+		{
+			"id": "kusto_default_db",
+			"type": "promptString",
+			"description": "Default database name for Kusto queries (e.g., Samples).",
+			"password": false
+		},
+		{
+			"id": "az_openai_embedding_endpoint",
+			"type": "promptString",
+			"description": "Azure OpenAI embeddings endpoint for shots/semantic search (format: https://<resource>.openai.azure.com/openai/deployments/<name>/embeddings?api-version=<version>;impersonate).",
+			"password": false
+		},
+		{
+			"id": "kusto_known_services_json",
+			"type": "promptString",
+			"description": "JSON array of preconfigured Kusto services (e.g., [{\"service_uri\":\"https://cluster.kusto.windows.net\",\"default_database\":\"DB\"}]).",
+			"password": false
+		},
+		{
+			"id": "kusto_eager_connect",
+			"type": "promptString",
+			"description": "Whether to eagerly connect to the default service on startup (true/false).",
+			"password": false
+		},
+		{
+			"id": "kusto_allow_unknown_services",
+			"type": "promptString",
+			"description": "Allow connections to services not listed in KUSTO_KNOWN_SERVICES (true/false).",
+			"password": false
+		},
+		{
+			"id": "fabric_api_base",
+			"type": "promptString",
+			"description": "Base URL for Fabric APIs (default https://api.fabric.microsoft.com/v1).",
+			"password": false
+		}
+	],
+	"servers": {
+		"microsoft/markitdown": {
+			"type": "stdio",
+			"command": "uvx",
+			"args": [
+				"markitdown-mcp==0.0.1a4"
+			],
+			"gallery": "https://api.mcp.github.com/v0/servers/976a2f68-e16c-4e2b-9709-7133487f8c14",
+			"version": "1.0.0"
+		},
+		"upstash/context7": {
+			"type": "http",
+			"url": "https://mcp.context7.com/mcp",
+			"headers": {
+				"undefined": "{context7_api_key}"
+			},
+			"gallery": "https://api.mcp.github.com/v0/servers/dcec7705-b81b-4e0f-8615-8032604be7ad",
+			"version": "1.0.0"
+		},
+		"github/github-mcp-server": {
+			"type": "http",
+			"url": "https://api.githubcopilot.com/mcp/",
+			"gallery": "https://api.mcp.github.com/v0/servers/ab12cd34-5678-90ef-1234-567890abcdef",
+			"version": "0.13.0"
+		},
+		"microsoft/playwright-mcp": {
+			"type": "stdio",
+			"command": "npx",
+			"args": [
+				"@playwright/mcp@latest"
+			],
+			"gallery": "https://api.mcp.github.com/v0/servers/41b79849-7e6c-4fc7-82c0-5a611ea21523",
+			"version": "0.0.1-seed"
+		},
+		"oraios/serena": {
+			"type": "stdio",
+			"command": "uvx",
+			"args": [
+				"--from",
+				"git+https://github.com/oraios/serena",
+				"serena",
+				"start-mcp-server",
+				"serena==latest",
+				"--context",
+				"ide-assistant"
+			],
+			"gallery": "https://api.mcp.github.com/v0/servers/0658e342-7ae7-493a-b378-a324363ee322",
+			"version": "1.0.0"
+		},
+		"firecrawl/firecrawl-mcp-server": {
+			"type": "stdio",
+			"command": "npx",
+			"args": [
+				"-y",
+				"firecrawl-mcp@latest"
+			],
+			"env": {
+				"FIRECRAWL_API_KEY": "${input:api_key}"
+			},
+			"gallery": "https://api.mcp.github.com/v0/servers/d586c74c-4aa1-4aa2-9aa3-046e58fcb84f",
+			"version": "1.0.0"
+		},
+		"microsoftdocs/mcp": {
+			"type": "http",
+			"url": "https://learn.microsoft.com/api/mcp",
+			"gallery": "https://api.mcp.github.com/v0/servers/e0455530-d34a-4795-8dc6-b2888ae76c27",
+			"version": "1.0.0"
+		},
+		"stripe/agent-toolkit": {
+			"type": "http",
+			"url": "https://mcp.stripe.com",
+			"gallery": "https://api.mcp.github.com/v0/servers/f0b8ecdd-498c-4087-8ae2-b2677215b7ca",
+			"version": "1.0.0"
+		},
+		"neondatabase/mcp-server-neon": {
+			"type": "http",
+			"url": "https://mcp.neon.tech/sse",
+			"gallery": "https://api.mcp.github.com/v0/servers/80cf5adf-774d-45c6-b97a-d527509aa505",
+			"version": "1.0.0"
+		},
+		"apify/apify-mcp-server": {
+			"type": "http",
+			"url": "https://mcp.apify.com",
+			"gallery": "https://api.mcp.github.com/v0/servers/1aef85cf-1597-47f1-84ae-3e9a771c2162",
+			"version": "0.0.1-seed"
+		},
+		"codacy/codacy-mcp-server": {
+			"type": "stdio",
+			"command": "npx",
+			"args": [
+				"-y",
+				"@codacy/codacy-mcp@latest"
+			],
+			"env": {
+				"CODACY_ACCOUNT_TOKEN": "${input:codacy_account_token}",
+				"CODACY_CLI_VERSION": "${input:codacy_cli_version}"
+			},
+			"gallery": "https://api.mcp.github.com/v0/servers/59072bd2-da6e-4160-813d-33cdf0b1dbe1",
+			"version": "1.0.0"
+		},
+		"cognitionai/deepwiki": {
+			"type": "http",
+			"url": "https://mcp.deepwiki.com/sse",
+			"gallery": "https://api.mcp.github.com/v0/servers/8e68c99d-b438-46c2-94d5-dbdef09ff5a4",
+			"version": "1.0.0"
+		},
+		"context7": {
+			"type": "stdio",
+			"command": "npx",
+			"args": [
+				"-y",
+				"@upstash/context7-mcp@latest"
+			],
+			"gallery": true,
+			"version": "0.0.1"
+		}
+	}
 }

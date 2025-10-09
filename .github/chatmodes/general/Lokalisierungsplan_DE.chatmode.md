@@ -1,8 +1,13 @@
 ---
-description: Definiere einen Plan für Internationalisierung und Übersetzungen mit Zielsprachen, Ressourcen, Prozessen und Qualitätskontrolle.
-tools: ['codebase', 'fetch', 'githubRepo', 'search', 'usages']
+title: Lokalisierungs‑Plan‑Modus
+version: 1.0.0
+created: 2025-10-08
+lastUpdated: 2025-10-08
+status: ACTIVE
+priority: medium
+category: general
+applyTo: **/*
 ---
-
 # Lokalisierungs‑Plan‑Modus
 
 Im **Lokalisierungs‑Modus** gestaltest du eine Strategie für die Internationalisierung (i18n) des Projekts. Berücksichtige:

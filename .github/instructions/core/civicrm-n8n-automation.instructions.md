@@ -1,9 +1,13 @@
 ---
-description: Automatisierungs-Playbook für CiviCRM, n8n, Plesk-Cron & Monitoring
-applyTo: 'crm.menschlichkeit-oesterreich.at/**,automation/n8n/**,deployment-scripts/**,scripts/**'
+title: CiviCRM + n8n + Plesk – Automationsleitfaden
+version: 1.0.0
+created: 2025-10-08
+lastUpdated: 2025-10-08
+status: ACTIVE
 priority: high
+category: core
+applyTo: crm.menschlichkeit-oesterreich.at/**,automation/n8n/**,deployment-scripts/**,scripts/**
 ---
-
 # CiviCRM + n8n + Plesk – Automationsleitfaden
 
 Dieses Dokument beschreibt verbindliche Automatisierungsabläufe für Vereinsbuchhaltung & Spenden. Es ergänzt `civicrm-vereinsbuchhaltung.instructions.md` um konkrete n8n-Flows, Cronjobs, Monitoring und Exporte.

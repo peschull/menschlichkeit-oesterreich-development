@@ -8,7 +8,6 @@ priority: medium
 category: general
 applyTo: **/*
 ---
-
 ```chatmode
 ---
 description: Design System Synchronisation mit Figma MCP für Austrian NGO Branding
@@ -24,7 +23,7 @@ Du befindest dich im **Design System Sync Modus** mit Figma MCP Integration.
 
 ### Phase 1: Figma Design System Analyse
 
-```markdown
+```
 Via Figma MCP:
 "Get design system rules from file <FILE_KEY>"
 "Extract metadata from current Figma file"
@@ -33,11 +32,11 @@ Via Figma MCP:
 TARGET FILE:
 → Figma File Key: [aus .env FIGMA_FILE_KEY]
 → Primary Nodes: Austrian Branding Components
-```
+```text
 
 ### Phase 2: Design Tokens Extraction
 
-```markdown
+```
 Via Figma MCP:
 1. "Extract color tokens for Rot-Weiß-Rot palette"
    → Expected: primary-red, white, secondary-red
@@ -54,11 +53,11 @@ COMPARE:
 □ Token-Drift detected?
 □ New tokens in Figma?
 □ Deprecated tokens in code?
-```
+```text
 
 ### Phase 3: Token Format Conversion
 
-```markdown
+```
 Figma Output → Design Token Standard:
 
 {
@@ -97,11 +96,11 @@ Figma Output → Design Token Standard:
 
 Via Filesystem MCP:
 "Write updated tokens to figma-design-system/00_design-tokens.json"
-```
+```text
 
 ### Phase 4: CSS Custom Properties Generation
 
-```markdown
+```
 Token → CSS Variables:
 
 Via Filesystem MCP:
@@ -130,11 +129,11 @@ Via Filesystem MCP:
   --button-padding-x: var(--spacing-md);
   --button-radius: 4px;
 }
-```
+```text
 
 ### Phase 5: Tailwind Config Integration
 
-```markdown
+```
 Via Filesystem MCP:
 "Update tailwind.config.js with design tokens":
 
@@ -161,11 +160,11 @@ CRITICAL:
 □ No hardcoded colors außerhalb tailwind.config.js
 □ Alle Komponenten verwenden Tailwind-Klassen
 □ CSS Custom Properties als Fallback
-```
+```text
 
 ### Phase 6: Component Code Generation
 
-```markdown
+```
 Via Figma MCP:
 "Get code for node <COMPONENT_NODE_ID>"
 
@@ -203,11 +202,11 @@ export const Button: React.FC<ButtonProps> = ({
     </button>
   );
 };
-```
+```text
 
 ### Phase 7: Screenshot Verification
 
-```markdown
+```
 Via Figma MCP:
 "Get screenshot of node <NODE_ID> in file <FILE_KEY>"
 
@@ -220,11 +219,11 @@ Visual Regression Check:
 □ Colors exakt (#ED2939)?
 □ Spacing korrekt?
 □ Typography identisch?
-```
+```text
 
 ### Phase 8: Accessibility Compliance (WCAG AA)
 
-```markdown
+```
 Design Token Validation:
 
 Via Figma MCP + Filesystem MCP:
@@ -243,11 +242,11 @@ CRITICAL CHECKS:
 □ Interactive Elements ≥ 3:1?
 □ Focus States sichtbar?
 □ Touch Targets ≥ 44x44px?
-```
+```text
 
 ### Phase 9: Multi-Platform Export
 
-```markdown
+```
 Via Filesystem MCP - Generate Outputs:
 
 1. CSS Variables → frontend/src/styles/design-tokens.css
@@ -274,11 +273,11 @@ export interface DesignTokens {
     xl: Spacing;
   };
 }
-```
+```text
 
 ### Phase 10: Documentation Generation
 
-```markdown
+```
 Via Filesystem MCP:
 "Generate docs/DESIGN-SYSTEM.md":
 
@@ -321,11 +320,11 @@ import { Button } from '@/components/ui/Button';
 ## Sync Status
 Last Figma Sync: {TIMESTAMP}
 Token Drift: 0 detected
-```
+```text
 
 ### Phase 11: GitHub Integration & Tracking
 
-```markdown
+```
 Via GitHub MCP:
 "Create issue: 'Design Token Update from Figma'"
 
@@ -360,11 +359,11 @@ Issue Content:
 
 Via Memory MCP:
 "Store Figma sync history for future reference"
-```
+```bash
 
 ### Phase 12: Automated Sync Pipeline
 
-```markdown
+```
 npm Script Integration:
 
 Via Filesystem MCP:
@@ -384,38 +383,38 @@ scripts/figma-sync.js:
 3. Update files if drift detected
 4. Generate migration guide
 5. Via GitHub MCP: Create PR with changes
-```
+```text
 
 ## 🎯 Success Criteria
 
 **Design Consistency:**
-```markdown
+```
 ✅ 0 Token Drift between Figma ↔ Code
 ✅ All Components use Design Tokens (no hardcoded values)
 ✅ WCAG AA Compliance: 100%
 ✅ Visual Regression Tests: Pass
-```
+```text
 
 **Austrian Branding:**
-```markdown
+```
 ✅ Rot-Weiß-Rot Farbschema korrekt
 ✅ Proportionen österreichische Flagge (1:2:1)
 ✅ Typografie: Deutsche Texte, österreichische Rechtschreibung
 ✅ Cultural Sensitivity: NGO-Kontext beachtet
-```
+```text
 
 **Developer Experience:**
-```markdown
+```
 ✅ npm run figma:sync funktioniert
 ✅ TypeScript Types für alle Tokens
 ✅ Tailwind/CSS utilities verfügbar
 ✅ Storybook mit Token-Dokumentation
-```
+```text
 
 ## ⚠️ Design System Governance
 
 **Token Änderungen nur via Figma:**
-```markdown
+```
 1. Design Lead ändert in Figma
 2. npm run figma:sync ausführen
 3. PR Review: Design + Engineering
@@ -425,17 +424,17 @@ VERBOTEN:
 ❌ Direkte Token-Änderungen in JSON/CSS
 ❌ Hardcoded Colors in Components
 ❌ Ignorieren von Figma Updates
-```
+```text
 
 **Konflikt-Resolution:**
-```markdown
+```
 Falls Token-Drift:
 1. Via Figma MCP: "Get latest design system rules"
 2. Via Filesystem MCP: "Show current token values"
 3. Via Memory MCP: "Retrieve last sync decision"
 4. Manual Review: Design Lead entscheidet
 5. Update Figma als Single Source of Truth
-```
+```text
 
 ---
 

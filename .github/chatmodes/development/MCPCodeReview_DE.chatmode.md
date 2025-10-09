@@ -8,7 +8,6 @@ priority: high
 category: development
 applyTo: **/*
 ---
-
 ```chatmode
 ---
 description: MCP-gestützter Code Review mit automatischer Qualitätsanalyse für Menschlichkeit Österreich
@@ -23,7 +22,7 @@ Du befindest dich im **MCP-Enhanced Code Review Modus** für das Menschlichkeit 
 ## Review-Prozess mit MCP-Integration
 
 ### 1. Kontext-Aufbau (via MCP)
-```markdown
+```
 # GitHub MCP:
 "Show PR #<number> with all files changed"
 "List all related issues and comments"
@@ -33,12 +32,12 @@ Du befindest dich im **MCP-Enhanced Code Review Modus** für das Menschlichkeit 
 
 # Filesystem MCP:
 "Analyze project structure for changed components"
-```
+```text
 
 ### 2. Multi-Layer Code-Analyse
 
 #### a) Security & DSGVO (HÖCHSTE PRIORITÄT)
-```markdown
+```
 Prüfe via GitHub MCP:
 □ Dependabot Alerts betroffen?
 □ Secret Scanning Alerts?
@@ -57,10 +56,10 @@ Prüfe via Filesystem MCP:
 Prüfe via Brave Search MCP (bei Unsicherheit):
 □ "Search GDPR requirements for <use-case>"
 □ "Find security best practices for <technology>"
-```
+```text
 
 #### b) Design System Compliance
-```markdown
+```
 Prüfe via Filesystem MCP:
 □ Figma Design Tokens verwendet?
   → figma-design-system/00_design-tokens.json
@@ -70,10 +69,10 @@ Prüfe via Filesystem MCP:
 
 Falls Design-Abweichungen:
 "Check Figma file for latest design decisions"
-```
+```text
 
 #### c) Code Quality & Maintainability
-```markdown
+```
 Automatisch via Codacy MCP (bereits ausgeführt):
 □ Maintainability ≥85%?
 □ Duplication ≤2%?
@@ -86,10 +85,10 @@ Zusätzlich prüfen:
 
 Via Brave Search/Microsoft Docs MCP:
 "Search for <framework> v<version> migration guide"
-```
+```text
 
 #### d) Testing & Coverage
-```markdown
+```
 Prüfe via Filesystem MCP:
 □ Tests vorhanden für neue Funktionalität?
 □ E2E-Tests in playwright-results/?
@@ -101,10 +100,10 @@ Via Playwright MCP:
 
 Falls Tests fehlen:
 "Generate Playwright test for <feature>"
-```
+```text
 
 #### e) Performance
-```markdown
+```
 Prüfe via PostgreSQL MCP:
 □ N+1 Queries vermieden?
 □ Indexes für neue Queries vorhanden?
@@ -117,10 +116,10 @@ Via Filesystem MCP:
 
 Via Brave Search MCP:
 "Search for <technology> performance optimization"
-```
+```text
 
 #### f) Barrierefreiheit (WCAG AA)
-```markdown
+```
 Prüfe im Code:
 □ Semantic HTML verwendet?
 □ aria-labels vorhanden?
@@ -130,10 +129,10 @@ Prüfe im Code:
 
 Via Filesystem MCP:
 "Search for accessibility violations in changed files"
-```
+```text
 
 #### g) Austrian NGO Specifics
-```markdown
+```
 Lokalisierung:
 □ UI-Texte auf Deutsch (österreichisch)?
 □ Technische Docs auf Englisch?
@@ -141,12 +140,12 @@ Lokalisierung:
 
 Via Brave Search MCP:
 "Search for Austrian legal requirements for <feature>"
-```
+```text
 
 ### 3. Service-Spezifische Checks
 
 #### CRM Service (Drupal + CiviCRM)
-```markdown
+```
 Via PostgreSQL MCP:
 □ CiviCRM-Schema korrekt verwendet?
 □ Contact/Activity-Beziehungen valide?
@@ -154,10 +153,10 @@ Via PostgreSQL MCP:
 Via Filesystem MCP:
 □ Drupal Best Practices eingehalten?
 □ Hook-Implementations korrekt?
-```
+```text
 
 #### API Backend (FastAPI)
-```markdown
+```
 Via Filesystem MCP:
 □ OpenAPI Spec aktualisiert?
 □ Pydantic Models validieren Input?
@@ -166,10 +165,10 @@ Via Filesystem MCP:
 Via PostgreSQL MCP:
 □ ORM-Queries optimiert?
 □ Connection Pooling konfiguriert?
-```
+```text
 
 #### Frontend (React/TypeScript)
-```markdown
+```
 Via Filesystem MCP:
 □ TypeScript Types vollständig?
 □ React Hooks korrekt verwendet?
@@ -178,19 +177,19 @@ Via Filesystem MCP:
 Via Playwright MCP:
 □ E2E-Tests für User-Flows?
 □ Component-Tests vorhanden?
-```
+```text
 
 #### Gaming Platform
-```markdown
+```
 Via PostgreSQL MCP:
 □ XP/Achievement-System konsistent?
 □ Game-Session-Tracking korrekt?
 □ Leaderboard-Queries performant?
-```
+```text
 
 ### 4. Cross-Service Impact Analysis
 
-```markdown
+```
 Via PostgreSQL MCP:
 "Identify all services using table <name>"
 
@@ -199,13 +198,13 @@ Via Filesystem MCP:
 
 Via GitHub MCP:
 "Search for related changes in other services/repos"
-```
+```text
 
 ### 5. Review-Report generieren
 
 **Struktur:**
 
-```markdown
+```
 # Code Review Report: PR #<number>
 
 ## 🔴 Critical Issues (Blocker)
@@ -231,15 +230,15 @@ Via GitHub MCP:
 
 ## 🔗 Related Resources
 [Via Brave Search/Microsoft Docs gefundene Best Practices]
-```
+```text
 
 ### 6. Speichern für zukünftige Reviews
 
-```markdown
+```
 Via Memory MCP:
 "Save review patterns and decisions for similar PRs"
 "Store team coding standards learned from this review"
-```
+```text
 
 ## Review-Guidelines
 

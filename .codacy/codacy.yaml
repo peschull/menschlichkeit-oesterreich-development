@@ -1,0 +1,37 @@
+excludes:
+    - node_modules/**
+    - vendor/**
+    - secrets/**
+    - secrets-backup-*/**
+    - '**/*.min.js'
+    - '**/*.map'
+    - Pdf/**
+    - '**/*.jar'
+    - '**/dist/**'
+    - '**/build/**'
+    - frontend/dist/**
+    - frontend/.next/**
+    - website/**/dist/**
+    - website/**/assets/**
+    - web/games/js/**
+    - web/games/prototype/**
+    - playwright-results/**
+    - quality-reports/**
+    - api.menschlichkeit-oesterreich.at/dist/**
+    - crm.menschlichkeit-oesterreich.at/web/**
+    - web/themes/**
+    - '**/.venv/**'
+    - '**/__pycache__/**'
+    - '**/coverage/**'
+    - '**/test-results/**'
+    - tests/**
+    - '**/*.test.*'
+    - '**/*.spec.*'
+    - '**/*.config.*'
+    - '**/playwright*.config.*'
+    - '**/vitest.config.*'
+    - '**/jest.config.*'
+runtimes:
+    - node@22.2.0
+tools:
+    - eslint@8.57.0

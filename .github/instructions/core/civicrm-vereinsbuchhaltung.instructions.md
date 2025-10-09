@@ -1,9 +1,13 @@
 ---
-description: Leitfaden für Drupal/CiviCRM Vereinsbuchhaltung inkl. Erweiterungen & Automatisierung
-applyTo: 'crm.menschlichkeit-oesterreich.at/**,automation/**,scripts/**'
+title: CiviCRM Vereinsbuchhaltung – Betriebsanleitung
+version: 1.0.0
+created: 2025-10-08
+lastUpdated: 2025-10-08
+status: ACTIVE
 priority: high
+category: core
+applyTo: crm.menschlichkeit-oesterreich.at/**,automation/**,scripts/**
 ---
-
 # CiviCRM Vereinsbuchhaltung – Betriebsanleitung
 
 ## 🔧 Grundinstallation

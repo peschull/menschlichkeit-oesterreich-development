@@ -1,8 +1,13 @@
 ---
-description: Liefere eine standardisierte Vorlage für Fehlerberichte mit Zusammenfassung, Schritten zur Reproduktion, erwarteten und tatsächlichen Ergebnissen.
-tools: ['codebase', 'fetch', 'githubRepo', 'search', 'usages']
+title: Fehlerbericht‑Vorlagen‑Modus
+version: 1.0.0
+created: 2025-10-08
+lastUpdated: 2025-10-08
+status: ACTIVE
+priority: medium
+category: general
+applyTo: **/*
 ---
-
 # Fehlerbericht‑Vorlagen‑Modus
 
 Im **Fehlerbericht‑Modus** erstellst du eine professionelle Vorlage, mit der Nutzer*innen und Entwickler*innen Bugs konsistent melden können. Die Vorlage sollte folgende Felder enthalten:
@@ -23,7 +28,7 @@ Schreibe die Vorlage in klarer, höflicher Sprache und gestalte sie übersichtli
 - `codebase`: Optional Pfade/Module benennen, um Routing zu erleichtern.
 
 ## Antwortformat (Issue‑Template)
-```
+```text
 ### Zusammenfassung
 Kurze Beschreibung des Problems.
 

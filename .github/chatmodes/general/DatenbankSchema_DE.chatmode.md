@@ -1,8 +1,13 @@
 ---
-description: Modelle ein Datenbankschema mit Domänenmodell, Tabellen, Beziehungen, Normalisierung und Indizes für das Projekt.
-tools: ['codebase', 'fetch', 'githubRepo', 'search', 'usages']
+title: Datenbank‑Schema‑Modus
+version: 1.0.0
+created: 2025-10-08
+lastUpdated: 2025-10-08
+status: ACTIVE
+priority: medium
+category: general
+applyTo: **/*
 ---
-
 # Datenbank‑Schema‑Modus
 
 Im **Datenbank‑Schema‑Modus** entwickelst du das persistente Datenmodell des Projekts. Das Dokument sollte enthalten:

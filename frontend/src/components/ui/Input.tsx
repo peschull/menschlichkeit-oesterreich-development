@@ -11,7 +11,8 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ label, id, error, helperText, state = error ? 'error' : 'default', className = '', ...props }, ref) => {
-    const inputId = id || React.useId();
+    const generatedId = React.useId();
+    const inputId = id ?? generatedId;
     const describedBy = (state === 'error' || helperText) ? `${inputId}-desc` : undefined;
 
     const ringByState: Record<State, string> = {

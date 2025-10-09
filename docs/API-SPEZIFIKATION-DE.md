@@ -10,9 +10,10 @@ Die **Menschlichkeit Österreich API** dient als zentrale Schnittstelle für die
 - **SEPA-Integration**: Verwaltung von SEPA-Mandaten für österreichische NGO-Spenden
 - **Sicherheit**: PII-Sanitization in Logs und umfassende Security-Events
 
-**Zielgruppe**: 
+**Zielgruppe**:
+
 - Frontend-Entwickler (React/TypeScript)
-- n8n Automation-Workflows 
+- n8n Automation-Workflows
 - Externe Integrationen (Gaming Platform, Mobile Apps)
 - NGO-Administratoren
 
@@ -27,10 +28,12 @@ Authorization: Bearer <access_token>
 ```
 
 **Token-Typen**:
+
 - **Access Token**: 1 Stunde Gültigkeit, für API-Zugriff
 - **Refresh Token**: 7 Tage Gültigkeit, für Token-Erneuerung
 
 **JWT-Payload-Struktur**:
+
 ```json
 {
   "sub": "user@example.org",
@@ -42,10 +45,12 @@ Authorization: Bearer <access_token>
 ```
 
 ### Benutzerrollen
+
 - **User**: Standard-Benutzer (Profil, eigene Daten)
 - **Admin**: Administratorrechte (alle Endpoints, DSGVO-Verwaltung)
 
 ### Umgebungsvariablen
+
 ```bash
 JWT_SECRET=mindestens_32_zeichen_production_secret
 CIVI_BASE_URL=https://crm.menschlichkeit-oesterreich.at
@@ -58,15 +63,19 @@ CIVI_API_KEY=civicrm_api_key
 ### 1. Authentifizierung
 
 #### POST /auth/login
+
 **Beschreibung**: Benutzeranmeldung mit E-Mail-Adresse  
 **Authentifizierung**: Keine  
 **Parameter**:
+
 ```json
 {
   "email": "user@example.org" 
 }
 ```
+
 **Antwort** (200):
+
 ```json
 {
   "success": true,
@@ -88,9 +97,11 @@ CIVI_API_KEY=civicrm_api_key
 ```
 
 #### POST /auth/register
+
 **Beschreibung**: Kontakt erstellen/aktualisieren und Tokens ausgeben  
 **Authentifizierung**: Keine  
 **Parameter**:
+
 ```json
 {
   "email": "user@example.org",
@@ -101,9 +112,11 @@ CIVI_API_KEY=civicrm_api_key
 ```
 
 #### POST /auth/refresh
+
 **Beschreibung**: Access Token mittels Refresh Token erneuern  
 **Authentifizierung**: Refresh Token  
 **Parameter**:
+
 ```json
 {
   "refresh_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9..."
@@ -113,10 +126,12 @@ CIVI_API_KEY=civicrm_api_key
 ### 2. Benutzerprofil
 
 #### GET /user/profile
+
 **Beschreibung**: Aktuelles Benutzerprofil abrufen  
 **Authentifizierung**: Bearer Token  
 **Parameter**: Keine  
 **Antwort** (200):
+
 ```json
 {
   "success": true,
@@ -132,9 +147,11 @@ CIVI_API_KEY=civicrm_api_key
 ```
 
 #### PUT /user/profile
+
 **Beschreibung**: Benutzerprofil aktualisieren  
 **Authentifizierung**: Bearer Token  
 **Parameter**:
+
 ```json
 {
   "first_name": "Max",
@@ -146,16 +163,19 @@ CIVI_API_KEY=civicrm_api_key
 ### 3. Kontakt-Management
 
 #### POST /contacts/create
+
 **Beschreibung**: Neuen Kontakt in CiviCRM erstellen  
 **Authentifizierung**: Bearer Token  
 **Parameter**: `ContactCreate` Schema (siehe Datenmodelle)
 
 #### GET /contacts/{contact_id}
+
 **Beschreibung**: Kontakt-Details abrufen  
 **Authentifizierung**: Bearer Token  
 **URL-Parameter**: `contact_id` (integer)
 
 #### PUT /contacts/{contact_id}
+
 **Beschreibung**: Kontakt aktualisieren  
 **Authentifizierung**: Bearer Token  
 **Parameter**: `ContactUpdate` Schema
@@ -163,15 +183,18 @@ CIVI_API_KEY=civicrm_api_key
 ### 4. Mitgliedschaften
 
 #### GET /user/memberships
+
 **Beschreibung**: Mitgliedschaften des aktuellen Benutzers  
 **Authentifizierung**: Bearer Token
 
 #### POST /memberships/create
+
 **Beschreibung**: Neue Mitgliedschaft erstellen  
 **Authentifizierung**: Bearer Token  
 **Parameter**: `MembershipCreate` Schema
 
 #### PUT /memberships/{membership_id}
+
 **Beschreibung**: Mitgliedschaft aktualisieren  
 **Authentifizierung**: Bearer Token  
 **Parameter**: `MembershipUpdate` Schema
@@ -179,9 +202,11 @@ CIVI_API_KEY=civicrm_api_key
 ### 5. SEPA-Mandate
 
 #### POST /sepa/mandate
+
 **Beschreibung**: SEPA-Mandat erstellen (nur Speicherung)  
 **Authentifizierung**: Bearer Token  
 **Parameter**:
+
 ```json
 {
   "contact_id": 123,
@@ -192,15 +217,18 @@ CIVI_API_KEY=civicrm_api_key
 ```
 
 #### GET /sepa/mandate/{contact_id}
+
 **Beschreibung**: SEPA-Mandat abrufen  
 **Authentifizierung**: Bearer Token
 
 ### 6. DSGVO Privacy (Recht auf Vergessenwerden)
 
 #### POST /privacy/data-deletion
+
 **Beschreibung**: Löschantrag nach DSGVO Art. 17 stellen  
 **Authentifizierung**: Bearer Token  
 **Parameter**:
+
 ```json
 {
   "reason": "no_longer_needed",
@@ -209,13 +237,16 @@ CIVI_API_KEY=civicrm_api_key
 ```
 
 #### GET /privacy/data-deletion
+
 **Beschreibung**: Eigene Löschanträge abrufen  
 **Authentifizierung**: Bearer Token
 
 #### POST /privacy/data-deletion/{request_id}/process
+
 **Beschreibung**: Löschantrag bearbeiten (Admin)  
 **Authentifizierung**: Bearer Token (Admin)  
 **Parameter**:
+
 ```json
 {
   "action": "approve",
@@ -224,15 +255,18 @@ CIVI_API_KEY=civicrm_api_key
 ```
 
 #### GET /privacy/data-deletion/admin/all
+
 **Beschreibung**: Alle Löschanträge (Admin)  
 **Authentifizierung**: Bearer Token (Admin)
 
 ### 7. System
 
 #### GET /health
+
 **Beschreibung**: Health Check für Monitoring  
 **Authentifizierung**: Keine  
 **Antwort**:
+
 ```json
 {
   "status": "healthy",
@@ -244,6 +278,7 @@ CIVI_API_KEY=civicrm_api_key
 ## Datenmodelle
 
 ### ContactCreate
+
 ```json
 {
   "type": "object",
@@ -267,6 +302,7 @@ CIVI_API_KEY=civicrm_api_key
 ```
 
 ### MembershipCreate
+
 ```json
 {
   "type": "object", 
@@ -281,6 +317,7 @@ CIVI_API_KEY=civicrm_api_key
 ```
 
 ### ApiResponse (Standard)
+
 ```json
 {
   "type": "object",
@@ -294,6 +331,7 @@ CIVI_API_KEY=civicrm_api_key
 ```
 
 ### DataDeletionRequest (DSGVO)
+
 ```json
 {
   "type": "object",
@@ -444,6 +482,7 @@ X-RateLimit-Reset: 1696503600
 ## CORS-Konfiguration
 
 **Erlaubte Origins** (Development):
+
 - `http://localhost:5173` (Frontend)
 - `http://localhost:4180` (Games)
 
@@ -458,11 +497,13 @@ X-RateLimit-Reset: 1696503600
 **URL-Schema**: `https://api.menschlichkeit-oesterreich.at/v1/`
 
 **Versionierungs-Ansatz**:
+
 - **Major** (v2.x): Breaking Changes, neue URL-Pfade
 - **Minor** (v1.x): Neue Features, abwärtskompatibel  
 - **Patch** (v1.0.x): Bugfixes, Sicherheitsupdates
 
 **Deprecation-Policy**:
+
 - 6 Monate Vorankündigung für Breaking Changes
 - Alte Versionen werden 12 Monate nach Deprecation unterstützt
 - Migration-Guides für Major-Updates
@@ -470,11 +511,13 @@ X-RateLimit-Reset: 1696503600
 ### Geplante Änderungen
 
 **v1.1.0** (Q1 2026):
+
 - `/auth/logout` Endpoint
 - `/user/security-logs` für Audit-Trail
 - Push-Notification Integration
 
 **v2.0.0** (Q3 2026):
+
 - GraphQL-Support
 - Multi-Tenancy für mehrere NGOs
 - Advanced RBAC (Role-Based Access Control)
@@ -498,22 +541,26 @@ X-RateLimit-Reset: 1696503600
 ## Sicherheitsmaßnahmen
 
 ### Authentifizierung
+
 - JWT mit 256-bit HMAC Signierung
 - Token-Rotation bei Refresh
 - Automatische Token-Invalidierung bei Verdacht
 
 ### Input-Validierung
+
 - Pydantic Schema-Validierung für alle Endpoints
 - SQL-Injection-Schutz durch CiviCRM API
 - XSS-Schutz durch Content-Security-Policy
 
 ### Logging & Monitoring
+
 - Strukturiertes JSON-Logging
 - PII-Sanitization in allen Logs
 - Security-Event-Tracking
 - Rate-Limiting mit Redis/Memory-Store
 
 ### Infrastruktur
+
 - HTTPS-only (TLS 1.3)
 - CORS-Policy für bekannte Origins
 - Health-Checks für Monitoring
@@ -526,6 +573,7 @@ X-RateLimit-Reset: 1696503600
 **Maintainer**: Menschlichkeit Österreich Development Team
 
 **Weiterführende Dokumentation**:
+
 - [#file:openapi.yaml](api.menschlichkeit-oesterreich.at/openapi.yaml) - OpenAPI 3.0 Spezifikation
 - [#file:app/main.py](api.menschlichkeit-oesterreich.at/app/main.py) - FastAPI Implementierung  
 - [#file:app/routes/privacy.py](api.menschlichkeit-oesterreich.at/app/routes/privacy.py) - DSGVO Endpoints

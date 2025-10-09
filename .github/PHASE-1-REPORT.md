@@ -65,7 +65,7 @@
 #### 1. Massive Redundanz in `prompts/chatmodes/`
 
 **Pattern:** Jedes Topic hat 3 Dateien
-```
+```text
 topic.yaml          # Original
 topic.yaml.json     # JSON-Duplikat (REDUNDANT)
 topic_examples.md   # Sollte inline sein

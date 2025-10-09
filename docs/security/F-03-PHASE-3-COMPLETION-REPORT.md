@@ -98,7 +98,7 @@ php cli-wrapper.php \
 
 **Test-Ergebnisse:**
 
-```
+```text
 PASS  automation/n8n/custom-nodes/pii-sanitizer/__tests__/PiiSanitizer.node.test.ts
   PII-Sanitizer Node
     ✓ maskiert E-Mail und Kreditkarte korrekt (58 ms)
@@ -277,7 +277,7 @@ Time:        8.229 s
 
 ### Datei-Struktur
 
-```
+```text
 automation/n8n/custom-nodes/pii-sanitizer/
 ├── PiiSanitizer.node.ts          # Node-Implementierung
 ├── README.md                      # Dokumentation

@@ -26,6 +26,7 @@
 ## 8. Weitere Tier-Datenbanken (Complete Database Matrix)
 
 **Plesk MariaDB (5 Datenbanken - localhost)**
+
 | Service | User | Password | Database | Port |
 | --- | --- | --- | --- | --- |
 | CRM | `svc_crm` | `f9*K2mN8@vL5!pR3Q6Y&D4Hs` | `mo_crm` | 3306 |
@@ -35,6 +36,7 @@
 | Backups | `svc_backups` | `P4*kT7&mR0@nF3$cL6YxE9Ws` | `mo_backups` | 3306 |
 
 **External MariaDB (9 Datenbanken - external-db1.hosting-provider.at)**
+
 | Service | User | Password | Database | Port |
 | --- | --- | --- | --- | --- |
 | CRM Staging | `svc_crm_staging` | `K5*mR8&pT1@nF4$cL7YxE0Ws` | `mo_crm_staging` | 3306 |
@@ -48,6 +50,7 @@
 | Monitoring | `svc_monitoring` | `F9*mR2&pT5@nK8$cL0YxE4Ws` | `mo_monitoring` | 3306 |
 
 **PostgreSQL (3 Datenbanken - pg-cluster.hosting-provider.at)**
+
 | Service | User | Password | Database | Port |
 | --- | --- | --- | --- | --- |
 | Games/XP | `svc_games` | `qQ#^ql*nWkx3!*AjA5g^CaWq` | `mo_games` | 5432 |
@@ -55,6 +58,7 @@
 | API Data | `svc_api_data` | `nN$%xl*gVsx4!#CjH6h%MzOp` | `mo_api_data` | 5432 |
 
 **Redis (Optional - redis.hosting-provider.at)**
+
 | Service | Password | Database | Port |
 | --- | --- | --- | --- |
 | Redis Main | `wW&*zl*tXqx5!$EjK7j&NzLm` | 0 | 6379 |
@@ -132,6 +136,7 @@
 | `SSH_POST_DEPLOY_CMD` | global | GitHub Secret (optional) | `php artisan migrate --force` | Befehle nach Deploy |jekt-Template)
 
 > Referenzen:  
+>
 > - `.github/instructions/*.instructions.md` (Plesk, Datenbanken, Quality Gates)  
 > - `.github/prompts/0*_*.prompt.md` (Deployment-/Rollout-Workflows)  
 > - `.github/modes/deployment-operations.mode.md` (CI/CD & MCP Interaktion)  
@@ -288,6 +293,7 @@ ssh-keygen -t ed25519 -C "github-actions@menschlichkeit-oesterreich.at"
 ## 9. Validierung & Security Verification
 
 ### A) GitHub Secrets Configuration
+
 ```bash
 # 1. Navigate to Repository Settings
 https://github.com/peschull/menschlichkeit-oesterreich-development/settings/secrets/actions
@@ -297,6 +303,7 @@ https://github.com/peschull/menschlichkeit-oesterreich-development/settings/secr
 ```
 
 ### B) Local Environment Validation
+
 ```bash
 # 1. Copy environment template
 cp .env.example .env.deployment
@@ -313,6 +320,7 @@ cd crm.menschlichkeit-oesterreich.at && drush status
 ```
 
 ### C) Security Validation
+
 ```bash
 # 1. Run Gitleaks scan
 gitleaks detect --source . --verbose
@@ -329,6 +337,7 @@ npm run test:webhook-signatures
 ```
 
 ### D) Helper Scripts
+
 | Script | Purpose | Usage |
 | --- | --- | --- |
 | `scripts/setup-github-secrets.ps1` | Mass-upload secrets | `-ShowSecretsList`, `-GenerateKeys` |
@@ -338,6 +347,7 @@ npm run test:webhook-signatures
 | `scripts/rotate-secrets.sh` | Security rotation | Monthly rotation of critical secrets |
 
 ### E) Compliance & Documentation
+
 ```bash
 # 1. DSGVO-Check: Ensure no PII in secrets
 grep -r "email\|name\|address" .env* | grep -v example
@@ -353,6 +363,7 @@ gpg --encrypt --recipient admin@menschlichkeit-oesterreich.at .env.deployment
 ```
 
 ### F) Monitoring & Alerts
+
 - **Secret Expiration:** Calendar reminders for 90-day rotation
 - **Failed Authentication:** n8n workflow for DB connection failures  
 - **Security Scanning:** Weekly Gitleaks + Trivy scans via GitHub Actions

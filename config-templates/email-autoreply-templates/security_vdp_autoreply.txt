@@ -1,0 +1,56 @@
+Betreff: Re: Sicherheitsmeldung an security@menschlichkeit-oesterreich.at
+
+Sehr geehrte/r Sicherheitsforscher/in,
+
+vielen Dank für Ihre verantwortungsvolle Meldung (Responsible Disclosure) 
+einer möglichen Sicherheitslücke.
+
+Unser Security-Team wurde automatisch benachrichtigt und wird Ihre Meldung 
+innerhalb von 24 Stunden bestätigen.
+
+**Wichtige Hinweise zum Responsible Disclosure-Prozess:**
+
+1. **Vertraulichkeit**: Bitte veröffentlichen Sie keine Details der 
+   Sicherheitslücke (CVE, Public Disclosure, Social Media) vor unserer 
+   ausdrücklichen schriftlichen Freigabe.
+
+2. **Kommunikation**: Alle weiteren Informationen senden Sie bitte an diese 
+   E-Mail-Adresse. Wir halten Sie über den Bearbeitungsfortschritt auf dem 
+   Laufenden.
+
+3. **Timeline**: 
+   - Bestätigung: < 24 Stunden
+   - Erste Analyse: < 72 Stunden
+   - Patch-Timeline: Abhängig von Severity (wird kommuniziert)
+   - Koordinierte Veröffentlichung: Nach Patch-Deployment
+
+4. **Anerkennung**: Mit Ihrer Zustimmung nennen wir Sie gerne in unseren 
+   Security Credits (optional, auf Wunsch auch anonym).
+
+5. **Scope**: Unser Responsible Disclosure Program umfasst:
+   - menschlichkeit-oesterreich.at
+   - *.menschlichkeit-oesterreich.at (alle Subdomains)
+   - Ausgenommen: Third-Party-Services (bitte direkt an Anbieter melden)
+
+**Was wir NICHT als Sicherheitslücke betrachten:**
+- Fehlende Security Header (bereits geplant)
+- Selbst-XSS (erfordert Social Engineering)
+- Clickjacking auf unkritischen Seiten
+- Fehlende Rate Limiting ohne PoC
+- Informationen aus öffentlichen Quellen (WHOIS, DNS, etc.)
+
+**Bug Bounty**: Aktuell bieten wir kein monetäres Bug Bounty Program an, 
+ehren aber besonders wertvolle Findings mit einer Spendenbescheinigung 
+(steuerlich absetzbar in Österreich).
+
+Nochmals vielen Dank für Ihre Unterstützung bei der Verbesserung unserer 
+Sicherheit!
+
+Mit bestem Dank
+Security Team
+Menschlichkeit Österreich
+
+---
+E-Mail: security@menschlichkeit-oesterreich.at
+PGP Key: https://menschlichkeit-oesterreich.at/.well-known/pgp-key.asc (optional)
+Interne SLA: Bestätigung < 24h, Triage < 72h, Fix je nach Severity

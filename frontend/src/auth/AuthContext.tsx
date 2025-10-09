@@ -22,7 +22,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setUnauthorizedHandler(() => {
       sessionStorage.removeItem(STORAGE_KEY);
       setToken(null);
-      try { window.location.assign('/Login'); } catch {}
+      try { window.location.assign('/Login'); } catch {
+        // Fallback: ignore if navigation is blocked (e.g., test environment)
+      }
     });
     return () => setUnauthorizedHandler(null);
   }, []);

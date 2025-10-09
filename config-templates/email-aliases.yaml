@@ -1,0 +1,223 @@
+---
+# E-Mail Alias-Konfiguration für Menschlichkeit Österreich
+# Erstellt: 2025-10-08
+# Domain: menschlichkeit-oesterreich.at
+# 
+# Verwendung: Diese Konfiguration in Plesk UI manuell umsetzen
+# Plesk → Mail → Email Aliases → Add Alias
+
+domain: menschlichkeit-oesterreich.at
+
+# Echte Postfächer (bereits angelegt oder anzulegen)
+mailboxes:
+  - peter.schuller@menschlichkeit-oesterreich.at  # Admin (bestehend)
+  - info@menschlichkeit-oesterreich.at            # Allgemein (bestehend)
+  - support@menschlichkeit-oesterreich.at         # NEU: Primärer Reply-To/Tickets
+  - civimail@menschlichkeit-oesterreich.at        # CiviMail System (bestehend)
+  - bounce@menschlichkeit-oesterreich.at          # VERP/Bounces (bestehend)
+  - logging@menschlichkeit-oesterreich.at         # Logs/Alerts (bestehend)
+  - dmarc@menschlichkeit-oesterreich.at           # NEU: DMARC Reports (RUA/RUF)
+  - tlsrpt@menschlichkeit-oesterreich.at          # NEU: TLS Reports
+
+# Alias-Konfiguration
+aliases:
+  # === Pflicht/Tech (Provider-Requirements) ===
+  abuse@:
+    forwards_to:
+      - logging@menschlichkeit-oesterreich.at
+      - peter.schuller@menschlichkeit-oesterreich.at
+    description: "Missbrauchsmeldungen (Provider-Requirement)"
+    autoreply: true
+    sla: "Triage < 8h, Abschluss < 72h"
+    
+  postmaster@:
+    forwards_to:
+      - logging@menschlichkeit-oesterreich.at
+      - peter.schuller@menschlichkeit-oesterreich.at
+    description: "Technische Mailserver-Anfragen (RFC 5321)"
+    autoreply: true
+    sla: "Triage < 8h, Abschluss < 72h"
+    
+  hostmaster@:
+    forwards_to:
+      - logging@menschlichkeit-oesterreich.at
+      - peter.schuller@menschlichkeit-oesterreich.at
+    description: "DNS/Domain-Administration"
+    autoreply: true
+    
+  webmaster@:
+    forwards_to:
+      - logging@menschlichkeit-oesterreich.at
+      - peter.schuller@menschlichkeit-oesterreich.at
+    description: "Website-Anfragen"
+    autoreply: true
+    
+  admin@:
+    forwards_to:
+      - logging@menschlichkeit-oesterreich.at
+      - peter.schuller@menschlichkeit-oesterreich.at
+    description: "Allgemeine Administration"
+    autoreply: false
+    
+  administrator@:
+    forwards_to:
+      - logging@menschlichkeit-oesterreich.at
+      - peter.schuller@menschlichkeit-oesterreich.at
+    description: "Systemadministration"
+    autoreply: false
+  
+  # === Security & Compliance ===
+  security@:
+    forwards_to:
+      - peter.schuller@menschlichkeit-oesterreich.at
+      - logging@menschlichkeit-oesterreich.at
+    description: "Vulnerability Disclosure Program (VDP)"
+    autoreply: true
+    autoreply_template: "security_vdp"
+    sla: "Bestätigung < 24h, Triage < 72h"
+    
+  privacy@:
+    forwards_to:
+      - peter.schuller@menschlichkeit-oesterreich.at
+    description: "DSGVO-Anfragen (Englisch)"
+    autoreply: false
+    sla: "Antwort < 30 Tage (gesetzlich)"
+    
+  datenschutz@:
+    forwards_to:
+      - peter.schuller@menschlichkeit-oesterreich.at
+    description: "DSGVO-Anfragen (Deutsch)"
+    autoreply: false
+    sla: "Antwort < 30 Tage (gesetzlich)"
+    
+  legal@:
+    forwards_to:
+      - peter.schuller@menschlichkeit-oesterreich.at
+    description: "Rechtliche Anfragen"
+    autoreply: false
+    sla: "Triage < 48h"
+  
+  # === Operations (alle → support@ für Ticketing) ===
+  newsletter@:
+    forwards_to:
+      - support@menschlichkeit-oesterreich.at
+    description: "Newsletter-Replies und Anfragen"
+    autoreply: false
+    
+  spenden@:
+    forwards_to:
+      - support@menschlichkeit-oesterreich.at
+    description: "Donation Inquiries"
+    autoreply: false
+    
+  mitgliedschaft@:
+    forwards_to:
+      - support@menschlichkeit-oesterreich.at
+    description: "Membership Anfragen"
+    autoreply: false
+    
+  events@:
+    forwards_to:
+      - support@menschlichkeit-oesterreich.at
+    description: "Event-Anfragen und Anmeldungen"
+    autoreply: false
+    
+  presse@:
+    forwards_to:
+      - support@menschlichkeit-oesterreich.at
+    description: "Press Relations"
+    autoreply: false
+    sla: "Antwort < 24h"
+    
+  partners@:
+    forwards_to:
+      - support@menschlichkeit-oesterreich.at
+    description: "Partnerschaften und Kooperationen"
+    autoreply: false
+    
+  volunteers@:
+    forwards_to:
+      - support@menschlichkeit-oesterreich.at
+    description: "Freiwillige und Helfer"
+    autoreply: false
+  
+  # === Finance/Backoffice ===
+  finance@:
+    forwards_to:
+      - support@menschlichkeit-oesterreich.at
+    description: "Finanzielle Anfragen"
+    autoreply: false
+    
+  buchhaltung@:
+    forwards_to:
+      - support@menschlichkeit-oesterreich.at
+    description: "Buchhaltung (Deutsch)"
+    autoreply: false
+    
+  receipts@:
+    forwards_to:
+      - support@menschlichkeit-oesterreich.at
+    description: "Spendenquittungen (Englisch)"
+    autoreply: false
+    
+  quittungen@:
+    forwards_to:
+      - support@menschlichkeit-oesterreich.at
+    description: "Spendenquittungen (Deutsch)"
+    autoreply: false
+  
+  # === No-Reply (Autoreply only, kein Forward) ===
+  noreply@:
+    forwards_to: []
+    description: "Automatische Benachrichtigungen - keine Antworten"
+    autoreply: true
+    autoreply_template: "noreply_redirect"
+    mailbox_active: false
+
+# Plesk Setup Instructions
+plesk_setup_steps:
+  - step: 1
+    action: "Login zu Plesk"
+    url: "https://plesk.example.com:8443"
+    
+  - step: 2
+    action: "Neue Postfächer anlegen"
+    path: "Mail → Email Addresses → Create Email Address"
+    mailboxes_to_create:
+      - email: "support@menschlichkeit-oesterreich.at"
+        quota: "10 GB"
+        description: "Primäres Support-Ticketing"
+      - email: "dmarc@menschlichkeit-oesterreich.at"
+        quota: "20 GB"
+        description: "DMARC Reports (hoher Traffic)"
+      - email: "tlsrpt@menschlichkeit-oesterreich.at"
+        quota: "5 GB"
+        description: "TLS Reporting"
+        
+  - step: 3
+    action: "Aliasse anlegen"
+    path: "Mail → Email Aliases → Add Alias"
+    instructions: "Für jeden Alias in der Liste oben: Alias-Name eingeben, Forward-Ziele hinzufügen"
+    
+  - step: 4
+    action: "Autoreplies konfigurieren"
+    path: "Mail → [Alias] → Autoresponder"
+    affected_aliases:
+      - "abuse@"
+      - "postmaster@"
+      - "security@"
+      - "noreply@"
+    template_location: "config-templates/email-autoreply-templates/"
+
+# Validation Checklist
+validation:
+  - test: "Testmail an jeden Alias senden"
+    expected: "Zustellung an Forward-Ziele"
+    tool: "mail-tester.com oder manuell"
+    
+  - test: "Autoreply testen"
+    expected: "Automatische Antwort innerhalb 1 Minute"
+    affected: ["abuse@", "postmaster@", "security@", "noreply@"]
+    
+  - test: "IMAP/SMTP Login für neue Postfächer"
+    credentials: "Siehe Plesk → Mail → [Mailbox] → Credentials"

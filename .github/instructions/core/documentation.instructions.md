@@ -1,9 +1,13 @@
 ---
-description: Best Practices für README und Markdown-Dokumentation im Projekt
-applyTo: '**/*.md'
+title: Documentation Best Practices Instructions
+version: 1.0.0
+created: 2025-10-08
+lastUpdated: 2025-10-08
+status: ACTIVE
 priority: high
+category: core
+applyTo: **/*.md
 ---
-
 # Documentation Best Practices Instructions
 
 ## Dokumentations-Standards
@@ -18,7 +22,7 @@ IMMER beachten:
 ```
 
 ### Dokumentations-Hierarchie
-```
+```text
 README.md (Root)           → Projekt-Übersicht für Newcomer
 ├── docs/                  → Technische Deep-Dive Dokumentation
 │   ├── ARCHITECTURE.md    → System-Design & Service-Übersicht

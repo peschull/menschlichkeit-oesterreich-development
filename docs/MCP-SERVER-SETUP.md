@@ -3,12 +3,14 @@
 ## 📋 Installierte MCP Server
 
 ### 🎨 Design & Frontend
+
 - **Figma MCP Server** (`@figma/mcp-server-figma`)
   - Design Token Synchronisation
   - Komponenten-Export
   - Erfordert: `FIGMA_ACCESS_TOKEN`
 
 ### 🔧 Development Tools
+
 - **GitHub MCP Server** (`@modelcontextprotocol/server-github`)
   - Issues, PRs, Branches, Security Alerts
   - Erfordert: `GITHUB_TOKEN` (bereits vorhanden)
@@ -22,11 +24,13 @@
   - Integration mit bestehenden Playwright-Tests
 
 ### 🗄️ Database & Backend
+
 - **PostgreSQL MCP Server** (`@modelcontextprotocol/server-postgres`)
   - Prisma-Integration
   - Erfordert: `POSTGRES_CONNECTION_STRING`
 
 ### 🔍 Search & Knowledge
+
 - **Brave Search MCP Server** (`@modelcontextprotocol/server-brave-search`)
   - Web-Recherche für Dokumentation
   - Erfordert: `BRAVE_API_KEY`
@@ -36,6 +40,7 @@
   - Keine Konfiguration erforderlich
 
 ### 📚 Documentation (bereits aktiviert via GitHub Copilot)
+
 - **Microsoft Docs MCP** - Azure, TypeScript, .NET Dokumentation
 - **Upstash Context7 MCP** - Library-spezifische Dokumentation
 - **Notion MCP** - Projekt-Dokumentation (falls konfiguriert)
@@ -44,6 +49,7 @@
 ## 🚀 Installation & Setup
 
 ### 1. Basis-Installation (automatisch via npx)
+
 Alle MCP-Server werden automatisch bei Verwendung via `npx -y` installiert.
 
 ### 2. Umgebungsvariablen konfigurieren
@@ -65,18 +71,22 @@ GITHUB_TOKEN=$GITHUB_TOKEN
 ```
 
 ### 3. Figma Token beschaffen
+
 1. Gehen Sie zu [Figma Account Settings](https://www.figma.com/settings)
 2. Scrollen Sie zu "Personal Access Tokens"
 3. Klicken Sie auf "Generate new token"
 4. Kopieren Sie den Token in `.env`
 
 ### 4. Brave API Key (optional)
+
 1. Gehen Sie zu [Brave Search API](https://brave.com/search/api/)
 2. Registrieren Sie sich für den kostenlosen Plan
 3. Kopieren Sie den API Key in `.env`
 
 ### 5. PostgreSQL Connection String
+
 Verwenden Sie die bestehende Datenbank-Konfiguration:
+
 ```bash
 # Lokal (aus schema.prisma)
 POSTGRES_CONNECTION_STRING="postgresql://postgres:postgres@localhost:5432/menschlichkeit_gaming"
@@ -88,9 +98,11 @@ POSTGRES_CONNECTION_STRING="postgresql://plesk_user:password@db.menschlichkeit-o
 ## 🔄 MCP Server Verwaltung
 
 ### Via VS Code Settings
+
 Die MCP-Server werden in `.vscode/mcp.json` konfiguriert und automatisch geladen.
 
 ### Via npm Scripts
+
 ```bash
 # Alle MCP-relevanten Dependencies installieren
 npm run setup:dev
@@ -103,6 +115,7 @@ npm run test:e2e
 ```
 
 ### Manuelle Installation (falls erforderlich)
+
 ```bash
 # Figma MCP Server
 npx -y @figma/mcp-server-figma
@@ -129,6 +142,7 @@ npx -y @modelcontextprotocol/server-memory
 ## 🧪 Testen der MCP-Server
 
 ### 1. GitHub MCP Server
+
 ```bash
 # Testen Sie mit GitHub Copilot Chat:
 # "List all open issues in this repository"
@@ -137,6 +151,7 @@ npx -y @modelcontextprotocol/server-memory
 ```
 
 ### 2. Figma MCP Server
+
 ```bash
 # Testen Sie mit:
 npm run figma:sync
@@ -147,6 +162,7 @@ npm run figma:sync
 ```
 
 ### 3. Playwright MCP Server
+
 ```bash
 # Testen Sie mit:
 npm run test:e2e
@@ -157,6 +173,7 @@ npm run test:e2e
 ```
 
 ### 4. PostgreSQL MCP Server
+
 ```bash
 # Testen Sie via Copilot:
 # "Show me the database schema"
@@ -189,6 +206,7 @@ npm run performance:lighthouse
 ## 🚨 Troubleshooting
 
 ### MCP Server startet nicht
+
 ```bash
 # Prüfen Sie die Logs
 cat ~/.cache/github-copilot/logs/language-server.log | grep -i mcp
@@ -198,6 +216,7 @@ cat ~/.cache/github-copilot/logs/language-server.log | grep -i mcp
 ```
 
 ### Figma Token ungültig
+
 ```bash
 # Token erneuern in Figma Settings
 # .env aktualisieren
@@ -205,6 +224,7 @@ cat ~/.cache/github-copilot/logs/language-server.log | grep -i mcp
 ```
 
 ### PostgreSQL Connection fehlgeschlagen
+
 ```bash
 # Prüfen Sie die Connection String
 echo $POSTGRES_CONNECTION_STRING

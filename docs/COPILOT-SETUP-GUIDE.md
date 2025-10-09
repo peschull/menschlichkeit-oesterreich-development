@@ -5,37 +5,44 @@
 Dieses Repository ist vollständig für GitHub Copilot optimiert mit:
 
 ### 1. Devcontainer-Integration
+
 **Datei**: `.devcontainer/devcontainer.json`
 
 GitHub Copilot und Copilot Chat sind automatisch in jedem Codespace installiert und konfiguriert.
 
 ### 2. Workspace-Empfehlungen
+
 **Datei**: `.vscode/extensions.json`
 
 Lokale Entwickler erhalten Vorschläge zur Installation von Copilot-Extensions.
 
 ### 3. Zentrale Settings
-**Dateien**: 
+
+**Dateien**:
+
 - `.devcontainer/devcontainer.json` (Codespaces)
 - `.vscode/settings.json` (lokale Entwicklung)
 
 ## 🎯 Copilot-Verhalten
 
-### Aktiviert für:
+### Aktiviert für
+
 - TypeScript/JavaScript
 - Python
 - PHP
 - CSS/SCSS
 - HTML
 
-### Deaktiviert für:
+### Deaktiviert für
+
 - Markdown (manuelle Dokumentation bevorzugt)
 - YAML (Konfigurationsdateien)
 - JSON (Schema-Validierung)
 - `.env` Dateien (Secrets-Schutz)
 - Git Commit Messages
 
-### Optimierungen:
+### Optimierungen
+
 - ✅ **Next-Edit-Suggestions**: Aktiviert für bessere Inline-Vorschläge
 - ✅ **Code-Shifting**: Deaktiviert (Vorschläge verschieben keinen bestehenden Code)
 - ✅ **Deutsche Chat-Sprache**: Copilot Chat antwortet auf Deutsch
@@ -45,7 +52,9 @@ Lokale Entwickler erhalten Vorschläge zur Installation von Copilot-Extensions.
 ## 📚 Projekt-Kontext für bessere Antworten
 
 ### Haupt-Instruktionsdatei
+
 `.github/copilot-instructions.md` enthält:
+
 - Repository-Architektur
 - Quality Gates
 - Development Workflows
@@ -53,7 +62,9 @@ Lokale Entwickler erhalten Vorschläge zur Installation von Copilot-Extensions.
 - Compliance-Anforderungen
 
 ### Ergänzende Instruktionen
+
 `docs/ai-instructions/coding-standards.md` enthält:
+
 - Code-Stil Konventionen
 - Naming Conventions
 - Sicherheits-Richtlinien
@@ -62,13 +73,14 @@ Lokale Entwickler erhalten Vorschläge zur Installation von Copilot-Extensions.
 
 ## 🚀 Schnellstart nach Setup
 
-### Nach Codespace-Rebuild:
+### Nach Codespace-Rebuild
 
 1. **Copilot-Status prüfen**:
    - Unten rechts in VS Code: GitHub Copilot Icon sollte aktiv sein
    - Status-Tooltip zeigt "Copilot is ready"
 
 2. **Inline-Suggestions testen**:
+
    ```typescript
    // In einer .ts Datei tippen:
    function calculateVAT(
@@ -81,6 +93,7 @@ Lokale Entwickler erhalten Vorschläge zur Installation von Copilot-Extensions.
    - Copilot durchsucht das gesamte Repository
 
 4. **Deaktivierung in YAML testen**:
+
    ```yaml
    # In einer .yml Datei tippen - KEINE Inline-Suggestions
    services:
@@ -94,6 +107,7 @@ Lokale Entwickler erhalten Vorschläge zur Installation von Copilot-Extensions.
 ## 🛠️ Copilot-Features nutzen
 
 ### Slash-Commands im Chat
+
 - `/explain` - Code erklären
 - `/fix` - Bug-Fixes vorschlagen
 - `/tests` - Unit-Tests generieren
@@ -101,14 +115,15 @@ Lokale Entwickler erhalten Vorschläge zur Installation von Copilot-Extensions.
 - `/optimize` - Performance-Verbesserungen
 
 ### Kontext-Referenzen
+
 - `#file:path/to/file.ts` - Spezifische Datei einbeziehen
 - `#codebase` - Gesamtes Repository durchsuchen
 - `#selection` - Aktuell markierten Code
 - `#terminal` - Letzten Terminal-Output
 
-### Beispiel-Prompts für dieses Projekt:
+### Beispiel-Prompts für dieses Projekt
 
-```
+```text
 #codebase Zeige mir alle API-Endpoints im FastAPI-Service
 
 #file:api.menschlichkeit-oesterreich.at/app/main.py 
@@ -123,14 +138,17 @@ Füge Retry-Logik für fehlgeschlagene Requests hinzu
 ## 🔒 Datenschutz & Telemetrie
 
 ### Telemetrie deaktiviert
+
 `"telemetry.telemetryLevel": "off"` in Workspace-Settings aktiv.
 
-### Was Copilot sieht:
+### Was Copilot sieht
+
 - ✅ Code in geöffneten Dateien
 - ✅ Instruktionsdateien (`.github/copilot-instructions.md`)
 - ✅ Repository-Struktur (bei `#codebase`)
 
-### Was Copilot NICHT sieht:
+### Was Copilot NICHT sieht
+
 - ❌ Secrets in `.env` Dateien (auch deaktiviert)
 - ❌ Produktions-Datenbanken
 - ❌ GitHub Secrets
@@ -138,6 +156,7 @@ Füge Retry-Logik für fehlgeschlagene Requests hinzu
 ## 📖 Best Practices
 
 ### DO's ✅
+
 - **Spezifische Prompts**: "Erstelle FastAPI-Endpoint für SEPA-Validierung mit Pydantic-Schema"
 - **Kontext einbeziehen**: `#codebase` für Architektur-Fragen
 - **Iteration**: Vorschläge verfeinern mit Follow-up-Prompts
@@ -145,6 +164,7 @@ Füge Retry-Logik für fehlgeschlagene Requests hinzu
 - **Code-Reviews**: Copilot-generierten Code immer reviewen
 
 ### DON'Ts ❌
+
 - **Blind übernehmen**: Copilot kann Fehler machen
 - **Secrets einfügen**: Niemals API-Keys in Prompts
 - **Komplett ersetzen**: Copilot unterstützt, ersetzt aber nicht kritisches Denken
@@ -153,20 +173,24 @@ Füge Retry-Logik für fehlgeschlagene Requests hinzu
 ## 🐛 Troubleshooting
 
 ### Copilot zeigt keine Vorschläge
+
 1. Icon unten rechts prüfen → muss grün/aktiv sein
 2. GitHub-Authentifizierung überprüfen (VS Code Command Palette → "GitHub: Sign in")
 3. Subscription aktiv? (github.com/settings/copilot)
 
 ### Suggestions in YAML/JSON erscheinen trotzdem
+
 1. Datei-Typ überprüfen (unten rechts in VS Code)
 2. Settings überprüfen: `Strg+Shift+P` → "Preferences: Open Workspace Settings (JSON)"
 3. `github.copilot.enable` sollte `"yaml": false` enthalten
 
 ### Chat antwortet auf Englisch
+
 1. Settings prüfen: `"github.copilot.chat.localeOverride": "de"`
 2. VS Code neu laden: `Strg+Shift+P` → "Developer: Reload Window"
 
 ### "Codebase search not available"
+
 1. Settings prüfen: `"github.copilot.chat.codesearch.enabled": true`
 2. Codespace neu bauen oder VS Code neu laden
 3. Nur in Repositories mit aktivem Git möglich
@@ -174,6 +198,7 @@ Füge Retry-Logik für fehlgeschlagene Requests hinzu
 ## 📊 Erfolgskontrolle
 
 Nach 1 Woche Nutzung:
+
 - [ ] Team berichtet schnellere Entwicklung bei Boilerplate-Code
 - [ ] Code-Review-Feedback bezieht sich auf Business-Logik, nicht Syntax
 - [ ] Test-Coverage gestiegen (Copilot `/tests` genutzt)

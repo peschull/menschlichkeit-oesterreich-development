@@ -1,8 +1,13 @@
 ---
-description: Dokumentiere die Systemarchitektur des Projekts, inklusive Komponenten, Datenfluss, Schnittstellen, Abhängigkeiten und Deployment‑Topologie.
-tools: ['codebase', 'fetch', 'githubRepo', 'search', 'usages']
+title: Architektur‑Plan‑Modus
+version: 1.0.0
+created: 2025-10-08
+lastUpdated: 2025-10-08
+status: ACTIVE
+priority: medium
+category: general
+applyTo: **/*
 ---
-
 # Architektur‑Plan‑Modus
 
 Im **Architektur‑Plan‑Modus** sollst du eine detaillierte Beschreibung der Systemarchitektur erstellen. Ziel ist es, die Struktur des Projekts transparent zu machen und die Kommunikation im Team zu verbessern. Gehe wie folgt vor:

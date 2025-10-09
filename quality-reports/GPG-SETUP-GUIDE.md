@@ -87,6 +87,7 @@ Der `git-push-fix.sh` Script prüft automatisch GPG-Konfiguration:
 ### GitHub Secrets (Repository-Level)
 
 Die folgenden Secrets sollten verfügbar sein:
+
 - `GITHUB_TOKEN` ✅ (bereits konfiguriert)
 - `GPG_KEY_ID` ✅ (in Secrets verfügbar)
 

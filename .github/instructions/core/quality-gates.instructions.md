@@ -1,9 +1,13 @@
 ---
-description: Automatische Quality Gates Enforcement mit MCP-Tools für alle Deployments
-applyTo: '**/*'
+title: Quality Gates Instructions
+version: 1.0.0
+created: 2025-10-08
+lastUpdated: 2025-10-08
+status: ACTIVE
 priority: critical
+category: core
+applyTo: **/*
 ---
-
 # Quality Gates Instructions
 
 ## MANDATORY Quality Gates (PR-Blocking)

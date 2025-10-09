@@ -1049,7 +1049,7 @@ vendor/bin/phpunit tests/integration/civicrm-anonymization.test.php
 
 ### 8.2 System-Architektur Diagramm
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────┐
 │                    USER DELETION WORKFLOW                    │
 └─────────────────────────────────────────────────────────────┘

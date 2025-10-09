@@ -108,7 +108,7 @@ node scripts/validate-design-tokens.js
 
 **Output**:
 
-```
+```text
 ✅ All design token checks passed!
   - Design tokens file exists
   - JSON is valid

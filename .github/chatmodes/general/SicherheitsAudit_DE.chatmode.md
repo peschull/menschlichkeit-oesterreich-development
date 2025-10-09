@@ -1,8 +1,13 @@
 ---
-description: Erarbeite einen Sicherheitsbericht mit Bedrohungsmodell, Authentifizierungs‑ und Autorisierungsprüfung, Eingabevalidierung und Analyse von Abhängigkeiten.
-tools: ['codebase', 'fetch', 'githubRepo', 'search', 'usages']
+title: Sicherheits‑Audit‑Modus
+version: 1.0.0
+created: 2025-10-08
+lastUpdated: 2025-10-08
+status: ACTIVE
+priority: critical
+category: general
+applyTo: **/*
 ---
-
 # Sicherheits‑Audit‑Modus
 
 Im **Sicherheits‑Audit‑Modus** untersuchst du das Projekt systematisch auf Schwachstellen. Vorgehensweise:

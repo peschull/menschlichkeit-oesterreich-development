@@ -19,7 +19,7 @@ Dieses Dokument definiert verbindliche Governance-Regeln für das Git-Repository
 
 **Strategie:** Trunk-Based Development mit Feature-Branches
 
-```
+```text
 chore/figma-mcp-make (Default/Main)
 ├── feature/new-donation-flow
 ├── fix/csrf-vulnerability
@@ -29,7 +29,7 @@ chore/figma-mcp-make (Default/Main)
 
 **Branch-Namenskonvention:**
 
-```
+```text
 <type>/<short-description>
 
 Typen:
@@ -140,7 +140,7 @@ EOF
 
 **Format:**
 
-```
+```text
 <type>[optional scope]: <description>
 
 [optional body]
@@ -163,7 +163,7 @@ EOF
 
 **Breaking Changes:**
 
-```
+```text
 feat(api)!: remove deprecated /v1/donations endpoint
 
 BREAKING CHANGE: The /v1/donations endpoint has been removed. Use /v2/donations instead.
@@ -171,7 +171,7 @@ BREAKING CHANGE: The /v1/donations endpoint has been removed. Use /v2/donations 
 
 **Beispiele:**
 
-```
+```text
 ✅ feat(crm): add SEPA payment validation
 ✅ fix(frontend): resolve CSRF token refresh issue
 ✅ docs(readme): update installation instructions
@@ -236,7 +236,7 @@ git log --show-signature -1
 
 **Schlechte Praxis (❌):**
 
-```
+```text
 commit: "Fixed everything + added new features + refactored database"
   Files changed: 47
   Insertions: 3,452
@@ -245,7 +245,7 @@ commit: "Fixed everything + added new features + refactored database"
 
 **Gute Praxis (✅):**
 
-```
+```text
 commit 1: "refactor(db): normalize donation table schema"
 commit 2: "feat(api): add SEPA validation endpoint"
 commit 3: "test(api): add integration tests for SEPA validation"
@@ -367,7 +367,7 @@ echo "npx --no -- commitlint --edit \$1" > .husky/commit-msg
 
 **`.github/CODEOWNERS`:**
 
-```
+```bash
 # Global Owners
 * @peschull
 
@@ -645,7 +645,7 @@ git push --force --tags
 
 **Scopes (Minimum Privilege):**
 
-```
+```text
 ✅ repo (für Private Repos)
 ✅ read:org
 ✅ workflow

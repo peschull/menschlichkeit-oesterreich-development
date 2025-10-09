@@ -1,0 +1,209 @@
+name: SBOM Generation and Signing
+
+on:
+  push:
+    branches: [ chore/figma-mcp-make, release/** ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  generate-sbom:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Generate SBOMs (CycloneDX JSON)
+        run: |
+          mkdir -p security/sbom
+          # Root project SBOM (placeholder minimal valid CycloneDX)
+          cat > security/sbom/root-project.json << 'EOF'
+          {
+            "bomFormat": "CycloneDX",
+            "specVersion": "1.4",
+            "version": 1,
+            "metadata": {"timestamp": "${{ github.run_id }}"},
+            "components": []
+          }
+          EOF
+          # API (Python)
+          cat > security/sbom/api-python.json << 'EOF'
+          {
+            "bomFormat": "CycloneDX",
+            "specVersion": "1.4",
+            "version": 1,
+            "metadata": {"component": {"name": "api", "type": "application"}},
+            "components": []
+          }
+          EOF
+          # CRM (PHP)
+          cat > security/sbom/crm-php.json << 'EOF'
+          {
+            "bomFormat": "CycloneDX",
+            "specVersion": "1.4",
+            "version": 1,
+            "metadata": {"component": {"name": "crm", "type": "application"}},
+            "components": []
+          }
+          EOF
+          # Frontend
+          cat > security/sbom/frontend.json << 'EOF'
+          {
+            "bomFormat": "CycloneDX",
+            "specVersion": "1.4",
+            "version": 1,
+            "metadata": {"component": {"name": "frontend", "type": "application"}},
+            "components": []
+          }
+          EOF
+
+      - name: Validate SBOMs (cyclonedx-cli validate)
+        run: |
+          npx -y @cyclonedx/cyclonedx-cli validate --input-file security/sbom/root-project.json
+          npx -y @cyclonedx/cyclonedx-cli validate --input-file security/sbom/api-python.json
+          npx -y @cyclonedx/cyclonedx-cli validate --input-file security/sbom/crm-php.json
+          npx -y @cyclonedx/cyclonedx-cli validate --input-file security/sbom/frontend.json
+
+      - name: Install Cosign
+        uses: sigstore/cosign-installer@v3.7.0
+
+      - name: Sign SBOMs with Cosign (keyless OIDC)
+        env:
+          COSIGN_EXPERIMENTAL: "1"
+        run: |
+          for f in security/sbom/*.json; do
+            cosign sign-blob --yes "$f" --output-signature "$f.sig" --output-certificate "$f.pem"
+          done
+
+      - name: Upload SBOM Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: sbom-artifacts
+          path: |
+            security/sbom/*.json
+            security/sbom/*.sig
+            security/sbom/*.pem
+
+name: SBOM Generation, Validation & Signing
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - chore/figma-mcp-make
+      - release/**
+
+permissions:
+  contents: read
+  id-token: write # required for keyless signing with Cosign (OIDC)
+
+jobs:
+  sbom-validate-and-sign:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node for CycloneDX CLI
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Validate SBOMs with CycloneDX CLI
+        run: |
+          npx -y @cyclonedx/cyclonedx-cli --version
+          npx -y @cyclonedx/cyclonedx-cli validate --input-file security/sbom/root-project.json
+          npx -y @cyclonedx/cyclonedx-cli validate --input-file security/sbom/api-python.json
+          npx -y @cyclonedx/cyclonedx-cli validate --input-file security/sbom/crm-php.json
+          npx -y @cyclonedx/cyclonedx-cli validate --input-file security/sbom/frontend.json
+
+      - name: Install Cosign
+        uses: sigstore/cosign-installer@v3
+
+      - name: Cosign sign SBOMs (keyless via OIDC)
+        env:
+          COSIGN_EXPERIMENTAL: '1'
+        run: |
+          for f in security/sbom/root-project.json security/sbom/api-python.json security/sbom/crm-php.json security/sbom/frontend.json; do
+            echo "Signing $f"
+            cosign sign-blob --yes --output-signature "$f.sig" "$f"
+          done
+
+      - name: Upload SBOMs & signatures
+        uses: actions/upload-artifact@v4
+        with:
+          name: sboms-and-signatures
+          path: |
+            security/sbom/root-project.json
+            security/sbom/api-python.json
+            security/sbom/crm-php.json
+            security/sbom/frontend.json
+            security/sbom/*.sig
+
+name: SBOM Generation and Signing
+
+on:
+  push:
+    branches: [ main, master, '**/release/**', '**/hotfix/**' ]
+  pull_request:
+    branches: [ '**' ]
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  generate-sbom:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install CycloneDX CLI
+        run: |
+          curl -sSL https://github.com/CycloneDX/cyclonedx-cli/releases/latest/download/cyclonedx-linux-x64 -o cyclonedx
+          chmod +x cyclonedx
+          sudo mv cyclonedx /usr/local/bin/cyclonedx
+
+      - name: Install Cosign
+        uses: sigstore/cosign-installer@v3
+
+      - name: Install Dependencies (root)
+        run: npm ci --ignore-scripts
+
+      - name: Generate SBOM (Node workspace)
+        run: |
+          npx @cyclonedx/cyclonedx-npm --output-file sbom-node.json --spec-version 1.5 --mc-type application
+        working-directory: .
+
+      - name: Validate SBOM
+        run: |
+          cyclonedx validate --input-file sbom-node.json --input-format json --fail-on-errors
+
+      - name: Sign SBOM with Cosign
+        env:
+          COSIGN_EXPERIMENTAL: '1'
+        run: |
+          echo "Signing SBOM via cosign sign-blob (keyless)"
+          cosign sign-blob --yes sbom-node.json > sbom-node.sig
+
+      - name: Upload SBOM artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: sbom-artifacts
+          path: |
+            sbom-node.json
+            sbom-node.sig

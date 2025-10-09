@@ -1,8 +1,13 @@
 ---
-description: Erstelle ein Dockerfile und optional eine docker‑compose.yml und liefere eine Anleitung zur Containerisierung des Projekts.
-tools: ['codebase', 'fetch', 'githubRepo', 'search', 'usages']
+title: Dockerisierungs‑Modus
+version: 1.0.0
+created: 2025-10-08
+lastUpdated: 2025-10-08
+status: ACTIVE
+priority: medium
+category: general
+applyTo: **/*
 ---
-
 # Dockerisierungs‑Modus
 
 Im **Dockerisierungs‑Modus** geht es darum, das Projekt containerfähig zu machen. Deine Aufgabe ist es, die notwendigen Schritte sowie Konfigurationsdateien zu erstellen:

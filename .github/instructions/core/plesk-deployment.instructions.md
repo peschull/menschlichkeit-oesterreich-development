@@ -1,9 +1,13 @@
 ---
-description: Plesk SSH Deployment Configuration und Database Rollout Plan
-applyTo: 'deployment-scripts/**,scripts/**,**/deploy*.sh'
+title: Plesk Deployment & Database Configuration
+version: 1.0.0
+created: 2025-10-08
+lastUpdated: 2025-10-08
+status: ACTIVE
 priority: critical
+category: core
+applyTo: deployment-scripts/**,scripts/**,**/deploy*.sh
 ---
-
 # Plesk Deployment & Database Configuration
 
 ## 🔐 SSH Credentials

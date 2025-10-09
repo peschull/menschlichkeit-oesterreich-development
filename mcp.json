@@ -122,6 +122,14 @@
         "script": "scripts/generate-quality-report.js",
         "output-dir": "quality-reports"
       }
+    },
+    "moe-chat": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["mcp-servers/chatgpt-app-server/index.js"],
+      "env": {
+        "MOE_API_BASE": "http://localhost:8001/api/v1"
+      }
     }
   }
 }

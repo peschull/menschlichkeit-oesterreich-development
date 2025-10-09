@@ -43,7 +43,7 @@ Aus `BRAND-GUIDELINES.md`:
 
 ### UI-Struktur (Next.js)
 
-```
+```text
 ┌─────────────────────────────────────────────┐
 │  Topbar: Suche | Org-Switcher | User Menu  │
 ├──────────┬──────────────────────────────────┤

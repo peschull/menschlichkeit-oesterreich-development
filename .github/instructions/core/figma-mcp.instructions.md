@@ -1,8 +1,13 @@
 ---
-description: Figma MCP Integration für Design System Sync mit GitHub Copilot
-applyTo: 'figma-design-system/**,frontend/**,website/**'
+title: Figma MCP Integration Rules
+version: 1.0.0
+created: 2025-10-08
+lastUpdated: 2025-10-08
+status: ACTIVE
+priority: medium
+category: core
+applyTo: figma-design-system/**,frontend/**,website/**
 ---
-
 # Figma MCP Integration Rules
 
 ## Aktivierung

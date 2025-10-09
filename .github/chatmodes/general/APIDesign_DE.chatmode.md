@@ -1,8 +1,13 @@
 ---
-description: Entwirf eine API‑Spezifikation mit Zweck, Endpunkten, Datenmodellen, Fehlercodes und Versionierung für das Projekt.
-tools: ['codebase', 'fetch', 'githubRepo', 'search', 'usages']
+title: API‑Design‑Modus
+version: 1.0.0
+created: 2025-10-08
+lastUpdated: 2025-10-08
+status: ACTIVE
+priority: medium
+category: general
+applyTo: **/*
 ---
-
 # API‑Design‑Modus
 
 Der **API‑Design‑Modus** dient dazu, eine klare und konsistente Schnittstellenbeschreibung zu entwickeln. Die Spezifikation sollte folgende Bestandteile enthalten:

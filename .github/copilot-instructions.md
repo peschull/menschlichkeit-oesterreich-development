@@ -1,91 +1,146 @@
-# Menschlichkeit Österreich – Copilot Leitfaden
+## Menschlichkeit Österreich – Copilot Leitfaden (kurz & praxisnah)
 
-## 1. Arbeitsmodus
-- **Rolle:** DevOps & Security-first AI-Assistent mit Fokus auf Qualität, Compliance und Developer Experience.
-- **Verhalten:** Deterministisch, keine destruktiven Aktionen ohne Dry-Run. Dokumentiere Annahmen, logge Ergebnisdateien.
-- **Prioritäten:** Sicherheit > Datenintegrität > Produktionsstabilität > Developer-Velocity.
+Dieser Monorepo bündelt 5 Services mit gemeinsamer PostgreSQL-DB und DSGVO-First-Default. Ziel: Security > Datenintegrität > Stabilität > Velocity.
 
-## 2. Repository-Überblick
-| Service | Ordner | Stack | Hinweise |
-| --- | --- | --- | --- |
-| Website | `website/` | WordPress/HTML | Produktions-Frontend |
-| React Frontend | `frontend/` | React + Vite | Design Tokens & UI-Komponenten |
-| API | `api.menschlichkeit-oesterreich.at/` | FastAPI, PostgreSQL | GDPR relevante Endpunkte |
-| CRM | `crm.menschlichkeit-oesterreich.at/` | Drupal + CiviCRM | läuft über Drush/Plesk |
-| Games | `web/` | TypeScript/Python | nutzt Prisma + PostgreSQL |
-| Automation | `automation/n8n/` | Docker (n8n) | Webhook-Benachrichtigungen |
-| Deployment | `deployment-scripts/`, `scripts/` | Bash/PowerShell | Plesk & Multi-Service Deployments |
+### Architektur (Big Picture)
+- CRM: `crm.menschlichkeit-oesterreich.at/` (Drupal 10 + CiviCRM, PHP 8.1) – Port 8000
+- API: `api.menschlichkeit-oesterreich.at/` (FastAPI, Python 3.11+, Alembic) – Port 8001
+- Frontend: `frontend/` (React 18 + TS + Vite, Design Tokens) – Port 5173
+- Games: `web/` (Prisma-Schema im Repo; lokaler Dev-Server via Python) – Port 3000
+- Automation: `automation/n8n/` (Docker, Webhooks) – Port 5678
+Gemeinsame DB (PostgreSQL ≥15) via `DATABASE_URL`. Schema-Änderungen: koordinieren (API Alembic vs. Games Prisma).
 
-## 3. Qualitäts- & Sicherheits-Gates (Blocking)
-- **Code:** `npm run lint:all`, `composer exec phpstan analyse`, `pytest`, `vitest`.
-- **Security:** Trivy (HIGH/CRITICAL = 0), Gitleaks (0 Secrets), npm audit.
-- **Performance:** Lighthouse ≥ 90 (Performance/Accessibility/Best-Practices/SEO).
-- **Compliance:** DSGVO – keine PII in Logs, Consent & Retention dokumentiert.
-- **Supply Chain:** SBOM + SPDX gepflegt (`npm run quality:reports`).
+### Daily Dev (Node 22+ zwingend)
+- Setup: `npm run setup:dev`
+- Start alle: `npm run dev:all` (oder einzeln: `dev:crm`, `dev:api`, `dev:frontend`, `dev:games`)
+- Wichtige Ports: CRM 8000 · API 8001 · Frontend 5173 · Games 3000 · n8n 5678
 
-## 4. Kern-Workflows
-### Lokale Entwicklung
-```bash
-npm run setup:dev          # Workspaces + Composer + Environments
-npm run dev:all            # CRM (8000), API (8001), Frontend (5173), Games (3000)
-npm run n8n:start          # Automation-Stack (Docker)
-```
+### Qualität & Tests (PR-blocking Gates)
+- Alles auf einmal: `npm run quality:gates`
+	- Code Quality (Codacy), Security (Trivy+Gitleaks), Performance (Lighthouse), DSGVO-Checks, Reports
+- Einzeltests: `npm run test:unit` (Vitest), `npm run test:e2e` (Playwright), Python: `pytest tests/test_pii_sanitizer.py`
 
-### Qualität & Tests
-```bash
-npm run quality:gates      # Codacy, Security, Performance, Compliance Berichte
-npm run test:unit          # Vitest
-pytest tests/              # FastAPI Backend
-composer test              # Drupal/Custom PHP
-npm run test:e2e           # Playwright E2E
-```
+### DSGVO/PII (Projekt-spezifische Patterns)
+- FastAPI: Middleware `api.../app/middleware/pii_middleware.py` + Lib `app/lib/pii_sanitizer.py`
+- Drupal: Custom Modul `crm.../web/modules/custom/pii_sanitizer/` (Watchdog/Forms/Mails/CiviCRM)
+- Regeln: Keine PII in Logs; E-Mail-Masking (`t**@example.com`), IBAN-Redaction (`AT61***`). Tests: `tests/test_pii_sanitizer.py`.
 
-### Build & Deployment
-```bash
-npm run build:all          # Frontend + Games + API Packaging
-./build-pipeline.sh staging|production
-./scripts/safe-deploy.sh   # SFTP Deploy (Auto-Bestätigung via SAFE_DEPLOY_AUTO_CONFIRM)
-```
-CI/CD Workflow: `.github/workflows/deploy-staging.yml` (trigger: `main` push + manual).
+### Frontend Konventionen
+- Design Tokens: `figma-design-system/00_design-tokens.json` – niemals Farben/Spacing hardcoden
+	- Nutzung: `frontend/tailwind.config.cjs`, `frontend/scripts/generate-design-tokens.mjs`
+- Routing/Fallback: `frontend/src/App.tsx` nutzt `<AITestPage />` als sichere Fallback-Route
+- Performance-Audit: `npm run performance:lighthouse` (nutzt Frontend-Workspace)
 
-## 5. Testing & Observability
-- Unit/E2E Ergebnisse in `playwright-results/`, Coverage unter `coverage/`.
-- Monitoring-Daten: `quality-reports/deployment-metrics/*.ndjson` + Markdown-Reports.
-- Smoke-Tests: `deployment-scripts/smoke-tests.sh` (nutzt Playwright & API-Checks).
-- Log-Analyse: `scripts/log-analyzer.py`; Alerting via n8n Webhooks (`automation/n8n`).
+### API & DB Flows
+- OpenAPI: `api.menschlichkeit-oesterreich.at/openapi.yaml` (halten in Sync mit Endpunkten)
+- Migrations (API): Alembic – Beispiel: `alembic upgrade head`
+- Prisma (Games): Schema im `schema.prisma`; gängig: `npx prisma generate` / `npx prisma migrate dev`
 
-## 6. Daten & Sicherheit
-- Sensible Konfigurationen über `.env.deployment` (Erstellung per `deployment-scripts/setup-environment.sh`).
-- PII-Sanitizing: `api.menschlichkeit-oesterreich.at/app/lib/pii_sanitizer.py` – Tests in `tests/test_pii_sanitizer.py`.
-- Secrets niemals ins Repo pushen (`secrets/` enthält Vorlagen und Tools).
-- SSH/Plesk Deploys nutzen `SAFE_DEPLOY_*` und GitHub Secrets (`STAGING_REMOTE_*`).
+### Build/Deploy (mit n8n Webhooks)
+- Pipeline: `./build-pipeline.sh staging|production [--skip-tests|--force]` (sendet Webhooks via `automation/n8n/webhook-client.js`)
+- Multi-Service Deploy: `deployment-scripts/multi-service-deploy.sh`
+- Rollback & Health: `npm run deploy:rollback` · `npm run deploy:health-check`
 
-## 7. Häufige Befehle (Cheat Sheet)
-```bash
-# Workspace Pflege
-npm run clean:dist          # Dist-Verzeichnisse entfernen
-npm run logs:purge          # Logrotation
+### MCP-Integration (für AI-Workflows)
+- Setup/Status: `npm run mcp:setup` · `npm run mcp:check` · `npm run mcp:list`
+- Typische Nutzung: Figma-Sync (Design Tokens), GitHub (PRs/Security), Filesystem (Repo-Operationen), Context7 (Lib-Doks)
 
-# Datenbanken
-./scripts/db-pull.sh        # Prod → lokal (Lesemodus)
-./scripts/db-push.sh --apply # Lokal → Prod (nur mit Approval)
+### Do/Don’t (projektspezifisch)
+- Do: UI-Texte auf Österreichisches Deutsch, Tokens verwenden, Gates lokal ausführen, OpenAPI/Alembic/Prisma aktuell halten
+- Don’t: PII loggen, Farben/Spacing hardcoden, DB ohne Migration ändern, Secrets commiten (Gitleaks blockt)
 
-# Analyse & Reports
-python3 scripts/ai-architecture-analyzer.py --output quality-reports/architecture.json
-npm run quality:reports     # Generiert konsolidierte Markdown/SARIF Reports
-```
+### Quick Links (Schlüsseldateien)
+- Scripts/Orchestrierung: `package.json` (Workflows), `build-pipeline.sh`
+- DSGVO/PII: `api.../app/lib/pii_sanitizer.py`, `crm.../modules/custom/pii_sanitizer/`
+- Frontend: `frontend/src/App.tsx`, `frontend/tailwind.config.cjs`
+- Design System: `figma-design-system/00_design-tokens.json`
+- DB: `schema.prisma`, `api.menschlichkeit-oesterreich.at/alembic/`
+- Anleitungen (kuratiert, .github/instructions/core):
+	- dsgvo-compliance.instructions.md
+	- quality-gates.instructions.md
+	- project-development.instructions.md
+	- mcp-integration.instructions.md
+- **Migration:** `.github/prompts/MIGRATION_MAP.json` (✅ 137/137 validiert, siehe `MIGRATION-MAP-VALIDATION-REPORT.md`)
 
-## 8. Vorlage für Copilot Prompts
-- **Kontext:** relevanten Pfad, Service und Qualitätsanforderung nennen.
-- **Scope:** „Ändere nur X“ – sichere Dir, was nicht verändert werden darf.
-- **Checks:** Abschluss mit `npm run quality:gates` oder passendem Test-Befehl.
-- **Output:** Erwähne betroffene Dateien + Tests/Reports, keine sensiblen Daten protokollieren.
+Unklarheiten oder Lücken? Nenne konkrete Aufgaben/Dateien – ich erweitere die Anleitung gezielt (kurz & operativ).
+# Menschlichkeit Österreich – AI Coding Agent Guide# Menschlichkeit Österreich – AI Coding Agent Guide# Menschlichkeit Österreich – Copilot Leitfaden
 
-## 9. Kommunikation & Reviews
-- PRs: Referenzen auf TODO-Nummern, Reports aus `quality-reports/` anhängen.
-- Reviewer-Matrix (Beispiel – aktualisieren in CODEOWNERS): Frontend = `@frontend-team`, API = `@backend-team`.
-- Incident-Flow: Bei Fehlern → `deployment-scripts/rollback.sh` → Bericht unter `quality-reports/incident-*`.
+## Menschlichkeit Österreich – Copilot Leitfaden (kurz & praxisnah)
 
----
-**Kurzform:** „Qualität zuerst, nichts zerstören, alles dokumentieren.“  
-Copilot muss Prozesse reproduzierbar halten und alle relevanten Test-/Security-Schritte ausführen oder begründet skippen.
+Dieser Monorepo bündelt 5 Services mit gemeinsamer PostgreSQL-DB und DSGVO-First-Default. Priorität: Sicherheit > Datenintegrität > Stabilität > Velocity.
+
+## Architektur (Big Picture)
+
+- CRM: crm.menschlichkeit-oesterreich.at (Drupal 10 + CiviCRM, PHP 8.1) – Port 8000
+- API: api.menschlichkeit-oesterreich.at (FastAPI, Python 3.11+, Alembic) – Port 8001
+- Frontend: frontend (React 18 + TypeScript + Vite) – Port 5173
+- Games: web (Prisma-Schema im Repo; lokaler Dev-Server via Python) – Port 3000
+- Automation: automation/n8n (Docker, Webhooks) – Port 5678
+
+Gemeinsame DB (PostgreSQL ≥ 15) via DATABASE_URL. Schema-Änderungen immer koordinieren (API: Alembic · Games: Prisma).
+
+## Daily Dev (Node 22+ zwingend)
+
+- Setup: npm run setup:dev
+- Start (alle): npm run dev:all  · Einzeln: dev:crm · dev:api · dev:frontend · dev:games
+- Wichtige Ports: CRM 8000 · API 8001 · Frontend 5173 · Games 3000 · n8n 5678
+
+## Qualität & Tests (PR-blocking Gates)
+
+- Alles auf einmal: npm run quality:gates
+	- Code Quality (Codacy), Security (Trivy + Gitleaks), Performance (Lighthouse), DSGVO-Checks, Reports
+- Einzeltests: npm run test:unit (Vitest), npm run test:e2e (Playwright)
+- Python (PII): pytest tests/test_pii_sanitizer.py
+
+## DSGVO/PII (verbindliche Regeln)
+
+- Keine PII in Logs. Masking/Redaction verpflichtend:
+	- E-Mail: test@example.com → t**@example.com
+	- IBAN: AT61 1904 3002 3457 3201 → AT61***
+- FastAPI: api.menschlichkeit-oesterreich.at/app/middleware/pii_middleware.py + app/lib/pii_sanitizer.py
+- Drupal: crm.../web/modules/custom/pii_sanitizer/ (Watchdog/Forms/Mails/CiviCRM)
+- Tests: tests/test_pii_sanitizer.py
+
+## Frontend Konventionen
+
+- Design Tokens: figma-design-system/00_design-tokens.json (niemals Farben/Spacing hardcoden)
+	- Nutzung: frontend/tailwind.config.cjs · Frontend-Scripts für Token-Generierung
+- Routing/Fallback: frontend/src/App.tsx nutzt <AITestPage /> als sichere Fallback-Route
+- Performance-Audit: npm run performance:lighthouse
+
+## API & DB Flows
+
+- OpenAPI: api.menschlichkeit-oesterreich.at/openapi.yaml aktuell halten
+- API-Migrationen: Alembic (z. B. alembic upgrade head)
+- Games (Prisma): schema.prisma · npx prisma generate · npx prisma migrate dev
+
+## Build & Deploy (mit n8n-Webhooks)
+
+- Pipeline: ./build-pipeline.sh staging|production [--skip-tests|--force]
+- Multi-Service Deploy: deployment-scripts/multi-service-deploy.sh
+- Rollback & Health: npm run deploy:rollback · npm run deploy:health-check
+
+## MCP-Integration (AI-gestützte Workflows)
+
+- Setup/Status: npm run mcp:setup · npm run mcp:check · npm run mcp:list
+- Typische Nutzung: Figma-Sync (Design Tokens), GitHub (PR/Security), Filesystem (Repo-Operationen), Context7 (Lib-Dokus)
+
+## Do / Don’t (projektspezifisch)
+
+- Do: Österreichisches Deutsch verwenden, Design Tokens nutzen, Quality Gates lokal ausführen, OpenAPI/Alembic/Prisma aktuell halten
+- Don’t: PII loggen, Farben/Spacing hardcoden, DB ohne Migration ändern, Secrets commiten (Gitleaks blockt)
+
+## Quick Links (Schlüsseldateien)
+
+- Orchestrierung: package.json (Workflows), build-pipeline.sh
+- DSGVO/PII: api.../app/lib/pii_sanitizer.py · crm.../modules/custom/pii_sanitizer/
+- Frontend: frontend/src/App.tsx · frontend/tailwind.config.cjs · figma-design-system/00_design-tokens.json
+- Datenbank: schema.prisma · api.menschlichkeit-oesterreich.at/alembic/
+- Anleitungen (kuratiert, .github/instructions/core):
+	- dsgvo-compliance.instructions.md
+	- quality-gates.instructions.md
+	- project-development.instructions.md
+	- mcp-integration.instructions.md
+
+Unklarheiten oder Lücken? Nenne konkrete Aufgaben/Dateien – ich erweitere die Anleitung gezielt (kurz & operativ).
+- **Design System:** Figma tokens in `figma-design-system/00_design-tokens.json` auto-sync to frontend (Austrian branding: Rot-Weiß-Rot)- **Security:** Trivy (HIGH/CRITICAL = 0), Gitleaks (0 Secrets), npm audit.

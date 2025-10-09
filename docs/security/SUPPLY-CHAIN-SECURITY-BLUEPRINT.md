@@ -26,7 +26,7 @@ Dieser Blueprint definiert Maßnahmen zur Absicherung der Software-Lieferkette g
 
 **Generierte SBOMs:**
 
-```
+```text
 security/sbom/
 ├── root-project.json        # Monorepo-Root (1.8 MB)
 ├── api-python.json          # FastAPI-Service
@@ -378,7 +378,7 @@ pip-compile --generate-hashes requirements.in > requirements.txt
 
 **Beispiel `.npmrc`:**
 
-```
+```text
 @menschlichkeit-oesterreich:registry=https://npm.pkg.github.com
 //npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
 ```

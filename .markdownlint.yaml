@@ -1,0 +1,9 @@
+MD013:
+  line_length: 120
+  code_block_line_length: 0
+  tables: false
+  headings: false
+  strict: false
+MD029:
+  style: ordered
+MD040: true

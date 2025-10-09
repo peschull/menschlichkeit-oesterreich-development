@@ -3,6 +3,7 @@
 ## One-Liner Commands
 
 ### Pre-Deployment
+
 ```bash
 npm run deploy:readiness              # Check if ready to deploy
 npm run quality:gates                 # Run all quality gates
@@ -10,6 +11,7 @@ npm run security:scan                 # Security vulnerability scan
 ```
 
 ### Deployment Execution
+
 ```bash
 npm run deploy:staging                # Deploy to staging
 npm run deploy:production             # Deploy to production
@@ -17,6 +19,7 @@ npm run deploy:blue-green             # Zero-downtime deployment
 ```
 
 ### Monitoring & Validation
+
 ```bash
 npm run deploy:monitor                # Start post-deployment monitoring
 npm run test:e2e                      # Run E2E tests
@@ -24,6 +27,7 @@ npm run performance:lighthouse        # Performance audit
 ```
 
 ### Emergency
+
 ```bash
 npm run deploy:rollback               # Rollback to previous version
 npm run deploy:rollback -- v2.1.0     # Rollback to specific version
@@ -34,7 +38,8 @@ npm run deploy:rollback -- v2.1.0     # Rollback to specific version
 ## Status Indicators
 
 ### ✅ Ready to Deploy
-```
+
+```text
 ✓ Git: Clean & Synced
 ✓ Quality: All gates passed
 ✓ Security: 0 vulnerabilities
@@ -44,14 +49,16 @@ npm run deploy:rollback -- v2.1.0     # Rollback to specific version
 ```
 
 ### ⚠️ Deployment Warning
-```
+
+```text
 ! Some non-critical issues
 ! Review warnings before proceeding
 ! Consider fixing in next iteration
 ```
 
 ### ❌ Deployment Blocked
-```
+
+```text
 ✗ Critical issues detected
 ✗ Fix required before deployment
 ✗ Do NOT deploy
@@ -61,7 +68,7 @@ npm run deploy:rollback -- v2.1.0     # Rollback to specific version
 
 ## Deployment Decision Tree
 
-```
+```text
 ┌─────────────────────────┐
 │ Need to Deploy?         │
 └───────────┬─────────────┘
@@ -130,6 +137,7 @@ curl http://localhost:5678/healthz
 ## Common Scenarios
 
 ### 🔥 Hotfix Deployment (Critical Bug)
+
 ```bash
 1. git checkout -b hotfix/bug-fix
 2. # Fix bug + tests
@@ -139,6 +147,7 @@ curl http://localhost:5678/healthz
 ```
 
 ### 🎉 Feature Release
+
 ```bash
 1. npm run deploy:readiness
 2. npm run deploy:staging
@@ -148,6 +157,7 @@ curl http://localhost:5678/healthz
 ```
 
 ### 🗄️ Database Migration
+
 ```bash
 1. npx prisma migrate dev --name my_migration
 2. # Test locally
@@ -156,6 +166,7 @@ curl http://localhost:5678/healthz
 ```
 
 ### 🔄 Rollback (Something went wrong)
+
 ```bash
 1. npm run deploy:rollback
 2. # Investigate issue in staging
@@ -193,6 +204,7 @@ curl http://localhost:5678/healthz
 ## Troubleshooting Quick Fixes
 
 ### Deployment Stuck?
+
 ```bash
 # Check deployment logs
 tail -f quality-reports/deployment-*.md
@@ -203,6 +215,7 @@ docker ps -a
 ```
 
 ### Health Check Failing?
+
 ```bash
 # Check service logs
 journalctl -u api-fastapi -n 100
@@ -213,6 +226,7 @@ curl -v https://api.menschlichkeit-oesterreich.at/health
 ```
 
 ### Database Issues?
+
 ```bash
 # Check connection
 psql $DATABASE_URL -c "SELECT 1;"
@@ -225,6 +239,7 @@ pg_restore -d dbname backups/latest-backup.dump
 ```
 
 ### High Error Rate?
+
 ```bash
 # Immediate rollback
 npm run deploy:rollback
@@ -238,7 +253,8 @@ grep -i error logs/*.log
 ## File Locations
 
 ### Deployment Scripts
-```
+
+```text
 deployment-scripts/
 ├── multi-service-deploy.sh      # Standard deployment
 ├── blue-green-deploy.sh         # Zero-downtime deployment
@@ -248,7 +264,8 @@ deployment-scripts/
 ```
 
 ### Reports & Logs
-```
+
+```text
 quality-reports/
 ├── deployment-{VERSION}.md
 ├── deployment-metrics/*.json
@@ -257,7 +274,8 @@ quality-reports/
 ```
 
 ### Backups
-```
+
+```text
 backups/
 └── deployment-{TIMESTAMP}/
     ├── database-backup.dump
@@ -270,6 +288,7 @@ backups/
 ## Environment Variables
 
 ### Required for Deployment
+
 ```bash
 export DEPLOYMENT_ENV=production
 export DATABASE_URL=postgresql://...
@@ -278,6 +297,7 @@ export PLESK_HOST=user@server.example.com
 ```
 
 ### Optional
+
 ```bash
 export AUTO_ROLLBACK=true          # Auto-rollback on failure
 export MONITORING_DURATION=3600    # Monitoring duration (seconds)
@@ -289,10 +309,12 @@ export ERROR_RATE_THRESHOLD=0.01   # 1% error rate
 ## Contact & Escalation
 
 ### Automated
+
 - n8n Alerts → Slack/Email/PagerDuty
 - GitHub Issues (label: `deployment-issue`)
 
 ### Manual
+
 - DevOps Team: See GitHub Team
 - Emergency: Via n8n Alert Workflow
 

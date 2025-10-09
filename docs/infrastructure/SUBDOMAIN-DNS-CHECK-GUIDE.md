@@ -145,7 +145,7 @@ cat /var/www/vhosts/system/menschlichkeit-oesterreich.at/conf/admin.stg.menschli
 
 ### Alle Subdomains konfiguriert (Idealfall)
 
-```
+```text
 ✅ admin.stg.menschlichkeit-oesterreich.at → 5.183.217.146
 ✅ s3.menschlichkeit-oesterreich.at → 5.183.217.146
 ✅ consent.menschlichkeit-oesterreich.at → 5.183.217.146
@@ -166,7 +166,7 @@ cat /var/www/vhosts/system/menschlichkeit-oesterreich.at/conf/admin.stg.menschli
 
 ### Wenn DNS nicht konfiguriert
 
-```
+```text
 ❌ admin.stg.menschlichkeit-oesterreich.at → NXDOMAIN (nicht existent)
 ```
 
@@ -265,7 +265,7 @@ plesk bin dns --add menschlichkeit-oesterreich.at \
 
 **Symptom:**
 
-```
+```text
 ❌ n8n.menschlichkeit-oesterreich.at → NXDOMAIN
 ```
 

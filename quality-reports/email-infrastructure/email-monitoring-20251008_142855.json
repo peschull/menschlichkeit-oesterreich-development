@@ -1,0 +1,17 @@
+{
+  "timestamp": "2025-10-08T14:28:55+00:00",
+  "domain": "menschlichkeit-oesterreich.at",
+  "subdomain": "newsletter.menschlichkeit-oesterreich.at",
+  "checks": {
+    "spf": {
+      "menschlichkeit-oesterreich.at": {
+        "status": "PASSED",
+        "record": "\"v=spf1 a mx -all\""
+      },
+      "newsletter.menschlichkeit-oesterreich.at": {
+        "status": "FAILED",
+        "record": ""
+      }
+    }
+  }
+}

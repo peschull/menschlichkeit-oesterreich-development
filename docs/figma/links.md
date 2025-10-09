@@ -53,7 +53,7 @@ npm run figma:sync
 
 **Copilot Prompt**:
 
-```
+```text
 Hole Design-Kontext und Komponenten für:
 https://www.figma.com/make/mTlUSy9BQk4326cvwNa8zQ/Website?node-id=0-1
 ```
@@ -62,7 +62,7 @@ https://www.figma.com/make/mTlUSy9BQk4326cvwNa8zQ/Website?node-id=0-1
 
 **Copilot Prompt**:
 
-```
+```text
 Erzeuge React (TSX) Komponente aus Frame [Frame-Name]:
 - Verwende Design Tokens aus 00_design-tokens.json
 - Tailwind CSS (keine Inline-Styles)
@@ -74,7 +74,7 @@ Erzeuge React (TSX) Komponente aus Frame [Frame-Name]:
 
 **Copilot Prompt**:
 
-```
+```text
 Lies Figma-Variablen (Farben/Spacing/Typo) und aktualisiere:
 - figma-design-system/00_design-tokens.json
 - src/ui/tokens.ts

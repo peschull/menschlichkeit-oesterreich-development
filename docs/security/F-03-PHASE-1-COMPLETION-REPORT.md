@@ -129,7 +129,7 @@ app.add_middleware(PiiSanitizationMiddleware)
 
 **Architecture:**
 
-```
+```text
 ┌─────────────────────────────────────────────────┐
 │         Application Code                        │
 │  logger.info("User: test@test.com")             │
@@ -304,7 +304,7 @@ python app/main_example.py
 
 **Art. 5(1)(c) - Datenminimierung:**
 
-```
+```text
 "dem Zweck angemessen und erheblich sowie auf das für die Zwecke
 der Verarbeitung notwendige Maß beschränkt"
 ```
@@ -341,7 +341,7 @@ der Verarbeitung notwendige Maß beschränkt"
 
 **Art. 32(1)(a) - Pseudonymisierung:**
 
-```
+```text
 "Pseudonymisierung und Verschlüsselung personenbezogener Daten"
 ```
 
@@ -368,7 +368,7 @@ der Verarbeitung notwendige Maß beschränkt"
 
 **Data-Privacy-Policy:**
 
-```
+```yaml
 Vorher: 35% (ungeschützte Logs)
 ↓
 Nachher: 70% (+35%)
@@ -376,7 +376,7 @@ Nachher: 70% (+35%)
 
 **Log-Security:**
 
-```
+```yaml
 Vorher: 40% (PII in Logs)
 ↓
 Nachher: 85% (+45%)
@@ -384,7 +384,7 @@ Nachher: 85% (+45%)
 
 **DSGVO Art. 5 (Datenminimierung):**
 
-```
+```yaml
 Vorher: ❌ NON-COMPLIANT
 ↓
 Nachher: ✅ COMPLIANT
@@ -392,7 +392,7 @@ Nachher: ✅ COMPLIANT
 
 **DSGVO Art. 32 (Datensicherheit):**
 
-```
+```yaml
 Vorher: 65%
 ↓
 Nachher: 80% (+15%)
@@ -452,7 +452,7 @@ def _luhn_check(card_number: str) -> bool:
 
 **Benchmark (1000 Requests):**
 
-```
+```text
 Ohne Middleware:       120ms
 Mit PiiSanitizationMiddleware: 125ms
 ↓
@@ -461,7 +461,7 @@ Overhead: 5ms (4.2%)
 
 **Logging-Filter:**
 
-```
+```text
 Text scrubbing:  <1ms per message
 Dict sanitization: <2ms per dict
 Field allowlist: <0.1ms

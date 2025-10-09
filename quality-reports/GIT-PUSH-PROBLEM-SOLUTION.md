@@ -37,12 +37,14 @@ gpg --list-secret-keys --keyid-format=long
 ### Option 2: Branch Protection anpassen (Empfohlen)
 
 **GitHub Repository Settings:**
+
 1. Gehe zu: `https://github.com/peschull/menschlichkeit-oesterreich-development/settings/branches`
 2. Editiere Branch Protection Rule für `chore/figma-mcp-make`
 3. Deaktiviere: "Require signed commits"
 4. Speichere Änderungen
 
 **Danach:**
+
 ```bash
 git push origin chore/figma-mcp-make
 ```

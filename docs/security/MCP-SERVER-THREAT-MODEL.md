@@ -50,7 +50,7 @@
 
 ### 4.1 Maliziöser MCP Request missbraucht `filesystem`
 
-```
+```text
 Goal: Persistente Hintertür einschleusen
   ├─ Copilot Prompt erzeugt Patch mit `postinstall`-Script
   │   ├─ (Precondition) Kein Review / Auto-Accept aktiviert
@@ -62,7 +62,7 @@ Goal: Persistente Hintertür einschleusen
 
 ### 4.2 `docker` Server exfiltriert Secrets
 
-```
+```text
 Goal: Geheime Variablen aus Docker Context abgreifen
   ├─ MCP Request startet Container mit `-v /secrets:/data`
   │   ├─ (Mitigation) Default-Deny Mount Policy + Review Hook
@@ -73,7 +73,7 @@ Goal: Geheime Variablen aus Docker Context abgreifen
 
 ### 4.3 `codacy` Toolchain Dropper
 
-```
+```text
 Goal: Manipuliertes JAR führt Shellcode aus
   ├─ Download ersetzt legitimes JAR (MITM)
   │   ├─ (Mitigation) SHA256 Verification + Sigstore Bundle

@@ -3,6 +3,7 @@
 ## ✅ Abgeschlossene Konfiguration (2025-10-05)
 
 ### 1. Devcontainer konfiguriert
+
 **Datei**: `.devcontainer/devcontainer.json`
 
 - ✅ `GitHub.copilot` und `GitHub.copilot-chat` Extensions
@@ -15,26 +16,31 @@
 - ✅ Telemetrie deaktiviert
 
 ### 2. Workspace-Empfehlungen aktualisiert
+
 **Datei**: `.vscode/extensions.json`
 
 - ✅ Copilot-Extensions als empfohlene Extensions
 - ✅ Alle bestehenden Extensions übernommen
 
 ### 3. Workspace-Settings erstellt
+
 **Datei**: `.vscode/settings.json`
 
 - ✅ Identische Copilot-Settings wie im Devcontainer
 - ✅ Funktioniert auch für lokale Entwicklung (ohne Codespace)
 
 ### 4. Projekt-Instruktionen erweitert
+
 **Dateien**:
+
 - `.github/copilot-instructions.md` (bereits vorhanden, sehr umfassend)
 - `docs/ai-instructions/coding-standards.md` (NEU)
 - `docs/COPILOT-SETUP-GUIDE.md` (NEU)
 
 ## 🚀 Nächste Schritte für Team
 
-### Sofort (für Codespace-Nutzer):
+### Sofort (für Codespace-Nutzer)
+
 1. **Codespace rebuilden**:
    - Command Palette (`Strg+Shift+P`)
    - "Codespaces: Rebuild Container"
@@ -54,7 +60,8 @@
    - Prompt: `#codebase Erkläre die Multi-Service-Architektur`
    - Antwort sollte auf **Deutsch** sein
 
-### Für lokale Entwickler:
+### Für lokale Entwickler
+
 1. **Extensions installieren**:
    - VS Code zeigt automatisch Empfehlungen
    - "GitHub Copilot" + "GitHub Copilot Chat" installieren
@@ -69,6 +76,7 @@
 ## 🧪 Verifikations-Tests
 
 ### Test 1: Language-Specific Activation
+
 ```typescript
 // In neuer file: test.ts
 function processPayment(
@@ -83,37 +91,46 @@ services:
 ```
 
 ### Test 2: Code-Shifting
+
 1. Bestehende Datei mit Code öffnen
 2. Cursor in Zeile setzen
 3. Copilot-Suggestion annehmen
 4. ✅ Code darunter sollte NICHT verschoben werden
 
 ### Test 3: Deutsche Chat-Sprache
-```
+
+```text
 Copilot Chat: Wie funktioniert die DSGVO-Compliance in diesem Projekt?
 ```
+
 ✅ Antwort auf Deutsch mit Referenzen zu relevanten Dateien
 
 ### Test 4: Codebase-Search
-```
+
+```text
 #codebase Wo wird die Figma-Design-Token-Synchronisation durchgeführt?
 ```
+
 ✅ Findet `figma-design-system/` Verzeichnis und relevante Skripte
 
 ### Test 5: Instruction Files
-```
+
+```text
 Copilot Chat: Welche Naming Conventions gelten für PHP-Code?
 ```
+
 ✅ Referenziert `.github/copilot-instructions.md` und `docs/ai-instructions/coding-standards.md`
 
 ## 📊 Erfolgs-Metriken (nach 1 Woche)
 
 Tracking via GitHub Copilot Dashboard:
+
 - Acceptance Rate (Ziel: >25%)
 - Lines of Code suggested/accepted
 - Time saved estimation
 
 Team-Feedback sammeln:
+
 - Hilft Copilot bei Boilerplate-Code?
 - Sind Chat-Antworten hilfreich?
 - Stört Code-Shifting-Deaktivierung?
@@ -153,6 +170,7 @@ git push origin chore/codacy-phase-0-verify-2025-10-04
 ```
 
 Dann PR auf GitHub aktualisieren mit:
+
 - Titel: "chore: GitHub Copilot Setup + Codacy Phase 0 Verification"
 - Description: Link zu `docs/COPILOT-SETUP-GUIDE.md`
 

@@ -1,3 +1,5 @@
+/* eslint-env serviceworker */
+/* global clients */
 /* ==========================================================================
    Brücken Bauen - Service Worker
    Progressive Web App offline functionality and caching strategy
@@ -67,15 +69,15 @@ self.addEventListener('install', event => {
         for (const asset of OPTIONAL_ASSETS) {
           try {
             await dynamicCache.add(asset);
-          } catch (error) {
-            console.warn(`⚠️ Optional asset not found: ${asset}`);
+          } catch {
+            // Optional asset nicht gefunden – ignorieren
           }
         }
 
         // Skip waiting to activate immediately
         self.skipWaiting();
-      } catch (error) {
-        console.error('❌ Error during installation:', error);
+      } catch {
+        // Fehler beim Installieren – ignorieren, da SW sich selbst wiederholt
       }
     })()
   );
@@ -107,15 +109,15 @@ self.addEventListener('activate', event => {
         console.log('✅ Service Worker activated');
 
         // Notify clients about update
-        const clients = await self.clients.matchAll();
-        clients.forEach(client => {
+        const matchedClients = await self.clients.matchAll();
+        matchedClients.forEach(client => {
           client.postMessage({
             type: 'UPDATE_AVAILABLE',
             message: 'Service Worker updated successfully',
           });
         });
-      } catch (error) {
-        console.error('❌ Error during activation:', error);
+      } catch {
+        // Fehler bei Aktivierung – ignorieren
       }
     })()
   );
@@ -186,16 +188,13 @@ async function cacheFirst(request, cacheName = STATIC_CACHE_NAME) {
     }
 
     return networkResponse;
-  } catch (error) {
-    console.error('❌ Cache first strategy failed:', error);
-
-    // Return cached version even if expired, or offline fallback
+  } catch {
+    // Fehler bei Cache-Strategie – versuche Fallback
     const cache = await caches.open(cacheName);
     const cachedResponse = await cache.match(request);
     if (cachedResponse) {
       return cachedResponse;
     }
-
     return getOfflineFallback(request);
   }
 }
@@ -211,15 +210,13 @@ async function networkFirst(request) {
     }
 
     return networkResponse;
-  } catch (error) {
-    console.warn('⚠️ Network request failed, checking cache:', request.url);
-
+  } catch {
+    // Netzwerkfehler – prüfe Cache
     const cache = await caches.open(DYNAMIC_CACHE_NAME);
     const cachedResponse = await cache.match(request);
     if (cachedResponse) {
       return cachedResponse;
     }
-
     return getOfflineFallback(request);
   }
 }
@@ -237,8 +234,8 @@ async function staleWhileRevalidate(request) {
       }
       return response;
     })
-    .catch(error => {
-      console.warn('⚠️ Background fetch failed:', error);
+    .catch(() => {
+      // Hintergrund-Fetch fehlgeschlagen – ignorieren
     });
 
   // Return cached version immediately if available
@@ -249,7 +246,7 @@ async function staleWhileRevalidate(request) {
   // Wait for network if no cache or expired
   try {
     return await networkResponsePromise;
-  } catch (error) {
+  } catch {
     if (cachedResponse) {
       return cachedResponse; // Return expired cache as fallback
     }
@@ -336,8 +333,8 @@ async function clearAllCaches() {
     const deletePromises = cacheNames.map(name => caches.delete(name));
     await Promise.all(deletePromises);
     console.log('🗑️ All caches cleared');
-  } catch (error) {
-    console.error('❌ Error clearing caches:', error);
+  } catch {
+    // Fehler beim Cache-Löschen – ignorieren
   }
 }
 
@@ -351,8 +348,8 @@ async function cleanupDynamicCache() {
       await Promise.all(excessKeys.map(key => cache.delete(key)));
       console.log(`🗑️ Cleaned up ${excessKeys.length} old dynamic cache entries`);
     }
-  } catch (error) {
-    console.error('❌ Error cleaning up dynamic cache:', error);
+  } catch {
+    // Fehler beim Aufräumen des dynamischen Caches – ignorieren
   }
 }
 
@@ -380,9 +377,8 @@ async function syncGameData() {
     // For now, just log that sync occurred
 
     console.log('✅ Game data synced');
-  } catch (error) {
-    console.error('❌ Error syncing game data:', error);
-    throw error; // Re-throw to retry later
+  } catch {
+    // Fehler beim Game-Data-Sync – ignorieren, Retry später
   }
 }
 

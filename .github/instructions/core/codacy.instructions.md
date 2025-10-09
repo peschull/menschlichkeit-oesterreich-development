@@ -1,8 +1,13 @@
 ---
-    description: Configuration for AI behavior when interacting with Codacy's MCP Server
-    applyTo: '**'
+title: Codacy Rules
+version: 1.0.0
+created: 2025-10-08
+lastUpdated: 2025-10-08
+status: ACTIVE
+priority: medium
+category: core
+applyTo: **
 ---
-
 ---
 
 # Codacy Rules

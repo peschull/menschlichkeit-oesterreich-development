@@ -45,7 +45,7 @@ gpg --full-generate-key
 
 **Beispiel-Ausgabe:**
 
-```
+```text
 gpg: key ABCDEF1234567890 marked as ultimately trusted
 public and secret key created and signed.
 
@@ -174,7 +174,7 @@ git log --show-signature -1
 
 **Erwartete Ausgabe:**
 
-```
+```yaml
 gpg: Signature made Thu 03 Oct 2025 10:30:00 PM UTC
 gpg:                using RSA key ABCDEF1234567890
 gpg: Good signature from "Paul Eschinger <paul@...>" [ultimate]

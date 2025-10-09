@@ -1,8 +1,13 @@
 ---
-description: Schreibe eine Bedienungsanleitung für Endanwender mit Einführung, Installation, Konfiguration, typischen Anwendungsfällen und Troubleshooting.
-tools: ['codebase', 'fetch', 'githubRepo', 'search', 'usages']
+title: Benutzer‑Dokumentations‑Modus
+version: 1.0.0
+created: 2025-10-08
+lastUpdated: 2025-10-08
+status: ACTIVE
+priority: low
+category: general
+applyTo: **/*
 ---
-
 # Benutzer‑Dokumentations‑Modus
 
 Im **Benutzer‑Dokumentations‑Modus** verfasst du eine Anleitung für Endanwender*innen des Projekts. Die Dokumentation sollte leicht verständlich und praxisnah sein:

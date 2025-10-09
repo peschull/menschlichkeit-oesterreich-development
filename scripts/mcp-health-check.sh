@@ -1,118 +1,140 @@
-#!/bin/bash
-# MCP Server Health Check für Menschlichkeit Österreich
-# Stand: 7. Oktober 2025
+#!/usr/bin/env bash
+# MCP Health Check Script - Production Ready
 
-set -eo pipefail
-
-echo "🔍 MCP Server Health Check wird gestartet..."
-echo "=================================================="
+# set -eo pipefail
 
 # Colors
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
-NC='\033[0m' # No Color
+BLUE='\033[0;34m'
+NC='\033[0m'
 
-# Health Check Results
-TOTAL_SERVERS=6
-HEALTHY_SERVERS=0
-FAILED_SERVERS=0
+# Paths
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
+MCP_JSON="$PROJECT_ROOT/.vscode/mcp.json"
+ENV_LOCAL="$PROJECT_ROOT/env/.env.local"
 
-# Function to check MCP server package
-check_mcp_package() {
-    local package_name=$1
-    local display_name=$2
-    
-    echo -n "Checking $display_name... "
-    
-    if npm list -g "$package_name" >/dev/null 2>&1; then
-        echo -e "${GREEN}✅ Installed${NC}"
-        ((HEALTHY_SERVERS++))
-    else
-        echo -e "${RED}❌ Not Found${NC}"
-        echo "  → Install: npm install -g $package_name"
-        ((FAILED_SERVERS++))
-    fi
+# Counters
+ERRORS=0
+WARNINGS=0
+CHECKS_PASSED=0
+TOTAL_CHECKS=0
+
+check_pass() {
+    ((CHECKS_PASSED++))
+    ((TOTAL_CHECKS++))
+    echo -e "${GREEN}✓${NC} $1"
 }
 
-# MCP Server Checks
-echo -e "\n📦 MCP Server Package Status:"
-echo "----------------------------------------"
-
-check_mcp_package "@modelcontextprotocol/server-filesystem" "Filesystem MCP"
-check_mcp_package "@modelcontextprotocol/server-memory" "Memory MCP"
-check_mcp_package "figma-mcp" "Figma MCP"
-check_mcp_package "@notionhq/notion-mcp-server" "Notion MCP"
-check_mcp_package "enhanced-postgres-mcp-server" "PostgreSQL MCP"
-check_mcp_package "@upstash/context7-mcp" "Upstash Context7 MCP"
-
-# Configuration Check
-echo -e "\n⚙️  Configuration Status:"
-echo "----------------------------------------"
-
-if [[ -f "mcp.json" ]]; then
-    echo -e "mcp.json: ${GREEN}✅ Found${NC}"
-    
-    # Check if inputs are defined
-    if grep -q '"inputs"' mcp.json; then
-        echo -e "Token Inputs: ${GREEN}✅ Configured${NC}"
-    else
-        echo -e "Token Inputs: ${RED}❌ Missing${NC}"
-    fi
-    
-    # Check server count
-    server_count=$(grep -c '"type": "stdio"' mcp.json || echo "0")
-    echo -e "MCP Servers in Config: ${GREEN}$server_count${NC}"
-    
-else
-    echo -e "mcp.json: ${RED}❌ Not Found${NC}"
-fi
-
-# VS Code Check
-echo -e "\n🔧 VS Code Integration:"
-echo "----------------------------------------"
-
-if command -v code >/dev/null 2>&1; then
-    echo -e "VS Code CLI: ${GREEN}✅ Available${NC}"
-else
-    echo -e "VS Code CLI: ${YELLOW}⚠️  Not in PATH${NC}"
-fi
-
-# Network Connectivity Check
-echo -e "\n🌐 API Connectivity:"
-echo "----------------------------------------"
-
-check_api_connectivity() {
-    local api_url=$1
-    local api_name=$2
-    
-    echo -n "Testing $api_name... "
-    
-    if curl -s --max-time 5 "$api_url" >/dev/null 2>&1; then
-        echo -e "${GREEN}✅ Reachable${NC}"
-    else
-        echo -e "${YELLOW}⚠️  Timeout/Unreachable${NC}"
-    fi
+check_warn() {
+    ((WARNINGS++))
+    ((TOTAL_CHECKS++))
+    echo -e "${YELLOW}⚠${NC} $1"
 }
 
-check_api_connectivity "https://api.github.com" "GitHub API"
-check_api_connectivity "https://api.figma.com" "Figma API"
-check_api_connectivity "https://api.search.brave.com" "Brave Search API"
-check_api_connectivity "https://api.notion.com" "Notion API"
+check_fail() {
+    ((ERRORS++))
+    ((TOTAL_CHECKS++))
+    echo -e "${RED}✗${NC} $1"
+}
+
+echo -e "${BLUE}╔══════════════════════════════════════════════════╗${NC}"
+echo -e "${BLUE}║  MCP Health Check                                ║${NC}"
+echo -e "${BLUE}╚══════════════════════════════════════════════════╝${NC}"
+echo ""
+
+# Check 1: JSON Syntax
+echo -e "${BLUE}[1/5] Prüfe mcp.json...${NC}"
+if [ ! -f "$MCP_JSON" ]; then
+    check_fail "mcp.json nicht gefunden"
+else
+    if jq empty "$MCP_JSON" 2>/dev/null; then
+        check_pass "JSON Syntax gültig"
+        SERVER_COUNT=$(jq '.mcpServers | length' "$MCP_JSON")
+        check_pass "$SERVER_COUNT MCP Server konfiguriert"
+    else
+        check_fail "JSON Syntax ungültig!"
+    fi
+fi
+echo ""
+
+# Check 2: Environment Variables
+echo -e "${BLUE}[2/5] Prüfe Environment...${NC}"
+if [ ! -f "$ENV_LOCAL" ]; then
+    check_fail "env/.env.local fehlt - führe ./scripts/setup-mcp-env.sh aus"
+else
+    check_pass "env/.env.local gefunden"
+    REQUIRED_VARS=$(grep -oP '\$\{env:([A-Z0-9_]+)\}' "$MCP_JSON" | sed 's/\${env:\([^}]*\)}/\1/' | sort -u | wc -l)
+    CONFIGURED_VARS=$(grep -c "^[A-Z0-9_]*=.+$" "$ENV_LOCAL" || echo "0")
+    check_pass "$CONFIGURED_VARS von $REQUIRED_VARS Variablen gesetzt"
+fi
+echo ""
+
+# Check 3: Security
+echo -e "${BLUE}[3/5] Security Check...${NC}"
+if grep -E '(ghp_|sk_live_|xoxb-)' "$MCP_JSON" &> /dev/null; then
+    check_fail "HARDCODED TOKEN in mcp.json gefunden!"
+else
+    check_pass "Keine hardcoded Tokens"
+fi
+
+if grep -q "env/.env.local" "$PROJECT_ROOT/.gitignore" 2>/dev/null; then
+    check_pass ".gitignore schützt env/.env.local"
+else
+    check_fail ".gitignore fehlt env/.env.local"
+fi
+echo ""
+
+# Check 4: VS Code
+echo -e "${BLUE}[4/5] VS Code Integration...${NC}"
+if [ -d "$PROJECT_ROOT/.vscode" ]; then
+    check_pass ".vscode/ Verzeichnis vorhanden"
+else
+    check_fail ".vscode/ fehlt!"
+fi
+
+if [ -d "$PROJECT_ROOT/.ai-sandbox" ]; then
+    check_pass "Filesystem Sandbox (.ai-sandbox/) vorhanden"
+else
+    check_warn ".ai-sandbox/ fehlt"
+fi
+echo ""
+
+# Check 5: NPM Packages
+echo -e "${BLUE}[5/5] NPM Packages...${NC}"
+if command -v npm &> /dev/null; then
+    check_pass "npm verfügbar: $(npm --version)"
+else
+    check_warn "npm nicht gefunden"
+fi
+echo ""
 
 # Summary
-echo -e "\n📊 Health Check Summary:"
-echo "=================================================="
-echo -e "Total MCP Servers: $TOTAL_SERVERS"
-echo -e "Healthy Servers: ${GREEN}$HEALTHY_SERVERS${NC}"
-echo -e "Failed Servers: ${RED}$FAILED_SERVERS${NC}"
+echo -e "${BLUE}╔══════════════════════════════════════════════════╗${NC}"
+echo -e "${BLUE}║  ZUSAMMENFASSUNG                                 ║${NC}"
+echo -e "${BLUE}╚══════════════════════════════════════════════════╝${NC}"
+echo ""
 
-if [[ $FAILED_SERVERS -eq 0 ]]; then
-    echo -e "\n🎉 ${GREEN}All MCP Servers are healthy!${NC}"
-    echo -e "You can now use all MCP tools in GitHub Copilot."
+if [ $ERRORS -eq 0 ] && [ $WARNINGS -eq 0 ]; then
+    echo -e "${GREEN}✓ ALLE CHECKS BESTANDEN! ($CHECKS_PASSED/$TOTAL_CHECKS)${NC}"
+    echo ""
+    echo "MCP Server READY für Copilot Chat:"
+    echo "  @github list repositories"
+    echo "  @figma get design tokens"
     exit 0
+elif [ $ERRORS -eq 0 ]; then
+    echo -e "${YELLOW}⚠ $WARNINGS Warnungen, $CHECKS_PASSED/$TOTAL_CHECKS Checks OK${NC}"
+    echo "Behebe Warnungen für optimale Performance"
+    exit 1
 else
-    echo -e "\n⚠️  ${YELLOW}Some MCP Servers need attention.${NC}"
-    echo -e "Run: ${YELLOW}npm run mcp:install${NC} to install missing packages."
-    exit 0
+    echo -e "${RED}✗ $ERRORS Fehler, $WARNINGS Warnungen${NC}"
+    echo ""
+    echo "QUICK FIXES:"
+    echo "1. ./scripts/setup-mcp-env.sh"
+    echo "2. nano env/.env.local (API-Keys eintragen)"
+    echo "3. source env/.env.local"
+    echo "4. VS Code Reload: Cmd/Ctrl+Shift+P → Developer: Reload Window"
+    exit 2
 fi

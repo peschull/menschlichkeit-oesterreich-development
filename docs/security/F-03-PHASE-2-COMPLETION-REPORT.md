@@ -178,7 +178,7 @@ function pii_sanitizer_form_validate(&$form, &$form_state) {
 
 **Example:**
 
-```
+```text
 Original: "Invalid email: john.doe@example.com"
 Sanitized: "Invalid email: j**@example.com"
 ```

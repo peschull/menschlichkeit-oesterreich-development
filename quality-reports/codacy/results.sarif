@@ -1,0 +1,5152 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+  "runs": [
+    {
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/.codacy/tools-configs/eslint.config.mjs"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/.stylelintrc.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/.trunk/configs/svgo.config.mjs"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/automation/n8n/webhook-client.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/codacy-sample.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/context7-debug.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/misc/active-link.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/misc/ajax.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/misc/announce.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/misc/autocomplete.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/misc/batch.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/misc/checkbox.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/misc/debounce.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/misc/details-aria.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/misc/details-summarized-content.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/misc/details.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/misc/dialog/dialog-deprecation.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/misc/dialog/dialog.ajax.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/misc/dialog/dialog.jquery-ui.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/misc/dialog/dialog.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/misc/dialog/dialog.position.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/misc/dialog/off-canvas/js/off-canvas.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/misc/displace.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/misc/dropbutton/dropbutton.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/misc/drupal.init.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/misc/drupal.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/misc/drupalSettingsLoader.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/misc/entity-form.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/misc/field-list-keyboard-navigation.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/misc/form.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/misc/jquery.form.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/misc/jquery.tabbable.shim.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/misc/machine-name.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/misc/message.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/misc/position.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/misc/progress.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/misc/states.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/misc/tabbingmanager.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/misc/tabledrag-ajax.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/misc/tabledrag.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/misc/tableresponsive.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/misc/tableselect.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/misc/time-diff.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/misc/timezone.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/misc/touchevents-test.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/misc/vertical-tabs.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/big_pipe/js/big_pipe.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/block/js/block.admin.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/block/js/block.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/book/book.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5.admin.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5.dialog.fix.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5.filter.admin.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5.image.admin.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5.style.admin.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalEmphasis/src/drupalemphasis.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalEmphasis/src/drupalemphasisediting.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalEmphasis/src/index.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalHtmlEngine/src/drupalhtmlbuilder.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalHtmlEngine/src/drupalhtmlengine.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalHtmlEngine/src/drupalhtmlwriter.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalHtmlEngine/src/index.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalImage/src/drupalimage.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalImage/src/drupalimagealternativetext.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalImage/src/drupalimageediting.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalImage/src/imagealternativetext/drupalimagealternativetextediting.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalImage/src/imagealternativetext/drupalimagealternativetextui.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalImage/src/imagealternativetext/ui/imagealternativetextformview.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalImage/src/imagealternativetext/ui/missingalternativetextview.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalImage/src/imageupload/drupalfilerepository.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalImage/src/imageupload/drupalimageupload.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalImage/src/imageupload/drupalimageuploadadapter.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalImage/src/imageupload/drupalimageuploadediting.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalImage/src/index.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalImage/src/insertimage/drupalinsertimage.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupalelementstyle.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupalelementstyle/drupalelementstylecommand.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupalelementstyle/drupalelementstyleediting.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupalelementstyle/drupalelementstyleui.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupalelementstyle/utils.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupallinkmedia/drupallinkmedia.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupallinkmedia/drupallinkmediaediting.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupallinkmedia/drupallinkmediaui.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupalmedia.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupalmediacaption.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupalmediacaption/drupalmediacaptioncommand.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupalmediacaption/drupalmediacaptionediting.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupalmediacaption/drupalmediacaptionui.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupalmediacaption/utils.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupalmediaediting.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupalmediageneralhtmlsupport.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupalmediametadatarepository.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupalmediatoolbar.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupalmediaui.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/index.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/insertdrupalmedia.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/mediaimagetextalternative.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/mediaimagetextalternative/mediaimagetextalternativecommand.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/mediaimagetextalternative/mediaimagetextalternativeediting.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/mediaimagetextalternative/mediaimagetextalternativeui.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/mediaimagetextalternative/ui/textalternativeformview.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/mediaimagetextalternative/utils.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/ui/utils.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/utils.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/tests/src/Nightwatch/Tests/ckEditor5CodeSyntaxTest.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/tests/src/Nightwatch/Tests/ckEditor5EditorHeightTest.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/tests/src/Nightwatch/Tests/drupalHtmlBuilderTest.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/webpack.config.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/comment/comment-entity-form.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/comment/js/comment-by-viewer.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/comment/js/comment-new-indicator.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/comment/js/node-new-comments-link.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/content_translation/content_translation.admin.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/contextual/js/contextual.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/contextual/js/contextual.toolbar.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/contextual/js/models/StateModel.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/contextual/js/toolbar/models/StateModel.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/contextual/js/toolbar/views/AuralView.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/contextual/js/toolbar/views/VisualView.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/contextual/js/views/AuralView.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/contextual/js/views/KeyboardView.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/contextual/js/views/RegionView.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/contextual/js/views/VisualView.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/editor/js/editor.admin.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/editor/js/editor.dialog.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/editor/js/editor.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/field_ui/js/field_ui.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/file/file.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/filter/filter.admin.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/filter/filter.filter_html.admin.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/filter/filter.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/history/js/history.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/history/js/mark-as-read.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/language/language.admin.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/layout_builder/js/layout-builder.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/locale/locale.admin.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/locale/locale.bulk.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/locale/tests/locale_test.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/media/js/form.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/media/js/media_embed_ckeditor.theme.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/media/js/type_form.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/media_library/js/media_library.click_to_select.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/media_library/js/media_library.ui.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/media_library/js/media_library.view.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/media_library/js/media_library.widget.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/menu_ui/menu_ui.admin.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/menu_ui/menu_ui.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/navigation/js/admin-toolbar-wrapper.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/navigation/js/arrow-navigation.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/navigation/js/safe-triangle.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/navigation/js/sidebar.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/navigation/js/toolbar-dropdown.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/navigation/js/toolbar-menu.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/navigation/js/toolbar-popover.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/navigation/js/tooltip.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/navigation/tests/src/Nightwatch/Tests/a11yTest.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/navigation/tests/src/Nightwatch/Tests/expandCollapseTest.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/node/content_types.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/node/node.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/node/node.preview.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/path/path.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/settings_tray/js/settings_tray.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/statistics/statistics.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/system/js/system.date.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/system/js/system.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/system/js/system.modules.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/system/tests/modules/ajax_test/js/command_promise-ajax.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/system/tests/modules/ajax_test/js/focus-ajax.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/system/tests/modules/ajax_test/js/global_events.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/system/tests/modules/ajax_test/js/insert-ajax.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/system/tests/modules/css_disable_transitions_test/js/disable_transitions.theme.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/system/tests/modules/jquery_keyevent_polyfill_test/js/jquery.keyevent.polyfill.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/system/tests/modules/js_deprecation_test/js/js_deprecation_test.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/system/tests/modules/js_errors_test/js/js_errors_async_test.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/system/tests/modules/js_errors_test/js/js_errors_test.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/system/tests/modules/js_interaction_test/js/js_interaction_test.trigger_link.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/system/tests/modules/js_message_test/js/js_message_test.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/system/tests/modules/js_testing_ajax_request_test/js/js_testing_ajax_request_test.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/system/tests/modules/js_testing_log_test/js/js_testing_log.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/system/tests/modules/js_webassert_test/js/js_webassert_test.no_element_after_wait.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/system/tests/modules/js_webassert_test/js/js_webassert_test.wait_for_ajax_request.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/system/tests/modules/js_webassert_test/js/js_webassert_test.wait_for_element.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/system/tests/modules/many_assets_test/js/noop.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/system/tests/modules/many_assets_test/js/weighted/weighted_114_a.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/system/tests/modules/many_assets_test/js/weighted/weighted_114_b.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/system/tests/modules/many_assets_test/js/weighted/weighted_114_c.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/system/tests/modules/many_assets_test/js/weighted/weighted_115_a.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/system/tests/modules/many_assets_test/js/weighted/weighted_115_b.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/system/tests/modules/many_assets_test/js/weighted/weighted_116_a.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/system/tests/modules/many_assets_test/js/weighted/weighted_116_b.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/system/tests/modules/many_assets_test/js/weighted/weighted_116_c.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/system/tests/modules/many_assets_test/js/weighted/weighted_116_d.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/system/tests/modules/many_assets_test/js/weighted/weighted_116_e.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/system/tests/modules/many_assets_test/js/weighted/weighted_116_f.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/system/tests/modules/off_canvas_test/js/resize-helper.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/system/tests/modules/olivero_test/js/log-errors.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/system/tests/modules/sdc_test/components/my-button/my-button.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/system/tests/modules/sdc_test/components/my-cta/my-cta.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/system/tests/modules/sdc_test_replacements/components/my-button/my-button.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/system/tests/modules/tabledrag_test/js/tabledrag_test.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/system/tests/modules/twig_theme_test/twig_theme_test.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/system/tests/themes/sdc_theme_test/components/lib-overrides/lib-overrides.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/system/tests/themes/test_theme/js/collapse.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/taxonomy/taxonomy.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/text/text.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/toolbar/js/escapeAdmin.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/toolbar/js/models/MenuModel.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/toolbar/js/models/ToolbarModel.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/toolbar/js/toolbar.anti-flicker.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/toolbar/js/toolbar.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/toolbar/js/toolbar.menu.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/toolbar/js/views/BodyVisualView.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/toolbar/js/views/MenuVisualView.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/toolbar/js/views/ToolbarAuralView.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/toolbar/js/views/ToolbarVisualView.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/toolbar/tests/src/Nightwatch/Tests/toolbarApiTest.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/toolbar/tests/src/Nightwatch/Tests/toolbarTest.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/tour/js/tour.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/tracker/js/tracker-history.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/user/user.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/user/user.permissions.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/user/user.theme.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/views/js/ajax_view.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/views/js/base.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/views/tests/modules/views_test_data/views_cache.test.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/views_ui/js/ajax.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/views_ui/js/dialog.views.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/views_ui/js/views-admin.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/views_ui/js/views_ui.listing.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/profiles/demo_umami/themes/umami/components/header/header.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/profiles/demo_umami/themes/umami/js/classy/media_embed_ckeditor.theme.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/profiles/demo_umami/themes/umami/js/components/messages/messages.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/scripts/css/changeOrAdded.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/scripts/css/check.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/scripts/css/compile.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/scripts/css/log.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/scripts/css/postcss-build.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/scripts/css/postcss-watch.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/scripts/css/remove-unwanted-comments.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/scripts/js/assets/ckeditor5Files.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/scripts/js/assets/process/jqueryui.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/scripts/js/assets/process/map.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/scripts/js/ckeditor5-check-plugins.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/scripts/js/ckeditor5-types-documentation.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/scripts/js/eslint-stats-by-type.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/scripts/js/log.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/scripts/js/vendor-update.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Nightwatch/Assertions/deprecationErrorExists.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Nightwatch/Assertions/elementCount.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Nightwatch/Assertions/noDeprecationErrors.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Nightwatch/Commands/drupalCreateRole.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Nightwatch/Commands/drupalCreateUser.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Nightwatch/Commands/drupalEnableTheme.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Nightwatch/Commands/drupalInstall.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Nightwatch/Commands/drupalInstallModule.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Nightwatch/Commands/drupalLogAndEnd.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Nightwatch/Commands/drupalLogin.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Nightwatch/Commands/drupalLoginAsAdmin.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Nightwatch/Commands/drupalLogout.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Nightwatch/Commands/drupalRelativeURL.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Nightwatch/Commands/drupalUninstall.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Nightwatch/Commands/drupalUserIsLoggedIn.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Nightwatch/Tests/Claro/claroDrupalMessageTest.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Nightwatch/Tests/Claro/claroPrimaryTabsTest.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Nightwatch/Tests/Olivero/oliveroColorTest.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Nightwatch/Tests/Olivero/oliveroCommentTest.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Nightwatch/Tests/Olivero/oliveroDesktopMenuTest.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Nightwatch/Tests/Olivero/oliveroDrupalMessageTest.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Nightwatch/Tests/Olivero/oliveroMiscTest.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Nightwatch/Tests/Olivero/oliveroMobileMenuTest.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Nightwatch/Tests/Olivero/oliveroPreprocessFieldMultipleValueFormTest.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Nightwatch/Tests/Olivero/oliveroPreprocessInputTest.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Nightwatch/Tests/Olivero/oliveroPrimaryTabsTest.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Nightwatch/Tests/Olivero/oliveroRemoveBlockConsoleTest.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Nightwatch/Tests/Olivero/oliveroSearchFormTest.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Nightwatch/Tests/Olivero/oliveroStickyHeaderToggleTest.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Nightwatch/Tests/a11yTestAdmin.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Nightwatch/Tests/a11yTestDefault.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Nightwatch/Tests/ajaxExecutionOrderTest.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Nightwatch/Tests/claroAutocompleteTest.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Nightwatch/Tests/installProfileTest.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Nightwatch/Tests/jQueryUIPositionShimTest.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Nightwatch/Tests/jsDeprecationTest.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Nightwatch/Tests/jsDisplace.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Nightwatch/Tests/jsOnceTest.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Nightwatch/Tests/langcodeTest.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Nightwatch/Tests/loginTest.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Nightwatch/Tests/machineNameTransliterationTest.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Nightwatch/Tests/statesTest.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Nightwatch/Tests/tabbableShimTest.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Nightwatch/Tests/tabbingManagerTest.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Nightwatch/globals.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Nightwatch/nightwatch.conf.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Tests/Core/Asset/js_test_files/latin_9.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Tests/Core/Asset/js_test_files/latin_9.js.optimized.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Tests/Core/Asset/js_test_files/source_mapping_url.min.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Tests/Core/Asset/js_test_files/source_mapping_url.min.js.optimized.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Tests/Core/Asset/js_test_files/source_mapping_url_old.min.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Tests/Core/Asset/js_test_files/source_mapping_url_old.min.js.optimized.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Tests/Core/Asset/js_test_files/source_url.min.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Tests/Core/Asset/js_test_files/source_url.min.js.optimized.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Tests/Core/Asset/js_test_files/source_url_old.min.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Tests/Core/Asset/js_test_files/source_url_old.min.js.optimized.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Tests/Core/Asset/js_test_files/syntax_error.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Tests/Core/Asset/js_test_files/to_be_minified.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Tests/Core/Asset/js_test_files/to_be_minified.js.optimized.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Tests/Core/Asset/js_test_files/utf16_bom.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Tests/Core/Asset/js_test_files/utf16_bom.js.optimized.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Tests/Core/Asset/js_test_files/utf8_bom.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Tests/Core/Asset/js_test_files/utf8_bom.js.optimized.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/themes/claro/js/ajax.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/themes/claro/js/autocomplete.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/themes/claro/js/checkbox.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/themes/claro/js/classy/media_embed_ckeditor.theme.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/themes/claro/js/details.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/themes/claro/js/dropbutton.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/themes/claro/js/media-library.ui.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/themes/claro/js/messages.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/themes/claro/js/mobile.install.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/themes/claro/js/nav-tabs.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/themes/claro/js/tabledrag.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/themes/claro/js/tableselect.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/themes/claro/js/user.theme.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/themes/claro/js/vertical-tabs.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/themes/olivero/js/checkbox.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/themes/olivero/js/color-picker.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/themes/olivero/js/comments.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/themes/olivero/js/message.theme.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/themes/olivero/js/messages.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/themes/olivero/js/nav-resize.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/themes/olivero/js/navigation-utils.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/themes/olivero/js/navigation.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/themes/olivero/js/search.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/themes/olivero/js/second-level-navigation.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/themes/olivero/js/tabs.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/themes/stable9/js/tour.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/themes/stable9/js/user.theme.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/eslint.config.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/figma-design-system/eslint.config.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/figma-design-system/public/sw.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/fix-mcp-servers.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/frontend/dist/assets/Home-qJ72laDJ.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/frontend/dist/assets/index-CixPFfIc.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/frontend/dist/assets/react-D3F3s8fL.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/frontend/lighthouse.config.cjs"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/frontend/postcss.config.cjs"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/frontend/scripts/generate-design-tokens.mjs"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/frontend/scripts/run-lighthouse.mjs"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/frontend/tailwind.config.cjs"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/jest.config.cjs"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/lighthouse.config.cjs"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/mcp-activation-repair.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/mcp-comprehensive-test.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/mcp-extended-config-test.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/mcp-final-activation.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/mcp-integration-test.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/mcp-servers/file-server/index.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/mcp-test-all.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/playwright.config.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/scripts/check-mcp-servers.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/scripts/clean-workspace.mjs"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/scripts/enrich-sbom-licenses.mjs"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/scripts/figma-token-sync.cjs"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/scripts/generate-admin-tokens-css.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/scripts/generate-discourse-theme.cjs"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/scripts/generate-quality-report.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/scripts/mcp-debug.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/scripts/performance/generate-report.cjs"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/scripts/performance/load-test.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/scripts/performance/web-vitals-tracker.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/scripts/validate-design-tokens.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/tailwind.config.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/tests/e2e/enhanced-design-system.spec.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/tests/setup.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/tests/unit/enhanced-components.test.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/validate-mcp-config.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/vitest.config.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/web/games/js/ab-testing-framework.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/web/games/js/advanced-gameplay.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/web/games/js/advanced-multiplayer.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/web/games/js/character-development.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/web/games/js/curriculum-integration.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/web/games/js/dynamic-balancing.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/web/games/js/educational-analytics.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/web/games/js/enhanced-components.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/web/games/js/enhanced-minigames.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/web/games/js/extended-content.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/web/games/js/extended-level-content.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/web/games/js/game-graphics.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/web/games/js/game.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/web/games/js/metaverse-core.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/web/games/js/minigames-metaverse.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/web/games/js/multiplayer-lobby.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/web/games/js/multiplayer-sync.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/web/games/js/multiplayer-webrtc.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/web/games/js/performance-dashboard.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/web/games/js/performance-monitor.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/web/games/js/prototype-core.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/web/games/js/pwa.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/web/games/js/scenarios.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/web/games/js/teacher-dashboard.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/web/games/js/ui.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/web/games/js/user-testing-analytics.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/web/games/js/user-testing-integration.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/web/games/prototype/js/minigames-basic.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/web/games/prototype/sw.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/web/games/sw.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/web/themes/custom/menschlichkeit/assets/js/theme.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/website/assets/js/auth-handler.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/website/assets/js/contact-handler.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/website/assets/js/crm-api.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/website/assets/js/main-optimized.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/website/assets/js/main.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/website/assets/js/member-area.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/website/assets/js/sepa-handler.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/website/dist/assets/js/auth-handler.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/website/dist/assets/js/contact-handler.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/website/dist/assets/js/crm-api.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/website/dist/assets/js/main-optimized.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/website/dist/assets/js/main.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/website/dist/assets/js/member-area.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/website/dist/assets/js/sepa-handler.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/website/dist/lighthouse.config.cjs"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/website/dist/postcss.config.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/website/dist/scripts/run-lighthouse.mjs"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/website/dist/sw.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/website/lighthouse.config.cjs"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/website/postcss.config.js"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/website/scripts/run-lighthouse.mjs"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///workspaces/menschlichkeit-oesterreich-development/website/sw.js"
+          }
+        }
+      ],
+      "invocations": [
+        {
+          "executionSuccessful": false,
+          "toolConfigurationNotifications": [
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 5,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/context7-debug.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 2
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 56,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalEmphasis/src/drupalemphasis.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 4
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 57,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalEmphasis/src/drupalemphasisediting.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 2
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 58,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalEmphasis/src/index.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 3
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 59,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalHtmlEngine/src/drupalhtmlbuilder.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 16
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 60,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalHtmlEngine/src/drupalhtmlengine.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 3
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 61,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalHtmlEngine/src/drupalhtmlwriter.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 2
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 62,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalHtmlEngine/src/index.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 2
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 63,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalImage/src/drupalimage.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 4
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 64,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalImage/src/drupalimagealternativetext.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 8
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 65,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalImage/src/drupalimageediting.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 3
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 66,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalImage/src/imagealternativetext/drupalimagealternativetextediting.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 8
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 67,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalImage/src/imagealternativetext/drupalimagealternativetextui.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 8
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 68,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalImage/src/imagealternativetext/ui/imagealternativetextformview.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 8
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 69,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalImage/src/imagealternativetext/ui/missingalternativetextview.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 4
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 70,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalImage/src/imageupload/drupalfilerepository.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 4
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 71,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalImage/src/imageupload/drupalimageupload.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 4
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 72,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalImage/src/imageupload/drupalimageuploadadapter.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 12
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 73,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalImage/src/imageupload/drupalimageuploadediting.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 2
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 74,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalImage/src/index.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 3
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 75,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalImage/src/insertimage/drupalinsertimage.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 2
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 76,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupalelementstyle.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 3
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 77,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupalelementstyle/drupalelementstylecommand.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 2
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 78,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupalelementstyle/drupalelementstyleediting.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 3
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 79,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupalelementstyle/drupalelementstyleui.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 3
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 80,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupalelementstyle/utils.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 17
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 81,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupallinkmedia/drupallinkmedia.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 4
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 82,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupallinkmedia/drupallinkmediaediting.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 3
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 83,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupallinkmedia/drupallinkmediaui.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 3
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 84,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupalmedia.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 4
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 85,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupalmediacaption.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 3
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 86,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupalmediacaption/drupalmediacaptioncommand.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 3
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 87,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupalmediacaption/drupalmediacaptionediting.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 3
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 88,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupalmediacaption/drupalmediacaptionui.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 2
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 89,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupalmediacaption/utils.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 2
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 90,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupalmediaediting.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 4
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 91,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupalmediageneralhtmlsupport.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 3
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 92,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupalmediametadatarepository.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 4
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 93,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupalmediatoolbar.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 3
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 94,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/drupalmediaui.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 4
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 95,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/index.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 4
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 96,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/insertdrupalmedia.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 3
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 97,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/mediaimagetextalternative.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 2
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 98,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/mediaimagetextalternative/mediaimagetextalternativecommand.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 2
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 99,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/mediaimagetextalternative/mediaimagetextalternativeediting.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 4
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 100,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/mediaimagetextalternative/mediaimagetextalternativeui.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 4
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 101,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/mediaimagetextalternative/ui/textalternativeformview.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 4
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 102,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/mediaimagetextalternative/utils.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 9
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 103,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/ui/utils.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 3
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 104,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/js/ckeditor5_plugins/drupalMedia/src/utils.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 3
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 304,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Tests/Core/Asset/js_test_files/syntax_error.js"
+                    },
+                    "region": {
+                      "startColumn": 12,
+                      "startLine": 7
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: Unexpected token {"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 307,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/tests/Drupal/Tests/Core/Asset/js_test_files/utf16_bom.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 1
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: Unexpected character '�'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 352,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/mcp-activation-repair.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 3
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 353,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/mcp-comprehensive-test.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 2
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 354,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/mcp-extended-config-test.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 3
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 355,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/mcp-final-activation.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 2
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 356,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/mcp-integration-test.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 2
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 358,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/mcp-test-all.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 8
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 360,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/scripts/check-mcp-servers.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 7
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 364,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/scripts/generate-admin-tokens-css.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 12
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 367,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/scripts/mcp-debug.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 7
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 369,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/scripts/performance/load-test.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 2
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 371,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/scripts/validate-design-tokens.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 8
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 378,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/web/games/js/ab-testing-framework.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 620
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 381,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/web/games/js/character-development.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 572
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 386,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/web/games/js/enhanced-minigames.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 522
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 387,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/web/games/js/extended-content.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 562
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 392,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/web/games/js/minigames-metaverse.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 1204
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 401,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/web/games/js/teacher-dashboard.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 732
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 403,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/web/games/js/user-testing-analytics.js"
+                    },
+                    "region": {
+                      "startColumn": 1,
+                      "startLine": 525
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: 'import' and 'export' may appear only with 'sourceType: module'"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 413,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/website/assets/js/main.js"
+                    },
+                    "region": {
+                      "startColumn": 10,
+                      "startLine": 959
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: Identifier 'initFormSubmissions' has already been declared"
+              }
+            },
+            {
+              "descriptor": {
+                "id": "ESL0999"
+              },
+              "level": "error",
+              "locations": [
+                {
+                  "physicalLocation": {
+                    "artifactLocation": {
+                      "index": 420,
+                      "uri": "file:///workspaces/menschlichkeit-oesterreich-development/website/dist/assets/js/main.js"
+                    },
+                    "region": {
+                      "startColumn": 10,
+                      "startLine": 959
+                    }
+                  }
+                }
+              ],
+              "message": {
+                "text": "Parsing error: Identifier 'initFormSubmissions' has already been declared"
+              }
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 1,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/.stylelintrc.js"
+                },
+                "region": {
+                  "endColumn": 7,
+                  "endLine": 1,
+                  "startColumn": 1,
+                  "startLine": 1
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "'module' is not defined."
+          },
+          "ruleId": "no-undef",
+          "ruleIndex": 0
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 3,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/automation/n8n/webhook-client.js"
+                },
+                "region": {
+                  "endColumn": 48,
+                  "endLine": 152,
+                  "startColumn": 7,
+                  "startLine": 152
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Unexpected lexical declaration in case block."
+          },
+          "ruleId": "no-case-declarations",
+          "ruleIndex": 1
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 3,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/automation/n8n/webhook-client.js"
+                },
+                "region": {
+                  "endColumn": 38,
+                  "endLine": 159,
+                  "startColumn": 7,
+                  "startLine": 159
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Unexpected lexical declaration in case block."
+          },
+          "ruleId": "no-case-declarations",
+          "ruleIndex": 1
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 3,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/automation/n8n/webhook-client.js"
+                },
+                "region": {
+                  "endColumn": 81,
+                  "endLine": 166,
+                  "startColumn": 7,
+                  "startLine": 166
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Unexpected lexical declaration in case block."
+          },
+          "ruleId": "no-case-declarations",
+          "ruleIndex": 1
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 7,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/misc/ajax.js"
+                },
+                "region": {
+                  "endColumn": 51,
+                  "endLine": 1530,
+                  "startColumn": 7,
+                  "startLine": 1530
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Definition for rule 'no-jquery/no-css' was not found."
+          },
+          "ruleId": "no-jquery/no-css"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 107,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/tests/src/Nightwatch/Tests/drupalHtmlBuilderTest.js"
+                },
+                "region": {
+                  "endColumn": 62,
+                  "endLine": 4,
+                  "startColumn": 1,
+                  "startLine": 4
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Definition for rule 'import/no-extraneous-dependencies' was not found."
+          },
+          "ruleId": "import/no-extraneous-dependencies"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 108,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/ckeditor5/webpack.config.js"
+                },
+                "region": {
+                  "endColumn": 162,
+                  "endLine": 53,
+                  "startColumn": 119,
+                  "startLine": 53
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Definition for rule 'import/no-unresolved' was not found."
+          },
+          "ruleId": "import/no-unresolved"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 130,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/filter/filter.filter_html.admin.js"
+                },
+                "region": {
+                  "endColumn": 53,
+                  "endLine": 162,
+                  "startColumn": 9,
+                  "startLine": 162
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Definition for rule 'no-jquery/no-val' was not found."
+          },
+          "ruleId": "no-jquery/no-val"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 130,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/filter/filter.filter_html.admin.js"
+                },
+                "region": {
+                  "endColumn": 53,
+                  "endLine": 171,
+                  "startColumn": 9,
+                  "startLine": 171
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Definition for rule 'no-jquery/no-val' was not found."
+          },
+          "ruleId": "no-jquery/no-val"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 178,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/crm.menschlichkeit-oesterreich.at/web/core/modules/system/tests/modules/js_testing_ajax_request_test/js/js_testing_ajax_request_test.js"
+                },
+                "region": {
+                  "endColumn": 48,
+                  "endLine": 8,
+                  "startColumn": 3,
+                  "startLine": 8
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Definition for rule 'no-jquery/no-ajax-events' was not found."
+          },
+          "ruleId": "no-jquery/no-ajax-events"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 339,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/figma-design-system/eslint.config.js"
+                },
+                "region": {
+                  "endColumn": 19,
+                  "endLine": 103,
+                  "startColumn": 7,
+                  "startLine": 103
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Duplicate key 'no-console'."
+          },
+          "ruleId": "no-dupe-keys",
+          "ruleIndex": 2
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 340,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/figma-design-system/public/sw.js"
+                },
+                "region": {
+                  "endColumn": 21,
+                  "endLine": 20,
+                  "startColumn": 7,
+                  "startLine": 20
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "'DYNAMIC_ASSETS' is assigned a value but never used."
+          },
+          "ruleId": "no-unused-vars",
+          "ruleIndex": 3
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 340,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/figma-design-system/public/sw.js"
+                },
+                "region": {
+                  "endColumn": 22,
+                  "endLine": 86,
+                  "startColumn": 19,
+                  "startLine": 86
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "'URL' is not defined."
+          },
+          "ruleId": "no-undef",
+          "ruleIndex": 0
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 340,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/figma-design-system/public/sw.js"
+                },
+                "region": {
+                  "endColumn": 16,
+                  "endLine": 265,
+                  "startColumn": 11,
+                  "startLine": 265
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "'cache' is assigned a value but never used."
+          },
+          "ruleId": "no-unused-vars",
+          "ruleIndex": 3
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 341,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/fix-mcp-servers.js"
+                },
+                "region": {
+                  "endColumn": 35,
+                  "endLine": 9,
+                  "startColumn": 28,
+                  "startLine": 9
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "'process' is not defined."
+          },
+          "ruleId": "no-undef",
+          "ruleIndex": 0
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 341,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/fix-mcp-servers.js"
+                },
+                "region": {
+                  "endColumn": 32,
+                  "endLine": 53,
+                  "startColumn": 25,
+                  "startLine": 53
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "'process' is not defined."
+          },
+          "ruleId": "no-undef",
+          "ruleIndex": 0
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 341,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/fix-mcp-servers.js"
+                },
+                "region": {
+                  "endColumn": 32,
+                  "endLine": 80,
+                  "startColumn": 25,
+                  "startLine": 80
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "'process' is not defined."
+          },
+          "ruleId": "no-undef",
+          "ruleIndex": 0
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 348,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/frontend/scripts/run-lighthouse.mjs"
+                },
+                "region": {
+                  "endColumn": 15,
+                  "endLine": 25,
+                  "startColumn": 13,
+                  "startLine": 25
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Empty block statement."
+          },
+          "ruleId": "no-empty",
+          "ruleIndex": 4
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 357,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/mcp-servers/file-server/index.js"
+                },
+                "region": {
+                  "endColumn": 7,
+                  "endLine": 13,
+                  "startColumn": 3,
+                  "startLine": 13
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "'Tool' is assigned a value but never used."
+          },
+          "ruleId": "no-unused-vars",
+          "ruleIndex": 3
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 357,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/mcp-servers/file-server/index.js"
+                },
+                "region": {
+                  "endColumn": 48,
+                  "endLine": 370,
+                  "startColumn": 39,
+                  "startLine": 370
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "'fileTypes' is assigned a value but never used."
+          },
+          "ruleId": "no-unused-vars",
+          "ruleIndex": 3
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 359,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/playwright.config.js"
+                },
+                "region": {
+                  "endColumn": 24,
+                  "endLine": 7,
+                  "startColumn": 17,
+                  "startLine": 7
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "'process' is not defined."
+          },
+          "ruleId": "no-undef",
+          "ruleIndex": 0
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 359,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/playwright.config.js"
+                },
+                "region": {
+                  "endColumn": 19,
+                  "endLine": 8,
+                  "startColumn": 12,
+                  "startLine": 8
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "'process' is not defined."
+          },
+          "ruleId": "no-undef",
+          "ruleIndex": 0
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 359,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/playwright.config.js"
+                },
+                "region": {
+                  "endColumn": 19,
+                  "endLine": 9,
+                  "startColumn": 12,
+                  "startLine": 9
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "'process' is not defined."
+          },
+          "ruleId": "no-undef",
+          "ruleIndex": 0
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 359,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/playwright.config.js"
+                },
+                "region": {
+                  "endColumn": 34,
+                  "endLine": 49,
+                  "startColumn": 27,
+                  "startLine": 49
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "'process' is not defined."
+          },
+          "ruleId": "no-undef",
+          "ruleIndex": 0
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 363,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/scripts/figma-token-sync.cjs"
+                },
+                "region": {
+                  "endColumn": 33,
+                  "endLine": 355,
+                  "startColumn": 24,
+                  "startLine": 355
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "'figmaData' is defined but never used."
+          },
+          "ruleId": "no-unused-vars",
+          "ruleIndex": 3
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 363,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/scripts/figma-token-sync.cjs"
+                },
+                "region": {
+                  "endColumn": 38,
+                  "endLine": 356,
+                  "startColumn": 29,
+                  "startLine": 356
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "'figmaData' is defined but never used."
+          },
+          "ruleId": "no-unused-vars",
+          "ruleIndex": 3
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 363,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/scripts/figma-token-sync.cjs"
+                },
+                "region": {
+                  "endColumn": 35,
+                  "endLine": 357,
+                  "startColumn": 26,
+                  "startLine": 357
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "'figmaData' is defined but never used."
+          },
+          "ruleId": "no-unused-vars",
+          "ruleIndex": 3
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 363,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/scripts/figma-token-sync.cjs"
+                },
+                "region": {
+                  "endColumn": 34,
+                  "endLine": 358,
+                  "startColumn": 25,
+                  "startLine": 358
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "'figmaData' is defined but never used."
+          },
+          "ruleId": "no-unused-vars",
+          "ruleIndex": 3
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 370,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/scripts/performance/web-vitals-tracker.js"
+                },
+                "region": {
+                  "endColumn": 28,
+                  "endLine": 37,
+                  "startColumn": 9,
+                  "startLine": 37
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "'PerformanceObserver' is not defined."
+          },
+          "ruleId": "no-undef",
+          "ruleIndex": 0
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 370,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/scripts/performance/web-vitals-tracker.js"
+                },
+                "region": {
+                  "endColumn": 28,
+                  "endLine": 44,
+                  "startColumn": 9,
+                  "startLine": 44
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "'PerformanceObserver' is not defined."
+          },
+          "ruleId": "no-undef",
+          "ruleIndex": 0
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 370,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/scripts/performance/web-vitals-tracker.js"
+                },
+                "region": {
+                  "endColumn": 28,
+                  "endLine": 53,
+                  "startColumn": 9,
+                  "startLine": 53
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "'PerformanceObserver' is not defined."
+          },
+          "ruleId": "no-undef",
+          "ruleIndex": 0
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 370,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/scripts/performance/web-vitals-tracker.js"
+                },
+                "region": {
+                  "endColumn": 28,
+                  "endLine": 64,
+                  "startColumn": 9,
+                  "startLine": 64
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "'PerformanceObserver' is not defined."
+          },
+          "ruleId": "no-undef",
+          "ruleIndex": 0
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 370,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/scripts/performance/web-vitals-tracker.js"
+                },
+                "region": {
+                  "endColumn": 35,
+                  "endLine": 71,
+                  "startColumn": 24,
+                  "startLine": 71
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "'performance' is not defined."
+          },
+          "ruleId": "no-undef",
+          "ruleIndex": 0
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 372,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/tailwind.config.js"
+                },
+                "region": {
+                  "endColumn": 7,
+                  "endLine": 3,
+                  "startColumn": 1,
+                  "startLine": 3
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "'module' is not defined."
+          },
+          "ruleId": "no-undef",
+          "ruleIndex": 0
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 372,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/tailwind.config.js"
+                },
+                "region": {
+                  "endColumn": 20,
+                  "endLine": 183,
+                  "startColumn": 13,
+                  "startLine": 183
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "'require' is not defined."
+          },
+          "ruleId": "no-undef",
+          "ruleIndex": 0
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 374,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/tests/setup.js"
+                },
+                "region": {
+                  "endColumn": 7,
+                  "endLine": 26,
+                  "startColumn": 1,
+                  "startLine": 26
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "'global' is not defined."
+          },
+          "ruleId": "no-undef",
+          "ruleIndex": 0
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 374,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/tests/setup.js"
+                },
+                "region": {
+                  "endColumn": 7,
+                  "endLine": 35,
+                  "startColumn": 1,
+                  "startLine": 35
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "'global' is not defined."
+          },
+          "ruleId": "no-undef",
+          "ruleIndex": 0
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 375,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/tests/unit/enhanced-components.test.js"
+                },
+                "region": {
+                  "endColumn": 7,
+                  "endLine": 7,
+                  "startColumn": 1,
+                  "startLine": 7
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "'global' is not defined."
+          },
+          "ruleId": "no-undef",
+          "ruleIndex": 0
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 375,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/tests/unit/enhanced-components.test.js"
+                },
+                "region": {
+                  "endColumn": 7,
+                  "endLine": 8,
+                  "startColumn": 1,
+                  "startLine": 8
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "'global' is not defined."
+          },
+          "ruleId": "no-undef",
+          "ruleIndex": 0
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 375,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/tests/unit/enhanced-components.test.js"
+                },
+                "region": {
+                  "endColumn": 30,
+                  "endLine": 258,
+                  "startColumn": 19,
+                  "startLine": 258
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "'performance' is not defined."
+          },
+          "ruleId": "no-undef",
+          "ruleIndex": 0
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 375,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/tests/unit/enhanced-components.test.js"
+                },
+                "region": {
+                  "endColumn": 28,
+                  "endLine": 265,
+                  "startColumn": 17,
+                  "startLine": 265
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "'performance' is not defined."
+          },
+          "ruleId": "no-undef",
+          "ruleIndex": 0
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 376,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/validate-mcp-config.js"
+                },
+                "region": {
+                  "endColumn": 37,
+                  "endLine": 10,
+                  "startColumn": 30,
+                  "startLine": 10
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "'process' is not defined."
+          },
+          "ruleId": "no-undef",
+          "ruleIndex": 0
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 377,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/vitest.config.js"
+                },
+                "region": {
+                  "endColumn": 29,
+                  "endLine": 35,
+                  "startColumn": 20,
+                  "startLine": 35
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "'__dirname' is not defined."
+          },
+          "ruleId": "no-undef",
+          "ruleIndex": 0
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 377,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/vitest.config.js"
+                },
+                "region": {
+                  "endColumn": 32,
+                  "endLine": 36,
+                  "startColumn": 23,
+                  "startLine": 36
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "'__dirname' is not defined."
+          },
+          "ruleId": "no-undef",
+          "ruleIndex": 0
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 377,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/vitest.config.js"
+                },
+                "region": {
+                  "endColumn": 34,
+                  "endLine": 37,
+                  "startColumn": 25,
+                  "startLine": 37
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "'__dirname' is not defined."
+          },
+          "ruleId": "no-undef",
+          "ruleIndex": 0
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 377,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/vitest.config.js"
+                },
+                "region": {
+                  "endColumn": 32,
+                  "endLine": 38,
+                  "startColumn": 23,
+                  "startLine": 38
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "'__dirname' is not defined."
+          },
+          "ruleId": "no-undef",
+          "ruleIndex": 0
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 377,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/vitest.config.js"
+                },
+                "region": {
+                  "endColumn": 32,
+                  "endLine": 39,
+                  "startColumn": 23,
+                  "startLine": 39
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "'__dirname' is not defined."
+          },
+          "ruleId": "no-undef",
+          "ruleIndex": 0
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 407,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/web/games/sw.js"
+                },
+                "region": {
+                  "endColumn": 22,
+                  "endLine": 127,
+                  "startColumn": 19,
+                  "startLine": 127
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "'URL' is not defined."
+          },
+          "ruleId": "no-undef",
+          "ruleIndex": 0
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 407,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/web/games/sw.js"
+                },
+                "region": {
+                  "endColumn": 34,
+                  "endLine": 295,
+                  "startColumn": 31,
+                  "startLine": 295
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "'URL' is not defined."
+          },
+          "ruleId": "no-undef",
+          "ruleIndex": 0
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 407,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/web/games/sw.js"
+                },
+                "region": {
+                  "endColumn": 22,
+                  "endLine": 303,
+                  "startColumn": 19,
+                  "startLine": 303
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "'URL' is not defined."
+          },
+          "ruleId": "no-undef",
+          "ruleIndex": 0
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 429,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/website/scripts/run-lighthouse.mjs"
+                },
+                "region": {
+                  "endColumn": 15,
+                  "endLine": 25,
+                  "startColumn": 13,
+                  "startLine": 25
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Empty block statement."
+          },
+          "ruleId": "no-empty",
+          "ruleIndex": 4
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 430,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/website/sw.js"
+                },
+                "region": {
+                  "endColumn": 17,
+                  "endLine": 6,
+                  "startColumn": 7,
+                  "startLine": 6
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "'CACHE_NAME' is assigned a value but never used."
+          },
+          "ruleId": "no-unused-vars",
+          "ruleIndex": 3
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 430,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/website/sw.js"
+                },
+                "region": {
+                  "endColumn": 29,
+                  "endLine": 84,
+                  "startColumn": 26,
+                  "startLine": 84
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "'URL' is not defined."
+          },
+          "ruleId": "no-undef",
+          "ruleIndex": 0
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 430,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/website/sw.js"
+                },
+                "region": {
+                  "endColumn": 22,
+                  "endLine": 208,
+                  "startColumn": 19,
+                  "startLine": 208
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "'URL' is not defined."
+          },
+          "ruleId": "no-undef",
+          "ruleIndex": 0
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "index": 430,
+                  "uri": "file:///workspaces/menschlichkeit-oesterreich-development/website/sw.js"
+                },
+                "region": {
+                  "endColumn": 22,
+                  "endLine": 223,
+                  "startColumn": 19,
+                  "startLine": 223
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "'URL' is not defined."
+          },
+          "ruleId": "no-undef",
+          "ruleIndex": 0
+        }
+      ],
+      "tool": {
+        "driver": {
+          "informationUri": "https://eslint.org",
+          "name": "ESLint",
+          "rules": null,
+          "version": "8.57.0"
+        }
+      }
+    }
+  ],
+  "version": "2.1.0"
+}

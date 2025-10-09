@@ -12,11 +12,13 @@ wurden in LFS-Pointer-Dateien konvertiert, Repository-Größe optimiert.
 ## Durchgeführte Schritte
 
 ### 1. Installation & Initialisierung
+
 - Git LFS 3.4.1 über apt-get installiert
 - `git lfs install --skip-smudge` für effizienten Workspace
 - LFS-Endpoint konfiguriert: GitHub LFS-Backend
 
 ### 2. Konfiguration
+
 - **.gitattributes** erstellt für Pattern:
   - `*.pdf, *.PDF`
   - `*.jar, *.phar`
@@ -26,12 +28,14 @@ wurden in LFS-Pointer-Dateien konvertiert, Repository-Größe optimiert.
   - `Pdf/**` (gesamtes Verzeichnis)
 
 ### 3. Migration
+
 - **Skript:** `scripts/git-lfs-migrate.sh` (korrigiert, 2 Bugfixes)
 - **Kommando:** `git lfs migrate import --yes --include="<patterns>"`
 - **Commits rewritten:** 8 (100%)
 - **Dateien migriert:** 139 Assets → LFS-Pointer
 
 ### 4. Repository-Cleanup
+
 - **CiviCRM-Cleanup:** 240MB contrib/civicrm aus Git-Tracking entfernt (jetzt .gitignore)
 - **Git-Historie:** Historie umgeschrieben, alte Blobs durch Pointer ersetzt
 
@@ -71,20 +75,25 @@ c0e1f572 chore(crm): Remove CiviCRM from Git tracking (now in .gitignore)
 ## Nächste Schritte (Empfohlen)
 
 ### Sofort
+
 1. **Branch Review:** Code-Review für `chore/git-lfs-migration`
 2. **Merge:** In Main/Default-Branch mergen
 3. **Force-Push:** `git push --force-with-lease origin main` (rewrites history)
 
 ### Kurz darauf
+
 4. **GitHub LFS Quota:** Prüfe GitHub LFS-Storage (frei bis 1 GB)
 5. **CI/CD Update:** `.github/workflows/` mit `git lfs install --skip-smudge` erweitern
 6. **Team-Kommunikation:** Alle Entwickler müssen `git lfs install` lokal ausführen
 
 ### Optional (Historie bereinigen)
+
 7. **Full History Migration:**
+
    ```bash
    git lfs migrate import --everything --include="*.pdf,*.jar,*.phar,*.zip,*.png,*.jpg,*.jpeg"
    ```
+
    ⚠️ **Achtung:** Rewrites ENTIRE history, requires force-push, breaks all open PRs
 
 ## Validierung

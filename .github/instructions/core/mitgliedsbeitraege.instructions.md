@@ -1,11 +1,13 @@
 ---
-description: Beitragsordnung – Mitgliedsbeiträge, Fälligkeiten, Reduktionen & Mahnwesen (Österreich)
-applyTo: '**'
-priority: high
-version: 1.0
+title: Beitragsordnung – Menschlichkeit Österreich (gültig ab 01.07.2025)
+version: 1.0.0
+created: 2025-10-08
 lastUpdated: 2025-10-08
+status: ACTIVE
+priority: high
+category: core
+applyTo: **
 ---
-
 # Beitragsordnung – Menschlichkeit Österreich (gültig ab 01.07.2025)
 
 Diese Anweisung konkretisiert die Beitragsordnung und operationalisiert Statuten (§§ 5, 7, 10, 11) für die Vereinsverwaltung. Rechtsgrundlagen: Vereinsgesetz 2002, BAO § 132 (Aufbewahrung 7 Jahre), DSGVO/DSG, TKG § 107 (Kommunikation).

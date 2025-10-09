@@ -1,9 +1,13 @@
 ---
-description: n8n Workflow Automation für maximale Service-Integration und Automatisierung
-applyTo: 'n8n-workflows/**,automation/**,deployment-scripts/**,monitoring/**'
+title: n8n Automation Instructions
+version: 1.0.0
+created: 2025-10-08
+lastUpdated: 2025-10-08
+status: ACTIVE
 priority: critical
+category: core
+applyTo: n8n-workflows/**,automation/**,deployment-scripts/**,monitoring/**
 ---
-
 # n8n Automation Instructions
 
 ## Projekt-Integration

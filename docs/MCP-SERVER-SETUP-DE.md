@@ -8,21 +8,25 @@
 ## 📋 **Konfigurierte MCP Server (11 Server)**
 
 ### 🚀 **Kern-Entwicklung (PRIORITY 1)**
+
 - ✅ **GitHub MCP** - Issues, PRs, Security Alerts, Branch Management
 - ✅ **PostgreSQL MCP** - Datenbankabfragen, Schema-Analyse  
 - ✅ **Figma MCP** - Design Token Sync, Component Export
 - ✅ **Filesystem MCP** - Workspace-weiter Dateizugriff
 
 ### 🔧 **Testing & Quality (PRIORITY 2)**  
+
 - ✅ **Playwright MCP** - E2E-Test-Automatisierung
 - ✅ **Brave Search MCP** - Web-Recherche für Best Practices
 
 ### 📚 **Dokumentation & Knowledge (PRIORITY 3)**
+
 - ✅ **Microsoft Docs MCP** - Azure/TypeScript/C# Dokumentation
 - ✅ **Upstash Context7 MCP** - Library-spezifische Dokumentation  
 - ✅ **Memory MCP** - Session-übergreifende Kontext-Persistenz
 
 ### 📝 **Projektmanagement (PRIORITY 4)**
+
 - ✅ **Notion MCP** - Dokumentation, Projektmanagement
 - ✅ **Todoist MCP** - Task-Management
 
@@ -44,6 +48,7 @@ Alle API-Tokens werden **sicher über Inputs** verwaltet:
 ## 📍 **Token-Beschaffung - Schritt für Schritt**
 
 ### 1. GitHub Token (REQUIRED)
+
 ```markdown
 1. Gehen Sie zu: https://github.com/settings/tokens
 2. "Generate new token (classic)"
@@ -52,6 +57,7 @@ Alle API-Tokens werden **sicher über Inputs** verwaltet:
 ```
 
 ### 2. Figma Token (REQUIRED für Design System)
+
 ```markdown  
 1. Gehen Sie zu: https://figma.com/developers/api
 2. "Get personal access token"
@@ -60,6 +66,7 @@ Alle API-Tokens werden **sicher über Inputs** verwaltet:
 ```
 
 ### 3. PostgreSQL Connection (REQUIRED)
+
 ```markdown
 Format: postgresql://username:password@host:port/database
 
@@ -68,6 +75,7 @@ Beispiel Plesk: postgresql://menschlichkeit:***@postgres.menschlichkeit-oesterre
 ```
 
 ### 4. Notion Token (Optional)
+
 ```markdown
 1. Gehen Sie zu: https://notion.so/my-integrations  
 2. "New integration" erstellen
@@ -77,6 +85,7 @@ Beispiel Plesk: postgresql://menschlichkeit:***@postgres.menschlichkeit-oesterre
 ```
 
 ### 5. Brave Search API (Optional)
+
 ```markdown
 1. Gehen Sie zu: https://api.search.brave.com
 2. Account erstellen
@@ -85,6 +94,7 @@ Beispiel Plesk: postgresql://menschlichkeit:***@postgres.menschlichkeit-oesterre
 ```
 
 ### 6. Todoist Token (Optional)
+
 ```markdown
 1. Gehen Sie zu: https://todoist.com/prefs/integrations
 2. "Developer" Tab
@@ -94,6 +104,7 @@ Beispiel Plesk: postgresql://menschlichkeit:***@postgres.menschlichkeit-oesterre
 ## 🚀 **Erste Nutzung**
 
 ### MCP Server starten
+
 ```bash
 # VS Code neu laden für MCP-Konfiguration:
 Cmd/Ctrl + Shift + P → "Developer: Reload Window"
@@ -105,6 +116,7 @@ Cmd/Ctrl + Shift + P → "Developer: Reload Window"
 ### Sofort verfügbare Befehle
 
 #### GitHub Integration
+
 ```markdown
 "Show me issue #123 with all comments"
 "List all high-priority issues" 
@@ -113,6 +125,7 @@ Cmd/Ctrl + Shift + P → "Developer: Reload Window"
 ```
 
 #### Design System Sync
+
 ```markdown
 "Sync latest design tokens from Figma"
 "Get Figma component code for Button"
@@ -120,6 +133,7 @@ Cmd/Ctrl + Shift + P → "Developer: Reload Window"
 ```
 
 #### Database Operationen
+
 ```markdown  
 "Show database schema for user authentication"
 "List all users with XP > 100"
@@ -127,6 +141,7 @@ Cmd/Ctrl + Shift + P → "Developer: Reload Window"
 ```
 
 #### E2E Testing
+
 ```markdown
 "Generate E2E test for login flow"
 "Run Playwright tests for donation form"
@@ -134,6 +149,7 @@ Cmd/Ctrl + Shift + P → "Developer: Reload Window"
 ```
 
 #### Recherche & Dokumentation
+
 ```markdown
 "Search for PostgreSQL indexing strategies"
 "Get React 19 performance optimization docs"
@@ -143,6 +159,7 @@ Cmd/Ctrl + Shift + P → "Developer: Reload Window"
 ## 🎯 **Austrian NGO Workflows**
 
 ### Feature-Entwicklung Workflow
+
 ```bash
 1. "Show me issue #123 and create a new branch"
 2. "Show database schema for this feature"
@@ -152,6 +169,7 @@ Cmd/Ctrl + Shift + P → "Developer: Reload Window"
 ```
 
 ### DSGVO-Compliance Workflow
+
 ```bash
 1. "List all database fields containing personal identifiable information"
 2. "Search for GDPR data retention requirements 2025"
@@ -159,6 +177,7 @@ Cmd/Ctrl + Shift + P → "Developer: Reload Window"
 ```
 
 ### Design System Update Workflow
+
 ```bash
 1. "Sync design tokens from Figma file"
 2. "Compare design system changes with previous version"
@@ -168,6 +187,7 @@ Cmd/Ctrl + Shift + P → "Developer: Reload Window"
 ## 🔧 **Troubleshooting**
 
 ### MCP Server startet nicht
+
 ```bash
 # Health Check:
 npm run mcp:check
@@ -181,6 +201,7 @@ Cmd/Ctrl + Shift + P → "Developer: Reload Window"
 ```
 
 ### Token-Probleme
+
 ```bash
 # Token ungültig:
 1. Neuen Token generieren
@@ -194,6 +215,7 @@ Cmd/Ctrl + Shift + P → "Developer: Reload Window"
 ```
 
 ### Package-Installation Fehler
+
 ```bash
 # Manuell installieren:
 npm install -g @modelcontextprotocol/server-github
@@ -205,6 +227,7 @@ npm install -g @modelcontextprotocol/server-postgres
 ## 📊 **Performance & Limits**
 
 ### API Rate Limits
+
 ```markdown
 - GitHub: 5000 requests/hour (authenticated)  
 - Figma: 1000 requests/hour
@@ -214,6 +237,7 @@ npm install -g @modelcontextprotocol/server-postgres
 ```
 
 ### Optimierung
+
 ```markdown
 ✅ Cache-Ergebnisse in Memory MCP
 ✅ Batch-Operationen wo möglich  
@@ -224,6 +248,7 @@ npm install -g @modelcontextprotocol/server-postgres
 ## 🛡️ **Sicherheit**
 
 ### Token Security
+
 ```markdown
 ✅ Keine Tokens im Code/Git
 ✅ Sichere Input-Pattern verwendet
@@ -232,6 +257,7 @@ npm install -g @modelcontextprotocol/server-postgres
 ```
 
 ### DSGVO-Compliance  
+
 ```markdown
 ✅ Keine PII in MCP-Logs
 ✅ Anonymisierte Queries wo möglich
@@ -242,6 +268,7 @@ npm install -g @modelcontextprotocol/server-postgres
 ## 📈 **Monitoring**
 
 ### Success Metrics
+
 ```markdown
 - MCP Server Uptime: >99%
 - Average Response Time: <2s
@@ -250,6 +277,7 @@ npm install -g @modelcontextprotocol/server-postgres
 ```
 
 ### Quality Integration
+
 ```markdown
 MCP-Operationen werden automatisch in Quality Reports erfasst:
 - quality-reports/mcp-usage.json
@@ -260,6 +288,7 @@ MCP-Operationen werden automatisch in Quality Reports erfasst:
 ## 🔄 **Updates & Maintenance**
 
 ### Monatliche Tasks
+
 ```bash
 # MCP Server Updates:
 npm update -g @modelcontextprotocol/server-*
@@ -272,6 +301,7 @@ npm run quality:mcp-report
 ```
 
 ### Breaking Changes
+
 ```markdown
 Bei MCP Server Updates:
 1. CHANGELOG der jeweiligen Server prüfen
@@ -290,6 +320,7 @@ Bei MCP Server Updates:
 **Austrian NGO Compliance:** ✅ VERIFIED
 
 **Nächste Schritte:**
+
 1. VS Code neu laden
 2. Tokens bei erstem Prompt eingeben
 3. MCP-Tools in Copilot verwenden

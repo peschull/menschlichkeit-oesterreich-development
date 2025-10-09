@@ -126,7 +126,7 @@ Beispiel:
 ### 1. Pre-Deployment Check
 
 **Prompt:**
-```
+```text
 "Führe Pre-Deployment Check für Production aus:
 1. Quality Gates prüfen (npm run quality:gates)
 2. GitHub Secrets verifizieren (ohne Werte anzuzeigen)
@@ -148,7 +148,7 @@ Beispiel:
 ### 2. Service Deployment
 
 **Prompt:**
-```
+```text
 "Deploye CRM Service (Drupal/CiviCRM):
 1. Dry-Run Deployment-Script
 2. Backup mo_crm DB
@@ -172,7 +172,7 @@ Beispiel:
 ### 3. Post-Deployment Validation
 
 **Prompt:**
-```
+```text
 "Validiere Deployment aller Services:
 1. HTTP 200 Check für alle 20+ Services
 2. E2E Tests für Critical User Flows
@@ -193,7 +193,7 @@ Beispiel:
 ### 4. Rollback
 
 **Prompt:**
-```
+```text
 "Führe Rollback zu Version v2025.01.14 aus:
 1. Git Checkout Previous Tag
 2. Rebuild mit altem Code

@@ -1,9 +1,13 @@
 ---
-description: Best Practices für README.md & Markdown-Dokumentation im gesamten Projekt
-applyTo: '**/*.md'
+title: Markdown Documentation Best Practices
+version: 1.0.0
+created: 2025-10-08
+lastUpdated: 2025-10-08
+status: ACTIVE
 priority: high
+category: core
+applyTo: **/*.md
 ---
-
 # Markdown Documentation Best Practices
 
 ## Zweck
@@ -111,7 +115,7 @@ npm run docs:links     # Check broken links
 
 ## 🚀 Quick Start
 
-```bash
+```
 # 1. Repository klonen
 git clone https://github.com/[org]/[repo].git
 cd [repo]
@@ -128,7 +132,7 @@ npm run dev
 
 # 5. Browser öffnen
 open http://localhost:3000
-```
+```text
 
 **Das war's!** 🎉 Weitere Details unter [Installation](#installation).
 

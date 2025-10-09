@@ -56,7 +56,7 @@
 
 ### 4.1 Stored XSS via CRM Content
 
-```
+```text
 Goal: Execute arbitrary JS in donor browser
   ├─ Upload malicious HTML snippet via CRM CMS field
   │   ├─ (Precondition) Editor role compromised
@@ -68,7 +68,7 @@ Goal: Execute arbitrary JS in donor browser
 
 ### 4.2 Token Exfiltration
 
-```
+```text
 Goal: Steal JWT from localStorage
   ├─ Inject script (Stored/Reflected XSS)
   │   ├─ Danger: unsanitized query param -> `dangerouslySetInnerHTML`

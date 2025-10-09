@@ -214,51 +214,60 @@ npm run deploy:setup-env        # 🔧 Environment konfigurieren
 ### 9 Kategorien von Checks
 
 #### 1. Git Status
+
 - ✅ Clean working directory
 - ✅ Korrekter Branch (main für Production)
 - ✅ Remote synchronized
 
 #### 2. Code Quality
+
 - ✅ Codacy: Maintainability ≥ 85%
 - ✅ ESLint: 0 errors
 - ✅ PHPStan: Level 6 passed
 - ✅ Duplication ≤ 2%
 
 #### 3. Security
+
 - ✅ Trivy: 0 high/critical CVEs
 - ✅ Gitleaks: 0 secrets exposed
 - ✅ npm audit: 0 vulnerabilities
 - ✅ Max CVE Score: 7.0
 
 #### 4. DSGVO Compliance
+
 - ✅ Keine PII in Logs
 - ✅ Cookie Consent implementiert
 - ✅ Privacy Policy aktuell (< 90 Tage)
 - ✅ Data Retention konfiguriert
 
 #### 5. Performance
+
 - ✅ Lighthouse Performance ≥ 90
 - ✅ Lighthouse Accessibility ≥ 90
 - ✅ Lighthouse Best Practices ≥ 95
 - ✅ Lighthouse SEO ≥ 90
 
 #### 6. Database
+
 - ✅ Migrations applied
 - ✅ Connection successful
 - ✅ Backup vorhanden (< 24h)
 
 #### 7. Environment
+
 - ✅ Config files present
 - ✅ Node version correct
 - ✅ Environment variables set
 
 #### 8. Dependencies
+
 - ✅ Docker verfügbar
 - ✅ PostgreSQL erreichbar
 - ✅ PHP installiert
 - ✅ Python verfügbar
 
 #### 9. CI/CD
+
 - ✅ GitHub Actions passing
 - ✅ Deployment scripts present
 
@@ -319,11 +328,13 @@ npm run deploy:monitor -- 7200
 ### Monitoring Reports
 
 **Automatisch generiert:**
+
 - `quality-reports/deployment-metrics/monitoring-<timestamp>.ndjson`
 - `quality-reports/deployment-metrics/lighthouse-<timestamp>.json` (falls Lighthouse aktiv)
 - `quality-reports/deployment-metrics/monitoring-report-<YYYYMMDD>.md`
 
 **Inhalt:**
+
 - Service health status
 - System resource usage
 - Error rate per service
@@ -337,6 +348,7 @@ npm run deploy:monitor -- 7200
 ### Automatic Rollback
 
 **Trigger:** Critical deployment failures
+
 - Quality gates failed
 - Smoke tests failed
 - Error rate > threshold
@@ -392,6 +404,7 @@ npm run deploy:rollback -- v2.1.0
 ### Rollback Report
 
 Automatisch generiert nach jedem Rollback:
+
 - Rollback reason
 - Steps executed
 - Duration
@@ -405,28 +418,33 @@ Automatisch generiert nach jedem Rollback:
 ### Automatisch nach Deployment
 
 **API Tests:**
+
 - Health endpoint
 - Version endpoint
 - Database connection
 - Response time
 
 **CRM Tests:**
+
 - Home page accessible
 - Login page loads
 - CiviCRM available
 
 **Frontend Tests:**
+
 - Home page loads
 - Static assets
 - Meta tags
 - Load time
 
 **Database Tests:**
+
 - Connection
 - Migrations applied
 - Critical tables exist
 
 **Security Tests:**
+
 - HTTPS redirect
 - Security headers
 - No sensitive data exposed
@@ -447,6 +465,7 @@ npm run deploy:smoke-tests -- staging
 **Problem:** Deployment-Script reagiert nicht
 
 **Lösung:**
+
 ```bash
 # 1. Ctrl+C (triggert automatischen Rollback)
 # 2. Logs prüfen
@@ -461,6 +480,7 @@ npm run deploy:rollback
 **Problem:** Pre-Deployment Validation schlägt fehl
 
 **Lösung:**
+
 ```bash
 # 1. Detaillierte Analyse
 npm run deploy:readiness
@@ -480,6 +500,7 @@ npm run deploy:readiness
 **Problem:** Nach Deployment sind Services down
 
 **Lösung:**
+
 ```bash
 # 1. Dashboard öffnen
 npm run deploy:dashboard
@@ -500,6 +521,7 @@ npm run deploy:rollback
 **Problem:** Automatischer Rollback funktioniert nicht
 
 **Lösung:**
+
 ```bash
 # 1. Manueller Rollback mit Version
 npm run deploy:rollback -- v2.1.0
@@ -521,6 +543,7 @@ npm run deploy:health-check
 **Problem:** Alerts werden nicht gesendet
 
 **Lösung:**
+
 ```bash
 # 1. n8n Status prüfen
 docker ps | grep n8n
@@ -543,6 +566,7 @@ nano .env.deployment
 **Problem:** Deployment schlägt fehl wegen DB-Timeout
 
 **Lösung:**
+
 ```bash
 # 1. Connection String prüfen
 echo $DATABASE_URL
@@ -568,6 +592,7 @@ DB_CONNECTION_POOL_SIZE=50
 **Problem:** Deployment schlägt fehl wegen Speicherplatz
 
 **Lösung:**
+
 ```bash
 # 1. Speicherplatz prüfen
 df -h

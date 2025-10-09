@@ -9,6 +9,7 @@ Die vollständige Deployment-Infrastruktur für die Menschlichkeit Österreich P
 ## 📁 Erstellte Dateien
 
 ### Deployment Scripts (9 Dateien)
+
 ```bash
 deployment-scripts/
 ├── deployment-dashboard.sh        # 🎨 Interaktives Terminal-Dashboard
@@ -23,6 +24,7 @@ deployment-scripts/
 ```
 
 ### Documentation (3 Dateien)
+
 ```bash
 docs/
 ├── DEPLOYMENT-GUIDE.md           # 📖 Vollständige Anleitung
@@ -31,6 +33,7 @@ docs/
 ```
 
 ### NPM Scripts (8 Commands)
+
 ```json
 {
   "deploy:dashboard": "Interaktives Dashboard starten",
@@ -49,17 +52,20 @@ docs/
 ## 🎯 Quick Start
 
 ### 1. Interaktives Dashboard (EMPFOHLEN)
+
 ```bash
 npm run deploy:dashboard
 ```
 
 **Features:**
+
 - 📊 Live System Status
 - 🚀 Alle Deployment-Optionen
 - 📈 Metrics & Reports
 - 🔙 Rollback-Management
 
 ### 2. Standard Deployment Flow
+
 ```bash
 # Schritt 1: Readiness Check
 npm run deploy:readiness
@@ -75,6 +81,7 @@ npm run deploy:production
 ```
 
 ### 3. Zero-Downtime Deployment
+
 ```bash
 npm run deploy:blue-green
 ```
@@ -84,9 +91,11 @@ npm run deploy:blue-green
 ## 🏗️ Deployment-Strategien
 
 ### Multi-Service Sequential
+
 **Wann verwenden:** Standard-Deployments, Feature-Releases
 
 **Ablauf:**
+
 1. Pre-Deployment Validation (Quality Gates)
 2. Backup Creation (DB + Configs)
 3. Database Migrations (Prisma)
@@ -96,15 +105,18 @@ npm run deploy:blue-green
 7. Deployment Report
 
 **Command:**
+
 ```bash
 npm run deploy:staging       # für Staging
 npm run deploy:production    # für Production
 ```
 
 ### Blue-Green Zero-Downtime
+
 **Wann verwenden:** Production Updates ohne Downtime
 
 **Ablauf:**
+
 1. Deploy zu GREEN Environment
 2. Smoke Tests auf GREEN
 3. Traffic Shift: 10% → 50% → 100%
@@ -112,6 +124,7 @@ npm run deploy:production    # für Production
 5. Full Cutover zu GREEN
 
 **Command:**
+
 ```bash
 npm run deploy:blue-green
 ```
@@ -121,6 +134,7 @@ npm run deploy:blue-green
 ## 🛡️ Quality Gates
 
 ### Automatische Validierung
+
 Alle Deployments durchlaufen **9 Quality Gates**:
 
 | Gate | Checks | Blocker wenn |
@@ -136,6 +150,7 @@ Alle Deployments durchlaufen **9 Quality Gates**:
 | **CI/CD** | Workflows, Deployment scripts | Failing GitHub Actions |
 
 **Command:**
+
 ```bash
 npm run deploy:readiness
 ```
@@ -145,11 +160,13 @@ npm run deploy:readiness
 ## 📊 Monitoring & Alerting
 
 ### Real-Time Monitoring
+
 ```bash
 npm run deploy:monitor -- 3600   # Monitor für 1 Stunde
 ```
 
 **Überwacht:**
+
 - ✅ Service Health (HTTP checks alle 30s)
 - 💻 System Resources (CPU, Memory, Disk)
 - 🗄️ Database Connection Pool
@@ -158,6 +175,7 @@ npm run deploy:monitor -- 3600   # Monitor für 1 Stunde
 - 🎨 Performance Metrics (Lighthouse alle 10min)
 
 **Thresholds:**
+
 | Metric | Threshold | Action |
 |--------|-----------|--------|
 | Error Rate | > 1% | Alert via n8n Webhook |
@@ -167,6 +185,7 @@ npm run deploy:monitor -- 3600   # Monitor für 1 Stunde
 | Disk | > 90% | Alert |
 
 **Outputs:**
+
 - JSON Metrics: `quality-reports/deployment-metrics/TIMESTAMP.json`
 - Markdown Report: `quality-reports/deployment-TIMESTAMP.md`
 
@@ -175,9 +194,11 @@ npm run deploy:monitor -- 3600   # Monitor für 1 Stunde
 ## 🔙 Rollback Procedures
 
 ### Automatischer Rollback
+
 Bei Deployment-Fehlern: **Automatisch via trap handler**
 
 ### Manueller Rollback
+
 ```bash
 # Zu vorheriger Version
 npm run deploy:rollback
@@ -187,6 +208,7 @@ npm run deploy:rollback -- v2.1.0
 ```
 
 **10-Step Recovery:**
+
 1. Pre-Rollback Validation
 2. Database Rollback (pg_restore)
 3. API Rollback (Docker/Git)
@@ -205,6 +227,7 @@ npm run deploy:rollback -- v2.1.0
 ## 🎯 Deployment Scenarios
 
 ### Hotfix (Critical Bug)
+
 ```bash
 git checkout -b hotfix/issue-123
 # ... fix implementieren ...
@@ -214,6 +237,7 @@ npm run deploy:monitor -- 1800      # Monitor 30min
 ```
 
 ### Feature Release
+
 ```bash
 git checkout -b feature/new-payment
 # ... feature implementieren ...
@@ -225,6 +249,7 @@ npm run deploy:monitor -- 3600
 ```
 
 ### Database Migration
+
 ```bash
 # Migration vorbereiten
 npx prisma migrate dev --name add_email_verification
@@ -236,6 +261,7 @@ npm run deploy:monitor -- 7200
 ```
 
 ### Rollback nach Incident
+
 ```bash
 # Sofort rollback
 npm run deploy:rollback
@@ -252,6 +278,7 @@ git checkout -b hotfix/rollback-fix
 ## 📈 Performance Optimization
 
 ### Pre-Deployment
+
 ```bash
 # Performance Audit
 npm run performance:lighthouse
@@ -263,6 +290,7 @@ npm run performance:lighthouse
 ```
 
 ### Post-Deployment
+
 ```bash
 # Monitoring für extended period
 npm run deploy:monitor -- 7200   # 2 hours
@@ -276,13 +304,16 @@ npm run deploy:dashboard
 ## 🔒 Security & Compliance
 
 ### DSGVO Compliance
+
 **Automatisch geprüft in Readiness Check:**
+
 - ✅ Keine PII in Logs
 - ✅ Cookie Consent aktiv
 - ✅ Privacy Policy aktuell (< 90 Tage)
 - ✅ Data Retention konfiguriert
 
 ### Security Scanning
+
 ```bash
 npm run security:scan
 
@@ -300,6 +331,7 @@ npm run security:scan
 ## 🚨 Emergency Procedures
 
 ### Production Incident
+
 ```bash
 # 1. Sofortiger Rollback
 npm run deploy:rollback
@@ -318,6 +350,7 @@ npm run deploy:production --force
 ```
 
 ### Data Breach Response
+
 1. **SOFORT:** Betroffene Services isolieren
 2. **Analyse:** Umfang bestimmen (PostgreSQL MCP)
 3. **DSGVO:** Meldepflicht prüfen (72h-Frist!)
@@ -329,6 +362,7 @@ npm run deploy:production --force
 ## 🛠️ Troubleshooting
 
 ### Deployment hängt
+
 ```bash
 # Prozess abbrechen: Ctrl+C
 # Automatischer Rollback wird getriggert
@@ -338,6 +372,7 @@ tail -f quality-reports/deployment-latest.md
 ```
 
 ### Quality Gates failing
+
 ```bash
 # Detaillierte Analyse
 npm run deploy:readiness
@@ -349,6 +384,7 @@ npm run performance:lighthouse  # Performance
 ```
 
 ### Services nicht erreichbar
+
 ```bash
 # Dashboard öffnen
 npm run deploy:dashboard
@@ -360,6 +396,7 @@ docker logs crm-service
 ```
 
 ### Rollback schlägt fehl
+
 ```bash
 # Backup manuell wiederherstellen
 ./deployment-scripts/rollback.sh --manual --version v2.1.0
@@ -373,6 +410,7 @@ docker logs crm-service
 ## 📋 Checklisten
 
 ### Pre-Deployment Checklist
+
 - [ ] `npm run deploy:readiness` ✅ GRÜN
 - [ ] Alle Quality Gates passed
 - [ ] Tests laufen (E2E, Unit, Integration)
@@ -384,6 +422,7 @@ docker logs crm-service
 - [ ] Rollback-Plan bereit
 
 ### Post-Deployment Checklist
+
 - [ ] Smoke Tests passed
 - [ ] Service Health ✅ OK
 - [ ] Monitoring aktiv (1+ Stunden)
@@ -411,7 +450,9 @@ docker logs crm-service
 ## 🎉 Next Steps
 
 ### Erstmaliges Setup
+
 1. **Environment konfigurieren:**
+
    ```bash
    cp .env.example .env
    # .env mit Credentials füllen
@@ -423,6 +464,7 @@ docker logs crm-service
    - URL in `.env` setzen: `N8N_ALERT_WEBHOOK=...`
 
 3. **Plesk Credentials:**
+
    ```bash
    # In .env setzen:
    PLESK_HOST=menschlichkeit-oesterreich.at
@@ -430,16 +472,19 @@ docker logs crm-service
    ```
 
 4. **Erster Testlauf:**
+
    ```bash
    npm run deploy:staging
    ```
 
 ### Dashboard nutzen
+
 ```bash
 npm run deploy:dashboard
 ```
 
 **Empfohlene Workflow:**
+
 1. Dashboard starten
 2. Status prüfen (automatisch angezeigt)
 3. Option 1: Readiness Check

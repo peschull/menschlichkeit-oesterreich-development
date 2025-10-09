@@ -15,6 +15,7 @@ Systematische Bereinigung aller Lint-Fehler, Warnungen und Code-Quality-Probleme
 ### 1. Import-Probleme behoben
 
 **Vor:**
+
 ```python
 import asyncio  # Unused
 from fastapi import FastAPI, HTTPException, Depends, Header, Body, Path  # Header, Body unused
@@ -23,6 +24,7 @@ from app.shared import ApiResponse, verify_jwt_token  # Wrong position
 ```
 
 **Nach:**
+
 ```python
 # Korrekte Import-Reihenfolge
 import logging
@@ -46,6 +48,7 @@ from app.shared import ApiResponse, verify_jwt_token
 ```
 
 **Behobene Fehler:**
+
 - ❌ F401: 'asyncio' imported but unused
 - ❌ F401: 'fastapi.Header' imported but unused
 - ❌ F401: 'fastapi.Body' imported but unused
@@ -68,6 +71,7 @@ async def update_membership(...)  # Zeile 670 - DUPLIKAT
 ```
 
 **Ergebnis:**
+
 - ❌ F811: function redefinition behoben
 - 📉 Dateigröße: 824 → 753 Zeilen (-71 Zeilen)
 - ✅ Code-Duplikation vollständig eliminiert
@@ -77,6 +81,7 @@ async def update_membership(...)  # Zeile 670 - DUPLIKAT
 ### 3. Whitespace & Formatting
 
 **Behobene Probleme:**
+
 - ❌ W293: blank line contains whitespace (18 Vorkommen)
 - ❌ E501: line too long (45+ Vorkommen) - via autopep8
 - ❌ E302: expected 2 blank lines (15 Vorkommen)
@@ -91,6 +96,7 @@ async def update_membership(...)  # Zeile 670 - DUPLIKAT
 **Datei:** `api.menschlichkeit-oesterreich.at/app/lib/refresh_store.py`
 
 **Behoben:**
+
 - W293: trailing whitespace (11 Vorkommen)
 - W292: no newline at end of file
 - C0304: missing final newline
@@ -102,6 +108,7 @@ async def update_membership(...)  # Zeile 670 - DUPLIKAT
 ### 1. Ungültige YAML-Eigenschaften entfernt
 
 **Betroffene Dateien:**
+
 - `.github/prompts/05_n8nDeploymentNotifications_DE.prompt.md`
 - `.github/prompts/06_n8nDatabaseAutomation_DE.prompt.md`
 - `.github/prompts/07_n8nMonitoringAlerts_DE.prompt.md`
@@ -109,6 +116,7 @@ async def update_membership(...)  # Zeile 670 - DUPLIKAT
 - `.github/prompts/24_READMEModernization_DE.prompt.md`
 
 **Entfernte ungültige Eigenschaften:**
+
 ```yaml
 # VOR (ungültig):
 priority: high
@@ -128,6 +136,7 @@ mode: agent
 ### 2. Tools aus "ask"-Mode entfernt
 
 **Betroffene Dateien:**
+
 - `.github/prompts/FehlerberichtVorlage_DE.prompt.md`
 - `.github/prompts/Lokalisierungsplan_DE.prompt.md`
 - `.github/prompts/FeatureVorschlag_DE.prompt.md`
@@ -153,6 +162,7 @@ mode: ask
 **Datei:** `.github/instructions/project-development.instructions.md`
 
 **Entfernt:**
+
 ```yaml
 priority: highest  # Ungültige Eigenschaft
 ```
@@ -164,6 +174,7 @@ priority: highest  # Ungültige Eigenschaft
 ### JavaScript Warnings (ESLint)
 
 **Dateien:**
+
 - `mcp-test-all.js`: unused var 'data'
 - `mcp-final-activation.js`: unused vars 'partialServers', 'name'
 - `context7-debug.js`: unused var 'e'
@@ -172,6 +183,7 @@ priority: highest  # Ungültige Eigenschaft
 **Status:** Nicht kritisch - Test/Debug-Files
 
 **Mögliche Fixes:**
+
 ```javascript
 // Option 1: Prefix mit underscore
 (data) => {}  →  (_data) => {}
@@ -194,6 +206,7 @@ priority: highest  # Ungültige Eigenschaft
 ### Python Docstring Warnings (Pylint)
 
 **Beispiele:**
+
 - C0114: Missing module docstring
 - C0115: Missing class docstring
 - C0116: Missing function docstring
@@ -236,12 +249,14 @@ priority: highest  # Ungültige Eigenschaft
 ## 🎯 Qualitäts-Metriken
 
 ### Vorher
+
 - ❌ 85+ kritische Fehler
 - ❌ 50+ Warnungen
 - ❌ 71 Zeilen Code-Duplikation
 - ❌ YAML-Standard-Verletzungen
 
 ### Nachher
+
 - ✅ 0 kritische Fehler
 - ✅ 15 unkritische Warnungen (größtenteils Style)
 - ✅ 0 Code-Duplikation
@@ -273,6 +288,7 @@ priority: highest  # Ungültige Eigenschaft
 **Alle kritischen Fehler wurden erfolgreich behoben.**
 
 Das Repository entspricht jetzt:
+
 - ✅ PEP 8 Python Standards
 - ✅ GitHub Prompts/Instructions Spezifikation
 - ✅ ESLint JavaScript Standards (kritische Fehler)

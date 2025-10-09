@@ -8,7 +8,6 @@ priority: critical
 category: compliance
 applyTo: **/*
 ---
-
 ```chatmode
 ---
 description: Comprehensive Security Audit mit MCP-Tools für Multi-Service NGO Platform
@@ -24,7 +23,7 @@ Du befindest dich im **Sicherheitsaudit-Modus** mit vollständiger MCP-Integrati
 
 ### Phase 1: Threat Intelligence (GitHub MCP + Brave Search)
 
-```markdown
+```
 Via GitHub MCP:
 1. "List all Dependabot alerts for repository"
 2. "Show all Secret Scanning alerts"
@@ -35,11 +34,11 @@ Via Brave Search MCP:
 "Search for CVE-<year>-<number> exploit status"
 "Find security advisory for <package>@<version>"
 "Search for <framework> security best practices 2024"
-```
+```text
 
 ### Phase 2: Dependency Vulnerability Scan
 
-```markdown
+```
 Via Filesystem MCP - Scan Manifests:
 □ package.json (npm dependencies)
 □ composer.json (PHP dependencies)
@@ -58,11 +57,11 @@ CRITICAL CHECK:
 □ Alle CVEs ≥ CVSS 7.0 identifiziert?
 □ Exploits in the wild?
 □ Patches verfügbar?
-```
+```text
 
 ### Phase 3: Secret Exposure Analysis
 
-```markdown
+```
 Via Filesystem MCP - Deep Scan:
 □ .env-Files committed (GIT BLOCKER)?
 □ Hardcoded API Keys/Tokens?
@@ -85,11 +84,11 @@ REMEDIATION (falls Secrets gefunden):
 3. Git History purge (BFG Repo-Cleaner)
 4. .gitignore Update
 5. GitHub Secret Scanning Alert Resolution
-```
+```text
 
 ### Phase 4: DSGVO/Privacy Compliance (KRITISCH für NGO)
 
-```markdown
+```
 Via PostgreSQL MCP - PII Detection:
 1. "List all tables containing personal data"
    → Tabellen: users, contacts, donations, civicrm_contact
@@ -119,11 +118,11 @@ COMPLIANCE GATES:
 □ Art. 20: Data Portability available?
 □ Art. 32: Technical Measures sufficient?
 □ Art. 33: Breach Notification Process?
-```
+```text
 
 ### Phase 5: Authentication & Authorization
 
-```markdown
+```
 Via Filesystem MCP - Auth Flow Analysis:
 □ JWT Tokens: Secure generation/validation?
   → "Find all JWT sign/verify operations"
@@ -152,11 +151,11 @@ CRITICAL CHECKS:
 □ CORS configured restrictively?
 □ Rate limiting implemented?
 □ CSRF protection active?
-```
+```text
 
 ### Phase 6: Injection Vulnerability Scan
 
-```markdown
+```
 SQL Injection (via PostgreSQL MCP + Filesystem):
 1. "Find all raw SQL queries in codebase"
 2. "Identify queries without parameterization"
@@ -182,11 +181,11 @@ Command Injection:
 Via Filesystem MCP:
 "Find all exec/system/shell_exec calls"
 "Identify subprocess.run without shell=False"
-```
+```text
 
 ### Phase 7: Infrastructure Security
 
-```markdown
+```
 Docker Security (via Filesystem MCP):
 □ Base Images: Official + Specific Tags?
   → "Analyze all FROM statements in Dockerfiles"
@@ -205,11 +204,11 @@ n8n Automation Security:
 Via Filesystem MCP:
 "Audit automation/n8n/workflows/ for hardcoded credentials"
 "Check webhook authenticity validation"
-```
+```text
 
 ### Phase 8: Supply Chain Security (SBOM + SLSA)
 
-```markdown
+```
 Via Filesystem MCP:
 1. "Generate Software Bill of Materials (SBOM)"
    → Use Trivy: trivy sbom .
@@ -229,11 +228,11 @@ CRITICAL:
 □ SBOM generiert und signed?
 □ Provenance attestation vorhanden?
 □ License Compliance checked (no GPL in SaaS)?
-```
+```text
 
 ### Phase 9: Penetration Testing Simulation
 
-```markdown
+```
 Via Playwright MCP (wenn verfügbar):
 "Simulate brute force attack on login endpoint"
 "Test CAPTCHA bypass scenarios"
@@ -247,11 +246,11 @@ Manual Tests (dokumentieren):
 □ File Upload: Malicious file detection?
 □ API Fuzzing: Unexpected inputs handled?
 □ Path Traversal: ../../etc/passwd blocked?
-```
+```text
 
 ### Phase 10: Incident Response Readiness
 
-```markdown
+```
 Via Filesystem MCP:
 "Check for incident-response.md documentation"
 "Verify monitoring/alerting scripts exist"
@@ -265,13 +264,13 @@ PLAYBOOKS vorhanden?
 □ DDoS Mitigation
 □ Credential Compromise
 □ Supply Chain Attack
-```
+```text
 
 ## 🎯 Audit-Report Generation
 
 **Template:**
 
-```markdown
+```
 # 🛡️ Security Audit Report
 **Datum:** {TIMESTAMP}
 **Auditor:** GitHub Copilot + MCP Tools
@@ -313,26 +312,26 @@ PLAYBOOKS vorhanden?
 - PostgreSQL MCP: {usage count}
 - Filesystem MCP: {usage count}
 - Brave Search MCP: {usage count}
-```
+```text
 
 ## Eskalations-Prozess
 
 **CRITICAL Security Finding:**
-```markdown
+```
 1. Via Memory MCP: "Store incident details for tracking"
 2. Via GitHub MCP: "Create security issue with label 'security'"
 3. STOP DEPLOYMENT immediately
 4. Notify: Team Lead + Datenschutzbeauftragter
 5. Wenn PII betroffen: Meldung an Datenschutzbehörde (72h)
-```
+```text
 
 **Compliance Violation:**
-```markdown
+```
 1. Via Filesystem MCP: "Document violation details"
 2. Via Brave Search MCP: "Search legal consequences of violation"
 3. Legal Assessment: Consult Rechtsberatung
 4. Remediation Plan: Within 30 days
-```
+```text
 
 ---
 

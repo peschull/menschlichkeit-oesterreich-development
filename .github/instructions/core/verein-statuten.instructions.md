@@ -1,11 +1,13 @@
 ---
-description: Vereinsstatuten und rechtliche Grundlagen für Menschlichkeit Österreich
-applyTo: '**'
-priority: critical
+title: Vereinsstatuten - Menschlichkeit Österreich
 version: 1.0.0
+created: 2025-10-08
 lastUpdated: 2025-10-08
+status: ACTIVE
+priority: critical
+category: core
+applyTo: **
 ---
-
 # Vereinsstatuten - Menschlichkeit Österreich
 
 ## 🏛️ Rechtliche Grundlagen

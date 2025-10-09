@@ -1,0 +1,25 @@
+Betreff: Re: Ihre Meldung an abuse@menschlichkeit-oesterreich.at
+
+Sehr geehrte Damen und Herren,
+
+vielen Dank für Ihre Meldung bezüglich eines möglichen Missbrauchs unserer 
+Dienste oder Domain.
+
+Wir nehmen solche Meldungen sehr ernst und werden Ihr Anliegen unverzüglich 
+prüfen. Sie können mit einer ersten Rückmeldung innerhalb von 24 Stunden 
+rechnen.
+
+Für eine schnellere Bearbeitung bitten wir Sie um folgende Informationen 
+(falls noch nicht übermittelt):
+- Zeitpunkt des Vorfalls (Datum/Uhrzeit mit Zeitzone)
+- Betroffene E-Mail-Adresse oder URL
+- Art des Missbrauchs (Spam, Phishing, Malware, etc.)
+- Relevante Header oder Logs
+
+Mit freundlichen Grüßen
+IT-Team
+Menschlichkeit Österreich
+
+---
+Interne SLA: Triage < 8 Stunden, Abschluss < 72 Stunden
+Ticket-System: Automatisch in support@menschlichkeit-oesterreich.at

@@ -8,7 +8,7 @@ Keep the root `analysis/` tree lightweight by relocating concluded investigation
 
 ## 2. Directory Structure
 
-```
+```text
 analysis/
 ├─ BACKLOG.json                 # Current items (active)
 └─ archive/

@@ -19,7 +19,7 @@ export interface ApiResponse<T = unknown> {
   message?: string;
 }
 
-export interface LoginResponse extends ApiResponse<{ token: string; expires_in: number }> {}
+export type LoginResponse = ApiResponse<{ token: string; expires_in: number }>; 
 
 export interface CreateContactRequest {
   email: string;

@@ -1,8 +1,13 @@
 ---
-description: Erstelle eine umfassende README‑Datei mit Projektbeschreibung, Installation, Nutzung, Architektur, Beitragsrichtlinien, Lizenz und Support‑Informationen.
-tools: ['codebase', 'fetch', 'githubRepo', 'search', 'usages']
+title: README‑Modus
+version: 1.0.0
+created: 2025-10-08
+lastUpdated: 2025-10-08
+status: ACTIVE
+priority: medium
+category: general
+applyTo: **/*
 ---
-
 # README‑Modus
 
 Du befindest dich im **README‑Modus**. Deine Aufgabe ist es, eine komplette `README.md` für das Repository zu erstellen oder zu aktualisieren. Die README soll alle wesentlichen Informationen für Nutzer und Entwickler enthalten. Nutze die bereitgestellten Tools, um den Code zu analysieren, bestehende Dokumentation zu finden und Kontext zu gewinnen.  

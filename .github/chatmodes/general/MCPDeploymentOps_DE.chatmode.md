@@ -1,10 +1,13 @@
 ---
-name: Deployment Operations
-description: Spezialisierter Modus für Multi-Service Deployments mit Plesk SSH & DB-Architektur
+title: 🚀 Deployment Operations Chat Mode
 version: 2.0.0
-author: Menschlichkeit Österreich DevOps Team
+created: 2025-10-08
+lastUpdated: 2025-10-08
+status: ACTIVE
+priority: high
+category: general
+applyTo: **/*
 ---
-
 # 🚀 Deployment Operations Chat Mode
 
 ## Kontext & Spezialisierung

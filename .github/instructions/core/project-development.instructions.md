@@ -1,8 +1,13 @@
 ---
-description: Vollständige Projekt-Entwicklungs-Instructions für Menschlichkeit Österreich
-applyTo: '**/*'
+title: Menschlichkeit Österreich - Development Instructions
+version: 1.0.0
+created: 2025-10-08
+lastUpdated: 2025-10-08
+status: ACTIVE
+priority: medium
+category: core
+applyTo: **/*
 ---
-
 # Menschlichkeit Österreich - Development Instructions
 
 ## Projekt-Übersicht
@@ -10,7 +15,7 @@ applyTo: '**/*'
 **Multi-Service Austrian NGO Platform** mit strikter Service-Trennung:
 
 ### Service-Architektur
-```
+```text
 ├── Main Website (menschlichkeit-oesterreich.at)        → WordPress/HTML
 ├── API Backend (api.menschlichkeit-oesterreich.at)    → FastAPI/Python
 ├── CRM System (crm.menschlichkeit-oesterreich.at)     → Drupal 10 + CiviCRM
@@ -362,7 +367,7 @@ npm run test:e2e --env=production
 ## Testing Strategy
 
 ### Test-Pyramide
-```
+```text
 E2E (Playwright)        ← Top (wenige, kritische Flows)
   ↑
 Integration Tests       ← Mitte (Service-Boundaries)

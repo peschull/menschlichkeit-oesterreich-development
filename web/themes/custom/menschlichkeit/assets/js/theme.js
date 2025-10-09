@@ -3,6 +3,8 @@
  * Menschlichkeit Theme - Core functionality
  */
 
+/* global Drupal, once */
+/* eslint-env browser */
 (function (Drupal, once) {
   'use strict';
 
@@ -285,7 +287,7 @@
    * Performance Monitoring
    */
   Drupal.behaviors.performanceMonitoring = {
-    attach: function (context, settings) {
+    attach: function (context, _settings) {
       // Only run on document ready, not AJAX contexts
       if (context !== document) return;
 

@@ -72,6 +72,7 @@ chmod +x scripts/setup-civicrm.sh
 ```
 
 Was passiert:
+
 1. `.env.deployment` wird geladen und Werte geprüft.
 2. `composer install` im Verzeichnis `crm.menschlichkeit-oesterreich.at/httpdocs`.
 3. `drush site:install` (nur wenn noch nicht installiert).

@@ -14,14 +14,14 @@
     "ghcr.io/devcontainers/features/docker-in-docker:2": {},
     "ghcr.io/devcontainers/features/git:1": {}
   },
-  "onCreateCommand": "npm install",
+  "onCreateCommand": "chmod +x .devcontainer/setup-codespace.sh && bash .devcontainer/setup-codespace.sh",
   "postCreateCommand": "bash .devcontainer/setup.sh",
   "customizations": {
     "vscode": {
       "extensions": [
         "ms-python.python",
-        "ms-python.flake8",
-        "ms-python.pylint",
+        "ms-python.vscode-pylance",
+        "ms-python.debugpy",
         "ms-vscode.vscode-typescript-next",
         "esbenp.prettier-vscode",
         "ms-eslint.vscode-eslint",

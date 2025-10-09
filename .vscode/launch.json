@@ -21,9 +21,8 @@
     },
     {
       "name": "🐍 Debug: API (FastAPI)",
-      "type": "debugpy",
+      "type": "python",
       "request": "launch",
-      "program": "${workspaceFolder}/api.menschlichkeit-oesterreich.at/app/main.py",
       "module": "uvicorn",
       "args": ["app.main:app", "--host", "0.0.0.0", "--port", "8001", "--reload"],
       "cwd": "${workspaceFolder}/api.menschlichkeit-oesterreich.at",
@@ -137,4 +136,5 @@
       }
     }
   ]
+}
 }

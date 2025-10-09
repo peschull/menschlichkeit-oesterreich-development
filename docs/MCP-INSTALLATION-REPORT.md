@@ -35,18 +35,22 @@ Es wurden **7 optimale MCP Server** für das Multi-Service NGO-Projekt analysier
 ## 📁 Erstellte/Aktualisierte Dateien
 
 ### Konfigurationsdateien
+
 - ✅ `.vscode/mcp.json` - Zentrale MCP Server Konfiguration
 - ✅ `.env.mcp.template` - Template für Umgebungsvariablen
 
 ### Dokumentation
+
 - ✅ `docs/MCP-SERVER-SETUP.md` - Vollständige Setup-Anleitung
 - ✅ `docs/MCP-INSTALLATION-REPORT.md` - Dieser Bericht
 
 ### Scripts
+
 - ✅ `scripts/setup-mcp-servers.sh` - Automatisches Setup-Script
 - ✅ `scripts/check-mcp-servers.js` - Health Check für MCP Server
 
 ### Package.json Updates
+
 - ✅ `npm run mcp:setup` - Führt Setup-Script aus
 - ✅ `npm run mcp:check` - Prüft MCP Server Status
 - ✅ `npm run mcp:list` - Listet konfigurierte Server
@@ -57,26 +61,31 @@ Es wurden **7 optimale MCP Server** für das Multi-Service NGO-Projekt analysier
 ## 🔧 Projekt-spezifische Optimierungen
 
 ### 1. **Design System Integration (Figma)**
+
 - Automatische Design Token Synchronisation
 - Integration mit `npm run figma:sync`
 - Austrian Corporate Identity (Rot-Weiß-Rot)
 
 ### 2. **Entwickler-Produktivität**
+
 - GitHub-Integration für Issues/PRs/Security
 - Playwright für E2E-Tests (bereits in `playwright-results/` verwendet)
 - Filesystem-Zugriff für schnelle Dateioperationen
 
 ### 3. **Datenbank & Backend**
+
 - PostgreSQL-Integration via Prisma
 - Educational Gaming Platform (XP-System, Achievements)
 - Multi-Service Architektur (CRM, API, Frontend, Games)
 
 ### 4. **Quality & Compliance**
+
 - Codacy-Integration (automatisch nach Code-Edits)
 - Security-Scans (Trivy, Secret Scanning)
 - DSGVO-Compliance Checks
 
 ### 5. **Recherche & Dokumentation**
+
 - Brave Search für Web-Recherche
 - Microsoft Docs für Azure/TypeScript
 - Upstash Context7 für Library-Docs
@@ -86,48 +95,59 @@ Es wurden **7 optimale MCP Server** für das Multi-Service NGO-Projekt analysier
 
 ## 🚀 Nächste Schritte
 
-### Sofort erforderlich:
+### Sofort erforderlich
+
 1. **Figma Token konfigurieren**
+
    ```bash
    # In .env eintragen:
    FIGMA_ACCESS_TOKEN=your_token_from_figma_settings
    ```
-   Token holen von: https://www.figma.com/settings
+
+   Token holen von: <https://www.figma.com/settings>
 
 2. **PostgreSQL Connection String verifizieren**
+
    ```bash
    # In .env prüfen/anpassen:
    POSTGRES_CONNECTION_STRING=postgresql://user:pass@host:5432/db
    ```
 
 3. **VS Code neu starten**
+
    ```bash
    # Cmd/Ctrl + Shift + P -> "Developer: Reload Window"
    ```
 
-### Optional:
+### Optional
+
 4. **Brave API Key hinzufügen** (für erweiterte Web-Recherche)
+
    ```bash
    # In .env eintragen:
    BRAVE_API_KEY=your_api_key
    ```
-   Kostenloser Key von: https://brave.com/search/api/
+
+   Kostenloser Key von: <https://brave.com/search/api/>
 
 ---
 
 ## 🧪 Testing
 
-### MCP Server Status prüfen:
+### MCP Server Status prüfen
+
 ```bash
 npm run mcp:check
 ```
 
 **Aktueller Status:**
+
 - ✅ 6/7 Server verfügbar
 - ⚠️ 1 Server wird bei Bedarf installiert (Figma)
 - 💡 Alle Server mit `npx -y` werden automatisch geladen
 
-### Funktionstest via GitHub Copilot:
+### Funktionstest via GitHub Copilot
+
 ```bash
 # GitHub MCP Server testen:
 "List all open issues in this repository"
@@ -150,6 +170,7 @@ npm run mcp:check
 ## 📊 Integration mit bestehenden Workflows
 
 ### Quality Gates
+
 ```bash
 npm run quality:gates
 # → Nutzt GitHub MCP für Security Alerts
@@ -157,6 +178,7 @@ npm run quality:gates
 ```
 
 ### Development
+
 ```bash
 npm run dev:all
 # → Startet alle Services (CRM, API, Frontend, Games)
@@ -164,6 +186,7 @@ npm run dev:all
 ```
 
 ### Testing
+
 ```bash
 npm run test:e2e
 # → Playwright MCP Server für E2E-Tests
@@ -171,6 +194,7 @@ npm run test:e2e
 ```
 
 ### Deployment
+
 ```bash
 ./scripts/safe-deploy.sh --dry-run
 # → GitHub MCP für Branch/PR-Management
@@ -181,13 +205,15 @@ npm run test:e2e
 
 ## 🔐 Sicherheitshinweise
 
-### ✅ Umgesetzt:
+### ✅ Umgesetzt
+
 - Tokens in `.env` (bereits in `.gitignore`)
 - Minimale Permissions für GitHub Token
 - Read-Only Figma Token
 - Separate DB-Credentials für Dev/Staging/Prod
 
-### ⚠️ Wichtig:
+### ⚠️ Wichtig
+
 - **NIEMALS** Tokens in Code committen
 - **IMMER** `.env` aus `.gitignore` ausschließen
 - **REGELMÄSSIG** Tokens rotieren (90 Tage)
@@ -196,17 +222,20 @@ npm run test:e2e
 
 ## 📈 Erwartete Verbesserungen
 
-### Entwickler-Produktivität:
+### Entwickler-Produktivität
+
 - **+40%** schnellere Code-Navigation (Filesystem MCP)
 - **+60%** weniger manuelle GitHub-Operationen
 - **+80%** schnellere Design-Token-Updates
 
-### Code-Qualität:
+### Code-Qualität
+
 - **Automatische** Codacy-Analysen nach jedem Edit
 - **Echtzeit** Security-Alerts via GitHub MCP
 - **Konsistente** Design System Integration
 
-### Testing & Deployment:
+### Testing & Deployment
+
 - **Automatisierte** E2E-Test-Generierung (Playwright MCP)
 - **Schnellere** DB-Migrations-Tests (PostgreSQL MCP)
 - **Sicherere** Deployments mit GitHub-Integration
@@ -215,7 +244,8 @@ npm run test:e2e
 
 ## 🆘 Troubleshooting
 
-### MCP Server startet nicht:
+### MCP Server startet nicht
+
 ```bash
 # Logs prüfen:
 cat ~/.cache/github-copilot/logs/language-server.log | grep -i mcp
@@ -224,14 +254,16 @@ cat ~/.cache/github-copilot/logs/language-server.log | grep -i mcp
 # Cmd/Ctrl + Shift + P -> "Developer: Reload Window"
 ```
 
-### Figma Token ungültig:
+### Figma Token ungültig
+
 ```bash
 # Token erneuern in Figma Settings
 # .env aktualisieren
 # VS Code neustarten
 ```
 
-### PostgreSQL Connection fehlgeschlagen:
+### PostgreSQL Connection fehlgeschlagen
+
 ```bash
 # Connection String prüfen:
 echo $POSTGRES_CONNECTION_STRING
@@ -240,7 +272,8 @@ echo $POSTGRES_CONNECTION_STRING
 npx prisma db pull --schema=schema.prisma
 ```
 
-### Weitere Hilfe:
+### Weitere Hilfe
+
 - 📖 Siehe `docs/MCP-SERVER-SETUP.md`
 - 🔧 Setup-Script: `npm run mcp:setup`
 - 🩺 Health Check: `npm run mcp:check`

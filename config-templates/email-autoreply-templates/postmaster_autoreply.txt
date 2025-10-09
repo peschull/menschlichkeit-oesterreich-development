@@ -1,0 +1,37 @@
+Betreff: Re: Ihre Anfrage an postmaster@menschlichkeit-oesterreich.at
+
+Sehr geehrte Damen und Herren,
+
+vielen Dank für Ihre Nachricht an den Postmaster unserer Domain.
+
+Diese E-Mail-Adresse ist für technische Anfragen bezüglich unseres 
+E-Mail-Systems vorgesehen, insbesondere:
+
+- **Zustellprobleme**: Bounces, Delays, unzustellbare E-Mails
+- **Spam-Berichte**: Verdacht auf Spam von unserer Domain
+- **DNS/SPF/DKIM-Probleme**: Technische Authentifizierungsfragen
+- **Blacklist-Anfragen**: Delisting-Requests, IP-Reputation
+- **RFC-Compliance**: Technische E-Mail-Standard-Fragen
+
+**Für andere Anliegen kontaktieren Sie bitte:**
+- Allgemeine Anfragen: info@menschlichkeit-oesterreich.at
+- Support/Hilfe: support@menschlichkeit-oesterreich.at
+- Missbrauchsmeldungen: abuse@menschlichkeit-oesterreich.at
+- Sicherheitslücken: security@menschlichkeit-oesterreich.at
+
+**Bei technischen Anfragen geben Sie bitte an:**
+1. **Betroffene E-Mail-Adressen** (Absender/Empfänger)
+2. **Zeitstempel** der problematischen Zustellung
+3. **Fehlermeldung/Bounce-Message** (vollständige Headers)
+4. **Message-ID** (falls vorhanden)
+5. **Ihre IP-Adresse** (bei Spam-Berichten)
+
+Unser technisches Team wird Ihre Anfrage innerhalb von 48 Stunden bearbeiten.
+
+Mit freundlichen Grüßen
+Technisches Team
+Menschlichkeit Österreich
+
+---
+E-Mail: postmaster@menschlichkeit-oesterreich.at
+Interne SLA: Triage < 24h, Bearbeitung < 48h

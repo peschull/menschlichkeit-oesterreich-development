@@ -23,6 +23,7 @@ npm run deploy:readiness
 ```
 
 Dieser Command prüft:
+
 - ✅ Git Repository Status (clean, synced)
 - ✅ Quality Gates (Codacy, ESLint, PHPStan)
 - ✅ Security Scans (Trivy, Gitleaks, npm audit)
@@ -33,7 +34,8 @@ Dieser Command prüft:
 - ✅ Service Dependencies
 
 **Erwartetes Ergebnis:**
-```
+
+```text
 ✓ DEPLOYMENT READY
   Passed: 42
   Warnings: 3
@@ -47,6 +49,7 @@ npm run quality:gates
 ```
 
 Alle Gates müssen **GRÜN** sein:
+
 - Security: 0 vulnerabilities
 - Maintainability: ≥85%
 - Test Coverage: ≥80%
@@ -68,6 +71,7 @@ npm run deploy:production
 ```
 
 **Was passiert:**
+
 1. Pre-Deployment Validation (Quality Gates + Security)
 2. Automatische Backups (DB, Config, Code)
 3. Database Migrations (Prisma)
@@ -78,7 +82,8 @@ npm run deploy:production
 8. Deployment Report Generation
 
 **Deployment-Reihenfolge:**
-```
+
+```text
 DB Migrations → API → CRM → Frontend → Gaming → Website → n8n
 ```
 
@@ -94,6 +99,7 @@ npm run deploy:blue-green
 ```
 
 **Was passiert:**
+
 1. Deploy neue Version zu "GREEN" (inactive)
 2. Smoke Tests auf GREEN
 3. Nginx Traffic Shifting:
@@ -116,6 +122,7 @@ npm run deploy:monitor
 ```
 
 **Monitored:**
+
 - Service Health Checks (alle 30s)
 - System Resources (CPU, Memory, Disk)
 - Database Connection Pool
@@ -123,6 +130,7 @@ npm run deploy:monitor
 - Performance Metrics (Lighthouse)
 
 **Alerts via n8n Webhook bei:**
+
 - Error Rate > 1%
 - Response Time > 500ms
 - CPU > 80%
@@ -132,6 +140,7 @@ npm run deploy:monitor
 **Monitoring-Dauer:** 1 Stunde (konfigurierbar)
 
 **Output:**
+
 - Real-time Console Logs
 - JSON Metrics: `quality-reports/deployment-metrics/*.json`
 - Monitoring Report: `quality-reports/monitoring-report-*.md`
@@ -141,6 +150,7 @@ npm run deploy:monitor
 #### Automatischer Rollback
 
 Rollback wird **automatisch** getriggert bei:
+
 - Health Check Failures (nach Deployment)
 - Error Rate > 5%
 - Critical Security Alert
@@ -157,6 +167,7 @@ npm run deploy:rollback -- v2.1.0
 ```
 
 **Rollback-Schritte:**
+
 1. Pre-Rollback Backup (current state)
 2. Database Restore
 3. API Backend Rollback
@@ -273,6 +284,7 @@ npm run compliance:dsgvo
 ```
 
 **Prüft:**
+
 - PII in Logs
 - Consent-Management
 - Data Retention Policies
@@ -282,12 +294,14 @@ npm run compliance:dsgvo
 #### Credential Management
 
 **NIEMALS committen:**
+
 - `.env` Dateien
 - API Keys/Tokens
 - Database Credentials
 - SSL Private Keys
 
 **Best Practices:**
+
 - GitHub Secrets für CI/CD
 - PowerShell Decrypt: `scripts/secrets-decrypt.ps1`
 - Secrets Rotation alle 90 Tage
@@ -301,6 +315,7 @@ npm run performance:lighthouse
 ```
 
 **Erwartete Scores:**
+
 - Performance: ≥90
 - Accessibility: ≥90
 - Best Practices: ≥95
@@ -318,6 +333,7 @@ du -sh frontend/dist/  # Target: < 200KB
 #### Problem: Deployment schlägt fehl bei Quality Gates
 
 **Lösung:**
+
 ```bash
 # 1. Details anzeigen
 npm run quality:gates
@@ -336,6 +352,7 @@ npm run deploy:readiness
 #### Problem: Health Check schlägt fehl nach Deployment
 
 **Lösung:**
+
 ```bash
 # 1. Service Logs prüfen
 docker logs api-container
@@ -354,6 +371,7 @@ npm run deploy:staging
 #### Problem: Database Migration schlägt fehl
 
 **Lösung:**
+
 ```bash
 # 1. Migration Status prüfen
 npx prisma migrate status
@@ -375,7 +393,8 @@ pg_restore -d dbname backups/latest-backup.dump
 #### Generierte Reports
 
 Nach jedem Deployment:
-```
+
+```text
 quality-reports/
 ├── deployment-{VERSION}.md          # Deployment Summary
 ├── deployment-metrics/*.json        # Performance Metrics
@@ -387,7 +406,8 @@ quality-reports/
 #### Backups
 
 Automatische Backups bei jedem Deployment:
-```
+
+```text
 backups/
 ├── deployment-{TIMESTAMP}/
 │   ├── database-backup.dump         # PostgreSQL Dump
@@ -405,6 +425,7 @@ backups/
 Automatische Benachrichtigungen via n8n:
 
 **Deployment Start:**
+
 ```json
 POST https://n8n.menschlichkeit-oesterreich.at/webhook/deployment-start
 {
@@ -415,6 +436,7 @@ POST https://n8n.menschlichkeit-oesterreich.at/webhook/deployment-start
 ```
 
 **Deployment Success:**
+
 ```json
 POST https://n8n.menschlichkeit-oesterreich.at/webhook/deployment-success
 {
@@ -426,6 +448,7 @@ POST https://n8n.menschlichkeit-oesterreich.at/webhook/deployment-success
 ```
 
 **Deployment Failure:**
+
 ```json
 POST https://n8n.menschlichkeit-oesterreich.at/webhook/deployment-failure
 {
@@ -436,6 +459,7 @@ POST https://n8n.menschlichkeit-oesterreich.at/webhook/deployment-failure
 ```
 
 **Monitoring Alerts:**
+
 ```json
 POST https://n8n.menschlichkeit-oesterreich.at/webhook/deployment-alert
 {
@@ -447,14 +471,16 @@ POST https://n8n.menschlichkeit-oesterreich.at/webhook/deployment-alert
 
 ### 🎯 Best Practices
 
-#### ✅ DO:
+#### ✅ DO
 
 1. **Immer Readiness Check zuerst**
+
    ```bash
    npm run deploy:readiness
    ```
 
 2. **Staging vor Production**
+
    ```bash
    npm run deploy:staging
    # Tests & Validation...
@@ -462,11 +488,13 @@ POST https://n8n.menschlichkeit-oesterreich.at/webhook/deployment-alert
    ```
 
 3. **Monitoring nach Deployment**
+
    ```bash
    npm run deploy:monitor
    ```
 
 4. **Backups validieren**
+
    ```bash
    ls -lh backups/deployment-*/
    ```
@@ -475,7 +503,7 @@ POST https://n8n.menschlichkeit-oesterreich.at/webhook/deployment-alert
    - Keine Deployments bei failed gates
    - Security Issues zuerst fixen
 
-#### ❌ DON'T:
+#### ❌ DON'T
 
 1. **Keine Manual File-Edits auf Production**
    - Immer via Git → CI/CD
@@ -494,7 +522,7 @@ POST https://n8n.menschlichkeit-oesterreich.at/webhook/deployment-alert
 
 ### 📞 Support & Eskalation
 
-#### Bei Deployment-Problemen:
+#### Bei Deployment-Problemen
 
 1. **Self-Service:** Deployment-Logs prüfen
 2. **Automated Rollback:** Läuft automatisch bei Failures

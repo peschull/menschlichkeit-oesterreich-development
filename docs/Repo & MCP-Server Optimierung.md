@@ -293,7 +293,6 @@ _Abnahmekriterien für „Enterprise‑Ready“_
 - [ ] **MCP‑Server**: Sandboxed, resilient, observierbar; Policies & Property‑Tests vorhanden; Releases mit Four‑Eyes Prinzip.
 - [ ] **Nachweisbarkeit**: DSGVO + WCAG + Supply‑Chain Compliance auditierbar; Artefakte in Releases/Docs verlinkt.
 
-
 ### 🚀 Release Automation
 
 - [ ] **Conventional Commits**: Commitlint & Guidelines

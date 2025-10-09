@@ -1,0 +1,182 @@
+---
+# DNS Records für E-Mail-Infrastruktur
+# Erstellt: 2025-10-08
+# Domain: menschlichkeit-oesterreich.at
+# Subdomain: newsletter.menschlichkeit-oesterreich.at
+#
+# WICHTIG: Diese Records in Plesk DNS Zone eintragen!
+# Plesk → Websites & Domains → [Domain] → DNS Settings → Add Record
+
+# ============================================================================
+# HAUPTDOMAIN: menschlichkeit-oesterreich.at
+# ============================================================================
+
+# --- SPF Record (Sender Policy Framework) ---
+# Erlaubt: A-Record, MX-Record, spezifische IP
+# Hinweis: IP_TX durch tatsächliche Server-IP ersetzen!
+Type: TXT
+Host: @
+Value: "v=spf1 a mx ip4:IP_TX -all"
+TTL: 3600
+Priority: N/A
+Description: "SPF - Autorisierte Mailserver für menschlichkeit-oesterreich.at"
+
+# Ersetze IP_TX mit:
+# - Plesk Server IP für Transactional Mail
+# - Beispiel: "v=spf1 a mx ip4:203.0.113.10 -all"
+
+# --- DKIM Record (Transactional Mail) ---
+# Selector: tx2025q4._domainkey
+# Key Type: RSA 2048-bit
+Type: TXT
+Host: tx2025q4._domainkey
+Value: "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoyVW3Kq8gD0mcgLPWzNGxR8iAZXQs6kBYNLqA5ZxbJO/bW2xYk0h/RsMiMLSDl5MH8bN9vZgLKEnBnHk6T8PJCdqG3eGE0r6LHYjFQF8n3yE5vKpHNMQU0h4TFbVCPXvdV8c7pI5Tv6F7KqL4lI3Y6kN5Lw3xQqR0jW8uD4hZ0P2G5vXwN6kF8pQH4YjN5LqVZ9K3M0T7F6pQ8X3hN5vL2K9F4jQ7N5M6pR8X3vL2K9F4jQ7N5M"
+TTL: 3600
+Priority: N/A
+Description: "DKIM Public Key für Transactional Mail (tx2025q4)"
+
+# Hinweis: Public Key aus secrets/email-dkim/tx2025q4_public.txt
+
+# --- DMARC Record (Phase 1: quarantine) ---
+# Policy: quarantine (später auf reject umstellen nach 30 Tagen)
+# Aggregate Reports (RUA): dmarc@menschlichkeit-oesterreich.at
+# Forensic Reports (RUF): dmarc@menschlichkeit-oesterreich.at
+Type: TXT
+Host: _dmarc
+Value: "v=DMARC1; p=quarantine; rua=mailto:dmarc@menschlichkeit-oesterreich.at; ruf=mailto:dmarc@menschlichkeit-oesterreich.at; fo=1; pct=100; adkim=s; aspf=s"
+TTL: 3600
+Priority: N/A
+Description: "DMARC Policy - Quarantine (Phase 1, nach 30 Tagen auf reject)"
+
+# DMARC Parameter:
+# - p=quarantine: Verdächtige Mails in Spam/Quarantäne
+# - rua: Aggregate Reports (täglich)
+# - ruf: Failure Reports (bei jedem DMARC-Fail)
+# - fo=1: Report bei jedem Fehler (SPF oder DKIM)
+# - pct=100: Policy gilt für 100% der Mails
+# - adkim=s: DKIM strict alignment (exakte Domain-Match)
+# - aspf=s: SPF strict alignment (exakte Domain-Match)
+
+# --- TLS Reporting (RFC 8460) ---
+# Empfängt TLS-Problemberichte von anderen Mailservern
+Type: TXT
+Host: _smtp._tls
+Value: "v=TLSRPTv1; rua=mailto:tlsrpt@menschlichkeit-oesterreich.at"
+TTL: 3600
+Priority: N/A
+Description: "TLS Reporting - Fehlerberichte bei TLS-Problemen"
+
+# --- MTA-STS Policy (Optional - erhöht Security) ---
+# Erzwingt verschlüsselte SMTP-Verbindungen
+Type: TXT
+Host: _mta-sts
+Value: "v=STSv1; id=20251008T000000"
+TTL: 3600
+Priority: N/A
+Description: "MTA-STS - Erzwingt TLS für eingehende Mails"
+
+# MTA-STS Policy Host (erfordert Webserver):
+# https://mta-sts.menschlichkeit-oesterreich.at/.well-known/mta-sts.txt
+
+# --- BIMI Record (Brand Indicators for Message Identification) ---
+# WICHTIG: Erst aktivieren wenn DMARC=reject (nach 30 Tagen)!
+# Erfordert: Verified Mark Certificate (VMC) von Zertifizierungsstelle
+Type: TXT
+Host: default._bimi
+Value: "v=BIMI1; l=https://media.menschlichkeit-oesterreich.at/brand/bimi.svg; a=https://media.menschlichkeit-oesterreich.at/brand/vmc.pem"
+TTL: 3600
+Priority: N/A
+Description: "BIMI - Logo in Gmail/Yahoo (erst mit DMARC=reject)"
+Status: DEAKTIVIERT (erst nach DMARC reject + VMC)
+
+# ============================================================================
+# SUBDOMAIN: newsletter.menschlichkeit-oesterreich.at
+# ============================================================================
+
+# --- SPF Record (Newsletter/Bulk Mail) ---
+# Erlaubt: A-Record der Subdomain, spezifische IP
+Type: TXT
+Host: newsletter
+Value: "v=spf1 a:newsletter.menschlichkeit-oesterreich.at ip4:IP_NEWS -all"
+TTL: 3600
+Priority: N/A
+Description: "SPF für Newsletter-Subdomain"
+
+# Ersetze IP_NEWS mit:
+# - IP des Newsletter-Servers (kann gleich wie Transactional sein)
+# - Beispiel: "v=spf1 a:newsletter.menschlichkeit-oesterreich.at ip4:203.0.113.10 -all"
+
+# --- DKIM Record (Newsletter/CiviMail) ---
+# Selector: news2025q4._domainkey.newsletter
+Type: TXT
+Host: news2025q4._domainkey.newsletter
+Value: "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmQUzWOFaCdxnn/lcJ4zfyGJrYgbRTkYTbt9uYFPHELJqTtxkYEYFdiQ/FR/+VGEpn2e26PZTZdzQClXB4o8pyu0qppqK4wELk9+Tr6mA9GRSetXwXTV/0MZcNduqucZ2Q+A0yzRpgDPttbpH2a2Zo0FFh1HNL3vF8xYG4HiYW+lv50G2n1bgHfzBbCZyuHohjfWgsAhKMBWXnj9IyNX/ZNLJKOODM8clPwwI8F1eHsQHNn5KCd85cg3orhWWzH6l/SFVPdwKDVgDi266dKtO8ZmdQt+lXOY8+2ko8SESQXkydKFLWr5tg6/j8UgYnFk4"
+TTL: 3600
+Priority: N/A
+Description: "DKIM Public Key für Newsletter/Bulk Mail (news2025q4)"
+
+# Hinweis: Public Key aus secrets/email-dkim/news2025q4_public.txt
+
+# --- DMARC Record (Newsletter-Subdomain) ---
+# Verwendet gleiche Reporting-Adressen wie Hauptdomain
+Type: TXT
+Host: _dmarc.newsletter
+Value: "v=DMARC1; p=quarantine; rua=mailto:dmarc@menschlichkeit-oesterreich.at; fo=1; pct=100; adkim=s; aspf=s"
+TTL: 3600
+Priority: N/A
+Description: "DMARC für Newsletter-Subdomain"
+
+# ============================================================================
+# A-RECORDS (falls noch nicht vorhanden)
+# ============================================================================
+
+# Newsletter-Subdomain A-Record
+Type: A
+Host: newsletter
+Value: IP_NEWS
+TTL: 3600
+Priority: N/A
+Description: "A-Record für newsletter.menschlichkeit-oesterreich.at"
+
+# ============================================================================
+# VALIDIERUNG
+# ============================================================================
+
+# Nach DNS-Änderungen (48h Propagation abwarten):
+
+# SPF testen:
+# dig TXT menschlichkeit-oesterreich.at +short
+# dig TXT newsletter.menschlichkeit-oesterreich.at +short
+
+# DKIM testen:
+# dig TXT tx2025q4._domainkey.menschlichkeit-oesterreich.at +short
+# dig TXT news2025q4._domainkey.newsletter.menschlichkeit-oesterreich.at +short
+
+# DMARC testen:
+# dig TXT _dmarc.menschlichkeit-oesterreich.at +short
+# dig TXT _dmarc.newsletter.menschlichkeit-oesterreich.at +short
+
+# TLS Reporting testen:
+# dig TXT _smtp._tls.menschlichkeit-oesterreich.at +short
+
+# Online-Validierung:
+# - mxtoolbox.com/SuperTool.aspx (alle DNS-Records)
+# - dmarcian.com/dmarc-inspector/ (DMARC)
+# - mail-tester.com (Gesamtcheck)
+
+# ============================================================================
+# WARTUNG & ROTATION
+# ============================================================================
+
+# DKIM Key Rotation (alle 6 Monate):
+# - Q1 2025: Neue Keys tx2026q1, news2026q1
+# - Q3 2025: Neue Keys tx2026q3, news2026q3
+
+# DMARC Policy Upgrade (nach 30 Tagen):
+# Wenn DMARC Reports 100% Pass zeigen:
+# _dmarc TXT: "v=DMARC1; p=reject; rua=mailto:dmarc@menschlichkeit-oesterreich.at; fo=1; pct=100; adkim=s; aspf=s"
+
+# BIMI Aktivierung (nach DMARC=reject):
+# 1. Logo als SVG Tiny PS erstellen
+# 2. VMC von Zertifizierungsstelle beantragen
+# 3. default._bimi TXT Record aktivieren

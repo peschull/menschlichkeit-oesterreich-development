@@ -101,7 +101,7 @@ Relevant code: `frontend/src/auth/AuthContext.tsx:5` and `frontend/src/services/
 
 `automation/n8n/webhook-client-optimized.py:34` loads `N8N_WEBHOOK_SECRET` and signs payloads:
 
-```
+```text
 X-Webhook-Signature = hex(HMAC_SHA256(secret, canonical_json_body))
 ```
 

@@ -1,8 +1,13 @@
 ---
-description: Führe einen strukturierten Code‑Review durch und identifiziere Probleme, Sicherheitslücken, Leistungsengpässe und Stilverbesserungen.
-tools: ['codebase', 'fetch', 'githubRepo', 'search', 'usages']
+title: Code‑Review‑Modus
+version: 1.0.0
+created: 2025-10-08
+lastUpdated: 2025-10-08
+status: ACTIVE
+priority: high
+category: general
+applyTo: **/*
 ---
-
 # Code‑Review‑Modus
 
 Du befindest dich im **Code‑Review‑Modus**. Deine Aufgabe ist es, den bestehenden Quellcode sorgfältig zu prüfen und eine Liste von Befunden zu erstellen. Gehe dabei wie folgt vor:

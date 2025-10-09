@@ -8,7 +8,6 @@ priority: medium
 category: development
 applyTo: api.menschlichkeit-oesterreich.at/**
 ---
-
 ```chatmode
 ---
 description: API-Design & OpenAPI-Spezifikation mit MCP-Tools für FastAPI Backend
@@ -24,7 +23,7 @@ Du befindest dich im **API Design Modus** mit vollständiger MCP-Integration.
 
 ### Phase 1: Requirements Analysis
 
-```markdown
+```
 Via GitHub MCP:
 "Analyze API requirements from issue #<number>"
 
@@ -37,11 +36,11 @@ EXTRACT:
 
 Via Memory MCP:
 "Store API requirements context"
-```
+```text
 
 ### Phase 2: OpenAPI Specification Design
 
-```markdown
+```
 Via Filesystem MCP:
 "Read existing OpenAPI spec"
 FILE: api.menschlichkeit-oesterreich.at/openapi.yaml
@@ -147,11 +146,11 @@ components:
 
 Via Filesystem MCP:
 "Update OpenAPI spec with new endpoint"
-```
+```text
 
 ### Phase 3: FastAPI Implementation
 
-```markdown
+```
 Via Filesystem MCP:
 "Create FastAPI router from OpenAPI spec"
 
@@ -211,11 +210,11 @@ async def create_donation(
     })
     
     return db_donation
-```
+```text
 
 ### Phase 4: Database Schema (Prisma/PostgreSQL)
 
-```markdown
+```
 Via PostgreSQL MCP:
 "Design database schema for donations"
 
@@ -248,11 +247,11 @@ enum Purpose {
 Via Terminal:
 npx prisma migrate dev --name add_donations_table
 npx prisma generate
-```
+```text
 
 ### Phase 5: Input Validation & Sanitization
 
-```markdown
+```
 Via Brave Search MCP:
 "Search for Pydantic validation best practices"
 "Find email validation patterns"
@@ -292,11 +291,11 @@ async def create_donation(donation: DonationCreate):
     # Sanitize PII before logging
     safe_log = sanitize_pii(donation.dict())
     logger.info(f"Donation request: {safe_log}")
-```
+```text
 
 ### Phase 6: Authentication & Authorization
 
-```markdown
+```
 Via Filesystem MCP:
 "Implement JWT authentication"
 
@@ -336,11 +335,11 @@ async def get_current_user(
 @router.get("/donations/me")
 async def get_my_donations(current_user: str = Depends(get_current_user)):
     return {"user_id": current_user}
-```
+```text
 
 ### Phase 7: Error Handling
 
-```markdown
+```
 Via Filesystem MCP:
 "Implement consistent error responses"
 
@@ -377,11 +376,11 @@ async def not_found_handler(request: Request, exc):
             request_id=request.headers.get("X-Request-ID", "unknown")
         ).dict()
     )
-```
+```text
 
 ### Phase 8: Rate Limiting & Throttling
 
-```markdown
+```
 Via Brave Search MCP:
 "Search for FastAPI rate limiting libraries"
 
@@ -410,11 +409,11 @@ async def create_donation(request: Request, donation: DonationCreate):
 @limiter.limit("100/minute")  # Higher limit for authenticated
 async def get_my_donations(request: Request):
     pass
-```
+```text
 
 ### Phase 9: API Documentation
 
-```markdown
+```
 Via Filesystem MCP:
 "Generate API documentation"
 
@@ -466,11 +465,11 @@ Response 201:
 
 Via GitHub MCP:
 "Update README.md with API documentation link"
-```
+```text
 
 ### Phase 10: Testing Strategy
 
-```markdown
+```
 Via Filesystem MCP:
 "Create API test suite"
 
@@ -516,11 +515,11 @@ def test_rate_limiting():
 
 Via Playwright MCP:
 "Run API integration tests"
-```
+```text
 
 ### Phase 11: CiviCRM Integration
 
-```markdown
+```
 Via PostgreSQL MCP:
 "Query CiviCRM contact data"
 
@@ -571,11 +570,11 @@ async def create_donation(donation: DonationCreate):
     background_tasks.add_task(sync_donation_to_civicrm, db_donation)
     
     return db_donation
-```
+```text
 
 ### Phase 12: Monitoring & Logging
 
-```markdown
+```
 Via Filesystem MCP:
 "Implement structured logging"
 
@@ -627,11 +626,11 @@ donation_counter = Counter(
 async def create_donation(donation: DonationCreate):
     donation_counter.labels(purpose=donation.purpose or 'general').inc()
     # ...
-```
+```text
 
 ### Phase 13: Deployment & Versioning
 
-```markdown
+```
 Via GitHub MCP:
 "Create API deployment workflow"
 
@@ -676,11 +675,11 @@ async def old_endpoint(response: Response):
     response.headers["Warning"] = "299 - Deprecated. Use /v2/new-endpoint"
     response.headers["Sunset"] = "2025-12-31"  # RFC 8594
     return {"data": "..."}
-```
+```text
 
 ### Phase 14: Security Headers
 
-```markdown
+```
 Via Filesystem MCP:
 "Add security headers to API responses"
 
@@ -701,11 +700,11 @@ class SecurityHeadersMiddleware(BaseHTTPMiddleware):
         return response
 
 app.add_middleware(SecurityHeadersMiddleware)
-```
+```text
 
 ### Phase 15: Final Validation
 
-```markdown
+```
 Via Brave Search MCP:
 "Search for API security checklist"
 
@@ -751,7 +750,7 @@ Via Memory MCP:
 
 Via GitHub MCP:
 "Create PR with API implementation"
-```
+```text
 
 ---
 

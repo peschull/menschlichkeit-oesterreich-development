@@ -361,7 +361,7 @@ FUNKTIONEN:
 ## 🔗 Dokumentations-Hierarchie
 
 ### Ebene 1: Copilot Instructions (Root)
-```
+```text
 .github/copilot-instructions.md (EXISTIEREND)
 ├─ Arbeitsmodus & Verhalten
 ├─ Repository-Überblick (6 Services)
@@ -372,7 +372,7 @@ FUNKTIONEN:
 ```
 
 ### Ebene 2: Spezialisierte Instructions
-```
+```text
 .github/instructions/
 ├─ codacy.instructions.md                    (EXISTIEREND - Code Quality)
 ├─ figma-mcp.instructions.md                 (EXISTIEREND - Design System)
@@ -384,7 +384,7 @@ FUNKTIONEN:
 ```
 
 ### Ebene 3: Aufgaben-Prompts
-```
+```text
 .github/prompts/
 ├─ MCPMultiServiceDeployment_DE.prompt.md    (AKTUALISIERT - 17 DB Integration)
 ├─ MCPDatabaseMigration_DE.prompt.md         (EXISTIEREND)
@@ -395,7 +395,7 @@ FUNKTIONEN:
 ```
 
 ### Ebene 4: Chat Modes
-```
+```text
 .github/chatmodes/
 ├─ MCPDeploymentOps_DE.chatmode.md           (NEU - Deployment Spezialist)
 ├─ MCPCodeReview_DE.chatmode.md              (EXISTIEREND)

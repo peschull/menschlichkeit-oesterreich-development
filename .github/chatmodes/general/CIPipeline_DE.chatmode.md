@@ -1,8 +1,13 @@
 ---
-description: Beschreibe eine CI‑Pipeline und erstelle eine Beispiel‑Konfigurationsdatei für GitHub Actions mit Triggern, Build‑Schritten, Tests und Artefakten.
-tools: ['codebase', 'fetch', 'githubRepo', 'search', 'usages']
+title: CI‑Pipeline‑Modus
+version: 1.0.0
+created: 2025-10-08
+lastUpdated: 2025-10-08
+status: ACTIVE
+priority: medium
+category: general
+applyTo: **/*
 ---
-
 # CI‑Pipeline‑Modus
 
 Im **CI‑Pipeline‑Modus** definierst du eine kontinuierliche Integrationspipeline, die automatisierte Builds, Tests und Bereitstellungen ermöglicht. Vorgehensweise:

@@ -23,7 +23,7 @@ Phase 4 integriert einen zentralisierten ELK-Stack (Elasticsearch, Logstash, Kib
 
 ## 🏗️ Architektur-Überblick
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────────┐
 │                         SERVICE LAYER                                │
 │                                                                       │
@@ -129,7 +129,7 @@ Phase 4 integriert einen zentralisierten ELK-Stack (Elasticsearch, Logstash, Kib
 
 **Log-Format:** Syslog (bereits PII-sanitized via Phase 2)
 
-```
+```text
 <134>1 2025-01-15T14:30:00Z crm.menschlichkeit-oesterreich.at drupal 12345 - - [pii_sanitizer] User login attempt: email=m**@beispiel.at, status=success
 ```
 
@@ -302,7 +302,7 @@ filter {
 
 ### Index Naming Convention
 
-```
+```text
 logs-{purpose}-{YYYY.MM.DD}
 
 Examples:

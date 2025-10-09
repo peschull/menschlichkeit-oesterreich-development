@@ -1,8 +1,13 @@
 ---
-description: Führe einen Deployment‑Leitfaden aus, der Umgebungen, Vorbereitung, Prozess, Monitoring und Rollback‑Strategien beschreibt.
-tools: ['codebase', 'fetch', 'githubRepo', 'search', 'usages']
+title: Deployment‑Guide‑Modus
+version: 1.0.0
+created: 2025-10-08
+lastUpdated: 2025-10-08
+status: ACTIVE
+priority: high
+category: general
+applyTo: **/*
 ---
-
 # Deployment‑Guide‑Modus
 
 Im **Deployment‑Modus** erstellst du einen ausführlichen Leitfaden zur Bereitstellung des Projekts. Dieser Leitfaden sollte folgende Punkte abdecken:

@@ -8,7 +8,6 @@ priority: medium
 category: operations
 applyTo: **/*
 ---
-
 ```chatmode
 ---
 description: Performance-Optimierung mit MCP-Tools für Multi-Service Austrian NGO Platform
@@ -24,7 +23,7 @@ Du befindest dich im **Performance Optimization Modus** mit vollständiger MCP-I
 
 ### Phase 1: Performance Baseline (Playwright MCP)
 
-```markdown
+```
 Via Playwright MCP:
 "Run Lighthouse audit for all critical pages"
 
@@ -44,11 +43,11 @@ Lighthouse Targets:
 
 BASELINE REPORT:
 {PAGE}: P={SCORE}, A={SCORE}, BP={SCORE}, SEO={SCORE}
-```
+```text
 
 ### Phase 2: Frontend Performance (React/TypeScript)
 
-```markdown
+```
 #### Bundle Analysis
 Via Filesystem MCP:
 "Analyze bundle size for frontend/"
@@ -100,11 +99,11 @@ const DonationForm = lazy(() => import('./pages/Donation'));
 
 Via Memory MCP:
 "Store code-splitting patterns for future components"
-```
+```text
 
 ### Phase 3: Backend Performance (FastAPI + PostgreSQL)
 
-```markdown
+```
 #### Database Query Optimization
 Via PostgreSQL MCP:
 "Analyze slow queries"
@@ -186,11 +185,11 @@ engine = create_engine(
     pool_pre_ping=True,  # Connection health check
     echo=False           # No query logging in prod
 )
-```
+```text
 
 ### Phase 4: Caching Strategy
 
-```markdown
+```
 #### Redis Caching (Backend)
 Via Filesystem MCP:
 "Implement Redis caching for API"
@@ -262,11 +261,11 @@ self.addEventListener('fetch', (event) => {
       .then((response) => response || fetch(event.request))
   );
 });
-```
+```text
 
 ### Phase 5: Network Optimization
 
-```markdown
+```
 #### HTTP/2 & Compression
 Via Filesystem MCP:
 "Enable HTTP/2 in nginx config"
@@ -319,11 +318,11 @@ Via Filesystem MCP:
 <link rel="preconnect" href="https://api.menschlichkeit-oesterreich.at">
 <link rel="dns-prefetch" href="https://fonts.googleapis.com">
 <link rel="preload" href="/assets/hero.webp" as="image">
-```
+```text
 
 ### Phase 6: Database Performance (CiviCRM)
 
-```markdown
+```
 #### CiviCRM Query Optimization
 Via PostgreSQL MCP:
 "Analyze CiviCRM slow queries"
@@ -365,11 +364,11 @@ USING gin(to_tsvector('german',
 SELECT * FROM civicrm_contact
 WHERE to_tsvector('german', display_name || ' ' || email) 
   @@ to_tsquery('german', 'maria & schmidt');
-```
+```text
 
 ### Phase 7: Monitoring & Metrics
 
-```markdown
+```
 #### Real User Monitoring (RUM)
 Via Filesystem MCP:
 "Implement Web Vitals tracking"
@@ -426,11 +425,11 @@ SELECT
 FROM pg_statio_user_tables;
 
 -- Alarm wenn Cache Hit Ratio < 95%
-```
+```text
 
 ### Phase 8: Gaming Platform Performance
 
-```markdown
+```
 #### Game Loop Optimization
 Via Filesystem MCP:
 "Optimize game rendering loop"
@@ -493,11 +492,11 @@ GROUP BY user_id;
 
 -- Refresh periodically (not on every query)
 REFRESH MATERIALIZED VIEW CONCURRENTLY user_xp_summary;
-```
+```text
 
 ### Phase 9: Performance Testing
 
-```markdown
+```
 #### Load Testing (k6)
 Via Filesystem MCP:
 "Create load test script"
@@ -540,11 +539,11 @@ MONITOR:
 □ Response Time Degradation
 □ Error Rate Increase
 □ Database Connection Pool Saturation
-```
+```text
 
 ### Phase 10: Optimization Report
 
-```markdown
+```
 Via Memory MCP:
 "Generate performance optimization report"
 
@@ -575,11 +574,11 @@ Via Memory MCP:
 
 Via GitHub MCP:
 "Create issue with optimization roadmap"
-```
+```text
 
 ## 🎯 Performance Targets (SLA)
 
-```markdown
+```
 CRITICAL METRICS (Lighthouse):
 ✅ Performance: ≥ 90
 ✅ Accessibility: ≥ 90
@@ -597,7 +596,7 @@ USER EXPERIENCE:
 ✅ Largest Contentful Paint: < 2.5s
 ✅ Time to Interactive: < 3.0s
 ✅ Total Blocking Time: < 300ms
-```
+```text
 
 ---
 

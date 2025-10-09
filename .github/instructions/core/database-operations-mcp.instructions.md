@@ -1,9 +1,13 @@
 ---
-description: PostgreSQL MCP Integration für 17-Datenbank-Architektur (Plesk + External)
-applyTo: '**/*.{sql,prisma,js,ts,py,php}'
+title: Database Operations with MCP
+version: 1.0.0
+created: 2025-10-08
+lastUpdated: 2025-10-08
+status: ACTIVE
 priority: critical
+category: core
+applyTo: **/*.{sql,prisma,js,ts,py,php}
 ---
-
 # Database Operations with MCP
 
 ## 🗄️ Complete Database Architecture
@@ -57,7 +61,7 @@ priority: critical
 ```
 
 #### Optional: Redis ($REDIS_HOST:6379)
-```
+```text
 -- HOST: external-redis.menschlichkeit-oesterreich.at
 -- PORT: 6379
 -- ENGINE: Redis 7+
@@ -653,7 +657,7 @@ EXPECTED RPO: < 24 hours (Recovery Point Objective - last backup)
 ### Required Secrets (50+ total)
 
 #### SSH/Deployment
-```
+```text
 SSH_HOST
 SSH_PORT
 SSH_USER
@@ -662,14 +666,14 @@ PLESK_API_KEY
 ```
 
 #### Database Hosts
-```
+```text
 MYSQL_HOST                  # External MariaDB server
 PG_HOST                     # External PostgreSQL server
 REDIS_HOST                  # Redis cache server
 ```
 
 #### Plesk MariaDB (localhost)
-```
+```text
 MO_MAIN_DB_PASS
 MO_VOTES_DB_PASS
 MO_SUPPORT_DB_PASS
@@ -678,7 +682,7 @@ MO_FORUM_DB_PASS
 ```
 
 #### External MariaDB
-```
+```text
 MO_CRM_DB_PASS
 MO_N8N_DB_PASS
 MO_HOOKS_DB_PASS
@@ -691,14 +695,14 @@ MO_NEXTCLOUD_DB_PASS
 ```
 
 #### PostgreSQL
-```
+```text
 PG_IDP_DB_PASS
 PG_GRAFANA_DB_PASS
 PG_DISCOURSE_DB_PASS
 ```
 
 #### Redis (optional)
-```
+```text
 REDIS_PASSWORD
 ```
 

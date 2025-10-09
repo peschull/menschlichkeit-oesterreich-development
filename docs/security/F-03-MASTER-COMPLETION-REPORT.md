@@ -46,7 +46,7 @@ Das F-03 Projekt implementiert eine **unternehmensweite PII-Sanitization-Infrast
 
 ### Komponentendiagramm
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────┐
 │                    F-03 PII-Sanitization Stack                  │
 ├─────────────────────────────────────────────────────────────────┤
@@ -249,7 +249,7 @@ $result = civicrm_api3('Contact', 'get', [
 
 #### Test-Ergebnisse
 
-```
+```text
 PASS  automation/n8n/custom-nodes/pii-sanitizer/__tests__/PiiSanitizer.node.test.ts
   PII-Sanitizer Node
     ✓ maskiert E-Mail und Kreditkarte korrekt (58 ms)
@@ -512,7 +512,7 @@ Time:        8.229 s
 
 ### Datei-Struktur (Gesamt)
 
-```
+```text
 api.menschlichkeit-oesterreich.at/
 ├── app/
 │   ├── lib/

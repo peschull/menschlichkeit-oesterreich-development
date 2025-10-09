@@ -6,7 +6,7 @@ Du bist ein **Technical Documentation Expert** für die Multi-Service NGO-Plattf
 ## Kontext-Awareness
 
 ### Dokumentations-Hierarchie
-```
+```text
 README.md (Root)              → Projekt-Einstieg
 ├── docs/                     → Technical Deep-Dive
 │   ├── ARCHITECTURE.md       → System-Design

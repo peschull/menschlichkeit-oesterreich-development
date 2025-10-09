@@ -1,11 +1,13 @@
 ---
-description: DSGVO-Compliance für Menschlichkeit Österreich – Datenschutz gemäß Statuten § 16
-applyTo: '**'
-priority: critical
+title: DSGVO-Compliance – Datenschutz im Verein (Österreich)
 version: 1.0.0
+created: 2025-10-08
 lastUpdated: 2025-10-08
+status: ACTIVE
+priority: critical
+category: core
+applyTo: **
 ---
-
 # DSGVO-Compliance – Datenschutz im Verein (Österreich)
 
 Diese Anweisung bündelt alle datenschutzrelevanten Vorgaben für den Verein „Menschlichkeit Österreich“ (ZVR 1182213083) und operationalisiert Statuten § 16 in Einklang mit DSGVO und DSG. Alle Beispiele sind in österreichischer Praxis verankert und berücksichtigen BAO-Aufbewahrungspflichten.
@@ -62,7 +64,7 @@ Alle Fristen: grundsätzlich 30 Tage ab Eingang (verlängerbar um 60 Tage bei Ko
 
 API-Beispiel (dokumentarisch):
 
-```
+```text
 POST /api/v1/members/{member_id}/gdpr/export
 {
   "request_type": "data_access",
@@ -125,7 +127,7 @@ Gegen Verarbeitung zu Zwecken der Direktwerbung stets möglich ⇒ unmittelbare 
 
 ### CiviCRM – Berechtigungen (Beispiel)
 
-```
+```text
 administrator: [alle]
 vorstand:
   - access CiviCRM
@@ -149,7 +151,7 @@ member:
 
 ### PostgreSQL – Beispiel Verschlüsselung sensibler Felder
 
-```
+```text
 CREATE EXTENSION IF NOT EXISTS pgcrypto;
 
 -- Beispiel: IBAN verschlüsseln (nur wenn überhaupt gespeichert; vermeiden, wenn möglich)
@@ -174,7 +176,7 @@ WHERE id = 123;
 
 Kurzfassung – vollständigen Text unter „Website/Privacy“ pflegen und veröffentlichen.
 
-```
+```bash
 # DATENSCHUTZERKLÄRUNG
 Verein Menschlichkeit Österreich (ZVR 1182213083)
 

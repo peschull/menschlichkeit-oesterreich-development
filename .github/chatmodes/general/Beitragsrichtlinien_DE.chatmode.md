@@ -1,8 +1,13 @@
 ---
-description: Erstelle eine CONTRIBUTING.md mit Verhaltenskodex, Branch‑ und Commit‑Konventionen sowie Review‑Prozess für Mitwirkende.
-tools: ['codebase', 'fetch', 'githubRepo', 'search', 'usages']
+title: Beitragsrichtlinien‑Modus
+version: 1.0.0
+created: 2025-10-08
+lastUpdated: 2025-10-08
+status: ACTIVE
+priority: medium
+category: general
+applyTo: **/*
 ---
-
 # Beitragsrichtlinien‑Modus
 
 Im **Beitragsrichtlinien‑Modus** sollst du Leitlinien für alle Mitwirkenden erstellen. Das Ziel ist ein klarer Prozess, der die Qualität des Projekts sicherstellt und eine angenehme Zusammenarbeit fördert. Die Richtlinien sollten umfassen:

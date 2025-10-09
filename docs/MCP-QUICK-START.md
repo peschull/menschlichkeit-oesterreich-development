@@ -29,7 +29,8 @@ BRAVE_API_KEY=BSA...
 ```
 
 **Figma Token holen:**
-1. 🔗 Gehen Sie zu https://www.figma.com/settings
+
+1. 🔗 Gehen Sie zu <https://www.figma.com/settings>
 2. ➕ Klicken Sie auf "Personal Access Tokens" → "Generate new token"
 3. 📋 Kopieren Sie den Token in `.env`
 
@@ -46,7 +47,7 @@ BRAVE_API_KEY=BSA...
 
 Öffnen Sie GitHub Copilot Chat und testen Sie:
 
-```
+```text
 "List all open issues in this repository"
 ```
 
@@ -57,6 +58,7 @@ BRAVE_API_KEY=BSA...
 ## 🧪 Weitere Tests
 
 ### Figma MCP Server
+
 ```bash
 # Terminal:
 npm run figma:sync
@@ -66,6 +68,7 @@ npm run figma:sync
 ```
 
 ### Playwright MCP Server
+
 ```bash
 # Copilot Chat:
 "Generate an E2E test for the login flow"
@@ -73,6 +76,7 @@ npm run figma:sync
 ```
 
 ### PostgreSQL MCP Server
+
 ```bash
 # Copilot Chat:
 "Show me the database schema"
@@ -81,6 +85,7 @@ npm run figma:sync
 ```
 
 ### Filesystem MCP Server
+
 ```bash
 # Copilot Chat:
 "Show me all TypeScript files in the frontend"
@@ -88,6 +93,7 @@ npm run figma:sync
 ```
 
 ### Brave Search MCP Server
+
 ```bash
 # Copilot Chat:
 "Search web for PostgreSQL indexing best practices"
@@ -123,6 +129,7 @@ npm run dev:frontend       # Frontend mit MCP-Unterstützung
 ## 🎯 Typische Use Cases
 
 ### 1. **Design System Update**
+
 ```bash
 # Designer hat Figma aktualisiert
 npm run figma:sync
@@ -135,6 +142,7 @@ npm run design:tokens
 ```
 
 ### 2. **GitHub Issue bearbeiten**
+
 ```bash
 # Via Copilot Chat:
 "Show me all high-priority issues"
@@ -143,6 +151,7 @@ npm run design:tokens
 ```
 
 ### 3. **E2E-Test schreiben**
+
 ```bash
 # Via Copilot Chat:
 "Generate a Playwright test that:
@@ -155,6 +164,7 @@ npm run test:e2e
 ```
 
 ### 4. **Datenbank-Analyse**
+
 ```bash
 # Via Copilot Chat:
 "Show me all achievements with reward type 'BADGE'"
@@ -163,6 +173,7 @@ npm run test:e2e
 ```
 
 ### 5. **Code-Recherche**
+
 ```bash
 # Via Copilot Chat mit Brave Search:
 "Search for best practices for GDPR-compliant user data deletion"
@@ -181,7 +192,8 @@ npm run mcp:check
 ```
 
 **Erwartete Ausgabe:**
-```
+
+```text
 🔍 MCP Server Health Check
 
 📊 Gefundene MCP Server: 7
@@ -197,6 +209,7 @@ npm run mcp:check
 ## 🆘 Probleme?
 
 ### MCP Server reagiert nicht
+
 ```bash
 # 1. Logs prüfen
 cat ~/.cache/github-copilot/logs/language-server.log | grep -i error
@@ -207,6 +220,7 @@ cat .vscode/mcp.json | jq '.'
 ```
 
 ### Umgebungsvariablen fehlen
+
 ```bash
 # .env prüfen
 cat .env | grep -E "FIGMA|POSTGRES|BRAVE"
@@ -216,6 +230,7 @@ diff .env .env.mcp.template
 ```
 
 ### Figma Sync schlägt fehl
+
 ```bash
 # Token validieren (muss mit 'figd_' beginnen)
 echo $FIGMA_ACCESS_TOKEN
@@ -237,27 +252,32 @@ echo $FIGMA_ACCESS_TOKEN
 ## ✨ Pro-Tipps
 
 1. **Multi-Server Anfragen kombinieren:**
+
    ```
    "Use GitHub to find issue #42, then search web for solutions to that problem"
    ```
 
 2. **Design + Code synchron halten:**
+
    ```bash
    # Nach jedem Figma-Update:
    npm run figma:sync && npm run build:frontend
    ```
 
 3. **Datenbank-Queries optimieren:**
+
    ```
    "Show me the Prisma schema for User, then suggest indexes for performance"
    ```
 
 4. **Automatisierte Tests generieren:**
+
    ```
    "Analyze the login component, then generate comprehensive Playwright tests"
    ```
 
 5. **Context-Aware Development:**
+
    ```
    "Remember: This project uses Austrian German for UI text. 
     Generate a form with proper DSGVO-compliant consent checkboxes."

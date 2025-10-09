@@ -129,7 +129,7 @@ curl -X PUT \
 
 **Schritt 1:** Zu GitHub-Repository gehen
 
-```
+```text
 https://github.com/peschull/menschlichkeit-oesterreich-development/settings/branches
 ```
 
@@ -141,7 +141,7 @@ https://github.com/peschull/menschlichkeit-oesterreich-development/settings/bran
 
 **Schritt 5 (Optional):** GPG Public Key hochladen
 
-```
+```text
 https://github.com/settings/keys → New GPG key
 ```
 

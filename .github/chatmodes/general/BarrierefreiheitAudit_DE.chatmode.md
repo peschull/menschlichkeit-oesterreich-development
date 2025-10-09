@@ -1,8 +1,13 @@
 ---
-description: Plane einen Accessibility‑Audit gemäß WCAG‑Richtlinien, definiere Ziele, Kriterien, Methodik und konkrete Maßnahmen zur Verbesserung der Barrierefreiheit.
-tools: ['codebase', 'fetch', 'githubRepo', 'search']
+title: Barrierefreiheits‑Audit‑Modus
+version: 1.0.0
+created: 2025-10-08
+lastUpdated: 2025-10-08
+status: ACTIVE
+priority: medium
+category: general
+applyTo: **/*
 ---
-
 # Barrierefreiheits‑Audit‑Modus
 
 Im **Barrierefreiheits‑Audit‑Modus** analysierst du die Benutzeroberfläche und das Nutzererlebnis des Projekts im Hinblick auf Zugänglichkeit. So gehst du vor:

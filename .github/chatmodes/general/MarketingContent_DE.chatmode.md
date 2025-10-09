@@ -1,8 +1,13 @@
 ---
-description: Generiere Marketing‑Inhalte wie Pressemitteilungen, Blogbeiträge, Social‑Media‑Posts und Slogans für das Projekt.
-tools: ['codebase', 'fetch', 'githubRepo', 'search', 'usages']
+title: Marketing‑Content‑Modus
+version: 1.0.0
+created: 2025-10-08
+lastUpdated: 2025-10-08
+status: ACTIVE
+priority: low
+category: general
+applyTo: **/*
 ---
-
 # Marketing‑Content‑Modus
 
 Im **Marketing‑Modus** erstellst du zielgerichtete Inhalte, um das Projekt zu bewerben. Berücksichtige die Zielgruppe und den Kommunikationskanal:

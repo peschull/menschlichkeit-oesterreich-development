@@ -1,8 +1,13 @@
 ---
-description: Formuliere einen strukturierten Vorschlag für ein neues Feature, inklusive Problemstellung, Lösungsidee, Nutzen und Implikationen.
-tools: ['codebase', 'fetch', 'githubRepo', 'search', 'usages']
+title: Feature‑Vorschlags‑Modus
+version: 1.0.0
+created: 2025-10-08
+lastUpdated: 2025-10-08
+status: ACTIVE
+priority: low
+category: general
+applyTo: **/*
 ---
-
 # Feature‑Vorschlags‑Modus
 
 Der **Feature‑Vorschlags‑Modus** hilft dir dabei, neue Funktionsideen klar und überzeugend zu präsentieren. Dein Vorschlag sollte die folgenden Elemente enthalten:

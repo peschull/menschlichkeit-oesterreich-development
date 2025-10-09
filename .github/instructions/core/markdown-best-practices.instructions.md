@@ -1,15 +1,19 @@
 ---
-description: Markdown Best Practices & Documentation Standards für Menschlichkeit Österreich
-applyTo: '**/*.md'
+title: Markdown & Documentation Best Practices
+version: 1.0.0
+created: 2025-10-08
+lastUpdated: 2025-10-08
+status: ACTIVE
 priority: high
+category: core
+applyTo: **/*.md
 ---
-
 # Markdown & Documentation Best Practices
 
 ## Dokumentations-Hierarchie
 
 ### Projekt-Level Dokumentation
-```
+```text
 /README.md                    → Projekt-Übersicht, Quick Start
 /TODO.md                      → Aktuelle Aufgaben, Roadmap
 /LICENSE                      → Lizenz-Information
@@ -17,7 +21,7 @@ priority: high
 ```
 
 ### Service-Level Dokumentation
-```
+```text
 /<service>/README.md          → Service-spezifische Docs
 /<service>/API.md             → API Dokumentation
 /<service>/DEPLOYMENT.md      → Deployment-Anleitung
@@ -25,7 +29,7 @@ priority: high
 ```
 
 ### Developer Dokumentation
-```
+```text
 /docs/                        → Entwickler-Dokumentation
 /docs/ARCHITECTURE.md         → System-Architektur
 /docs/DEVELOPMENT.md          → Development Setup
@@ -66,7 +70,7 @@ priority: high
 - Docker (optional)
 
 ### Setup
-```bash
+```
 # 1. Repository klonen
 git clone https://github.com/peschull/menschlichkeit-oesterreich-development.git
 
@@ -76,20 +80,20 @@ npm install
 # 3. Environment konfigurieren
 cp .env.example .env
 npm run setup:dev
-```
+```bash
 
 ## 📖 Verwendung
 
 ### Development Server starten
-```bash
-npm run dev:<service>
 ```
+npm run dev:<service>
+```bash
 
 ### Production Build
-```bash
+```
 npm run build
 npm run start
-```
+```text
 
 ## ⚙️ Konfiguration
 
@@ -107,7 +111,7 @@ npm run start
 
 ## 🧪 Testing
 
-```bash
+```
 # Unit Tests
 npm run test:unit
 
@@ -116,16 +120,16 @@ npm run test:e2e
 
 # Coverage Report
 npm run test:coverage
-```
+```text
 
 ## 🚢 Deployment
 
 Siehe [DEPLOYMENT.md](./DEPLOYMENT.md) für detaillierte Anweisungen.
 
 ### Quick Deploy
-```bash
-./deployment-scripts/deploy-<service>-plesk.sh
 ```
+./deployment-scripts/deploy-<service>-plesk.sh
+```text
 
 ## 🔧 Troubleshooting
 
@@ -133,13 +137,13 @@ Siehe [DEPLOYMENT.md](./DEPLOYMENT.md) für detaillierte Anweisungen.
 **Symptom**: Fehlermeldung XYZ
 
 **Lösung**:
-```bash
+```
 # Schritt 1
 npm run clean
 
 # Schritt 2
 npm run setup:dev
-```
+```text
 
 ### Weitere Probleme
 Siehe [TROUBLESHOOTING.md](./TROUBLESHOOTING.md)
@@ -189,22 +193,22 @@ Dieses Projekt ist lizenziert unter der [MIT License](./LICENSE).
 ### Code-Blöcke
 ```markdown
 ✅ IMMER Syntax-Highlighting verwenden:
-```bash
+```
 npm install
-```
+```text
 
-```typescript
+```
 const example: string = "typed code";
-```
+```text
 
-```sql
-SELECT * FROM users WHERE active = true;
 ```
+SELECT * FROM users WHERE active = true;
+```text
 
 ❌ NICHT Generic:
 ```
 npm install
-```
+```text
 ```
 
 ### Listen
@@ -348,7 +352,7 @@ Die Variable `DATABASE_URL` ist erforderlich.
 | `filter` | string | ❌ | Filter-Ausdruck |
 
 **Response**:
-```json
+```
 {
   "users": [
     {
@@ -360,7 +364,7 @@ Die Variable `DATABASE_URL` ist erforderlich.
   "total": 42,
   "hasMore": true
 }
-```
+```text
 
 **Error Codes**:
 - `400` - Bad Request: Ungültige Parameter

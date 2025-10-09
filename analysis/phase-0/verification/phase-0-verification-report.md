@@ -1,5 +1,5 @@
 # Phase 0 – Re-Verification Report
-Generiert: 2025-10-04T21:01:02+02:00
+Generiert: 2025-10-09T12:37:26+00:00
 
 ## Artefakte – Existenzprüfung
 
@@ -60,7 +60,3 @@ Generiert: 2025-10-04T21:01:02+02:00
 - ✅ D-04 MCP Flooding dokumentiert
 
 ## Tests (Unit/Property)
-- ✅ Unit/Property Tests erfolgreich
-
-## Zusammenfassung
-Alle referenzierten Artefakte und Kontrollen aus Phase 0 sind vorhanden. ✅

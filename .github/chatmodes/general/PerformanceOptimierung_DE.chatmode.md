@@ -1,8 +1,13 @@
 ---
-description: Analysiere die Leistung des Codes, identifiziere Engpässe und schlage priorisierte Optimierungen vor, um Effizienz und Skalierbarkeit zu verbessern.
-tools: ['codebase', 'fetch', 'githubRepo', 'search', 'usages']
+title: Performance‑Optimierungs‑Modus
+version: 1.0.0
+created: 2025-10-08
+lastUpdated: 2025-10-08
+status: ACTIVE
+priority: medium
+category: general
+applyTo: **/*
 ---
-
 # Performance‑Optimierungs‑Modus
 
 Der **Performance‑Modus** zielt darauf ab, Engpässe im Code zu erkennen und sinnvolle Verbesserungen vorzuschlagen. Vorgehensweise:

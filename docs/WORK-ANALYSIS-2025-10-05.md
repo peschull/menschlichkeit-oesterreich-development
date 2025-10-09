@@ -12,6 +12,7 @@
 ### 1. GitHub Copilot Konfiguration (PR #40 ✓ gemerged)
 
 **Erfolge:**
+
 - ✅ **PR #40** erfolgreich via API gemerged (Squash-Merge → Commit `71af6e01f`)
 - ✅ Devcontainer erweitert mit Copilot Extensions (`GitHub.copilot`, `GitHub.copilot-chat`)
 - ✅ **Per-Language Toggle** konfiguriert (deaktiviert für: YAML, JSON, Markdown, .env, scminput, dotenv)
@@ -22,6 +23,7 @@
 - ✅ **Telemetrie deaktiviert** (Privacy-Compliance)
 
 **Erstellte/Modifizierte Dateien:**
+
 - `.devcontainer/devcontainer.json` (85 Zeilen) - ✓ Copilot-Konfiguration integriert
 - `.vscode/extensions.json` - ✓ Copilot-Empfehlungen für lokale Entwickler
 - `.vscode/settings.json` (676 Bytes) - ✓ Workspace-weite Copilot-Settings
@@ -29,6 +31,7 @@
 - `docs/COPILOT-QUICK-CHECK.md` (5.1 KB) - ✓ Verifikations-Checkliste mit Test-Szenarien
 
 **PR Timeline:**
+
 1. Initialer Branch: `chore/codacy-phase-0-verify-2025-10-04` (hatte 125MB Datei-Problem)
 2. Clean Branch erstellt: `chore/copilot-setup-clean-2025-10-05`
 3. PR #40 erstellt & gemerged (nach Resolution aller Review-Comments)
@@ -39,28 +42,33 @@
 ### 2. GPG-Key Setup & Signing-Workflow
 
 **Erfolge:**
+
 - ✅ **Neuer GPG-Key generiert** (RSA 4096-bit)
   - Key-ID: `A7A9F57A8A7287DEFAFACAF2B8A2C211E05447AB` (kurz: `B8A2C211E05447AB`)
   - User: `Peter Schuller <schuller_peter@icloud.com>`
   - Erstellt: 2025-10-05
 - ✅ **Git konfiguriert**:
+
   ```bash
   git config --global user.email "schuller_peter@icloud.com"
   git config --global user.signingkey A7A9F57A8A7287DEFAFACAF2B8A2C211E05447AB
   git config --global commit.gpgsign true
   git config --global gpg.program gpg  # Standard GPG statt gh-gpgsign
   ```
+
 - ✅ **Commits erfolgreich signiert** (Verifizierung: `git log --show-signature` → Status `G`)
 - ✅ **Öffentlicher Key exportiert** nach `/tmp/gpg-public-key-icloud.asc`
 
 **Offene Aktion:**
+
 - ⚠️ **GPG Public Key zu GitHub hinzufügen**:
-  1. Öffne: https://github.com/settings/gpg/new
+  1. Öffne: <https://github.com/settings/gpg/new>
   2. Kopiere Key aus `/tmp/gpg-public-key-icloud.asc`
   3. Füge ein & speichere
   4. Nach ~5 Min sollten signierte Commits auf GitHub als "Verified" erscheinen
 
 **Technische Hintergründe:**
+
 - Problem: Branch Protection erfordert verifizierte Signaturen
 - Ursprünglicher Ansatz: `gh-gpgsign` (GitHub's GPG Service) → blockierte neue Email-Adressen
 - Lösung: Standard-GPG mit lokal generiertem Key
@@ -74,6 +82,7 @@
 Nach dem Squash-Merge von PR #40 fehlten viele Dateien aus dem vorherigen Stand (Commit `e3240279a`), weil nur Copilot-Änderungen im PR waren.
 
 **Wiederhergestellt:**
+
 - ✅ `TODO.md` (25 KB) - Zentrale Aufgabenliste mit 60-Tage-Programm
 - ✅ `.github/workflows/*` (19 Workflow-Dateien) - CI/CD Pipelines
 - ✅ `.github/CODEOWNERS` - Code-Review-Zuständigkeiten
@@ -81,11 +90,13 @@ Nach dem Squash-Merge von PR #40 fehlten viele Dateien aus dem vorherigen Stand 
 - ✅ `.github/dependabot.yml` - Automatische Dependency-Updates
 
 **Ausgeklammert (wegen GitHub Secret Scanning):**
+
 - ⚠️ `.env.mcp` - GitHub Personal Access Token erkannt
 - ⚠️ `.env.database` - Datenbank-Credentials
 - **Lösung:** Diese Dateien lokal behalten; für Repo `.env.example` Templates erstellen
 
 **Commit:**
+
 - Commit `b11e557c1`: "chore: Restore missing files after merge (TODO.md, workflows)"
 - Signiert mit neuem GPG-Key
 - Erfolgreich gepusht
@@ -111,7 +122,8 @@ Nach dem Squash-Merge von PR #40 fehlten viele Dateien aus dem vorherigen Stand 
 | 11| quality-reporter | `node`               | Quality metrics aggregation & reporting       | ✅ Custom    |
 
 **Verzeichnisstruktur `mcp-servers/`:**
-```
+
+```text
 mcp-servers/
 ├── file-server/       # Custom filesystem MCP server
 └── policies/          # Security policies (OPA Rego, Seccomp profiles)
@@ -123,6 +135,7 @@ mcp-servers/
 ```
 
 **Fehlende Binaries (zu prüfen):**
+
 ```bash
 which codacy-analysis-cli  # → wahrscheinlich nicht installiert
 which lighthouse-ci        # → npm install -g lighthouse lighthouse-ci
@@ -130,6 +143,7 @@ which trivy                # → binary download erforderlich
 ```
 
 **Custom Node.js MCP Server** (in `mcp-servers/`):
+
 - `file-server/index.js` - erweiterte File-Operationen
 - `n8n-webhook` - Integration mit n8n-Workflows
 - `build-pipeline` - Wrapper für `build-pipeline.sh`
@@ -141,15 +155,18 @@ which trivy                # → binary download erforderlich
 ## 📋 TODO.md ANALYSE
 
 ### Struktur & Umfang
+
 - **Datei:** `TODO.md` (25 KB, ~1000+ Zeilen)
 - **Format:** Copilot-optimiert mit klaren Akzeptanzkriterien, Labels, Schätzungen, Fälligkeitsdaten
 - **Zeitrahmen:** 60-Tage-Programm (bis ~2026-01-11)
 - **Phasen:** 14 Wochen mit thematischen Clustern
 
 ### Abgeschlossene Aufgaben (aus TODO.md)
+
 **Status:** Keine Tasks als `[x]` markiert in der Datei.
 
 **Grund:** Die heutige Arbeit (Copilot-Setup, GPG-Key, Datei-Wiederherstellung) ist nicht Teil der originalen TODO.md-Liste. Diese Tasks waren Ad-hoc aufgrund von:
+
 1. Merge-Problemen (große Dateien in Branch-History)
 2. Branch-Protection-Anforderungen (GPG-Signing)
 3. Datenverlust durch Squash-Merge
@@ -157,6 +174,7 @@ which trivy                # → binary download erforderlich
 ### Offene Hohe Priorität (Fällig: 2025-10-12)
 
 **Aus TODO.md "HOHE PRIORITÄT" Sektion:**
+
 1. ☐ **CiviCRM-Datenbank initialisieren** (3h)
    - Drupal-Installation via Drush
    - CiviCRM-Modul aktivieren
@@ -185,6 +203,7 @@ which trivy                # → binary download erforderlich
    - Integration mit `./scripts/safe-deploy.sh`
 
 **Sofort-Tasks (aus TODO.md, Fällig: 2025-10-05):**
+
 - ☑️ ~~Codacy-Analyse für `Website/src/components/Contact.tsx`~~ (implizit via MCP Server)
 - ☐ **ESLint-Probleme beheben** (~254 Fehler) - **KRITISCH**
 - ☐ **Staging-Deployment** via `./build-pipeline.sh staging`
@@ -194,12 +213,16 @@ which trivy                # → binary download erforderlich
 ## ⚠️ FESTGESTELLTE PROBLEME & RISIKEN
 
 ### 1. devcontainer.json Status
+
 **Status:** ✅ **Gelöst** (initial gedacht leer, aber tatsächlich 85 Zeilen)
+
 - Datei korrekt gemerged aus PR #40
 - Copilot-Extensions & Settings vorhanden
 
 ### 2. GitHub Secret Scanning Blocker
+
 **Problem:** `.env.mcp` und `.env.database` können nicht committed werden
+
 - **Gefundene Secrets:**
   - GitHub Personal Access Token (`.env.mcp:7`)
   - Figma Personal Access Token (`.env.mcp:12`)
@@ -211,7 +234,9 @@ which trivy                # → binary download erforderlich
   3. Oder: Vault-basierte Secret-Management (später)
 
 ### 3. MCP Binary Dependencies
+
 **Fehlende Tools:**
+
 - `codacy-analysis-cli` - Code Quality MCP Server kann nicht starten
 - `lighthouse-ci` - Performance Audits fehlen
 - `trivy` - Security Scanning nicht verfügbar
@@ -219,6 +244,7 @@ which trivy                # → binary download erforderlich
 **Impact:** Quality Gates in CI/CD könnten fehlschlagen
 
 **Fix-Kommandos:**
+
 ```bash
 # Lighthouse
 npm install -g lighthouse lighthouse-ci
@@ -235,13 +261,17 @@ sudo mv trivy /usr/local/bin/
 ```
 
 ### 4. ESLint-Backlog (~254 Fehler)
+
 **Aus TODO.md:**
+
 - Aktueller Stand: ~254 ESLint-Fehler
 - Blocking für Production Deployment
 - **Aktion erforderlich:** `npm run lint:fix && npm run lint` (geschätzt 1h)
 
 ### 5. Branch Protection & GPG Workflow
+
 **Herausforderung:** Default-Branch `chore/figma-mcp-make` hat strenge Rules:
+
 - ✅ Commits MÜSSEN signiert sein
 - ✅ Alle Review-Comments MÜSSEN resolved sein
 - ⚠️ GPG Public Key noch nicht zu GitHub hinzugefügt
@@ -255,18 +285,21 @@ sudo mv trivy /usr/local/bin/
 ### 🔴 Kritisch (Heute Abend, < 2h)
 
 1. **GPG Public Key zu GitHub hinzufügen** (5 Min)
+
    ```bash
    cat /tmp/gpg-public-key-icloud.asc
    # → Copy-Paste zu https://github.com/settings/gpg/new
    ```
 
 2. **MCP Binaries installieren** (15 Min)
+
    ```bash
    npm install -g lighthouse lighthouse-ci
    # Codacy & Trivy siehe oben
    ```
 
 3. **ESLint Cleanup** (1h)
+
    ```bash
    npm run lint:fix
    npm run lint  # → Ziel: 0 Fehler
@@ -283,6 +316,7 @@ sudo mv trivy /usr/local/bin/
    - `mcp.json` anpassen (Env-Var-Referenzen)
 
 5. **Staging Deployment** (1h)
+
    ```bash
    ./build-pipeline.sh staging
    # → Prüfe: Quality Gates, n8n Notifications
@@ -309,12 +343,14 @@ sudo mv trivy /usr/local/bin/
 ## 📊 QUALITÄTSMETRIKEN (Aktuell)
 
 ### Git-Status
+
 - **Branch:** `chore/figma-mcp-make` ✅ Up-to-date mit Remote
 - **Letzter Commit:** `b11e557c1` (signiert, gepusht)
 - **Uncommitted Changes:** 0 (Clean Working Tree)
 - **GPG Signing:** ✅ Aktiviert (lokal & global)
 
 ### Code-Quality (geschätzt)
+
 - **ESLint:** ❌ ~254 Fehler (laut TODO.md)
 - **TypeScript:** ⚠️ Nicht geprüft (vermutlich Fehler wegen ESLint)
 - **Tests:** ⚠️ Nicht ausgeführt
@@ -322,11 +358,13 @@ sudo mv trivy /usr/local/bin/
 - **Codacy:** ⚠️ CLI nicht installiert
 
 ### Deployment-Status
+
 - **Staging:** ⚠️ Nicht deployed (letzter Deploy unknown)
 - **Production:** ⚠️ Pending
 - **CI/CD:** ⚠️ Workflows wiederhergestellt, aber nicht getestet
 
 ### MCP-Server-Verfügbarkeit
+
 - ✅ **Funktionsfähig:** filesystem, git, docker, prisma, n8n-webhook, build-pipeline, plesk-deploy, quality-reporter (8/11)
 - ⚠️ **Fehlende Binaries:** codacy-cli, lighthouse, trivy (3/11)
 - **Uptime:** N/A (keine laufenden Prozesse bei MCP Servers, da sie on-demand gestartet werden)
@@ -336,6 +374,7 @@ sudo mv trivy /usr/local/bin/
 ## ✨ ERFOLGE & LESSONS LEARNED
 
 ### Erfolge Heute (2025-10-05)
+
 1. ✅ **PR #40 erfolgreich gemerged** trotz:
    - Branch Protection Rules (signierte Commits)
    - Unresolved Review Comments (via API resolved)
@@ -360,6 +399,7 @@ sudo mv trivy /usr/local/bin/
    - Dokumentation für Onboarding vorhanden
 
 ### Lessons Learned
+
 1. **Squash-Merge löscht Branch-History:**
    - ⚠️ Bei wichtigen Dateien im Source-Branch: vor Merge in separaten Commit isolieren
    - ✅ Alternative: Rebase + Merge (behält History, aber komplexer bei Konflikten)
@@ -382,6 +422,7 @@ sudo mv trivy /usr/local/bin/
 ## 📈 ZEITINVESTITION & ROI
 
 ### Heute (2025-10-05)
+
 - **Gesamtzeit:** ~5 Stunden
 - **Hauptaktivitäten:**
   - Copilot-Setup & PR-Merge: 2h
@@ -390,6 +431,7 @@ sudo mv trivy /usr/local/bin/
   - Analyse & Dokumentation: 0.5h
 
 ### ROI-Bewertung
+
 - ✅ **Copilot-Setup:** Langfristig +20-30% Developer Velocity (basierend auf GitHub-Studien)
 - ✅ **GPG-Workflow:** Sicherheit & Compliance (verhindert unvollständige Commits)
 - ✅ **TODO.md-Wiederherstellung:** Kritisch (Projekt-Roadmap war verloren)
@@ -400,16 +442,19 @@ sudo mv trivy /usr/local/bin/
 ## 🔗 Wichtige Links & Ressourcen
 
 ### GitHub
-- Repository: https://github.com/peschull/menschlichkeit-oesterreich-development
-- PR #40: https://github.com/peschull/menschlichkeit-oesterreich-development/pull/40
-- GPG-Keys: https://github.com/settings/gpg/new
+
+- Repository: <https://github.com/peschull/menschlichkeit-oesterreich-development>
+- PR #40: <https://github.com/peschull/menschlichkeit-oesterreich-development/pull/40>
+- GPG-Keys: <https://github.com/settings/gpg/new>
 
 ### Dokumentation (neu erstellt)
+
 - `docs/COPILOT-SETUP-GUIDE.md` - Copilot-Einrichtung & Best Practices
 - `docs/COPILOT-QUICK-CHECK.md` - Verifikations-Checkliste
 - `TODO.md` - 60-Tage-Programm mit Akzeptanzkriterien
 
 ### Exportierte Artefakte
+
 - `/tmp/gpg-public-key-icloud.asc` - GPG Public Key (für GitHub)
 - `/tmp/work-analysis.md` - Diese Analyse (Backup)
 
@@ -417,4 +462,4 @@ sudo mv trivy /usr/local/bin/
 
 **Analysiert am:** 2025-10-05 21:40 UTC  
 **Nächstes Review:** Nach ESLint-Cleanup & Staging-Deployment  
-**Verantwortlich:** Peter Schuller (schuller_peter@icloud.com)
+**Verantwortlich:** Peter Schuller (<schuller_peter@icloud.com>)

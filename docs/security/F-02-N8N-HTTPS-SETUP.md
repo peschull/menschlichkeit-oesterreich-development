@@ -25,7 +25,7 @@ Vollständige HTTPS-Implementierung für n8n mit Caddy Reverse Proxy und Let's E
 
 ## Architektur
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────┐
 │  Internet (HTTPS Port 443)                                  │
 └──────────────────────┬──────────────────────────────────────┘
@@ -149,7 +149,7 @@ docker-compose -f docker-compose.https-dev.yml up -d
 
 ### Cipher Suites (TLS 1.3)
 
-```
+```text
 TLS_AES_128_GCM_SHA256
 TLS_AES_256_GCM_SHA384
 TLS_CHACHA20_POLY1305_SHA256
@@ -423,7 +423,7 @@ Logs aus `Caddyfile` müssen noch PII-gefiltert werden:
 
 ## Files Modified
 
-```
+```text
 automation/n8n/
 ├── docker-compose.https.yml    ← NEUE HTTPS-Konfiguration
 ├── Caddyfile                   ← Caddy Reverse Proxy Config

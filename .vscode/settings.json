@@ -6,7 +6,7 @@
         "markdown": true,
         "scminput": false,
         "yaml": false,
-        "json": false,
+        "json": true,
         "dotenv": false
     },
     "github.copilot.nextEditSuggestions.enabled": true,
@@ -30,5 +30,19 @@
     },
     
     "telemetry.telemetryLevel": "off",
-    "extensions.experimental.deferredStartupFinishedActivation": true
+    "extensions.experimental.deferredStartupFinishedActivation": true,
+    "chat.mcp.discovery.enabled": {
+        "claude-desktop": false,
+        "windsurf": false,
+        "cursor-global": false,
+        "cursor-workspace": false
+    },
+    "github.copilot.chat.newWorkspace.useContext7": true,
+    "chat.mcp.assisted.nuget.enabled": true,
+    "python.testing.pytestArgs": [
+        "."
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
+
 }

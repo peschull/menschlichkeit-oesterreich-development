@@ -57,7 +57,7 @@ services:
 
 **Cipher Suites (TLS 1.3):**
 
-```
+```text
 TLS_AES_128_GCM_SHA256         (128-bit, AEAD)
 TLS_AES_256_GCM_SHA384         (256-bit, AEAD)
 TLS_CHACHA20_POLY1305_SHA256   (256-bit, AEAD)
@@ -242,7 +242,7 @@ curl -X POST \
 
 **Vorher (nur F-01):**
 
-```
+```text
 Transport-Security:         16.7% (nur Git-Commits signiert)
 Data Encryption in Transit: 0%    (HTTP unverschlüsselt)
 MITM Protection:            0%    (kein TLS)
@@ -250,7 +250,7 @@ MITM Protection:            0%    (kein TLS)
 
 **Nachher (F-01 + F-02):**
 
-```
+```text
 Transport-Security:         83.3% (+66.6%)
 Data Encryption in Transit: 100%  (+100%)
 MITM Protection:            100%  (+100%)
