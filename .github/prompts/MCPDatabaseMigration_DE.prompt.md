@@ -1,18 +1,18 @@
 ---
-status: DEPRECATED
+status: MIGRATED
 deprecated_date: 2025-10-08
 migration_target: .github/chatmodes/MCPDatabaseMigration_DE.chatmode.md
-reason: Legacy Prompt-Format - ersetzt durch einheitliches Chatmode/Instructions-System
+reason: Legacy Prompt-Format - migriert zu einheitlichem Chatmode/Instructions-System
 ---
 
-**⚠️ DEPRECATED - NICHT VERWENDEN**
+**✅ MIGRIERT - Neue Version verfügbar**
 
-Diese Datei ist veraltet und wird in einer zukünftigen Version entfernt.
+Diese Datei wurde zu einem moderneren Format migriert.
 
-- **Status:** DEPRECATED
+- **Status:** MIGRATED
 - **Datum:** 2025-10-08
 - **Migration:** .github/chatmodes/MCPDatabaseMigration_DE.chatmode.md
-- **Grund:** Legacy Prompt-Format - ersetzt durch einheitliches Chatmode/Instructions-System
+- **Grund:** Legacy Prompt-Format - migriert zu einheitlichem Chatmode/Instructions-System
 
 **Aktuelle Version verwenden:** .github/chatmodes/MCPDatabaseMigration_DE.chatmode.md
 
@@ -33,7 +33,7 @@ mcpServers: ['postgres', 'github', 'filesystem', 'memory']
 
 ## 🗄️ Phase 1: Schema-Analyse (PostgreSQL MCP)
 
-```markdown
+```
 Via PostgreSQL MCP:
 1. "List all tables in current database"
 2. "Show schema for table {TABLE_NAME}"
@@ -51,11 +51,11 @@ Dependencies:
 - game_sessions → achievements (FK: session_id)
 - civicrm_contact → civicrm_activity (CiviCRM Core)
 ---
-```
+```text
 
 ## 📝 Phase 2: Migration Planning
 
-```markdown
+```
 Migration: "Add newsletter_consent column to civicrm_contact"
 
 ### Impact Analysis
@@ -78,11 +78,11 @@ RISK ASSESSMENT:
 □ Data Loss Risk? NO
 □ Downtime Required? NO (online migration)
 □ Rollback Plan? YES (DROP COLUMN)
-```
+```text
 
 ## 🛠️ Phase 3: Migration Script Generation
 
-```markdown
+```
 Via Filesystem MCP:
 "Create migration file: crm.menschlichkeit-oesterreich.at/migrations/2024_01_add_newsletter_consent.sql"
 
@@ -120,11 +120,11 @@ COMMIT;
 
 Via Filesystem MCP:
 "Create rollback script: crm.menschlichkeit-oesterreich.at/migrations/rollback/2024_01_add_newsletter_consent.sql"
-```
+```text
 
 ## 🧪 Phase 4: Testing on Staging
 
-```markdown
+```
 Via PostgreSQL MCP (on staging DB):
 1. "Execute migration script"
 2. "Verify column exists in civicrm_contact"
@@ -144,11 +144,11 @@ Expected Output:
 ✅ Index created
 ✅ Insert successful
 ✅ Integration tests passing
-```
+```text
 
 ## 🔒 Phase 5: ORM Model Update
 
-```markdown
+```
 ### Prisma Schema (for Gaming Platform)
 Via Filesystem MCP:
 "Update schema.prisma":
@@ -199,11 +199,11 @@ $fields['newsletter_consent'] = BaseFieldDefinition::create('boolean')
     'type' => 'boolean_checkbox',
     'weight' => 10,
   ]);
-```
+```text
 
 ## 📊 Phase 6: Data Migration (if needed)
 
-```markdown
+```
 Scenario: "Migrate existing newsletter subscribers to new consent model"
 
 Via PostgreSQL MCP:
@@ -235,11 +235,11 @@ Expected: ~1500 contacts updated
 AUDIT LOG:
 Via Filesystem MCP:
 "Create migration log: crm.menschlichkeit-oesterreich.at/logs/migration-2024-01.log"
-```
+```text
 
 ## 🚀 Phase 7: Production Deployment
 
-```markdown
+```
 Pre-Deployment Checklist:
 
 Via GitHub MCP:
@@ -285,11 +285,11 @@ Via Filesystem MCP:
 5. Smoke Tests
 Via Playwright MCP:
 "Run critical path tests on production"
-```
+```text
 
 ## 🔄 Phase 8: Rollback (if needed)
 
-```markdown
+```
 IF CRITICAL ISSUE DETECTED:
 
 Via PostgreSQL MCP:
@@ -303,11 +303,11 @@ git checkout {PREVIOUS_COMMIT}
 
 Via GitHub MCP:
 "Create incident issue with label 'migration-failure'"
-```
+```text
 
 ## 📈 Phase 9: Monitoring & Validation
 
-```markdown
+```
 Via PostgreSQL MCP:
 "Monitor database performance":
 SELECT 
@@ -329,11 +329,11 @@ METRICS:
 □ Table Size Impact: +{Y} KB
 □ Query Performance: <50ms
 □ Zero Downtime: ✅
-```
+```text
 
 ## 📚 Phase 10: Documentation
 
-```markdown
+```
 Via Filesystem MCP:
 "Update docs/DATABASE-MIGRATIONS.md":
 
@@ -367,11 +367,11 @@ Via GitHub MCP:
 
 Via Memory MCP:
 "Store migration patterns for future use"
-```
+```text
 
 ## 🎯 Success Criteria
 
-```markdown
+```
 TECHNICAL:
 ✅ Migration executed without errors
 ✅ Rollback script tested
@@ -389,11 +389,11 @@ OPERATIONAL:
 ✅ Monitoring active
 ✅ Team notified
 ✅ Documentation complete
-```
+```text
 
 ## 🔧 MCP Tools Usage Summary
 
-```markdown
+```
 PostgreSQL MCP:
 - Schema inspection
 - Migration execution
@@ -413,7 +413,7 @@ GitHub MCP:
 Memory MCP:
 - Best practices retrieval
 - Pattern storage
-```
+```text
 
 ---
 

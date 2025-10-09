@@ -1,18 +1,18 @@
 ---
-status: DEPRECATED
+status: MIGRATED
 deprecated_date: 2025-10-08
-migration_target: .github/instructions/04-n8nemailautomation.instructions.md
-reason: Legacy Prompt-Format - ersetzt durch einheitliches Chatmode/Instructions-System
+migration_target: .github/instructions/core/04-n8nemailautomation.instructions.md
+reason: Legacy Prompt-Format - migriert zu einheitlichem Chatmode/Instructions-System
 ---
 
-**⚠️ DEPRECATED - NICHT VERWENDEN**
+**✅ MIGRIERT - Neue Version verfügbar**
 
-Diese Datei ist veraltet und wird in einer zukünftigen Version entfernt.
+Diese Datei wurde zu einem moderneren Format migriert.
 
-- **Status:** DEPRECATED
+- **Status:** MIGRATED
 - **Datum:** 2025-10-08
 - **Migration:** .github/instructions/04-n8nemailautomation.instructions.md
-- **Grund:** Legacy Prompt-Format - ersetzt durch einheitliches Chatmode/Instructions-System
+- **Grund:** Legacy Prompt-Format - migriert zu einheitlichem Chatmode/Instructions-System
 
 **Aktuelle Version verwenden:** .github/instructions/04-n8nemailautomation.instructions.md
 
@@ -492,28 +492,21 @@ curl -X POST https://n8n.menschlichkeit-oesterreich.at/webhook/newsletter-signup
 ```
 
 **CiviCRM Webhook Setup:**
-```php
 // In CiviCRM: Administer → System Settings → Scheduled Jobs
 // Create new job: "n8n Donation Webhook"
 
 function civicrm_api3_job_n8n_donation_webhook($params) {
-  $contributions = civicrm_api3('Contribution', 'get', [
-    'created_date' => ['>' => date('Y-m-d H:i:s', strtotime('-5 minutes'))],
-  ]);
+migration_target: .github/instructions/core/04-n8nemailautomation.instructions.md
   
   foreach ($contributions['values'] as $contribution) {
     $ch = curl_init('https://n8n.menschlichkeit-oesterreich.at/webhook/donation-confirmation');
     curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode([
-      'contact_id' => $contribution['contact_id'],
-      'amount' => $contribution['total_amount'],
-      'date' => $contribution['receive_date'],
     ]));
-    curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
-    curl_exec($ch);
+**Migration:** .github/instructions/core/04-n8nemailautomation.instructions.md
   }
+**Aktuelle Version verwenden:** .github/instructions/core/04-n8nemailautomation.instructions.md
 }
-```
+```text
 
 **Checklist:**
 - [ ] PDF-Generierung funktioniert (pdfkit installiert in n8n)
@@ -528,7 +521,7 @@ function civicrm_api3_job_n8n_donation_webhook($params) {
 
 **Workflow JSON:**
 
-```json
+```
 {
   "name": "DKIM Key Rotation Alert",
   "nodes": [
@@ -584,7 +577,7 @@ function civicrm_api3_job_n8n_donation_webhook($params) {
     }
   }
 }
-```
+```text
 
 **Checklist:**
 - [ ] Cron-Schedule korrekt (1. des Monats, 00:00)

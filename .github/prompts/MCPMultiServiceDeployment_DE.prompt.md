@@ -1,18 +1,18 @@
 ---
-status: DEPRECATED
+status: MIGRATED
 deprecated_date: 2025-10-08
 migration_target: .github/chatmodes/MCPMultiServiceDeployment_DE.chatmode.md
-reason: Legacy Prompt-Format - ersetzt durch einheitliches Chatmode/Instructions-System
+reason: Legacy Prompt-Format - migriert zu einheitlichem Chatmode/Instructions-System
 ---
 
-**⚠️ DEPRECATED - NICHT VERWENDEN**
+**✅ MIGRIERT - Neue Version verfügbar**
 
-Diese Datei ist veraltet und wird in einer zukünftigen Version entfernt.
+Diese Datei wurde zu einem moderneren Format migriert.
 
-- **Status:** DEPRECATED
+- **Status:** MIGRATED
 - **Datum:** 2025-10-08
 - **Migration:** .github/chatmodes/MCPMultiServiceDeployment_DE.chatmode.md
-- **Grund:** Legacy Prompt-Format - ersetzt durch einheitliches Chatmode/Instructions-System
+- **Grund:** Legacy Prompt-Format - migriert zu einheitlichem Chatmode/Instructions-System
 
 **Aktuelle Version verwenden:** .github/chatmodes/MCPMultiServiceDeployment_DE.chatmode.md
 
@@ -35,7 +35,7 @@ category: deployment
 
 ## Phase 1: Pre-Deployment Validation (GitHub MCP)
 
-```markdown
+```
 Via GitHub MCP:
 "Check deployment readiness for current branch"
 
@@ -61,11 +61,11 @@ COMPARE:
 - Last Production Deploy: {{TIMESTAMP}}
 - Current Commit: {{COMMIT_SHA}}
 - Changes since last deploy: {{FILE_COUNT}} files
-```
+```text
 
 ## Phase 2: Environment Preparation (Filesystem MCP)
 
-```markdown
+```
 Via Filesystem MCP:
 "Validate environment configurations"
 
@@ -93,11 +93,11 @@ ENSURE:
 - All migrations tested locally
 - Rollback migrations available
 - Data integrity checks included
-```
+```text
 
 ## Phase 3: Service Dependency Graph
 
-```markdown
+```
 Via Memory MCP:
 "Build service deployment order based on dependencies"
 
@@ -127,14 +127,14 @@ DEPLOYMENT ORDER:
 DB Migrations → API → CRM → Frontend → Gaming → Website → n8n
 
 RATIONALE: Foundation-first, dann Services, zuletzt Automation
-```
+```text
 
 ## Phase 4: Database Architecture & Migrations
 
 ### 4.1 Complete Database Matrix (17 Databases)
 
 #### Plesk MariaDB (localhost:3306) - 5 DBs AKTIV
-```markdown
+```
 Via PostgreSQL MCP (adapted for MariaDB):
 "Verify Plesk database connections"
 
@@ -150,10 +150,10 @@ CONNECTION STRING:
 mysql://svc_main:$MO_MAIN_DB_PASS@localhost:3306/mo_main
 
 PLESK LIMIT: Max 5 Datenbanken → ALLE SLOTS BELEGT
-```
+```text
 
 #### External MariaDB ($MYSQL_HOST:3306) - 9 DBs PROVISION
-```markdown
+```
 Via PostgreSQL MCP:
 "Provision external MariaDB databases"
 
@@ -185,10 +185,10 @@ EOF
 FIREWALL: Only allow Plesk server IP
 ufw allow from $PLESK_SERVER_IP to any port 3306 proto tcp
 ufw deny 3306
-```
+```text
 
 #### External PostgreSQL ($PG_HOST:5432) - 3 DBs PROVISION
-```markdown
+```
 Via PostgreSQL MCP:
 "Setup PostgreSQL databases for specialized services"
 
@@ -222,10 +222,10 @@ ufw deny 5432
 TLS/SSL Required: pg_hba.conf
 hostssl  mo_idp      svc_idp      $PLESK_SERVER_IP/32  scram-sha-256
 hostssl  mo_grafana  svc_grafana  $PLESK_SERVER_IP/32  scram-sha-256
-```
+```text
 
 ### 4.2 Connection Validation (Pre-Migration)
-```markdown
+```
 Via PostgreSQL MCP:
 "Test all 17 database connections from Plesk server"
 
@@ -254,10 +254,10 @@ done
 redis-cli -h $REDIS_HOST -a $REDIS_PASSWORD ping && echo "✅ Redis OK"
 
 EXIT CODE 0 = All connections OK → Proceed with migrations
-```
+```text
 
 ### 4.3 Database Migrations (per Service)
-```markdown
+```
 Via Filesystem MCP:
 "Backup ALL databases BEFORE migration"
 
@@ -306,10 +306,10 @@ WHERE schemaname = 'public'
 ORDER BY tablename;
 
 # Compare with expected schema from schema.prisma
-```
+```text
 
 ### 4.4 Drupal/CiviCRM Migration (mo_crm)
-```markdown
+```
 Via Filesystem MCP:
 "Run Drupal & CiviCRM database updates"
 
@@ -334,10 +334,10 @@ cv api System.check
 
 CONNECTION STRING:
 mysql://svc_crm:$MO_CRM_DB_PASS@$MYSQL_HOST:3306/mo_crm
-```
+```text
 
 ### 4.5 Post-Migration Validation
-```markdown
+```
 Via PostgreSQL MCP:
 "Run post-migration integrity checks"
 
@@ -372,11 +372,11 @@ INCLUDES:
 - Schema changes applied
 - Issues encountered
 - Rollback instructions
-```
+```text
 
 ## Phase 5: API Backend Deployment
 
-```markdown
+```
 Via Filesystem MCP:
 "Deploy API backend to Plesk"
 
@@ -418,11 +418,11 @@ IF UNHEALTHY:
   → Trigger automatic rollback
   → Restore previous version
   → Alert team via n8n webhook
-```
+```text
 
 ## Phase 6: CRM Deployment (Drupal + CiviCRM)
 
-```markdown
+```
 Via Filesystem MCP:
 "Deploy CRM system"
 
@@ -463,11 +463,11 @@ TEST SCENARIOS:
 IF FAILED:
   → Rollback Drupal: drush config:import --source=backups/config-{{TIMESTAMP}}
   → Restore DB: mysql < backups/civicrm-{{TIMESTAMP}}.sql
-```
+```text
 
 ## Phase 7: Frontend Deployment (React/TypeScript)
 
-```markdown
+```
 Via Filesystem MCP:
 "Build and deploy frontend"
 
@@ -511,11 +511,11 @@ EXPECT:
 - All images have alt text
 - Form labels correct
 - Keyboard navigation works
-```
+```text
 
 ## Phase 8: Gaming Platform Deployment
 
-```markdown
+```
 Via Filesystem MCP:
 "Deploy educational games"
 
@@ -554,11 +554,11 @@ SELECT
 FROM game_sessions
 WHERE created_at > NOW() - INTERVAL '1 hour'
 GROUP BY game_type;
-```
+```text
 
 ## Phase 9: Website Deployment (WordPress)
 
-```markdown
+```
 Via Filesystem MCP:
 "Deploy main WordPress website"
 
@@ -592,11 +592,11 @@ TESTS:
 □ Donation widget integrated
 □ CMS editable (admin check)
 □ SEO meta tags present
-```
+```text
 
 ## Phase 10: n8n Automation Deployment
 
-```markdown
+```
 Via Filesystem MCP:
 "Deploy n8n workflows"
 
@@ -630,11 +630,11 @@ VALIDATE:
 curl -X POST https://n8n.menschlichkeit-oesterreich.at/webhook/test \
   -H "Content-Type: application/json" \
   -d '{"test": true}'
-```
+```text
 
 ## Phase 11: Smoke Tests (Playwright MCP)
 
-```markdown
+```
 Via Playwright MCP:
 "Run comprehensive smoke test suite"
 
@@ -670,11 +670,11 @@ IF ANY TEST FAILS:
   → STOP deployment
   → Investigate failure
   → Fix or rollback
-```
+```text
 
 ## Phase 12: Traffic Shifting (Blue-Green Deployment)
 
-```markdown
+```
 Via Filesystem MCP:
 "Configure nginx for blue-green deployment"
 
@@ -719,11 +719,11 @@ MONITOR:
 - Response time P95
 - User session errors
 - Database connection pool
-```
+```text
 
 ## Phase 13: Post-Deployment Validation
 
-```markdown
+```
 Via GitHub MCP:
 "Create deployment tracking issue"
 
@@ -778,11 +778,11 @@ Via Filesystem MCP:
 
 ### Security
 - Patched vulnerability CVE-2024-XXXXX
-```
+```text
 
 ## Phase 14: Monitoring & Alerting
 
-```markdown
+```
 Via Filesystem MCP:
 "Configure post-deployment monitoring"
 
@@ -829,11 +829,11 @@ PAYLOAD:
     "lighthouse_score": 94
   }
 }
-```
+```text
 
 ## Phase 15: Rollback Strategy (if needed)
 
-```markdown
+```
 Via Filesystem MCP:
 "Prepare rollback procedure"
 
@@ -876,11 +876,11 @@ PREVENTION:
 - Gradual rollout (10% → 50% → 100%)
 - Better monitoring
 - Automated rollback on threshold breach
-```
+```text
 
 ## Phase 16: Deployment Report
 
-```markdown
+```
 Via Memory MCP:
 "Generate comprehensive deployment report"
 
@@ -932,7 +932,7 @@ Via GitHub MCP:
 
 Via GitHub MCP:
 "Close deployment issue #{{ISSUE_NUMBER}}"
-```
+```text
 
 ---
 

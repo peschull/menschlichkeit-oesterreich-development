@@ -1,18 +1,23 @@
+✅ MIGRIERT – Neue Version verfügbar
+
+Diese Legacy-Prompt-Datei wurde ersetzt.
+Bitte verwenden: .github/chatmodes/general/SicherheitsAudit_DE.chatmode.md
+
 ---
-status: DEPRECATED
+status: MIGRATED
 deprecated_date: 2025-10-08
 migration_target: .github/chatmodes/SicherheitsAudit_DE.chatmode.md
-reason: Legacy Prompt-Format - ersetzt durch einheitliches Chatmode/Instructions-System
+reason: Legacy Prompt-Format - migriert zu einheitlichem Chatmode/Instructions-System
 ---
 
-**⚠️ DEPRECATED - NICHT VERWENDEN**
+**✅ MIGRIERT - Neue Version verfügbar**
 
-Diese Datei ist veraltet und wird in einer zukünftigen Version entfernt.
+Diese Datei wurde zu einem moderneren Format migriert.
 
-- **Status:** DEPRECATED
+- **Status:** MIGRATED
 - **Datum:** 2025-10-08
 - **Migration:** .github/chatmodes/SicherheitsAudit_DE.chatmode.md
-- **Grund:** Legacy Prompt-Format - ersetzt durch einheitliches Chatmode/Instructions-System
+- **Grund:** Legacy Prompt-Format - migriert zu einheitlichem Chatmode/Instructions-System
 
 **Aktuelle Version verwenden:** .github/chatmodes/SicherheitsAudit_DE.chatmode.md
 

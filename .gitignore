@@ -1,4 +1,3 @@
-
 # ========================================
 # COMPREHENSIVE .gitignore
 # Multi-Technology Development Environment
@@ -385,6 +384,24 @@ cspell.json.backup
 .ssh/
 A fix-mcp-servers.js
 
+# ========================================
+# MCP (Model Context Protocol) - PRODUCTION READY
+# ========================================
+
+# MCP Environment Variables (SECURITY: NIEMALS committen!)
+env/.env
+env/.env.local
+env/.env.development
+env/.env.production
+env/.env.*.backup.*
+
+# MCP Filesystem Sandbox (safe file operations)
+.ai-sandbox/*
+!.ai-sandbox/.keep
+!.ai-sandbox/README.md
+!.ai-sandbox/prototypes/.keep
+!.ai-sandbox/queries/.keep
+
 # MCP Test/Debug Files (contain sensitive tokens)
 mcp-test-all.js
 mcp-comprehensive-test.js
@@ -402,3 +419,10 @@ quality-reports/mcp-*-config.json
 # MCP Reports mit sensiblen Daten
 quality-reports/MCP-ACTIVATION-SUCCESS-REPORT.md
 quality-reports/MCP-INSTRUCTIONS-UPDATE-OPTIMIZATION-REPORT.md
+
+# ⚠️ WICHTIG: .vscode/mcp.json NICHT mehr ignorieren!
+# Diese Datei verwendet ${env:...} Platzhalter (keine echten Tokens)
+# und MUSS committet werden für Team-Konsistenz
+# Alte Regel ENTFERNT: .vscode/mcp.json
+# Migration backup files
+*.backup-deprecated-*

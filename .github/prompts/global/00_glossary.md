@@ -1,20 +1,20 @@
 ---
-status: DEPRECATED
+status: MIGRATED
 deprecated_date: 2025-10-08
-migration_target: TBD - Siehe Migration Guide
+migration_target: .github/instructions/core/project-development.instructions.md
 reason: Konsolidierung der .github Struktur - siehe VERSIONING-AND-CONSOLIDATION-PLAN.md
 ---
 
-**⚠️ DEPRECATED - NICHT VERWENDEN**
+**✅ MIGRIERT - Neue Version verfügbar**
 
-Diese Datei ist veraltet und wird in einer zukünftigen Version entfernt.
+Diese Datei wurde zu einem moderneren Format migriert.
 
-- **Status:** DEPRECATED
+- **Status:** MIGRATED
 - **Datum:** 2025-10-08
-- **Migration:** TBD - Siehe Migration Guide
+- **Migration:** .github/instructions/core/project-development.instructions.md
 - **Grund:** Konsolidierung der .github Struktur - siehe VERSIONING-AND-CONSOLIDATION-PLAN.md
 
-**Aktuelle Version verwenden:** TBD - Siehe Migration Guide
+**Aktuelle Version verwenden:** .github/instructions/core/project-development.instructions.md
 
 ---
 

@@ -1,0 +1,202 @@
+=== Intelligente MIGRATION_MAP.json Korrektur ===
+
+✅ FIX: prompts/chatmodes/accessibility-audit.yaml
+   ALT: .github/chatmodes/Accessibility_Audit_DE.chatmode.md
+   NEU: .github/chatmodes/general/BarrierefreiheitAudit_DE.chatmode.md
+
+✅ FIX: prompts/chatmodes/deployment-operations_examples.md
+   ALT: .github/chatmodes/deployment-operations_DE.chatmode.md
+   NEU: .github/chatmodes/general/DeploymentGuide_DE.chatmode.md
+
+✅ FIX: prompts/chatmodes/ci-pipeline_examples.md
+   ALT: .github/chatmodes/ci-pipeline_DE.chatmode.md
+   NEU: .github/chatmodes/general/CIPipeline_DE.chatmode.md
+
+✅ FIX: prompts/chatmodes/n8n-automation_examples.md
+   ALT: .github/chatmodes/n8n-automation_DE.chatmode.md
+   NEU: .github/chatmodes/operations/MCPn8nAutomation_DE.chatmode.md
+
+✅ FIX: prompts/chatmodes/repository-prompt-architect_examples.md
+   ALT: .github/chatmodes/repository-prompt-architect_DE.chatmode.md
+   NEU: .github/chatmodes/development/MCPCodeReview_DE.chatmode.md
+
+✅ FIX: prompts/chatmodes/test-generation.yaml
+   ALT: .github/chatmodes/Test_Generation_DE.chatmode.md
+   NEU: .github/chatmodes/general/TestGeneration_DE.chatmode.md
+
+✅ FIX: prompts/chatmodes/repository-prompt-architect.yaml
+   ALT: .github/chatmodes/Repository_Prompt_Architect_DE.chatmode.md
+   NEU: .github/chatmodes/development/MCPCodeReview_DE.chatmode.md
+
+✅ FIX: prompts/chatmodes/performance-optimization.yaml
+   ALT: .github/chatmodes/Performance_Optimization_DE.chatmode.md
+   NEU: .github/chatmodes/general/PerformanceOptimierung_DE.chatmode.md
+
+✅ FIX: prompts/chatmodes/marketing-content_examples.md
+   ALT: .github/chatmodes/marketing-content_DE.chatmode.md
+   NEU: .github/chatmodes/general/MarketingContent_DE.chatmode.md
+
+✅ FIX: prompts/chatmodes/contribution-guidelines_examples.md
+   ALT: .github/chatmodes/contribution-guidelines_DE.chatmode.md
+   NEU: .github/chatmodes/general/Beitragsrichtlinien_DE.chatmode.md
+
+✅ FIX: prompts/chatmodes/user-documentation.yaml
+   ALT: .github/chatmodes/User_Documentation_DE.chatmode.md
+   NEU: .github/chatmodes/general/BenutzerDokumentation_DE.chatmode.md
+
+✅ FIX: prompts/chatmodes/dsgvo-compliance-audit.yaml
+   ALT: .github/chatmodes/Dsgvo_Compliance_Audit_DE.chatmode.md
+   NEU: .github/chatmodes/compliance/MCPSicherheitsAudit_DE.chatmode.md
+
+✅ FIX: prompts/chatmodes/dockerization_examples.md
+   ALT: .github/chatmodes/dockerization_DE.chatmode.md
+   NEU: .github/chatmodes/general/Dockerisierung_DE.chatmode.md
+
+✅ FIX: prompts/chatmodes/feature-proposal.yaml
+   ALT: .github/chatmodes/Feature_Proposal_DE.chatmode.md
+   NEU: .github/chatmodes/general/FeatureVorschlag_DE.chatmode.md
+
+✅ FIX: prompts/chatmodes/n8n-workflows_examples.md
+   ALT: .github/chatmodes/n8n-workflows_DE.chatmode.md
+   NEU: .github/chatmodes/operations/MCPn8nAutomation_DE.chatmode.md
+
+✅ FIX: prompts/chatmodes/localization-plan.yaml
+   ALT: .github/chatmodes/Localization_Plan_DE.chatmode.md
+   NEU: .github/chatmodes/general/Lokalisierungsplan_DE.chatmode.md
+
+✅ FIX: prompts/chatmodes/database-schema.yaml
+   ALT: .github/chatmodes/Database_Schema_DE.chatmode.md
+   NEU: .github/chatmodes/general/DatenbankSchema_DE.chatmode.md
+
+✅ FIX: prompts/chatmodes/api-design.yaml
+   ALT: .github/chatmodes/Api_Design_DE.chatmode.md
+   NEU: .github/chatmodes/general/APIDesign_DE.chatmode.md
+
+✅ FIX: prompts/chatmodes/civicrm-vereinsbuchhaltung.yaml
+   ALT: .github/chatmodes/Civicrm_Vereinsbuchhaltung_DE.chatmode.md
+   NEU: .github/chatmodes/general/Beitragsrichtlinien_DE.chatmode.md
+
+✅ FIX: prompts/chatmodes/quality-gates-audit.yaml
+   ALT: .github/chatmodes/Quality_Gates_Audit_DE.chatmode.md
+   NEU: .github/chatmodes/operations/MCPQualityGates_DE.chatmode.md
+
+✅ FIX: prompts/chatmodes/code-review.yaml
+   ALT: .github/chatmodes/Code_Review_DE.chatmode.md
+   NEU: .github/chatmodes/general/CodeReview_DE.chatmode.md
+
+✅ FIX: prompts/chatmodes/database-schema_examples.md
+   ALT: .github/chatmodes/database-schema_DE.chatmode.md
+   NEU: .github/chatmodes/general/DatenbankSchema_DE.chatmode.md
+
+✅ FIX: prompts/chatmodes/bug-report.yaml
+   ALT: .github/chatmodes/Bug_Report_DE.chatmode.md
+   NEU: .github/chatmodes/general/FehlerberichtVorlage_DE.chatmode.md
+
+✅ FIX: prompts/chatmodes/performance-optimization_examples.md
+   ALT: .github/chatmodes/performance-optimization_DE.chatmode.md
+   NEU: .github/chatmodes/general/PerformanceOptimierung_DE.chatmode.md
+
+✅ FIX: prompts/chatmodes/accessibility-audit_examples.md
+   ALT: .github/chatmodes/accessibility-audit_DE.chatmode.md
+   NEU: .github/chatmodes/general/BarrierefreiheitAudit_DE.chatmode.md
+
+✅ FIX: prompts/chatmodes/dockerization.yaml
+   ALT: .github/chatmodes/Dockerization_DE.chatmode.md
+   NEU: .github/chatmodes/general/Dockerisierung_DE.chatmode.md
+
+✅ FIX: prompts/chatmodes/n8n-workflows.yaml
+   ALT: .github/chatmodes/N8N_Workflows_DE.chatmode.md
+   NEU: .github/chatmodes/operations/MCPn8nAutomation_DE.chatmode.md
+
+✅ FIX: prompts/chatmodes/bug-report_examples.md
+   ALT: .github/chatmodes/bug-report_DE.chatmode.md
+   NEU: .github/chatmodes/general/FehlerberichtVorlage_DE.chatmode.md
+
+✅ FIX: prompts/chatmodes/api-design_examples.md
+   ALT: .github/chatmodes/api-design_DE.chatmode.md
+   NEU: .github/chatmodes/general/APIDesign_DE.chatmode.md
+
+✅ FIX: prompts/chatmodes/test-generation_examples.md
+   ALT: .github/chatmodes/test-generation_DE.chatmode.md
+   NEU: .github/chatmodes/general/TestGeneration_DE.chatmode.md
+
+✅ FIX: prompts/chatmodes/feature-proposal_examples.md
+   ALT: .github/chatmodes/feature-proposal_DE.chatmode.md
+   NEU: .github/chatmodes/general/FeatureVorschlag_DE.chatmode.md
+
+✅ FIX: prompts/chatmodes/civicrm-vereinsbuchhaltung_examples.md
+   ALT: .github/chatmodes/civicrm-vereinsbuchhaltung_DE.chatmode.md
+   NEU: .github/chatmodes/general/Beitragsrichtlinien_DE.chatmode.md
+
+✅ FIX: prompts/chatmodes/user-documentation_examples.md
+   ALT: .github/chatmodes/user-documentation_DE.chatmode.md
+   NEU: .github/chatmodes/general/BenutzerDokumentation_DE.chatmode.md
+
+✅ FIX: prompts/chatmodes/civicrm-n8n-automation.yaml
+   ALT: .github/chatmodes/Civicrm_N8N_Automation_DE.chatmode.md
+   NEU: .github/chatmodes/operations/MCPCiviCRMWorkflows_DE.chatmode.md
+
+✅ FIX: prompts/chatmodes/n8n-automation.yaml
+   ALT: .github/chatmodes/N8N_Automation_DE.chatmode.md
+   NEU: .github/chatmodes/operations/MCPn8nAutomation_DE.chatmode.md
+
+✅ FIX: prompts/chatmodes/ci-pipeline.yaml
+   ALT: .github/chatmodes/Ci_Pipeline_DE.chatmode.md
+   NEU: .github/chatmodes/general/CIPipeline_DE.chatmode.md
+
+✅ FIX: prompts/chatmodes/code-review_examples.md
+   ALT: .github/chatmodes/code-review_DE.chatmode.md
+   NEU: .github/chatmodes/general/CodeReview_DE.chatmode.md
+
+✅ FIX: prompts/chatmodes/architecture-plan_examples.md
+   ALT: .github/chatmodes/architecture-plan_DE.chatmode.md
+   NEU: .github/chatmodes/general/Architekturplan_DE.chatmode.md
+
+✅ FIX: prompts/chatmodes/dsgvo-compliance-audit_examples.md
+   ALT: .github/chatmodes/dsgvo-compliance-audit_DE.chatmode.md
+   NEU: .github/chatmodes/compliance/MCPSicherheitsAudit_DE.chatmode.md
+
+✅ FIX: prompts/chatmodes/security-audit_examples.md
+   ALT: .github/chatmodes/security-audit_DE.chatmode.md
+   NEU: .github/chatmodes/general/SicherheitsAudit_DE.chatmode.md
+
+✅ FIX: prompts/chatmodes/deployment-operations.yaml
+   ALT: .github/chatmodes/Deployment_Operations_DE.chatmode.md
+   NEU: .github/chatmodes/general/DeploymentGuide_DE.chatmode.md
+
+✅ FIX: prompts/chatmodes/security-audit.yaml
+   ALT: .github/chatmodes/Security_Audit_DE.chatmode.md
+   NEU: .github/chatmodes/general/SicherheitsAudit_DE.chatmode.md
+
+✅ FIX: prompts/chatmodes/quality-gates-audit_examples.md
+   ALT: .github/chatmodes/quality-gates-audit_DE.chatmode.md
+   NEU: .github/chatmodes/operations/MCPQualityGates_DE.chatmode.md
+
+✅ FIX: prompts/chatmodes/marketing-content.yaml
+   ALT: .github/chatmodes/Marketing_Content_DE.chatmode.md
+   NEU: .github/chatmodes/general/MarketingContent_DE.chatmode.md
+
+✅ FIX: prompts/chatmodes/civicrm-n8n-automation_examples.md
+   ALT: .github/chatmodes/civicrm-n8n-automation_DE.chatmode.md
+   NEU: .github/chatmodes/operations/MCPCiviCRMWorkflows_DE.chatmode.md
+
+✅ FIX: prompts/chatmodes/contribution-guidelines.yaml
+   ALT: .github/chatmodes/Contribution_Guidelines_DE.chatmode.md
+   NEU: .github/chatmodes/general/Beitragsrichtlinien_DE.chatmode.md
+
+✅ FIX: prompts/chatmodes/architecture-plan.yaml
+   ALT: .github/chatmodes/Architecture_Plan_DE.chatmode.md
+   NEU: .github/chatmodes/general/Architekturplan_DE.chatmode.md
+
+✅ FIX: prompts/chatmodes/localization-plan_examples.md
+   ALT: .github/chatmodes/localization-plan_DE.chatmode.md
+   NEU: .github/chatmodes/general/Lokalisierungsplan_DE.chatmode.md
+
+
+=== Zusammenfassung ===
+Fixes gefunden: 48
+
+Wende Fixes an...
+✅ Backup: .github/prompts/MIGRATION_MAP.json.backup-1759960053935
+✅ MIGRATION_MAP.json aktualisiert!
+

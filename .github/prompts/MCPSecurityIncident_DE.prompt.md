@@ -1,18 +1,18 @@
 ---
-status: DEPRECATED
+status: MIGRATED
 deprecated_date: 2025-10-08
 migration_target: .github/chatmodes/MCPSecurityIncident_DE.chatmode.md
-reason: Legacy Prompt-Format - ersetzt durch einheitliches Chatmode/Instructions-System
+reason: Legacy Prompt-Format - migriert zu einheitlichem Chatmode/Instructions-System
 ---
 
-**⚠️ DEPRECATED - NICHT VERWENDEN**
+**✅ MIGRIERT - Neue Version verfügbar**
 
-Diese Datei ist veraltet und wird in einer zukünftigen Version entfernt.
+Diese Datei wurde zu einem moderneren Format migriert.
 
-- **Status:** DEPRECATED
+- **Status:** MIGRATED
 - **Datum:** 2025-10-08
 - **Migration:** .github/chatmodes/MCPSecurityIncident_DE.chatmode.md
-- **Grund:** Legacy Prompt-Format - ersetzt durch einheitliches Chatmode/Instructions-System
+- **Grund:** Legacy Prompt-Format - migriert zu einheitlichem Chatmode/Instructions-System
 
 **Aktuelle Version verwenden:** .github/chatmodes/MCPSecurityIncident_DE.chatmode.md
 
@@ -34,7 +34,7 @@ mcpServers: ['github', 'postgres', 'filesystem', 'brave-search', 'memory']
 
 ## 🚨 Phase 1: Incident Detection & Classification
 
-```markdown
+```
 Via GitHub MCP:
 "List all recent security alerts":
 1. Dependabot Alerts (last 24h)
@@ -73,11 +73,11 @@ CLASSIFICATION:
   - [ ] HIGH: System compromise, no PII
   - [ ] MEDIUM: Vulnerability detected, not exploited
   - [ ] LOW: False positive / Informational
-```
+```text
 
 ## 🔒 Phase 2: Immediate Containment (0-15 Minutes)
 
-```markdown
+```
 IF CRITICAL (PII Breach):
 
 1. STOP ALL AFFECTED SERVICES
@@ -122,11 +122,11 @@ COPY (
   SELECT * FROM audit_log 
   WHERE timestamp >= NOW() - INTERVAL '24 hours'
 ) TO '/tmp/incident-audit-{TIMESTAMP}.csv';
-```
+```text
 
 ## 🔍 Phase 3: Impact Assessment (15-60 Minutes)
 
-```markdown
+```
 Via PostgreSQL MCP - PII Exposure Check:
 "Identify affected records":
 
@@ -179,11 +179,11 @@ grep -r "email\|phone\|address" /var/log/app/ > /tmp/pii-in-logs-{TIMESTAMP}.txt
 Via Brave Search MCP:
 "Search for GDPR breach notification requirements Austria"
 "Find Austrian Data Protection Authority contact details"
-```
+```text
 
 ## 📢 Phase 4: Legal Compliance (Art. 33/34 DSGVO)
 
-```markdown
+```
 BREACH NOTIFICATION DECISION TREE:
 
 IF (affected_records > 0 AND contains_pii):
@@ -264,11 +264,11 @@ IF (affected_records > 0 AND contains_pii):
     
     Via n8n Automation:
     "Trigger mass email workflow with personalization"
-```
+```text
 
 ## 🛠️ Phase 5: Root Cause Analysis
 
-```markdown
+```
 Via GitHub MCP:
 "Search commit history for vulnerability introduction":
 → git log --all --grep="authentication" --since="3 months ago"
@@ -307,11 +307,11 @@ ROOT CAUSE CATEGORIES:
   - [ ] Phishing Attack
   - [ ] Insider Threat
   - [ ] Accidental Exposure
-```
+```text
 
 ## 🔧 Phase 6: Remediation
 
-```markdown
+```
 TECHNICAL FIXES:
 
 Via Filesystem MCP:
@@ -373,11 +373,11 @@ CREATE POLICY contact_access_policy ON civicrm_contact
     -- Admins can access all
     current_setting('app.current_user_role') = 'admin'
   );
-```
+```text
 
 ## 🧪 Phase 7: Validation & Testing
 
-```markdown
+```
 Via Playwright MCP:
 "Run security regression tests":
 
@@ -412,11 +412,11 @@ Via Filesystem MCP:
 "Run security scanner":
 npm run security:scan
 trivy fs . --severity HIGH,CRITICAL
-```
+```text
 
 ## 📊 Phase 8: Post-Incident Review
 
-```markdown
+```
 Via Memory MCP:
 "Store incident learnings":
 
@@ -469,11 +469,11 @@ Via GitHub MCP:
 Via Filesystem MCP:
 "Update incident response playbook":
 docs/security/incident-response-playbook.md
-```
+```text
 
 ## 🎯 Success Criteria
 
-```markdown
+```
 TECHNICAL RESOLUTION:
 ✅ Vulnerability patched and verified
 ✅ All credentials rotated
@@ -491,11 +491,11 @@ OPERATIONAL:
 ✅ Monitoring enhanced
 ✅ Team trained on learnings
 ✅ Incident playbook updated
-```
+```text
 
 ## 🔗 Emergency Contacts
 
-```markdown
+```
 Via Brave Search MCP:
 "Find emergency contacts for Austrian data protection"
 
@@ -509,7 +509,7 @@ CONTACTS:
 HOTLINES:
 - CERT.at: +43 1 5056416 78
 - Polizei Cybercrime: 133 (Austria)
-```
+```text
 
 ---
 

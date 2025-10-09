@@ -1,18 +1,37 @@
+✅ MIGRIERT – Neue Version verfügbar
+
+Diese Legacy-Prompt-Datei wurde ersetzt.
+Bitte verwenden: .github/chatmodes/general/APIDesign_DE.chatmode.md
+
+<!-- MIGRIERT: Ersetzt durch .github/chatmodes/APIDesign_DE.chatmode.md -->
+✅ MIGRIERT – Diese Legacy-Prompt-Datei wurde zu einem moderneren Format migriert.
+Bitte verwenden: .github/chatmodes/APIDesign_DE.chatmode.md
+
 ---
-status: DEPRECATED
+status: REMOVED
+removed_date: 2025-10-08
+migration_target: .github/chatmodes/APIDesign_DE.chatmode.md
+reason: Legacy Prompt-Format – ersetzt durch Chatmode/Instructions
+---
+
+Diese Legacy-Datei wurde entfernt. Bitte verwenden:
+→ .github/chatmodes/APIDesign_DE.chatmode.md
+
+---
+status: MIGRATED
 deprecated_date: 2025-10-08
 migration_target: .github/chatmodes/APIDesign_DE.chatmode.md
-reason: Legacy Prompt-Format - ersetzt durch einheitliches Chatmode/Instructions-System
+reason: Legacy Prompt-Format - migriert zu einheitlichem Chatmode/Instructions-System
 ---
 
-**⚠️ DEPRECATED - NICHT VERWENDEN**
+**✅ MIGRIERT - Neue Version verfügbar**
 
-Diese Datei ist veraltet und wird in einer zukünftigen Version entfernt.
+Diese Datei wurde zu einem moderneren Format migriert.
 
-- **Status:** DEPRECATED
+- **Status:** MIGRATED
 - **Datum:** 2025-10-08
 - **Migration:** .github/chatmodes/APIDesign_DE.chatmode.md
-- **Grund:** Legacy Prompt-Format - ersetzt durch einheitliches Chatmode/Instructions-System
+- **Grund:** Legacy Prompt-Format - migriert zu einheitlichem Chatmode/Instructions-System
 
 **Aktuelle Version verwenden:** .github/chatmodes/APIDesign_DE.chatmode.md
 
@@ -35,3 +54,5 @@ Entwerfen Sie eine API-Spezifikation auf Deutsch für eine neue oder bestehende 
 * **Versionsstrategie** – Wie zukünftige Änderungen an der API gehandhabt werden (Versionierung).
 
 Nutzen Sie Klartext und strukturierte Tabellen, um Informationen übersichtlich darzustellen. Verweisen Sie bei Bedarf auf bestehende API-Dateien im Repository via `#file:`.
+
+<!-- Maintenance Note: Diese Legacy-Prompt-Datei wird durch .github/chatmodes/APIDesign_DE.chatmode.md ersetzt. -->

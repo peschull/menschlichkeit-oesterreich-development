@@ -1,18 +1,18 @@
 ---
-status: DEPRECATED
+status: MIGRATED
 deprecated_date: 2025-10-08
 migration_target: .github/chatmodes/MCPDSGVOComplianceAudit_DE.chatmode.md
-reason: Legacy Prompt-Format - ersetzt durch einheitliches Chatmode/Instructions-System
+reason: Legacy Prompt-Format - migriert zu einheitlichem Chatmode/Instructions-System
 ---
 
-**⚠️ DEPRECATED - NICHT VERWENDEN**
+**✅ MIGRIERT - Neue Version verfügbar**
 
-Diese Datei ist veraltet und wird in einer zukünftigen Version entfernt.
+Diese Datei wurde zu einem moderneren Format migriert.
 
-- **Status:** DEPRECATED
+- **Status:** MIGRATED
 - **Datum:** 2025-10-08
 - **Migration:** .github/chatmodes/MCPDSGVOComplianceAudit_DE.chatmode.md
-- **Grund:** Legacy Prompt-Format - ersetzt durch einheitliches Chatmode/Instructions-System
+- **Grund:** Legacy Prompt-Format - migriert zu einheitlichem Chatmode/Instructions-System
 
 **Aktuelle Version verwenden:** .github/chatmodes/MCPDSGVOComplianceAudit_DE.chatmode.md
 
@@ -35,7 +35,7 @@ category: compliance
 
 ## Phase 1: PII-Identifikation (PostgreSQL MCP)
 
-```markdown
+```
 Via PostgreSQL MCP:
 "Identify all tables containing personal identifiable information (PII)"
 
@@ -64,11 +64,11 @@ OUTPUT PII INVENTORY:
 | public | users | email | varchar | ❌ | Art. 6(1)(b) DSGVO |
 | public | donations | donor_email | varchar | ❌ | Art. 6(1)(a) DSGVO |
 | civicrm | contact | email | varchar | ❌ | Art. 6(1)(b) DSGVO |
-```
+```text
 
 ## Phase 2: Verschlüsselungs-Check (PostgreSQL MCP)
 
-```markdown
+```
 Via PostgreSQL MCP:
 "Check for encryption of PII fields"
 
@@ -89,11 +89,11 @@ REMEDIATION REQUIRED:
 1. Implementiere pgcrypto für Column-Level Encryption
 2. Migriere bestehende Daten
 3. Update Application Code für De/Encryption
-```
+```text
 
 ## Phase 3: Consent-Management (PostgreSQL MCP + Filesystem MCP)
 
-```markdown
+```
 Via PostgreSQL MCP:
 "Check consent records for all users"
 
@@ -124,11 +124,11 @@ VALIDATE:
 □ Widerruf-Möglichkeit prominent?
 □ Datenschutzerklärung verlinkt?
 □ Log der Consent-Änderungen?
-```
+```text
 
 ## Phase 4: Datensparsamkeit (PostgreSQL MCP)
 
-```markdown
+```
 Via PostgreSQL MCP:
 "Identify unnecessary data collection"
 
@@ -153,11 +153,11 @@ RECOMMENDATION:
 - health_status entfernen ODER
 - Explizite Einwilligung (Art. 9(2)(a)) ODER
 - Pseudonymisierung + Trennung von Identität
-```
+```text
 
 ## Phase 5: Speicherdauer & Löschroutinen (PostgreSQL MCP)
 
-```markdown
+```
 Via PostgreSQL MCP:
 "Check data retention compliance"
 
@@ -204,11 +204,11 @@ $$ LANGUAGE plpgsql;
 
 -- Schedule via pg_cron
 SELECT cron.schedule('delete-inactive-users', '0 2 * * *', 'SELECT auto_delete_old_users()');
-```
+```text
 
 ## Phase 6: Betroffenenrechte (Filesystem MCP)
 
-```markdown
+```
 Via Filesystem MCP:
 "Check implementation of GDPR subject rights"
 
@@ -246,11 +246,11 @@ async def export_data_portable(
         return JSONResponse(user_data)
     elif format == "csv":
         return StreamingResponse(to_csv(user_data), media_type="text/csv")
-```
+```text
 
 ## Phase 7: Drittlandtransfer (Brave Search MCP + Filesystem MCP)
 
-```markdown
+```
 Via Filesystem MCP:
 "Check for third-party integrations"
 
@@ -273,11 +273,11 @@ REMEDIATION:
 2. Google Analytics mit Server-Side Tagging (EU-Server)
 3. Update Privacy Policy mit Drittlandtransfer-Hinweis
 4. SCCs mit allen US-Providern abschließen
-```
+```text
 
 ## Phase 8: Logging & Audit Trail (Filesystem MCP)
 
-```markdown
+```
 Via Filesystem MCP:
 "Search for PII in log files"
 
@@ -311,11 +311,11 @@ class PIISafeFormatter(logging.Formatter):
 
 VERIFY:
 python api.menschlichkeit-oesterreich.at/verify_privacy_api.py
-```
+```text
 
 ## Phase 9: Verzeichnis von Verarbeitungstätigkeiten (VVT)
 
-```markdown
+```
 Via GitHub MCP:
 "Create issue for VVT documentation"
 
@@ -362,11 +362,11 @@ TEMPLATE:
 
 Via Filesystem MCP:
 "Create docs/DSGVO-VVT.md with all processing activities"
-```
+```text
 
 ## Phase 10: Datenschutz-Folgenabschätzung (DSFA)
 
-```markdown
+```
 Via Brave Search MCP:
 "Search for GDPR DPIA threshold criteria"
 "Find DPIA template Austria"
@@ -394,11 +394,11 @@ RISKS IDENTIFIED:
 - Health_status Verarbeitung ohne explizite Einwilligung → HIGH RISK
 - Drittlandtransfer (USA) → MEDIUM RISK
 - Keine regelmäßige Löschung inaktiver Accounts → MEDIUM RISK
-```
+```text
 
 ## Phase 11: Auftragsverarbeiter-Verträge (AVV)
 
-```markdown
+```
 Via Filesystem MCP:
 "List all external service providers"
 
@@ -421,11 +421,11 @@ ACTION ITEMS:
 
 Via GitHub MCP:
 "Create issue to track DPA completion for all processors"
-```
+```text
 
 ## Phase 12: Mitarbeiter-Schulung & Zugriffsrechte
 
-```markdown
+```
 Via Filesystem MCP:
 "Check access control configuration"
 
@@ -457,11 +457,11 @@ FINDINGS:
 REMEDIATION:
 REVOKE DELETE ON users FROM volunteer;
 REVOKE GRANT OPTION FOR ALL PRIVILEGES ON ALL TABLES IN SCHEMA public FROM api_user;
-```
+```text
 
 ## Phase 13: Datenpannen-Verfahren
 
-```markdown
+```
 Via Filesystem MCP:
 "Check data breach response procedures"
 
@@ -502,11 +502,11 @@ labels: security, dsgvo, critical
 
 ## Ursachenanalyse
 <!-- Root Cause Analysis -->
-```
+```text
 
 ## Phase 14: Privacy by Design & Default
 
-```markdown
+```
 Via Filesystem MCP:
 "Evaluate Privacy by Design implementation"
 
@@ -532,11 +532,11 @@ RECOMMENDATIONS:
 3. Datensparsamkeit by Default
    - Keine optionale Datensammlung pre-checked
    - Minimale Pflichtfelder
-```
+```text
 
 ## Phase 15: Compliance Report & Roadmap
 
-```markdown
+```
 Via Memory MCP:
 "Generate comprehensive DSGVO compliance report"
 
@@ -589,7 +589,7 @@ Via GitHub MCP:
 
 Via Filesystem MCP:
 "Save report to quality-reports/dsgvo-audit-{{DATE}}.md"
-```
+```text
 
 ---
 

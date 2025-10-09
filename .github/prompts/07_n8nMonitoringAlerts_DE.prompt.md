@@ -1,20 +1,20 @@
 ---
-status: DEPRECATED
+status: MIGRATED
 deprecated_date: 2025-10-08
-migration_target: .github/instructions/07-n8nmonitoringalerts.instructions.md
-reason: Legacy Prompt-Format - ersetzt durch einheitliches Chatmode/Instructions-System
+migration_target: .github/instructions/core/07-n8nmonitoringalerts.instructions.md
+reason: Legacy Prompt-Format - migriert zu einheitlichem Chatmode/Instructions-System
 ---
 
-**⚠️ DEPRECATED - NICHT VERWENDEN**
+**✅ MIGRIERT - Neue Version verfügbar**
 
-Diese Datei ist veraltet und wird in einer zukünftigen Version entfernt.
+Diese Datei wurde zu einem moderneren Format migriert.
 
-- **Status:** DEPRECATED
+- **Status:** MIGRATED
 - **Datum:** 2025-10-08
-- **Migration:** .github/instructions/07-n8nmonitoringalerts.instructions.md
-- **Grund:** Legacy Prompt-Format - ersetzt durch einheitliches Chatmode/Instructions-System
+- **Migration:** .github/instructions/core/07-n8nmonitoringalerts.instructions.md
+- **Grund:** Legacy Prompt-Format - migriert zu einheitlichem Chatmode/Instructions-System
 
-**Aktuelle Version verwenden:** .github/instructions/07-n8nmonitoringalerts.instructions.md
+**Aktuelle Version verwenden:** .github/instructions/core/07-n8nmonitoringalerts.instructions.md
 
 ---
 

@@ -1,18 +1,18 @@
 ---
-status: DEPRECATED
+status: MIGRATED
 deprecated_date: 2025-10-08
-migration_target: .github/instructions/05-n8ndeploymentnotifications.instructions.md
-reason: Legacy Prompt-Format - ersetzt durch einheitliches Chatmode/Instructions-System
+migration_target: .github/instructions/core/05-n8ndeploymentnotifications.instructions.md
+reason: Legacy Prompt-Format - migriert zu einheitlichem Chatmode/Instructions-System
 ---
 
-**⚠️ DEPRECATED - NICHT VERWENDEN**
+**✅ MIGRIERT - Neue Version verfügbar**
 
-Diese Datei ist veraltet und wird in einer zukünftigen Version entfernt.
+Diese Datei wurde zu einem moderneren Format migriert.
 
-- **Status:** DEPRECATED
+- **Status:** MIGRATED
 - **Datum:** 2025-10-08
 - **Migration:** .github/instructions/05-n8ndeploymentnotifications.instructions.md
-- **Grund:** Legacy Prompt-Format - ersetzt durch einheitliches Chatmode/Instructions-System
+- **Grund:** Legacy Prompt-Format - migriert zu einheitlichem Chatmode/Instructions-System
 
 **Aktuelle Version verwenden:** .github/instructions/05-n8ndeploymentnotifications.instructions.md
 
@@ -58,23 +58,15 @@ description: 'n8n Deployment-Benachrichtigungen für CI/CD, Quality Gates und Ro
 name: Deploy to Staging
 
 on:
-  push:
     branches: [main]
   pull_request:
     types: [opened, synchronize]
 
-jobs:
-  notify-start:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Notify n8n - Build Started
+   migration_target: .github/instructions/core/05-n8ndeploymentnotifications.instructions.md
+   **Migration:** .github/instructions/core/05-n8ndeploymentnotifications.instructions.md
+   **Aktuelle Version verwenden:** .github/instructions/core/05-n8ndeploymentnotifications.instructions.md
         run: |
           curl -X POST https://n8n.menschlichkeit-oesterreich.at/webhook/deployment-started \
-            -H "Content-Type: application/json" \
-            -d '{
-              "service": "${{ github.repository }}",
-              "branch": "${{ github.ref_name }}",
-              "commit": "${{ github.sha }}",
               "actor": "${{ github.actor }}",
               "url": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
             }'

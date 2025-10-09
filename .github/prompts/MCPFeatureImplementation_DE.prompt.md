@@ -1,18 +1,18 @@
 ---
-status: DEPRECATED
+status: MIGRATED
 deprecated_date: 2025-10-08
 migration_target: .github/chatmodes/MCPFeatureImplementation_DE.chatmode.md
-reason: Legacy Prompt-Format - ersetzt durch einheitliches Chatmode/Instructions-System
+reason: Legacy Prompt-Format - migriert zu einheitlichem Chatmode/Instructions-System
 ---
 
-**⚠️ DEPRECATED - NICHT VERWENDEN**
+**✅ MIGRIERT - Neue Version verfügbar**
 
-Diese Datei ist veraltet und wird in einer zukünftigen Version entfernt.
+Diese Datei wurde zu einem moderneren Format migriert.
 
-- **Status:** DEPRECATED
+- **Status:** MIGRATED
 - **Datum:** 2025-10-08
 - **Migration:** .github/chatmodes/MCPFeatureImplementation_DE.chatmode.md
-- **Grund:** Legacy Prompt-Format - ersetzt durch einheitliches Chatmode/Instructions-System
+- **Grund:** Legacy Prompt-Format - migriert zu einheitlichem Chatmode/Instructions-System
 
 **Aktuelle Version verwenden:** .github/chatmodes/MCPFeatureImplementation_DE.chatmode.md
 
@@ -32,7 +32,7 @@ mcpTools: required
 
 ## 📋 Phase 1: Requirements & Design (Figma MCP + GitHub MCP)
 
-```markdown
+```
 1. Via GitHub MCP: 
    "Show issue #{ISSUE_NUMBER} with all comments and requirements"
    
@@ -45,11 +45,11 @@ mcpTools: required
    "Load similar feature implementations from past"
 
 OUTPUT: Vollständiges Requirements-Dokument mit Design-Specs
-```
+```text
 
 ## 🏗️ Phase 2: Architecture Planning (Multi-Service)
 
-```markdown
+```
 Feature: "Newsletter-Anmeldung mit DSGVO-Consent"
 
 ### CRM Service (Drupal + CiviCRM)
@@ -150,11 +150,11 @@ Workflow:
 2. CRM Lookup (via PostgreSQL)
 3. Email Send (via SMTP)
 4. Analytics Event
-```
+```text
 
 ## 🧪 Phase 3: Test Implementation (Playwright MCP)
 
-```markdown
+```
 Via Playwright MCP:
 "Create E2E test for newsletter subscription flow"
 
@@ -193,11 +193,11 @@ test.describe('Newsletter Subscription', () => {
 
 Via Playwright MCP:
 "Run test and capture results"
-```
+```text
 
 ## 🔒 Phase 4: Security & DSGVO Audit
 
-```markdown
+```
 Via GitHub MCP:
 "Check for Dependabot alerts in added dependencies"
 
@@ -219,11 +219,11 @@ CHECKLIST:
 □ Encryption at Rest (PostgreSQL)?
 □ PII nicht in Logs?
 □ Privacy Notice verlinkt?
-```
+```text
 
 ## ✨ Phase 5: Design System Compliance
 
-```markdown
+```
 Via Figma MCP:
 "Get latest design tokens for newsletter component"
 
@@ -238,11 +238,11 @@ VERIFY:
 
 Falls Abweichungen:
 "Refactor to use design tokens from figma-design-system/"
-```
+```text
 
 ## 📊 Phase 6: Performance Check
 
-```markdown
+```
 Via Filesystem MCP:
 "Analyze bundle size impact":
 → "npm run build && ls -lh dist/"
@@ -255,11 +255,11 @@ METRICS:
 □ Lazy Loading: Newsletter-Modul async geladen?
 □ API Response Time: <200ms?
 □ Lighthouse Score: Performance ≥90?
-```
+```text
 
 ## 🚀 Phase 7: Deployment Pipeline
 
-```markdown
+```
 Via GitHub MCP:
 "Create Pull Request with feature branch"
 
@@ -293,11 +293,11 @@ Via Filesystem MCP:
 
 Via GitHub MCP:
 "Request review from code owners"
-```
+```text
 
 ## 🔄 Phase 8: Post-Deployment Monitoring
 
-```markdown
+```
 Via GitHub MCP:
 "Monitor workflow runs for deployment status"
 
@@ -310,11 +310,11 @@ Via Brave Search MCP (bei Problemen):
 
 Via Memory MCP:
 "Store implementation patterns for future features"
-```
+```text
 
 ## 📈 Success Metrics
 
-```markdown
+```
 TECHNICAL:
 ✅ All Quality Gates passed
 ✅ E2E Tests: 100% passing
@@ -331,7 +331,7 @@ DOCUMENTATION:
 ✅ API docs updated (OpenAPI)
 ✅ Component docs in Storybook
 ✅ Deployment notes archived
-```
+```text
 
 ## 🎯 Beispiel-Ablauf
 
