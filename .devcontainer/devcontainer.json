@@ -2,10 +2,9 @@
   "name": "Menschlichkeit Österreich Development",
   "image": "mcr.microsoft.com/devcontainers/universal:2",
   "features": {
-    "ghcr.io/devcontainers/features/git:1": {},
-    "ghcr.io/devcontainers/features/powershell:1": {}
+    "ghcr.io/devcontainers/features/git:1": {}
   },
-  "onCreateCommand": "chmod +x .devcontainer/setup-codespace.sh && bash .devcontainer/setup-codespace.sh",
+  "onCreateCommand": "powershell -ExecutionPolicy ByPass -c \"irm https://astral.sh/uv/install.ps1 | iex\" && chmod +x .devcontainer/setup-codespace.sh && bash .devcontainer/setup-codespace.sh",
   "postCreateCommand": "bash .devcontainer/setup.sh",
   "customizations": {
     "vscode": {
@@ -73,5 +72,5 @@
       "onAutoForward": "notify"
     }
   },
-  "remoteUser": "vscode"
+  "remoteUser": "codespace"
 }
