@@ -64,7 +64,10 @@ paths = [
     # Documentation with example keys
     '''GITHUB-SECRETS.*\.md$''',
     # VS Code MCP config (local development)
-    '''\.vscode/mcp\.json$'''
+    '''\.vscode/mcp\.json$''',
+    # Chatmode and instruction files with API examples
+    '''\.github/chatmodes/.*\.chatmode\.md$''',
+    '''\.github/instructions/.*\.instructions\.md$'''
 ]
 regexes = [
     '''REPLACE_WITH_.*''',  # Template placeholders
@@ -73,5 +76,9 @@ regexes = [
     '''test_password_.*''',  # Test environment
     '''YOUR_.*_HERE''',     # Placeholder pattern
     '''EXAMPLE_.*''',       # Example values
-    '''sk_test_.*'''        # Stripe test keys (not production)
+    '''sk_test_.*''',       # Stripe test keys (not production)
+    '''YOUR_TOKEN''',       # Generic placeholder in docs
+    '''REDACTED''',         # Redacted examples in documentation
+    '''Bearer YOUR_.*''',   # Bearer token examples
+    '''access_token.*REDACTED''' # API examples with redacted tokens
 ]
