@@ -429,3 +429,7 @@ quality-reports/MCP-INSTRUCTIONS-UPDATE-OPTIMIZATION-REPORT.md
 # Alte Regel ENTFERNT: .vscode/mcp.json
 # Migration backup files
 *.backup-deprecated-*
+
+
+#Ignore vscode AI rules
+.github/instructions/codacy.instructions.md

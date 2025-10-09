@@ -2,17 +2,9 @@
   "name": "Menschlichkeit Österreich Development",
   "image": "mcr.microsoft.com/devcontainers/universal:2",
   "features": {
-    "ghcr.io/devcontainers/features/node:1": {
-      "version": "18"
-    },
-    "ghcr.io/devcontainers/features/python:1": {
-      "version": "3.11"
-    },
-    "ghcr.io/devcontainers/features/php:1": {
-      "version": "8.1"
-    },
-    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
-    "ghcr.io/devcontainers/features/git:1": {}
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers-contrib/features/powershell-asdf:2": {},
+    "ghcr.io/devcontainers/features/powershell:1": {}
   },
   "onCreateCommand": "chmod +x .devcontainer/setup-codespace.sh && bash .devcontainer/setup-codespace.sh",
   "postCreateCommand": "bash .devcontainer/setup.sh",
@@ -82,5 +74,5 @@
       "onAutoForward": "notify"
     }
   },
-  "remoteUser": "codespace"
+  "remoteUser": "vscode"
 }

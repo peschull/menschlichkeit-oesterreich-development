@@ -25,7 +25,7 @@
     "lint:php": "composer exec phpstan analyse",
     "setup:dev": "npm run install:all && npm run setup:composer && npm run setup:environments",
     "setup:composer": "composer install --no-dev --optimize-autoloader",
-    "setup:environments": "pwsh scripts/setup-environments.ps1",
+    "setup:environments": "bash scripts/setup-environments.sh || pwsh scripts/setup-environments.ps1",
     "clean": "node scripts/clean-workspace.mjs",
     "clean:dry-run": "node scripts/clean-workspace.mjs --dry-run",
     "clean:dist": "node scripts/clean-workspace.mjs --only=dist,build",
@@ -39,7 +39,7 @@
     "dev:web": "npm run dev --workspace=mcp-servers/web-stack",
     "build:all": "npm run build:frontend && npm run build:games && npm run build:api",
     "build:frontend": "npm run build --workspace=frontend",
-    "build:games": "pwsh scripts/build-games.ps1",
+    "build:games": "bash scripts/build-games.sh || pwsh scripts/build-games.ps1",
     "build:api": "cd api.menschlichkeit-oesterreich.at && python -m build",
     "test:integration": "playwright test",
     "test:unit": "vitest",
@@ -57,7 +57,7 @@
     "security:trivy": "./bin/trivy fs --format sarif --output quality-reports/trivy-security.sarif . || true",
     "security:scan": "npm run security:trivy && ./bin/gitleaks detect --report-path quality-reports/secrets-scan.json --report-format json || true",
     "performance:lighthouse": "npm run lh:ci --workspace=frontend",
-    "compliance:dsgvo": "pwsh scripts/dsgvo-check.ps1",
+    "compliance:dsgvo": "bash scripts/dsgvo-check.sh || pwsh scripts/dsgvo-check.ps1",
     "quality:reports": "node scripts/generate-quality-report.js",
     "github:normalize": "python3 scripts/normalize-frontmatter.py",
     "github:validate": "python3 scripts/validate-github-files.py",
@@ -146,6 +146,7 @@
   "author": "Menschlichkeit Österreich",
   "license": "MIT",
   "dependencies": {
+    "@codacy/codacy-mcp": "^0.6.18",
     "vite": "7.1.9"
   }
 }

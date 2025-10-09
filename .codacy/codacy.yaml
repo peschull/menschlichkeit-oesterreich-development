@@ -1,37 +1,15 @@
-excludes:
-    - node_modules/**
-    - vendor/**
-    - secrets/**
-    - secrets-backup-*/**
-    - '**/*.min.js'
-    - '**/*.map'
-    - Pdf/**
-    - '**/*.jar'
-    - '**/dist/**'
-    - '**/build/**'
-    - frontend/dist/**
-    - frontend/.next/**
-    - website/**/dist/**
-    - website/**/assets/**
-    - web/games/js/**
-    - web/games/prototype/**
-    - playwright-results/**
-    - quality-reports/**
-    - api.menschlichkeit-oesterreich.at/dist/**
-    - crm.menschlichkeit-oesterreich.at/web/**
-    - web/themes/**
-    - '**/.venv/**'
-    - '**/__pycache__/**'
-    - '**/coverage/**'
-    - '**/test-results/**'
-    - tests/**
-    - '**/*.test.*'
-    - '**/*.spec.*'
-    - '**/*.config.*'
-    - '**/playwright*.config.*'
-    - '**/vitest.config.*'
-    - '**/jest.config.*'
 runtimes:
+    - dart@3.7.2
+    - go@1.22.3
+    - java@17.0.10
     - node@22.2.0
+    - python@3.11.11
 tools:
+    - dartanalyzer@3.7.2
     - eslint@8.57.0
+    - lizard@1.17.31
+    - pmd@7.11.0
+    - pylint@3.3.6
+    - revive@1.7.0
+    - semgrep@1.78.0
+    - trivy@0.66.0
