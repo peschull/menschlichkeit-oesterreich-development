@@ -3,7 +3,6 @@
   "image": "mcr.microsoft.com/devcontainers/universal:2",
   "features": {
     "ghcr.io/devcontainers/features/git:1": {},
-    "ghcr.io/devcontainers-contrib/features/powershell-asdf:2": {},
     "ghcr.io/devcontainers/features/powershell:1": {}
   },
   "onCreateCommand": "chmod +x .devcontainer/setup-codespace.sh && bash .devcontainer/setup-codespace.sh",
