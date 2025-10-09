@@ -27,12 +27,12 @@
   },
 
   "mounts": [
-    "type=cache,target=/home/codespace/.npm,id=npm-cache",
-    "type=cache,target=/home/codespace/.pnpm-store,id=pnpm-cache",
-    "type=cache,target=/home/codespace/.cache/pip,id=pip-cache",
-    "type=cache,target=/home/codespace/.cache/uv,id=uv-cache",
-    "type=cache,target=/home/codespace/.cache/ms-playwright,id=playwright-cache",
-    "type=cache,target=/home/codespace/.cache/composer,id=composer-cache"
+    "source=npm-cache,target=/home/codespace/.npm,type=volume",
+    "source=pnpm-cache,target=/home/codespace/.pnpm-store,type=volume",
+    "source=pip-cache,target=/home/codespace/.cache/pip,type=volume",
+    "source=uv-cache,target=/home/codespace/.cache/uv,type=volume",
+    "source=playwright-cache,target=/home/codespace/.cache/ms-playwright,type=volume",
+    "source=composer-cache,target=/home/codespace/.cache/composer,type=volume"
   ],
 
   "runArgs": [
