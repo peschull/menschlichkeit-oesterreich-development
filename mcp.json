@@ -15,6 +15,11 @@
       "type": "promptString",
       "description": "Figma File Key from URL (figma.com/file/FILE_KEY/...)",
       "password": false
+    },
+    "codacy_account_token": {
+      "type": "promptString",
+      "description": "Codacy Account API token from app.codacy.com → Account (required for codacy-mcp-server)",
+      "password": true
     }
   },
   "servers": {
@@ -65,12 +70,12 @@
       "command": "docker",
       "args": {}
     },
-    "codacy-cli": {
-      "command": "codacy-analysis-cli",
-      "args": {
-        "project-directory": "${workspaceFolder}",
-        "format": "sarif",
-        "output": "quality-reports/codacy-analysis.sarif"
+    "codacy-mcp-server": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@codacy/codacy-mcp@latest"],
+      "env": {
+        "CODACY_ACCOUNT_TOKEN": "${input:codacy_account_token}"
       }
     },
     "prisma": {
@@ -130,6 +135,28 @@
       "env": {
         "MOE_API_BASE": "http://localhost:8001/api/v1"
       }
+    },
+    "markitdown": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": ["markitdown-mcp==0.0.1a4"],
+      "description": "Convert various file formats to Markdown (PDF, DOCX, XLSX, PPTX, images, etc.)"
+    },
+    "github-mcp": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/",
+      "description": "GitHub integration via official Copilot MCP endpoint (no token required)"
+    },
+    "playwright-mcp": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["@playwright/mcp@latest"],
+      "description": "Browser automation for E2E testing (complements playwright.config.js)"
+    },
+    "microsoft-docs": {
+      "type": "http",
+      "url": "https://learn.microsoft.com/api/mcp",
+      "description": "Microsoft Learn documentation for Azure, TypeScript, React, .NET, etc."
     }
   }
 }
