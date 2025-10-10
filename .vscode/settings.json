@@ -20,7 +20,7 @@
     },
     // MCP Server Configuration
     "github.copilot.mcp.enabled": true,
-    "github.copilot.mcp.configPath": "${workspaceFolder}/.vscode/mcp.json",
+    "github.copilot.mcp.configPath": "${workspaceFolder}/mcp.json",
     // Environment Variables für MCP
     "terminal.integrated.env.linux": {
         "FIGMA_ACCESS_TOKEN": "${env:FIGMA_ACCESS_TOKEN}",
@@ -41,6 +41,9 @@
     ],
     "python.testing.unittestEnabled": false,
     "python.testing.pytestEnabled": true,
+    // Python Debugging - No-Config Support
+    "python.terminal.activateEnvironment": true,
+    "python.defaultInterpreterPath": "/usr/local/python/current/bin/python",
     "chat.mcp.serverSampling": {
         "menschlichkeit-oesterreich-development/.vscode/mcp.json: codacy/codacy-mcp-server": {
             "allowedModels": [
