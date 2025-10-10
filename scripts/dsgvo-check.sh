@@ -51,8 +51,6 @@ check_pii_in_logs() {
             ((ERRORS++))
         fi
     done
-        fi
-    done
 }
 
 # Function to check for DSGVO headers in API
