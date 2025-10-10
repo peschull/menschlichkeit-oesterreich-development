@@ -23,10 +23,115 @@
       }
     },
     {
+      "label": "🎨 Dev: Frontend Only",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "dev:frontend"],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "dedicated",
+        "group": "development"
+      },
+      "problemMatcher": ["$tsc-watch"]
+    },
+    {
+      "label": "🐍 Dev: API Only",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "dev:api"],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "dedicated",
+        "group": "development"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "🏥 Dev: CRM Only",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "dev:crm"],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "dedicated",
+        "group": "development"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "🎮 Dev: Games Only",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "dev:games"],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "dedicated",
+        "group": "development"
+      },
+      "problemMatcher": []
+    },
+    {
       "label": "🔍 Quality: Run All Gates",
       "type": "shell",
       "command": "npm",
       "args": ["run", "quality:gates"],
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "group": "quality"
+      },
+      "problemMatcher": ["$eslint-stylish"]
+    },
+    {
+      "label": "� Quality: Coverage Report",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "test:coverage"],
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "group": "quality"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "🔧 Quality: Lint All",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "lint"],
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "group": "quality"
+      },
+      "problemMatcher": ["$eslint-stylish"]
+    },
+    {
+      "label": "🔨 Quality: Lint Fix",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "lint:fix"],
       "group": "test",
       "presentation": {
         "echo": true,
@@ -53,19 +158,49 @@
       "problemMatcher": []
     },
     {
-      "label": "🏗️ Build: Production Pipeline",
+      "label": "🔐 Security: Trivy Scan",
       "type": "shell",
-      "command": "./build-pipeline.sh",
-      "args": ["production"],
-      "group": "build",
+      "command": "npm",
+      "args": ["run", "security:trivy"],
+      "group": "test",
       "presentation": {
         "echo": true,
         "reveal": "always",
         "focus": true,
         "panel": "shared",
-        "group": "build"
+        "group": "security"
       },
-      "problemMatcher": ["$eslint-stylish", "$tsc"]
+      "problemMatcher": []
+    },
+    {
+      "label": "🔑 Security: Gitleaks Scan",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "security:gitleaks"],
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "group": "security"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "🧪 Test: Unit Tests",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "test:unit"],
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "group": "testing"
+      },
+      "problemMatcher": []
     },
     {
       "label": "🧪 Test: E2E Playwright",
@@ -83,7 +218,22 @@
       "problemMatcher": []
     },
     {
-      "label": "📊 Performance: Lighthouse Audit",
+      "label": "� Test: Python PII Sanitizer",
+      "type": "shell",
+      "command": "python3",
+      "args": ["-m", "pytest", "-q", "tests/test_pii_sanitizer.py"],
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "group": "testing"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "�📊 Performance: Lighthouse Audit",
       "type": "shell",
       "command": "npm",
       "args": ["run", "performance:lighthouse"],
@@ -98,20 +248,34 @@
       "problemMatcher": []
     },
     {
-      "label": "🔄 n8n: Start Automation",
+      "label": "🏗️ Build: Production Pipeline",
       "type": "shell",
-      "command": "npm",
-      "args": ["run", "n8n:start"],
+      "command": "./build-pipeline.sh",
+      "args": ["production"],
       "group": "build",
       "presentation": {
         "echo": true,
         "reveal": "always",
-        "focus": false,
+        "focus": true,
         "panel": "shared",
-        "group": "automation"
+        "group": "build"
       },
-      "problemMatcher": [],
-      "isBackground": true
+      "problemMatcher": ["$eslint-stylish", "$tsc"]
+    },
+    {
+      "label": "🏗️ Build: Staging Pipeline",
+      "type": "shell",
+      "command": "./build-pipeline.sh",
+      "args": ["staging"],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "group": "build"
+      },
+      "problemMatcher": ["$eslint-stylish", "$tsc"]
     },
     {
       "label": "🗄️ Database: Prisma Generate",
@@ -123,6 +287,35 @@
         "echo": true,
         "reveal": "always",
         "focus": false,
+        "panel": "shared",
+        "group": "database"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "🗄️ Database: Prisma Migrate Dev",
+      "type": "shell",
+      "command": "npx",
+      "args": ["prisma", "migrate", "dev"],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "group": "database"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "🗄️ Database: Alembic Upgrade",
+      "type": "shell",
+      "command": "cd api.menschlichkeit-oesterreich.at && alembic upgrade head",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
         "panel": "shared",
         "group": "database"
       },
@@ -144,6 +337,82 @@
       "problemMatcher": []
     },
     {
+      "label": "🚢 Deploy: Multi-Service",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "deploy:multi-service"],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "group": "deployment"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "🔄 n8n: Start Automation",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "n8n:start"],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "group": "automation"
+      },
+      "problemMatcher": [],
+      "isBackground": true
+    },
+    {
+      "label": "🎨 Design: Sync Figma Tokens",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "figma:sync"],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "group": "design"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "🤖 MCP: Health Check",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "mcp:check"],
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "group": "mcp"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "🤖 MCP: Setup",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "mcp:setup"],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "group": "mcp"
+      },
+      "problemMatcher": []
+    },
+    {
       "label": "📋 Reports: Generate Quality Reports",
       "type": "shell",
       "command": "npm",
@@ -155,6 +424,56 @@
         "focus": true,
         "panel": "shared",
         "group": "reports"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "🔍 DSGVO: Check PII Sanitizer",
+      "type": "shell",
+      "command": "python3",
+      "args": ["-m", "pytest", "-v", "tests/test_pii_sanitizer.py::TestLoggingFilter"],
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "group": "dsgvo"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "📦 Setup: Initial Dev Setup",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "setup:dev"],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "group": "setup"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "🔄 Pipeline: Pre-PR Gates",
+      "type": "shell",
+      "dependsOn": [
+        "🔧 Quality: Lint All",
+        "🧪 Test: Unit Tests",
+        "🛡️ Security: Gitleaks Scan",
+        "🐍 Test: Python PII Sanitizer"
+      ],
+      "dependsOrder": "sequence",
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "group": "pipeline"
       },
       "problemMatcher": []
     }

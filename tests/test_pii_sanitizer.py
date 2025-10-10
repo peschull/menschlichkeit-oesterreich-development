@@ -10,11 +10,6 @@ Date: 2025-10-03
 """
 
 import pytest
-import sys
-from pathlib import Path
-
-# Add parent directory to path for imports
-sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from app.lib.pii_sanitizer import (
     PiiSanitizer,
@@ -92,7 +87,7 @@ class TestPhoneRedaction:
         """Telefonnummer mit Leerzeichen (Edge-Case)"""
         sanitizer = PiiSanitizer()
         # Aktuell nicht erkannt - dokumentiert als Limitation
-        result = sanitizer.scrub_text("+43 664 123 456")
+        sanitizer.scrub_text("+43 664 123 456")
         # TODO: Enhancement für Spaces
 
 
@@ -165,7 +160,7 @@ class TestIbanRedaction:
         """Ungültige IBAN sollte NICHT redaktiert werden (False Positive Prevention)"""
         sanitizer = PiiSanitizer()
         # AT99 9999... (ungültig)
-        result = sanitizer.scrub_text("Random: AT999999999999999999")
+        sanitizer.scrub_text("Random: AT999999999999999999")
         # Sollte nicht redaktiert werden wenn Prüfziffer falsch
         # (Implementation-dependent)
 
@@ -266,10 +261,10 @@ class TestLoggingFilter:
     
     def test_filter_message_string(self):
         import logging
-        
+
         sanitizer = PiiSanitizer()
-        filter = LoggingPiiFilter(sanitizer)
-        
+        pii_filter = LoggingPiiFilter(sanitizer)
+
         record = logging.LogRecord(
             name="test",
             level=logging.INFO,
@@ -277,18 +272,18 @@ class TestLoggingFilter:
             lineno=0,
             msg="User email: test@example.com",
             args=(),
-            exc_info=None
+            exc_info=None,
         )
-        
-        filter.filter(record)
+
+        pii_filter.filter(record)
         assert "test@example.com" not in record.msg
     
     def test_filter_with_args(self):
         import logging
-        
+
         sanitizer = PiiSanitizer()
-        filter = LoggingPiiFilter(sanitizer)
-        
+        pii_filter = LoggingPiiFilter(sanitizer)
+
         record = logging.LogRecord(
             name="test",
             level=logging.INFO,
@@ -296,10 +291,10 @@ class TestLoggingFilter:
             lineno=0,
             msg="User: %s, Email: %s",
             args=("Max", "max@test.com"),
-            exc_info=None
+            exc_info=None,
         )
-        
-        filter.filter(record)
+
+        pii_filter.filter(record)
         assert "max@test.com" not in str(record.args)
 
 
@@ -369,7 +364,7 @@ class TestEdgeCases:
         """Unicode-Domains (IDN)"""
         sanitizer = PiiSanitizer()
         # Hinweis: Regex unterstützt aktuell nur ASCII
-        result = sanitizer.scrub_text("user@münchen.de")
+        sanitizer.scrub_text("user@münchen.de")
         # Expected behavior dokumentiert
     
     def test_very_long_string(self):

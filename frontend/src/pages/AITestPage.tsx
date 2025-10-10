@@ -1,10 +1,11 @@
 // AI Integration Test Page
 import React from 'react';
-import { AIIntegrationDemo } from '../components/demo/AIIntegrationDemo';
 import { AuthSystem } from '../components/auth/AuthSystem';
-import { SepaManagement } from '../components/sepa/SepaManagement';
+import { AIIntegrationDemo } from '../components/demo/AIIntegrationDemo';
 import { PrivacyCenter } from '../components/privacy/PrivacyCenter';
 import { SecurityDashboard } from '../components/security/SecurityDashboard';
+import { SepaManagement } from '../components/sepa/SepaManagement';
+import { MCPStatusBadge } from '../components/status/MCPStatusBadge';
 
 /**
  * Test Page für alle AI-integrierten Komponenten
@@ -36,9 +37,12 @@ export const AITestPage: React.FC = () => {
               <h1 className="text-xl font-bold">Menschlichkeit Österreich - AI Integration Test</h1>
             </div>
 
-            <div className="flex items-center gap-2 text-sm text-muted">
-              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              <span>ChatGPT + Codex + Copilot Active</span>
+            <div className="flex items-center gap-3 text-sm text-muted">
+              <MCPStatusBadge />
+              <div className="hidden md:flex items-center gap-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                <span>ChatGPT + Codex + Copilot Active</span>
+              </div>
             </div>
           </div>
         </div>

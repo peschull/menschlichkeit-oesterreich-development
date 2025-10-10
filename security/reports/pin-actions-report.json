@@ -1,0 +1,1365 @@
+{
+  "path": ".github/workflows",
+  "write": true,
+  "total_files": 33,
+  "total_pinned": 145,
+  "total_failed": 0,
+  "results": [
+    {
+      "file": ".github/workflows/codacy-analyze.yml",
+      "changed": true,
+      "changes": [
+        {
+          "status": "pinned",
+          "file": ".github/workflows/codacy-analyze.yml",
+          "line": "16",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/codacy-analyze.yml",
+          "line": "35",
+          "owner_repo": "codacy/codacy-analysis-cli-action",
+          "from": "v4",
+          "to": "562ee3e92b8e92df8b67e0a5ff8aa8e261919c08"
+        }
+      ]
+    },
+    {
+      "file": ".github/workflows/api-openapi-export.yml",
+      "changed": true,
+      "changes": [
+        {
+          "status": "pinned",
+          "file": ".github/workflows/api-openapi-export.yml",
+          "line": "19",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/api-openapi-export.yml",
+          "line": "22",
+          "owner_repo": "actions/setup-python",
+          "from": "v5",
+          "to": "a26af69be951a213d495a4c3e4e4022e16d87065"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/api-openapi-export.yml",
+          "line": "41",
+          "owner_repo": "actions/upload-artifact",
+          "from": "v4",
+          "to": "ea165f8d65b6e75b540449e92b4886f43607fa02"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/api-openapi-export.yml",
+          "line": "48",
+          "owner_repo": "actions/upload-artifact",
+          "from": "v4",
+          "to": "ea165f8d65b6e75b540449e92b4886f43607fa02"
+        }
+      ]
+    },
+    {
+      "file": ".github/workflows/validate-github-files.yml",
+      "changed": true,
+      "changes": [
+        {
+          "status": "pinned",
+          "file": ".github/workflows/validate-github-files.yml",
+          "line": "20",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/validate-github-files.yml",
+          "line": "23",
+          "owner_repo": "actions/setup-python",
+          "from": "v5",
+          "to": "a26af69be951a213d495a4c3e4e4022e16d87065"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/validate-github-files.yml",
+          "line": "35",
+          "owner_repo": "actions/upload-artifact",
+          "from": "v4",
+          "to": "ea165f8d65b6e75b540449e92b4886f43607fa02"
+        }
+      ]
+    },
+    {
+      "file": ".github/workflows/deploy-plesk.yml",
+      "changed": true,
+      "changes": [
+        {
+          "status": "pinned",
+          "file": ".github/workflows/deploy-plesk.yml",
+          "line": "34",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/deploy-plesk.yml",
+          "line": "37",
+          "owner_repo": "webfactory/ssh-agent",
+          "from": "v0.9.0",
+          "to": "dc588b651fe13675774614f8e6a936a468676387"
+        }
+      ]
+    },
+    {
+      "file": ".github/workflows/social-posts.yml",
+      "changed": true,
+      "changes": [
+        {
+          "status": "pinned",
+          "file": ".github/workflows/social-posts.yml",
+          "line": "21",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/social-posts.yml",
+          "line": "24",
+          "owner_repo": "actions/setup-node",
+          "from": "v4",
+          "to": "49933ea5288caeca8642d1e84afbd3f7d6820020"
+        }
+      ]
+    },
+    {
+      "file": ".github/workflows/n8n-smoke.yml",
+      "changed": true,
+      "changes": [
+        {
+          "status": "pinned",
+          "file": ".github/workflows/n8n-smoke.yml",
+          "line": "14",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/n8n-smoke.yml",
+          "line": "15",
+          "owner_repo": "actions/setup-python",
+          "from": "v5",
+          "to": "a26af69be951a213d495a4c3e4e4022e16d87065"
+        }
+      ]
+    },
+    {
+      "file": ".github/workflows/plesk-deployment.yml",
+      "changed": true,
+      "changes": [
+        {
+          "status": "pinned",
+          "file": ".github/workflows/plesk-deployment.yml",
+          "line": "26",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/plesk-deployment.yml",
+          "line": "29",
+          "owner_repo": "actions/setup-node",
+          "from": "v4",
+          "to": "49933ea5288caeca8642d1e84afbd3f7d6820020"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/plesk-deployment.yml",
+          "line": "35",
+          "owner_repo": "actions/setup-python",
+          "from": "v5",
+          "to": "a26af69be951a213d495a4c3e4e4022e16d87065"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/plesk-deployment.yml",
+          "line": "40",
+          "owner_repo": "shivammathur/setup-php",
+          "from": "v2",
+          "to": "bf6b4fbd49ca58e4608c9c89fba0b8d90bd2a39f"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/plesk-deployment.yml",
+          "line": "77",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/plesk-deployment.yml",
+          "line": "80",
+          "owner_repo": "actions/setup-node",
+          "from": "v4",
+          "to": "49933ea5288caeca8642d1e84afbd3f7d6820020"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/plesk-deployment.yml",
+          "line": "97",
+          "owner_repo": "actions/upload-artifact",
+          "from": "v4",
+          "to": "ea165f8d65b6e75b540449e92b4886f43607fa02"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/plesk-deployment.yml",
+          "line": "118",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/plesk-deployment.yml",
+          "line": "121",
+          "owner_repo": "actions/download-artifact",
+          "from": "v4",
+          "to": "d3f86a106a0bac45b974a628896c90dbdf5c8093"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/plesk-deployment.yml",
+          "line": "212",
+          "owner_repo": "8398a7/action-slack",
+          "from": "v3",
+          "to": "77eaa4f1c608a7d68b38af4e3f739dcd8cba273e"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/plesk-deployment.yml",
+          "line": "221",
+          "owner_repo": "dawidd6/action-send-mail",
+          "from": "v3",
+          "to": "4226df7daafa6fc901a43789c49bf7ab309066e7"
+        }
+      ]
+    },
+    {
+      "file": ".github/workflows/mcp-tests.yml",
+      "changed": true,
+      "changes": [
+        {
+          "status": "pinned",
+          "file": ".github/workflows/mcp-tests.yml",
+          "line": "22",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/mcp-tests.yml",
+          "line": "25",
+          "owner_repo": "actions/setup-node",
+          "from": "v4",
+          "to": "49933ea5288caeca8642d1e84afbd3f7d6820020"
+        }
+      ]
+    },
+    {
+      "file": ".github/workflows/codeql.yml",
+      "changed": true,
+      "changes": [
+        {
+          "status": "pinned",
+          "file": ".github/workflows/codeql.yml",
+          "line": "20",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        }
+      ]
+    },
+    {
+      "file": ".github/workflows/i18n-checks.yml",
+      "changed": true,
+      "changes": [
+        {
+          "status": "pinned",
+          "file": ".github/workflows/i18n-checks.yml",
+          "line": "20",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/i18n-checks.yml",
+          "line": "23",
+          "owner_repo": "actions/setup-node",
+          "from": "v4",
+          "to": "49933ea5288caeca8642d1e84afbd3f7d6820020"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/i18n-checks.yml",
+          "line": "37",
+          "owner_repo": "actions/upload-artifact",
+          "from": "v4",
+          "to": "ea165f8d65b6e75b540449e92b4886f43607fa02"
+        }
+      ]
+    },
+    {
+      "file": ".github/workflows/plesk-deployment-alternative.yml",
+      "changed": true,
+      "changes": [
+        {
+          "status": "pinned",
+          "file": ".github/workflows/plesk-deployment-alternative.yml",
+          "line": "13",
+          "owner_repo": "actions/checkout",
+          "from": "v3",
+          "to": "f43a0e5ff2bd294095638e18286ca9a3d1956744"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/plesk-deployment-alternative.yml",
+          "line": "16",
+          "owner_repo": "actions/setup-node",
+          "from": "v3",
+          "to": "3235b876344d2a9aa001b8d1453c930bba69e610"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/plesk-deployment-alternative.yml",
+          "line": "27",
+          "owner_repo": "SamKirkland/FTP-Deploy-Action",
+          "from": "v4.3.4",
+          "to": "8a24039354ee91000cb948cb4a1dbdf1a1b94a3c"
+        }
+      ]
+    },
+    {
+      "file": ".github/workflows/phase-0-verify.yml",
+      "changed": true,
+      "changes": [
+        {
+          "status": "pinned",
+          "file": ".github/workflows/phase-0-verify.yml",
+          "line": "15",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/phase-0-verify.yml",
+          "line": "18",
+          "owner_repo": "actions/setup-node",
+          "from": "v4",
+          "to": "49933ea5288caeca8642d1e84afbd3f7d6820020"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/phase-0-verify.yml",
+          "line": "44",
+          "owner_repo": "actions/upload-artifact",
+          "from": "v4",
+          "to": "ea165f8d65b6e75b540449e92b4886f43607fa02"
+        }
+      ]
+    },
+    {
+      "file": ".github/workflows/prompt-ci.yml",
+      "changed": true,
+      "changes": [
+        {
+          "status": "pinned",
+          "file": ".github/workflows/prompt-ci.yml",
+          "line": "16",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/prompt-ci.yml",
+          "line": "18",
+          "owner_repo": "actions/setup-node",
+          "from": "v4",
+          "to": "49933ea5288caeca8642d1e84afbd3f7d6820020"
+        }
+      ]
+    },
+    {
+      "file": ".github/workflows/quality.yml",
+      "changed": true,
+      "changes": [
+        {
+          "status": "pinned",
+          "file": ".github/workflows/quality.yml",
+          "line": "21",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/quality.yml",
+          "line": "24",
+          "owner_repo": "actions/setup-node",
+          "from": "v4",
+          "to": "49933ea5288caeca8642d1e84afbd3f7d6820020"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/quality.yml",
+          "line": "31",
+          "owner_repo": "dorny/paths-filter",
+          "from": "v3",
+          "to": "de90cc6fb38fc0963ad72b210f1f284cd68cea36"
+        }
+      ]
+    },
+    {
+      "file": ".github/workflows/branch-protection.yml",
+      "changed": true,
+      "changes": []
+    },
+    {
+      "file": ".github/workflows/ci.yml",
+      "changed": true,
+      "changes": [
+        {
+          "status": "pinned",
+          "file": ".github/workflows/ci.yml",
+          "line": "31",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/ci.yml",
+          "line": "46",
+          "owner_repo": "actions/setup-node",
+          "from": "v4",
+          "to": "49933ea5288caeca8642d1e84afbd3f7d6820020"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/ci.yml",
+          "line": "75",
+          "owner_repo": "codecov/codecov-action",
+          "from": "v3",
+          "to": "ab904c41d6ece82784817410c45d8b8c02684457"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/ci.yml",
+          "line": "96",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/ci.yml",
+          "line": "102",
+          "owner_repo": "actions/setup-python",
+          "from": "v4",
+          "to": "7f4fc3e22c37d6ff65e88745f38bd3157c663f7c"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/ci.yml",
+          "line": "144",
+          "owner_repo": "codecov/codecov-action",
+          "from": "v3",
+          "to": "ab904c41d6ece82784817410c45d8b8c02684457"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/ci.yml",
+          "line": "161",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/ci.yml",
+          "line": "176",
+          "owner_repo": "shivammathur/setup-php",
+          "from": "v2",
+          "to": "bf6b4fbd49ca58e4608c9c89fba0b8d90bd2a39f"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/ci.yml",
+          "line": "190",
+          "owner_repo": "actions/cache",
+          "from": "v3",
+          "to": "6f8efc29b200d32929f49075959781ed54ec270c"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/ci.yml",
+          "line": "213",
+          "owner_repo": "codecov/codecov-action",
+          "from": "v3",
+          "to": "ab904c41d6ece82784817410c45d8b8c02684457"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/ci.yml",
+          "line": "234",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/ci.yml",
+          "line": "239",
+          "owner_repo": "docker/setup-buildx-action",
+          "from": "v3",
+          "to": "e468171a9de216ec08956ac3ada2f0791b6bd435"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/ci.yml",
+          "line": "254",
+          "owner_repo": "docker/build-push-action",
+          "from": "v5",
+          "to": "ca052bb54ab0790a636c9b5f226502c73d547a25"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/ci.yml",
+          "line": "280",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/ci.yml",
+          "line": "283",
+          "owner_repo": "actions/setup-node",
+          "from": "v4",
+          "to": "49933ea5288caeca8642d1e84afbd3f7d6820020"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/ci.yml",
+          "line": "323",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/ci.yml",
+          "line": "326",
+          "owner_repo": "actions/setup-node",
+          "from": "v4",
+          "to": "49933ea5288caeca8642d1e84afbd3f7d6820020"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/ci.yml",
+          "line": "356",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/ci.yml",
+          "line": "361",
+          "owner_repo": "actions/setup-node",
+          "from": "v4",
+          "to": "49933ea5288caeca8642d1e84afbd3f7d6820020"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/ci.yml",
+          "line": "389",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        }
+      ]
+    },
+    {
+      "file": ".github/workflows/mcp-health.yml",
+      "changed": true,
+      "changes": [
+        {
+          "status": "pinned",
+          "file": ".github/workflows/mcp-health.yml",
+          "line": "15",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/mcp-health.yml",
+          "line": "16",
+          "owner_repo": "actions/setup-node",
+          "from": "v4",
+          "to": "49933ea5288caeca8642d1e84afbd3f7d6820020"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/mcp-health.yml",
+          "line": "38",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/mcp-health.yml",
+          "line": "39",
+          "owner_repo": "actions/setup-node",
+          "from": "v4",
+          "to": "49933ea5288caeca8642d1e84afbd3f7d6820020"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/mcp-health.yml",
+          "line": "46",
+          "owner_repo": "actions/upload-artifact",
+          "from": "v4",
+          "to": "ea165f8d65b6e75b540449e92b4886f43607fa02"
+        }
+      ]
+    },
+    {
+      "file": ".github/workflows/docs-lint-and-adr-index.yml",
+      "changed": true,
+      "changes": [
+        {
+          "status": "pinned",
+          "file": ".github/workflows/docs-lint-and-adr-index.yml",
+          "line": "20",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/docs-lint-and-adr-index.yml",
+          "line": "23",
+          "owner_repo": "actions/setup-node",
+          "from": "v4",
+          "to": "49933ea5288caeca8642d1e84afbd3f7d6820020"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/docs-lint-and-adr-index.yml",
+          "line": "37",
+          "owner_repo": "actions/upload-artifact",
+          "from": "v4",
+          "to": "ea165f8d65b6e75b540449e92b4886f43607fa02"
+        }
+      ]
+    },
+    {
+      "file": ".github/workflows/sbom-generation.yml",
+      "changed": true,
+      "changes": [
+        {
+          "status": "pinned",
+          "file": ".github/workflows/sbom-generation.yml",
+          "line": "17",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/sbom-generation.yml",
+          "line": "20",
+          "owner_repo": "actions/setup-node",
+          "from": "v4",
+          "to": "49933ea5288caeca8642d1e84afbd3f7d6820020"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/sbom-generation.yml",
+          "line": "76",
+          "owner_repo": "sigstore/cosign-installer",
+          "from": "v3.7.0",
+          "to": "dc72c7d5c4d10cd6bcb8cf6e3fd625a9e5e537da"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/sbom-generation.yml",
+          "line": "87",
+          "owner_repo": "actions/upload-artifact",
+          "from": "v4",
+          "to": "ea165f8d65b6e75b540449e92b4886f43607fa02"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/sbom-generation.yml",
+          "line": "113",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/sbom-generation.yml",
+          "line": "116",
+          "owner_repo": "actions/setup-node",
+          "from": "v4",
+          "to": "49933ea5288caeca8642d1e84afbd3f7d6820020"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/sbom-generation.yml",
+          "line": "129",
+          "owner_repo": "sigstore/cosign-installer",
+          "from": "v3",
+          "to": "398d4b0eeef1380460a10c8013a76f728fb906ac"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/sbom-generation.yml",
+          "line": "141",
+          "owner_repo": "actions/upload-artifact",
+          "from": "v4",
+          "to": "ea165f8d65b6e75b540449e92b4886f43607fa02"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/sbom-generation.yml",
+          "line": "168",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/sbom-generation.yml",
+          "line": "171",
+          "owner_repo": "actions/setup-node",
+          "from": "v4",
+          "to": "49933ea5288caeca8642d1e84afbd3f7d6820020"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/sbom-generation.yml",
+          "line": "182",
+          "owner_repo": "sigstore/cosign-installer",
+          "from": "v3",
+          "to": "398d4b0eeef1380460a10c8013a76f728fb906ac"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/sbom-generation.yml",
+          "line": "204",
+          "owner_repo": "actions/upload-artifact",
+          "from": "v4",
+          "to": "ea165f8d65b6e75b540449e92b4886f43607fa02"
+        }
+      ]
+    },
+    {
+      "file": ".github/workflows/db-pull.yml",
+      "changed": true,
+      "changes": [
+        {
+          "status": "pinned",
+          "file": ".github/workflows/db-pull.yml",
+          "line": "28",
+          "owner_repo": "webfactory/ssh-agent",
+          "from": "v0.9.0",
+          "to": "dc588b651fe13675774614f8e6a936a468676387"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/db-pull.yml",
+          "line": "47",
+          "owner_repo": "actions/upload-artifact",
+          "from": "v4",
+          "to": "ea165f8d65b6e75b540449e92b4886f43607fa02"
+        }
+      ]
+    },
+    {
+      "file": ".github/workflows/deploy-staging.yml",
+      "changed": true,
+      "changes": [
+        {
+          "status": "pinned",
+          "file": ".github/workflows/deploy-staging.yml",
+          "line": "19",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/deploy-staging.yml",
+          "line": "24",
+          "owner_repo": "actions/setup-node",
+          "from": "v4",
+          "to": "49933ea5288caeca8642d1e84afbd3f7d6820020"
+        }
+      ]
+    },
+    {
+      "file": ".github/workflows/deploy.yml",
+      "changed": false,
+      "changes": []
+    },
+    {
+      "file": ".github/workflows/trivy-fs.yml",
+      "changed": true,
+      "changes": [
+        {
+          "status": "pinned",
+          "file": ".github/workflows/trivy-fs.yml",
+          "line": "18",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/trivy-fs.yml",
+          "line": "23",
+          "owner_repo": "aquasecurity/trivy-action",
+          "from": "0.24.0",
+          "to": "6e7b7d1fd3e4fef0c5fa8cce1229c54b2c9bd0d8"
+        }
+      ]
+    },
+    {
+      "file": ".github/workflows/db-restore.yml",
+      "changed": true,
+      "changes": [
+        {
+          "status": "pinned",
+          "file": ".github/workflows/db-restore.yml",
+          "line": "43",
+          "owner_repo": "webfactory/ssh-agent",
+          "from": "v0.9.0",
+          "to": "dc588b651fe13675774614f8e6a936a468676387"
+        }
+      ]
+    },
+    {
+      "file": ".github/workflows/api-tests.yml",
+      "changed": true,
+      "changes": [
+        {
+          "status": "pinned",
+          "file": ".github/workflows/api-tests.yml",
+          "line": "15",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/api-tests.yml",
+          "line": "16",
+          "owner_repo": "actions/setup-python",
+          "from": "v5",
+          "to": "a26af69be951a213d495a4c3e4e4022e16d87065"
+        }
+      ]
+    },
+    {
+      "file": ".github/workflows/otel-collector-test.yml",
+      "changed": true,
+      "changes": [
+        {
+          "status": "pinned",
+          "file": ".github/workflows/otel-collector-test.yml",
+          "line": "12",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/otel-collector-test.yml",
+          "line": "26",
+          "owner_repo": "actions/setup-node",
+          "from": "v4",
+          "to": "49933ea5288caeca8642d1e84afbd3f7d6820020"
+        }
+      ]
+    },
+    {
+      "file": ".github/workflows/sync-figma-tokens.yml",
+      "changed": true,
+      "changes": [
+        {
+          "status": "pinned",
+          "file": ".github/workflows/sync-figma-tokens.yml",
+          "line": "34",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/sync-figma-tokens.yml",
+          "line": "40",
+          "owner_repo": "actions/setup-node",
+          "from": "v4",
+          "to": "49933ea5288caeca8642d1e84afbd3f7d6820020"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/sync-figma-tokens.yml",
+          "line": "93",
+          "owner_repo": "peter-evans/create-pull-request",
+          "from": "v5",
+          "to": "4e1beaa7521e8b457b572c090b25bd3db56bf1c5"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/sync-figma-tokens.yml",
+          "line": "161",
+          "owner_repo": "actions/github-script",
+          "from": "v7",
+          "to": "f28e40c7f34bde8b3046d885e986cb6290c5673b"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/sync-figma-tokens.yml",
+          "line": "193",
+          "owner_repo": "actions/upload-artifact",
+          "from": "v4",
+          "to": "ea165f8d65b6e75b540449e92b4886f43607fa02"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/sync-figma-tokens.yml",
+          "line": "210",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/sync-figma-tokens.yml",
+          "line": "215",
+          "owner_repo": "actions/setup-node",
+          "from": "v4",
+          "to": "49933ea5288caeca8642d1e84afbd3f7d6820020"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/sync-figma-tokens.yml",
+          "line": "231",
+          "owner_repo": "actions/upload-artifact",
+          "from": "v4",
+          "to": "ea165f8d65b6e75b540449e92b4886f43607fa02"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/sync-figma-tokens.yml",
+          "line": "248",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/sync-figma-tokens.yml",
+          "line": "254",
+          "owner_repo": "actions/setup-node",
+          "from": "v4",
+          "to": "49933ea5288caeca8642d1e84afbd3f7d6820020"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/sync-figma-tokens.yml",
+          "line": "263",
+          "owner_repo": "chromaui/action",
+          "from": "v1",
+          "to": "c93e0bc3a63aa176e14a75b61a31847cbfdd341c"
+        }
+      ]
+    },
+    {
+      "file": ".github/workflows/codacy-analysis.yml",
+      "changed": true,
+      "changes": [
+        {
+          "status": "pinned",
+          "file": ".github/workflows/codacy-analysis.yml",
+          "line": "15",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/codacy-analysis.yml",
+          "line": "42",
+          "owner_repo": "actions/upload-artifact",
+          "from": "v4",
+          "to": "ea165f8d65b6e75b540449e92b4886f43607fa02"
+        }
+      ]
+    },
+    {
+      "file": ".github/workflows/security.yml",
+      "changed": true,
+      "changes": [
+        {
+          "status": "pinned",
+          "file": ".github/workflows/security.yml",
+          "line": "25",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/security.yml",
+          "line": "28",
+          "owner_repo": "actions/setup-node",
+          "from": "v4",
+          "to": "49933ea5288caeca8642d1e84afbd3f7d6820020"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/security.yml",
+          "line": "52",
+          "owner_repo": "aquasecurity/trivy-action",
+          "from": "master",
+          "to": "b6643a29fecd7f34b3597bc6acb0a98b03d33ff8"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/security.yml",
+          "line": "259",
+          "owner_repo": "actions/upload-artifact",
+          "from": "v4",
+          "to": "ea165f8d65b6e75b540449e92b4886f43607fa02"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/security.yml",
+          "line": "284",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/security.yml",
+          "line": "287",
+          "owner_repo": "actions/dependency-review-action",
+          "from": "v4",
+          "to": "56339e523c0409420f6c2c9a2f4292bbb3c07dd3"
+        }
+      ]
+    },
+    {
+      "file": ".github/workflows/gitleaks.yml",
+      "changed": true,
+      "changes": [
+        {
+          "status": "pinned",
+          "file": ".github/workflows/gitleaks.yml",
+          "line": "18",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/gitleaks.yml",
+          "line": "23",
+          "owner_repo": "gitleaks/gitleaks-action",
+          "from": "v2",
+          "to": "ff98106e4c7b2bc287b24eaf42907196329070c7"
+        }
+      ]
+    },
+    {
+      "file": ".github/workflows/insights.yml",
+      "changed": true,
+      "changes": [
+        {
+          "status": "pinned",
+          "file": ".github/workflows/insights.yml",
+          "line": "15",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/insights.yml",
+          "line": "20",
+          "owner_repo": "actions/setup-node",
+          "from": "v4",
+          "to": "49933ea5288caeca8642d1e84afbd3f7d6820020"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/insights.yml",
+          "line": "171",
+          "owner_repo": "actions/upload-artifact",
+          "from": "v4",
+          "to": "ea165f8d65b6e75b540449e92b4886f43607fa02"
+        }
+      ]
+    },
+    {
+      "file": ".github/workflows/owasp-zap-baseline.yml",
+      "changed": true,
+      "changes": [
+        {
+          "status": "pinned",
+          "file": ".github/workflows/owasp-zap-baseline.yml",
+          "line": "16",
+          "owner_repo": "zaproxy/action-baseline",
+          "from": "v0.10.0",
+          "to": "1e1871e84428617b969d4a1f981a8255630d54b0"
+        }
+      ]
+    },
+    {
+      "file": ".github/workflows/enterprise-pipeline.yml",
+      "changed": true,
+      "changes": [
+        {
+          "status": "pinned",
+          "file": ".github/workflows/enterprise-pipeline.yml",
+          "line": "43",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/enterprise-pipeline.yml",
+          "line": "83",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/enterprise-pipeline.yml",
+          "line": "86",
+          "owner_repo": "actions/setup-node",
+          "from": "v4",
+          "to": "49933ea5288caeca8642d1e84afbd3f7d6820020"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/enterprise-pipeline.yml",
+          "line": "101",
+          "owner_repo": "shivammathur/setup-php",
+          "from": "v2",
+          "to": "bf6b4fbd49ca58e4608c9c89fba0b8d90bd2a39f"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/enterprise-pipeline.yml",
+          "line": "113",
+          "owner_repo": "aquasecurity/trivy-action",
+          "from": "master",
+          "to": "b6643a29fecd7f34b3597bc6acb0a98b03d33ff8"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/enterprise-pipeline.yml",
+          "line": "159",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/enterprise-pipeline.yml",
+          "line": "162",
+          "owner_repo": "actions/setup-node",
+          "from": "v4",
+          "to": "49933ea5288caeca8642d1e84afbd3f7d6820020"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/enterprise-pipeline.yml",
+          "line": "183",
+          "owner_repo": "codecov/codecov-action",
+          "from": "v4",
+          "to": "b9fd7d16f6d7d1b5d2bec1a2887e65ceed900238"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/enterprise-pipeline.yml",
+          "line": "201",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/enterprise-pipeline.yml",
+          "line": "243",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/enterprise-pipeline.yml",
+          "line": "246",
+          "owner_repo": "codacy/codacy-analysis-cli-action",
+          "from": "master",
+          "to": "d28ce580f19309cd493628eba4641f745822082c"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/enterprise-pipeline.yml",
+          "line": "264",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/enterprise-pipeline.yml",
+          "line": "267",
+          "owner_repo": "actions/setup-node",
+          "from": "v4",
+          "to": "49933ea5288caeca8642d1e84afbd3f7d6820020"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/enterprise-pipeline.yml",
+          "line": "290",
+          "owner_repo": "treosh/lighthouse-ci-action",
+          "from": "v10",
+          "to": "03becbfc543944dd6e7534f7ff768abb8a296826"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/enterprise-pipeline.yml",
+          "line": "307",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/enterprise-pipeline.yml",
+          "line": "310",
+          "owner_repo": "actions/setup-node",
+          "from": "v4",
+          "to": "49933ea5288caeca8642d1e84afbd3f7d6820020"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/enterprise-pipeline.yml",
+          "line": "329",
+          "owner_repo": "actions/upload-artifact",
+          "from": "v4",
+          "to": "ea165f8d65b6e75b540449e92b4886f43607fa02"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/enterprise-pipeline.yml",
+          "line": "347",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/enterprise-pipeline.yml",
+          "line": "350",
+          "owner_repo": "actions/setup-node",
+          "from": "v4",
+          "to": "49933ea5288caeca8642d1e84afbd3f7d6820020"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/enterprise-pipeline.yml",
+          "line": "369",
+          "owner_repo": "actions/upload-artifact",
+          "from": "v4",
+          "to": "ea165f8d65b6e75b540449e92b4886f43607fa02"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/enterprise-pipeline.yml",
+          "line": "387",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/enterprise-pipeline.yml",
+          "line": "390",
+          "owner_repo": "actions/download-artifact",
+          "from": "v4",
+          "to": "d3f86a106a0bac45b974a628896c90dbdf5c8093"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/enterprise-pipeline.yml",
+          "line": "395",
+          "owner_repo": "webfactory/ssh-agent",
+          "from": "v0.8.0",
+          "to": "d4b9b8ff72958532804b70bbe600ad43b36d5f2e"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/enterprise-pipeline.yml",
+          "line": "421",
+          "owner_repo": "actions/checkout",
+          "from": "v4",
+          "to": "08eba0b27e820071cde6df949e0beb9ba4906955"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/enterprise-pipeline.yml",
+          "line": "424",
+          "owner_repo": "actions/download-artifact",
+          "from": "v4",
+          "to": "d3f86a106a0bac45b974a628896c90dbdf5c8093"
+        },
+        {
+          "status": "pinned",
+          "file": ".github/workflows/enterprise-pipeline.yml",
+          "line": "429",
+          "owner_repo": "webfactory/ssh-agent",
+          "from": "v0.8.0",
+          "to": "d4b9b8ff72958532804b70bbe600ad43b36d5f2e"
+        }
+      ]
+    }
+  ]
+}

@@ -25,7 +25,7 @@ jobs:
       DB_PASS: ${{ secrets.DB_PASS }}
     steps:
       - name: Start ssh-agent
-        uses: webfactory/ssh-agent@v0.9.0
+        uses: webfactory/ssh-agent@dc588b651fe13675774614f8e6a936a468676387 # ref: v0.9.0
         with:
           ssh-private-key: ${{ secrets.PLESK_SSH_KEY }}
 
@@ -44,7 +44,7 @@ jobs:
           echo "OUT=$OUT" >> $GITHUB_ENV
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # ref: v4
         with:
           name: ${{ env.OUT }}
           path: ${{ env.OUT }}

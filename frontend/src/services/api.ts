@@ -8,6 +8,13 @@ export interface HealthResponse {
 
 const baseApi = {
   health: () => http.get<HealthResponse>('/health'),
+  mcpStatus: () =>
+    http.get<{
+      status: 'ok' | 'warn' | 'error';
+      summary: { oks: number; warns: number; errs: number };
+      ts?: string;
+      exitCode?: number;
+    }>('/mcp/status'),
   login: (email: string, password: string) =>
     http.post<LoginResponse>('/auth/login', { email, password }),
 };
@@ -19,7 +26,7 @@ export interface ApiResponse<T = unknown> {
   message?: string;
 }
 
-export type LoginResponse = ApiResponse<{ token: string; expires_in: number }>; 
+export type LoginResponse = ApiResponse<{ token: string; expires_in: number }>;
 
 export interface CreateContactRequest {
   email: string;
@@ -80,6 +87,8 @@ export const api = {
     requestDeletion: (payload: DataDeletionCreateRequest, token: string) =>
       http.post<ApiResponse>(`/privacy/data-deletion`, payload, { token }),
     listDeletions: (token: string) =>
-      http.get<ApiResponse<{ requests: DeletionRequestItem[] }>>(`/privacy/data-deletion`, { token }),
+      http.get<ApiResponse<{ requests: DeletionRequestItem[] }>>(`/privacy/data-deletion`, {
+        token,
+      }),
   },
 };

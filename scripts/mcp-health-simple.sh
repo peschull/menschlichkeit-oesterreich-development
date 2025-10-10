@@ -1,3 +1,9 @@
+#!/usr/bin/env bash
+# Quick MCP Health Check (delegates to full check)
+# Updated: 2025-10-10
+set -Eeuo pipefail
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+exec "$SCRIPT_DIR/mcp-health-check.sh" --mode quick "$@"
 #!/bin/bash
 # MCP Server Health Check - Vereinfachte Version
 # Stand: 7. Oktober 2025

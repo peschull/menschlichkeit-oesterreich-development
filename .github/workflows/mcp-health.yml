@@ -1,0 +1,49 @@
+name: MCP Health
+
+on:
+  push:
+    branches: [ "**" ]
+  pull_request:
+    branches: [ "**" ]
+  schedule:
+    - cron: '17 3 * * *'
+
+jobs:
+  quick:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # ref: v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # ref: v4
+        with:
+          node-version: '22'
+      - name: Ensure jq is available
+        run: |
+          if ! command -v jq >/dev/null 2>&1; then sudo apt-get update -y && sudo apt-get install -y jq; fi
+      - name: Quick MCP Health (fail only on errors)
+        shell: bash
+        run: |
+          set -euo pipefail
+          status=$(bash scripts/mcp-health-check.sh --mode quick --format json | jq -r .status || echo error)
+          echo "MCP Health status: ${status}"
+          if [ "$status" = "error" ]; then
+            echo "MCP Health reported errors"
+            exit 1
+          fi
+          # warn/ok are non-blocking in CI
+          exit 0
+  deep:
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # ref: v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # ref: v4
+        with:
+          node-version: '22'
+      - name: Deep MCP Health (JSON)
+        run: |
+          bash scripts/mcp-health-check.sh --mode deep --format json | tee mcp-health.json
+      - name: Upload artifact
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # ref: v4
+        with:
+          name: mcp-health
+          path: mcp-health.json

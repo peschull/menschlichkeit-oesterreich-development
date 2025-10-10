@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: ZAP Baseline Scan
-        uses: zaproxy/action-baseline@v0.10.0
+        uses: zaproxy/action-baseline@1e1871e84428617b969d4a1f981a8255630d54b0 # ref: v0.10.0
         with:
           target: ${{ inputs.target }}
           allow_issue_writing: false
