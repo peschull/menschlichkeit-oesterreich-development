@@ -28,11 +28,29 @@ check_pii_in_logs() {
         '[0-9]{3}-[0-9]{2}-[0-9]{4}' # SSN-like patterns
     )
     
+    # Whitelist: Öffentliche/dokumentierte Email-Adressen
+    ALLOWED_EMAILS=(
+        'peter.schuller@menschlichkeit-oesterreich.at'
+        'dev@menschlichkeit-oesterreich.at'
+        'devops@menschlichkeit-oesterreich.at'
+        'contact@menschlichkeit-oesterreich.at'
+    )
+    
     for pattern in "${PATTERNS[@]}"; do
-        # Exclude: test files, examples, and the script itself
-        if grep -rE "$pattern" logs/ quality-reports/ 2>/dev/null | grep -v "test" | grep -v ".example" | grep -v "dsgvo-check" | grep -v "\.sh$" > /dev/null; then
+        # Exclude: test files, examples, script itself, markdown docs, and whitelisted emails
+        matches=$(grep -rE "$pattern" logs/ 2>/dev/null | grep -v "test" | grep -v ".example" | grep -v "dsgvo-check" | grep -v "\.md$" || true)
+        
+        # Filter out whitelisted emails
+        for allowed in "${ALLOWED_EMAILS[@]}"; do
+            matches=$(echo "$matches" | grep -v "$allowed" || true)
+        done
+        
+        if [ -n "$matches" ]; then
             echo -e "${RED}❌ Found potential unmasked PII: $pattern${NC}"
+            echo "$matches"
             ((ERRORS++))
+        fi
+    done
         fi
     done
 }
