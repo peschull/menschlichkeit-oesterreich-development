@@ -23,7 +23,7 @@ export default function MemberAreaPage() {
       };
       await api.contacts.create(payload, token);
       setMessage('Kontakt erstellt (Demo)');
-    } catch (e: any) {
+    } catch (e) {
       setError('Kontakt erstellen fehlgeschlagen');
       console.error(e);
     }
@@ -40,7 +40,7 @@ export default function MemberAreaPage() {
       };
       await api.memberships.create(payload, token);
       setMessage('Mitgliedschaft erstellt (Demo)');
-    } catch (e: any) {
+    } catch (e) {
       setError('Mitgliedschaft erstellen fehlgeschlagen');
       console.error(e);
     }

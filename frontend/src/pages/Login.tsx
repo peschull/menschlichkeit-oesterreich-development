@@ -1,15 +1,19 @@
 import React from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Location } from 'react-router-dom';
 import { Card } from '../components/ui/Card';
 import { Input } from '../components/ui/Input';
 import { Button } from '../components/ui/Button';
 import { Alert } from '../components/ui/Alert';
 import { useAuth } from '../auth/AuthContext';
 
+interface LocationState {
+  from?: Location;
+}
+
 export default function LoginPage() {
   const { login } = useAuth();
   const nav = useNavigate();
-  const location = useLocation() as any;
+  const location = useLocation() as Location & { state?: LocationState };
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [loading, setLoading] = React.useState(false);
@@ -23,8 +27,9 @@ export default function LoginPage() {
       await login(email, password);
       const redirectTo = location.state?.from?.pathname || '/member';
       nav(redirectTo, { replace: true });
-    } catch (err: any) {
-      setError(err?.message || 'Login fehlgeschlagen');
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'Login fehlgeschlagen';
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }

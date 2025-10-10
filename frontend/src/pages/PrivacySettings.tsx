@@ -38,8 +38,9 @@ export default function PrivacySettings() {
       const res = await api.privacy.requestDeletion(payload, token);
       setMessage(res?.message || 'Löschantrag wurde übermittelt.');
       await fetchRequests();
-    } catch (err: any) {
-      setError(err?.message || 'Fehler beim Übermitteln des Löschantrags');
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'Fehler beim Übermitteln des Löschantrags';
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }
