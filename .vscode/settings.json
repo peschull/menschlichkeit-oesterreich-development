@@ -18,17 +18,14 @@
         ".github/instructions": true,
         "docs/ai-instructions": true
     },
-    
     // MCP Server Configuration
     "github.copilot.mcp.enabled": true,
     "github.copilot.mcp.configPath": "${workspaceFolder}/.vscode/mcp.json",
-    
     // Environment Variables für MCP
     "terminal.integrated.env.linux": {
         "FIGMA_ACCESS_TOKEN": "${env:FIGMA_ACCESS_TOKEN}",
         "GITHUB_TOKEN": "${env:GITHUB_TOKEN}"
     },
-    
     "telemetry.telemetryLevel": "off",
     "extensions.experimental.deferredStartupFinishedActivation": true,
     "chat.mcp.discovery.enabled": {
@@ -43,6 +40,26 @@
         "."
     ],
     "python.testing.unittestEnabled": false,
-    "python.testing.pytestEnabled": true
-
+    "python.testing.pytestEnabled": true,
+    "chat.mcp.serverSampling": {
+        "menschlichkeit-oesterreich-development/.vscode/mcp.json: codacy/codacy-mcp-server": {
+            "allowedModels": [
+                "copilot/gpt-4.1",
+                "copilot/claude-3.5-sonnet",
+                "copilot/claude-3.7-sonnet",
+                "copilot/claude-3.7-sonnet-thought",
+                "copilot/claude-sonnet-4",
+                "copilot/claude-sonnet-4.5",
+                "copilot/gemini-2.0-flash-001",
+                "copilot/gemini-2.5-pro",
+                "copilot/gpt-4o",
+                "copilot/gpt-5",
+                "copilot/gpt-5-mini",
+                "copilot/gpt-5-codex",
+                "copilot/grok-code-fast-1",
+                "copilot/o3-mini",
+                "copilot/o4-mini"
+            ]
+        }
+    }
 }
