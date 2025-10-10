@@ -3,14 +3,22 @@
         "GitHub.copilot",
         "GitHub.copilot-chat",
         "ms-python.python",
+        "ms-python.vscode-pylance",
         "ms-python.flake8",
         "ms-python.pylint",
+        "ms-toolsai.jupyter",
         "ms-vscode.vscode-typescript-next",
         "esbenp.prettier-vscode",
-        "ms-eslint.vscode-eslint",
+        "dbaeumer.vscode-eslint",
         "bmewburn.vscode-intelephense-client",
         "ms-playwright.playwright",
-        "bradlc.vscode-tailwindcss"
+        "bradlc.vscode-tailwindcss",
+        "ms-azuretools.vscode-docker",
+        "Prisma.prisma",
+        "eamodio.gitlens",
+        "redhat.vscode-yaml",
+        "ms-vscode.makefile-tools",
+        "humao.rest-client"
     ],
     "unwantedRecommendations": []
 }

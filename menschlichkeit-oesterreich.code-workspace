@@ -1,0 +1,198 @@
+{
+    "folders": [
+        {
+            "name": "🏠 Root (Monorepo)",
+            "path": "."
+        },
+        {
+            "name": "🎨 Frontend (React + Vite)",
+            "path": "frontend"
+        },
+        {
+            "name": "🐍 API (FastAPI + Python)",
+            "path": "api.menschlichkeit-oesterreich.at"
+        },
+        {
+            "name": "🏥 CRM (Drupal + CiviCRM)",
+            "path": "crm.menschlichkeit-oesterreich.at"
+        },
+        {
+            "name": "🎮 Games (Prisma + Node)",
+            "path": "web"
+        },
+        {
+            "name": "🔄 Automation (n8n)",
+            "path": "automation/n8n"
+        }
+    ],
+    "settings": {
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.fixAll.eslint": "explicit",
+            "source.organizeImports": "explicit"
+        },
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "eslint.workingDirectories": [
+            { "pattern": "frontend" },
+            { "pattern": "web" }
+        ],
+        "python.defaultInterpreterPath": "${workspaceFolder:🐍 API (FastAPI + Python)}/venv/bin/python",
+        "python.analysis.extraPaths": [
+            "${workspaceFolder:🐍 API (FastAPI + Python)}/app"
+        ],
+        "python.testing.pytestEnabled": true,
+        "python.testing.pytestArgs": [
+            "tests"
+        ],
+        "python.linting.enabled": true,
+        "python.linting.flake8Enabled": true,
+        "python.linting.pylintEnabled": true,
+        "php.validate.executablePath": "/usr/bin/php",
+        "intelephense.files.associations": [
+            "*.php",
+            "*.module",
+            "*.inc",
+            "*.install",
+            "*.theme"
+        ],
+        "intelephense.environment.includePaths": [
+            "${workspaceFolder:🏥 CRM (Drupal + CiviCRM)}/vendor",
+            "${workspaceFolder:🏥 CRM (Drupal + CiviCRM)}/web/core",
+            "${workspaceFolder:🏥 CRM (Drupal + CiviCRM)}/web/modules"
+        ],
+        "[typescript]": {
+            "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[typescriptreact]": {
+            "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[javascript]": {
+            "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[json]": {
+            "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[python]": {
+            "editor.defaultFormatter": "ms-python.black-formatter"
+        },
+        "[php]": {
+            "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "files.exclude": {
+            "**/node_modules": true,
+            "**/__pycache__": true,
+            "**/*.pyc": true,
+            "**/venv": true,
+            "**/.pytest_cache": true,
+            "**/dist": true,
+            "**/build": true,
+            "**/.next": true
+        },
+        "files.watcherExclude": {
+            "**/node_modules/**": true,
+            "**/.git/objects/**": true,
+            "**/.git/subtree-cache/**": true,
+            "**/venv/**": true,
+            "**/__pycache__/**": true
+        },
+        "search.exclude": {
+            "**/node_modules": true,
+            "**/bower_components": true,
+            "**/*.code-search": true,
+            "**/venv": true,
+            "**/__pycache__": true,
+            "**/dist": true,
+            "**/build": true
+        },
+        "tailwindCSS.includeLanguages": {
+            "typescript": "javascript",
+            "typescriptreact": "javascript"
+        },
+        "tailwindCSS.experimental.classRegex": [
+            ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+            ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+        ]
+    },
+    "extensions": {
+        "recommendations": [
+            "GitHub.copilot",
+            "GitHub.copilot-chat",
+            "ms-python.python",
+            "ms-python.vscode-pylance",
+            "ms-python.flake8",
+            "ms-python.pylint",
+            "ms-toolsai.jupyter",
+            "ms-vscode.vscode-typescript-next",
+            "esbenp.prettier-vscode",
+            "dbaeumer.vscode-eslint",
+            "bmewburn.vscode-intelephense-client",
+            "ms-playwright.playwright",
+            "bradlc.vscode-tailwindcss",
+            "ms-azuretools.vscode-docker",
+            "Prisma.prisma",
+            "eamodio.gitlens",
+            "redhat.vscode-yaml",
+            "ms-vscode.makefile-tools",
+            "humao.rest-client"
+        ]
+    },
+    "launch": {
+        "version": "0.2.0",
+        "configurations": [
+            {
+                "name": "🎨 Frontend (Chrome)",
+                "type": "chrome",
+                "request": "launch",
+                "url": "http://localhost:5173",
+                "webRoot": "${workspaceFolder:🎨 Frontend (React + Vite)}/src",
+                "sourceMaps": true,
+                "preLaunchTask": "🎨 Dev: Frontend Only"
+            },
+            {
+                "name": "🐍 API (FastAPI)",
+                "type": "debugpy",
+                "request": "launch",
+                "module": "uvicorn",
+                "args": [
+                    "app.main:app",
+                    "--reload",
+                    "--host", "0.0.0.0",
+                    "--port", "8001"
+                ],
+                "cwd": "${workspaceFolder:🐍 API (FastAPI + Python)}",
+                "env": {
+                    "PYTHONPATH": "${workspaceFolder:🐍 API (FastAPI + Python)}"
+                },
+                "console": "integratedTerminal"
+            },
+            {
+                "name": "🧪 Playwright Tests",
+                "type": "node",
+                "request": "launch",
+                "program": "${workspaceFolder}/node_modules/.bin/playwright",
+                "args": [
+                    "test",
+                    "--headed"
+                ],
+                "cwd": "${workspaceFolder}",
+                "console": "integratedTerminal"
+            },
+            {
+                "name": "🐍 Python Tests (Current File)",
+                "type": "debugpy",
+                "request": "launch",
+                "module": "pytest",
+                "args": [
+                    "-v",
+                    "${file}"
+                ],
+                "cwd": "${workspaceFolder}",
+                "console": "integratedTerminal"
+            }
+        ]
+    },
+    "tasks": {
+        "version": "2.0.0",
+        "tasks": []
+    }
+}

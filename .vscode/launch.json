@@ -5,9 +5,9 @@
       "name": "🚀 Debug: Frontend (Vite)",
       "type": "node",
       "request": "launch",
-      "program": "${workspaceFolder}/frontend/node_modules/.bin/vite",
-      "args": ["--mode", "development"],
-      "cwd": "${workspaceFolder}/frontend",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev:frontend"],
+      "cwd": "${workspaceFolder}",
       "console": "integratedTerminal",
       "env": {
         "NODE_ENV": "development",
@@ -17,11 +17,16 @@
       "presentation": {
         "group": "frontend",
         "order": 1
+      },
+      "serverReadyAction": {
+        "pattern": "Local:.*http://localhost:([0-9]+)",
+        "uriFormat": "http://localhost:%s",
+        "action": "openExternally"
       }
     },
     {
       "name": "🐍 Debug: API (FastAPI)",
-      "type": "python",
+      "type": "debugpy",
       "request": "launch",
       "module": "uvicorn",
       "args": ["app.main:app", "--host", "0.0.0.0", "--port", "8001", "--reload"],
@@ -39,11 +44,76 @@
       }
     },
     {
-      "name": "🏗️ Debug: Build Pipeline",
+      "name": "🧪 Debug: Pytest (Current File)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "pytest",
+      "args": ["-v", "${file}"],
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/api.menschlichkeit-oesterreich.at"
+      },
+      "console": "integratedTerminal",
+      "justMyCode": false,
+      "presentation": {
+        "group": "testing",
+        "order": 1
+      }
+    },
+    {
+      "name": "🧪 Debug: PII Sanitizer Tests",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "pytest",
+      "args": ["-v", "tests/test_pii_sanitizer.py"],
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/api.menschlichkeit-oesterreich.at"
+      },
+      "console": "integratedTerminal",
+      "justMyCode": false,
+      "presentation": {
+        "group": "testing",
+        "order": 2
+      }
+    },
+    {
+      "name": "🧪 Debug: Playwright Tests",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/.bin/playwright",
+      "args": ["test", "--debug", "--headed"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "env": {
+        "PLAYWRIGHT_BROWSERS_PATH": "${workspaceFolder}/.playwright",
+        "DEBUG": "pw:*"
+      },
+      "presentation": {
+        "group": "testing",
+        "order": 3
+      }
+    },
+    {
+      "name": "🧪 Debug: Vitest (Current File)",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "test:unit", "--", "${file}"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"],
+      "presentation": {
+        "group": "testing",
+        "order": 4
+      }
+    },
+    {
+      "name": "🏗️ Debug: Build Pipeline (Staging)",
       "type": "node",
       "request": "launch",
       "program": "${workspaceFolder}/build-pipeline.sh",
-      "args": ["development", "--verbose"],
+      "args": ["staging", "--verbose"],
       "cwd": "${workspaceFolder}",
       "console": "integratedTerminal",
       "env": {
@@ -70,23 +140,6 @@
       },
       "presentation": {
         "group": "automation",
-        "order": 1
-      }
-    },
-    {
-      "name": "🧪 Debug: Playwright Tests",
-      "type": "node",
-      "request": "launch",
-      "program": "${workspaceFolder}/node_modules/.bin/playwright",
-      "args": ["test", "--debug", "--headed"],
-      "cwd": "${workspaceFolder}",
-      "console": "integratedTerminal",
-      "env": {
-        "PLAYWRIGHT_BROWSERS_PATH": "${workspaceFolder}/.playwright",
-        "DEBUG": "pw:*"
-      },
-      "presentation": {
-        "group": "testing",
         "order": 1
       }
     },
@@ -136,5 +189,4 @@
       }
     }
   ]
-}
 }
