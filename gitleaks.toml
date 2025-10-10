@@ -22,16 +22,38 @@ paths = [
     # Node/Bower dependencies
     '''.*/node_modules/.*''',
     '''.*/bower_components/.*''',
-    # Test files
+    # Test files and test data
     '''.*/tests?/.*''',
     '''.*[Tt]est\.php$''',
     '''.*_test\.(py|js|ts)$''',
+    '''tests/test_pii_sanitizer\.py''',
     # Build artifacts
     '''.*\.pyc$''',
     '''.*/__pycache__/.*''',
-    # Development templates
+    # Development templates and examples
     '''secrets/development/.*''',
-    '''config-templates/.*'''
+    '''secrets/production/.*\.example\.yaml$''',
+    '''secrets/production/api-keys\.yaml$''',
+    '''config-templates/.*''',
+    # Documentation with example secrets
+    '''.*\.md$''',
+    '''\.github/copilot-instructions\.md''',
+    '''PRODUCTION-.*\.md$''',
+    '''quality-reports/.*\.md$''',
+    '''figma-design-system/.*\.txt$''',
+    '''ZUGANGSDATEN-.*\.txt$''',
+    '''Website/src/.*\.md$''',
+    # PowerShell example scripts
+    '''scripts/.*\.ps1$''',
+    # Python secret generation scripts (contain templates)
+    '''scripts/generate-production-secrets\.py''',
+    # VS Code settings (only contains env references)
+    '''\.vscode/settings\.json''',
+    # GitHub Actions test env
+    '''\.github/workflows/api-tests\.yml''',
+    # Architecture documentation
+    '''Website/src/.*\.md$''',
+    '''automation/elk-stack/docker-compose\.yml'''
 ]
 
 [[rules]]
@@ -46,11 +68,42 @@ paths = [
     '''.*/bower_components/.*''',
     # Legacy prompts and documentation with example keys
     '''\.github/prompts/.*''',
-    '''docs/.*\.md$'''
+    '''docs/.*\.md$''',
+    '''quality-reports/.*\.md$'''
 ]
 regexes = [
     '''REDACTED''',  # Redacted/placeholder keys
     '''SSH_PRIVATE_KEY.*REDACTED'''
+]
+
+[[rules]]
+id = "aws-access-token"
+description = "AWS Access Key - DISABLED for documentation examples"
+regex = '''AKIA[0-9A-Z]{16}'''
+tags = ["AWS", "key"]
+[rules.allowlist]
+paths = [
+    '''quality-reports/.*\.md$''',
+    '''docs/.*\.md$'''
+]
+regexes = [
+    '''AKIAIOSFODNN7EXAMPLE''',  # AWS documentation example
+    '''AKIA.*EXAMPLE'''
+]
+
+[[rules]]
+id = "hashicorp-tf-password"
+description = "HashiCorp Terraform Password - DISABLED for PowerShell migration scripts"
+regex = '''\bPassword\s*=\s*"[^"]*"'''
+tags = ["password", "terraform"]
+[rules.allowlist]
+paths = [
+    '''scripts/wordpress-migration\.ps1$''',
+    '''scripts/.*\.ps1$'''
+]
+regexes = [
+    '''SECURE_LARAVEL_2025''',  # Migration script placeholder
+    '''SECURE_CIVICRM_2025'''   # Migration script placeholder
 ]
 
 [allowlist]
@@ -62,6 +115,13 @@ paths = [
     '''.*/bower_components/.*''',
     '''.*/tests?/.*''',
     '''secrets/development/.*''',
+    # Python dependency caches (uv, pip, poetry)
+    '''\.ai-sandbox/\.cache/.*''',
+    '''\.cache/.*''',
+    '''__pycache__/.*''',
+    # VS Code backups and caches
+    '''\.vscode/mcp-backup-.*\.json$''',
+    '''\.vscode/.*-cache/.*''',
     # Environment files (should be in .gitignore anyway)
     '''\.env$''',
     '''\.env\..*''',
@@ -76,6 +136,7 @@ paths = [
     '''\.github/prompts/.*\.md$''',
     '''automation/.*/.*\.md$''',
     '''deployment-scripts/.*\.md$''',
+    '''quality-reports/.*\.md$''',
     # Secrets template files with REDACTED placeholders
     '''secrets.*\.json$''',
     # VS Code MCP config (local development)

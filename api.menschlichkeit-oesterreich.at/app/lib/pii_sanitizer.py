@@ -90,8 +90,13 @@ class PiiSanitizer:
         )
         self._re_gh_token = re.compile(r"ghp_[A-Za-z0-9]{20,}")
 
-        # Password-like key/value in free text (e.g., "Password: MySecret123!")
-        self._re_password_kv = re.compile(r"(?i)\b(pass(?:word)?|pwd)\s*[:=]\s*([^\s,;]+)")
+        # Password-like key/value in free text (example: "Password: ****")
+        # ggignore (GitGuardian false positive - this is a regex pattern example)
+        # nosemgrep: generic.secrets.security.detected-generic-secret.detected-generic-secret
+        # nosec B105 - This is a regex pattern for PII detection, not an actual password
+        self._re_password_kv = re.compile(
+            r"(?i)\b(pass(?:word)?|pwd)\s*[:=]\s*([^\s,;]+)"
+        )
 
         # IBAN (basic shape, validate via mod97)
         self._re_iban = re.compile(r"\b([A-Z]{2})(\d{2})([A-Z0-9]{10,30})\b")
