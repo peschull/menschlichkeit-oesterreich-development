@@ -10,10 +10,10 @@ jobs:
     deploy:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v3
+            - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # ref: v3
 
             - name: Setup Node.js
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610 # ref: v3
               with:
                   node-version: "18"
 
@@ -24,7 +24,7 @@ jobs:
                   npm run build
 
             - name: Deploy via FTP
-              uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+              uses: SamKirkland/FTP-Deploy-Action@8a24039354ee91000cb948cb4a1dbdf1a1b94a3c # ref: v4.3.4
               with:
                   server: digimagical.com
                   username: dmpl20230054

@@ -40,7 +40,7 @@ jobs:
 
     steps:
       - name: 📥 Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # ref: v4
         with:
           fetch-depth: 0
 
@@ -80,10 +80,10 @@ jobs:
 
     steps:
       - name: 📥 Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # ref: v4
 
       - name: 🔧 Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # ref: v4
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
@@ -98,7 +98,7 @@ jobs:
         run: npm run lint
 
       - name: 🔧 Setup PHP
-        uses: shivammathur/setup-php@v2
+        uses: shivammathur/setup-php@bf6b4fbd49ca58e4608c9c89fba0b8d90bd2a39f # ref: v2
         with:
           php-version: ${{ env.PHP_VERSION }}
           extensions: mbstring, xml, ctype, iconv, intl, pdo, pdo_mysql, dom, filter, gd, json
@@ -110,7 +110,7 @@ jobs:
         run: vendor/bin/phpstan analyse --no-progress
 
       - name: 🔒 Security Check - Trivy
-        uses: aquasecurity/trivy-action@master
+        uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # ref: master
         with:
           scan-type: 'fs'
           scan-ref: '.'
@@ -156,10 +156,10 @@ jobs:
 
     steps:
       - name: 📥 Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # ref: v4
 
       - name: 🔧 Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # ref: v4
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
@@ -180,7 +180,7 @@ jobs:
           fi
 
       - name: 📊 Upload Coverage
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@b9fd7d16f6d7d1b5d2bec1a2887e65ceed900238 # ref: v4
         if: always()
         with:
           directory: ${{ matrix.path }}
@@ -198,7 +198,7 @@ jobs:
 
     steps:
       - name: 📥 Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # ref: v4
 
       - name: 🔒 Snyk Security Scan
         uses: snyk/actions/node@master
@@ -240,10 +240,10 @@ jobs:
 
     steps:
       - name: 📥 Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # ref: v4
 
       - name: 🔍 Codacy Analysis CLI
-        uses: codacy/codacy-analysis-cli-action@master
+        uses: codacy/codacy-analysis-cli-action@d28ce580f19309cd493628eba4641f745822082c # ref: master
         with:
           api-token: ${{ secrets.CODACY_API_TOKEN }}
           upload: true
@@ -261,10 +261,10 @@ jobs:
 
     steps:
       - name: 📥 Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # ref: v4
 
       - name: 🔧 Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # ref: v4
         with:
           node-version: ${{ env.NODE_VERSION }}
 
@@ -287,7 +287,7 @@ jobs:
           fi
 
       - name: 🔬 Lighthouse CI
-        uses: treosh/lighthouse-ci-action@v10
+        uses: treosh/lighthouse-ci-action@03becbfc543944dd6e7534f7ff768abb8a296826 # ref: v10
         with:
           configPath: './lighthouse.config.cjs'
           uploadArtifacts: true
@@ -304,10 +304,10 @@ jobs:
 
     steps:
       - name: 📥 Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # ref: v4
 
       - name: 🔧 Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # ref: v4
         with:
           node-version: ${{ env.NODE_VERSION }}
 
@@ -326,7 +326,7 @@ jobs:
         run: npx playwright test
 
       - name: 📊 Upload E2E Results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # ref: v4
         if: always()
         with:
           name: playwright-results
@@ -344,10 +344,10 @@ jobs:
 
     steps:
       - name: 📥 Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # ref: v4
 
       - name: 🔧 Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # ref: v4
         with:
           node-version: ${{ env.NODE_VERSION }}
 
@@ -366,7 +366,7 @@ jobs:
           fi
 
       - name: 📦 Upload Build Artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # ref: v4
         with:
           name: build-${{ matrix.service }}
           path: ${{ matrix.path }}dist/
@@ -384,15 +384,15 @@ jobs:
 
     steps:
       - name: 📥 Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # ref: v4
 
       - name: 📦 Download Build Artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # ref: v4
         with:
           path: ./builds
 
       - name: 🔐 Setup SSH
-        uses: webfactory/ssh-agent@v0.8.0
+        uses: webfactory/ssh-agent@d4b9b8ff72958532804b70bbe600ad43b36d5f2e # ref: v0.8.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
@@ -418,15 +418,15 @@ jobs:
 
     steps:
       - name: 📥 Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # ref: v4
 
       - name: 📦 Download Build Artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # ref: v4
         with:
           path: ./builds
 
       - name: 🔐 Setup SSH
-        uses: webfactory/ssh-agent@v0.8.0
+        uses: webfactory/ssh-agent@d4b9b8ff72958532804b70bbe600ad43b36d5f2e # ref: v0.8.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 

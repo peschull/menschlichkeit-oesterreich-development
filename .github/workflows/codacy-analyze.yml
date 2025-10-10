@@ -13,7 +13,7 @@ jobs:
   analyze:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # ref: v4
 
       - name: Guard — CODACY_TOKEN prüfen
         id: guard
@@ -32,7 +32,7 @@ jobs:
 
       - name: Codacy Analysis
         if: steps.guard.outputs.has_token == 'true'
-        uses: codacy/codacy-analysis-cli-action@v4
+        uses: codacy/codacy-analysis-cli-action@562ee3e92b8e92df8b67e0a5ff8aa8e261919c08 # ref: v4
         with:
           api-token: ${{ secrets.CODACY_TOKEN }}
           tool: eslint

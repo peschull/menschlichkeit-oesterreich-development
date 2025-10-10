@@ -31,13 +31,13 @@ jobs:
 
     steps:
       - name: 📥 Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # ref: v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
       - name: 🔧 Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # ref: v4
         with:
           node-version: '20'
           cache: 'npm'
@@ -90,7 +90,7 @@ jobs:
 
       - name: 🔄 Create Pull Request
         if: steps.check_changes.outputs.changes == 'true' && (github.event_name == 'schedule' || inputs.create_pr == true)
-        uses: peter-evans/create-pull-request@v5
+        uses: peter-evans/create-pull-request@4e1beaa7521e8b457b572c090b25bd3db56bf1c5 # ref: v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: |
@@ -158,7 +158,7 @@ jobs:
 
       - name: 📢 Notify on Failure
         if: failure()
-        uses: actions/github-script@v7
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # ref: v7
         with:
           script: |
             github.rest.issues.create({
@@ -190,7 +190,7 @@ jobs:
 
       - name: 📊 Upload Artifacts
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # ref: v4
         with:
           name: figma-sync-report-${{ github.run_number }}
           path: |
@@ -207,12 +207,12 @@ jobs:
 
     steps:
       - name: 📥 Checkout PR
-        uses: actions/checkout@v4
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # ref: v4
         with:
           ref: figma-sync-${{ github.run_number }}
 
       - name: 🔧 Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # ref: v4
         with:
           node-version: '20'
           cache: 'npm'
@@ -228,7 +228,7 @@ jobs:
 
       - name: 📸 Upload Screenshots
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # ref: v4
         with:
           name: visual-regression-results-${{ github.run_number }}
           path: |
@@ -245,13 +245,13 @@ jobs:
 
     steps:
       - name: 📥 Checkout PR
-        uses: actions/checkout@v4
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # ref: v4
         with:
           ref: figma-sync-${{ github.run_number }}
           fetch-depth: 0
 
       - name: 🔧 Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # ref: v4
         with:
           node-version: '20'
           cache: 'npm'
@@ -260,7 +260,7 @@ jobs:
         run: npm ci
 
       - name: 📸 Chromatic Deployment
-        uses: chromaui/action@v1
+        uses: chromaui/action@c93e0bc3a63aa176e14a75b61a31847cbfdd341c # ref: v1
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           exitZeroOnChanges: true

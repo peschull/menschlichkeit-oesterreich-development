@@ -81,9 +81,9 @@
     "n8n:smoke": "python3 automation/n8n/smoke-test.py",
     "mcp:setup": "bash scripts/setup-mcp-servers.sh",
     "mcp:check": "bash scripts/mcp-health-check.sh",
-  "mcp:check:quick": "bash scripts/mcp-health-check.sh --mode quick",
-  "mcp:check:deep": "bash scripts/mcp-health-check.sh --mode deep",
-  "mcp:check:json": "bash scripts/mcp-health-check.sh --mode deep --format json",
+    "mcp:check:quick": "bash scripts/mcp-health-check.sh --mode quick",
+    "mcp:check:deep": "bash scripts/mcp-health-check.sh --mode deep",
+    "mcp:check:json": "bash scripts/mcp-health-check.sh --mode deep --format json",
     "mcp:install": "npm install -g @modelcontextprotocol/server-filesystem @modelcontextprotocol/server-memory figma-mcp @notionhq/notion-mcp-server enhanced-postgres-mcp-server @upstash/context7-mcp",
     "mcp:list": "cat mcp.json | jq '.servers | keys'",
     "mcp:chat:start": "node mcp-servers/chatgpt-app-server/index.js",
@@ -105,7 +105,9 @@
     "deploy:health-check": "bash deployment-scripts/health-check-utils.sh",
     "deploy:setup-env": "bash deployment-scripts/setup-environment.sh",
     "sandbox:cleanup": "bash scripts/sandbox-cleanup.sh",
-    "sandbox:validate": "npm run quality:gates -- --target .ai-sandbox"
+    "sandbox:validate": "npm run quality:gates -- --target .ai-sandbox",
+    "security:pin-actions": "python3 scripts/pin_gh_actions.py",
+    "security:pin-actions:write": "python3 scripts/pin_gh_actions.py --write"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",

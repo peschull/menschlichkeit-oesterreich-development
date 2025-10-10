@@ -14,10 +14,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # ref: v4
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # ref: v4
         with:
           node-version: '22'
 
@@ -73,7 +73,7 @@ jobs:
           npx -y @cyclonedx/cyclonedx-cli validate --input-file security/sbom/frontend.json
 
       - name: Install Cosign
-        uses: sigstore/cosign-installer@v3.7.0
+        uses: sigstore/cosign-installer@dc72c7d5c4d10cd6bcb8cf6e3fd625a9e5e537da # ref: v3.7.0
 
       - name: Sign SBOMs with Cosign (keyless OIDC)
         env:
@@ -84,7 +84,7 @@ jobs:
           done
 
       - name: Upload SBOM Artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # ref: v4
         with:
           name: sbom-artifacts
           path: |
@@ -110,10 +110,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # ref: v4
 
       - name: Setup Node for CycloneDX CLI
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # ref: v4
         with:
           node-version: '22'
 
@@ -126,7 +126,7 @@ jobs:
           npx -y @cyclonedx/cyclonedx-cli validate --input-file security/sbom/frontend.json
 
       - name: Install Cosign
-        uses: sigstore/cosign-installer@v3
+        uses: sigstore/cosign-installer@398d4b0eeef1380460a10c8013a76f728fb906ac # ref: v3
 
       - name: Cosign sign SBOMs (keyless via OIDC)
         env:
@@ -138,7 +138,7 @@ jobs:
           done
 
       - name: Upload SBOMs & signatures
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # ref: v4
         with:
           name: sboms-and-signatures
           path: |
@@ -165,10 +165,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # ref: v4
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # ref: v4
         with:
           node-version: '22'
 
@@ -179,7 +179,7 @@ jobs:
           sudo mv cyclonedx /usr/local/bin/cyclonedx
 
       - name: Install Cosign
-        uses: sigstore/cosign-installer@v3
+        uses: sigstore/cosign-installer@398d4b0eeef1380460a10c8013a76f728fb906ac # ref: v3
 
       - name: Install Dependencies (root)
         run: npm ci --ignore-scripts
@@ -201,7 +201,7 @@ jobs:
           cosign sign-blob --yes sbom-node.json > sbom-node.sig
 
       - name: Upload SBOM artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # ref: v4
         with:
           name: sbom-artifacts
           path: |
