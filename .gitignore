@@ -124,6 +124,10 @@ dist/
 build/
 out/
 
+# Prisma generated client (auto-generated on build)
+/generated/
+**/generated/client/
+
 # ========================================
 # TypeScript
 # ========================================
