@@ -39,13 +39,20 @@ fi
 # 3) VS Code: Empfohlenes Setting für MCP-Zugriff setzen (workspace-lokal)
 #    Siehe VS Code Docs: chat.mcp.access = "all"
 TMP_SETTINGS="$(mktemp)"
+strip_jsonc(){ sed -E '/^\s*\/\//d; s/\/\*.*\*\///g' "$1"; }
 if [[ -f "$SETTINGS_JSON" ]]; then
-  jq '. + {"chat.mcp.access": "all"}' "$SETTINGS_JSON" > "$TMP_SETTINGS" || true
+  if strip_jsonc "$SETTINGS_JSON" | jq '. + {"chat.mcp.access": "all"}' > "$TMP_SETTINGS" 2>/dev/null; then
+    mv "$TMP_SETTINGS" "$SETTINGS_JSON"
+    ok ".vscode/settings.json: chat.mcp.access=all gesetzt (merge)"
+  else
+    warn "Konnte settings.json nicht parsen (JSONC) – schreibe minimales Setting"
+    printf '{"chat.mcp.access": "all"}\n' > "$SETTINGS_JSON"
+    ok ".vscode/settings.json: neu gesetzt (nur chat.mcp.access)"
+  fi
 else
-  printf '{"chat.mcp.access": "all"}\n' > "$TMP_SETTINGS"
+  printf '{"chat.mcp.access": "all"}\n' > "$SETTINGS_JSON"
+  ok ".vscode/settings.json: neu angelegt (chat.mcp.access=all)"
 fi
-mv "$TMP_SETTINGS" "$SETTINGS_JSON"
-ok ".vscode/settings.json: chat.mcp.access=all gesetzt"
 
 # 4) Sicherheitsprüfung: Hinweise auf hartcodierte Secrets in mcp.json
 if [[ -f "$MCP_JSON" ]] && grep -E '(ghp_|sk_live_|xoxb-|AIzaSy|EAACEdEose0cBA)' "$MCP_JSON" >/dev/null 2>&1; then

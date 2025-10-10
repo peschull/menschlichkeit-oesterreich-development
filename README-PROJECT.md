@@ -1,3 +1,11 @@
+## MCP – Health, Reload & Debug
+
+- Quick Check: `scripts/mcp-health-check.sh --mode quick`
+- Deep Check: `scripts/mcp-health-check.sh --mode deep`
+- JSON Output: `scripts/mcp-health-check.sh --mode deep --format json`
+- VS Code Reload & Settings: `scripts/mcp-vscode-reload.sh` (setzt `chat.mcp.access=all`)
+- Debug Runner: `node scripts/mcp-debug.js` (liest `.vscode/mcp.json`, stdio/http inkl. MCP-Header)
+
 # Menschlichkeit Österreich - Development Environment
 
 **Multi-Service Austrian NGO Platform** mit Enterprise-Grade DevOps, DSGVO-Compliance und Design System Integration.

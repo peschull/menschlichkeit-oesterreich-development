@@ -51,8 +51,9 @@ fi
 
 # 2) settings.json: chat.mcp.access
 SETTINGS_JSON="$VSCODE_DIR/settings.json"
+strip_jsonc(){ sed -E '/^\s*\/\//d; s/\/\*.*\*\///g' "$1"; }
 if [[ -f "$SETTINGS_JSON" ]]; then
-  val="$(jq -r '."chat.mcp.access" // empty' "$SETTINGS_JSON")"
+  val="$(strip_jsonc "$SETTINGS_JSON" | jq -r '."chat.mcp.access" // empty')"
   if [[ "$val" != "all" ]]; then
     warn "settings.json: chat.mcp.access ist nicht 'all' (aktuell: '${val:-unset}')"; ((++warns))
   else

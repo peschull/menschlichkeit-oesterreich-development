@@ -33,4 +33,4 @@ if [[ -z "${DATABASE_URL:-}" ]]; then
 fi
 
 # Starte Server mit DATABASE_URL aus der Umgebung
-exec env DATABASE_URL="$DATABASE_URL" npx -y enhanced-postgres-mcp-server
+exec env DATABASE_URL="$DATABASE_URL" npx -y enhanced-postgres-mcp-server "$DATABASE_URL"

@@ -62,7 +62,9 @@ async function testStdIo(id, cfg) {
   const timer = setTimeout(() => {
     try {
       child.kill();
-    } catch { /* ignore kill errors */ }
+    } catch {
+      /* ignore kill errors */
+    }
   }, 12000);
   child.stdout.on('data', d => (out += d.toString()));
   child.stderr.on('data', d => (err += d.toString()));
@@ -82,7 +84,9 @@ async function testStdIo(id, cfg) {
         },
       }) + '\n';
     child.stdin.write(init);
-  } catch { /* ignore initialize write errors */ }
+  } catch {
+    /* ignore initialize write errors */
+  }
 
   const exitCode = await new Promise(res => child.on('close', code => res(code)));
   clearTimeout(timer);
@@ -105,15 +109,15 @@ async function testHttp(id, cfg) {
   // Lazy check without external deps: use node fetch
   const ctrl = new AbortController();
   const t = setTimeout(() => ctrl.abort(), 4000);
-    try {
-      const res = await fetch(url, {
-        method: 'GET',
-        headers: {
-          'Accept': 'text/event-stream, application/json',
-          'MCP-Protocol-Version': '2025-06-18'
-        },
-        signal: ctrl.signal
-      });
+  try {
+    const res = await fetch(url, {
+      method: 'GET',
+      headers: {
+        Accept: 'text/event-stream, application/json',
+        'MCP-Protocol-Version': '2025-06-18',
+      },
+      signal: ctrl.signal,
+    });
     clearTimeout(t);
     console.log(`${GREEN}✅ ${id}${R} HTTP erreichbar (${res.status})`);
     return { id, ok: true };

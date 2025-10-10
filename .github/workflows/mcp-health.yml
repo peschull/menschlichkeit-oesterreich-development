@@ -1,0 +1,37 @@
+name: MCP Health
+
+on:
+  push:
+    branches: [ "**" ]
+  pull_request:
+    branches: [ "**" ]
+  schedule:
+    - cron: '17 3 * * *'
+
+jobs:
+  quick:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Quick MCP Health
+        run: |
+          bash scripts/mcp-health-check.sh --mode quick
+  deep:
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Deep MCP Health (JSON)
+        run: |
+          bash scripts/mcp-health-check.sh --mode deep --format json | tee mcp-health.json
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mcp-health
+          path: mcp-health.json
