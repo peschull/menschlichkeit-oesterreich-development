@@ -64,5 +64,7 @@
                 "copilot/o4-mini"
             ]
         }
-    }
+    },
+    "git.allowNoVerifyCommit": true,
+    "chat.edits2.enabled": true
 }

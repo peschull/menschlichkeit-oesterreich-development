@@ -1,170 +1,157 @@
 #!/usr/bin/env node
 /**
- * MCP Server Debug & Test Script
- * Testet alle verfügbaren MCP-Server systematisch
+ * MCP Debugger: startet alle Server aus .vscode/mcp.json
+ * – stdio: npx/command + args
+ * – http: prüft Erreichbarkeit
+ * Sendet ein JSON‑RPC initialize und wartet auf Antwort
  */
 
-import { spawn } from 'child_process';
-import fs from 'fs';
-import path from 'path';
+import { spawn } from 'node:child_process';
+import fs from 'node:fs/promises';
+import path from 'node:path';
 
-const GREEN = '\x1b[32m';
-const RED = '\x1b[31m';
-const YELLOW = '\x1b[33m';
-const BLUE = '\x1b[34m';
-const RESET = '\x1b[0m';
+const GREEN = '\x1b[32m',
+  RED = '\x1b[31m',
+  YEL = '\x1b[33m',
+  BLUE = '\x1b[34m',
+  R = '\x1b[0m';
+const ROOT = process.cwd();
+const MCP_JSON = path.join(ROOT, '.vscode', 'mcp.json');
 
-console.log(`${BLUE}🔍 MCP Server Diagnose & Test${RESET}`);
-console.log('================================\n');
+const sleep = ms => new Promise(r => setTimeout(r, ms));
 
-// Verfügbare MCP-Server zum Testen
-const mcpServers = [
-    {
-        name: 'Filesystem MCP',
-        package: '@modelcontextprotocol/server-filesystem',
-        args: ['.'],
-        env: {}
-    },
-    {
-        name: 'Memory MCP',
-        package: '@modelcontextprotocol/server-memory',
-        args: [],
-        env: {}
-    },
-    {
-        name: 'Figma MCP',
-        package: 'figma-mcp',
-        args: [],
-        env: { FIGMA_API_TOKEN: 'test' }
-    },
-    {
-        name: 'PostgreSQL MCP',
-        package: 'enhanced-postgres-mcp-server',
-        args: [],
-        env: { DATABASE_URL: 'postgresql://test:test@localhost:5432/test' }
-    },
-    {
-        name: 'Puppeteer MCP',
-        package: 'puppeteer-mcp-server',
-        args: [],
-        env: {}
-    },
-    {
-        name: 'Sequential Thinking MCP',
-        package: '@modelcontextprotocol/server-sequential-thinking',
-        args: [],
-        env: {}
-    }
-];
+async function loadConfig() {
+  const raw = await fs.readFile(MCP_JSON, 'utf8');
+  const cfg = JSON.parse(raw);
+  if (!cfg.servers || typeof cfg.servers !== 'object') throw new Error('mcp.json: servers{} fehlt');
+  return cfg;
+}
 
-async function testMcpServer(server) {
-    return new Promise((resolve) => {
-        console.log(`${YELLOW}📦 Teste ${server.name}...${RESET}`);
-        
-        const child = spawn('npx', ['-y', server.package, ...server.args], {
-            env: { ...process.env, ...server.env },
-            stdio: ['pipe', 'pipe', 'pipe']
-        });
+function resolvePlaceholders(value) {
+  if (typeof value !== 'string') return value;
+  // ${workspaceFolder}
+  let v = value.replaceAll('${workspaceFolder}', ROOT);
+  // ${env:VAR}
+  v = v.replace(/\$\{env:([A-Z0-9_]+)\}/g, (_m, name) => process.env[name] ?? '');
+  return v;
+}
 
-        let stdout = '';
-        let stderr = '';
-        let timeout;
+async function testStdIo(id, cfg) {
+  const { command, args = [], env = {} } = cfg;
+  if (!command) throw new Error(`${id}: command fehlt`);
+  const resolvedArgs = (args || []).map(resolvePlaceholders);
+  const resolvedEnvRaw = Object.fromEntries(
+    Object.entries(env || {}).map(([k, v]) => [k, resolvePlaceholders(v)])
+  );
+  // drop empty placeholder results
+  const resolvedEnv = Object.fromEntries(
+    Object.entries(resolvedEnvRaw).filter(
+      ([_, v]) => v !== undefined && v !== null && String(v).length > 0
+    )
+  );
 
-        // Timeout nach 10 Sekunden
-        timeout = setTimeout(() => {
-            child.kill();
-            console.log(`${RED}❌ ${server.name} - Timeout nach 10s${RESET}`);
-            resolve({ name: server.name, status: 'timeout', package: server.package });
-        }, 10000);
+  console.log(`${BLUE}📦 ${id}${R} → ${command} ${resolvedArgs.join(' ')}`);
 
-        child.stdout.on('data', (data) => {
-            stdout += data.toString();
-        });
+  const child = spawn(command, resolvedArgs, {
+    env: { ...process.env, ...resolvedEnv },
+    stdio: ['pipe', 'pipe', 'pipe'],
+  });
 
-        child.stderr.on('data', (data) => {
-            stderr += data.toString();
-        });
+  let out = '';
+  let err = '';
+  const timer = setTimeout(() => {
+    try {
+      child.kill();
+    } catch { /* ignore kill errors */ }
+  }, 12000);
+  child.stdout.on('data', d => (out += d.toString()));
+  child.stderr.on('data', d => (err += d.toString()));
 
-        child.on('close', (code) => {
-            clearTimeout(timeout);
-            
-            // MCP-Server laufen normalerweile endlos, daher ist ein schneller Exit oft ein Fehler
-            if (code === 0 && stdout.length === 0) {
-                console.log(`${RED}❌ ${server.name} - Kein Output${RESET}`);
-                resolve({ name: server.name, status: 'no_output', package: server.package });
-            } else if (stderr.includes('Error') || stderr.includes('SyntaxError')) {
-                console.log(`${RED}❌ ${server.name} - Fehler: ${stderr.slice(0, 100)}...${RESET}`);
-                resolve({ name: server.name, status: 'error', package: server.package, error: stderr });
-            } else if (stdout.includes('MCP') || stdout.includes('server') || code === null) {
-                console.log(`${GREEN}✅ ${server.name} - Erfolgreich gestartet${RESET}`);
-                resolve({ name: server.name, status: 'success', package: server.package });
-            } else {
-                console.log(`${YELLOW}⚠️ ${server.name} - Unbekannter Status (Code: ${code})${RESET}`);
-                resolve({ name: server.name, status: 'unknown', package: server.package, code });
-            }
-        });
+  // initialize handshake
+  await sleep(500);
+  try {
+    const init =
+      JSON.stringify({
+        jsonrpc: '2.0',
+        id: 1,
+        method: 'initialize',
+        params: {
+          protocolVersion: '1.0.0',
+          capabilities: {},
+          clientInfo: { name: 'mcp-debug', version: '1.0.0' },
+        },
+      }) + '\n';
+    child.stdin.write(init);
+  } catch { /* ignore initialize write errors */ }
 
-        child.on('error', (error) => {
-            clearTimeout(timeout);
-            console.log(`${RED}❌ ${server.name} - Start-Fehler: ${error.message}${RESET}`);
-            resolve({ name: server.name, status: 'start_error', package: server.package, error: error.message });
-        });
+  const exitCode = await new Promise(res => child.on('close', code => res(code)));
+  clearTimeout(timer);
 
-        // Sende ein einfaches MCP-Init-Message
-        setTimeout(() => {
-            try {
-                const initMessage = JSON.stringify({
-                    jsonrpc: "2.0",
-                    id: 1,
-                    method: "initialize",
-                    params: {
-                        protocolVersion: "1.0.0",
-                        capabilities: {},
-                        clientInfo: { name: "test-client", version: "1.0.0" }
-                    }
-                }) + '\n';
-                
-                child.stdin.write(initMessage);
-            } catch (e) {
-                // Ignore write errors
-            }
-        }, 1000);
-    });
+  if (/jsonrpc|tool|resource|prompt/i.test(out)) {
+    console.log(`${GREEN}✅ ${id}${R} antwortet (JSON‑RPC erkannt)`);
+    return { id, ok: true };
+  }
+  if (err) {
+    console.log(`${YEL}⚠ ${id}${R} stderr: ${err.split('\n')[0].slice(0, 140)}…`);
+  }
+  console.log(`${RED}❌ ${id}${R} keine valide Antwort (exit ${exitCode})`);
+  return { id, ok: false };
+}
+
+async function testHttp(id, cfg) {
+  const url = cfg.url;
+  if (!url) throw new Error(`${id}: url fehlt`);
+  console.log(`${BLUE}🌐 ${id}${R} → ${url}`);
+  // Lazy check without external deps: use node fetch
+  const ctrl = new AbortController();
+  const t = setTimeout(() => ctrl.abort(), 4000);
+    try {
+      const res = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Accept': 'text/event-stream, application/json',
+          'MCP-Protocol-Version': '2025-06-18'
+        },
+        signal: ctrl.signal
+      });
+    clearTimeout(t);
+    console.log(`${GREEN}✅ ${id}${R} HTTP erreichbar (${res.status})`);
+    return { id, ok: true };
+  } catch (e) {
+    clearTimeout(t);
+    console.log(`${RED}❌ ${id}${R} HTTP nicht erreichbar: ${e.message}`);
+    return { id, ok: false };
+  }
 }
 
 async function main() {
-    const results = [];
-    
-    for (const server of mcpServers) {
-        const result = await testMcpServer(server);
-        results.push(result);
-        console.log(''); // Leerzeile
+  console.log(`${BLUE}🔍 MCP Diagnose aus .vscode/mcp.json${R}\n`);
+  const cfg = await loadConfig();
+  const entries = Object.entries(cfg.servers);
+  const results = [];
+  for (const [id, server] of entries) {
+    try {
+      if (server.type === 'stdio') {
+        results.push(await testStdIo(id, server));
+      } else if (server.type === 'http') {
+        results.push(await testHttp(id, server));
+      } else {
+        console.log(`${YEL}⚠ ${id}${R} unbekannter type=${server.type}`);
+        results.push({ id, ok: false });
+      }
+    } catch (e) {
+      console.log(`${RED}✗ ${id}${R} Fehler: ${e.message}`);
+      results.push({ id, ok: false });
     }
+    console.log();
+  }
 
-    // Zusammenfassung
-    console.log(`${BLUE}📊 Zusammenfassung:${RESET}`);
-    console.log('==================');
-    
-    const successful = results.filter(r => r.status === 'success');
-    const failed = results.filter(r => r.status !== 'success');
-
-    console.log(`${GREEN}✅ Erfolgreich: ${successful.length}/${results.length}${RESET}`);
-    successful.forEach(r => console.log(`   - ${r.name} (${r.package})`));
-    
-    if (failed.length > 0) {
-        console.log(`${RED}❌ Fehlgeschlagen: ${failed.length}/${results.length}${RESET}`);
-        failed.forEach(r => console.log(`   - ${r.name}: ${r.status} (${r.package})`));
-    }
-
-    // Empfehlungen
-    console.log(`\n${BLUE}💡 Empfehlungen:${RESET}`);
-    failed.forEach(r => {
-        if (r.status === 'start_error') {
-            console.log(`${YELLOW}📦 ${r.name}: npm install -g ${r.package}${RESET}`);
-        } else if (r.status === 'error') {
-            console.log(`${YELLOW}🔧 ${r.name}: Konfiguration prüfen${RESET}`);
-        }
-    });
+  const ok = results.filter(r => r.ok).length;
+  console.log(`${BLUE}📊 Ergebnis:${R} ${ok}/${results.length} OK`);
+  if (ok !== results.length) process.exitCode = 1;
 }
 
-main().catch(console.error);
+main().catch(e => {
+  console.error(e);
+  process.exit(2);
+});

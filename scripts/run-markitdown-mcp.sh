@@ -29,6 +29,10 @@ if [[ "${1:-}" == "--self-test" ]]; then
 fi
 
 if command -v uvx >/dev/null 2>&1; then
+  # Use sandboxed cache to avoid permission issues on shared HOME
+  export XDG_CACHE_HOME="$SANDBOX_DIR/.cache"
+  export UV_CACHE_DIR="$SANDBOX_DIR/.cache/uv"
+  mkdir -p "$UV_CACHE_DIR"
   exec uvx "markitdown-mcp==${MARKITDOWN_MCP_VERSION}"
 fi
 

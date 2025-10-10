@@ -19,9 +19,18 @@ if [[ "${1:-}" == "--self-test" ]]; then
 fi
 
 if [[ -z "${DATABASE_URL:-}" ]]; then
-  echo "ERROR: DATABASE_URL nicht gesetzt. Setze sie in env/.env.local und source sie." >&2
+  # Versuche, lokale Env-Datei zu laden
+  ENV_FILE="$(cd "$(dirname "$0")/.." && pwd)/env/.env.local"
+  if [[ -f "$ENV_FILE" ]]; then
+    # shellcheck disable=SC2046,SC1090
+    set -a; . "$ENV_FILE"; set +a
+  fi
+fi
+
+if [[ -z "${DATABASE_URL:-}" ]]; then
+  echo "ERROR: DATABASE_URL nicht gesetzt. Lege env/.env.local an (DATABASE_URL=...) oder setze die Variable in der VS Code Umgebung." >&2
   exit 1
 fi
 
-# Übergibt die URL als Befehlszeilenargument, da der Server dies erwartet
-exec npx -y enhanced-postgres-mcp-server "$DATABASE_URL"
+# Starte Server mit DATABASE_URL aus der Umgebung
+exec env DATABASE_URL="$DATABASE_URL" npx -y enhanced-postgres-mcp-server
