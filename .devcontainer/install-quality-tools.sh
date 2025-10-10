@@ -8,6 +8,14 @@ echo "🔧 Installing Quality & Security Tools..."
 # Erstelle bin-Verzeichnis falls nicht vorhanden
 mkdir -p ./bin
 
+# 0. npm auf neueste Version aktualisieren
+echo "📦 Updating npm to latest version..."
+if [ -d "/home/codespace/.npm" ]; then
+  sudo chown -R 1000:1000 "/home/codespace/.npm" 2>/dev/null || true
+fi
+npm install -g npm@latest 2>/dev/null || echo "⚠️ npm update skipped (permissions)"
+echo "✅ npm version: $(npm --version)"
+
 # 1. Chrome Installation (für Lighthouse Performance Audits)
 if ! command -v google-chrome &>/dev/null && ! command -v chromium &>/dev/null; then
   echo "📦 Installing Google Chrome..."
@@ -43,6 +51,7 @@ fi
 echo "🎉 All quality tools installed successfully!"
 echo ""
 echo "Available Tools:"
+echo "  - npm: $(npm --version 2>/dev/null || echo 'Not available')"
 echo "  - Chrome: $(google-chrome --version 2>/dev/null || echo 'Not available')"
 echo "  - Trivy: $(./bin/trivy --version 2>/dev/null | head -1 || echo 'Not available')"
 echo "  - Gitleaks: $(./bin/gitleaks version 2>/dev/null || echo 'Not available')"
