@@ -62,70 +62,13 @@
       "command": "npx",
       "args": ["-y", "@upstash/context7-mcp"]
     },
-    "git": {
-      "command": "git",
-      "args": {}
-    },
-    "docker": {
-      "command": "docker",
-      "args": {}
-    },
+    
     "codacy-mcp-server": {
       "type": "stdio",
       "command": "npx",
       "args": ["-y", "@codacy/codacy-mcp@latest"],
       "env": {
         "CODACY_ACCOUNT_TOKEN": "${input:codacy_account_token}"
-      }
-    },
-    "prisma": {
-      "command": "prisma",
-      "args": {
-        "schema": "schema.prisma",
-        "generate": true
-      }
-    },
-    "lighthouse": {
-      "command": "lighthouse-ci",
-      "args": {
-        "config": "lighthouse.config.cjs",
-        "budgets-path": "frontend/lighthouse-budgets.json"
-      }
-    },
-    "trivy-security": {
-      "command": "trivy",
-      "args": {
-        "config": "trivy.yaml",
-        "format": "sarif",
-        "output": "quality-reports/security-findings.sarif"
-      }
-    },
-    "n8n-webhook": {
-      "command": "node",
-      "args": {
-        "script": "automation/n8n/webhook-client.js",
-        "environment": "development"
-      }
-    },
-    "build-pipeline": {
-      "command": "bash",
-      "args": {
-        "script": "./build-pipeline.sh",
-        "dry-run": true
-      }
-    },
-    "plesk-deploy": {
-      "command": "bash",
-      "args": {
-        "script": "./scripts/safe-deploy.sh",
-        "mode": "dry-run"
-      }
-    },
-    "quality-reporter": {
-      "command": "node",
-      "args": {
-        "script": "scripts/generate-quality-report.js",
-        "output-dir": "quality-reports"
       }
     },
     "moe-chat": {
@@ -158,5 +101,52 @@
       "url": "https://learn.microsoft.com/api/mcp",
       "description": "Microsoft Learn documentation for Azure, TypeScript, React, .NET, etc."
     }
+  },
+  "disabledServers": {
+    "git": {
+      "command": "git",
+      "args": {}
+    },
+    "docker": {
+      "command": "docker",
+      "args": {}
+    },
+    "prisma": {
+      "command": "prisma",
+      "args": { "schema": "schema.prisma", "generate": true }
+    },
+    "lighthouse": {
+      "command": "lighthouse-ci",
+      "args": { "config": "lighthouse.config.cjs", "budgets-path": "frontend/lighthouse-budgets.json" }
+    },
+    "trivy-security": {
+      "command": "trivy",
+      "args": { "config": "trivy.yaml", "format": "sarif", "output": "quality-reports/security-findings.sarif" }
+    },
+    "n8n-webhook": {
+      "command": "node",
+      "args": { "script": "automation/n8n/webhook-client.js", "environment": "development" }
+    },
+    "build-pipeline": {
+      "command": "bash",
+      "args": { "script": "./build-pipeline.sh", "dry-run": true }
+    },
+    "plesk-deploy": {
+      "command": "bash",
+      "args": { "script": "./scripts/safe-deploy.sh", "mode": "dry-run" }
+    },
+    "quality-reporter": {
+      "command": "node",
+      "args": { "script": "scripts/generate-quality-report.js", "output-dir": "quality-reports" }
+    }
+  },
+  "toolsets": {
+    "default": ["filesystem", "memory", "github-mcp", "markitdown"],
+    "design": ["figma", "markitdown"],
+    "data": ["postgres", "notion"],
+    "security": ["codacy-mcp-server", "upstash-context7"],
+    "e2e": ["playwright-mcp"],
+    "docs": ["microsoft-docs", "markitdown"],
+    "chat": ["moe-chat", "github-mcp"]
   }
 }
