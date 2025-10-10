@@ -10,11 +10,9 @@
     "ghcr.io/devcontainers/features/github-cli:1": {},
     "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
   },
-
   "remoteUser": "codespace",
   "overrideCommand": false,
   "init": true,
-
   "containerEnv": {
     "TZ": "Europe/Vienna",
     "LANG": "de_AT.UTF-8",
@@ -25,7 +23,6 @@
     "UV_LINK_MODE": "copy",
     "PLAYWRIGHT_BROWSERS_PATH": "/home/codespace/.cache/ms-playwright"
   },
-
   "mounts": [
     "source=npm-cache,target=/home/codespace/.npm,type=volume",
     "source=pnpm-cache,target=/home/codespace/.pnpm-store,type=volume",
@@ -34,18 +31,13 @@
     "source=playwright-cache,target=/home/codespace/.cache/ms-playwright,type=volume",
     "source=composer-cache,target=/home/codespace/.cache/composer,type=volume"
   ],
-
   "runArgs": [
     "--cap-add=SYS_PTRACE",
     "--security-opt=seccomp=unconfined"
   ],
-
-  "onCreateCommand": "bash -lc \"set -euo pipefail; sudo mkdir -p /home/vscode 2>/dev/null || true; sudo ln -sf /home/codespace/.minikube /home/vscode/.minikube 2>/dev/null || true; if command -v uv >/dev/null 2>&1; then echo 'uv already installed'; else if command -v pwsh >/dev/null 2>&1; then pwsh -NoProfile -c \\\"iwr -UseBasicParsing https://astral.sh/uv/install.ps1 | iex\\\"; else curl -LsSf https://astral.sh/uv/install.sh | sh; fi; fi; chmod +x .devcontainer/setup-codespace.sh || true; bash .devcontainer/setup-codespace.sh || true\"",
-
+  "onCreateCommand": "bash -lc \"set -euo pipefail; sudo mkdir -p /home/vscode 2>/dev/null || true; sudo ln -sf /home/codespace/.minikube /home/vscode/.minikube 2>/dev/null || true; if command -v uv >/dev/null 2>&1; then echo 'uv already installed'; else if command -v pwsh >/dev/null 2>&1; then pwsh -NoProfile -c \\\"iwr -UseBasicParsing https://astral.sh/uv/install.ps1 | iex\\\"; else curl -LsSf https://astral.sh/uv/install.sh | sh; fi; fi; chmod +x .devcontainer/setup-codespace.sh || true; bash .devcontainer/setup-codespace.sh || true; bash .devcontainer/install-quality-tools.sh || true\"",
   "postCreateCommand": "bash -lc \"if [ -f .devcontainer/setup.sh ]; then bash .devcontainer/setup.sh; fi; if [ -f package.json ]; then corepack enable; fi; if [ -f package.json ] && jq -e '.dependencies[\\\"@playwright/test\\\"] or .devDependencies[\\\"@playwright/test\\\"]' package.json >/dev/null 2>&1; then npx --yes playwright@latest install --with-deps; fi\"",
-
   "postStartCommand": "bash -lc \"if command -v pnpm >/dev/null 2>&1; then pnpm --version >/dev/null 2>&1 || corepack prepare pnpm@latest --activate; fi\"",
-
   "customizations": {
     "vscode": {
       "extensions": [
@@ -66,7 +58,6 @@
       ],
       "settings": {
         "terminal.integrated.defaultProfile.linux": "bash",
-
         "editor.formatOnSave": true,
         "editor.codeActionsOnSave": {
           "source.fixAll": "explicit",
@@ -88,30 +79,42 @@
           "**/dist/**": true,
           "**/build/**": true
         },
-
         "python.defaultInterpreterPath": "/usr/local/python/current/bin/python",
         "python.testing.pytestEnabled": true,
         "python.testing.unittestEnabled": false,
         "python.analysis.typeCheckingMode": "basic",
         "python.terminal.activateEnvironment": true,
-        "[python]": { "editor.defaultFormatter": "ms-python.black-formatter" },
-
-        "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
-        "[typescript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
-        "[json]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
-
-        "eslint.workingDirectories": [{ "mode": "auto" }],
-        "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact", "vue"],
+        "[python]": {
+          "editor.defaultFormatter": "ms-python.black-formatter"
+        },
+        "[javascript]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[typescript]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[json]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "eslint.workingDirectories": [
+          {
+            "mode": "auto"
+          }
+        ],
+        "eslint.validate": [
+          "javascript",
+          "javascriptreact",
+          "typescript",
+          "typescriptreact",
+          "vue"
+        ],
         "prettier.useEditorConfig": true,
         "prettier.singleQuote": true,
-
         "php.validate.executablePath": "/usr/local/php/current/bin/php",
-
         "tailwindCSS.includeLanguages": {
           "plaintext": "html",
           "postcss": "css"
         },
-
         "github.copilot.enable": {
           "*": true,
           "markdown": false,
@@ -132,13 +135,33 @@
       }
     }
   },
-
-  "forwardPorts": [3000, 5173, 8000, 8001, 5678],
+  "forwardPorts": [
+    3000,
+    5173,
+    8000,
+    8001,
+    5678
+  ],
   "portsAttributes": {
-    "3000": { "label": "Games Server", "onAutoForward": "notify" },
-    "5173": { "label": "Frontend (Vite)", "onAutoForward": "openBrowser" },
-    "8000": { "label": "CRM Server", "onAutoForward": "notify" },
-    "8001": { "label": "API Server", "onAutoForward": "notify" },
-    "5678": { "label": "n8n", "onAutoForward": "openBrowser" }
+    "3000": {
+      "label": "Games Server",
+      "onAutoForward": "notify"
+    },
+    "5173": {
+      "label": "Frontend (Vite)",
+      "onAutoForward": "openBrowser"
+    },
+    "8000": {
+      "label": "CRM Server",
+      "onAutoForward": "notify"
+    },
+    "8001": {
+      "label": "API Server",
+      "onAutoForward": "notify"
+    },
+    "5678": {
+      "label": "n8n",
+      "onAutoForward": "openBrowser"
+    }
   }
 }
