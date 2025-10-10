@@ -16,6 +16,7 @@ Optional: Setze `GITHUB_TOKEN` in der Umgebung, um API-Rate-Limits zu vermeiden.
 Bericht wird unter `security/reports/pin-actions-report.json` abgelegt.
 
 ## Hinweise
+
 - Bereits gepinnte Einträge (40-stellige SHAs) werden übersprungen.
 - Bei nicht auflösbaren Refs (z. B. private Repos/Tags) wird der Eintrag belassen und im Report als `failed` vermerkt.
 - Das Skript hängt einen Kommentar `# ref: <original>` an, damit die ursprüngliche Version/Tag ersichtlich bleibt.

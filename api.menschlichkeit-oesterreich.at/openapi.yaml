@@ -20,6 +20,34 @@ components:
           type: integer
         message:
           type: string
+    /mcp/status:
+      get:
+        summary: MCP health summary
+        responses:
+          '200':
+            description: MCP health status
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    status:
+                      type: string
+                      enum: [ok, warn, error]
+                    summary:
+                      type: object
+                      properties:
+                        oks:
+                          type: integer
+                        warns:
+                          type: integer
+                        errs:
+                          type: integer
+                    ts:
+                      type: string
+                      description: ISO timestamp when health was generated
+                    exitCode:
+                      type: integer
     ContactCreate:
       type: object
       required: [email, first_name, last_name]

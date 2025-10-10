@@ -1,33 +1,13 @@
----
-status: DEPRECATED
-deprecated_date: 2025-10-08
-migration_target: .github/chatmodes/Accessibility_Audit_DE.chatmode.md
-reason: YAML-Format deprecated - ersetzt durch strukturierte .chatmode.md Dateien
----
-
-**⚠️ DEPRECATED - NICHT VERWENDEN**
-
-Diese Datei ist veraltet und wird in einer zukünftigen Version entfernt.
-
-- **Status:** DEPRECATED
-- **Datum:** 2025-10-08
-- **Migration:** .github/chatmodes/Accessibility_Audit_DE.chatmode.md
-- **Grund:** YAML-Format deprecated - ersetzt durch strukturierte .chatmode.md Dateien
-
-**Aktuelle Version verwenden:** .github/chatmodes/Accessibility_Audit_DE.chatmode.md
-
----
-
 id: accessibility-audit
-version: 0.1.0
-status: beta
-summary: "A11y-Audit nach WCAG 2.2 AA für Web/App-Oberflächen."
+version: "0.1.0"
+status: deprecated
+summary: A11y-Audit nach WCAG 2.2 AA für Web/App-Oberflächen.
 purpose: |
   Prüft Barrierefreiheit (Kontrast, Fokus, ARIA, Tastaturbedienung, Alternativtexte)
   und liefert priorisierte Maßnahmen.
 triggers:
-  - "A11y Audit"
-  - "WCAG Review"
+  - A11y Audit
+  - WCAG Review
 inputs:
   - name: pages
     description: Liste von Seiten/Ansichten (URLs/Routes)
@@ -40,20 +20,20 @@ outputs:
     description: Konkrete Fixes mit Beispielen
 style: |
   WCAG-referenziert (Kriterium, Beleg, Fix). Kurze Sätze, Snippets für ARIA und Semantik.
-  Beachte `global/01_style_guide.md`.
+  Beachte global/01_style_guide.md.
 guardrails:
-  - "Keine PII in Screenshots/Beispielen"
-  - "Beachte `global/02_guardrails.md`"
+  - Keine PII in Screenshots/Beispielen
+  - Beachte global/02_guardrails.md
 tools:
   - filesystem
 examples:
   positive:
-    - "Markiert fehlende Fokus-Reihenfolge und bietet Tastatur-Fix"
+    - Markiert fehlende Fokus-Reihenfolge und bietet Tastatur-Fix
   negative:
-    - "Allgemeine Hinweise ohne konkreten Fix"
+    - Allgemeine Hinweise ohne konkreten Fix
 tests:
-  - assertion: "id ist kebab_case"
-    expected: "regex:^[a-z0-9]+(-[a-z0-9]+)*$"
-  - assertion: "Version folgt SemVer"
-    expected: "regex:^\\d+\\.\\d+\\.\\d+$"
+  - assertion: id ist kebab_case
+    expected: 'regex:^[a-z0-9]+(-[a-z0-9]+)*$'
+  - assertion: Version folgt SemVer
+    expected: 'regex:^\d+\.\d+\.\d+$'
 

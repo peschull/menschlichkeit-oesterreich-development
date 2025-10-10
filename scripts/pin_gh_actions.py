@@ -37,8 +37,8 @@ from typing import Dict, List, Optional
 
 try:
     # Python 3.11+: use stdlib, else fall back
-    from urllib.request import Request, urlopen
     from urllib.error import HTTPError, URLError
+    from urllib.request import Request, urlopen
 except Exception:  # pragma: no cover - very unlikely in our env
     print("FATAL: urllib not available in runtime", file=sys.stderr)
     sys.exit(2)
@@ -79,7 +79,9 @@ def gh_api(url: str, token: Optional[str]) -> Optional[Dict]:
         return None
 
 
-def resolve_commit_sha(owner_repo: str, ref: str, token: Optional[str]) -> Optional[str]:
+def resolve_commit_sha(
+    owner_repo: str, ref: str, token: Optional[str]
+) -> Optional[str]:
     """Resolve a branch/tag/ref to a commit SHA via GitHub API.
 
     We intentionally use the commits API which dereferences tags/branches:
@@ -171,9 +173,19 @@ def process_file(path: Path, token: Optional[str], write: bool) -> Dict:
 
 def main(argv: Optional[List[str]] = None) -> int:
     parser = argparse.ArgumentParser(description="Pin GitHub Actions to commit SHAs")
-    parser.add_argument("--path", default=".github/workflows", help="Folder to scan (default: .github/workflows)")
-    parser.add_argument("--write", action="store_true", help="Write changes to files (default: dry-run)")
-    parser.add_argument("--report", default="security/reports/pin-actions-report.json", help="Report output path (JSON)")
+    parser.add_argument(
+        "--path",
+        default=".github/workflows",
+        help="Folder to scan (default: .github/workflows)",
+    )
+    parser.add_argument(
+        "--write", action="store_true", help="Write changes to files (default: dry-run)"
+    )
+    parser.add_argument(
+        "--report",
+        default="security/reports/pin-actions-report.json",
+        help="Report output path (JSON)",
+    )
     args = parser.parse_args(argv)
 
     root = Path(args.path)
@@ -183,7 +195,10 @@ def main(argv: Optional[List[str]] = None) -> int:
 
     token = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
     if not token:
-        print("INFO: No GITHUB_TOKEN provided – GitHub API rate limit may be very low.", file=sys.stderr)
+        print(
+            "INFO: No GITHUB_TOKEN provided – GitHub API rate limit may be very low.",
+            file=sys.stderr,
+        )
 
     files = list(root.rglob("*.yml")) + list(root.rglob("*.yaml"))
     results: List[Dict] = []
@@ -210,11 +225,15 @@ def main(argv: Optional[List[str]] = None) -> int:
         "total_failed": total_failed,
         "results": results,
     }
-    report_path.write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    report_path.write_text(
+        json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
+    )
 
     # Summary to stdout
     mode = "WRITE" if args.write else "DRY-RUN"
-    print(f"Pin Actions – {mode}: files={len(files)} pinned={total_pinned} failed={total_failed}")
+    print(
+        f"Pin Actions – {mode}: files={len(files)} pinned={total_pinned} failed={total_failed}"
+    )
     print(f"Report: {report_path}")
 
     return 0 if total_failed == 0 else 1

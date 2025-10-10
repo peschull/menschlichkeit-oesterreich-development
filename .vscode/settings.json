@@ -1,0 +1,11 @@
+{
+	"chat.mcp.access": "all",
+	"github.copilot.mcp.enabled": true,
+	"security.workspace.trust.enabled": true,
+	"security.workspace.trust.startupPrompt": "never",
+	"codacy.cli.devMode": true,
+	"github.copilot.chat.languageContext.typescript.enabled": true,
+	"github.copilot.chat.languageContext.typescript.includeDocumentation": true,
+	"github.copilot.chat.newWorkspace.useContext7": true,
+	"github.copilot.chat.languageContext.typescript.cacheTimeout": 9999
+}

@@ -1,0 +1,12 @@
+## MCP Health — no failed run found
+
+## Prompt CI — no failed run found
+
+## Quality — no failed run found
+
+## Trivy FS Scan — no failed run found
+
+## CodeQL — no failed run found
+
+## Codacy Analysis — no failed run found
+
