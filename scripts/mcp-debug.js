@@ -5,8 +5,6 @@
  */
 
 import { spawn } from 'child_process';
-import fs from 'fs';
-import path from 'path';
 
 const GREEN = '\x1b[32m';
 const RED = '\x1b[31m';
@@ -125,7 +123,7 @@ async function testMcpServer(server) {
                 }) + '\n';
                 
                 child.stdin.write(initMessage);
-            } catch (e) {
+            } catch {
                 // Ignore write errors
             }
         }, 1000);

@@ -40,7 +40,6 @@ function processFile(filePath) {
   const content = fs.readFileSync(filePath, 'utf8');
   const lines = content.split(/\r?\n/);
   let inFence = false;
-  let fenceStart = -1; // kept for potential future diagnostics
   let fenceLang = '';
   const out = [];
   let i = 0;
@@ -50,7 +49,6 @@ function processFile(filePath) {
     if (fenceOpen) {
       if (!inFence) {
         inFence = true;
-        fenceStart = i;
         fenceLang = fenceOpen[1].trim();
         // If no lang provided, collect snippet until closing fence to detect
         if (!fenceLang) {
@@ -65,7 +63,6 @@ function processFile(filePath) {
       } else {
         // Closing fence
         inFence = false;
-        fenceStart = -1;
         fenceLang = '';
         out.push('```');
       }

@@ -24,11 +24,6 @@ const BASE_TOKENS_PATH = path.join(__dirname, '../figma-design-system/00_design-
 const adminTokens = JSON.parse(fs.readFileSync(TOKENS_PATH, 'utf-8'));
 const baseTokens = JSON.parse(fs.readFileSync(BASE_TOKENS_PATH, 'utf-8'));
 
-// Helper: Sicherer Zugriff auf verschachtelte Properties
-const get = (obj, path, defaultValue = '') => {
-  return path.split('.').reduce((acc, part) => acc?.[part], obj) ?? defaultValue;
-};
-
 console.log('🎨 Generating Admin Portal CSS from Design Tokens...\n');
 
 // CSS Header

@@ -50,7 +50,7 @@ class PerformanceReporter {
         fs.readFileSync('quality-reports/performance/lighthouse-baseline.json', 'utf8')
       );
       return baseline.audits;
-    } catch (error) {
+    } catch {
       return {
         homepage: { performance: 72, accessibility: 85, bestPractices: 88, seo: 91 },
         donation: { performance: 68, accessibility: 82, bestPractices: 85, seo: 89 },

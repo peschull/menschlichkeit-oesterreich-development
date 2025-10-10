@@ -89,6 +89,7 @@ export class PiiSanitizerNode implements INodeType {
                 try {
                   const output = JSON.parse(stdout);
                   resolve(output);
+                  // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 } catch (_e) {
                   reject(new Error('PII-Sanitizer: Ungültige JSON-Ausgabe vom PHP-Skript.'));
                 }

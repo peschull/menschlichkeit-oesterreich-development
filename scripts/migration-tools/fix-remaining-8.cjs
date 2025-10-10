@@ -1,5 +1,4 @@
 const fs = require('fs');
-const path = require('path');
 
 const MIGRATION_MAP_PATH = '.github/prompts/MIGRATION_MAP.json';
 
