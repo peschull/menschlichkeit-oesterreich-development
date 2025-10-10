@@ -6,6 +6,9 @@ set -e
 
 cd "$(dirname "$0")/../api.menschlichkeit-oesterreich.at"
 
+# Ensure PYTHONPATH includes current directory for app.* imports
+export PYTHONPATH="${PYTHONPATH:+${PYTHONPATH}:}$(pwd)"
+
 echo "🚀 Starting FastAPI development server..."
 
 # Check if .env exists, create from example if not
