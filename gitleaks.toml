@@ -68,17 +68,29 @@ paths = [
     # Example/template files with placeholders
     '''\.env\.example$''',
     '''\.env\.sample$''',
-    # Documentation with example keys and placeholders
+    # Documentation with example keys and placeholders - EXPANDED
     '''GITHUB-SECRETS.*\.md$''',
     '''docs/.*\.md$''',
+    '''README\.md$''',
+    '''.*README\.md$''',
     '''\.github/prompts/.*\.md$''',
+    '''automation/.*/.*\.md$''',
+    '''deployment-scripts/.*\.md$''',
     # Secrets template files with REDACTED placeholders
     '''secrets.*\.json$''',
     # VS Code MCP config (local development)
     '''\.vscode/mcp\.json$''',
+    '''mcp\.json$''',
     # Chatmode and instruction files with API examples
     '''\.github/chatmodes/.*\.chatmode\.md$''',
-    '''\.github/instructions/.*\.instructions\.md$'''
+    '''\.github/instructions/.*\.instructions\.md$''',
+    # MCP Server test and source files
+    '''mcp-servers/.*/.*\.(js|ts)$''',
+    '''mcp-servers/policies/.*\.(rego|json)$''',
+    '''packages/.*/.*\.(js|ts)$''',
+    # Security scripts with example commands
+    '''scripts/security/.*\.(sh|ps1)$''',
+    '''scripts/setup-.*\.(sh|ps1)$'''
 ]
 regexes = [
     '''REPLACE_WITH_.*''',  # Template placeholders
@@ -91,5 +103,7 @@ regexes = [
     '''YOUR_TOKEN''',       # Generic placeholder in docs
     '''REDACTED''',         # Redacted examples in documentation
     '''Bearer YOUR_.*''',   # Bearer token examples
-    '''access_token.*REDACTED''' # API examples with redacted tokens
+    '''access_token.*REDACTED''', # API examples with redacted tokens
+    '''ghp_1234567890.*''', # Test GitHub PATs with obvious fake pattern
+    '''test_key_.*'''       # Test keys
 ]
