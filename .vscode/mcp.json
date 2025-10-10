@@ -51,8 +51,8 @@
     },
     "postgres": {
       "type": "stdio",
-      "command": "npx",
-      "args": ["-y", "enhanced-postgres-mcp-server"],
+      "command": "bash",
+      "args": ["scripts/run-postgres-mcp.sh"],
       "env": {
         "DATABASE_URL": "${input:postgres_url}"
       }
@@ -80,8 +80,8 @@
     },
     "markitdown": {
       "type": "stdio",
-      "command": "uvx",
-      "args": ["markitdown-mcp==0.0.1a4"]
+      "command": "bash",
+      "args": ["scripts/run-markitdown-mcp.sh"]
     },
     "github-mcp": {
       "type": "http",
