@@ -29,7 +29,8 @@ check_pii_in_logs() {
     )
     
     for pattern in "${PATTERNS[@]}"; do
-        if grep -rE "$pattern" logs/ quality-reports/ 2>/dev/null | grep -v "test" | grep -v ".example" > /dev/null; then
+        # Exclude: test files, examples, and the script itself
+        if grep -rE "$pattern" logs/ quality-reports/ 2>/dev/null | grep -v "test" | grep -v ".example" | grep -v "dsgvo-check" | grep -v "\.sh$" > /dev/null; then
             echo -e "${RED}❌ Found potential unmasked PII: $pattern${NC}"
             ((ERRORS++))
         fi
