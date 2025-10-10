@@ -16,6 +16,8 @@ interface User {
   createdAt: Date;
 }
 
+// Note: AuthState will be used in Sprint 2 for production authentication
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface AuthState {
   user: User | null;
   isLoading: boolean;

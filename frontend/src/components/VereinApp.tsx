@@ -227,8 +227,7 @@ export const VereinApp: React.FC = () => {
                 <AuthSystem
                   isOpen={true}
                   onClose={() => setCurrentView('dashboard')}
-                  onLogin={handleLogin}
-                  onRegister={data => console.log('Registration:', data)}
+                  initialMode="login"
                 />
               ) : (
                 <div className="text-center py-12">

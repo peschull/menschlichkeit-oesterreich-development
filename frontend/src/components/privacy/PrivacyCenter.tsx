@@ -575,7 +575,8 @@ export const PrivacyCenter: React.FC<{
   const [activeTab, setActiveTab] = useState(initialTab);
   const [consents, setConsents] = useState<UserConsent[]>(DEFAULT_CONSENTS);
   const [showCookieBanner, setShowCookieBanner] = useState(false);
-  const [requests, setRequests] = useState<PrivacyRequest[]>([]);
+  // Note: Will be used in Sprint 2 to display user's privacy requests
+  const [_requests, setRequests] = useState<PrivacyRequest[]>([]);
 
   // Check if user has made cookie choices
   useEffect(() => {

@@ -654,7 +654,8 @@ export const SecurityDashboard: React.FC = () => {
     },
   ]);
 
-  const [securityLogs, setSecurityLogs] = useState<SecurityLog[]>([
+  // Note: setSecurityLogs will be used in Sprint 2 for real-time log updates
+  const [securityLogs, _setSecurityLogs] = useState<SecurityLog[]>([
     {
       id: '1',
       timestamp: new Date(),
