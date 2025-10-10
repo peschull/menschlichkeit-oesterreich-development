@@ -9,7 +9,8 @@
   },
   "scripts": {
     "start": "node index.js",
-    "dev": "node index.js"
+    "dev": "node index.js",
+    "test": "echo 'ChatGPT App Server: Unit tests will be implemented in Phase 1' && exit 0"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.5.0"

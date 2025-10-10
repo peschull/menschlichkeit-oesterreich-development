@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "test": "echo 'Frontend: Unit tests will be implemented in Phase 1' && exit 0",
     "tokens:build": "node ./scripts/generate-design-tokens.mjs",
     "lh:ci": "node ./scripts/run-lighthouse.mjs"
   },

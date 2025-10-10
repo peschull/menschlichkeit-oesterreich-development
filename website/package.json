@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "scripts": {
     "build": "echo 'Website build: Copying assets...' && mkdir -p dist && cp -r * dist/ 2>/dev/null || true",
+    "test": "echo 'Website: Integration tests will be implemented in Phase 1' && exit 0",
     "lh:ci": "node ./scripts/run-lighthouse.mjs",
     "serve": "http-server . -p 4180 -c-1"
   },

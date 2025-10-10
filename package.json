@@ -127,6 +127,7 @@
     "markdownlint-cli": "^0.43.0",
     "n8n-workflow": "^1.17.0",
     "prettier": "^3.4.2",
+    "prisma": "^6.17.0",
     "tailwindcss-animate": "^1.0.7",
     "ts-jest": "^29.4.4",
     "typescript": "^5.9.2",
@@ -149,6 +150,7 @@
   "license": "MIT",
   "dependencies": {
     "@codacy/codacy-mcp": "^0.6.18",
+    "@prisma/client": "^6.17.0",
     "vite": "7.1.9"
   }
 }
