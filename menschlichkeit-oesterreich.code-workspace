@@ -33,8 +33,12 @@
         },
         "editor.defaultFormatter": "esbenp.prettier-vscode",
         "eslint.workingDirectories": [
-            { "pattern": "frontend" },
-            { "pattern": "web" }
+            {
+                "pattern": "frontend"
+            },
+            {
+                "pattern": "web"
+            }
         ],
         "python.defaultInterpreterPath": "${workspaceFolder:🐍 API (FastAPI + Python)}/venv/bin/python",
         "python.analysis.extraPaths": [
@@ -109,8 +113,14 @@
             "typescriptreact": "javascript"
         },
         "tailwindCSS.experimental.classRegex": [
-            ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
-            ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+            [
+                "cva\\(([^)]*)\\)",
+                "[\"'`]([^\"'`]*).*?[\"'`]"
+            ],
+            [
+                "cx\\(([^)]*)\\)",
+                "(?:'|\"|`)([^']*)(?:'|\"|`)"
+            ]
         ]
     },
     "extensions": {
@@ -156,8 +166,10 @@
                 "args": [
                     "app.main:app",
                     "--reload",
-                    "--host", "0.0.0.0",
-                    "--port", "8001"
+                    "--host",
+                    "0.0.0.0",
+                    "--port",
+                    "8001"
                 ],
                 "cwd": "${workspaceFolder:🐍 API (FastAPI + Python)}",
                 "env": {
