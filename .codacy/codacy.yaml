@@ -1,25 +1,20 @@
-version: "1"
-
-# Minimal Codacy CLI configuration to unblock analysis.
-# Tools are auto-detected; we exclude generated/third-party paths.
 exclude_paths:
-  - "**/node_modules/**"
-  - "**/.git/**"
-  - "**/.cache/**"
-  - "**/.venv/**"
-  - "**/.pytest_cache/**"
-  - "quality-reports/**"
-  - "logs/**"
-  - ".codacy/logs/**"
-  - "frontend/dist/**"
-  - "crm.menschlichkeit-oesterreich.at/web/sites/default/files/**"
-  - "website/wp-content/**"
-  - "automation/n8n/**"
-  - "assets/**"
-  - "docs/archive/**"
-
+    - node_modules/**
+    - '**/vendor/**'
+    - '**/dist/**'
+    - '**/build/**'
+    - '**/.cache/**'
+    - crm.menschlichkeit-oesterreich.at/web/core/**
+    - crm.menschlichkeit-oesterreich.at/web/modules/contrib/**
+    - crm.menschlichkeit-oesterreich.at/web/themes/contrib/**
+    - crm.menschlichkeit-oesterreich.at/vendor/**
+    - web/**
+    - website/**
+    - assets/**
+runtimes:
+    - node@22.2.0
+    - python@3.11.11
 tools:
-  - name: markdownlint
-  - name: eslint
-  - name: pylint
-  - name: bandit
+    - eslint@8.57.0
+    - pylint@3.3.6
+    - semgrep@1.78.0
