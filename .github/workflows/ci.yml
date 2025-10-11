@@ -42,36 +42,67 @@ jobs:
             echo "project_exists=0" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: 📦 Setup Node.js ${{ env.NODE_VERSION }}
+      - name: Check npm project files
+        id: check-npm
+        env:
+          PROJECT_PATH: ${{ matrix.project }}
+        run: |
+          if [ -f "$PROJECT_PATH/package.json" ]; then
+            echo "npm_project=1" >> "$GITHUB_OUTPUT"
+          else
+            echo "npm_project=0" >> "$GITHUB_OUTPUT"
+          fi
+          if [ -f "$PROJECT_PATH/package-lock.json" ]; then
+            echo "lock_exists=1" >> "$GITHUB_OUTPUT"
+          else
+            echo "lock_exists=0" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: 📦 Setup Node.js ${{ env.NODE_VERSION }} (with cache)
         uses: actions/setup-node@v4
+        if: ${{ steps.check-project.outputs.project_exists == '1' && steps.check-npm.outputs.lock_exists == '1' }}
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
           cache-dependency-path: '${{ matrix.project }}/package-lock.json'
 
+      - name: 📦 Setup Node.js ${{ env.NODE_VERSION }} (no cache path)
+        uses: actions/setup-node@v4
+        if: ${{ steps.check-project.outputs.project_exists == '1' && steps.check-npm.outputs.lock_exists == '0' }}
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
       - name: 🔧 Install Dependencies
-        if: ${{ steps.check-project.outputs.project_exists == '1' }}
+        if: ${{ steps.check-project.outputs.project_exists == '1' && steps.check-npm.outputs.npm_project == '1' }}
         working-directory: ${{ matrix.project }}
         run: npm ci
       - name: Skip note (typescript project missing)
         if: ${{ steps.check-project.outputs.project_exists == '0' }}
         run: |
           echo "Skip: ${{ matrix.project }} folder not present in this commit."
+      - name: Skip note (no npm project in folder)
+        if: ${{ steps.check-project.outputs.project_exists == '1' && steps.check-npm.outputs.npm_project == '0' }}
+        run: |
+          echo "Skip: ${{ matrix.project }} has no package.json; skipping npm steps."
 
       - name: 🧹 ESLint Code Quality Check
+        if: ${{ steps.check-project.outputs.project_exists == '1' && steps.check-npm.outputs.npm_project == '1' }}
         working-directory: ${{ matrix.project }}
         run: npm run lint --if-present
 
       - name: 🏗️ TypeScript Build
+        if: ${{ steps.check-project.outputs.project_exists == '1' && steps.check-npm.outputs.npm_project == '1' }}
         working-directory: ${{ matrix.project }}
         run: npm run build --if-present
 
       - name: 🧪 Run Tests
+        if: ${{ steps.check-project.outputs.project_exists == '1' && steps.check-npm.outputs.npm_project == '1' }}
         working-directory: ${{ matrix.project }}
         run: npm test --if-present
 
       - name: 📊 Upload Coverage Reports
-        if: success()
+        if: ${{ steps.check-project.outputs.project_exists == '1' && steps.check-npm.outputs.npm_project == '1' && success() }}
         uses: codecov/codecov-action@v3
         with:
           directory: ${{ matrix.project }}
@@ -98,6 +129,17 @@ jobs:
           fetch-depth: 0
           submodules: recursive
 
+      - name: Check project exists
+        id: check-project
+        env:
+          PROJECT_PATH: ${{ matrix.project }}
+        run: |
+          if [ -d "$PROJECT_PATH" ]; then
+            echo "project_exists=1" >> "$GITHUB_OUTPUT"
+          else
+            echo "project_exists=0" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: 🐍 Setup Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
         with:
@@ -121,14 +163,17 @@ jobs:
           echo "Skip: ${{ matrix.project }} folder not present."
 
       - name: 🧹 Flake8 Linting
+        if: ${{ steps.check-project.outputs.project_exists == '1' }}
         working-directory: ${{ matrix.project }}
         run: python -m flake8 . --extend-ignore=E501,W503 --max-line-length=100
 
       - name: 🎨 Black Code Formatting Check
+        if: ${{ steps.check-project.outputs.project_exists == '1' }}
         working-directory: ${{ matrix.project }}
         run: python -m black --check --diff .
 
       - name: 🔍 MyPy Type Checking
+        if: ${{ steps.check-project.outputs.project_exists == '1' }}
         working-directory: ${{ matrix.project }}
         run: python -m mypy . --ignore-missing-imports
         continue-on-error: true
@@ -140,7 +185,7 @@ jobs:
         continue-on-error: true
 
       - name: 📊 Upload Python Coverage
-        if: success()
+        if: ${{ steps.check-project.outputs.project_exists == '1' && success() }}
         uses: codecov/codecov-action@v3
         with:
           directory: ${{ matrix.project }}
