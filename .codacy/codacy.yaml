@@ -1,32 +1,25 @@
 version: "1"
 
-# Minimal Codacy CLI configuration to unblock analysis
-# Tools will be auto-detected; we focus on excluding generated/third-party paths.
+# Minimal Codacy CLI configuration to unblock analysis.
+# Tools are auto-detected; we exclude generated/third-party paths.
 exclude_paths:
-	- "**/node_modules/**"
-	- "**/.git/**"
-	- "**/.cache/**"
-	- "**/.venv/**"
-	- "**/.pytest_cache/**"
-	- "quality-reports/**"
-	- "logs/**"
-	- ".codacy/logs/**"
-	- "frontend/dist/**"
-	- "crm.menschlichkeit-oesterreich.at/web/sites/default/files/**"
-	- "website/wp-content/**"
-	- "automation/n8n/**"
-	- "assets/**"
-	- "docs/archive/**"
+  - "**/node_modules/**"
+  - "**/.git/**"
+  - "**/.cache/**"
+  - "**/.venv/**"
+  - "**/.pytest_cache/**"
+  - "quality-reports/**"
+  - "logs/**"
+  - ".codacy/logs/**"
+  - "frontend/dist/**"
+  - "crm.menschlichkeit-oesterreich.at/web/sites/default/files/**"
+  - "website/wp-content/**"
+  - "automation/n8n/**"
+  - "assets/**"
+  - "docs/archive/**"
 
-# Optional per-language hints (non-breaking if tools are unavailable)
 tools:
-	- name: markdownlint
-		enabled: true
-	- name: eslint
-		enabled: true
-	- name: phpstan
-		enabled: true
-	- name: pylint
-		enabled: true
-	- name: bandit
-		enabled: true
+  - name: markdownlint
+  - name: eslint
+  - name: pylint
+  - name: bandit
