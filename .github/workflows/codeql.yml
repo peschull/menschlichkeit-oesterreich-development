@@ -37,10 +37,9 @@ jobs:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         with:
-          languages: javascript, python, cpp, csharp, go, ruby, java
-
-      - name: Autobuild
-        uses: github/codeql-action/autobuild@v3
+          # Nur interpretierte Sprachen dieses Monorepos analysieren, um
+          # unnötige Autobuilds zu vermeiden (cpp/csharp/go/java/ruby nicht genutzt)
+          languages: javascript, python
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
