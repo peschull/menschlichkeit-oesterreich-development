@@ -1,15 +1,32 @@
-runtimes:
-    - dart@3.7.2
-    - go@1.22.3
-    - java@17.0.10
-    - node@22.2.0
-    - python@3.11.11
+version: "1"
+
+# Minimal Codacy CLI configuration to unblock analysis
+# Tools will be auto-detected; we focus on excluding generated/third-party paths.
+exclude_paths:
+	- "**/node_modules/**"
+	- "**/.git/**"
+	- "**/.cache/**"
+	- "**/.venv/**"
+	- "**/.pytest_cache/**"
+	- "quality-reports/**"
+	- "logs/**"
+	- ".codacy/logs/**"
+	- "frontend/dist/**"
+	- "crm.menschlichkeit-oesterreich.at/web/sites/default/files/**"
+	- "website/wp-content/**"
+	- "automation/n8n/**"
+	- "assets/**"
+	- "docs/archive/**"
+
+# Optional per-language hints (non-breaking if tools are unavailable)
 tools:
-    - dartanalyzer@3.7.2
-    - eslint@8.57.0
-    - lizard@1.17.31
-    - pmd@7.11.0
-    - pylint@3.3.6
-    - revive@1.7.0
-    - semgrep@1.78.0
-    - trivy@0.66.0
+	- name: markdownlint
+		enabled: true
+	- name: eslint
+		enabled: true
+	- name: phpstan
+		enabled: true
+	- name: pylint
+		enabled: true
+	- name: bandit
+		enabled: true
