@@ -31,16 +31,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Check project exists
-        id: check-project
-        env:
-          PROJECT_PATH: ${{ matrix.project }}
-        run: |
-          if [ -d "$PROJECT_PATH" ]; then
-            echo "project_exists=1" >> "$GITHUB_OUTPUT"
-          else
-            echo "project_exists=0" >> "$GITHUB_OUTPUT"
-          fi
 
       - name: Check npm project files
         id: check-npm
