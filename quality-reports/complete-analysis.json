@@ -1,0 +1,74 @@
+{
+  "metadata": {
+    "generated_at": "2025-10-11T05:45:27.565Z",
+    "environment": "development",
+    "repository": "menschlichkeit-oesterreich-development",
+    "branch": "development",
+    "commit": "unknown"
+  },
+  "summary": {
+    "overall_status": "needs_improvement",
+    "quality_score": 0,
+    "security_score": 0,
+    "compliance_score": 0,
+    "performance_score": 0,
+    "total_issues": 1760,
+    "critical_issues": 0,
+    "recommendations": [
+      "🔧 Improve code quality and reduce technical debt",
+      "⚖️ Review and fix DSGVO compliance issues"
+    ]
+  },
+  "reports": {
+    "codacy": null,
+    "security": null,
+    "dsgvo": null,
+    "lighthouse": null,
+    "eslint": {
+      "total_issues": 1760,
+      "files_with_issues": 331
+    }
+  },
+  "quality_gates": {
+    "security_gate": {
+      "passed": false,
+      "details": "CVE count unknown"
+    },
+    "maintainability_gate": {
+      "passed": false,
+      "details": "Score unknown"
+    },
+    "performance_gate": {
+      "passed": false,
+      "details": "Lighthouse score unknown"
+    },
+    "accessibility_gate": {
+      "passed": false,
+      "details": "A11y score unknown"
+    },
+    "compliance_gate": {
+      "passed": false,
+      "details": "DSGVO status unknown"
+    }
+  },
+  "raci_matrix": {
+    "security_issues": {
+      "responsible": "DevOps Team",
+      "accountable": "Security Officer",
+      "consulted": "Development Team",
+      "informed": "Management"
+    },
+    "compliance_issues": {
+      "responsible": "Compliance Officer",
+      "accountable": "Legal Team",
+      "consulted": "Development Team",
+      "informed": "Management"
+    },
+    "performance_issues": {
+      "responsible": "Frontend Team",
+      "accountable": "Technical Lead",
+      "consulted": "UX Team",
+      "informed": "Product Owner"
+    }
+  }
+}
