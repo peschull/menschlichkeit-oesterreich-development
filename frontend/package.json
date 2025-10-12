@@ -11,19 +11,19 @@
     "lh:ci": "node ./scripts/run-lighthouse.mjs"
   },
   "dependencies": {
-    "framer-motion": "^12.23.22",
+    "framer-motion": "^12.23.24",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "react-router-dom": "^6.27.0"
+    "react-router-dom": "^7.9.4"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.9",
     "@tailwindcss/typography": "^0.5.15",
     "@types/react": "^19.2.2",
-    "@types/react-dom": "^19.2.0",
-    "@vitejs/plugin-react": "^4.2.1",
+  "@types/react-dom": "^19.2.1",
+  "@vitejs/plugin-react": "^5.0.4",
     "autoprefixer": "^10.4.20",
-    "lighthouse": "^12.3.0",
+    "lighthouse": "^13.0.0",
     "postcss": "^8.4.49",
     "tailwindcss": "^4.1.14",
     "typescript": "^5.9.3",
