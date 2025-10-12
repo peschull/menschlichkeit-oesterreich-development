@@ -118,5 +118,8 @@
   "license": "MIT",
   "dependencies": {
     "vite": "7.1.9"
+  },
+  "overrides": {
+    "form-data": ">=4.0.4"
   }
 }
