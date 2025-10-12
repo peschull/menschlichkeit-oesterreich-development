@@ -290,6 +290,12 @@ servers/src/*/dist/
 *.tgz
 *.tar.gz
 
+# Large binary tools (avoid committing heavy binaries)
+bin/
+*.exe
+*.bin
+*.dll
+
 # Development databases
 *.sqlite
 *.db
@@ -365,3 +371,7 @@ cspell.json.backup
 # Turbo Console Log
 .turbo-console-log/
 .ssh/
+
+
+#Ignore vscode AI rules
+.github/instructions/codacy.instructions.md
