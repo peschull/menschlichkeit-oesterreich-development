@@ -1,8 +1,11 @@
 #!/bin/bash
 # Devcontainer setup script for Menschlichkeit Österreich
-set -e
+# This runs as postCreateCommand AFTER onCreate-setup.sh
+# Exit on error is disabled to allow graceful degradation
+set +e  # Changed from set -e to allow continuing on errors
 
-echo "🚀 Setting up Menschlichkeit Österreich development environment..."
+echo "🚀 Setting up Menschlichkeit Österreich development environment (Phase 2/3)..."
+echo ""
 
 # Create quality-reports directory
 mkdir -p quality-reports
@@ -11,30 +14,35 @@ mkdir -p quality-reports
 echo "🐍 Installing Python dependencies for API service..."
 cd api.menschlichkeit-oesterreich.at
 
-# Try minimal requirements first (more likely to succeed)  
-if [ -f "requirements-minimal.txt" ]; then
-    echo "📦 Installing minimal Python requirements..."
-    pip install --user --timeout 120 -r requirements-minimal.txt || echo "⚠️ Minimal requirements install failed, will try manual install"
-fi
-
-# Try full requirements if minimal succeeded or if minimal doesn't exist
-if ! python3 -c "import fastapi, uvicorn" 2>/dev/null; then
-    echo "📦 Installing essential packages manually..."
-    pip install --user --timeout 120 fastapi uvicorn python-dotenv pydantic requests || echo "⚠️ Manual install failed, API server may not work"
+# Check if we already have the basics (from onCreate)
+if python3 -c "import fastapi, uvicorn" 2>/dev/null; then
+    echo "  ✅ FastAPI and Uvicorn already installed"
+else
+    # Try minimal requirements first (more likely to succeed)  
+    if [ -f "requirements-minimal.txt" ]; then
+        echo "📦 Installing minimal Python requirements..."
+        timeout 120 pip install --user --timeout 120 -r requirements-minimal.txt || echo "⚠️ Minimal requirements install failed, will try manual install"
+    fi
+    
+    # Try full requirements if minimal succeeded or if minimal doesn't exist
+    if ! python3 -c "import fastapi, uvicorn" 2>/dev/null; then
+        echo "📦 Installing essential packages manually..."
+        timeout 120 pip install --user --timeout 120 fastapi uvicorn python-dotenv pydantic requests || echo "⚠️ Manual install failed, API server may not work"
+    fi
 fi
 
 # Try full requirements if we have basic packages working
 if python3 -c "import fastapi, uvicorn" 2>/dev/null; then
-    echo "📦 Attempting full requirements install..."
-    pip install --user --timeout 120 -r requirements.txt || echo "⚠️ Full requirements install failed, basic functionality should still work"
+    echo "📦 Attempting full requirements install (with timeout protection)..."
+    timeout 180 pip install --user --timeout 120 -r requirements.txt || echo "⚠️ Full requirements install failed or timed out, basic functionality should still work"
 fi
 
 cd ..
 
 # Install PHP dependencies (if composer.json exists)
 if [ -f "composer.json" ]; then
-    echo "🐘 Installing PHP dependencies..."
-    composer install --no-dev --optimize-autoloader || echo "⚠️ PHP dependencies installation failed"
+    echo "🐘 Installing PHP dependencies (with timeout protection)..."
+    timeout 180 composer install --no-dev --optimize-autoloader || echo "⚠️ PHP dependencies installation failed or timed out"
 fi
 
 # Setup environment files from templates
@@ -57,6 +65,14 @@ chmod +x build-pipeline.sh 2>/dev/null || true
 chmod +x scripts/*.sh 2>/dev/null || true
 chmod +x deployment-scripts/*.sh 2>/dev/null || true
 
+# Check available resources
+echo ""
+echo "📊 System Resources:"
+echo "  Memory: $(free -h | awk '/^Mem:/ {print $2 " total, " $3 " used, " $4 " free"}')"
+echo "  Disk: $(df -h / | awk 'NR==2 {print $2 " total, " $3 " used, " $4 " available"}')"
+echo "  CPU cores: $(nproc)"
+
+echo ""
 echo "✅ Devcontainer setup complete!"
 echo ""
 echo "🎯 Quick Start Commands:"
@@ -79,3 +95,6 @@ echo "  Frontend: http://localhost:5173"
 echo "  API: http://localhost:8001"
 echo "  CRM: http://localhost:8000"
 echo "  Games: http://localhost:3000"
+echo ""
+echo "💡 Note: PowerShell setup runs in background (optional)"
+echo "  Check '.devcontainer/POWERSHELL.md' for PowerShell features"
