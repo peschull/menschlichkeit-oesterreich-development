@@ -9,6 +9,12 @@ import uuid
 import asyncio
 import time
 import logging
+from pathlib import Path
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+env_path = Path(__file__).parent.parent / '.env'
+load_dotenv(dotenv_path=env_path)
 
 # Import shared utilities
 from app.shared import ApiResponse, verify_jwt_token
