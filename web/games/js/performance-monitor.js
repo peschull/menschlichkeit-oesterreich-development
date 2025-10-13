@@ -6,6 +6,22 @@
  * Real-time metrics, error tracking, and performance optimization
  */
 
+/**
+ * Generate cryptographically secure random string
+ * @param {number} length - Length of random string
+ * @returns {string} Secure random string
+ */
+function generateSecureRandom(length = 10) {
+  if (typeof crypto !== 'undefined' && crypto.getRandomValues) {
+    const array = new Uint8Array(length);
+    crypto.getRandomValues(array);
+    return Array.from(array, byte => byte.toString(36).padStart(2, '0')).join('').substring(0, length);
+  }
+  // Fallback for older browsers (not cryptographically secure)
+  console.warn('crypto.getRandomValues not available, using fallback');
+  return Math.random().toString(36).substring(2, 2 + length);
+}
+
 class DemocracyPerformanceMonitor {
   constructor() {
     this.metrics = {
@@ -760,7 +776,7 @@ class DemocracyPerformanceMonitor {
     // Generate or retrieve current session ID
     if (!this.currentSessionId) {
       this.currentSessionId =
-        'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5);
+        'session_' + Date.now() + '_' + generateSecureRandom(5);
     }
     return this.currentSessionId;
   }

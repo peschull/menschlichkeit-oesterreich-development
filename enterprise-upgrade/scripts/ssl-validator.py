@@ -74,10 +74,13 @@ class SSLValidator:
     def get_certificate_info(self, hostname: str, port: int = 443) -> Dict:
         """Get detailed certificate information"""
         try:
-            # Create SSL context
+            # Create SSL context with secure defaults (TLS 1.2+)
             context = ssl.create_default_context()
-            context.check_hostname = False
-            context.verify_mode = ssl.CERT_NONE
+            # Only disable hostname check if explicitly needed for testing
+            # context.check_hostname = False
+            # context.verify_mode = ssl.CERT_NONE
+            # Use minimum TLS 1.2
+            context.minimum_version = ssl.TLSVersion.TLSv1_2
             
             # Connect and get certificate
             with socket.create_connection((hostname, port), timeout=30) as sock:

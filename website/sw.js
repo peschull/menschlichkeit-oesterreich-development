@@ -206,17 +206,21 @@ function handleDynamicRequest(request) {
 
 function isStaticAsset(request) {
   const url = new URL(request.url);
-  return (
-    url.pathname.includes('/assets/') ||
-    url.pathname.includes('/styles') ||
-    url.pathname.includes('.css') ||
-    url.pathname.includes('.js') ||
-    url.pathname.includes('.woff') ||
-    url.pathname.includes('.woff2') ||
-    url.hostname.includes('cdn.jsdelivr.net') ||
-    url.hostname.includes('fonts.googleapis.com') ||
-    url.hostname.includes('fonts.gstatic.com')
-  );
+  // Use proper URL validation instead of substring checks
+  const isStaticPath = 
+    url.pathname.startsWith('/assets/') ||
+    url.pathname.startsWith('/styles') ||
+    url.pathname.endsWith('.css') ||
+    url.pathname.endsWith('.js') ||
+    url.pathname.endsWith('.woff') ||
+    url.pathname.endsWith('.woff2');
+  
+  const isTrustedCDN = 
+    url.hostname === 'cdn.jsdelivr.net' ||
+    url.hostname === 'fonts.googleapis.com' ||
+    url.hostname === 'fonts.gstatic.com';
+  
+  return isStaticPath || isTrustedCDN;
 }
 
 function isApiRequest(request) {

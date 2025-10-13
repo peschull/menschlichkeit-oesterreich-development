@@ -10,6 +10,22 @@
  * - Export-Funktionen für wissenschaftliche Auswertung
  */
 
+/**
+ * Generate cryptographically secure random string
+ * @param {number} length - Length of random string
+ * @returns {string} Secure random string
+ */
+function generateSecureRandom(length = 10) {
+  if (typeof crypto !== 'undefined' && crypto.getRandomValues) {
+    const array = new Uint8Array(length);
+    crypto.getRandomValues(array);
+    return Array.from(array, byte => byte.toString(36).padStart(2, '0')).join('').substring(0, length);
+  }
+  // Fallback for older browsers (not cryptographically secure)
+  console.warn('crypto.getRandomValues not available, using fallback');
+  return Math.random().toString(36).substring(2, 2 + length);
+}
+
 class UserTestingAnalytics {
   constructor(config = {}) {
     this.config = {
@@ -68,7 +84,7 @@ class UserTestingAnalytics {
    */
   generateSessionId() {
     const timestamp = Date.now();
-    const random = Math.random().toString(36).substring(2);
+    const random = generateSecureRandom(10);
     return `session_${timestamp}_${random}`;
   }
 
@@ -447,7 +463,7 @@ class UserTestingAnalytics {
   getOrCreateAnonymousId() {
     let id = sessionStorage.getItem('anonymous_id');
     if (!id) {
-      id = 'anon_' + Math.random().toString(36).substring(2) + Date.now().toString(36);
+      id = 'anon_' + generateSecureRandom(10) + Date.now().toString(36);
       sessionStorage.setItem('anonymous_id', id);
     }
     return id;

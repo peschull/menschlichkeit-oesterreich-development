@@ -1,7 +1,7 @@
 FROM php:8.2-fpm
 
 # Install system dependencies
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     curl \
     libpng-dev \
@@ -12,7 +12,8 @@ RUN apt-get update && apt-get install -y \
     unzip \
     wget \
     mariadb-client \
-    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
+    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install Imagick
 RUN apt-get install -y libmagickwand-dev --no-install-recommends \
@@ -49,6 +50,9 @@ RUN mkdir -p /var/www/html/web/sites/default/files \
 # Copy initialization script
 COPY init-drupal.sh /usr/local/bin/init-drupal.sh
 RUN chmod +x /usr/local/bin/init-drupal.sh
+
+# Switch to non-root user for security
+USER www-data
 
 EXPOSE 9000
 

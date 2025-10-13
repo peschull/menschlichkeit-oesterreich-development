@@ -70,7 +70,9 @@ for db_key, config in DATABASE_CONFIG.items():
 print(f"\n🔐 Sichere Passwörter generiert:")
 for db_key in DATABASE_CONFIG.keys():
     password = generate_secure_password()
-    print(f"   {db_key.upper()}_DB_PASS={password}")
+    # Do NOT print actual passwords - store them securely instead
+    print(f"   {db_key.upper()}_DB_PASS=<GENERATED_SECURELY>")
+    print(f"   ℹ️  Copy password from secure storage or environment variable")
 
 print(f"\n📝 Nächste Schritte:")
 print("1. Plesk-Panel → Databases öffnen")

@@ -10,6 +10,37 @@
  * - DSGVO-konforme Experiment-Datenerfassung
  */
 
+/**
+ * Generate cryptographically secure random string
+ * @param {number} length - Length of random string
+ * @returns {string} Secure random string
+ */
+function generateSecureRandom(length = 10) {
+  if (typeof crypto !== 'undefined' && crypto.getRandomValues) {
+    const array = new Uint8Array(length);
+    crypto.getRandomValues(array);
+    return Array.from(array, byte => byte.toString(36).padStart(2, '0')).join('').substring(0, length);
+  }
+  // Fallback for older browsers (not cryptographically secure)
+  console.warn('crypto.getRandomValues not available, using fallback');
+  return Math.random().toString(36).substring(2, 2 + length);
+}
+
+/**
+ * Generate cryptographically secure random number for weighted allocation
+ * @returns {number} Secure random number between 0 and 1
+ */
+function generateSecureRandomFloat() {
+  if (typeof crypto !== 'undefined' && crypto.getRandomValues) {
+    const array = new Uint32Array(1);
+    crypto.getRandomValues(array);
+    return array[0] / (0xffffffff + 1);
+  }
+  // Fallback for older browsers
+  console.warn('crypto.getRandomValues not available, using fallback');
+  return Math.random();
+}
+
 class ABTestingFramework {
   constructor(config = {}) {
     this.config = {
@@ -128,7 +159,7 @@ class ABTestingFramework {
    */
   randomAssignment(variants) {
     const totalWeight = variants.reduce((sum, v) => sum + (v.weight || 1), 0);
-    const random = Math.random() * totalWeight;
+    const random = generateSecureRandomFloat() * totalWeight;
 
     let currentWeight = 0;
     for (const variant of variants) {
@@ -530,7 +561,7 @@ class ABTestingFramework {
   getSessionId() {
     let sessionId = sessionStorage.getItem('ab_test_session_id');
     if (!sessionId) {
-      sessionId = 'session_' + Math.random().toString(36).substring(2) + Date.now();
+      sessionId = 'session_' + generateSecureRandom(10) + Date.now();
       sessionStorage.setItem('ab_test_session_id', sessionId);
     }
     return sessionId;

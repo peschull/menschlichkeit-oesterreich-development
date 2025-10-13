@@ -3,6 +3,22 @@
    Enhanced collaborative learning with advanced group dynamics
    ========================================================================== */
 
+/**
+ * Generate cryptographically secure random string
+ * @param {number} length - Length of random string
+ * @returns {string} Secure random string
+ */
+function generateSecureRandom(length = 10) {
+  if (typeof crypto !== 'undefined' && crypto.getRandomValues) {
+    const array = new Uint8Array(length);
+    crypto.getRandomValues(array);
+    return Array.from(array, byte => byte.toString(36).padStart(2, '0')).join('').substring(0, length);
+  }
+  // Fallback for older browsers (not cryptographically secure)
+  console.warn('crypto.getRandomValues not available, using fallback');
+  return Math.random().toString(36).substring(2, 2 + length);
+}
+
 class AdvancedMultiplayerSystem {
   constructor() {
     this.collaborationEngine = new CollaborationEngine();
@@ -476,7 +492,7 @@ class AdvancedMultiplayerSystem {
   }
 
   generateSessionId() {
-    return `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    return `session_${Date.now()}_${generateSecureRandom(9)}`;
   }
 
   calculateGiniCoefficient(values) {

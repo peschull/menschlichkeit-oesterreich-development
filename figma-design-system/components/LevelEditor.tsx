@@ -145,6 +145,16 @@ export function LevelEditor({
     setCurrentLevel(prev => {
       const newLevel = { ...prev };
       const keys = path.split('.');
+      
+      // Prevent prototype pollution
+      const dangerousKeys = ['__proto__', 'constructor', 'prototype'];
+      for (const key of keys) {
+        if (dangerousKeys.includes(key)) {
+          console.warn('Attempted prototype pollution blocked:', key);
+          return prev;
+        }
+      }
+      
       let current: any = newLevel;
       
       for (let i = 0; i < keys.length - 1; i++) {

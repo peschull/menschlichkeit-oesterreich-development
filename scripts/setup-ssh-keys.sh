@@ -13,9 +13,20 @@ echo ""
 # Variablen
 SSH_PRIVATE_KEY="$HOME/.ssh/id_ed25519"
 SSH_PUBLIC_KEY="$HOME/.ssh/id_ed25519.pub"
-GITHUB_TOKEN="${GITHUB_TOKEN:-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}"
+# GITHUB_TOKEN must be set as environment variable - no default for security
+GITHUB_TOKEN="${GITHUB_TOKEN:-}"
 GITHUB_REPO="peschull/menschlichkeit-oesterreich-development"
 PLESK_HOST="dmpl20230054@5.183.217.146"
+
+# Validate GITHUB_TOKEN is set
+if [[ -z "$GITHUB_TOKEN" ]]; then
+    echo "❌ GITHUB_TOKEN environment variable not set"
+    echo "   Please set it before running this script:"
+    echo "   export GITHUB_TOKEN='your_github_token_here'"
+    echo ""
+    echo "   Token needs 'repo' and 'admin:public_key' scopes"
+    exit 1
+fi
 
 # Prüfe SSH-Schlüssel
 if [[ ! -f "$SSH_PRIVATE_KEY" ]]; then
