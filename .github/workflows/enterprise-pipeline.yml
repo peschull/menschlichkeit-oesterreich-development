@@ -1,9 +1,9 @@
 name: 🔄 CI/CD Pipeline
 on:
   push:
-    branches: [ main, develop ]
+    branches: [main, develop]
   pull_request:
-    branches: [ main, develop ]
+    branches: [main, develop]
   schedule:
     # Daily at 6 AM UTC
     - cron: '0 6 * * *'
@@ -44,10 +44,10 @@ jobs:
         with:
           fetch-depth: 0
 
-- name: 🔍 Detect Changes
-  id: detect-changes
-  run: |
-    matrix='{"include":['
+      - name: 🔍 Detect Changes
+        id: detect-changes
+        run: |
+          matrix='{"include":['
     if git diff --name-only HEAD~1 | grep -E "^frontend/|^figma-design-system/" || [ "${{ github.event_name }}" = "schedule" ]; then
       matrix+='{"service":"frontend","path":"frontend/","port":"3000"},'
     fi
