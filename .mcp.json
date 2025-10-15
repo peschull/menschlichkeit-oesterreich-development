@@ -1,0 +1,121 @@
+{
+  "$schema": "https://schema.mcp.dev/config.v1.json",
+  "version": "1",
+  "mcpServers": {
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PERSONAL_ACCESS_TOKEN}"
+      }
+    },
+    "codacy": {
+      "command": "npx",
+      "args": ["-y", "@codacy/codacy-mcp-server"],
+      "env": {
+        "CODACY_API_TOKEN": "${CODACY_API_TOKEN}"
+      }
+    },
+    "figma": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-figma"],
+      "env": {
+        "FIGMA_PERSONAL_ACCESS_TOKEN": "${FIGMA_PERSONAL_ACCESS_TOKEN}"
+      }
+    },
+    "sentry": {
+      "command": "npx",
+      "args": ["-y", "@sentry/mcp-server"],
+      "env": {
+        "SENTRY_AUTH_TOKEN": "${SENTRY_AUTH_TOKEN}",
+        "SENTRY_ORG": "${SENTRY_ORG}"
+      }
+    },
+    "huggingface": {
+      "command": "npx",
+      "args": ["-y", "@huggingface/mcp-server"],
+      "env": {
+        "HUGGING_FACE_API_TOKEN": "${HUGGING_FACE_API_TOKEN}"
+      }
+    },
+    "markitdown": {
+      "command": "npx",
+      "args": ["-y", "@microsoft/markitdown-mcp-server"]
+    }
+  },
+  "removedServers": [
+    {
+      "name": "filesystem",
+      "reason": "Not on approved list; double-confirmed removal on 2025-10-15",
+      "previousConfig": {
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-filesystem", "${workspaceFolder}"]
+      }
+    },
+    {
+      "name": "memory",
+      "reason": "Not on approved list; double-confirmed removal on 2025-10-15",
+      "previousConfig": {
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-memory"]
+      }
+    },
+    {
+      "name": "notion",
+      "reason": "Not on approved list; double-confirmed removal on 2025-10-15",
+      "previousConfig": {
+        "command": "npx",
+        "args": ["-y", "@notionhq/notion-mcp-server"],
+        "env": {
+          "NOTION_API_KEY": "${NOTION_API_KEY}"
+        }
+      }
+    },
+    {
+      "name": "postgres",
+      "reason": "Not on approved list; double-confirmed removal on 2025-10-15",
+      "previousConfig": {
+        "command": "bash",
+        "args": ["scripts/run-postgres-mcp.sh"],
+        "env": {
+          "DATABASE_URL": "${DATABASE_URL}"
+        }
+      }
+    },
+    {
+      "name": "upstash-context7",
+      "reason": "Not on approved list; double-confirmed removal on 2025-10-15",
+      "previousConfig": {
+        "command": "npx",
+        "args": ["-y", "@upstash/context7-mcp"]
+      }
+    },
+    {
+      "name": "moe-chat",
+      "reason": "Not on approved list; double-confirmed removal on 2025-10-15",
+      "previousConfig": {
+        "command": "node",
+        "args": ["mcp-servers/chatgpt-app-server/index.js"],
+        "env": {
+          "MOE_API_BASE": "http://localhost:8001/api/v1"
+        }
+      }
+    },
+    {
+      "name": "playwright-mcp",
+      "reason": "Not on approved list; double-confirmed removal on 2025-10-15",
+      "previousConfig": {
+        "command": "npx",
+        "args": ["@playwright/mcp@latest"]
+      }
+    },
+    {
+      "name": "microsoft-docs",
+      "reason": "Not on approved list; double-confirmed removal on 2025-10-15",
+      "previousConfig": {
+        "type": "http",
+        "url": "https://learn.microsoft.com/api/mcp"
+      }
+    }
+  ]
+}
