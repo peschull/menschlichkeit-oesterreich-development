@@ -1,25 +1,26 @@
 {
   "name": "Menschlichkeit Österreich Development",
   "image": "mcr.microsoft.com/devcontainers/universal:2",
+
   "features": {
-    "ghcr.io/devcontainers/features/node:1": {
-      "version": "lts"
-    },
-    "ghcr.io/devcontainers/features/python:1": {
-      "version": "3.12"
-    },
-    "ghcr.io/devcontainers/features/php:1": {
-      "version": "8.1"
-    },
-    "ghcr.io/devcontainers/features/powershell:1": {
-      "version": "latest"
-    },
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/node:1": { "version": "22.20.0" },
+    "ghcr.io/devcontainers/features/python:1": { "version": "3.12" },
+    "ghcr.io/devcontainers/features/php:1": { "version": "8.1" },
+    "ghcr.io/devcontainers/features/powershell:1": { "version": "latest" },
     "ghcr.io/devcontainers/features/docker-in-docker:2": {},
     "ghcr.io/devcontainers/features/git:1": {}
   },
+
+  // Läuft einmal nach dem Build (vor dem ersten Start)
   "onCreateCommand": "bash .devcontainer/onCreate-setup.sh",
-  "postCreateCommand": "bash .devcontainer/setup.sh && bash scripts/dev/codespace-ssh-setup.sh",
+
+  // Läuft nach dem Create (im Container) – Node via .nvmrc setzen, gh vorbereiten
+  "postCreateCommand": "bash -lc 'if [ -f .nvmrc ]; then . /usr/local/share/nvm/nvm.sh && nvm install && nvm use; fi && node -v && npm -v && npx -v' && gh auth status || gh auth login -p https -h github.com || true && bash .devcontainer/setup.sh && bash scripts/dev/codespace-ssh-setup.sh",
+
+  // Optionales PowerShell-Setup
   "postStartCommand": "pwsh .devcontainer/setup-powershell.ps1 || true",
+
   "customizations": {
     "vscode": {
       "extensions": [
@@ -39,26 +40,15 @@
       "settings": {
         "terminal.integrated.defaultProfile.linux": "bash",
         "terminal.integrated.profiles.linux": {
-          "bash": {
-            "path": "/bin/bash",
-            "icon": "terminal-bash"
-          },
-          "pwsh": {
-            "path": "pwsh",
-            "icon": "terminal-powershell"
-          }
+          "bash": { "path": "/bin/bash", "icon": "terminal-bash" },
+          "pwsh": { "path": "pwsh", "icon": "terminal-powershell" }
         },
         "python.defaultInterpreterPath": "/usr/local/python/current/bin/python",
         "python.linting.enabled": true,
         "python.linting.pylintEnabled": true,
         "php.validate.executablePath": "/usr/local/php/current/bin/php",
         "github.copilot.enable": {
-          "*": true,
-          "markdown": false,
-          "yaml": false,
-          "json": false,
-          "scminput": false,
-          "dotenv": false
+          "*": true, "markdown": false, "yaml": false, "json": false, "scminput": false, "dotenv": false
         },
         "github.copilot.nextEditSuggestions.enabled": true,
         "editor.inlineSuggest.edits.allowCodeShifting": "never",
@@ -69,33 +59,27 @@
           ".github/instructions": true,
           "docs/ai-instructions": true
         },
-        "telemetry.telemetryLevel": "off"
+        "telemetry.telemetryLevel": "off",
+
+        // 🔗 Remote-MCP Server (GitHub = HTTP, DeepWiki = SSE)
+        "mcp": {
+          "servers": {
+            "github": { "type": "http", "url": "https://api.githubcopilot.com/mcp/" },
+            "deepwiki": { "type": "sse", "url": "https://mcp.deepwiki.com/sse" }
+          }
+        }
       }
     }
   },
-  "forwardPorts": [
-    3000,
-    5173,
-    8000,
-    8001
-  ],
+
+  "forwardPorts": [3000, 5173, 8000, 8001],
   "portsAttributes": {
-    "3000": {
-      "label": "Games Server",
-      "onAutoForward": "notify"
-    },
-    "5173": {
-      "label": "Frontend (Vite)",
-      "onAutoForward": "openBrowser"
-    },
-    "8000": {
-      "label": "CRM Server",
-      "onAutoForward": "notify"
-    },
-    "8001": {
-      "label": "API Server",
-      "onAutoForward": "notify"
-    }
+    "3000": { "label": "Games Server", "onAutoForward": "notify" },
+    "5173": { "label": "Frontend (Vite)", "onAutoForward": "openBrowser" },
+    "8000": { "label": "CRM Server", "onAutoForward": "notify" },
+    "8001": { "label": "API Server", "onAutoForward": "notify" }
   },
-  "remoteUser": "codespace"
+
+  // Node bereits via Feature installiert; kein hart verdrahteter PATH nötig
+  "remoteUser": "vscode"
 }

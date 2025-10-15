@@ -1,65 +1,59 @@
-## Menschlichkeit Österreich – Copilot Leitfaden (kurz & praxisnah)
 
-Dieser Monorepo bündelt 5 Services mit gemeinsamer PostgreSQL-DB und DSGVO-First-Default. Ziel: Security > Datenintegrität > Stabilität > Velocity.
 
-### Architektur (Big Picture)
-- CRM: `crm.menschlichkeit-oesterreich.at/` (Drupal 10 + CiviCRM, PHP 8.1) – Port 8000
-- API: `api.menschlichkeit-oesterreich.at/` (FastAPI, Python 3.11+, Alembic) – Port 8001
-- Frontend: `frontend/` (React 18 + TS + Vite, Design Tokens) – Port 5173
-- Games: `web/` (Prisma-Schema im Repo; lokaler Dev-Server via Python) – Port 3000
-- Automation: `automation/n8n/` (Docker, Webhooks) – Port 5678
-Gemeinsame DB (PostgreSQL ≥15) via `DATABASE_URL`. Schema-Änderungen: koordinieren (API Alembic vs. Games Prisma).
+Austrian NGO Monorepo – Copilot Leitfaden (AI-Agent Quickstart)
 
-### Daily Dev (Node 22+ zwingend)
-- Setup: `npm run setup:dev`
-- Start alle: `npm run dev:all` (oder einzeln: `dev:crm`, `dev:api`, `dev:frontend`, `dev:games`)
-- Wichtige Ports: CRM 8000 · API 8001 · Frontend 5173 · Games 3000 · n8n 5678
+---
 
-### Qualität & Tests (PR-blocking Gates)
-- Alles auf einmal: `npm run quality:gates`
-	- Code Quality (Codacy), Security (Trivy+Gitleaks), Performance (Lighthouse), DSGVO-Checks, Reports
-- Einzeltests: `npm run test:unit` (Vitest), `npm run test:e2e` (Playwright), Python: `pytest tests/test_pii_sanitizer.py`
+**Architektur & Services**
+- Multi-Service-Repo: CRM (Drupal/CiviCRM), API (FastAPI/Python), Frontend (React/TS), Games (Prisma/PostgreSQL), Automation (n8n)
+- Gemeinsame PostgreSQL-DB (`DATABASE_URL`), DSGVO-First, strikte Trennung der Service-Logik
+- Schema-Änderungen: Immer Migration (API: Alembic, Games: Prisma), keine DB-Änderung ohne Migration
 
-### DSGVO/PII (Projekt-spezifische Patterns)
-- FastAPI: Middleware `api.../app/middleware/pii_middleware.py` + Lib `app/lib/pii_sanitizer.py`
-- Drupal: Custom Modul `crm.../web/modules/custom/pii_sanitizer/` (Watchdog/Forms/Mails/CiviCRM)
-- Regeln: Keine PII in Logs; E-Mail-Masking (`t**@example.com`), IBAN-Redaction (`AT61***`). Tests: `tests/test_pii_sanitizer.py`.
+**Wichtige Workflows & Kommandos**
+- Setup: `npm run setup:dev` (Workspaces, Composer, Envs)
+- Start: `npm run dev:all` (alle Services parallel), einzeln: `npm run dev:crm|api|frontend|games`
+- Qualität: `npm run quality:gates` (blockiert PRs, prüft Codacy, Security, Lighthouse, DSGVO, Tests)
+- Tests: `npm run test:unit` (Vitest), `npm run test:e2e` (Playwright), Python: `pytest ...`
+- Build/Deploy: `./build-pipeline.sh staging|production`, Rollback: `npm run deploy:rollback`
 
-### Frontend Konventionen
-- Design Tokens: `figma-design-system/00_design-tokens.json` – niemals Farben/Spacing hardcoden
-	- Nutzung: `frontend/tailwind.config.cjs`, `frontend/scripts/generate-design-tokens.mjs`
-- Routing/Fallback: `frontend/src/App.tsx` nutzt `<AITestPage />` als sichere Fallback-Route
-- Performance-Audit: `npm run performance:lighthouse` (nutzt Frontend-Workspace)
+**Projekt-Spezifische Patterns**
+- DSGVO/PII: Keine PII in Logs, Maskierung via `api/app/lib/pii_sanitizer.py` & `crm/web/modules/custom/pii_sanitizer/`
+- Frontend: Design Tokens aus `figma-design-system/00_design-tokens.json` (nie Farben/Spacing hardcoden), Routing-Fallback: `<AITestPage />`
+- API: OpenAPI-Spec (`api.menschlichkeit-oesterreich.at/openapi.yaml`) immer aktuell halten
+- Games: Prisma-Modelle in `schema.prisma`, XP/Level-Logik im Game-Code
 
-### API & DB Flows
-- OpenAPI: `api.menschlichkeit-oesterreich.at/openapi.yaml` (halten in Sync mit Endpunkten)
-- Migrations (API): Alembic – Beispiel: `alembic upgrade head`
-- Prisma (Games): Schema im `schema.prisma`; gängig: `npx prisma generate` / `npx prisma migrate dev`
+**Integrationen & Besonderheiten**
+- n8n: Automatisierte Webhooks für Build/Deploy, Mahnwesen, Opt-in/out
+- MCP-Server: Figma (Design Tokens), GitHub (PRs/Security), Filesystem (Repo-Operationen)
+- Security: Trivy/Gitleaks laufen automatisch, keine Secrets im Repo (Gitleaks blockt PRs)
 
-### Build/Deploy (mit n8n Webhooks)
-- Pipeline: `./build-pipeline.sh staging|production [--skip-tests|--force]` (sendet Webhooks via `automation/n8n/webhook-client.js`)
-- Multi-Service Deploy: `deployment-scripts/multi-service-deploy.sh`
-- Rollback & Health: `npm run deploy:rollback` · `npm run deploy:health-check`
+**Do/Don’t**
+- Do: UI-Texte auf Österreichisch, alle Gates lokal ausführen, OpenAPI/Alembic/Prisma synchron halten
+- Don’t: PII loggen, DB ohne Migration ändern, Farben/Spacing hardcoden, Secrets commiten
 
-### MCP-Integration (für AI-Workflows)
-- Setup/Status: `npm run mcp:setup` · `npm run mcp:check` · `npm run mcp:list`
-- Typische Nutzung: Figma-Sync (Design Tokens), GitHub (PRs/Security), Filesystem (Repo-Operationen), Context7 (Lib-Doks)
-
-### Do/Don’t (projektspezifisch)
-- Do: UI-Texte auf Österreichisches Deutsch, Tokens verwenden, Gates lokal ausführen, OpenAPI/Alembic/Prisma aktuell halten
-- Don’t: PII loggen, Farben/Spacing hardcoden, DB ohne Migration ändern, Secrets commiten (Gitleaks blockt)
-
-### Quick Links (Schlüsseldateien)
-- Scripts/Orchestrierung: `package.json` (Workflows), `build-pipeline.sh`
-- DSGVO/PII: `api.../app/lib/pii_sanitizer.py`, `crm.../modules/custom/pii_sanitizer/`
+**Schlüsseldateien & Beispiele**
+- Workflows: `package.json`, `build-pipeline.sh`, `deployment-scripts/`
+- DSGVO/PII: `api/app/lib/pii_sanitizer.py`, `crm/web/modules/custom/pii_sanitizer/`
 - Frontend: `frontend/src/App.tsx`, `frontend/tailwind.config.cjs`
 - Design System: `figma-design-system/00_design-tokens.json`
 - DB: `schema.prisma`, `api.menschlichkeit-oesterreich.at/alembic/`
 
-Unklarheiten oder Lücken? Nenne konkrete Aufgaben/Dateien – ich erweitere die Anleitung gezielt (kurz & operativ).
-# Menschlichkeit Österreich – AI Coding Agent Guide# Menschlichkeit Österreich – AI Coding Agent Guide# Menschlichkeit Österreich – Copilot Leitfaden
+**Beispiel: PII-Masking in Python**
+```python
+from app.lib.pii_sanitizer import scrub
+clean = scrub("Email: test@example.com")  # → "Email: t**@example.com"
+```
 
+**Beispiel: Design Token Nutzung (Frontend)**
+```js
+// tailwind.config.cjs
+const tokens = require('../figma-design-system/00_design-tokens.json');
+// ...
+```
 
+---
+
+Unklarheiten? Nenne konkrete Aufgaben/Dateien für gezielte Erweiterung.
 
 Austrian NGO multi-service platform with strict GDPR compliance, automated quality gates, and MCP-enhanced development workflow.
 
